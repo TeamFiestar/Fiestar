@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>main 페이지</title>
+
+  <link rel="stylesheet" href="/css/common/main.css">
+  <link rel="stylesheet" href="/css/common/shopHeader.css">
+</head>
+<body>
+  <th:block th:replace="~{common/shopHeader}"></th:block>
+ 
+  
+  <main style="aspect-ratio: auto 531/299;">
+    <div class="wallpaper">
+      <img src="/images/wallpaper.png" width="100%" height="300px" >
+    </div>
+
+    <section class="homeMain">
+      <div class="myArtist-area"> 
+        <h1 class="home-title">내가 구독한 아티스트</h1>
+        <div class="myArtist-area-detail">
+          <div class="artist-list">
+              <a href="#" class="artist-profile">
+                <div class="artist-image-area"> 
+                  <img src="/images/newJeans.jpg">
+                </div>
+                <div class="artist-logo-wrap">
+                  <span class="artist-logo-area">
+                    <img src="/images/newJeans_logo.jpg" class="artist-main-logo">
+                  </span>
+                </div>
+                <div class="artist-text-area">
+                  <div class="artist-name"> NewJeans </div>
+                  <br>
+                  <img class="artist-community" src="/images/community.png" onclick="{location.href='#';}" > 
+                  <img class="artist-shop" src="/images/shop.png" onclick="{location.href='#';}"> 
+                </div>
+              </a>  
+          </div>
+          <div class="artist-list">
+            <a href="#" class="artist-profile">
+              <div class="artist-image-area"> 
+                <img src="/images/newJeans.jpg">
+              </div>
+              <div class="artist-logo-wrap">
+                <span class="artist-logo-area">
+                  <img src="/images/newJeans_logo.jpg" class="artist-main-logo">
+                </span>
+              </div>
+              <div class="artist-text-area">
+                <div class="artist-name"> NewJeans </div>
+                <br>
+                <img class="artist-community" src="/images/community.png" > 
+                <img class="artist-shop" src="/images/shop.png" > 
+              </div>
+            </a>  
+        </div>
+        <div class="artist-list">
+          <a href="#" class="artist-profile">
+            <div class="artist-image-area"> 
+              <img src="/images/newJeans.jpg">
+            </div>
+            <div class="artist-logo-wrap">
+              <span class="artist-logo-area">
+                <img src="/images/newJeans_logo.jpg" class="artist-main-logo">
+              </span>
+            </div>
+            <div class="artist-text-area">
+              <div class="artist-name"> NewJeans </div>
+              <br>
+              <img class="artist-community" src="/images/community.png" > 
+              <img class="artist-shop" src="/images/shop.png" > 
+            </div>
+          </a>  
+      </div>
+      <div class="artist-list">
+        <a href="#" class="artist-profile">
+          <div class="artist-image-area"> 
+            <img src="/images/newJeans.jpg">
+          </div>
+          <div class="artist-logo-wrap">
+            <span class="artist-logo-area">
+              <img src="/images/newJeans_logo.jpg" class="artist-main-logo">
+            </span>
+          </div>
+          <div class="artist-text-area">
+            <div class="artist-name"> NewJeans </div>
+            <br>
+            <img class="artist-community" src="/images/community.png" > 
+            <img class="artist-shop" src="/images/shop.png" > 
+          </div>
+        </a>  
+    </div>
+    <div class="artist-list">
+      <a href="#" class="artist-profile">
+        <div class="artist-image-area"> 
+          <img src="/images/newJeans.jpg">
+        </div>
+        <div class="artist-logo-wrap">
+          <span class="artist-logo-area">
+            <img src="/images/newJeans_logo.jpg" class="artist-main-logo">
+          </span>
+        </div>
+        <div class="artist-text-area">
+          <div class="artist-name"> NewJeans </div>
+          <br>
+          <img class="artist-community" src="/images/community.png" > 
+          <img class="artist-shop" src="/images/shop.png" > 
+        </div>
+      </a>  
+  </div>
+  <div class="artist-list">
+    <a href="#" class="artist-profile">
+      <div class="artist-image-area"> 
+        <img src="/images/newJeans.jpg">
+      </div>
+      <div class="artist-logo-wrap">
+        <span class="artist-logo-area">
+          <img src="/images/newJeans_logo.jpg" class="artist-main-logo">
+        </span>
+      </div>
+      <div class="artist-text-area">
+        <div class="artist-name"> NewJeans </div>
+        <br>
+        <img class="artist-community" src="/images/community.png" > 
+        <img class="artist-shop" src="/images/shop.png" > 
+      </div>
+    </a>  
+</div>
+      </div>
+    </div>
+
+    <div class="myArtist-area"> 
+      <h1 class="home-title">다른 아티스트를 만나보세요!</h1>
+      <div class="myArtist-area-detail">
+        <div class="artist-list">
+          <a href="#" class="artist-profile">
+            <div class="artist-image-area"> 
+              <img src="/images/newJeans.jpg">
+            </div>
+            <div class="artist-logo-wrap">
+              <span class="artist-logo-area">
+                <img src="/images/newJeans_logo.jpg" class="artist-main-logo">
+              </span>
+            </div>
+            <div class="artist-text-area">
+              <div class="artist-name"> NewJeans </div>
+              <br>
+              <img class="artist-shop" src="/images/shop.png" > 
+            </div>
+          </a>  
+      </div>
+      
+      </div>
+    </div>
+
+     
+      
+
+    </section>
+
+  </main>
+
+  <th:block th:replace = "~{common/footer}"></th:block> 
+
+
+</body>
+</html>
