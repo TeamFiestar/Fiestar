@@ -37,7 +37,7 @@
   margin: 30px auto;
   display: flex;
   align-items: center;
-  box-shadow: 4px 4px 4px rgb(172, 172, 172);
+  box-shadow: 4px 4px 4px rgb(150, 150, 150);
 }
 
 /* 프로필 이미지 */
@@ -114,7 +114,7 @@
   background-color: rgb(241, 241, 241);
   border-radius: 10px;
   margin: 30px auto;
-  box-shadow: 4px 4px 4px rgb(172, 172, 172);
+  box-shadow: 4px 4px 4px rgb(150, 150, 150);
 }
 
 .icon{
@@ -289,7 +289,7 @@
   width: 710px;
   height: 70px;
   margin: 0 auto;
-  text-shadow: 4px 4px 4px rgb(168, 168, 168);
+  text-shadow: 4px 4px 4px rgb(150, 150, 150);
 }
 
 .content{
@@ -304,4 +304,14 @@
 
 h1{
   font-weight: bolder;
+}
+
+
+.pagination-area {
+  width: 700px;
+  margin: 50px auto;
+  text-align: center;
+}
+.pagination {
+  font-size: 20px;
 }

@@ -27,6 +27,10 @@
   width: 320px;
 }
 
+li{
+  list-style: none;
+}
+
 
 /* 프로필 */
 .profile{
@@ -37,7 +41,7 @@
   margin: 30px auto;
   display: flex;
   align-items: center;
-  box-shadow: 4px 4px 4px rgb(172, 172, 172);
+  box-shadow: 4px 4px 4px rgb(150, 150, 150);
 }
 
 /* 프로필 이미지 */
@@ -114,7 +118,7 @@
   background-color: rgb(241, 241, 241);
   border-radius: 10px;
   margin: 30px auto;
-  box-shadow: 4px 4px 4px rgb(172, 172, 172);
+  box-shadow: 4px 4px 4px rgb(150, 150, 150);
 }
 
 .icon{
@@ -283,24 +287,41 @@
 /************************************메인 오른쪽 화면*********************************/
 .main-2{
   width: 780px;
+  height: 500px;
+ 
 }
 
 .contentTitle{
   width: 710px;
   height: 70px;
   margin: 0 auto;
-  text-shadow: 4px 4px 4px rgb(168, 168, 168);
+  text-shadow: 4px 4px 4px rgb(150, 150, 150);
+ 
 }
 
 .content{
   width: 710px;
-  min-height: 415px;
+  height: 420px;
   background-color: rgb(241, 241, 241);
   border-radius: 20px;
   margin: 0 auto;
+
 }
 
 
 h1{
   font-weight: bolder;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
