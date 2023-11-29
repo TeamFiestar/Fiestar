@@ -3,6 +3,7 @@
   width: 100%;
   min-height: 1024px;
   margin: 0 auto;
+  background-color: #f5f7fa;;
 }
 
 
@@ -27,17 +28,21 @@
   width: 320px;
 }
 
+li{
+  list-style: none;
+}
+
 
 /* 프로필 */
 .profile{
   width: 280px;
   height: 110px;
-  background-color: rgb(241, 241, 241);
+  background-color: rgb(255, 255, 255);
   border-radius: 10px;
   margin: 30px auto;
   display: flex;
   align-items: center;
-  box-shadow: 4px 4px 4px rgb(172, 172, 172);
+  box-shadow: 4px 4px 4px rgb(150, 150, 150);
 }
 
 /* 프로필 이미지 */
@@ -111,10 +116,10 @@
 .sidebar{
   width: 280px;
   height: 300px;
-  background-color: rgb(241, 241, 241);
+  background-color: rgb(255, 255, 255);
   border-radius: 10px;
   margin: 30px auto;
-  box-shadow: 4px 4px 4px rgb(172, 172, 172);
+  box-shadow: 4px 4px 4px rgb(150, 150, 150);
 }
 
 .icon{
@@ -289,19 +294,101 @@
   width: 710px;
   height: 70px;
   margin: 0 auto;
-  text-shadow: 4px 4px 4px rgb(168, 168, 168);
+  text-shadow: 4px 4px 4px rgb(150, 150, 150);
 }
 
 .content{
   width: 710px;
   min-height: 415px;
-  background-color: rgb(241, 241, 241);
+  background-color: rgb(255, 255, 255);
   border-radius: 20px;
   margin: 0 auto;
 }
 
 
 
+
+.content>div{
+  width: 600px;
+  height: 180px;
+  /* border: 1px solid rgb(241, 13, 13); */
+  margin: 0 auto;
+}
+
+.buyDate{
+  width: 600px;
+  height: 30px;
+  /* border: 1px solid black; */
+}
+
+.buyDate li{
+  font-weight: bold;
+}
+
+.deliver li{
+  font-weight: bold;
+}
+
+
+.deliver{
+  width: 600px;
+  height: 30px;
+  /* border: 1px solid black; */
+}
+
+.buyContent{
+  width: 600px;
+  height: 120px;
+  /* border: 1px solid black; */
+  display: flex;
+}
+
+.buy-img{
+  width: 99px;
+  height: 99px;
+  /* border: 1px solid black; */
+  margin-top: 10px;
+}
+
+.item{
+  width: 500px;
+  height: 99px;
+  /* border: 1px solid black; */
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.itemName li{
+  font-weight: bolder;
+}
+
+.itemCount li{
+  font-size: 13px;
+}
+
+.itemprice li{
+  font-size: 13px;
+}
+
+
+.item div{
+  width: 500px;
+  height: 33px;
+  /* border: 1px solid black; */
+}
+
+
+
 h1{
   font-weight: bolder;
+}
+
+
+.pagination-area {
+  width: 700px;
+  margin: 50px auto;
+  text-align: center;
+}
+.pagination {
+  font-size: 20px;
 }

@@ -3,6 +3,7 @@
   width: 100%;
   min-height: 1024px;
   margin: 0 auto;
+  background-color: #f5f7fa;;
 }
 
 
@@ -32,12 +33,12 @@
 .profile{
   width: 280px;
   height: 110px;
-  background-color: rgb(241, 241, 241);
+  background-color: rgb(255, 255, 255);
   border-radius: 10px;
   margin: 30px auto;
   display: flex;
   align-items: center;
-  box-shadow: 4px 4px 4px rgb(172, 172, 172);
+  box-shadow: 4px 4px 4px rgb(150, 150, 150);
 }
 
 /* 프로필 이미지 */
@@ -111,10 +112,10 @@
 .sidebar{
   width: 280px;
   height: 300px;
-  background-color: rgb(241, 241, 241);
+  background-color: rgb(255, 255, 255);
   border-radius: 10px;
   margin: 30px auto;
-  box-shadow: 4px 4px 4px rgb(172, 172, 172);
+  box-shadow: 4px 4px 4px rgb(150, 150, 150);
 }
 
 .icon{
@@ -289,64 +290,218 @@
   width: 710px;
   height: 70px;
   margin: 0 auto;
-  text-shadow: 4px 4px 4px rgb(168, 168, 168);
+  text-shadow: 4px 4px 4px rgb(202, 202, 202);
 }
 
 .content{
   width: 710px;
-  min-height: 415px;
-  background-color: rgb(241, 241, 241);
+  height: 414px;
+  background-color: rgb(255, 255, 255);
   border-radius: 20px;
   margin: 0 auto;
+  box-shadow: 4px 4px 4px rgb(202, 202, 202);
 }
 
-
-.myBulletin{
-  width: 640px;
-  min-height: 140px;
-  margin: 0 auto;
-  padding-top: 20px;
-}
-
-.myProfile{
-  width: 100%;
-  height: 50px;
-  display: flex;
-}
-.profile-img-small{
-  width: 40px;
-  height: 50px;
-  border-radius: 50%;
-  margin-top: 5px;
-  
-}
-
-.profile-info-small{
-  width: 200px;
-  height: 50px;
-  padding-left: 10px;
-}
-
-.nickName-small{
-  width: 100%;
-  height: 24px;
-}
-
-.date-small{
-  width: 100%;
-  height: 24px;
-}
-
-.myContent{
-  width: 100%;
-  min-height: 50px;
-}
-
-.delete{
-  width: 100%;
-  height: 20px;
-}
 
 h1{
   font-weight: bolder;
+}
+
+
+
+
+.artist-top{
+  width: 708px;
+  height: 207px;
+  display: flex;
+}
+
+.artist-top div{
+  width: 236px;
+  height: 207px;
+  /* border: 1px solid black; */
+}
+
+
+.artist-top div .aespa{
+  width: 140px;
+  height: 180px;
+  margin: 11px auto;
+  border-radius: 10px;
+  box-shadow: 4px 4px 4px rgb(150, 150, 150);
+}
+
+.aespa .artist-img{
+  width: 140px;
+  height: 130px;
+}
+
+.aespa .artist-name{
+  width: 140px;
+  height: 50px;
+  background-color: rgb(255, 255, 255);
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+
+
+
+.artist-top div .b1a4{
+  width: 140px;
+  height: 180px;
+  margin: 11px auto;
+  border-radius: 10px;
+  box-shadow: 4px 4px 4px rgb(150, 150, 150);
+}
+
+.b1a4 .artist-img{
+  width: 140px;
+  height: 130px;
+}
+
+.b1a4 .artist-name{
+  width: 140px;
+  height: 50px;
+  background-color: rgb(255, 255, 255);
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+
+
+
+
+
+
+.artist-top div .class{
+  width: 140px;
+  height: 180px;
+  margin: 11px auto;
+  border-radius: 10px;
+  box-shadow: 4px 4px 4px rgb(150, 150, 150);
+}
+.class .artist-img{
+  width: 140px;
+  height: 130px;
+}
+
+.class .artist-name{
+  width: 140px;
+  height: 50px;
+  background-color: rgb(255, 255, 255);
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+
+
+
+
+
+
+.artist-bottom{
+  width: 710px;
+  height: 207px;
+  /* border: 1px solid black; */
+  display: flex;
+}
+
+.artist-bottom div{
+  width: 236px;
+  height: 207px;
+  /* border: 1px solid black; */
+}
+
+
+.artist-bottom div .cn{
+  width: 140px;
+  height: 180px;
+  margin: 11px auto;
+  border-radius: 10px;
+  box-shadow: 4px 4px 4px rgb(150, 150, 150);
+}
+
+.cn .artist-img{
+  width: 140px;
+  height: 130px;
+}
+
+.cn .artist-name{
+  width: 140px;
+  height: 50px;
+  background-color: rgb(255, 255, 255);
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+
+
+
+
+
+
+
+
+.artist-bottom div .exo{
+  width: 140px;
+  height: 180px;
+  margin: 11px auto;
+  border-radius: 10px;
+  box-shadow: 4px 4px 4px rgb(150, 150, 150);
+}
+
+.exo .artist-img{
+  width: 140px;
+  height: 130px;
+}
+
+.exo .artist-name{
+  width: 140px;
+  height: 50px;
+  background-color: rgb(255, 255, 255);
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+
+
+
+
+.artist-bottom div .zico{
+  width: 140px;
+  height: 180px;
+  margin: 11px auto;
+  border-radius: 10px;
+  box-shadow: 4px 4px 4px rgb(150, 150, 150);
+}
+
+.zico .artist-img{
+  width: 140px;
+  height: 130px;
+}
+
+.zico .artist-name{
+  width: 140px;
+  height: 50px;
+  background-color: rgb(255, 255, 255);
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+
+img{
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+
+
+.pagination-area {
+  width: 700px;
+  margin: 50px auto;
+  text-align: center;
+}
+.pagination {
+  font-size: 20px;
 }
