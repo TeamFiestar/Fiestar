@@ -38,6 +38,14 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.2'
 	testImplementation 'org.springframework.security:spring-security-test'
+	
+	// https://mvnrepository.com/artifact/io.agora.rtc/full-sdk
+	implementation group: 'io.agora.rtc', name: 'full-sdk', version: '4.2.6'
+	
+	// https://mvnrepository.com/artifact/commons-codec/commons-codec
+	implementation group: 'commons-codec', name: 'commons-codec', version: '1.16.0'
+		
+	
 }
 
 tasks.named('test') {
