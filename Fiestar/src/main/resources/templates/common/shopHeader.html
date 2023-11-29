@@ -2,30 +2,43 @@
   <div class="header">
     
       <div class="header-left-side">
-        <a href="#" id="header-logo">
+        <a href="/" id="header-logo">
           <img src="/images/logo.png" style="width:165px;"  />
         </a>
       </div>
     
       <div class="header-right-side">
-        <input type="text" id="search-area" placeholder="상품명 혹은 아티스트 검색"></input>
-        <a> 공지사항 </a>
-        <span>|</span>
-        <a>샵 고객센터</a>
+        <!-- <th:block th:if="${session.loginMember == null}"> -->
+          <form action="" method="GET" style="display: inline-flex; border:none; ">
+                <span class="search-area">
+                <!--  autocomplete="off" : 브라우저 제공 자동완성 off -->
+                <button id="searchBtn" class="fa-solid fa-magnifying-glass"> 
+                  <input type="search" name="query" id="search-input" placeholder="상품명 혹은 아티스트 검색" 
+                  autocomplete="off" > 
+                </button>
 
-        <button id="loginPage" src="#">로그인</button>
-        <button src="#" id="signUp">회원가입</button>
+                </span>
+
+      </form>
       
-        
+        <a href="#"> 공지사항 </a>
+        <span>|</span>
+        <a href="/shop">샵 고객센터</a>
 
+        <a href="#"><button id="loginPage"> 로그인</button></a>
+        <a href="#"><button  id="signUp">회원가입</button></a>
+      
+      <!-- </th:block> -->
   
-          <!-- <th:block th:if="${session.loginMember == null}"> <a href="/member/login">로그인</a> <a href="/member/signup">회원가입</a> </th:block> -->
-         
-  
-          <!-- <div class="success-login">
-            <th:block th:unless="${session.loginMember == null}">
-              <a href="#" class="login-area">
-                 
+          <!-- <th:block th:unless="${session.loginMember == null}">
+
+             <input type="text" id="search-area" placeholder="상품명 혹은 아티스트 검색"></input>
+              <a href="#"> 카트 <th:block th:text="{카트에 담긴 갯수}"></th:block>  </a>
+              <a href="#"> 주문/배송 </a>
+              <a href="#"> 공지사항 </a>
+              <span>|</span>
+              <a href="#">샵 고객센터</a>
+                          
                   <img th:if="${session.loginMember.profileImg == null}" th:src="#{user.default.image}" id="memberHeaderProfile">
                                     
                 

@@ -7,13 +7,13 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: 'Pretendard-Regular';
+  font-family: 'Pretendard';
   background-color: rgba(244, 246, 248, 0.922);
 }
 
-@font-face { font-family: 'Pretendard-Regular'; 
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') 
-  format('woff'); font-weight: 100; font-style: normal; }
+@font-face { font-family: 'Pretendard'; 
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard.woff') 
+  format('woff'); font-weight: 700; font-style: normal; }
 
 main {
   display: block; 
@@ -148,6 +148,10 @@ main {
   align-items: center;
   margin: 6px;
   margin-top: 8px;
+}
+
+.artist-community:hover {
+  transform:scale(1.2);
 
 }
 
@@ -164,52 +168,9 @@ main {
 
 }
 
-
-/* footer */
-footer {
-  width: 1096px;
-  flex-direction: column;
-  margin-top: 100px;
-  margin: auto;
+.artist-shop:hover {
+  transform:scale(1.2);
 }
 
-.footer1 {
-  display: flex;
-  flex-direction: row;
-  margin-top : 50px;
-}
 
-.footer2 {
-  display: flex;
-  flex-direction: row;
-  margin-top: 30px;
-
-}
-
-hr {
-  margin-top: 100px;
-  color : rgba(173, 177, 184, 1);
-}
-
-.footer1>article>* {
-  font-size: 15px;
-}
-
-footer a {
-  text-decoration: none;
-  color : rgba(173, 177, 184, 1);
-}
-
-.footer1 >article > span {
- font-size: 20px;
-}
-
-.footer2 > pre {
-  font-size: 15px;
-  color : rgba(173, 177, 184, 1);
-}
-
-footer span {
-  padding: 0 10px;
-}
 

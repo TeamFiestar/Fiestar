@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>main 페이지</title>
+
+  <link rel="stylesheet" href="/css/shop/shopMain.css">
+  <link rel="stylesheet" href="/css/common/shopHeader.css">
+  <link rel="stylesheet" href="/css/common/footer.css">
+  
+</head>
+<body>
+  <th:block th:replace="~{common/shopHeader}"></th:block>
+ 
+  
+  <main style="aspect-ratio: auto 531/299;">
+
+    <section class="homeMain">
+
+    <section class="artist-shop-list-area">
+      <a href="" id="artist-shop-lists-all">전체</a>
+      <a href="" id="artist-shop-lists">
+          <img class="artist-main-logo" src="/images/newJeans_logo.jpg">
+          <span id="artist-shop-name">NewJeans</span>
+      </a>
+      <a href="" id="artist-shop-lists">
+          <img class="artist-main-logo" src="/images/newJeans_logo.jpg">
+          <span id="artist-shop-name">NewJeans</span>
+      </a>
+    </section>
+
+    <div class="shop-sorting-area">
+      <div class="shop-sorting-amount">xx개</div>
+      <div class="shop-sorting-type">
+        <a href="">신상품 순</a>
+        <a href="">높은가격순</a>
+        <a href="">낮은가격순</a>
+      </div>
+    </div>
+
+    <section class="artist-shop-product">
+        <div class="product-area"> 
+          <div class="product-area-detail">
+            <div class="product-list">
+                <a href="#" class="product-profile">
+                  <div class="product-image-area"> 
+                    <img src="/images/newJeans.jpg">
+                  </div>
+               
+                  <div class="product-name-area">
+                    <div class="product-name"> ZIPUP HOODIE [MEGAPHONE:BLACK] </div>
+                    <br>
+                    <div class="product-price">₩25,000</div>
+                   
+                  </div>
+                </a>  
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </section>
+  </main>
+
+  <th:block th:replace = "~{common/footer}"></th:block> 
+
+
+  <script src="https://kit.fontawesome.com/f7459b8054.js" crossorigin="anonymous"></script>
+</body>
+</html>
