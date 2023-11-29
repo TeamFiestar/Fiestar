@@ -3,6 +3,7 @@
   width: 100%;
   min-height: 1024px;
   margin: 0 auto;
+  background-color: #f5f7fa;
 }
 
 
@@ -32,7 +33,7 @@
 .profile{
   width: 280px;
   height: 110px;
-  background-color: rgb(241, 241, 241);
+  background-color: rgb(255, 255, 255);
   border-radius: 10px;
   margin: 30px auto;
   display: flex;
@@ -103,6 +104,9 @@
 }
 
 
+li{
+  list-style: none;
+}
 
 
 
@@ -111,7 +115,7 @@
 .sidebar{
   width: 280px;
   height: 300px;
-  background-color: rgb(241, 241, 241);
+  background-color: rgb(255, 255, 255);
   border-radius: 10px;
   margin: 30px auto;
   box-shadow: 4px 4px 4px rgb(150, 150, 150);
@@ -294,17 +298,97 @@
 
 .content{
   width: 710px;
-  min-height: 415px;
-  background-color: rgb(241, 241, 241);
+  height: 450px;
+  background-color: rgb(255, 255, 255);
   border-radius: 20px;
   margin: 0 auto;
 }
 
 
 
+
+.content-main{
+  width: 630px;
+  height: 500px;
+  margin: 0 auto;
+}
+
+.pw{
+  width: 630px;
+  height: 80px;
+  display: flex;
+}
+
+.pwCheck{
+  width: 630px;
+  height: 80px;
+  display: flex;
+}
+
+
+.pw1{
+  width: 200px;
+  height: 80px;
+}
+
+.pw1 li{
+  font-size: 20px;
+  font-weight: bolder;
+  margin-top: 25px;
+  padding-left: 60px;
+}
+
+.pw2 input{
+  width: 300px;
+  height: 30px;
+  margin-top: 20px;
+  margin-left: 30px;
+  border-width: medium;
+  border-radius: 5px;
+  
+}
+
+.pw2{
+  width: 430px;
+  height: 80px;
+}
+
+
+.Explanation{
+  width: 500px;
+  margin: 5px auto;
+}
+
+.Explanation li{
+  font-size: 15px;
+  font-weight: bolder;
+}
+
+
+
+
+.scrollBox{
+  border: 1px solid black;
+  margin: 20px auto;
+}
+
+
+.WithdrawalBtn{
+  width: 70px;
+  margin: 0 auto;
+}
+
+.WithdrawalBtn button{
+  width: 100%;
+}
+
+
+
+
 h1{
   font-weight: bolder;
 }
+
 
 
 .pagination-area {
