@@ -25,7 +25,8 @@ public class LiveController {
 	@ResponseBody
 	@GetMapping("generateToken")
 	public String generateAgoraToken(@RequestParam("roleFlag") int roleFlag,
-			@RequestParam(name = "channelName", required = false, defaultValue = "kang") String channelName
+			@RequestParam(name = "channelName", required = false, defaultValue = "kang") String channelName,
+			@RequestParam(name = "uid", required = false) int uid
 			
 			) {
     	
@@ -39,7 +40,6 @@ public class LiveController {
         String appId = "8db96ea10154462a8fcb52cee3d45ccb";
         String appCertificate = "d9b7838da2cb4bd0b3d9a9aa1c82eba6";
         int expirationTimeInSeconds = 36000;
-        int uid = 0;
 
         String token = tokenBuilder.buildTokenWithUid(
                 appId,
