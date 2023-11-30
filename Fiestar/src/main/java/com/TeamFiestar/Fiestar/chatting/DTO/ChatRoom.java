@@ -14,14 +14,14 @@ import lombok.ToString;
 @Setter
 @ToString
 public class ChatRoom {
-	private String chattingNo;
+	private String roomId;
 	private String name;
 	private Set<WebSocketSession> sessions = new HashSet<>();
 	
 	 public static ChatRoom create(String name){
 		 ChatRoom room = new ChatRoom();
 
-	        room.chattingNo = UUID.randomUUID().toString();
+	        room.roomId = UUID.randomUUID().toString();
 	        room.name = name;
 	        return room;
 	    }

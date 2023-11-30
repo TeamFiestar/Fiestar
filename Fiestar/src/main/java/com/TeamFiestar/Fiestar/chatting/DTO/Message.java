@@ -8,6 +8,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Message {
+	private String roomId;
 	private int messageNo;
 	private String messageContent;
 	private int senderNo;
