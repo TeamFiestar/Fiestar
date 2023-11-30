@@ -44,6 +44,9 @@ dependencies {
 	
 	// https://mvnrepository.com/artifact/commons-codec/commons-codec
 	implementation group: 'commons-codec', name: 'commons-codec', version: '1.16.0'
+	
+	// https://mvnrepository.com/artifact/org.webjars/stomp-websocket
+	implementation group: 'org.webjars', name: 'stomp-websocket', version: '2.3.4'
 		
 	
 }
