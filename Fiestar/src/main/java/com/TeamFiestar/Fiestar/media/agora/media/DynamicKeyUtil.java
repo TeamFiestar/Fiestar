@@ -1,4 +1,4 @@
-package com.TeamFiestar.Fiestar.live.agora.media;
+package com.TeamFiestar.Fiestar.media.agora.media;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;

@@ -1,4 +1,4 @@
-package com.TeamFiestar.Fiestar.live.controller;
+package com.TeamFiestar.Fiestar.media.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,13 +8,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.TeamFiestar.Fiestar.live.agora.media.RtcTokenBuilder2;
-import com.TeamFiestar.Fiestar.live.agora.media.RtcTokenBuilder2.Role;
+import com.TeamFiestar.Fiestar.media.agora.media.RtcTokenBuilder2;
+import com.TeamFiestar.Fiestar.media.agora.media.RtcTokenBuilder2.Role;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@Slf4j
 @RequestMapping("media")
 public class LiveController {
 	
@@ -51,7 +50,6 @@ public class LiveController {
                 expirationTimeInSeconds, expirationTimeInSeconds
         );
 
-        log.debug("token = " + token);
         return token;
     }
 	

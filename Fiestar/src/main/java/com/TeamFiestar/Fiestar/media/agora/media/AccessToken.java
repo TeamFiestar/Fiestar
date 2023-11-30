@@ -1,10 +1,10 @@
-package com.TeamFiestar.Fiestar.live.agora.media;
+package com.TeamFiestar.Fiestar.media.agora.media;
+
+import static com.TeamFiestar.Fiestar.media.agora.media.Utils.crc32;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.TreeMap;
-
-import static com.TeamFiestar.Fiestar.live.agora.media.Utils.crc32;
 
 public class AccessToken {
     public enum Privileges {
