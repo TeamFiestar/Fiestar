@@ -29,5 +29,15 @@ public class ChatRoomRepository {
 		return result;
 	}
 	
+	public ChatRoom findRoomId(String id) {
+		return chatRoomMap.get(id);
+	}
+	
+	public ChatRoom createChatRoom(String name) {
+		ChatRoom room = ChatRoom.create(name);
+		chatRoomMap.put(room.getRoomId(), room);
+		
+		return room;
+	}
 	
 }
