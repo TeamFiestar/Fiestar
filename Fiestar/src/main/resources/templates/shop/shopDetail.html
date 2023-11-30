@@ -15,6 +15,7 @@
  
   <main>
 
+    
     <section class="shopDetail-main">
       <div class="shopDetail-upper">
         <div class="product-image">
@@ -24,11 +25,11 @@
         <div class="product-detail">
           <div class="artist-name">아티스트명 &gt;</div>
           <div class="product-name">[아티스트명] 상품명</div>
-          <div class="product-price">₩가격</div>
+          <div class="product-price" value="110000">₩110,000</div>
           <div class="product-delivery-info">
             <img src="/images/package_car.png"> 
             <span>배송 시작 예정일</span>
-            <span style="color:black;" >2023.xx.xx ~ 2023.xx.xx</span>
+            <span style="color:black; margin-left: 5px; font-size:14px; word-spacing: 2px;" id="delivery-date">2023.xx.xx ~ 2023.xx.xx</span>
           </div>
 
           <div class="package-info" >
@@ -38,13 +39,40 @@
 
           <div class="product-option">
             옵션 선택
-            <select name="key" id="optionKey">
-              <option value="t">옵션 선택</option>
-              <option value="c">S(90~95)</option>
-              <option value="tc">M(100~105)</option>
-              <option value="w">L(105~110)</option>
+            <select name="key" id="optionSelect">
+              <option>옵션 선택</option>
+              <option value="op2">S(90~95)</option>
+              <option value="op3">M(100~105)</option>
+              <option value="op4">L(105~110)</option>
             </select>
           </div>
+
+          <div class="product-purchase-list">
+                <p class="product-purchase-name">[아티스트명] 상품명</p>
+                <div class="option-area" > 
+                  <span>
+                  <button class="minus">-</button>  
+                  <h4 class="result">1</h4>
+                  <button class="plus">+</button>
+                  <h4 class="optionName"> [옵션] M</h4>
+                  </span>
+                  <span class="selected-price">₩110,000</span>
+                </div>
+                
+          </div>      
+          <div class="product-purchase-totalList" style="width:100%;">
+            <span id="totalProduct">총 상품금액 (1개)</span>
+            <span id="totalPrice">₩ 총 가격</span>
+
+          </div>      
+
+                
+
+    
+
+
+          
+
 
           <div class="product-purchase-area">
             <button class="addCartBtn">카트 추가</button>
@@ -176,7 +204,7 @@
 
   <th:block th:replace = "~{common/footer}"></th:block> 
 
-
+  <script src="/js/shop/shopDetail.js"></script>
   <script src="https://kit.fontawesome.com/f7459b8054.js" crossorigin="anonymous"></script>
 </body>
 </html>
