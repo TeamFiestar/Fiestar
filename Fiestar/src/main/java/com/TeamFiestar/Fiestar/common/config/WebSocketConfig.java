@@ -6,18 +6,20 @@ import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 
+import com.TeamFiestar.Fiestar.chatting.websocket.ChatHandler;
+
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Configuration
 @EnableWebSocket
 public class WebSocketConfig implements WebSocketConfigurer {
-    private final WebSocketHandler webSocketHandler;
+   private final ChatHandler chatHandler;
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         
-        registry.addHandler(webSocketHandler, "ws/chat")
+        registry.addHandler(chatHandler, "ws/chat")
                 .setAllowedOrigins("*");//CORS 설정
     }
 }

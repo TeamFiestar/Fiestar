@@ -4,6 +4,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
+import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
+import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.TeamFiestar.Fiestar.chatting.DTO.ChatRoom;
@@ -24,27 +26,18 @@ public class WebSocketHandler extends TextWebSocketHandler{
 	private ChatRoom chatRoom;
 	private String roomId;
 	
-	@Override
-	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		log.info("웹소켓 연결");
-	}
-	
-	@Override
-	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-		String payload = message.getPayload();
-		log.info("{}", payload);
-		
-		Message chatMessage = objectMapper.readValue(payload, Message.class);
-		roomId = chatMessage.getRoomId();
-		
-		chatRoom = service.findRoomId(chatMessage.getRoomId());
-		chatRoom.handlerActions(session, chatMessage, service);
-	}
-	
-	@Override
-	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		chatRoom.getSessions().remove(session);
-		service.deleteRoom(roomId);
-		log.info("웹소켓 닫힘");
+	public class WebSocketConfig implements WebSocketConfigurer {
+
+	    private final ChatHandler chatHandler;
+
+	    @Override
+	    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
+	        registry.addHandler(chatHandler, "/ws/chat")
+	        .setAllowedOrigins("http://localhost:8080")
+	        .withSockJS();
+	    }
+	    //.withSockJS() 추가
+	    //setAllowedOrigins("*")에서 *라는 와일드 카드를 사용하면
+	    //보안상의 문제로 전체를 허용하는 것보다 직접 하나씩 지정해주어야 한다고 한다.
 	}
 }

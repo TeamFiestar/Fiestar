@@ -17,26 +17,18 @@ import com.TeamFiestar.Fiestar.chatting.DTO.Message;
 import com.TeamFiestar.Fiestar.chatting.service.ChattingService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
-@RestController
+@Log4j2
+@Controller
 @RequiredArgsConstructor
-@RequestMapping("/chat")
 public class ChattingController {
-    private final ChattingService service;
 
-    @PostMapping
-    public ChatRoom createRoom(@RequestParam String name) {
-        return service.createRoom(name);
-    }
 
-    @DeleteMapping
-    public void deleteRoom(@RequestParam String name) {
-    	service.deleteRoom(name);
-    }
-
-    @GetMapping
-    public String findAllRoom() {
-    	List<ChatDto>
+    @GetMapping("/chat")
+    public String chatGet() {
+    	log.info("@ChatController, chat GET()");
+    	return "chatting/chat";
     }
 
 
