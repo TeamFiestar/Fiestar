@@ -10,13 +10,22 @@
   format('woff'); font-weight: 400; font-style: normal; 
 }
 
+hr{
+  margin: 0 auto;
+}
 
 
 .all{
   width: 100%;
-  min-height: 1024px;
+  min-height: 1650px;
   margin: 0 auto;
-  background-color: #f5f7fa;;
+  background-color: #f5f7fa;
+  /* border: 1px solid black; */
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }
 
 
@@ -299,6 +308,10 @@
   width: 780px;
 }
 
+.contentTitle h1{
+  padding-top: 15px;
+}
+
 .contentTitle{
   width: 710px;
   height: 70px;
@@ -308,17 +321,192 @@
 
 .content{
   width: 710px;
-  min-height: 415px;
+  min-height: 600px;
   background-color: rgb(255, 255, 255);
   border-radius: 20px;
   margin: 0 auto;
 }
 
 
-
 h1{
   font-weight: bolder;
 }
+
+
+.ModifyAll{
+  width: 650px;
+  height: 1000px;
+  /* border: 1px solid black; */
+  margin: 0 auto;
+}
+
+
+.bgTxt{
+  width: 650px;
+  height: 30px;
+  /* border: 1px solid black; */
+  margin-top: 10px;
+  padding-top: 30px;
+}
+
+
+.chooseBgImage{
+  width: 650px;
+  height: 150px;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+.chooseBgImage:hover{
+  border-color: rgb(119, 67, 219);
+}
+
+
+.btn-upload1{
+  width: 650px;
+  height: 150px;
+  /* background: #fff; */
+  /* border: 1px solid rgb(77,77,77); */
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  &:hover {
+    /* background: rgb(77,77,77); */
+    color: rgb(119, 67, 219);
+  }
+}
+
+#file {
+  display: none;
+}
+
+#file2 {
+  display: none;
+}
+
+
+
+
+
+.profileTxt{
+  width: 650px;
+  height: 30px;
+  /* border: 1px solid black; */
+  padding-top: 30px;
+}
+.profileImgModify{
+  width: 100px;
+  height: 100px;
+  /* border: 1px solid black; */
+  margin: 0 auto;
+}
+
+.userImg:hover{
+  cursor: pointer;
+}
+
+
+.profileImgModifyBtn{
+  width: 80px;
+  height: 26px;
+  margin: 5px auto;
+
+}
+
+.profileImgModifyBtn button{
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.profileImgModifyBtn button:hover{
+  cursor: pointer;
+}
+
+
+.profile-img-modify{ 
+  width: 80px;
+  border-radius: 50%;
+  cursor: pointer;
+  padding-left: 10px;
+}
+
+.emailModify{
+  width: 650px;
+  height: 50px;
+  /* border: 1px solid black; */
+  margin-top: 40px;
+  display: flex;
+}
+
+.nickNameModify{
+  width: 650px;
+  height: 50px;
+  /* border: 1px solid black; */
+  margin-top: 40px;
+  display: flex;
+}
+
+.pwModify{
+  width: 650px;
+  height: 50px;
+  /* border: 1px solid black; */
+  margin-top: 40px;
+  display: flex;
+}
+
+
+.pwCheckModify{
+  width: 650px;
+  height: 50px;
+  /* border: 1px solid black; */
+  margin-top: 40px;
+  display: flex;
+}
+
+.modifySection1{
+  width: 130px;
+  height: 50px;
+  /* border: 1px solid black; */
+}
+
+.modifySection1 > h3{
+  padding-top: 10px;
+}
+
+
+.modifySection2{
+  width: 520px;
+  height: 50px;
+  /* border: 1px solid black; */
+}
+
+.modifySection2 h3{
+  padding-top: 10px;
+  padding-left: 25%;
+}
+
+.modifySection2 input{
+  width: 250px;
+  height: 48px;
+  border: 1px solid black;
+  margin-left: 90px;
+  border-radius: 5px;
+  
+}
+
+
+.address{
+  width: 650px;
+  height: 230px;
+  /* border: 1px solid black; */
+  margin-top: 20px;
+}
+
+
 
 
 .pagination-area {
@@ -328,4 +516,77 @@ h1{
 }
 .pagination {
   font-size: 20px;
+}
+
+
+
+.signUp-input-area{
+  width: 600px;
+  height: 50px;
+
+  margin-bottom: 10px;
+  border-bottom: 2px solid #ddd;
+
+  display: flex;
+  align-items: center;
+}
+
+.signUp-input-area > input{
+  width: 70%;
+  height: 10px;
+
+  padding : 15px 10px 5px;
+  font-size: 16px;
+  font-weight: bold;
+
+  border : none;
+  outline: none;
+}
+
+.signUp-input-area > button{
+  width: 30%;
+  height: 70%;
+  background-color: white;
+  border: 1px solid gray;
+  cursor: pointer;
+  border-radius: 5px;
+  
+}
+
+.signUp-input-area:focus-within{
+  border-bottom-color: rgb(119, 67, 219);
+}
+
+
+.ModifyBtn{
+  width: 60px;
+  height: 25px;
+  /* border: 1px solid black; */
+  float: right;
+  border-radius: 5px;
+}
+
+.ModifyBtn button{
+  width: 100%;
+  height: 100%;
+}
+
+.ModifyBtn button:hover{
+  cursor: pointer;
+}
+
+
+
+.WithdrawalBtn{
+  margin: 0 auto;
+  padding-top: 50px;
+  width: 200px;
+  height: 40px;
+  /* border: 1px solid black; */
+  
+}
+
+p{
+  text-align: center;
+  font-size: 14px;
 }

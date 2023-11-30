@@ -241,3 +241,16 @@ img{
   position: relative;
   white-space: nowrap;
 }
+
+
+.Notice ul{
+  margin-top: 10px;
+}
+
+.Notice li{
+  padding-top: 10px;
+}
+
+.NoticeContent{
+  padding-left: 20px;
+}

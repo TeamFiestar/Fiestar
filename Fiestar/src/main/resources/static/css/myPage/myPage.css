@@ -18,6 +18,10 @@
   background-color: #f5f7fa;
 }
 
+hr{
+  margin: 0 auto;
+}
+
 
 /***********************************************배경화면 이미지*******************************************/
 .BgImage{
@@ -303,6 +307,10 @@
   height: 70px;
   margin: 0 auto;
   text-shadow: 4px 4px 4px rgb(150, 150, 150);
+}
+
+.contentTitle h1{
+  padding-top: 15px;
 }
 
 .content{
