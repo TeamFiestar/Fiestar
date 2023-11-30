@@ -1,0 +1,413 @@
+/*****************전체********************/
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Pretendard-Regular';
+}
+
+@font-face { 
+  font-family: 'Pretendard-Regular'; src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') 
+  format('woff'); font-weight: 400; font-style: normal; 
+}
+
+hr{
+  margin: 0 auto;
+}
+
+.all{
+  width: 100%;
+  min-height: 1024px;
+  margin: 0 auto;
+  background-color: #f5f7fa;;
+}
+
+
+/***********************************************배경화면 이미지*******************************************/
+.BgImage{
+  width: 100%;
+  height: 450px;
+}
+
+
+/**************************************************메인화면**********************************************/
+.main{
+  width: 1100px;
+  min-height: 650px;
+  margin: 0 auto;
+  display: flex;
+}
+
+
+/*************************************************메인 왼쪽 화면**********************************************/
+.main-1{
+  width: 320px;
+}
+
+li{
+  list-style: none;
+}
+
+
+/* 프로필 */
+.profile{
+  width: 280px;
+  height: 110px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  margin: 30px auto;
+  display: flex;
+  align-items: center;
+  box-shadow: 4px 4px 4px rgb(150, 150, 150);
+}
+
+/* 프로필 이미지 */
+.profile-img{ 
+  width: 90px;
+  border-radius: 50%;
+  cursor: pointer;
+  padding-left: 10px;
+}
+
+/* 프로필 정보 */
+.profile-info{
+  width: 200px;
+  height: 100%;
+  padding-left: 10px;
+}
+
+/* 닉네임 */
+.nickName{
+  width: 100%;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+}
+.nickName h4{
+  font-weight: bolder;
+  font-size: 20px;
+}
+
+/* 이메일 */
+.email{
+  width: 100%;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+}
+.email h4{
+  font-weight: bolder;
+  font-size: 13px;
+}
+
+
+/* 로그아웃 */
+.logout{
+  width: 100%;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  cursor: pointer;
+}
+
+.logout h4{
+  font-weight: bolder;
+  font-size: 15px;
+}
+
+.logout a{
+  text-decoration: none;
+  color: black;
+}
+
+
+
+
+
+
+/* 사이드바 */
+.sidebar{
+  width: 280px;
+  height: 300px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  margin: 30px auto;
+  box-shadow: 4px 4px 4px rgb(150, 150, 150);
+}
+
+.icon{
+  width: 35px;
+  height: 35px;
+  margin: 10px 15px;
+}
+
+.center{
+  width: 150px;
+  height: 100%;
+}
+
+.side{
+  width: 10px;
+  height: 15px;
+  margin: 16px 20px;
+
+}
+
+
+.Bulletin{
+  width: 100%;
+  height: 50px; 
+  border-radius: 10px;
+  display: flex;
+  cursor: pointer;
+}
+
+.Bulletin:hover{
+  background-color: rgb(119, 67, 219);
+}
+.Bulletin a{
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+
+
+
+.comment{
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  cursor: pointer;
+}
+.comment:hover{
+  background-color: rgb(119, 67, 219);
+}
+.comment a{
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+
+
+
+.artist{
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  cursor: pointer;
+}
+.artist:hover{
+  background-color: rgb(119, 67, 219);
+}
+.artist a{
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+
+
+
+.Purchase{
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  cursor: pointer;
+}
+.Purchase:hover{
+  background-color: rgb(119, 67, 219);
+}
+.Purchase a{
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+
+
+
+
+.Notice{
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  cursor: pointer;
+}
+.Notice:hover{
+  background-color: rgb(119, 67, 219);
+}
+.Notice a{
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+
+
+.store{
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  cursor: pointer;
+}
+.store:hover{
+  background-color: rgb(119, 67, 219);
+}
+.store a{
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+
+
+/************************************메인 오른쪽 화면*********************************/
+.main-2{
+  width: 780px;
+}
+
+.contentTitle{
+  width: 710px;
+  height: 70px;
+  margin: 0 auto;
+  text-shadow: 4px 4px 4px rgb(150, 150, 150);
+}
+
+.contentTitle h1{
+  padding-top: 15px;
+}
+
+.content{
+  width: 710px;
+  min-height: 415px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  margin: 0 auto;
+}
+
+
+
+
+.content>div{
+  width: 600px;
+  height: 180px;
+  /* border: 1px solid rgb(241, 13, 13); */
+  margin: 0 auto;
+}
+
+.buyDate{
+  width: 600px;
+  height: 30px;
+  /* border: 1px solid black; */
+}
+
+.buyDate li{
+  font-weight: bold;
+}
+
+.deliver li{
+  font-weight: bold;
+}
+
+
+.deliver{
+  width: 600px;
+  height: 30px;
+  /* border: 1px solid black; */
+}
+
+.buyContent{
+  width: 600px;
+  height: 120px;
+  /* border: 1px solid black; */
+  display: flex;
+}
+
+.buy-img{
+  width: 99px;
+  height: 99px;
+  /* border: 1px solid black; */
+  margin-top: 10px;
+}
+
+.item{
+  width: 500px;
+  height: 99px;
+  /* border: 1px solid black; */
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.itemName li{
+  font-weight: bolder;
+}
+
+.itemCount li{
+  font-size: 13px;
+}
+
+.itemprice li{
+  font-size: 13px;
+}
+
+
+.item div{
+  width: 500px;
+  height: 33px;
+  /* border: 1px solid black; */
+}
+
+
+
+h1{
+  font-weight: bolder;
+}
+
+
+.pagination-area {
+  width: 700px;
+  margin: 50px auto;
+  text-align: center;
+}
+.pagination {
+  font-size: 20px;
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>신고 관리</title>
+    <link rel="stylesheet" href="../../static/css/admin/report.css" />
+  </head>
+  <body>
+    <header>헤더+nav</header>
+    <main>
+      <div>
+        <div class="sidebar">
+          <aside>
+            <nav>
+              <ul>
+                <ul class="sidebar-list" id="member-search">
+                  <li>
+                    회원 관리
+                    <ul id="sidebar-sublist">
+                      <li><a href="selectMember.html" id="a">일반 회원 조회</a></li>
+                      <li><a href="deleteMember.html" id="a">탈퇴 회원 조회</a></li>
+                    </ul>
+                  </li>
+                </ul>
+                <ul class="sidebar-list" id="member-search">
+                  <li>
+                    주문 배송 관리
+                    <ul id="sidebar-sublist">
+                      <li><a href="order.html" id="a">주문 배송 조회</a></li>
+                    </ul>
+                  </li>
+                </ul>
+                <ul class="sidebar-list" id="member-search">
+                  <li>
+                    신고 관리
+                    <ul id="sidebar-sublist">
+                      <li><a href="report.html" id="a">게시글 신고</a></li>
+                    </ul>
+                  </li>
+                </ul>
+                <ul class="sidebar-list" id="member-search">
+                  <li>
+                    메인 공지사항
+                    <ul id="sidebar-sublist">
+                      <li><a href="notice.html" id="a">공지사항 목록</a></li>
+                      <li><a href="noticeAdd.html" id="a">공지사항 등록</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </ul>
+            </nav>
+          </aside>
+        </div>
+      </div>
+      <div class="report-main">
+        <h1>신고 조회</h1>
+        <br />
+        <table class="report-table" border="1" style="border-collapse: collapse">
+          <tr class="report-tr-th">
+            <th>신고 번호</th>
+            <th>신고자 닉네임</th>
+            <th>신고자 이메일</th>
+            <th>신고대상자 닉네임</th>
+            <th>신고대상자 이메일</th>
+            <th>신고 내용</th>
+            <th>처리</th>
+          </tr>
+          <tr class="report-tr-td">
+            <td>1</td>
+            <td>신고신고</td>
+            <td>singo123@gmail.com</td>
+            <td>닉네임11</td>
+            <td>nickname123123@naver.com</td>
+            <td>욕설 사용</td>
+            <td>
+              <form>
+                <button>이동</button>
+              </form>
+            </td>
+          </tr>
+          <tr class="report-tr-td">
+            <td>2</td>
+            <td>신고신고</td>
+            <td>singo123@gmail.com</td>
+            <td>닉네임11</td>
+            <td>nickname123123@naver.com</td>
+            <td>불법 광고</td>
+            <td>
+              <form>
+                <button>이동</button>
+              </form>
+            </td>
+          </tr>
+        </table>
+        <div class="pagination-area">
+          <div class="pagination"><< < 1 2 3 4 5 6 7 8 9 10 > >></div>
+          <form>
+            <select id="select">
+              <option value="memberNo">신고자 닉네임</option>
+              <option value="memberNickname">신고자 이메일</option>
+              <option value="memberEmail">대상자 닉네임</option>
+              <option value="memberEmail">대상자 이메일</option>
+              <option value="memberEmail">신고 내용</option>
+            </select>
+            <input type="text" id="inputSearch" />
+            <button id="pagination-button">검색</button>
+          </form>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>공지사항 목록</title>
+    <link rel="stylesheet" href="../../static/css/admin/artistNotice.css" />
+  </head>
+  <body>
+    <header>헤더+nav</header>
+    <div class="noticeModal">
+      <div id="noticeModal" class="modal-body">
+        <button id="modalCloseButton">X</button>
+        <div class="modal-noticeDetail">
+          <h4>NewJeans</h4>
+          <h1>공지사항</h1>
+          <br />
+          <div class="modal-noticeTitle">[공지] 안드로이드 OS 6.0 이하 버전 업데이트 지원중단 안내</div>
+          <div class="modal-noticeContent">안녕하세요.
+            공식 상품 스토어, 위버스샵입니다.
+            
+            NewJeans collaboration 상품을 12월 1일 (금) 부터 판매합니다.
+            
+            자세한 내용은 아래에서 확인하실 수 있습니다.
+            
+            < NewJeans collaboration 상품 판매 안내 >
+            
+            * 판매일정 (KST 기준)
+            - 판매 일시 : 2023년 12월 1일 (금) 오전 11시 ~ 재고 소진 시
+            - 출고일 : 2023년 12월 5일 (화) 부터 배송 예정 (글로벌 배송 가능)
+            ※ 본 판매 건은 선 제작된 수량을 기준으로 진행되며, 준비된 수량 소진 시 조기 품절될 수 있습니다.
+            
+            * 판매 상품
+            - 공식 상품 리스트와 상품 상세 설명은 해당 카테고리에서 확인하실 수 있습니다.
+            - COLLAB > TOKKI
+            - COLLAB > Get Up
+            - COLLAB > bunini
+            - COLLAB > illustration
+            
+            * 주문시 유의사항
+            - 옵션 상품의 경우, 최대 구매 가능 수량은 각 옵션별 3개입니다.
+            - 단일 상품의 경우, 최대 구매 가능 수량은 3개입니다.
+            
+            * 결제 수단 안내
+            - 신용카드(체크카드 포함)와 PayPal, Eximbay, Payco, Toss, 네이버페이, 카카오페이, 위버스카드로 결제하실 수 있습니다.
+            - Toss, 네이버페이, 카카오페이 결제수단 추가로 카드 없이 결제수단별 충전 금액으로 결제가 가능합니다.
+            - 통화를 미국 달러(USD) 또는 일본 엔(JPY)으로 설정한 경우 PayPal, Eximbay를 통한 해외 신용카드, 알리페이 결제가 가능합니다.
+            
+            * 배송 시 유의 사항
+            - 배송지 입력 시, 상세 주소가 필수로 입력되어야 합니다. 해당 정보가 누락된 경우, 배송이 불가하니 주문에 참고해주세요.
+            - 대한민국 배송의 경우, 서비스 언어를 한국어로 변경 후 주소를 한국어로 기재하여 주문해주세요.
+            - 배송지가 일본인 경우, 서비스 언어를 일본어로 변경 후 주소를 일본어로 기재하여 주문해주세요.
+            - 그 외 국가 배송의 경우, 수취인 명과 주소가 영문으로 기재되어야 정상배송이 가능하니 주문에 참고해주세요. 다른 언어로 기재되어 있는 경우, 배송이 어렵습니다. 예) á, é, í, ó, ú, ü, ñ 등의 문자가 포함되어 있는 경우
+            
+            ※ 해외에서 주문하시는 경우, 다량의 주문건을 같은 주소로 배송/통관할 시 국가별 정책에 따라 관세가 부과되거나 통관이 불가할 수 있습니다. 구매 시 유의 바랍니다. 또한, 대량 주문으로 부과된 관세는 구매자 부담입니다.
+            
+            ※ 주소 오기재 시 배송 지연과 배송 중 분실 등의 문제가 발생할 수 있습니다. 한정 수량 제품의 경우 배송 중 분실에 대해 추가 발송이 어려울 수 있습니다. 주문 후 작성해주신 주소가 정확한지 꼭 확인해주세요.
+            
+            
+            
+            All things for Fans, 위버스샵
+          
+          </div>
+          <div class="modal-noticeUpdate">
+            <button>수정</button>
+            <button>삭제</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <main>
+      <div>
+        <div class="sidebar">
+          <aside>
+            <nav>
+              <ul>
+                <ul class="sidebar-list" id="member-search">
+                  <li>
+                    회원 관리
+                    <ul>
+                      <li><a href="subscribeMember.html" id="a">구독 회원 조회</a></li>
+                    </ul>
+                  </li>
+                </ul>
+
+                <ul class="sidebar-list" id="member-search">
+                  <li>
+                    주문 배송 관리
+                    <ul>
+                      <li><a href="artistOrder.html" id="a">배송 조회</a></li>
+                    </ul>
+                  </li>
+                </ul>
+                <ul class="sidebar-list" id="member-search">
+                  <li>
+                    신고 관리
+                    <ul>
+                      <li><a href="artistReport.html" id="a">게시글 신고</a></li>
+                    </ul>
+                  </li>
+                </ul>
+                <ul class="sidebar-list" id="member-search">
+                  <li>
+                    아티스트 공지사항
+                    <ul id="sidebar-sublist">
+                      <li><a href="artistnotice.html" id="a">아티스트 공지사항 목록</a></li>
+                      <li><a href="artistNoticeAdd.html" id="a">아티스트 공지사항 등록</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </ul>
+            </nav>
+          </aside>
+        </div>
+      </div>
+      <div class="noticeSelect">
+        <h4>NewJeans</h4>
+        <h1>아티스트 공지사항 목록</h1>
+        <br />
+        <table border="1" style="border-collapse: collapse" class="notice-table">
+          <tr class="notice-tr-th">
+            <th>공지사항 번호</th>
+            <th>제목</th>
+            <th>내용</th>
+            <th>날짜</th>
+          </tr>
+          <tr class="notice-tr-td">
+            <td>1</td>
+            <td><a href="#" class="btn-open-popup">[공지] 안드로이드 OS 6.0 이하 버전 업데이트 지원중단 안내</a></td>
+            <td>
+              안녕하세요. 공식 상품 스토어, 위버스샵입니다. NewJeans collaboration 상품을 12월 1일 (금)부터 판매합니다.
+            </td>
+            <td>2023/11/21</td>
+          </tr>
+        </table>
+        <div class="pagination-area">
+          <div class="pagination"><< < 1 2 3 4 5 6 7 8 9 10 > >></div>
+          <form>
+            <select id="select">
+              <option value="memberNo">공지 제목</option>
+              <option value="memberNickname">공지 내용</option>
+              <option value="memberEmail">날짜</option>
+            </select>
+            <input type="text" id="inputSearch" />
+            <button id="pagination-button">검색</button>
+          </form>
+        </div>
+      </div>
+    </main>
+    <script>
+      const modal = document.querySelector(".noticeModal");
+      const btnOpenPopup = document.querySelector(".btn-open-popup");
+      const modalCloseButton = document.getElementById("modalCloseButton");
+      const modal_background = document.querySelector(".noticeModal");
+
+      btnOpenPopup.addEventListener("click", () => {
+        open();
+      });
+
+      //Hide modal
+      modalCloseButton.addEventListener("click", () => {
+        close();
+      });
+
+      window.addEventListener("click", (e) => {
+        e.target === modal_background ? close() : false;
+      });
+      function close() {
+        modal.classList.remove("show");
+        modal_background.classList.remove("show");
+      }
+      function open() {
+        modal.classList.add("show");
+        modal_background.classList.add("show");
+      }
+    </script>
+  </body>
+</html>
