@@ -19,5 +19,9 @@ public class ChattingController {
 		template.convertAndSend("/sub/chat/room/" + message.getRoomId(), message);
 	}
 	
+	@MessageMapping(value = "/chat/message")
+	public void message(Message message) {
+		template.convertAndSend("/sub/chat/room" + message.getRoomId(), message);
+	}
 	
 }
