@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>배송조회</title>
+    <link rel="stylesheet" href="../../static/css/admin/order.css" />
+  </head>
+  <body>
+    <header>헤더+nav</header>
+    <main>
+      <div>
+        <div class="sidebar">
+          <aside>
+            <nav>
+              <ul>
+                <ul class="sidebar-list" id="member-search">
+                  <li>
+                    회원 관리
+                    <ul id="sidebar-sublist">
+                      <li><a href="selectMember.html" id="a">일반 회원 조회</a></li>
+                      <li><a href="deleteMember.html" id="a">탈퇴 회원 조회</a></li>
+                    </ul>
+                  </li>
+                </ul>
+                <ul class="sidebar-list" id="member-search">
+                  <li>
+                    주문 배송 관리
+                    <ul id="sidebar-sublist">
+                      <li><a href="order.html" id="a">주문 배송 조회</a></li>
+                    </ul>
+                  </li>
+                </ul>
+                <ul class="sidebar-list" id="member-search">
+                  <li>
+                    신고 관리
+                    <ul id="sidebar-sublist">
+                      <li><a href="report.html" id="a">게시글 신고</a></li>
+                    </ul>
+                  </li>
+                </ul>
+                <ul class="sidebar-list" id="member-search">
+                  <li>
+                    메인 공지사항
+                    <ul id="sidebar-sublist">
+                      <li><a href="notice.html" id="a">공지사항 목록</a></li>
+                      <li><a href="noticeAdd.html" id="a">공지사항 등록</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </ul>
+            </nav>
+          </aside>
+        </div>
+      </div>
+      <div class="main">
+        <h1>배송 조회</h1>
+        <br />
+        <table class="main-table" border="1" style="border-collapse: collapse">
+          <!-- <tbody class="main-tbody"> -->
+          <tr class="main-th-tr">
+            <th>배송 번호</th>
+            <th>상품 아티스트 명</th>
+            <th>상품 명</th>
+            <th>수량</th>
+            <th>가격</th>
+            <th>주문 날짜</th>
+            <th>배송 상태</th>
+          </tr>
+          <tr class="main-tr-tr">
+            <td>1</td>
+            <td>뉴진스</td>
+            <td>10주년 앨범</td>
+            <td>2</td>
+            <td>50,000</td>
+            <td>2023/11/29</td>
+            <td>
+              <!-- <form>
+                <select id="order-select">
+                  <option value="1">주문 완료</option>
+                  <option value="2">배송 준비</option>
+                  <option value="3">배송 중</option>
+                </select>
+              </form> -->
+              주문 완료
+            </td>
+          </tr>
+          <tr class="main-tr-tr">
+            <td>2</td>
+            <td>뉴진스</td>
+            <td>10주년 앨범</td>
+            <td>1</td>
+            <td>25,000</td>
+            <td>2023/11/27</td>
+            <td>배송 중</td>
+          </tr>
+          <tr class="main-tr-tr">
+            <td>2</td>
+            <td>뉴진스</td>
+            <td>10주년 앨범</td>
+            <td>1</td>
+            <td>25,000</td>
+            <td>2023/11/27</td>
+            <td>배송 중</td>
+          </tr>
+          <tr class="main-tr-tr">
+            <td>2</td>
+            <td>뉴진스</td>
+            <td>10주년 앨범</td>
+            <td>1</td>
+            <td>25,000</td>
+            <td>2023/11/27</td>
+            <td>배송 중</td>
+          </tr>
+          <!-- </tbody> -->
+        </table>
+        <div class="pagination-area">
+          <div class="pagination"><< < 1 2 3 4 5 6 7 8 9 10 > >></div>
+          <form>
+            <select id="select">
+              <option value="memberNo">회원번호</option>
+              <option value="memberNickname">회원 닉네임</option>
+              <option value="memberEmail">회원 이메일</option>
+            </select>
+            <input type="text" id="inputSearch" />
+            <button id="pagination-button">검색</button>
+          </form>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
