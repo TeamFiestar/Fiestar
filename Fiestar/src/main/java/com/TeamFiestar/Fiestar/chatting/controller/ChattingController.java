@@ -1,27 +1,43 @@
 package com.TeamFiestar.Fiestar.chatting.controller;
 
+
+import org.apache.ibatis.annotations.Select.List;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.TeamFiestar.Fiestar.chatting.DTO.ChatRoom;
 import com.TeamFiestar.Fiestar.chatting.DTO.Message;
+import com.TeamFiestar.Fiestar.chatting.service.ChattingService;
 
 import lombok.RequiredArgsConstructor;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
+@RequestMapping("/chat")
 public class ChattingController {
+    private final ChattingService service;
 
-	private final SimpMessagingTemplate template;
-	
-	@MessageMapping(value = "/chat/enter")
-	public void enter(Message message) {
-		template.convertAndSend("/sub/chat/room/" + message.getRoomId(), message);
-	}
-	
-	@MessageMapping(value = "/chat/message")
-	public void message(Message message) {
-		template.convertAndSend("/sub/chat/room" + message.getRoomId(), message);
-	}
-	
+    @PostMapping
+    public ChatRoom createRoom(@RequestParam String name) {
+        return service.createRoom(name);
+    }
+
+    @DeleteMapping
+    public void deleteRoom(@RequestParam String name) {
+    	service.deleteRoom(name);
+    }
+
+    @GetMapping
+    public String findAllRoom() {
+    	List<ChatDto>
+    }
+
+
 }
