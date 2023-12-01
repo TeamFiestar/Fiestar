@@ -27,6 +27,7 @@ const optionValue = document.querySelector("select[name=key] option:checked").se
 
 optionSelect.addEventListener("change", () => {
 
+  
 
   const productName = document.createElement("span");
   productName.classList.add("product-purchase-name");
@@ -44,6 +45,8 @@ optionSelect.addEventListener("change", () => {
 
     parent.remove();
     parent2.remove();
+    totalNoProduct( );
+    totalCost()
   });
 
 
@@ -99,7 +102,8 @@ optionSelect.addEventListener("change", () => {
   container.append(productName, optionArea);
 
 
-
+  totalNoProduct( );
+  totalCost()
 
 });
 
@@ -107,8 +111,11 @@ optionSelect.addEventListener("change", () => {
 const plus = document.querySelector(".plus");
 const minus = document.querySelector(".minus");
 const productPrice = document.querySelector(".product-price");
-const selectedprice = document.querySelector(".selected-price");
-const result = document.querySelector(".result");
+const selectedPrice = document.querySelector(".selected-price");
+
+const totalProduct = document.querySelector("#totalProduct");
+const totalPrice = document.querySelector("#totalPrice");
+
 
 
 function plusBtn(e){
@@ -118,7 +125,8 @@ function plusBtn(e){
   e.previousSibling.textContent = i;
   let totalcostNum = i*productPrice.getAttribute("value");
   e.parentElement.nextElementSibling.textContent = "₩" + totalcostNum.toLocaleString();
-
+  totalNoProduct( );
+  totalCost();
 
 };
 
@@ -140,12 +148,45 @@ function minusBtn(e) {
   e.nextSibling.textContent = i;
   let totalcostNum = i*productPrice.getAttribute("value");
   e.parentElement.nextElementSibling.textContent = "₩" + totalcostNum.toLocaleString();
-  totalProduct.textContent = "총 상품금액 (" + i +")개";
   totalPrice.textContent = "₩" + totalcostNum.toLocaleString();
-
+  totalNoProduct( );
+  totalCost()
   } 
 
 };
+
+
+function totalNoProduct( ) {
+
+  const results = document.querySelectorAll(".result");
+
+  let sum = 0;
+
+  for(i of results) {
+    console.log(i);
+    sum += (Number)(i.innerText);
+
+  }
+
+  totalProduct.textContent = "총 상품금액 (" + sum +")개";
+  totalProduct.setAttribute('value',sum);
+  console.log(totalProduct.getAttribute('value'));
+}
+
+
+function totalCost() {
+
+  selectedPrice = 110000;
+
+  let total = 0;
+
+  total = selectedPrice * totalProduct.value;
+
+
+  totalPrice.textContent = "₩" + total.toLocaleString();
+
+
+}
 
 /* minus.addEventListener("click", () => {
   if(i>1) {
@@ -161,8 +202,4 @@ function minusBtn(e) {
 }); */
 
 
-const totalProduct = document.querySelectorAll("#totalProduct");
-const totalPrice = document.querySelectorAll("#totalPrice");
 
-totalProduct.textContent = "총 상품금액 (" + i +")개";
-totalPrice.textContent = "₩" + totalcostNum.toLocaleString();
