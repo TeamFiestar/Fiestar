@@ -1,15 +1,15 @@
-package com.TeamFiestar.Fiestar.chatting.service;
+package com.TeamFiestar.Fiestar.chatting.mapper;
 
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.stereotype.Service;
-import org.springframework.web.socket.WebSocketSession;
+import org.apache.ibatis.annotations.Mapper;
 
 import com.TeamFiestar.Fiestar.chatting.DTO.ChatRoom;
 import com.TeamFiestar.Fiestar.chatting.DTO.Message;
 
-public interface ChattingService {
+@Mapper
+public interface ChattingMapper {
 
 	int insertMessage(Message msg);
 
@@ -18,7 +18,5 @@ public interface ChattingService {
 	int createChattingRoom(Map<String, Integer> map);
 
 	List<ChatRoom> selectRoomList(int memberNo);
-
-	
 	
 }
