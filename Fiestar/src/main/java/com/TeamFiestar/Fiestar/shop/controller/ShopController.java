@@ -7,6 +7,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("shop")
 public class ShopController {
+	
+	@GetMapping("noticeDetail")
+	public String noticeDetail() {
+		return "shop/noticeDetail";
+	}
+	
+	@GetMapping("shopNotice")
+	public String shopNotice() {
+		return "shop/shopNotice";
+	}
+	
+	@GetMapping("noticeList")
+	public String noticeList() {
+		return "shop/noticeList";
+	}
 
 	@GetMapping("home")
 	public String shopMain( ) {
