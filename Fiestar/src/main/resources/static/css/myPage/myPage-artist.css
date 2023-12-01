@@ -127,7 +127,7 @@ hr{
 /* 사이드바 */
 .sidebar{
   width: 280px;
-  height: 300px;
+  height: 250px;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
   margin: 30px auto;
@@ -315,11 +315,11 @@ hr{
 }
 .content{
   width: 710px;
-  height: 414px;
+  height: 440px;
   background-color: rgb(255, 255, 255);
+  box-shadow: 4px 4px 4px rgb(150, 150, 150);
   border-radius: 20px;
   margin: 0 auto;
-  box-shadow: 4px 4px 4px rgb(202, 202, 202);
 }
 
 
@@ -329,192 +329,112 @@ h1{
 
 
 
+.artist-all{
+  width: 650px;
+  height: 380px;
+  margin: 0 auto;
+}
+
 
 .artist-top{
-  width: 708px;
-  height: 207px;
+  width: 650px;
+  height: 190px;
   display: flex;
 }
-
-.artist-top div{
-  width: 236px;
-  height: 207px;
-  /* border: 1px solid black; */
-}
-
-
-.artist-top div .aespa{
-  width: 140px;
-  height: 180px;
-  margin: 11px auto;
-  border-radius: 10px;
-  box-shadow: 4px 4px 4px rgb(150, 150, 150);
-}
-
-.aespa .artist-img{
-  width: 140px;
-  height: 130px;
-}
-
-.aespa .artist-name{
-  width: 140px;
-  height: 50px;
-  background-color: rgb(255, 255, 255);
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-}
-
-
-
-
-.artist-top div .b1a4{
-  width: 140px;
-  height: 180px;
-  margin: 11px auto;
-  border-radius: 10px;
-  box-shadow: 4px 4px 4px rgb(150, 150, 150);
-}
-
-.b1a4 .artist-img{
-  width: 140px;
-  height: 130px;
-}
-
-.b1a4 .artist-name{
-  width: 140px;
-  height: 50px;
-  background-color: rgb(255, 255, 255);
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-}
-
-
-
-
-
-
-
-.artist-top div .class{
-  width: 140px;
-  height: 180px;
-  margin: 11px auto;
-  border-radius: 10px;
-  box-shadow: 4px 4px 4px rgb(150, 150, 150);
-}
-.class .artist-img{
-  width: 140px;
-  height: 130px;
-}
-
-.class .artist-name{
-  width: 140px;
-  height: 50px;
-  background-color: rgb(255, 255, 255);
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-}
-
-
-
-
-
-
 
 .artist-bottom{
-  width: 710px;
-  height: 207px;
-  /* border: 1px solid black; */
+  width: 650px;
+  height: 190px;
   display: flex;
 }
 
-.artist-bottom div{
-  width: 236px;
-  height: 207px;
-  /* border: 1px solid black; */
-}
-
-
-.artist-bottom div .cn{
+.artist-list {
   width: 140px;
   height: 180px;
-  margin: 11px auto;
-  border-radius: 10px;
+  border-radius: 14px;
   box-shadow: 4px 4px 4px rgb(150, 150, 150);
+  margin: 20px auto;
+  
 }
 
-.cn .artist-img{
-  width: 140px;
-  height: 130px;
-}
-
-.cn .artist-name{
-  width: 140px;
-  height: 50px;
+.artist-profile {
   background-color: rgb(255, 255, 255);
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-radius: 14px;
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
 }
 
 
 
 
-
-
-
-
-
-.artist-bottom div .exo{
-  width: 140px;
-  height: 180px;
-  margin: 11px auto;
-  border-radius: 10px;
-  box-shadow: 4px 4px 4px rgb(150, 150, 150);
-}
-
-.exo .artist-img{
-  width: 140px;
-  height: 130px;
-}
-
-.exo .artist-name{
-  width: 140px;
-  height: 50px;
-  background-color: rgb(255, 255, 255);
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
+.artist-image-area {
+  width: 100%;
+  height: 128px;
+  overflow: hidden;
 }
 
 
-
-
-
-.artist-bottom div .zico{
-  width: 140px;
-  height: 180px;
-  margin: 11px auto;
-  border-radius: 10px;
-  box-shadow: 4px 4px 4px rgb(150, 150, 150);
+.artist-image-area img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
 }
 
-.zico .artist-img{
-  width: 140px;
-  height: 130px;
-}
-
-.zico .artist-name{
-  width: 140px;
-  height: 50px;
-  background-color: rgb(255, 255, 255);
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
+.artist-logo-wrap {
+  background-color: #fff;
+  border-radius: 50%;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  top: 107px;
+  width: 44px;
+  height: 44px;
+  border: 3px solid rgb(215, 215, 215);
+  overflow: hidden;
 }
 
 
-img{
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
+.artist-main-logo {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+  border-radius: 50%;
 }
 
+.artist-text-area {
+  box-sizing: border-box;
+  padding-top: 30px;
+  text-align: center;
+  background-color: white;
+
+}
+
+.artist-name {
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+  font-size: 15px;
+  font-weight: bold;
+  color: black;
+  background-color: white;
+}
+
+.newArtist-area {
+  padding-top: 70px;
+}
+
+.artist-community {
+  display: inline-flex;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  align-items: center;
+  margin: 6px;
+  margin-top: 8px;
+}
 
 
 .pagination-area {
@@ -525,3 +445,7 @@ img{
 .pagination {
   font-size: 20px;
 }
+
+
+
+
