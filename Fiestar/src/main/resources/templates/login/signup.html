@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <link rel="stylesheet" href="../Fiesta/signup.css">
+   <link rel="stylesheet" href="../Fiesta/shopHeader.css">
+</head>
+
+
+<body>
+
+   <header>
+      <div class="header">
+        
+          <div class="header-left-side">
+            <a href="/" id="header-logo">
+              
+            </a>
+          </div>
+        
+          <div class="header-right-side">
+            <!-- <th:block th:if="${session.loginMember == null}"> -->
+              <form action="#" method="GET" style="display: inline-flex; border:none; ">
+                    <span class="search-area">
+                    <!--  autocomplete="off" : 브라우저 제공 자동완성 off -->
+                    <button id="searchBtn" class="fa-solid fa-magnifying-glass"> 
+                      <input type="search" name="query" id="search-input" placeholder="상품명 혹은 아티스트 검색" 
+                      autocomplete="off" > 
+                    </button>
+    
+                    </span>
+    
+          </form>
+          
+            <a href="#"> 공지사항 </a>
+            <span>|</span>
+            <a href="/shop/home">샵 고객센터</a>
+    
+            <a href="#"><button id="loginPage"> 로그인</button></a>
+            <a href="#"><button  id="signUp">회원가입</button></a>
+          
+          <!-- </th:block> -->
+      
+              <!-- <th:block th:unless="${session.loginMember == null}">
+    
+                 <input type="text" id="search-area" placeholder="상품명 혹은 아티스트 검색"></input>
+                  <a href="#"> 카트 <th:block th:text="{카트에 담긴 갯수}"></th:block>  </a>
+                  <a href="#"> 주문/배송 </a>
+                  <a href="#"> 공지사항 </a>
+                  <span>|</span>
+                  <a href="#">샵 고객센터</a>
+                              
+                      <img th:if="${session.loginMember.profileImg == null}" th:src="#{user.default.image}" id="memberHeaderProfile">
+                                        
+                    
+                      <img th:unless="${session.loginMember.profileImg == null}" th:src="${session.loginMember.profileImg}" id="memberHeaderProfile">
+                  </a>    
+                    
+                    <div class="header-menu">
+                      <a href="/myPage/myPage-home">마이페이지</a>
+                      <a href="/member/logout" id="logoutBtn">로그아웃</a>
+                    </div>
+      
+                  </div>
+                </th:block>
+              -->
+              </div>    
+            
+          </div>
+    
+      </div>
+    </header>
+   <section class="frame">
+
+      <div class="signup-area">
+         <h1>회원가입</h1>
+      </div> 
+      <div class="signup-page">
+
+      
+            <!-- 이메일 -->
+            <form class="email-form"> 
+               <div class="input-email">     
+                     <input type="text" placeholder="이메일 입력">
+                         <button class="authentification">인증 번호 전송</button>
+               </div>
+            </form>
+
+            <!-- 인증 번호  -->
+            <form class="authen-form"> 
+               <div class="input-authen">
+                  <input type="text" placeholder="인증번호 입력">
+                  <span class="timer" style="font-size: 14px;"> 남은 시간 : 1:23 </span>
+                  <div class="not-null"> * 필수 작성 항목입니다. </div>
+               </div>
+            </form>
+
+             <!-- 비밀번호 -->
+             <form class="pw-form"> 
+               <div class="input-pw">
+                  <input type="password" placeholder="비밀번호 입력">
+                  
+                  <div class="not-null"> * 필수 작성 항목입니다. </div>
+               </div>
+            </form>
+
+            <form class="pw-check-form"> 
+               <div class="input-pw-check">
+                  <input type="text" placeholder="비밀번호 입력">
+                  
+                  <div class="not-null"> * 필수 작성 항목입니다. </div>
+               </div>
+            </form>
+
+            <form class="nickname-form"> 
+               <div class="input-nickname">
+                  <input type="text" placeholder="닉네임 입력">
+                  
+                  <div class="not-null"> * 3 ~ 10자리로 입력해주세요. </div>
+               </div>
+            </form>
+
+            <form class="address-form"> 
+               <div class="input-address">
+                  <input type="text" placeholder="주소 입력">
+                  <button class="address">주소 찾기</button>
+
+                  <div class="not-null"> * 필수 항목입니다. </div>
+               </div>
+            </form>
+
+            <form class="address-detail-form"> 
+               <div class="input-address-detail">
+                  <input type="text" placeholder="상세 주소"> 
+                  
+                  <div class="not-null"> * 필수 항목입니다. </div>
+               </div>
+            </form>
+               
+            <form class="gender" style="font-size: 18px;" style="font-weight: bold;" style="width: 100px;">
+               성별 
+               <select name="" id="gender-option">
+                  <option value="">남성</option>
+                  <option value="">여성</option>
+               </select>
+            </form>  
+            
+            <form class="checkout-area">
+               <div class="signUp-btn">
+                  <button type="submit" class="checkOut-btn">신청하기</button>
+               </div>
+
+            </form>
+
+         </div>
+               
+
+
+            
+
+
+            
+
+         
+         
+      </div>
+      
+      
+   </section>
+
+</body>
+</html>
