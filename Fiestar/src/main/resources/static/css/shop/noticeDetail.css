@@ -1,0 +1,153 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+@import url("https://fonts.googleapis.com/css?family=Inter:500,700");
+* {
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0px;
+  height: 100%;
+}
+/* a blue color as a generic focus style */
+button:focus-visible {
+  outline: 2px solid #4a90e2 !important;
+  outline: -webkit-focus-ring-color auto 5px !important;
+}
+a {
+  text-decoration: none;
+}
+
+
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  width: 1440px;
+  height: 2452px;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 80px 170px 0px;
+  position: relative;
+  background-color: #000000;
+}
+
+.screen .frame {
+  display: flex;
+  gap: 10px;
+  padding: 0px 20px;
+  flex: 1;
+  align-self: stretch;
+  width: 100%;
+  flex-grow: 1;
+  background-color: #ffffff;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+
+.screen .div-wrapper {
+  display: flex;
+  height: 154px;
+  justify-content: flex-end;
+  padding: 20px 0px;
+  align-self: stretch;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+
+.screen .text-wrapper {
+  position: relative;
+  flex: 1;
+  align-self: stretch;
+  margin-top: -1px;
+  font-family: "Inter", Helvetica;
+  font-weight: 700;
+  color: #000000;
+  font-size: 36px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.screen .div {
+  display: inline-flex;
+  height: 140px;
+  margin-right: -40px;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+
+.screen .notice-head {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+
+.screen .notice-artist {
+  position: relative;
+  width: 177px;
+  height: 30px;
+  margin-top: -1px;
+  font-family: "Inter", Helvetica;
+  font-weight: 500;
+  color: #000000;
+  font-size: 19px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.screen .notice-head-wrapper {
+  position: relative;
+  width: 1000px;
+  height: 64px;
+  font-family: "Inter", Helvetica;
+  font-weight: 500;
+  color: transparent;
+  font-size: 22px;
+  letter-spacing: 0;
+  line-height: 22px;
+}
+
+.screen .notice-title {
+  color: #000000;
+}
+
+.screen .notice-enroll-date {
+  color: #adb1b8;
+  font-size: 12px;
+  line-height: 24px;
+}
+
+.screen .line {
+  position: relative;
+  width: 95%;
+  height: 1px;
+  object-fit: cover;
+}
+
+.screen .content-wrapper {
+  display: flex;
+  padding: 40px 0px;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+
+.screen .notice-content {
+  position: relative;
+  width: 1000px;
+  margin-top: -1px;
+  font-family: "Inter", Helvetica;
+  font-weight: 500;
+  color: #282828;
+  font-size: 18px;
+  letter-spacing: 0;
+  line-height: 40px;
+}
