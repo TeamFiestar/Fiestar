@@ -5,6 +5,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Document</title>
    <link rel="stylesheet" href="/css/login/signup.css">
+   <link rel="stylesheet" href="../../static/css/login/signup.css">
    <link rel="stylesheet" href="/css/login/shopHeader.css">
 </head>
 
@@ -84,7 +85,7 @@
          <!-- 이메일 -->
          <div class="email-form"> 
             <div class="input-email">     
-                  <input type="text" placeholder="이메일 입력">
+                  <input type="text" id="memberEmail" placeholder="이메일 입력">
                       <button class="authentification">인증 번호 전송</button>
             </div>
          </div>
@@ -101,7 +102,7 @@
           <!-- 비밀번호 -->
           <div class="pw-form"> 
             <div class="input-pw">
-               <input type="password" placeholder="비밀번호 입력">
+               <input type="password" id="memberPw" placeholder="비밀번호 입력">
                
                <div class="not-null"> * 필수 작성 항목입니다. </div>
             </div>
@@ -109,7 +110,7 @@
 
          <div class="pw-check-form"> 
             <div class="input-pw-check">
-               <input type="text" placeholder="비밀번호 입력">
+               <input name="memberPwConfirm" type="text" placeholder="비밀번호 입력">
                
                <div class="not-null"> * 필수 작성 항목입니다. </div>
             </div>
@@ -117,7 +118,7 @@
 
          <div class="nickname-form"> 
             <div class="input-nickname">
-               <input type="text" placeholder="닉네임 입력">
+               <input name="memberNickname" type="text" placeholder="닉네임 입력">
                
                <div class="not-null"> * 3 ~ 10자리로 입력해주세요. </div>
             </div>
@@ -134,7 +135,7 @@
 
          <div class="address-detail-form"> 
             <div class="input-address-detail">
-               <input type="text" placeholder="상세 주소"> 
+               <input name="memberAddress" type="text" placeholder="상세 주소"> 
                
                <div class="not-null"> * 필수 항목입니다. </div>
             </div>
@@ -143,8 +144,8 @@
          <div class="gender" style="font-size: 18px;" style="font-weight: bold;" style="width: 100px;">
             성별 
             <select name="" id="gender-option">
-               <option value="">남성</option>
-               <option value="">여성</option>
+               <option value="M">남성</option>
+               <option value="F">여성</option>
             </select>
          </div>  
          
