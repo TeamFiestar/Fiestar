@@ -1,6 +1,6 @@
 package com.TeamFiestar.Fiestar.chatting.websocket;
 
-import java.lang.reflect.Member;
+
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
@@ -15,6 +15,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.TeamFiestar.Fiestar.chatting.DTO.Message;
 import com.TeamFiestar.Fiestar.chatting.service.ChattingService;
+import com.TeamFiestar.Fiestar.member.model.DTO.Member;
 import com.fasterxml.jackson.databind.ObjectMapper;
 //import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;

@@ -21,9 +21,9 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import com.TeamFiestar.Fiestar.chatting.DTO.ChatRoom;
 import com.TeamFiestar.Fiestar.chatting.DTO.Message;
 import com.TeamFiestar.Fiestar.chatting.service.ChattingService;
+import com.TeamFiestar.Fiestar.member.model.DTO.Member;
 
-import edu.kh.project.chatting.model.dto.ChattingRoom;
-import edu.kh.project.member.model.dto.Member;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -35,7 +35,7 @@ public class ChattingController {
 	private final ChattingService service;
 
 	 @GetMapping("/chatting")
-	    public String chatting(@SessionAttribute("loginMember") com.TeamFiestar.Fiestar.member.model.DTO.Member loginMember, Model model) {
+	    public String chatting(@SessionAttribute("loginMember") Member loginMember, Model model) {
 	        
 	        java.util.List<ChatRoom> roomList = service.selectRoomList(loginMember.getMemberNo());
 	        model.addAttribute("roomList", roomList);
