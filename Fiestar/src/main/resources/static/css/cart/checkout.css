@@ -30,7 +30,7 @@
 
 h1 {
    display: block;
-   font-size: 28px;
+   font-size: 32px;
    margin-block-start: 0.67em;
    margin-block-end: 0.67em;
    margin-inline-start: 0px;
@@ -40,7 +40,7 @@ h1 {
 }
 
 .select-all{
-   font-size: 14px;
+   font-size: 16px;
    margin-top: 80px;
    border-bottom: solid rgb(217, 217, 217) 1px;
    padding: 15px 0px;
@@ -53,7 +53,7 @@ h1 {
 
 .item-list{
    font-weight: 500;
-   font-size: 14px;
+   font-size: 16px;
    height: 120px;
     /* display: flex; */
     -webkit-box-align: center;
@@ -64,7 +64,7 @@ h1 {
 
 .item-name > a{
    text-decoration: none;
-   font-size: 14px;
+   font-size: 16px;
    color: black;
 }
 .item-name{
@@ -103,14 +103,14 @@ h1 {
 
 .check-list{
    height: 58px;
-   margin: 20px 0 88px 6px;
    position: relative;
    font-size: 16px;
+   margin: 30px 0 180px 6px;
 }
 
 .check-price{
-   font-size: 14px;
-   margin-left: 12px;
+   font-size: 16px;
+   /* margin-left: 12px; */
 }
 
 .check-total{
@@ -126,19 +126,19 @@ h1 {
 }
 
 .order-list > .order-name{
-   font-size: 18px;
+   font-size: 22px;
    font-weight: 700;
 }
 
 .shipping-list > .shipping-name{
-   font-size: 18px;
+   font-size: 22px;
    font-weight: 700;
 
 }
 
 .order-input{
 
-   font-size: 14px;
+   font-size: 16px;
    margin-top: 44px;
 }
 
@@ -193,7 +193,7 @@ h1 {
 }
 
 .phonenumber-input-area{
-   margin-top: 32px;
+   margin-top: 38px;
 }
 
 /* .address-detail > input{
@@ -219,11 +219,13 @@ h1 {
 
 .address-detail{
    width: 280px;
-   margin: 32px 0 0 0; 
+   margin: 38px 0 0 0; 
 }
 
+
+
 .name-btn{
-   margin: 0 0 0 6px;
+   margin: 0 0 0 12px;
    border-radius: 4px;
     transition: all 300ms ease 0s;
     appearance: none;
@@ -233,8 +235,8 @@ h1 {
     justify-content: center;
     -webkit-box-align: center;
     align-items: center;
-    height: 28px;
-    font-size: 14px;
+    height: 30px;
+    font-size: 18px;
     border: 1px solid rgb(173, 177, 184);
     color: rgb(135, 142, 150);
     width: auto;
@@ -242,7 +244,7 @@ h1 {
 }
 
 .shipping-btn{
-   margin: 0 0 0 6px;
+   margin: 0 0 0 12px;
    border-radius: 4px;
     transition: all 300ms ease 0s;
     appearance: none;
@@ -252,8 +254,8 @@ h1 {
     justify-content: center;
     -webkit-box-align: center;
     align-items: center;
-    height: 28px;
-    font-size: 14px;
+    height: 30px;
+    font-size: 18px;
     border: 1px solid rgb(173, 177, 184);
     color: rgb(135, 142, 150);
     width: auto;
@@ -280,20 +282,24 @@ h1 {
 }
 
 .price-detail{
-
+   font-size: 22px;
    position: relative;
    margin: 100px 0 0 16px;
 }
 
 .detail{
-   right: 0;
+
+   font-size: 16px;
    top: 70px;
    position: absolute;
 }
 
 .price-detail > span{
    right:0;
+   /* margin-left: 1016px; */
 }
+
+
 
 .item-list>img{
    border-radius: 4px;
@@ -305,7 +311,7 @@ h1 {
 
 .total{
 
-   margin-top: 100px;
+   margin-top: 140px;
 
    background-color: rgb(255, 254, 237);
    padding: 20px;

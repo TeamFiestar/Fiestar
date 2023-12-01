@@ -4,7 +4,7 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Document</title>
-   <link rel="stylesheet" href="../Fiesta/shopapplica.css">
+   <link rel="stylesheet" href="../../static/css/login/shopapplica.css">
    <link rel="stylesheet" href="../Fiesta/shopHeader.css">
 
 </head>
@@ -78,38 +78,48 @@
 
 
       <div class="signup-area">
-         <h1>입점 신청서</h1>
+         <h1>회원 가입</h1>
       </div> 
 
 
 
       <form class="signup-page">
 
-         
-
-         <div class="gender"style="width: 150px;" style="font-size: 18px;">
-            <span>대표구성</span>
-            <select name="" id="gender-option">
-               <option value="">회사</option>
-               <option value="">개인</option>
-            </select>
-         </div>  
-
-      
             <!-- 이메일 -->
             <div class="email-form"> 
                <div class="input-email">     
-                     <input type="text" placeholder="대표자 명">
+                     <div class="email" style="font-size: 16px;" style="margin-bottom: 6px;">이메일</div>
+                     <input type="text" placeholder="이메일 입력" required>
+                     <button class="authentification">인증 번호 전송</button>
                      
                </div>
             </div>
 
-           
-
-             <!-- 비밀번호 -->
+         
+             <!-- 비밀번호
              <div class="pw-form"> 
                <div class="input-pw">
                   <input type="text" placeholder="상호">
+                  
+                  <div class="not-null"> * 필수 작성 항목입니다. </div>
+               </div>
+            </div> -->
+
+
+            <div class="pw-form"> 
+               <div class="input-authen">
+                  <div class="email" style="font-size: 16px;">인증번호 입력</div>
+                  <input type="text" placeholder="인증번호 입력" required>
+                  <span class="timer" style="font-size: 14px;"> 남은 시간 : 1:23 </span>
+                  <div class="not-null"> * 필수 작성 항목입니다. </div>
+
+               </div>
+            </div>
+
+            <div class="pw-check-form"> 
+               <div class="input-pw-check">
+                  <div class="email" style="font-size: 16px;" style="margin-bottom: 6px;">비밀번호</div>
+                  <input type="password" placeholder="비밀번호 입력">
                   
                   <div class="not-null"> * 필수 작성 항목입니다. </div>
                </div>
@@ -117,15 +127,19 @@
 
             <div class="pw-check-form"> 
                <div class="input-pw-check">
-                  <input type="text" placeholder="담당자 명">
+                  <div class="email" style="font-size: 16px;" style="margin-bottom: 6px;">비밀번호 확인</div>
+                  <input type="password" placeholder="비밀번호 입력">
                   
                   <div class="not-null"> * 필수 작성 항목입니다. </div>
                </div>
             </div>
 
+
+
             <div class="nickname-form"> 
                <div class="input-nickname">
-                  <input type="text" placeholder="담당자 번호">
+                  <div class="email" style="font-size: 16px;" style="margin-bottom: 6px;">닉네임</div>
+                  <input type="text" placeholder="닉네임">
                   
                   <div class="not-null"> * 3 ~ 10자리로 입력해주세요. </div>
                </div>
@@ -133,7 +147,9 @@
 
             <div class="address-form"> 
                <div class="input-address">
+                  <div class="email" style="font-size: 16px;" style="margin-bottom: 6px;">도로명 주소 입력</div>
                   <input type="text" placeholder="주소 입력">
+  
                   <button class="address">주소 찾기</button>
 
                   <div class="not-null"> * 필수 항목입니다. </div>
@@ -142,20 +158,26 @@
 
             <div class="address-detail-form"> 
                <div class="input-address-detail">
+                  <div class="email" style="font-size: 16px;" style="margin-bottom: 6px;">상세주소 입력</div>
                   <input type="text" placeholder="상세 주소"> 
                   
                   <div class="not-null"> * 필수 항목입니다. </div>
                </div>
             </div>
-               
-            <div class="file-add">
-               <input type="file">
-               <button type="submit" class="" display="none">파일 첨부</button>
-            </div>
 
+            <div class="gender"style="width: 150px;" style="font-size: 18px;">
+               <span>성별</span>
+               <select name="" id="gender-option">
+                  <option value="">남성</option>
+                  <option value="">여성</option>
+               </select>
+            </div>  
+   
+               
+          
             <div class="checkout-area">
                <div class="signUp-btn">
-                  <button type="submit" class="checkOut-btn">신청하기</button>
+                  <button type="submit" class="checkOut-btn">회원 가입</button>
                </div>
 
             </div>
