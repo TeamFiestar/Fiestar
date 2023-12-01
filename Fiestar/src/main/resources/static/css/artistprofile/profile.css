@@ -44,37 +44,7 @@ img{
   
 }
 
-.mainImg{
-  width: 1100px;
-  height: 700px;
-}
 
-.artistIntro{
-  margin: -100px auto 0;
-  position: relative;
-  width: 400px;
-  min-height: 100px;
-  /* border: 1px solid rgb(206, 42, 42); */
-}
-
-.artistIntro-name{
-  width: 400px;
-  height: 100px;
-}
-
-.artistIntro-content{
-  width: 450px;
-  height: 100px;
-  margin: 0 auto;
-}
-
-.artistIntro-content p{
-  color: #fff;
-  font-size: 15px;
-  line-height: 21px;
-  margin: 20px auto 0;
-  width: 450px;
-}
 
 
 .profiletxt h3{
@@ -93,6 +63,55 @@ img{
   /* border: 1px solid wheat; */
   display: flex;
 }
+
+
+
+.artistprofileMain{
+  width: 1100px;
+  height: 750px;
+  margin-top: 20px;
+}
+
+
+.artistprofileImg{
+  width: 1100px;
+  height: 600px;
+  display: block;
+  border-radius: 10px;
+}
+
+
+.artistprofileMainIntro{
+  width: 1100px;
+  height: 200px;
+
+}
+.artistprofileMainIntroAll{
+  width: 500px;
+  height: 200px;
+  margin: -100px auto 0;
+}
+
+
+.artistprofileMainIntroImg{
+  width: 500px;
+  height: 100px;
+}
+
+.artistprofileMainIntroText{
+  width: 500px;
+  height: 100px;
+  margin-top: 10px;
+}
+
+
+.artistprofileMainIntroText p{
+  text-align: center;
+  color: white;
+}
+
+
+
 
 .profileImg{
   width: 120px;
