@@ -15,9 +15,10 @@ public class Member {
 	   private String memberPw;
 	   private String memberNickname;
 	   private String memberAddress;
-	   private String profileImg;
-	   private String enrollDate;
+	   private String memberGender;
+	   private int memberAuthority; 
+	   private String memberProfile;
+	   private String memberEnrollDate;
 	   private String memberDelFl;
-	   private int authority; 
 	   
 }
