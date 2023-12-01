@@ -1,0 +1,225 @@
+@font-face{
+   font-family: 'Pretendard-Regular';
+   src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+   font-weight: 400; 
+   font-style: normal;
+}
+
+* {
+   box-sizing: border-box;
+   font-family: 'Pretendard-Regular';
+}
+
+.frame {
+   width: 1400px;
+   min-height: 600px;
+   margin:auto;
+   padding: 70px;
+   position: relative;
+}
+
+/* 로그인 */
+h1 {
+   margin-top: 88px;
+   display: flex;
+   font-size: 26px;
+   font-weight: bold;
+   justify-content: center;
+   flex-wrap: wrap;
+}
+
+.timer{
+   margin-left: 10px;
+   font-size: 14px;
+   color: rgb(231, 23, 23);
+}
+
+.not-null{
+   color: rgb(87, 87, 87);
+   margin-top: 6px;
+   font-size: 14px;
+}
+
+* input{
+   border: 1px solid rgb(173, 177, 184);
+   outline-color: rgb(69, 106, 227);
+   font-size: 18px;
+}
+
+/* 내용 영역 */
+.signup-page{
+   margin-top: 84px;
+   margin-left: 30%;
+   /* display: flex; */
+   justify-content: center;
+   align-content: center;
+   flex-direction: column;
+}
+
+.input-email > form{
+
+   border-radius: 4px;
+   width: 450px;
+   height: 42px;
+   transition-delay: 0ms;
+}
+
+.input-email > input{
+      
+      border-radius: 4px;
+      width: 450px;
+      height: 42px;
+
+}
+
+
+
+.input-pw > input {
+   border-radius: 4px;
+   width: 450px;
+   height: 42px;
+
+}
+
+.input-pw-check > input{
+   border-radius: 4px;
+   width: 450px;
+   height: 42px;
+}
+
+.input-nickname > input {
+   border-radius: 4px;
+   width: 450px;
+   height: 42px;
+}
+
+.input-address > input{
+   border-radius: 4px;
+      width: 450px;
+      height: 42px;
+}
+
+.input-address-detail > input{
+   border-radius: 4px;
+   width: 450px;
+   height: 42px;
+}
+
+/* 인증번호 전송 버튼 */
+.authentification{
+   margin: 0 0 0 6px;
+   border-radius: 4px;
+    transition: all 300ms ease 0s;
+    appearance: none;
+    background: none;
+    cursor: pointer;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 24px;
+    font-size: 14px;
+    border: 1px solid rgb(173, 177, 184);
+    color: rgb(135, 142, 150);
+    width: auto;
+    display: inline-flex;
+}
+
+.address {
+   margin: 0 0 0 6px;
+   border-radius: 4px;
+    transition: all 300ms ease 0s;
+    appearance: none;
+    background: none;
+    cursor: pointer;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 24px;
+    font-size: 14px;
+    border: 1px solid rgb(173, 177, 184);
+    color: rgb(135, 142, 150);
+    width: auto;
+    display: inline-flex;
+}
+
+.gender{
+   margin-top: 48px;
+   margin-bottom: 98px;
+}
+
+#gender-option{
+   /* margin-left: 4px;
+   width: 50px;
+   height: 30px;
+    */
+   height: 30px;
+   margin: 0 0 0 6px;
+   border-radius: 4px;
+    transition: all 300ms ease 0s;
+    background: none;
+    cursor: pointer;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 14px;
+    border: 1px solid rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
+    width: auto;
+    display: inline-flex;
+}
+
+.checkOut-btn{
+   border-radius: 4px;
+    transition: all 300ms ease 0s;
+    margin: 0 0 0 188px;
+    appearance: none;
+    /* background: none rgb(227, 69, 224); */
+    background: none rgb(104, 55, 194);
+    border: none;
+    cursor: pointer;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 40px;
+    font-size: 20px;
+    font-weight: 500;
+    --horizontal-padding: 1.8rem;
+    color: rgb(255, 255, 255);
+    width: auto;
+    display: inline-flex;
+    padding: 0 var(--horizontal-padding);
+}
+
+
+
+
+.input-email{
+   margin-bottom: 20px;
+}
+
+.input-authen{
+   margin-bottom: 44px;
+}
+
+.input-pw{
+   margin-bottom: 44px;
+}
+.input-pw-check{
+   margin-bottom: 44px;
+}
+
+.input-nickname{
+   margin-bottom: 44px;
+}
+
+.input-address{
+   margin-bottom: 44px;
+}
+
+.input-address-detail{
+   margin-bottom: 44px;
+}
