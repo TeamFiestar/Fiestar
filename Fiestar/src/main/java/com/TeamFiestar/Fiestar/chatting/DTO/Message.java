@@ -8,12 +8,11 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Message {
-	public enum MessageType{
-        ENTER, TALK
-    }
-
-    private MessageType type;
-    private String roomId;
-    private String sender;
-    private String message;
+	   private int messageNo;
+	    private String messageContent;
+	    private String readFl;
+	    private int senderNo;
+	    private int targetNo;
+	    private int chattingNo;
+	    private String sendTime;
 }

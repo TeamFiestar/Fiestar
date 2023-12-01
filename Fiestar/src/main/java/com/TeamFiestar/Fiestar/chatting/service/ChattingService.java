@@ -1,19 +1,21 @@
 package com.TeamFiestar.Fiestar.chatting.service;
 
+import java.util.Map;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.socket.WebSocketSession;
 
 import com.TeamFiestar.Fiestar.chatting.DTO.ChatRoom;
+import com.TeamFiestar.Fiestar.chatting.DTO.Message;
 
 public interface ChattingService {
 
-	ChatRoom createRoom(String name);
+	int insertMessage(Message msg);
 
-	void deleteRoom(String name);
+	int checkChattingNo(Map<String, Integer> map);
 
-	<T> Object sendMessage(WebSocketSession session, T message);
+	int createChattingRoom(Map<String, Integer> map);
 
-	ChatRoom findRoomId(String roomId);
-
+	
 	
 }

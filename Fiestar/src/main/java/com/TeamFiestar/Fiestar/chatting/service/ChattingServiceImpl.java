@@ -1,34 +1,32 @@
 package com.TeamFiestar.Fiestar.chatting.service;
 
+import java.util.Map;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.socket.WebSocketSession;
 
 import com.TeamFiestar.Fiestar.chatting.DTO.ChatRoom;
+import com.TeamFiestar.Fiestar.chatting.DTO.Message;
 
 @Service
 public class ChattingServiceImpl implements ChattingService{
 
 	@Override
-	public ChatRoom createRoom(String name) {
+	public int insertMessage(Message msg) {
 		// TODO Auto-generated method stub
-		return null;
+		return 0;
 	}
 	
 	@Override
-	public void deleteRoom(String name) {
+	public int checkChattingNo(Map<String, Integer> map) {
 		// TODO Auto-generated method stub
-		
+		return 0;
 	}
 	
 	@Override
-	public <T> Object sendMessage(WebSocketSession session, T message) {
+	public int createChattingRoom(Map<String, Integer> map) {
 		// TODO Auto-generated method stub
-		return null;
+		return 0;
 	}
 	
-	@Override
-	public ChatRoom findRoomId(String roomId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
