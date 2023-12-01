@@ -2,9 +2,11 @@ package com.TeamFiestar.Fiestar.chatting.websocket;
 
 import java.lang.reflect.Member;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.stereotype.Component;
@@ -82,7 +84,7 @@ public class ChattingWebsocketHandler extends TextWebSocketHandler{
                 int loginMemberNo = ((Member)temp.getAttribute("loginMember")).getMemberNo();
                 log.debug("loginMemberNo : " + loginMemberNo);
                 
-                // 로그인 상태인 회원 중 targetNo가 일티하는 회원에게 메세지 전달
+                // 로그인 상태인 회원 중 targetNo가 일치하는 회원에게 메세지 전달
                 if(loginMemberNo == msg.getTargetNo() || loginMemberNo == msg.getSenderNo()) {
                     s.sendMessage(new TextMessage(new Gson().toJson(msg)));
                 }
