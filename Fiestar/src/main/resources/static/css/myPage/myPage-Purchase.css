@@ -10,7 +10,7 @@
   format('woff'); font-weight: 400; font-style: normal; 
 }
 
-hr{
+.myPageHr{
   margin: 0 auto;
 }
 
@@ -57,7 +57,7 @@ li{
   margin: 30px auto;
   display: flex;
   align-items: center;
-  box-shadow: 4px 4px 4px rgb(150, 150, 150);
+  /* box-shadow: 4px 4px 4px rgb(150, 150, 150); */
 }
 
 /* 프로필 이미지 */
@@ -134,13 +134,13 @@ li{
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
   margin: 30px auto;
-  box-shadow: 4px 4px 4px rgb(150, 150, 150);
+  /* box-shadow: 4px 4px 4px rgb(150, 150, 150); */
 }
 
 .icon{
-  width: 35px;
-  height: 35px;
-  margin: 10px 15px;
+  width: 25px;
+  height: 25px;
+  margin: 13px 15px;
 }
 
 .center{
@@ -308,8 +308,8 @@ li{
 .contentTitle{
   width: 710px;
   height: 70px;
-  margin: 0 auto;
-  text-shadow: 4px 4px 4px rgb(150, 150, 150);
+  margin: 15px auto;
+  /* text-shadow: 4px 4px 4px rgb(150, 150, 150); */
 }
 
 .contentTitle h1{
@@ -320,7 +320,7 @@ li{
   width: 710px;
   min-height: 415px;
   background-color: rgb(255, 255, 255);
-  box-shadow: 4px 4px 4px rgb(150, 150, 150);
+  /* box-shadow: 4px 4px 4px rgb(150, 150, 150); */
   border-radius: 20px;
   margin: 0 auto;
 }

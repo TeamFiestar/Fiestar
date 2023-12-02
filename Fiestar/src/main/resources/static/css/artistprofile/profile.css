@@ -46,7 +46,6 @@ img{
 
 
 
-
 .profiletxt h3{
   color: #fff;
   font-size: 24px;
@@ -68,14 +67,14 @@ img{
 
 .artistprofileMain{
   width: 1100px;
-  height: 750px;
+  height: 850px;
   margin-top: 20px;
 }
 
 
 .artistprofileImg{
   width: 1100px;
-  height: 600px;
+  height: 700px;
   display: block;
   border-radius: 10px;
 }
@@ -127,9 +126,15 @@ img{
   /* border: 1px solid rgb(250, 73, 73); */
 }
 
+
+.profileImage:hover{
+  transform: scale(1.1  , 1.1); transition-duration: 0.05s;
+}
+
 .profileName{
   width: 120px;
   height: 24px;
+  margin-top: 10px;
   /* border: 1px solid rgb(254, 62, 62); */
 }
 
