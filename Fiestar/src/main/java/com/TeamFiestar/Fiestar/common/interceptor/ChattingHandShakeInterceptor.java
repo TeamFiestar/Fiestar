@@ -11,7 +11,6 @@ import org.springframework.web.socket.server.HandshakeInterceptor;
 
 import jakarta.servlet.http.HttpSession;
 
-// session을 가로채는 내용을 정의하는 클래스
 @Component
 public class ChattingHandShakeInterceptor implements HandshakeInterceptor{
 
