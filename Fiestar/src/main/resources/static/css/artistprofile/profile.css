@@ -67,7 +67,7 @@ img{
 
 .artistprofileMain{
   width: 1100px;
-  height: 850px;
+  min-height: 850px;
   margin-top: 20px;
 }
 
@@ -112,49 +112,59 @@ img{
 
 
 
-.profileImg{
-  width: 120px;
-  height: 147px;
-  border-radius: 10px;
-  /* border: 1px solid rgb(188, 135, 135); */
-  margin: 0 10px;
+.artistImage{
+  width: 1100px;
+  min-height: 145px;
 }
 
-.profileImage{
-  width: 120px;
+.artistImage ul{
+  grid-gap: 30px 20px;
+  display: grid;
+  gap: 30px 20px;
+  grid-template-columns: repeat(8,120px);
+  padding-top: 20px;
+} 
+
+
+.soloImg{
+  border-radius: 14px;
   height: 120px;
-  /* border: 1px solid rgb(250, 73, 73); */
+  overflow: hidden;
+  position: relative;
 }
 
-
-.profileImage:hover{
+.soloImg:hover{
   transform: scale(1.1  , 1.1); transition-duration: 0.05s;
 }
 
+
+
+
 .profileName{
-  width: 120px;
-  height: 24px;
-  margin-top: 10px;
-  /* border: 1px solid rgb(254, 62, 62); */
-}
-
-.profileName li{
-  color: white;
+  color: #fff;
+  display: block;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  margin-top: 4px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   text-align: center;
-}
-
-.textVideo{
-  margin-top: 85px;
-  /* border: 1px solid red; */
-}
+  padding-top: 5px;
+} 
 
 
 
 .artistvideo{
-  /* border: 1px solid red; */
   width: 1100px;
-  height: 500px;
+  min-height: 325px;
 }
+
+
+.textVideo{
+  margin-top: 140px;
+}
+
 
 .artistvideo ul{
   grid-gap: 30px 20px;
@@ -171,6 +181,7 @@ img{
   overflow: hidden;
   position: relative;
 }
+
 
 .videoDate{
   color: #999;
@@ -190,15 +201,13 @@ img{
   margin-top: 4px;
   text-overflow: ellipsis;
   white-space: nowrap;
-  /* border: 1px solid red; */
 } 
 
 
 .ArtistShop{
-  margin-top: 250px;
+  margin-top: 140px;
   width: 1100px;
-  height: 300px;
-  /* border: 1px solid red; */
+  min-height: 300px;
 }
 
 .artistShop ul{
@@ -277,4 +286,113 @@ img{
 
 .NoticeContent{
   padding-left: 20px;
+}
+
+
+
+
+/* 임시헤더 */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  font-size: 14px;
+  border-bottom: 0.5px solid rgb(250, 250, 250);
+  background-color: white;
+}
+.header {
+  width: 1096px;
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  align-items: center;
+  max-width: calc(var(--layout-max-width) + var(--layout-padding) * 2);
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+}
+
+.header-right-side > a {
+  margin-left: 12px;
+  text-decoration: none;
+  color: rgb(135, 142, 150);
+  cursor: pointer;
+}
+
+.header-right-side > span {
+  margin-left: 12px;
+}
+
+.search-area {
+  width: 280px;
+  height: 48px;
+  border-radius: 40px;
+  border:none;
+  background-color:  rgba(244, 246, 248, 0.922);
+  padding-left: 20px;
+
+}
+
+#searchBtn {
+  border: none;
+  padding-top: 14px;
+  background-color: rgba(244,246,248,0.922);
+  color: rgba(196, 196, 196, 1);
+  
+}
+
+#search-input {
+  padding-left: 10px;
+  border: none;
+  background-color: rgba(244,246,248,0.922);
+  font-size: 14px;
+  color: rgb(118, 118, 118);
+  width: 210px;
+  border-radius: 50px;
+}
+
+#search-input:focus{
+  border-color: none;
+  outline:0;
+  color: black;
+}
+
+#loginPage {
+  width: 80px;
+  height: 35px;
+  background-color: rgba(119, 67, 219, 1);
+  border-radius: 50px;
+  border: none;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#loginPage:hover {
+  background-color: rgb(104, 55, 194);
+  box-shadow: 2px 2px 2px 2px rgba(189, 83, 255, 0.153);
+}
+
+#loginPage a {
+  text-decoration: none;
+  background-color: rgba(119, 67, 219, 1);
+  color: white;
+  
+}
+
+
+#signUp {
+  width: 80px;
+  height: 35px;
+  background-color: white;
+  border-radius: 50px;
+  border: 1px solid rgba(119, 67, 219, 1);
+  color: rgba(119, 67, 219, 1);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#signUp:hover {
+  background-color: rgb(252, 250, 250);
+  box-shadow: 2px 2px 2px 2px rgba(189, 83, 255, 0.153);
 }

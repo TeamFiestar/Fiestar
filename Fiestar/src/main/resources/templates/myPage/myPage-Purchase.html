@@ -9,9 +9,41 @@
 
 </head>
 <body>
-  
+
+  <header>
+    <div class="header">
+      
+      <div class="header-left-side">
+        <a href="/" id="header-logo">
+          <img src="../../static/images/logo.png" style="width:165px;"  />
+        </a>
+      </div>
+      
+      <div class="header-right-side">
+        
+        <form action="#" method="GET" style="display: inline-flex; border:none; ">
+          <span class="search-area">
+            <button id="searchBtn" class="fa-solid fa-magnifying-glass"> 
+              <input type="search" name="query" id="search-input" placeholder="상품명 혹은 아티스트 검색" 
+              autocomplete="off" > 
+            </button>
+          </span>
+        </form>
+      
+        <a href="#"> 공지사항 </a>
+        <span>|</span>
+        <a href="/shop/home">샵 고객센터</a>
+        <a href="#"><button id="loginPage"> 로그인</button></a>
+        <a href="#"><button  id="signUp">회원가입</button></a>
+      </div>    
+          
+    </div>
+
+  </header>
+
+
   <div class="all">
-    <div class="BgImage"><img src="../../static/image/배경.jpg" width="100%" height="100%"></div>
+    <div class="BgImage"><img src="../../static/image/아티스트 메인배경.jpg" width="100%" height="100%"></div>
 
     <div class="main">
 
@@ -96,10 +128,39 @@
 
       <div class="main-2">
         <div class="contentTitle">
-          <h1>구매 내역</h1>
+          <h2>구매 내역</h2>
         </div>
         <div class="content">
-          <div>
+
+          <div class="buyAll">
+            <div class="buyDate">
+              <li>[2023.11.23]</li>
+            </div>
+            <div class="deliver">
+              <li>[배송중]</li>
+            </div>
+            <div class="buyContent">
+              <div class="buy-img">
+                <img src="../../static/image/상품.png" width="100%" height="100%">
+              </div>
+              <div class="item">
+                <div class="itemName">
+                  <h3>LE SSERAFIM 2024 SEASON'S GREETINGS</h3>
+                </div>
+                <div class="itemCount">
+                  <li>상품개수 : 3개</li>
+                </div>
+                <div class="itemprice">
+                  <li>총 상품 금액 : 45,000원</li>
+                </div>
+              </div>
+            </div>
+            <hr class="myPageHr" width="750px">
+          </div>
+          
+
+
+          <div class="buyAll">
             <div class="buyDate">
               <li>[2023.11.23]</li>
             </div>
@@ -122,9 +183,66 @@
                 </div>
               </div>
             </div>
+            <hr class="myPageHr" width="750px">
           </div>
-          <hr class="myPageHr" width="600px">
+
+          <div class="buyAll">
+            <div class="buyDate">
+              <li>[2023.11.23]</li>
+            </div>
+            <div class="deliver">
+              <li>[배송중]</li>
+            </div>
+            <div class="buyContent">
+              <div class="buy-img">
+                <img src="../../static/image/상품.png" width="100%" height="100%">
+              </div>
+              <div class="item">
+                <div class="itemName">
+                  <li>LE SSERAFIM 2024 SEASON'S GREETINGS</li>
+                </div>
+                <div class="itemCount">
+                  <li>상품개수 : 3개</li>
+                </div>
+                <div class="itemprice">
+                  <li>총 상품 금액 : 45,000원</li>
+                </div>
+              </div>
+            </div>
+            <hr class="myPageHr" width="750px">
+          </div>
+
+          <div class="buyAll">
+            <div class="buyDate">
+              <li>[2023.11.23]</li>
+            </div>
+            <div class="deliver">
+              <li>[배송중]</li>
+            </div>
+            <div class="buyContent">
+              <div class="buy-img">
+                <img src="../../static/image/상품.png" width="100%" height="100%">
+              </div>
+              <div class="item">
+                <div class="itemName">
+                  <li>LE SSERAFIM 2024 SEASON'S GREETINGS</li>
+                </div>
+                <div class="itemCount">
+                  <li>상품개수 : 3개</li>
+                </div>
+                <div class="itemprice">
+                  <li>총 상품 금액 : 45,000원</li>
+                </div>
+              </div>
+            </div>
+            <hr class="myPageHr" width="750px">
+          </div>
         </div>
+        
+        <div class="pagination-area">
+          <div class="pagination"><< < 1 2 3 4 5 6 7 8 9 10 > >></div>
+        </div>
+        
       </div>
     </div>
   

@@ -10,8 +10,43 @@
 </head>
 <body>
   
+  <header>
+    <div class="header">
+      
+      <div class="header-left-side">
+        <a href="/" id="header-logo">
+          <img src="../../static/images/logo.png" style="width:165px;"  />
+        </a>  
+      </div>
+      
+      <div class="header-right-side">
+        
+        <form action="#" method="GET" style="display: inline-flex; border:none; ">
+          <span class="search-area">
+            <button id="searchBtn" class="fa-solid fa-magnifying-glass"> 
+              <input type="search" name="query" id="search-input" placeholder="상품명 혹은 아티스트 검색" 
+              autocomplete="off" > 
+            </button>
+          </span>
+        </form>
+      
+        <a href="#"> 공지사항 </a>
+        <span>|</span>
+        <a href="/shop/home">샵 고객센터</a>
+        <a href="#"><button id="loginPage"> 로그인</button></a>
+        <a href="#"><button  id="signUp">회원가입</button></a>
+      </div>    
+          
+    </div>
+
+  </header>
+
+
+
+
+
   <div class="all">
-    <div class="BgImage"><img src="../../static/image/배경.jpg" width="100%" height="100%"></div>
+    <div class="BgImage"><img src="../../static/image/아티스트 메인배경.jpg" width="100%" height="100%"></div>
 
     <div class="main">
 
@@ -96,7 +131,7 @@
 
       <div class="main-2">
         <div class="contentTitle">
-          <h1>회원 탈퇴</h1>
+          <h2>회원 탈퇴</h2>
         </div>
         <div class="content">
           <form action="#">
@@ -106,7 +141,7 @@
                   <li>비밀번호</li>
                  </div>
                  <div class="pw2">
-                  <input type="text">
+                  <input type="password">
                  </div>
               </div>
               <div class="pwCheck">
@@ -114,7 +149,7 @@
                   <li>비밀번호 확인</li>
                  </div>
                  <div class="pw2">
-                  <input type="text">
+                  <input type="password">
                  </div>
               </div>
               <div class="Explanation"><li>탈퇴약관</li></div>
