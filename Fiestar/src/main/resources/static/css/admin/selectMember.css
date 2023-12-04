@@ -1,6 +1,7 @@
 @font-face {
   font-family: "Pretendard-Regular";
-  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
   font-weight: 400;
   font-style: normal;
 }
@@ -51,15 +52,16 @@ header {
   overflow: auto;
   height: 800px;
 }
-.modal-body>h1{
+.modal-body > h1 {
   margin-top: 20px;
 }
 .modal-table {
   background-color: #ffffff;
   height: 640px;
-  width: 900px;
+  width: 1100px;
   table-layout: fixed;
   margin-top: 30px;
+  text-align: center;
 }
 .modal-body th:nth-child(1) {
   width: 10%;
@@ -75,12 +77,9 @@ header {
 }
 .th {
   height: 70px;
+  background-color: #d3a9ec;
 }
-.th > th {
-  /* height: 100%; */
-  font-size: 18px;
-  table-layout: fixed;
-}
+
 .tr {
   height: 60px;
 }
@@ -105,7 +104,7 @@ main {
   padding-top: 30px;
 }
 .main {
-  width: 1100px;
+  width: 1240px;
   height: 100%;
   margin: 0 auto;
   margin-top: 50px;
@@ -174,7 +173,7 @@ main {
 }
 
 .main-table {
-  width: 1100px;
+  width: 1240px;
 }
 /* .main-tbody {
   height: 660px;

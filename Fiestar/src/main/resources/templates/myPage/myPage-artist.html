@@ -9,9 +9,44 @@
 
 </head>
 <body>
+
+  <header>
+    <div class="header">
+      
+      <div class="header-left-side">
+        <a href="/" id="header-logo">
+          <img src="../../static/images/logo.png" style="width:165px;"  />
+        </a>
+      </div>
+      
+      <div class="header-right-side">
+        
+        <form action="#" method="GET" style="display: inline-flex; border:none; ">
+          <span class="search-area">
+            <button id="searchBtn" class="fa-solid fa-magnifying-glass"> 
+              <input type="search" name="query" id="search-input" placeholder="상품명 혹은 아티스트 검색" 
+              autocomplete="off" > 
+            </button>
+          </span>
+        </form>
+      
+        <a href="#"> 공지사항 </a>
+        <span>|</span>
+        <a href="/shop/home">샵 고객센터</a>
+        <a href="#"><button id="loginPage"> 로그인</button></a>
+        <a href="#"><button  id="signUp">회원가입</button></a>
+      </div>    
+          
+    </div>
+
+  </header>
+
+
+
+
   
   <div class="all">
-    <div class="BgImage"><img src="../../static/image/배경.jpg" width="100%" height="100%"></div>
+    <div class="BgImage"><img src="../../static/image/아티스트 메인배경.jpg" width="100%" height="100%"></div>
 
     <div class="main">
 
@@ -27,7 +62,7 @@
           </div>
         </div>
 
-        <hr width="280px" color="gray">
+        <hr class="myPageHr" width="280px" color="gray">
 
         <div class="sidebar">
           <div class="Bulletin">
@@ -90,77 +125,159 @@
             </div>
           </div>
 
-          <div class="store">
-            <div class="icon">
-              <img src="../../static/image/입점.png" width="100%" height="100%">
-            </div>
-            <div class="center">
-              <a href="#">입점신청</a>
-            </div>
-            <div class="side">
-              <img src="../../static/image/Vector 9.png" width="100%" height="100%">
-            </div>
-          </div>
         </div>
       </div>
 
       <div class="main-2">
         <div class="contentTitle">
-          <h1>내가 구독한 아티스트</h1>
+          <h2>구독한 아티스트</h2>
         </div>
         <div class="content">
-          <div class="artist-top">
-            <div>
-              <div class="aespa">
-                <div class="artist-img">
-                  <img src="../../static/image/에스파.jpeg" width="100%" height="100%">
+
+
+          <div class="artist-all">
+            <ul>
+              <li>
+                <div class="artist-list">
+                  <a href="#" class="artist-profile">
+                    <div class="artist-image-area"> 
+                      <img src="../../static/image/에스파.jpeg">
+                    </div>
+                    <div class="artist-logo-wrap">
+                      <span class="artist-logo-area">
+                        <img src="../../static/image/에스파로고.jpeg" class="artist-main-logo">
+                      </span>
+                    </div>
+                    <div class="artist-text-area">
+                      <div class="artist-name"> aespa </div>
+                    </div>
+                  </a>  
                 </div>
-                <div class="artist-name"></div>
-              </div>
-            </div>
-            <div>
-              <div class="b1a4">
-                <div class="artist-img">
-                  <img src="../../static/image/b1a4.png" width="100%" height="100%">
+              </li>
+              <li>
+                <div class="artist-list">
+                  <a href="#" class="artist-profile">
+                    <div class="artist-image-area"> 
+                      <img src="../../static/image/에스파.jpeg">
+                    </div>
+                    <div class="artist-logo-wrap">
+                      <span class="artist-logo-area">
+                        <img src="../../static/image/에스파로고.jpeg" class="artist-main-logo">
+                      </span>
+                    </div>
+                    <div class="artist-text-area">
+                      <div class="artist-name"> aespa </div>
+                    </div>
+                  </a>  
                 </div>
-                <div class="artist-name"></div>
-              </div>
-            </div>
-            <div>
-              <div class="class">
-                <div class="artist-img">
-                  <img src="../../static/image/class.png" width="100%" height="100%">
+              </li>
+              <li>
+                <div class="artist-list">
+                  <a href="#" class="artist-profile">
+                    <div class="artist-image-area"> 
+                      <img src="../../static/image/에스파.jpeg">
+                    </div>
+                    <div class="artist-logo-wrap">
+                      <span class="artist-logo-area">
+                        <img src="../../static/image/에스파로고.jpeg" class="artist-main-logo">
+                      </span>
+                    </div>
+                    <div class="artist-text-area">
+                      <div class="artist-name"> aespa </div>
+                    </div>
+                  </a>  
                 </div>
-                <div class="artist-name"></div>
-              </div>
-            </div>
+              </li>
+              <li>
+                <div class="artist-list">
+                  <a href="#" class="artist-profile">
+                    <div class="artist-image-area"> 
+                      <img src="../../static/image/에스파.jpeg">
+                    </div>
+                    <div class="artist-logo-wrap">
+                      <span class="artist-logo-area">
+                        <img src="../../static/image/에스파로고.jpeg" class="artist-main-logo">
+                      </span>
+                    </div>
+                    <div class="artist-text-area">
+                      <div class="artist-name"> aespa </div>
+                    </div>
+                  </a>  
+                </div>
+              </li>
+              <li>
+                <div class="artist-list">
+                  <a href="#" class="artist-profile">
+                    <div class="artist-image-area"> 
+                      <img src="../../static/image/에스파.jpeg">
+                    </div>
+                    <div class="artist-logo-wrap">
+                      <span class="artist-logo-area">
+                        <img src="../../static/image/에스파로고.jpeg" class="artist-main-logo">
+                      </span>
+                    </div>
+                    <div class="artist-text-area">
+                      <div class="artist-name"> aespa </div>
+                    </div>
+                  </a>  
+                </div>
+              </li>
+              <li>
+                <div class="artist-list">
+                  <a href="#" class="artist-profile">
+                    <div class="artist-image-area"> 
+                      <img src="../../static/image/에스파.jpeg">
+                    </div>
+                    <div class="artist-logo-wrap">
+                      <span class="artist-logo-area">
+                        <img src="../../static/image/에스파로고.jpeg" class="artist-main-logo">
+                      </span>
+                    </div>
+                    <div class="artist-text-area">
+                      <div class="artist-name"> aespa </div>
+                    </div>
+                  </a>  
+                </div>
+              </li>
+              <li>
+                <div class="artist-list">
+                  <a href="#" class="artist-profile">
+                    <div class="artist-image-area"> 
+                      <img src="../../static/image/에스파.jpeg">
+                    </div>
+                    <div class="artist-logo-wrap">
+                      <span class="artist-logo-area">
+                        <img src="../../static/image/에스파로고.jpeg" class="artist-main-logo">
+                      </span>
+                    </div>
+                    <div class="artist-text-area">
+                      <div class="artist-name"> aespa </div>
+                    </div>
+                  </a>  
+                </div>
+              </li>
+              <li>
+                <div class="artist-list">
+                  <a href="#" class="artist-profile">
+                    <div class="artist-image-area"> 
+                      <img src="../../static/image/에스파.jpeg">
+                    </div>
+                    <div class="artist-logo-wrap">
+                      <span class="artist-logo-area">
+                        <img src="../../static/image/에스파로고.jpeg" class="artist-main-logo">
+                      </span>
+                    </div>
+                    <div class="artist-text-area">
+                      <div class="artist-name"> aespa </div>
+                    </div>
+                  </a>  
+                </div>
+              </li>
+              
+            </ul>
+
           </div>
-          <div class="artist-bottom">
-            <div>
-              <div class="cn">
-                <div class="artist-img">
-                  <img src="../../static/image/cn.png" width="100%" height="100%" >
-                </div>
-                <div class="artist-name"></div>
-              </div>
-            </div>
-            <div>
-              <div class="exo">
-                <div class="artist-img">
-                  <img src="../../static/image/exo.png" width="100%" height="100%" >
-                </div>
-                <div class="artist-name"></div>
-              </div>
-            </div>
-            <div>
-              <div class="zico">
-                <div class="artist-img">
-                  <img src="../../static/image/zico.png" width="100%" height="100%" >
-                </div>
-                <div class="artist-name"></div>
-              </div>
-            </div>
-          </div>
+          
         </div>
 
         <div class="pagination-area">

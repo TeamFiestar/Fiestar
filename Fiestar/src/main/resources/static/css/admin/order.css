@@ -1,6 +1,7 @@
 @font-face {
   font-family: "Pretendard-Regular";
-  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
   font-weight: 400;
   font-style: normal;
 }
@@ -27,7 +28,7 @@ main {
   padding-top: 30px;
 }
 .main {
-  width: 1100px;
+  width: 1240px;
   height: 660px;
   margin: 0 auto;
   margin-top: 50px;
@@ -94,27 +95,33 @@ main {
   color: white;
 }
 .main-table {
-  width: 1100px;
+  width: 1240px;
 }
 .main-th-tr > th:nth-child(1) {
-  width: 7%;
+  width: 6%;
 }
 .main-th-tr > th:nth-child(2) {
-  width: 13%;
+  width: 9%;
 }
 .main-th-tr > th:nth-child(3) {
-  width: 30%;
+  width: 20%;
 }
 .main-th-tr > th:nth-child(4) {
-  width: 7%;
-}
-.main-th-tr > th:nth-child(5) {
-  width: 13%;
-}
-.main-th-tr > th:nth-child(6) {
   width: 10%;
 }
+.main-th-tr > th:nth-child(5) {
+  width: 20%;
+}
+.main-th-tr > th:nth-child(6) {
+  width: 5%;
+}
 .main-th-tr > th:nth-child(7) {
+  width: 10%;
+}
+.main-th-tr > th:nth-child(8) {
+  width: 10%;
+}
+.main-th-tr > th:nth-child(9) {
   width: 10%;
 }
 .main-th-tr > th {
@@ -125,8 +132,16 @@ main {
   height: 60px;
 }
 .main-tr-tr > td {
-  /* padding-left: 10px; */
   text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.main-tr-tr > td:nth-child(3) {
+  max-width: 245px;
+}
+.main-tr-tr > td:nth-child(5) {
+  max-width: 240px;
 }
 #order-select {
   width: 80px;
@@ -155,4 +170,20 @@ main {
 #pagination-button {
   width: 50px;
   height: 30px;
+}
+.orderSelect {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 5px;
+  padding-right: 20px;
+}
+.price {
+  margin: 0 5px;
+  background-color: white;
+  border: none;
+  color: gray;
+  cursor: pointer;
+}
+.price:hover {
+  color: black;
 }

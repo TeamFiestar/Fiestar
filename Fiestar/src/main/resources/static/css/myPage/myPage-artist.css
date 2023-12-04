@@ -11,22 +11,26 @@
   format('woff'); font-weight: 400; font-style: normal; 
 }
 
-hr{
+.myPageHr{
   margin: 0 auto;
 }
 
 .all{
   width: 100%;
-  min-height: 1024px;
+  height: 1200px;
   margin: 0 auto;
   background-color: #f5f7fa;;
+}
+
+ul, li{
+  list-style: none;
 }
 
 
 /***********************************************배경화면 이미지*******************************************/
 .BgImage{
   width: 100%;
-  height: 450px;
+  height: 550px;
 }
 
 
@@ -54,7 +58,7 @@ hr{
   margin: 30px auto;
   display: flex;
   align-items: center;
-  box-shadow: 4px 4px 4px rgb(150, 150, 150);
+  /* box-shadow: 4px 4px 4px rgb(150, 150, 150); */
 }
 
 /* 프로필 이미지 */
@@ -127,21 +131,21 @@ hr{
 /* 사이드바 */
 .sidebar{
   width: 280px;
-  height: 300px;
+  height: 250px;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
   margin: 30px auto;
-  box-shadow: 4px 4px 4px rgb(150, 150, 150);
+  /* box-shadow: 4px 4px 4px rgb(150, 150, 150); */
 }
 
 .icon{
-  width: 35px;
-  height: 35px;
-  margin: 10px 15px;
+  width: 25px;
+  height: 25px;
+  margin: 13px 15px;
 }
 
 .center{
-  width: 150px;
+  width: 170px;
   height: 100%;
 }
 
@@ -303,218 +307,140 @@ hr{
 }
 
 .contentTitle{
-  width: 710px;
-  height: 70px;
-  margin: 0 auto;
-  text-shadow: 4px 4px 4px rgb(202, 202, 202);
+  width: 780px;
+  height: 45px;
+  margin: 15px auto;
 }
 
 
-.contentTitle h1{
+.contentTitle h2{
   padding-top: 15px;
+  color: rgba(119, 67, 219, 1);
 }
 .content{
-  width: 710px;
-  height: 414px;
+  width: 780px;
+  height: 440px;
   background-color: rgb(255, 255, 255);
-  border-radius: 20px;
+  border-radius: 10px;
   margin: 0 auto;
-  box-shadow: 4px 4px 4px rgb(202, 202, 202);
 }
 
 
-h1{
-  font-weight: bolder;
+.artist-all{
+  width: 750px;
+  height: 430px;
+  margin: 0 auto;
 }
-
-
 
 
 .artist-top{
-  width: 708px;
-  height: 207px;
+  width: 750px;
+  height: 250px;
   display: flex;
 }
-
-.artist-top div{
-  width: 236px;
-  height: 207px;
-  /* border: 1px solid black; */
-}
-
-
-.artist-top div .aespa{
-  width: 140px;
-  height: 180px;
-  margin: 11px auto;
-  border-radius: 10px;
-  box-shadow: 4px 4px 4px rgb(150, 150, 150);
-}
-
-.aespa .artist-img{
-  width: 140px;
-  height: 130px;
-}
-
-.aespa .artist-name{
-  width: 140px;
-  height: 50px;
-  background-color: rgb(255, 255, 255);
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-}
-
-
-
-
-.artist-top div .b1a4{
-  width: 140px;
-  height: 180px;
-  margin: 11px auto;
-  border-radius: 10px;
-  box-shadow: 4px 4px 4px rgb(150, 150, 150);
-}
-
-.b1a4 .artist-img{
-  width: 140px;
-  height: 130px;
-}
-
-.b1a4 .artist-name{
-  width: 140px;
-  height: 50px;
-  background-color: rgb(255, 255, 255);
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-}
-
-
-
-
-
-
-
-.artist-top div .class{
-  width: 140px;
-  height: 180px;
-  margin: 11px auto;
-  border-radius: 10px;
-  box-shadow: 4px 4px 4px rgb(150, 150, 150);
-}
-.class .artist-img{
-  width: 140px;
-  height: 130px;
-}
-
-.class .artist-name{
-  width: 140px;
-  height: 50px;
-  background-color: rgb(255, 255, 255);
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-}
-
-
-
-
-
-
 
 .artist-bottom{
-  width: 710px;
-  height: 207px;
-  /* border: 1px solid black; */
+  width: 750px;
+  height: 250px;
   display: flex;
 }
 
-.artist-bottom div{
-  width: 236px;
-  height: 207px;
-  /* border: 1px solid black; */
+.artist-list {
+  width: 155px;
+  height: 190px;
+  border-radius: 14px;
+}
+
+.artist-all ul{
+  grid-gap: 30px 20px;
+  display: grid;
+  gap: 40px 60px;
+  grid-template-columns: repeat(4,140px);
+  padding-top: 10px;
 }
 
 
-.artist-bottom div .cn{
-  width: 140px;
-  height: 180px;
-  margin: 11px auto;
-  border-radius: 10px;
-  box-shadow: 4px 4px 4px rgb(150, 150, 150);
-}
 
-.cn .artist-img{
-  width: 140px;
-  height: 130px;
-}
 
-.cn .artist-name{
-  width: 140px;
-  height: 50px;
+.artist-profile {
   background-color: rgb(255, 255, 255);
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-radius: 14px;
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgb(201, 201, 201);
 }
 
 
 
 
-
-
-
-
-
-.artist-bottom div .exo{
-  width: 140px;
-  height: 180px;
-  margin: 11px auto;
-  border-radius: 10px;
-  box-shadow: 4px 4px 4px rgb(150, 150, 150);
-}
-
-.exo .artist-img{
-  width: 140px;
-  height: 130px;
-}
-
-.exo .artist-name{
-  width: 140px;
-  height: 50px;
-  background-color: rgb(255, 255, 255);
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
+.artist-image-area {
+  width: 100%;
+  height: 128px;
+  overflow: hidden;
 }
 
 
-
-
-
-.artist-bottom div .zico{
-  width: 140px;
-  height: 180px;
-  margin: 11px auto;
-  border-radius: 10px;
-  box-shadow: 4px 4px 4px rgb(150, 150, 150);
+.artist-image-area img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
 }
 
-.zico .artist-img{
-  width: 140px;
-  height: 130px;
-}
-
-.zico .artist-name{
-  width: 140px;
-  height: 50px;
-  background-color: rgb(255, 255, 255);
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
+.artist-logo-wrap {
+  background-color: #fff;
+  border-radius: 50%;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  top: 107px;
+  width: 44px;
+  height: 44px;
+  border: 3px solid rgb(215, 215, 215);
+  overflow: hidden;
 }
 
 
-img{
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
+.artist-main-logo {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+  border-radius: 50%;
 }
 
+.artist-text-area {
+  box-sizing: border-box;
+  padding-top: 30px;
+  text-align: center;
+  background-color: white;
+
+}
+
+.artist-name {
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+  font-size: 15px;
+  font-weight: bold;
+  color: black;
+  background-color: white;
+}
+
+.newArtist-area {
+  padding-top: 70px;
+}
+
+.artist-community {
+  display: inline-flex;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  align-items: center;
+  margin: 6px;
+  margin-top: 8px;
+}
 
 
 .pagination-area {
@@ -524,4 +450,113 @@ img{
 }
 .pagination {
   font-size: 20px;
+}
+
+
+
+
+/* 임시헤더 */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  font-size: 14px;
+  border-bottom: 0.5px solid rgb(250, 250, 250);
+  background-color: white;
+}
+.header {
+  width: 1096px;
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  align-items: center;
+  max-width: calc(var(--layout-max-width) + var(--layout-padding) * 2);
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+}
+
+.header-right-side > a {
+  margin-left: 12px;
+  text-decoration: none;
+  color: rgb(135, 142, 150);
+  cursor: pointer;
+}
+
+.header-right-side > span {
+  margin-left: 12px;
+}
+
+.search-area {
+  width: 280px;
+  height: 48px;
+  border-radius: 40px;
+  border:none;
+  background-color:  rgba(244, 246, 248, 0.922);
+  padding-left: 20px;
+
+}
+
+#searchBtn {
+  border: none;
+  padding-top: 14px;
+  background-color: rgba(244,246,248,0.922);
+  color: rgba(196, 196, 196, 1);
+  
+}
+
+#search-input {
+  padding-left: 10px;
+  border: none;
+  background-color: rgba(244,246,248,0.922);
+  font-size: 14px;
+  color: rgb(118, 118, 118);
+  width: 210px;
+  border-radius: 50px;
+}
+
+#search-input:focus{
+  border-color: none;
+  outline:0;
+  color: black;
+}
+
+#loginPage {
+  width: 80px;
+  height: 35px;
+  background-color: rgba(119, 67, 219, 1);
+  border-radius: 50px;
+  border: none;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#loginPage:hover {
+  background-color: rgb(104, 55, 194);
+  box-shadow: 2px 2px 2px 2px rgba(189, 83, 255, 0.153);
+}
+
+#loginPage a {
+  text-decoration: none;
+  background-color: rgba(119, 67, 219, 1);
+  color: white;
+  
+}
+
+
+#signUp {
+  width: 80px;
+  height: 35px;
+  background-color: white;
+  border-radius: 50px;
+  border: 1px solid rgba(119, 67, 219, 1);
+  color: rgba(119, 67, 219, 1);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#signUp:hover {
+  background-color: rgb(252, 250, 250);
+  box-shadow: 2px 2px 2px 2px rgba(189, 83, 255, 0.153);
 }

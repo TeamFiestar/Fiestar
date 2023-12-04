@@ -26,7 +26,7 @@ public class LiveController {
 	@GetMapping("generateToken")
 	public String generateAgoraToken(@RequestParam("roleFlag") int roleFlag,
 			@RequestParam(name = "channelName", required = false, defaultValue = "kang") String channelName,
-			@RequestParam(name = "uid", required = false) int uid
+			@RequestParam(name = "uid", required = false, defaultValue = "0") int uid
 			
 			) {
     	

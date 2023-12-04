@@ -16,6 +16,7 @@ a {
 
 .div-wrapper {
   display: flex;
+  margin: auto;
   flex-direction: column;
   width: 1440px;
   align-items: flex-start;
