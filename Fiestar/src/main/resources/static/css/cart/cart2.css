@@ -71,6 +71,7 @@ h1 {
    color: black;
 }
 .item-option{
+   color: rgb(173, 177, 184);
    margin-left: 18px;
 
 }
@@ -101,6 +102,7 @@ h1 {
 } */
 
 .item-amount{
+   background: #eff7ff;
    border-radius: 4px;
    margin: 24px 0 24px 0;
    /* background-color: aliceblue; */
@@ -122,7 +124,15 @@ h1 {
    left: 90px;
 }
 
+.item-amount > .fa-xmark{
+   background-color: #eff7ff ;
+}
+
+.amount > span{
+   background-color: black;
+}
 .amount-price{
+   background-color: #eff7ff ;
    position: absolute;
    top: 50%;
    transform: translate(-50%, -50%);
@@ -188,10 +198,12 @@ img{
 }
 
 .total > span {
+   background-color: rgb(255, 254, 237);
    margin-left: 20px;
 }
 
 .sc-e98633bc-7{
+   background-color: rgb(255, 254, 237);
    margin: 0 0 0 700px;
 }
 
