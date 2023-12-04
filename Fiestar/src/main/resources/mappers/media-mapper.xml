@@ -6,12 +6,12 @@
 		
 		SELECT *
 		FROM "MEDIA"
-		WHERE MEDIA_TITLE = #{mediaTitle}
+		WHERE MEDIA_TITLE LIKE '%${mediaTitle}%'
 		<if test="key == 1">
-			ORDER BY MEDIA_ENROLL_DATE 
+			ORDER BY MEDIA_ENROLL_DATE DESC
 		</if>
 		<if test="key == 2">
-			ORDER BY MEDIA_COUNT
+			ORDER BY MEDIA_COUNT DESC
 		</if>
 		
 	</select>
@@ -24,7 +24,8 @@
 			#{mediaDescription},
 			SYSDATE,
 			DEFAULT,
-			#{artistGroupNo})
+			#{artistGroupNo},
+			#{mediaTime})
 	</insert>
 	
 
