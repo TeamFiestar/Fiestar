@@ -9,9 +9,43 @@
 
 </head>
 <body>
+
+  <header>
+    <div class="header">
+      
+      <div class="header-left-side">
+        <a href="/" id="header-logo">
+          <img src="../../static/images/logo.png" style="width:165px;"  />
+        </a>
+      </div>
+      
+      <div class="header-right-side">
+        
+        <form action="#" method="GET" style="display: inline-flex; border:none; ">
+          <span class="search-area">
+            <button id="searchBtn" class="fa-solid fa-magnifying-glass"> 
+              <input type="search" name="query" id="search-input" placeholder="상품명 혹은 아티스트 검색" 
+              autocomplete="off" > 
+            </button>
+          </span>
+        </form>
+      
+        <a href="#"> 공지사항 </a>
+        <span>|</span>
+        <a href="/shop/home">샵 고객센터</a>
+        <a href="#"><button id="loginPage"> 로그인</button></a>
+        <a href="#"><button  id="signUp">회원가입</button></a>
+      </div>    
+          
+    </div>
+
+  </header>
+
+
+
   
   <div class="all">
-    <div class="BgImage"><img src="../../static/image/배경.jpg" width="100%" height="100%"></div>
+    <div class="BgImage"><img src="../../static/image/아티스트 메인배경.jpg" width="100%" height="100%"></div>
 
     <div class="main">
 
@@ -27,7 +61,7 @@
           </div>
         </div>
 
-        <hr width="280px" color="gray">
+        <hr class="myPageHr" width="280px" color="gray">
 
         <div class="sidebar">
           <div class="Bulletin">
@@ -95,86 +129,94 @@
 
       <div class="main-2">
         <div class="contentTitle">
-          <h1>회원 정보 수정</h1>
+          <h2>회원 정보 수정</h2>
         </div>
         <div class="content">
-          <div class="ModifyAll">
-            <div class="bgTxt">
-              <h3>배경화면</h3>
-            </div>
-            <div class="chooseBgImage">
-              <form action="post" enctype="multipart/form-data">
-                <div class="mainImg">
-                  <label for="file">
-                    <div class="btn-upload1"><h1>+</h1></div>
-                  </label>
-                  <input type="file" name="file" id="file">
+          <form action="#">
+            <div class="ModifyAll">
+              <div class="bgTxt">
+                <h3>배경화면</h3>
+              </div>
+              <div class="chooseBgImage">
+                <form action="post" enctype="multipart/form-data">
+                  <div class="mainImg">
+                    <label for="file">
+                      <div class="btn-upload1"><h1>+</h1></div>
+                    </label>
+                    <input type="file" name="file" id="file">
+                  </div>
+                </form>
+              </div>
+              <div class="profileTxt">
+                <h3>프로필 이미지</h3>
+              </div>
+              <div class="profileImgModify">
+                <form action="#">
+                  <div class="profile-img-modify">
+                    <label for="file">
+                      <div class="userImg"><img src="../../static/image/user.png" width="100%" height="100%"></div>
+                    </label>
+                    <input type="file" name="file2" id="file2">
+                  </div>
+                </form>
+                <div class="profileImgModifyBtn"><button>수정완료</button></div>
+              </div>
+              <div class="emailModify">
+                <div class="modifySection1"><h3>이메일</h3></div>
+                <div class="modifySection2"><h3>javaman@gmail.com</h3></div>
+              </div>
+              <div class="nickNameModify">
+                <div class="modifySection1"><h3>닉네임</h3></div>
+                <div class="modifySection2"><input type="text" ></div>
+              </div>
+              <div class="pwModify">
+                <div class="modifySection1"><h3>비밀번호</h3></div>
+                <div class="modifySection2"><input type="password" ></div>
+              </div>
+              <div class="pwCheckModify">
+                <div class="modifySection1"><h3>비밀번호 확인</h3></div>
+                <div class="modifySection2"><input type="password" ></div>
+              </div>
+  
+  
+  
+              <div class="profileTxt">
+                <h3>주소</h3>
+              </div>
+  
+              <div class="address">
+  
+                  <div class="signUp-input-area">
+                      <input type="text" name="memberAddress" placeholder="우편번호" maxlength="6">
+                      
+                      <button type="button">검색</button>
+                  </div>
+  
+                  <div class="signUp-input-area">
+                      <input type="text" name="memberAddress" placeholder="도로명/지번 주소">
+                  </div>
+  
+                  <div class="signUp-input-area">
+                      <input type="text" name="memberAddress" placeholder="상세 주소">
+                  </div>
+              </div>
+  
+              
+                <div class="ModifyBtn">
+                  <button>수정완료</button>
                 </div>
-              </form>
+             
+             
+  
+              <div class="WithdrawalBtn">
+                <a href="#">
+                  <p>피에스타 회원 탈퇴하기</p>
+                </a>
+              </div>
+  
             </div>
-            <div class="profileTxt">
-              <h3>프로필 이미지</h3>
-            </div>
-            <div class="profileImgModify">
-              <form action="#">
-                <div class="profile-img-modify">
-                  <label for="file">
-                    <div class="userImg"><img src="../../static/image/user.png" width="100%" height="100%"></div>
-                  </label>
-                  <input type="file" name="file2" id="file2">
-                </div>
-              </form>
-              <div class="profileImgModifyBtn"><button>수정완료</button></div>
-            </div>
-            <div class="emailModify">
-              <div class="modifySection1"><h3>이메일</h3></div>
-              <div class="modifySection2"><h3>javaman@gmail.com</h3></div>
-            </div>
-            <div class="nickNameModify">
-              <div class="modifySection1"><h3>닉네임</h3></div>
-              <div class="modifySection2"><input type="text" ></div>
-            </div>
-            <div class="pwModify">
-              <div class="modifySection1"><h3>비밀번호</h3></div>
-              <div class="modifySection2"><input type="text" ></div>
-            </div>
-            <div class="pwCheckModify">
-              <div class="modifySection1"><h3>비밀번호 확인</h3></div>
-              <div class="modifySection2"><input type="text" ></div>
-            </div>
-
-
-
-            <div class="profileTxt">
-              <h3>주소</h3>
-            </div>
-
-            <div class="address">
-
-                <div class="signUp-input-area">
-                    <input type="text" name="memberAddress" placeholder="우편번호" maxlength="6">
-                    
-                    <button type="button">검색</button>
-                </div>
-
-                <div class="signUp-input-area">
-                    <input type="text" name="memberAddress" placeholder="도로명/지번 주소">
-                </div>
-
-                <div class="signUp-input-area">
-                    <input type="text" name="memberAddress" placeholder="상세 주소">
-                </div>
-            </div>
-
-            <div class="ModifyBtn"><button>수정완료</button></div>
-
-            <div class="WithdrawalBtn">
-              <a href="#">
-                <p>피에스타 회원 탈퇴하기</p>
-              </a>
-            </div>
-
-          </div>
+          </form>
+         
         </div>
       </div>
     </div>

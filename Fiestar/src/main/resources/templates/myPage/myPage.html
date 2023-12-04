@@ -9,9 +9,44 @@
 
 </head>
 <body>
+
+  <header>
+    <div class="header">
+      
+      <div class="header-left-side">
+        <a href="/" id="header-logo">
+          <img src="../../static/images/logo.png" style="width:165px;"  />
+        </a>
+      </div>
+      
+      <div class="header-right-side">
+        
+        <form action="#" method="GET" style="display: inline-flex; border:none; ">
+          <span class="search-area">
+            <button id="searchBtn" class="fa-solid fa-magnifying-glass"> 
+              <input type="search" name="query" id="search-input" placeholder="상품명 혹은 아티스트 검색" 
+              autocomplete="off" > 
+            </button>
+          </span>
+        </form>
+      
+        <a href="#"> 공지사항 </a>
+        <span>|</span>
+        <a href="/shop/home">샵 고객센터</a>
+        <a href="#"><button id="loginPage"> 로그인</button></a>
+        <a href="#"><button  id="signUp">회원가입</button></a>
+      </div>    
+          
+    </div>
+
+  </header>
+  
+  
+
+
   
   <div class="all">
-    <div class="BgImage"><img src="../../static/image/배경.jpg" width="100%" height="100%"></div>
+    <div class="BgImage"><img src="../../static/image/아티스트 메인배경.jpg" width="100%" height="100%"></div>
 
     <div class="main">
 
@@ -27,7 +62,7 @@
           </div>
         </div>
 
-        <hr width="280px" color="gray">
+        <hr class="myPageHr" width="280px" color="gray">
 
         <div class="sidebar">
           <div class="Bulletin">
@@ -96,17 +131,36 @@
 
       <div class="main-2">
         <div class="contentTitle">
-          <h1>내가 작성한 게시글</h1>
+          <h2>내가 작성한 게시글</h2>
         </div>
         <div class="content">
+
           <div class="myBulletin">
             <div class="myProfile">
               <div class="profile-img-small">
                 <img src="../../static/image/user.png" width="100%">
               </div>
               <div class="profile-info-small">
-                <div class="nickName-small">민둥민두</div>
-                <div class="date-small">2023-11-28</div>
+                <div class="nickName-small"><h4>민둥민두</h4></div>
+                <div class="date-small"><h6>2023-11-28</h6></div>
+              </div>
+            </div>
+            <div class="myContent"><h3>지금 코노 가는중!!</h3></div>
+            <div class="delete">
+              <img src="../../static/image/Heart.png">
+              <img src="../../static/image/Speech Bubble.png">
+            </div>
+          </div>
+          <hr class="myPageHr" width="730px" color="gray"><br><br>
+
+          <div class="myBulletin">
+            <div class="myProfile">
+              <div class="profile-img-small">
+                <img src="../../static/image/user.png" width="100%">
+              </div>
+              <div class="profile-info-small">
+                <div class="nickName-small"><h3>민둥민두</h3></div>
+                <div class="date-small"><h5>2023-11-28</h5></div>
               </div>
             </div>
             <div class="myContent"><h3>지금 코노 가는중!!!</h3></div>
@@ -115,15 +169,53 @@
               <img src="../../static/image/Speech Bubble.png">
             </div>
           </div>
-          <hr width="640px" color="gray">
 
-          
+          <hr class="myPageHr" width="750px" color="gray"><br><br>
+
+          <div class="myBulletin">
+            <div class="myProfile">
+              <div class="profile-img-small">
+                <img src="../../static/image/user.png" width="100%">
+              </div>
+              <div class="profile-info-small">
+                <div class="nickName-small"><h3>민둥민두</h3></div>
+                <div class="date-small"><h5>2023-11-28</h5></div>
+              </div>
+            </div>
+            <div class="myContent"><h3>지금 코노 가는중!!!</h3></div>
+            <div class="delete">
+              <img src="../../static/image/Heart.png">
+              <img src="../../static/image/Speech Bubble.png">
+            </div>
+          </div>
+
+          <hr class="myPageHr" width="750px" color="gray"><br><br>
+
+          <div class="myBulletin">
+            <div class="myProfile">
+              <div class="profile-img-small">
+                <img src="../../static/image/user.png" width="100%">
+              </div>
+              <div class="profile-info-small">
+                <div class="nickName-small"><h3>민둥민두</h3></div>
+                <div class="date-small"><h5>2023-11-28</h5></div>
+              </div>
+            </div>
+            <div class="myContent"><h3>지금 코노 가는중!!!</h3></div>
+            <div class="delete">
+              <img src="../../static/image/Heart.png">
+              <img src="../../static/image/Speech Bubble.png">
+            </div>
+          </div>
+
+          <hr class="myPageHr" width="750px" color="gray"><br><br>
+
         </div>
 
-        
         <div class="pagination-area">
           <div class="pagination"><< < 1 2 3 4 5 6 7 8 9 10 > >></div>
         </div>
+        
       </div>
     </div>
   
