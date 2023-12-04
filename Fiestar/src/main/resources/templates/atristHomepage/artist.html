@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="/css/artistHomepage/artist.html">
+  <link rel="stylesheet" href="artist.css">
   <title>artist</title>
 </head>
 
@@ -13,31 +13,33 @@
   <!-- 헤더 -->
   <header>
     <section>
+      <a href="/"><img src="logo.png" alt="로고이미지" width="150px"></a>
+    </section>
+
+
+    <header>
+      <section>
         <a href="/" src="" alt="로고이미지"></a>
-    </section>
+      </section>
 
-    <section>
-        <article>
-            <div class="search">
-                <input type="text">
-                <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #7743DB"></i>
-            </div>
+      <section>
+        <article id="search-container">
+          <input type="text">
+          <a href=""><i class="fa-solid fa-magnifying-glass fa-xl" style="color: #7743DB"></i></a>
         </article>
         <article>
-            <div class="dropdown">
-                <span class="dropbtn"><i class="fa-regular fa-circle-user fa-2xl" style="color: #7743DB"></i></span>
-                <div class="dropdown-content">
-                    <a href="#">마이 페이지</a>
-                    <a href="#">관리자 페이지</a>
-                </div>
-            </div>
+          <a href="">로그아웃</a>
         </article>
         <article>
-            <a href=""><i class="fa-solid fa-store fa-xl" style=" color: #7743DB"></i></a>
+          <a href="">마이페이지</a>
         </article>
-    </section>
-</header>
+        <article>
+          <a href=""><i class="fa-solid fa-store fa-xl" style=" color: #7743DB"></i></a>
+        </article>
+      </section>
+    </header>
 
+  </header>
 
   <!-- 네비게이션 바 -->
   <section id="navSection">
@@ -220,7 +222,7 @@
     </section>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/2434a52ecc.js" crossorigin="anonymous"></script>
-    <script src="/js/artistHomepage/artist.js"></script>
+    <script src="artist.js"></script>
 </body>
 
 </html>
