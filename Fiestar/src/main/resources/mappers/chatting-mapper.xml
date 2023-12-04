@@ -4,7 +4,10 @@
 	
 	<insert id="insertMessage">
 		INSERT INTO "MESSAGE"
-		VALUES(SEQ_MESSAGE_NO.NEXTVAL, #{messageContent}, DEFAULT, #{memberNo}, #{chattingRoomNo})
+		VALUES(SEQ_MESSAGE_NO.NEXTVAL, #{messageContent}, DEFAULT, #{memberNo}, 
+			(SELECT CHATTING_ROOM_NO 
+			FROM CHATTING_ROOM
+			WHERE ARTIST_GROUP_NO = #{artistGroupNo}))
 	</insert>
 
 </mapper>

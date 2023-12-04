@@ -1,6 +1,7 @@
 package com.TeamFiestar.Fiestar.chatting.model.handler;
 
 import org.springframework.stereotype.Component;
+import org.springframework.ui.Model;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -49,7 +50,6 @@ public class ChattingWebsocketHandler extends TextWebSocketHandler{
 		Message msg = objectMapper.readValue(message.getPayload(), Message.class);
 		
 		System.out.println(msg);
-		
 		int result = service.insertMessage(msg);
 		if(result > 0) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd hh:mm");
@@ -60,15 +60,20 @@ public class ChattingWebsocketHandler extends TextWebSocketHandler{
             
             for(WebSocketSession s : sessions) {
             	HttpSession temp = (HttpSession)s.getAttributes().get("session");
-            	
+            	temp.setAttribute("chattingRoomNo", msg.getChattingRoomNo());
             	int loginMemberNo = ((Member)temp.getAttribute("loginMember")).getMemberNo();
             	log.debug("로그인 회원 번호 : " + loginMemberNo);
             	
-            	int chattingRoomNo = ((Message)temp.getAttribute("loginMember")).getChattingRoomNo();
+            	
+            	int chattingRoomNo = ((int)temp.getAttribute("artistGroupNo"));
             	log.debug("채팅방 번호 : " + chattingRoomNo);
             	
-            	if(chattingRoomNo == msg.getTargetNo() || loginMemberNo == msg.getSenderNo()) {
+            	int artistGroupNo = ((int)temp.getAttribute("artistGroupNo"));
+            	log.debug("아티스트 그룹 번호 : " + artistGroupNo);
+            	
+            	if(chattingRoomNo == msg.getChattingRoomNo() || loginMemberNo == msg.getMemberNo()) {
             		s.sendMessage(new TextMessage(new Gson().toJson(msg)));
+            		log.debug("채팅 보내짐");
             	}
             }
 
