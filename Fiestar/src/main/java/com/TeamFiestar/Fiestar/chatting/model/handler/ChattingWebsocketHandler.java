@@ -7,6 +7,7 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.TeamFiestar.Fiestar.chatting.model.dto.ChattingRoom;
 import com.TeamFiestar.Fiestar.chatting.model.dto.Message;
 import com.TeamFiestar.Fiestar.chatting.model.service.ChatService;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
@@ -64,14 +65,13 @@ public class ChattingWebsocketHandler extends TextWebSocketHandler{
             	int loginMemberNo = ((Member)temp.getAttribute("loginMember")).getMemberNo();
             	log.debug("로그인 회원 번호 : " + loginMemberNo);
             	
+//            	int chattingRoomNo = ((int)temp.getAttribute("artistGroupNo"));
+//            	log.debug("채팅방 번호 : " + chattingRoomNo);
             	
-            	int chattingRoomNo = ((int)temp.getAttribute("artistGroupNo"));
-            	log.debug("채팅방 번호 : " + chattingRoomNo);
-            	
-            	int artistGroupNo = ((int)temp.getAttribute("artistGroupNo"));
+            	int artistGroupNo = ((Member)temp.getAttribute("loginMember")).getArtistGroupNo();
             	log.debug("아티스트 그룹 번호 : " + artistGroupNo);
             	
-            	if(chattingRoomNo == msg.getChattingRoomNo() || loginMemberNo == msg.getMemberNo()) {
+            	if(artistGroupNo == msg.getArtistGroupNo()|| loginMemberNo == msg.getMemberNo()) {
             		s.sendMessage(new TextMessage(new Gson().toJson(msg)));
             		log.debug("채팅 보내짐");
             	}

@@ -23,7 +23,10 @@ function chattingEnter(e) {
 
 // 채팅 조회(비동기)
 function selectChatting() {
-  fetch("/chatting/select?+" + `chattingRoomNo=${selectChattingRoomNo}&memberNo=${loginMemberNo}`)
+  fetch(
+    "/chatting/select?+" +
+      `chattingRoomNo=${selectChattingRoomNo}&memberNo=${loginMemberNo}`
+  )
     .then((resp) => resp.text())
     .then((messageList) => {
       console.log(messageList);
@@ -90,12 +93,12 @@ const sendMessage = () => {
     var obj = {
       memberNo: loginMemberNo,
       sendAuthority: authority,
-      chattingRoomNo: artistGroupNo,
-      // artistGroupNo: artistGroupNo,
+      // chattingRoomNo: artistGroupNo,
+      artistGroupNo: artistGroupNo,
       messageContent: inputChat.value,
     };
     console.log(obj);
-
+    console.log(artistGroupNo);
     chattingSock.send(JSON.stringify(obj));
 
     inputChat.value = "";
@@ -115,7 +118,7 @@ chattingSock.onmessage = function (e) {
   console.log(msg);
 
   // 현재 보고있는 경우 비동기
-  if (artistGroupNo == msg.chattingRoomNo) {
+  if (artistGroupNo == msg.artistGroupNo) {
     const ul = document.querySelector(".chat-ul");
 
     // ul.innerHTML = "";

@@ -27,6 +27,7 @@ public class ChattingController {
 	public String chatting(@PathVariable("artistGroupNo") int artistGroupNo, @SessionAttribute("loginMember") Member loginMember, Model model) {
 
 		model.addAttribute("artistGroupNo",artistGroupNo);
+		
 		return "chatting/chatting";
 	}
 	
