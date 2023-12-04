@@ -37,10 +37,13 @@ header {
 
 /* 로고 */
 header>section:nth-of-type(1) {
-  margin-left: 50px;
   width: 30%;
   display: flex;
   justify-content: start;
+}
+
+#logoImg{
+  width: 150px;
 }
 
 /* 메뉴 */
@@ -120,13 +123,16 @@ header article {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 25px 0;
 }
 
 
 nav {
   width: 100%;
   background-color: #7743DB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
 }
 
 nav ul {
@@ -134,11 +140,12 @@ nav ul {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 1100px;
 }
 
 nav ul li {
   margin: 0;
-  padding: 15px 100px;
+  padding: 15px 80px;
 }
 
 nav ul li a {

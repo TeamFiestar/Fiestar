@@ -26,26 +26,28 @@ a {
   text-decoration: none;
 }
 
-/* 헤더 */
 header {
-  width: 100%;
+  width: 1100px;
   height: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: auto;
 }
 
 /* 로고 */
 header>section:nth-of-type(1) {
-  margin-left: 50px;
   width: 30%;
   display: flex;
   justify-content: start;
 }
 
+#logoImg{
+  width: 150px;
+}
+
 /* 메뉴 */
 header>section:nth-of-type(2) {
-  margin-right: 50px;
   width: 70%;
   height: 80px;
   display: flex;
@@ -112,7 +114,6 @@ header article {
   align-items: center;
 }
 
-
 /* 네비게이션 바 */
 #navSection {
   width: 100%;
@@ -173,4 +174,129 @@ nav ul li a {
   width: 100px;
   height: 100px;
   object-fit: cover;
+}
+
+/* 게시글(사진 X) */
+.publishedText {
+  margin-top: 80px;
+  padding: 30px;
+  background-color: #ffffff;
+  width: 1100px;
+  align-items: flex-start;
+  border-bottom: 2.5px solid #dbdbdb;
+}
+
+.profile {
+  height: 36px;
+  align-items: center;
+  display: flex;
+  min-width: 0;
+  margin-bottom: 20px;
+}
+
+.profile>div {
+  padding: 10px;
+}
+
+
+#post{
+  align-items: center;
+  display: flex;
+  padding: 10px;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.textbox {
+  align-items: center;
+  display: flex;
+  padding: 10px;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.reaction {
+  margin-top: 15px;
+}
+
+.reaction>i {
+  padding: 5px;
+  cursor: pointer;
+}
+
+
+
+/* 게시글(사진+글) */
+#publishedImage {
+  padding: 30px;
+  background-color: #ffffff;
+  width: 1100px;
+  border-bottom: 2.5px solid #dbdbdb;
+
+}
+
+/* 이미지 슬라이드 */
+.imgage-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 1000px;
+  margin-top: 30px;
+}
+
+.img-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.prev,
+.next {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.prev {
+  margin-right: 10px;
+  /* 오른쪽 마진 추가 */
+}
+
+.next {
+  margin-left: 10px;
+  /* 왼쪽 마진 추가 */
+}
+
+.slide {
+  display: none;
+}
+
+.slide>img {
+  width: 800px;
+  height: 800px;
+}
+
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active,
+.dot:hover {
+  background-color: #7743DB;
+}
+
+.dot-container {
+  margin-top: -30px;
+  margin-bottom: 30px;
 }
