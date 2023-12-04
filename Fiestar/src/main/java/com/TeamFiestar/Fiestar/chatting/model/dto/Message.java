@@ -1,4 +1,4 @@
-package com.TeamFiestar.Fiestar.chatting.DTO;
+package com.TeamFiestar.Fiestar.chatting.model.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,10 +8,12 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Message {
-	private String roomId;
 	private int messageNo;
 	private String messageContent;
 	private int senderNo;
 	private int targetNo;
-	private String sendTime;
+	private int chattingNo;
+	private String messageSendTime;
+	private int chattingRoomNo;
+	private int memberNo;
 }
