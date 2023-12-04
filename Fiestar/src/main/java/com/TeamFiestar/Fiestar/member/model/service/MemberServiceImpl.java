@@ -3,12 +3,14 @@ package com.TeamFiestar.Fiestar.member.model.service;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.TeamFiestar.Fiestar.member.model.DTO.Member;
+import com.TeamFiestar.Fiestar.member.model.dto.Member;
 import com.TeamFiestar.Fiestar.member.model.mapper.MemberMapper;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService{
 
@@ -21,6 +23,8 @@ public class MemberServiceImpl implements MemberService{
 		if (loginMember == null) {
 			return null;
 		}
+		
+		log.debug("complate");
 		
 		if(!bcrypt.matches(inputMember.getMemberPw(), loginMember.getMemberPw() ) ) {
 			return null;

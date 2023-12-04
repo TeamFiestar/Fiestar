@@ -8,7 +8,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.TeamFiestar.Fiestar.chatting.model.dto.Message;
 import com.TeamFiestar.Fiestar.chatting.model.service.ChatService;
-import com.TeamFiestar.Fiestar.member.model.DTO.Member;
+import com.TeamFiestar.Fiestar.member.model.dto.Member;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
