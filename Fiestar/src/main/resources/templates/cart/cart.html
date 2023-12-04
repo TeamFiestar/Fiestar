@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -80,7 +80,8 @@
     
    <section class="frame">
 
-      <div class="content">
+      
+      <form action="cart" method="get">
 
          <div class="cart-area">
             <h1 class="cart">CART</h1>
@@ -138,7 +139,7 @@
 
             <div class="item-amount" style="background: #eff7ff;">
                   
-                     <i class="fa-solid fa-xmark" style="color: rgb(199, 199, 199); font-size: 22px;" style="background-color: #eff7ff;"></i>
+                     <i class="fa-solid fa-xmark" style="color: rgb(199, 199, 199); font-size: 22px;" ></i>
                   
             
                   <div item-info>
@@ -149,7 +150,7 @@
                         <i class="fa-solid fa-plus" style="background-color: #eff7ff;"></i>
                      </div>
                      
-                     <span class="amount-price" style="font-weight: bold;" style="background-color: #eff7ff;">$132</span>
+                     <span class="amount-price" style="font-weight: bold;" >$132</span>
                   </div>
 
             </div>
@@ -190,7 +191,7 @@
                      <i class="fa-solid fa-plus"  style="background-color: #eff7ff;"></i>
                   </div>
                   
-                  <span class="amount-price" style="font-weight: bold;"  style="bottom:  #eff7ff;">$100</span>
+                  <span class="amount-price" style="font-weight: bold;">$100</span>
                </div>
 
          </div>
@@ -208,7 +209,7 @@
 
             </div>
             
-                  </div>
+               </form>
             
          
    </section>
