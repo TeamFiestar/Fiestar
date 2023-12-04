@@ -4,7 +4,28 @@
 	
 	<select id="selectMediaList">
 		
+		SELECT *
+		FROM "MEDIA"
+		WHERE MEDIA_TITLE = #{mediaTitle}
+		<if test="key == 1">
+			ORDER BY MEDIA_ENROLL_DATE 
+		</if>
+		<if test="key == 2">
+			ORDER BY MEDIA_COUNT
+		</if>
+		
 	</select>
+	
+	<insert id="insertMedia">
+		INSERT INTO MEDIA M VALUES
+			(SEQ_MEDIA_NO.NEXTVAL,
+			#{mediaAddress},
+			#{mediaTitle},
+			#{mediaDescription},
+			SYSDATE,
+			DEFAULT,
+			#{artistGroupNo})
+	</insert>
 	
 
 </mapper>
