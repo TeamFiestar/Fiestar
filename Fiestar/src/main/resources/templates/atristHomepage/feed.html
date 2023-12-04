@@ -5,35 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>feed</title>
-    <link rel="stylesheet" href="feed.css">
+    <link rel="stylesheet" href="">
 </head>
 
 <body>
     <header>
         <section>
-            <a href="/" src="" alt="로고이미지"></a>
+            <a href="/"><img src="logo.png" alt="로고이미지" width="150px"></a>
         </section>
 
         <section>
             <article>
-                <div class="search">
-                    <input type="text">
-                    <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #7743DB"></i>
-                </div>
+                <a href="">로그인</a>
             </article>
+
             <article>
-                <div class="dropdown">
-                    <span class="dropbtn"><i class="fa-regular fa-circle-user fa-2xl" style="color: #7743DB"></i></span>
-                    <div class="dropdown-content">
-                        <a href="#">마이 페이지</a>
-                        <a href="#">관리자 페이지</a>
-                    </div>
-                </div>
+                <a href="">회원가입</a>
             </article>
+
             <article>
-                <a href=""><i class="fa-solid fa-store fa-xl" style=" color: #7743DB"></i></a>
+                <a href=""><i class="fa-solid fa-store fa-xl" style="color: #7743DB"></i></a>
             </article>
         </section>
+
     </header>
 
     <section id="navSection">
@@ -48,79 +42,6 @@
         </nav>
     </section>
 
-    <!-- 게시글 작성 modal -->
-    <form action="">
-        <div class="feedWriteModal">
-            <div id="feedWriteModal" class="modal-body">
-                <button id="modalCloseButton">X</button>
-                <div class="modal-write">
-                    <h1>게시글 작성</h1>
-                    <p>LE SSERAFIM</p>
-
-                    <div class="boardImg-container">
-                        <h4>이미지</h4>
-                        <div class="img-box">
-
-                            <div class="boardImg">
-                                <label for="img1">
-                                    <img class="preview" src="">
-                                </label>
-                                <input type="file" name="images" class="inputImage" id="img1" accept="image/*">
-                                <span class="delete-image">&times;</span>
-                            </div>
-
-                            <div class="boardImg">
-                                <label for="img2">
-                                    <img class="preview" src="">
-                                </label>
-                                <input type="file" name="images" class="inputImage" id="img2" accept="image/*">
-                                <span class="delete-image">&times;</span>
-                            </div>
-
-                            <div class="boardImg">
-                                <label for="img3">
-                                    <img class="preview" src="">
-                                </label>
-                                <input type="file" name="images" class="inputImage" id="img3" accept="image/*">
-                                <span class="delete-image">&times;</span>
-                            </div>
-
-                            <div class="boardImg">
-                                <label for="img4">
-                                    <img class="preview" src="">
-                                </label>
-                                <input type="file" name="images" class="inputImage" id="img4" accept="image/*">
-                                <span class="delete-image">&times;</span>
-                            </div>
-
-                            <div class="boardImg">
-                                <label for="img5">
-                                    <img class="preview" src="">
-                                </label>
-                                <input type="file" name="images" class="inputImage" id="img4" accept="image/*">
-                                <span class="delete-image">&times;</span>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <div class="modal-feedWrite">
-                        <textarea name="feedWirte" id="feedWirte" placeholder="피에스타에 게시글을 작성해보세요!!"></textarea>
-                    </div>
-
-
-                    <div class="modal-btn">
-                        <button>등록하기</button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </form>
-
-
-
     <section id="board">
 
         <!-- 아티스트 프로필  페이지로 이동-->
@@ -132,9 +53,9 @@
         </section>
 
         <!-- 게시글 작성 -->
-        <section id="postingSection" class="btn-open-popup">
+        <section id="postingSection">
             <i class="fa-regular fa-circle-user fa-2xl"></i>
-            <a href="#">피에스타에 포스트를 남겨보세요.</a>
+            <p>피에스타에 포스트를 남겨보세요.</p>
             <i class="fa-solid fa-image fa-2xl"></i>
         </section>
 
@@ -149,11 +70,9 @@
                     <p>1시간 전</p>
                 </div>
             </section>
-            <section class="btn-open-popup" id="post">
-                <a href="#">
-                    르세라핌 응원합니다!! <br>
-                    하ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ
-                </a>
+            <section class="textbox">
+                르세라핌 응원합니다!! <br>
+                하ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ
             </section>
             <!-- 댓글 좋아요 -->
             <section class="reaction">
@@ -201,11 +120,11 @@
                 </div>
 
                 <div style="text-align:center" class="dot-container">
-                    <span class="dot" onclick="currentSlide(1)"></span>
-                    <span class="dot" onclick="currentSlide(2)"></span>
-                    <span class="dot" onclick="currentSlide(3)"></span>
-                    <span class="dot" onclick="currentSlide(4)"></span>
-                    <span class="dot" onclick="currentSlide(5)"></span>
+                    <span class="dot" onclick="currentSlide(1)"></span> 
+                    <span class="dot" onclick="currentSlide(2)"></span> 
+                    <span class="dot" onclick="currentSlide(3)"></span> 
+                    <span class="dot" onclick="currentSlide(4)"></span> 
+                    <span class="dot" onclick="currentSlide(5)"></span> 
                 </div>
             </section>
 
@@ -230,8 +149,6 @@
 
     <script src="https://kit.fontawesome.com/2434a52ecc.js" crossorigin="anonymous"></script>
     <script src="feed.js"></script>
-
-
 </body>
 
 </html>
