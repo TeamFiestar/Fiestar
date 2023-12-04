@@ -1,23 +1,32 @@
 package com.TeamFiestar.Fiestar.chatting.controller;
 
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.TeamFiestar.Fiestar.chatting.DTO.Message;
-
-import lombok.RequiredArgsConstructor;
+import com.TeamFiestar.Fiestar.chatting.model.dto.ChattingRoom;
+import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
 @Controller
-@RequiredArgsConstructor
+@SessionAttributes({"loginMember"})
 public class ChattingController {
 
-	private final SimpMessagingTemplate template;
-	
-	@MessageMapping(value = "/chat/enter")
-	public void enter(Message message) {
-		template.convertAndSend("/sub/chat/room/" + message.getRoomId(), message);
+	@GetMapping("/chat")
+	public String chat() {
+		return "chatting/chatting";
 	}
 	
+	@GetMapping("/chatting/enter/")
+	public String chatting(int targetNo, @SessionAttribute("loginMember") Member member) {
+		
+		
+		
+		return "chatting/chatting";
+	}
 	
 }

@@ -9,22 +9,29 @@
         <div class="div">
           <div class="text-wrapper">미디어 목록</div>
           <div class="media-head">
-            <div class="div-wrapper">
-              <div class="selectBox">
-                <select name="key" class="select">
-                  <option value="최신순">최신순</option>
-                  <option value="인기순">인기순</option>
-                </select>
-                <span class="icoArrow"><img src="https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png" alt=""></span>
+
+            <form action="/media/list" method="get">
+
+              <div class="div-wrapper">
+                <div class="selectBox">
+                  <select name="key" class="select">
+                    <option value="1">최신순</option>
+                    <option value="2">인기순</option>
+                  </select>
+                  <span class="icoArrow"><img src="https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png" alt=""></span>
+                </div>
               </div>
-            </div>
-            <div class="search-area">
-              <img class="search-light" src="/img/search-light-1.svg" />
-              <input class="search-input" placeholder="제목을 입력해 주세요">
-            </div>
+              <div class="search-area">
+                <img class="search-light" src="/img/search-light-1.svg" />
+                <input class="search-input" name="mediaTitle" placeholder="제목을 입력해 주세요">
+              </div>
+            </form>
+
+            
           </div>
         </div>
         <div class="media-list">
+          
           <div class="component">
             <div class="frame-wrapper">
               <div class="media-time-div"><div class="media-time">05:20</div></div>
@@ -35,26 +42,7 @@
               <div class="media-hits">4k(조회수)</div>
             </div>
           </div>
-          <div class="component">
-            <div class="media-img-div">
-              <div class="media-time-div"><div class="media-time">05:20</div></div>
-            </div>
-            <div class="media-title-div"><div class="media-title">영상 제목</div></div>
-            <div class="media-frame">
-              <img class="vector" src="/img/vector.svg" />
-              <div class="media-hits">4k(조회수)</div>
-            </div>
-          </div>
-          <div class="component">
-            <div class="media-img-div">
-              <div class="media-time-div"><div class="media-time">05:20</div></div>
-            </div>
-            <div class="media-title-div"><div class="media-title">영상 제목</div></div>
-            <div class="media-frame">
-              <img class="vector" src="/img/vector.svg" />
-              <div class="media-hits">4k(조회수)</div>
-            </div>
-          </div>
+
           <div class="component">
             <div class="media-img-div">
               <div class="media-time-div"><div class="media-time">05:20</div></div>
@@ -87,6 +75,8 @@
               <div class="media-hits">4k(조회수)</div>
             </div>
           </div>
+
+
         </div>
 
       </div>

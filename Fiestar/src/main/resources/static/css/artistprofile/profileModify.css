@@ -181,6 +181,10 @@ img{
 }
 
 
+.profileName input{
+  color: white;
+}
+
 .btn-upload3 {
   width: 80px;
   height: 30px;

@@ -20,7 +20,7 @@
 
 h1 {
    display: block;
-   font-size: 28px;
+   font-size: 32px;
    margin-block-start: 0.67em;
    margin-block-end: 0.67em;
    margin-inline-start: 0px;
@@ -30,7 +30,7 @@ h1 {
 }
 
 .select-all{
-   font-size: 14px;
+   font-size: 16px;
    margin-top: 80px;
    border-bottom: solid rgb(217, 217, 217) 1px;
    padding: 15px 0px;
@@ -64,23 +64,26 @@ h1 {
    top: 30px;
    position: absolute;
    font-size: 14px;
-   color:rgb(217, 217, 217);
+   color: rgb(127 127 127);
 }
 
 .item-name > a{
+   margin-top: 2px;
    text-decoration: none;
-   font-size: 14px;
+   font-size: 16px;
    color: black;
 }
 
 .item-amount{
-   top: 10px;
+   top: 46%;
+   font-size: 16px;
    position: absolute;
    right: 250px;  
 }
 
 .item-price{
-   top: 10px;
+   margin-top: 62px;
+   font-size: 16px;
    position: absolute;
    right: 8px;
 }
@@ -109,6 +112,7 @@ h1 {
 }
 
 .order-list{
+   font-size: 18px;
    height: 100px;
    margin: 10px 0 0 4px;
    border-bottom: solid rgb(217, 217, 217) 1px;
@@ -198,7 +202,7 @@ h1 {
    justify-content: space-between;
    align-items: center;
    font-weight: 700;
-   font-size: 18px;
+   font-size: 20px;
    border-bottom: solid rgb(217, 217, 217) 1px;
 
 }
@@ -209,7 +213,7 @@ border-radius: 4px;
     transition: all 300ms ease 0s;
     margin: 0px;
     appearance: none;
-    background: none rgb(227, 69, 224);
+    background: none  rgba(119, 67, 219, 1);
     border: none;
     cursor: pointer;
     -webkit-box-pack: center;
@@ -276,7 +280,7 @@ border-radius: 4px;
     transition: all 300ms ease 0s;
     margin: 0px;
     appearance: none;
-    background: none rgb(227, 69, 224);
+    
     border: none;
     cursor: pointer;
     -webkit-box-pack: center;

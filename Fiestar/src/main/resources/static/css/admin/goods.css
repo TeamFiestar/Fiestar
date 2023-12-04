@@ -38,7 +38,7 @@ main {
   justify-content: center;
   /* margin: 20px 0; */
   font-size: 24px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   cursor: pointer;
 }
 
@@ -109,13 +109,39 @@ main {
   outline: none;
   margin-top: 10px;
 }
+.goods-option {
+  width: 800px;
+  margin: 0 auto;
+  font-size: 18px;
+  font-weight: bold;
+  /* display: flex;
+  flex-direction: column; */
+}
+.goods-option > div {
+  display: flex;
+}
+.input-goodsPlus {
+  height: 40px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.input-goodsOption {
+  width: 200px;
+  height: 40px;
+  padding-left: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  outline: none;
+  margin-top: 10px;
+  margin-left: 10px;
+}
 .goods-content {
   width: 800px;
   margin: 30px auto;
   font-size: 18px;
   font-weight: bold;
 }
-#input-goodsContent {
+.input-goodsContent {
   width: 800px;
   height: 300px;
   font-size: 16px;
@@ -124,6 +150,15 @@ main {
   border-radius: 5px;
   padding: 0 10px;
   resize: none;
+}
+
+#input-area {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-goodsMinus {
+  padding-left: 0;
 }
 .goodsImg {
   width: 400px;

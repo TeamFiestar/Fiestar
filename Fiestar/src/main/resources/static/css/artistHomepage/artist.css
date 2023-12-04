@@ -37,36 +37,14 @@ header {
 
 /* 로고 */
 header>section:nth-of-type(1) {
-  margin-left: 50px;
   width: 30%;
   display: flex;
   justify-content: start;
 }
 
-/* 검색하기 */
-#search-container {
-  background-color: #e5d8fd;
-  display: flex;
-  align-self: center;
-  border-radius: 5px;
-  height: 40px;
-  margin-right: 10px;
+#logoImg{
+  width: 150px;
 }
-
-#search-container>input {
-  border: none;
-  height: 30px;
-  width: 250px;
-  background-color: #e5d8fd;
-  margin-right: 7px;
-  color: #7743DB;
-}
-
-#search-container>input:focus {
-  outline: none;
-}
-
-
 
 /* 메뉴 */
 header>section:nth-of-type(2) {
@@ -77,6 +55,58 @@ header>section:nth-of-type(2) {
   justify-content: end;
 }
 
+/* 마이페이지/ 관리자 페이지 드롭다운 */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  background-color: #D0A2F7;
+  width: 150px;
+  ;
+  text-align: center;
+  top: calc(100% + 11px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 10px;
+  color: white;
+
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.search {
+  width: 300px;
+  flex-direction: row;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+input {
+  width: 90%;
+  padding: 10px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+}
+
+input:focus {
+  outline: none;
+}
+
+
 /* 메뉴들 */
 header article {
   padding: 15px;
@@ -85,11 +115,6 @@ header article {
   align-items: center;
 }
 
-header a {
-  color: #000000;
-  text-decoration: none;
-  font-size: 20px
-}
 
 /* 네비게이션 바 */
 #navSection {
@@ -98,12 +123,16 @@ header a {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 25px 0;
 }
+
 
 nav {
   width: 100%;
   background-color: #7743DB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
 }
 
 nav ul {
@@ -111,16 +140,16 @@ nav ul {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 1100px;
 }
 
 nav ul li {
   margin: 0;
-  padding: 15px 100px;
+  padding: 15px 80px;
 }
 
 nav ul li a {
-  text-decoration: none;
-  color: #ffffff;
+  color: white;
   font-size: 20px;
 }
 

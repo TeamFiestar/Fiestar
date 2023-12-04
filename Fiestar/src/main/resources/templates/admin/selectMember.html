@@ -7,7 +7,40 @@
     <link rel="stylesheet" href="../../static/css/admin/selectMember.css" />
   </head>
   <body>
-    <header>헤더+nav</header>
+    <header>
+      <section>
+        <a href="/"><img src="logo.png" alt="로고이미지" width="150px" /></a>
+      </section>
+
+      <header>
+        <section>
+          <a href="/" src="" alt="로고이미지"></a>
+        </section>
+
+        <section>
+          <article id="search-container">
+            <input type="text" />
+            <a href=""
+              ><i
+                class="fa-solid fa-magnifying-glass fa-xl"
+                style="color: #7743db"
+              ></i
+            ></a>
+          </article>
+          <article>
+            <a href="">로그아웃</a>
+          </article>
+          <article>
+            <a href="">마이페이지</a>
+          </article>
+          <article>
+            <a href=""
+              ><i class="fa-solid fa-store fa-xl" style="color: #7743db"></i
+            ></a>
+          </article>
+        </section>
+      </header>
+    </header>
     <div class="modal">
       <div id="modal" class="modal-body">
         <button id="modalCloseButton">X</button>
@@ -96,8 +129,12 @@
                   <li>
                     회원 관리
                     <ul id="sidebar-sublist">
-                      <li><a href="selectMember.html" id="a">일반 회원 조회</a></li>
-                      <li><a href="deleteMember.html" id="a">탈퇴 회원 조회</a></li>
+                      <li>
+                        <a href="selectMember.html" id="a">일반 회원 조회</a>
+                      </li>
+                      <li>
+                        <a href="deleteMember.html" id="a">탈퇴 회원 조회</a>
+                      </li>
                     </ul>
                   </li>
                 </ul>

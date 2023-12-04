@@ -18,8 +18,12 @@
                   <li>
                     회원 관리
                     <ul id="sidebar-sublist">
-                      <li><a href="selectMember.html" id="a">일반 회원 조회</a></li>
-                      <li><a href="deleteMember.html" id="a">탈퇴 회원 조회</a></li>
+                      <li>
+                        <a href="selectMember.html" id="a">일반 회원 조회</a>
+                      </li>
+                      <li>
+                        <a href="deleteMember.html" id="a">탈퇴 회원 조회</a>
+                      </li>
                     </ul>
                   </li>
                 </ul>
@@ -56,10 +60,16 @@
       <div class="main">
         <h1>배송 조회</h1>
         <br />
+        <div class="orderSelect">
+          <button class="price">높은가격순</button>
+          <button class="price">낮은가격순</button>
+        </div>
         <table class="main-table" border="1" style="border-collapse: collapse">
           <!-- <tbody class="main-tbody"> -->
           <tr class="main-th-tr">
-            <th>배송 번호</th>
+            <th>주문 번호</th>
+            <th>닉네임</th>
+            <th>주소</th>
             <th>상품 아티스트 명</th>
             <th>상품 명</th>
             <th>수량</th>
@@ -69,50 +79,16 @@
           </tr>
           <tr class="main-tr-tr">
             <td>1</td>
+            <td>닉네임11</td>
+            <td>서울특별시 중구 남대문로 120 대일빌딩 2층, 3층</td>
             <td>뉴진스</td>
             <td>10주년 앨범</td>
             <td>2</td>
             <td>50,000</td>
+
             <td>2023/11/29</td>
-            <td>
-              <!-- <form>
-                <select id="order-select">
-                  <option value="1">주문 완료</option>
-                  <option value="2">배송 준비</option>
-                  <option value="3">배송 중</option>
-                </select>
-              </form> -->
-              주문 완료
-            </td>
+            <td>주문 완료</td>
           </tr>
-          <tr class="main-tr-tr">
-            <td>2</td>
-            <td>뉴진스</td>
-            <td>10주년 앨범</td>
-            <td>1</td>
-            <td>25,000</td>
-            <td>2023/11/27</td>
-            <td>배송 중</td>
-          </tr>
-          <tr class="main-tr-tr">
-            <td>2</td>
-            <td>뉴진스</td>
-            <td>10주년 앨범</td>
-            <td>1</td>
-            <td>25,000</td>
-            <td>2023/11/27</td>
-            <td>배송 중</td>
-          </tr>
-          <tr class="main-tr-tr">
-            <td>2</td>
-            <td>뉴진스</td>
-            <td>10주년 앨범</td>
-            <td>1</td>
-            <td>25,000</td>
-            <td>2023/11/27</td>
-            <td>배송 중</td>
-          </tr>
-          <!-- </tbody> -->
         </table>
         <div class="pagination-area">
           <div class="pagination"><< < 1 2 3 4 5 6 7 8 9 10 > >></div>

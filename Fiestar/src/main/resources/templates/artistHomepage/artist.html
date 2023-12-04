@@ -1,52 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<<<<<<< HEAD
   <link rel="stylesheet" href="../../static/css/artistHomepage/artist.css">
+=======
+  <link rel="stylesheet" href="/css/artistHomepage/artist.css">
+  <link rel="stylesheet" href="/css/common/atristPageHeader.css">
+>>>>>>> origin/main
   <title>artist</title>
 </head>
 
 <body>
-  <!-- 헤더 -->
-  <header>
-    <section>
-      <a href="/"><img src="logo.png" alt="로고이미지" width="150px"></a>
-    </section>
-
-
-    <header>
-      <section>
-        <a href="/" src="" alt="로고이미지"></a>
-      </section>
-
-      <section>
-        <article id="search-container">
-          <input type="text">
-          <a href=""><i class="fa-solid fa-magnifying-glass fa-xl" style="color: #7743DB"></i></a>
-        </article>
-        <article>
-          <a href="">로그아웃</a>
-        </article>
-        <article>
-          <a href="">마이페이지</a>
-        </article>
-        <article>
-          <a href=""><i class="fa-solid fa-store fa-xl" style=" color: #7743DB"></i></a>
-        </article>
-      </section>
-    </header>
-
-  </header>
-
+  <th:block th:replace="~{common/atristPageHeader}"></th:block>
   <!-- 네비게이션 바 -->
   <section id="navSection">
     <nav>
       <ul>
-        <li><a href="">Feed</a></li>
-        <li><a href="">Artist</a></li>
+        <li><a href="/artistHomepage/feed">Feed</a></li>
+        <li><a href="/artistHomepage/artist">Artist</a></li>
         <li><a href="">Media</a></li>
         <li><a href="">Chatting</a></li>
         <li><a href="">공지사항</a></li>
@@ -174,19 +149,19 @@
                     style="color: #7743DB"></i></a></div>
               <div class="slideshow-container">
                 <div class="slide">
-                  <img src="1.jpg" width="100%">
+                  <img src="/artistHomepageImg/1.jpg" width="100%">
                 </div>
                 <div class="slide">
-                  <img src="3.jpg" width="100%">
+                  <img src="/artistHomepageImg/3.jpg" width="100%">
                 </div>
                 <div class="slide">
-                  <img src="4.jpg" width="100%">
+                  <img src="/artistHomepageImg/4.jpg" width="100%">
                 </div>
                 <div class="slide">
-                  <img src="5.jpg" width="100%">
+                  <img src="/artistHomepageImg/5.jpg" width="100%">
                 </div>
                 <div class="slide">
-                  <img src="logo.png" width="100%">
+                  <img src="/artistHomepageImg/logo.png" width="100%">
                 </div>
               </div>
               <div><a class="next" onclick="plusSlides(1)"><i class="fa-solid fa-angle-right fa-2xl"
