@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.TeamFiestar.Fiestar.chatting.model.dto.ChattingRoom;
-import com.TeamFiestar.Fiestar.member.model.DTO.Member;
+import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
 @Controller
 @SessionAttributes({"loginMember"})
