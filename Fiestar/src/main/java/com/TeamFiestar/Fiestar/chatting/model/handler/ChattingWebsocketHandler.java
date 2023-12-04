@@ -67,7 +67,7 @@ public class ChattingWebsocketHandler extends TextWebSocketHandler{
             	int chattingRoomNo = ((Message)temp.getAttribute("loginMember")).getChattingRoomNo();
             	log.debug("채팅방 번호 : " + chattingRoomNo);
             	
-            	if(chattingRoomNo == msg.getTargetNo() || chattingRoomNo == msg.getSenderNo()) {
+            	if(chattingRoomNo == msg.getTargetNo() || loginMemberNo == msg.getSenderNo()) {
             		s.sendMessage(new TextMessage(new Gson().toJson(msg)));
             	}
             }

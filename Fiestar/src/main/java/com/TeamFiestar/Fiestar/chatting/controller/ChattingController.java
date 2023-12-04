@@ -21,5 +21,12 @@ public class ChattingController {
 		return "chatting/chatting";
 	}
 	
+	@GetMapping("/chatting/enter/")
+	public String chatting(int targetNo, @SessionAttribute("loginMember") Member member) {
+		
+		
+		
+		return "chatting/chatting";
+	}
 	
 }
