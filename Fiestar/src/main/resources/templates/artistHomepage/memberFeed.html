@@ -6,54 +6,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/artistHomepage/memberFeed.css">
+  <link rel="stylesheet" href="/css/common/atristPageHeader.css">
+  <link rel="stylesheet" href="/css/common/artistPageNavi.css">
   <title>memberFeed</title>
 </head>
 
 <body>
-  <header>
-    <section>
-        <a href="/">
-            <img src="/artistHomepageImg/logo.png" id="logoImg">
-        </a>
-    </section>
-
-    <section>
-        <article>
-            <div class="search">
-                <input type="text">
-                <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #7743DB"></i>
-            </div>
-        </article>
-        <article>
-            <div class="dropdown">
-                <span class="dropbtn"><i class="fa-regular fa-circle-user fa-2xl" style="color: #7743DB"></i></span>
-                <div class="dropdown-content">
-                    <a href="#">마이 페이지</a>
-                    <a href="#">로그아웃</a>
-                    <a href="#">관리자 페이지</a>
-                </div>
-            </div>
-        </article>
-        <article>
-            <a href=""><i class="fa-solid fa-store fa-xl" style=" color: #7743DB"></i></a>
-        </article>
-    </section>
-</header>
-
-
-
-<section id="navSection">
-    <nav>
-        <ul>
-            <li><a href="/artistHomepage/feed">Feed</a></li>
-            <li><a href="/artistHomepage/artist">Artist</a></li>
-            <li><a href="/media/media">Media</a></li>
-            <li><a href="">Live</a></li>
-            <li><a href="">Chatting</a></li>
-            <li><a href="">공지사항</a></li>
-        </ul>
-    </nav>
-</section>
+  <th:block th:replace="~{common/atristPageHeader}"></th:block>
+  <th:block th:replace="~{common/artistPageNavi}"></th:block>
 
   <section class="board">
     <!-- 멤버별 피드 게시글 조회 -->

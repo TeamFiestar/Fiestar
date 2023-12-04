@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
@@ -7,26 +7,17 @@
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <link rel="stylesheet" href="/css/artistHomepage/artist.css">
   <link rel="stylesheet" href="/css/common/atristPageHeader.css">
+  <link rel="stylesheet" href="/css/common/artistPageNavi.css">
   <title>artist</title>
 </head>
 
 <body>
   <th:block th:replace="~{common/atristPageHeader}"></th:block>
+  <th:block th:replace="~{common/artistPageNavi}"></th:block>
   <!-- 네비게이션 바 -->
-  <section id="navSection">
-    <nav>
-      <ul>
-        <li><a href="/artistHomepage/feed">Feed</a></li>
-        <li><a href="/artistHomepage/artist">Artist</a></li>
-        <li><a href="">Media</a></li>
-        <li><a href="">Chatting</a></li>
-        <li><a href="">공지사항</a></li>
-      </ul>
-    </nav>
-  </section>
+
 
   <section class="board">
-
     <!-- 아티스트 별 최신 글 -->
     <div class="swiper-container">
       <div class="swiper-wrapper">
@@ -85,6 +76,13 @@
       <div class="swiper-button-prev"></div>
       <div class="swiper-button-next"></div>
     </div>
+
+
+    <div class="modal">
+      <div id="feedWriteModal" class="modal-body">
+          <button id="modalCloseButton">X</button>
+      </div>
+  </div>
 
 
     <!-- 날짜별 게시글 목록 -->

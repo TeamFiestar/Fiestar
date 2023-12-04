@@ -26,6 +26,71 @@ function showSlides(n) {
   dots[slideIndex - 1].className += " active";
 }
 
+/* 게시글 작성 modal */
+const wmodal = document.querySelector(".feedWriteModal");
+const btnOpenPopup = document.querySelector(".btn-open-popup");
+const modalCloseButton = document.querySelector(".modalCloseButton");
+const wmodal_background = document.querySelector(".feedWriteModal");
+
+btnOpenPopup.addEventListener("click", () => {
+  open();
+});
+
+//Hide modal
+modalCloseButton.addEventListener("click", () => {
+  close();
+});
+
+window.addEventListener("click", (e) => {
+  e.target === wmodal_background ? close() : false;
+});
+
+
+function close() {
+  wmodal.classList.remove("show");
+  wmodal_background.classList.remove("show");
+  document.body.style.overflow = "";
+  
+}
+function open() {
+  wmodal.classList.add("show");
+  wmodal_background.classList.add("show");
+  document.body.style.overflow = "hidden";
+}
+
+const dmodal = document.querySelector(".feedDetailModal");
+const openModal = document.querySelector(".openModal");
+const closeModal = document.querySelector(".closeModal");
+const dmodal_background = document.querySelector(".feedDetailModal");
+
+openModal.addEventListener("click", () => {
+  dopen();
+});
+
+//Hide modal
+closeModal.addEventListener("click", () => {
+  dclose();
+});
+
+window.addEventListener("click", (e) => {
+  e.target === dmodal_background ? dclose() : false;
+});
+
+
+function dclose() {
+  dmodal.classList.remove("show");
+  dmodal_background.classList.remove("show");
+  document.body.style.overflow = "";
+  
+}
+function dopen() {
+  dmodal.classList.add("show");
+  dmodal_background.classList.add("show");
+  document.body.style.overflow = "hidden";
+}
+
+
+
 
 const previewList = document.getElementsByClassName("preview");
 
@@ -142,28 +207,3 @@ for (let i = 0; i < inputImageList.length; i++) {
   });
 
 }
-
-
-
-/* 게시글 작성 modal */
-let modals = document.querySelector(".modal");
-let btnOpenPopups = document.querySelector(".btn-open-popup");
-let modalCloseButtons = document.getElementById("modalCloseButton");
-let modal_background = document.querySelector(".modal");
-
-let oBtnLen = btnOpenPopups.length;
-let cBtnLen = modalCloseButtons.length;
-
-
-for(let i=0; i <oBtnLen; i++){
-  btnOpenPopups[i].addEventListener('click', () =>{
-    modal[i].classList.add("show");
-    modal_background.classList.add("show");
-    document.body.style.overflow = "hidden";
-  })
-}
-
-for(let i = 0; i<cBtnLen; i++){
-  
-}
-
