@@ -1,6 +1,8 @@
 
 const inputUrl = document.getElementById("input-url");
 const youtubeImg = document.getElementById("youtube-url");
+const mediaAddress = document.getElementById("mediaAddress");
+const mediaTime = document.getElementById("mediaTime");
 
 inputUrl.addEventListener("input", () => {
 
@@ -14,6 +16,8 @@ inputUrl.addEventListener("input", () => {
   if(youtubeUrl != null){
     // youtubeImg.src = `https://img.youtube.com/vi/${youtubeUrl}/0.jpg `
     youtubeImg.src = `https://www.youtube.com/embed/${youtubeUrl}`
+    mediaAddress.value = youtubeUrl;
+
     console.log(parsingVideoDuration(youtubeUrl));
   }
 
@@ -67,8 +71,8 @@ function parsingVideoDuration(url){
       .then(function(data) {
           // API 응답에서 동영상의 재생 시간 정보 추출
           var duration = data.items[0].contentDetails.duration;
-          console.log('동영상 재생 시간: ' + duration);
           console.log('동영상 변환 시간 :' + convertDuration(duration)) ;
+          mediaTime.value =  convertDuration(duration);
       })
       .catch(function(error) {
           console.error('API 호출 중 오류 발생: ', error);
