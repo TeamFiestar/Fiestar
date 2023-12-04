@@ -20,8 +20,15 @@ public class MediaServiceImpl implements MediaService{
 	public List<Media> selectMediaList(Map<String, Object> map) {
 		
 		List<Media> mediaList = mapper.selectMediaList(map);
-		
 		return null;
+	}
+	
+	@Override
+	public int insertMedia(Media inserMedia) {
+		
+		int result = mapper.insertMedia(inserMedia);
+		
+		return result;
 	}
 	
 }
