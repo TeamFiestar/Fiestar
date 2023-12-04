@@ -207,6 +207,9 @@ img{
    margin: 0 0 0 700px;
 }
 
+.select{
+   border: none;
+}
 .checkOut-btn {
 
 border-radius: 4px;
@@ -229,4 +232,21 @@ border-radius: 4px;
     display: inline-flex;
     padding: 0 var(--horizontal-padding);
 
+}
+
+
+
+
+.cart-check{  
+   font-size: 22px;
+}
+
+/* .cart-check .checked{
+   color: rgb(0, 229, 255);
+} */
+.cart-check > input{
+   display: none;
+}
+.cart-check > input:checked + i{
+   color: rgb(0, 229, 255);
 }
