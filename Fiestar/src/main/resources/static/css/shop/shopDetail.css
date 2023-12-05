@@ -27,7 +27,7 @@
 .product-detail{
   margin-left: 80px;
   width: 510px;
-  height: 600px;
+  height: auto;
 }
 
 .artist-name {
@@ -113,7 +113,9 @@
 .product-purchase-name {
   font-size: 16px;
   margin-top: 22px;
+  justify-content: space-between;
 }
+
 
 .optionName {
   font-size: 14px;
