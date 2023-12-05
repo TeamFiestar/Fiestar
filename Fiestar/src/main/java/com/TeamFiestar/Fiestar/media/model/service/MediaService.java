@@ -19,4 +19,10 @@ public interface MediaService {
 	 */
 	int insertMedia(Media inserMedia);
 
+	/** 미디어 디테일 조회
+	 * @param mediaNo
+	 * @return
+	 */
+	Media mediaDetail(int mediaNo);
+
 }

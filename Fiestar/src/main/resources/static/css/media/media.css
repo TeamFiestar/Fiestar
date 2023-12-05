@@ -33,7 +33,6 @@ a {
   flex-direction: column;
   width: 1440px;
   align-items: flex-start;
-  gap: 10px;
   padding: 80px 50px 0px;
 /* position: relative; */
 
@@ -533,22 +532,18 @@ a {
   flex-grow: 1;
 }
 
-
-
-
-
-
-
-.speech-bubble-wrapper {
+.speech-bubble {
   cursor: pointer;
 }
 
-.comment-area.hide {
+.hide {
   opacity: 0; /* 투명도를 0으로 설정하여 사라지도록 함 */
   height: 0 !important;
   padding: 0 !important;
   pointer-events: none; /* 사라진 댓글은 클릭 이벤트를 받지 않도록 함 */
+  display: none !important;
 }
+
 
 .new-comment-area {
   opacity: 0; 

@@ -12,49 +12,6 @@ a {
 
 
 
-/* 네비게이션 바 */
-#navSection {
-  width: 100%;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 25px 0;
-}
-
-
-nav {
-  width: 100%;
-  background-color: #7743DB;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-nav ul li {
-  margin: 0;
-  padding: 15px 100px;
-}
-
-nav ul li a {
-  color: white;
-  font-size: 20px;
-}
-
-#board {
-  width: 1100px;
-  background-color: white;
-  flex-direction: column;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2px;
-}
-
 /* 아티스트 프로필 */
 #teamProfile {
   width: 1100px;
@@ -110,8 +67,9 @@ nav ul li a {
 }
 
 
-/* 게시글(사진 X) */
-.publishedText {
+
+/* 게시글(사진+글) */
+#publishedImage {
   margin-top: 80px;
   padding: 30px;
   background-color: #ffffff;
@@ -119,6 +77,7 @@ nav ul li a {
   align-items: flex-start;
   border-bottom: 2.5px solid #dbdbdb;
 }
+
 
 .profile {
   height: 36px;
@@ -129,45 +88,21 @@ nav ul li a {
 }
 
 .profile>div {
-  padding: 10px;
+  padding-right: 15px;
+}
+
+#imgprofile{
+  height: 70px;
+  width: 70px;
+  border-radius: 100;
+}
+
+#profileImg{
+  height: 100%;
+  width: 100%;
 }
 
 
-#post{
-  align-items: center;
-  display: flex;
-  padding: 10px;
-  font-size: 20px;
-  margin-bottom: 20px;
-}
-
-.textbox {
-  align-items: center;
-  display: flex;
-  padding: 10px;
-  font-size: 20px;
-  margin-bottom: 20px;
-}
-
-.reaction {
-  margin-top: 15px;
-}
-
-.reaction>i {
-  padding: 5px;
-  cursor: pointer;
-}
-
-
-
-/* 게시글(사진+글) */
-#publishedImage {
-  padding: 30px;
-  background-color: #ffffff;
-  width: 1100px;
-  border-bottom: 2.5px solid #dbdbdb;
-
-}
 
 /* 이미지 슬라이드 */
 .imgage-container {
@@ -235,6 +170,10 @@ nav ul li a {
   margin-bottom: 30px;
 }
 
+.textbox{
+  margin-top: 20px;
+}
+
 /* 게시판 작성 modal */
 .feedWriteModal {
   position: fixed;
@@ -271,21 +210,17 @@ nav ul li a {
   align-items: center;
   overflow: auto;
   height: 800px;
-
-
+  flex-direction: row;
 }
 
-#modalCloseButton {
-
+.modalCloseButton {
   display: flex;
   background-color: white;
   border: none;
   cursor: pointer;
-
   position: absolute;
   top: 20px;
   right: 30px;
-
   font-size: x-large;
 }
 
@@ -408,24 +343,93 @@ nav ul li a {
   margin-left: 180px;
 }
 
-
-/* 스크롤바 설정 */
-::-webkit-scrollbar {
-  width: 10px;
-  /*스크롤바의 너비*/
+#check-btn { display: none; }
+#check-btn:checked ~ .menubars { display: block; } 
+.menubars { 
+  display: none; 
+  list-style: none;
+  color: black;
 }
 
 
-::-webkit-scrollbar-thumb {
-  background-color: #7743DB;
-  /*스크롤바의 색상*/
+
+/* 게시판 상세페이지 modal */
+.feedDetailModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.feedDetailModal.show {
+  display: block;
+}
+
+.feedDetailModal.hidden {
+  display: hidden;
+}
+
+#dmodal-body{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 40px;
+  transform: translateX(-50%) translateY(-50%);
+  background-color: rgb(255, 255, 255);
   border-radius: 10px;
-  /*스크롤바 라운드*/
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  justify-content: end;
+  overflow: auto;
+  height: 800px;
+  flex-direction: row;
+  display: flex;
+}
+
+.feedImg{
+  width: 1100px;
 }
 
 
-::-webkit-scrollbar-track {
-  background-color: #eee;
-  border-radius: 10px;
-  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
+.feedContent{
+background-color: #ffffff;
+padding: 20px 0px;
+width: 800px;
+}
+
+.comment-container{
+  width: 300px;
+  padding: 20px;
+}
+
+.comment-write >textarea{
+  margin-top: 50px;
+}
+
+.feedContent{
+  width: 500px;
+  font-size: 15px;
+}
+
+.element{
+  margin-left: 300px;
+}
+
+
+.closeModal {
+  display: flex;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: x-large;
+}
+
+dialog{
+  width: 1100PX;
+  height: AUTO;
 }

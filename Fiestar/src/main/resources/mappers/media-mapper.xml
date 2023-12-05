@@ -2,16 +2,45 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.TeamFiestar.Fiestar.media.model.mapper.MediaMapper">
 	
+	<resultMap id="mediaRM" type="Media">
+		<collection property="mediaCommentList"
+		select="selectMediaComment"
+		column="MEDIA_NO"
+		javaType="java.util.ArrayList"
+		ofType="MediaComment"/>
+	</resultMap>
+	
+	<!-- 미디어 댓글 조회 -->
+	<select id="selectMediaComment" resultType="MediaComment">
+		SELECT MEDIA_COMMENT_NO ,MEDIA_COMMENT_CONTENT ,
+		TO_CHAR(MEDIA_COMMENT_ENROLL_DATE, 'MM.DD. HH24:MI') AS MEDIA_COMMENT_ENROLL_DATE,
+		MEMBER_NO ,
+		(SELECT MEMBER_NICKNAME  FROM "MEMBER" M WHERE M.MEMBER_NO = MC.MEMBER_NO  ) AS MEMBER_NICKNAME
+		
+		FROM MEDIA_COMMENT MC 
+		WHERE MEDIA_NO = #{medaiNo}
+		AND MEDIA_PARENT_COMMENT_NO IS NULL 
+		ORDER BY MC.MEDIA_COMMENT_ENROLL_DATE DESC
+	</select>
+	
+	<!-- 미디어 상세 조회 -->
+	<select id="mediaDetail" resultMap="mediaRM">
+		SELECT *
+		FROM MEDIA M
+		WHERE MEDIA_NO = #{mediaNo}
+	</select>
+	
+	
 	<select id="selectMediaList">
 		
 		SELECT *
 		FROM "MEDIA"
-		WHERE MEDIA_TITLE = #{mediaTitle}
+		WHERE MEDIA_TITLE LIKE '%${mediaTitle}%'
 		<if test="key == 1">
-			ORDER BY MEDIA_ENROLL_DATE 
+			ORDER BY MEDIA_ENROLL_DATE DESC
 		</if>
 		<if test="key == 2">
-			ORDER BY MEDIA_COUNT
+			ORDER BY MEDIA_COUNT DESC
 		</if>
 		
 	</select>
@@ -24,7 +53,8 @@
 			#{mediaDescription},
 			SYSDATE,
 			DEFAULT,
-			#{artistGroupNo})
+			#{artistGroupNo},
+			#{mediaTime})
 	</insert>
 	
 

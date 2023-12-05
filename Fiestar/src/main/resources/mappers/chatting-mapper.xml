@@ -4,7 +4,9 @@
 	
 	<insert id="insertMessage">
 		INSERT INTO "MESSAGE"
+
 		VALUES(SEQ_MESSAGE_NO.NEXTVAL, #{messageContent}, SYSDATE, #{memberNo}, #{artistGroupNo})
+
 	</insert>
 
 	<select id="selectMember" resultType="_int">

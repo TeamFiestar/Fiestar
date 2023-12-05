@@ -56,3 +56,35 @@ const swiper = new Swiper('.swiper-container', {
     prevEl: '.swiper-button-prev',
   },
 });
+
+// const toggleModal = (event) => {
+//   console.log(event);
+//   event.preventDefault();
+//   typeof modal != "undefined" && modal != null && isModalOpen(modal) ? closeModal(modal) : openModal(modal);
+// };
+
+// const modal_background = document.getElementById('feedDetail');
+
+// const isModalOpen = (modal) => {
+//   // modal_background.classList.add("show");
+// };
+
+// const closeModal = (modal) => {
+//   modal.classList.remov("show");
+//   // modal_background.classList.remove("show");
+//   document.body.style.overflow = "";
+// };
+
+function openModal(){
+  const modal = document.getElementById('feedDetail');
+  modal.classList.add("show");
+  document.body.style.overflow = "hidden";
+  
+}
+
+function closeModal(){
+  const modal = document.getElementById('feedDetail');
+  modal.classList.remove("show");
+  document.body.style.overflow = "";
+  
+}
