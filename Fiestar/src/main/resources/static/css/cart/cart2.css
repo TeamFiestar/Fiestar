@@ -128,9 +128,7 @@ h1 {
    background-color: #eff7ff ;
 }
 
-.amount > span{
-   background-color: black;
-}
+
 .amount-price{
    background-color: #eff7ff ;
    position: absolute;
@@ -207,8 +205,57 @@ img{
    margin: 0 0 0 700px;
 }
 
-.select{
+/* .select{
    border: none;
+} */
+
+.minus{
+   background-color: #eff7ff;
+}
+
+.plus{
+   background-color: #eff7ff;
+}
+
+.amount > .label{
+   background-color: #eff7ff;
+}
+
+.input-minus{
+   display: none;
+} 
+
+.input-plus{
+   display: none;
+}
+
+.item-amount > .amount{
+   background-color: #eff7ff;
+}
+
+.amount > label{
+   background-color: #eff7ff;
+}
+
+.item-count{
+   background-color: #eff7ff;
+}
+
+.fa-solid{
+   background-color: #eff7ff;
+
+}
+
+.x-btn>.fa-xmark{
+   color: rgb(199, 199, 199);
+}
+
+.x-btn > input{
+   top: 34%;
+   position: absolute;
+   right: 20px;
+   width: 10px;
+   display: none;
 }
 .checkOut-btn {
 
@@ -234,19 +281,29 @@ border-radius: 4px;
 
 }
 
-
+.fa-xmark{
+   background: bottom;
+}
 
 
 .cart-check{  
+   color: rgb(0, 229, 255);  
    font-size: 22px;
 }
 
 /* .cart-check .checked{
    color: rgb(0, 229, 255);
 } */
+
 .cart-check > input{
    display: none;
 }
+
+.amount > input {
+   display: none;
+}
+
 .cart-check > input:checked + i{
-   color: rgb(0, 229, 255);
+   /* color: rgb(0, 229, 255);  */
+   color: black;
 }
