@@ -23,10 +23,7 @@ function chattingEnter(e) {
 
 // 채팅 조회(비동기)
 function selectChatting() {
-  fetch(
-    "/chatting/select?+" +
-      `chattingRoomNo=${selectChattingRoomNo}&memberNo=${loginMemberNo}`
-  )
+  fetch("/chatting/select?+" + `chattingRoomNo=${selectChattingRoomNo}&memberNo=${loginMemberNo}`)
     .then((resp) => resp.text())
     .then((messageList) => {
       console.log(messageList);
@@ -45,6 +42,14 @@ function selectChatting() {
         const p = document.createElement("p");
         p.classList.add("chat");
         p.innerHTML = msg.messageContent;
+
+        // 유저 리스트
+        const ul2 = document.querySelector(".user-list");
+
+        const li2 = document.createElement("li");
+        li2.classList.add("userName");
+        li2.innerText = loginMember.memberNickname;
+        //
 
         if (chattingRoomNo == msg.chattingRoomNo) {
           li.classList.add("mychat-list");
@@ -67,6 +72,7 @@ function selectChatting() {
         }
 
         ul.append(li);
+        ul2.append(li2);
         display.scrollTop = display.scrollHeight;
       }
     })
@@ -155,6 +161,7 @@ chattingSock.onmessage = function (e) {
     }
 
     ul.append(li);
+
     display.scrollTop = display.scrollHeight;
     // }
   }

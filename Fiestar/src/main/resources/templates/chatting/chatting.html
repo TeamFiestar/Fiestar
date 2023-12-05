@@ -64,9 +64,8 @@
         </div>
         <div class="userList">
           <div class="userTitle">유저 닉네임</div>
-          <ul>
-            <li class="userName">유저이름</li>
-            <li class="userName">유저이름2유저이름2유저이름2유저이름2</li>
+          <ul class="user-list">
+            <li class="userName" th:text="${loginMember.memberNickname}">유저이름</li>
           </ul>
         </div>
       </div>
@@ -75,8 +74,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 
     <script th:inline="javascript">
-      const loginMemberNo =
-        /*[[${session.loginMember?.memberNo}]]*/ "로그인회원번호";
+      const loginMember = /*[[${session.loginMember}]]*/ "로그인 회원";
+      const loginMemberNo = /*[[${session.loginMember?.memberNo}]]*/ "로그인회원번호";
       const authority = /*[[${session.loginMember?.memberAuthority}]]*/ "권한";
       const userDefaultImage = /*[[#{user.default.image}]]*/ "기본 이미지";
       const artistGroupNo = /*[[${artistGroupNo}]]*/ "그룹번호";

@@ -53,7 +53,7 @@ public class ChattingWebsocketHandler extends TextWebSocketHandler{
 		System.out.println(msg);
 		int result = service.insertMessage(msg);
 		if(result > 0) {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd hh:mm");
+            SimpleDateFormat sdf = new SimpleDateFormat("MM.dd hh:mm");
             
             msg.setMessageSendTime(sdf.format(new Date()));
             
@@ -61,17 +61,23 @@ public class ChattingWebsocketHandler extends TextWebSocketHandler{
             
             for(WebSocketSession s : sessions) {
             	HttpSession temp = (HttpSession)s.getAttributes().get("session");
-            	temp.setAttribute("chattingRoomNo", msg.getChattingRoomNo());
-            	int loginMemberNo = ((Member)temp.getAttribute("loginMember")).getMemberNo();
-            	log.debug("로그인 회원 번호 : " + loginMemberNo);
+//            	temp.setAttribute("chattingRoomNo", msg.getChattingRoomNo());
+//            	temp.setAttribute("artistGroupNo", msg.getArtistGroupNo());
+//            	int loginMemberNo = ((Member)temp.getAttribute("loginMember")).getMemberNo();
+//            	log.debug("로그인 회원 번호 : " + loginMemberNo);
+//            	log.debug("temp : " + temp);
             	
-//            	int chattingRoomNo = ((int)temp.getAttribute("artistGroupNo"));
+//            	int chattingRoomNo = ((int)temp.getAttribute("chattingRoomNo"));
 //            	log.debug("채팅방 번호 : " + chattingRoomNo);
             	
-            	int artistGroupNo = ((Member)temp.getAttribute("loginMember")).getArtistGroupNo();
+//            	int artistGroupNo = ((ChattingRoom)temp.getAttribute("loginMember")).getArtistGroupNo();
+            	int artistGroupNo = (int)temp.getAttribute("artistGroupNo");
             	log.debug("아티스트 그룹 번호 : " + artistGroupNo);
             	
-            	if(artistGroupNo == msg.getArtistGroupNo()|| loginMemberNo == msg.getMemberNo()) {
+//            	int artistGroupNo = (int)temp.getAttribute("artistGroupNo");
+//            	log.debug("아티스트 그룹 번호 : " + artistGroupNo);
+            	
+            	if(artistGroupNo == msg.getArtistGroupNo()) {
             		s.sendMessage(new TextMessage(new Gson().toJson(msg)));
             		log.debug("채팅 보내짐");
             	}

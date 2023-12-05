@@ -85,7 +85,9 @@ main {
   text-align: left;
 }
 .chat-date {
-  font-size: 9px;
+  font-size: 10px;
+  margin-right: 3px;
+  margin-left: 3px;
 }
 .input-area {
   width: 100%;

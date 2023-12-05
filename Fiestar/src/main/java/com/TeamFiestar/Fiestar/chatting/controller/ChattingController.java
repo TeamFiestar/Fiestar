@@ -14,7 +14,7 @@ import com.TeamFiestar.Fiestar.chatting.model.dto.ChattingRoom;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
 @Controller
-@SessionAttributes({"loginMember"})
+@SessionAttributes({"loginMember","artistGroupNo"})
 public class ChattingController {
 
 	@GetMapping("chat")
@@ -27,7 +27,7 @@ public class ChattingController {
 	public String chatting(@PathVariable("artistGroupNo") int artistGroupNo, @SessionAttribute("loginMember") Member loginMember, Model model) {
 
 		model.addAttribute("artistGroupNo",artistGroupNo);
-		
+		model.addAttribute("loginMember", loginMember);
 		return "chatting/chatting";
 	}
 	
