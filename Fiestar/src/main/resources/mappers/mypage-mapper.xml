@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.TeamFiestar.Fiestar.mypage.mapper.MyPageMapper">
-
+	
+	<!-- 프로필 이미지 바꾸기 -->
+	<update id="profile">
+		UPDATE "MEMBER" 
+		SET MEMBER_PROFILE = #{memberProfile}
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
 
 </mapper>

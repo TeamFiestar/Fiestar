@@ -5,54 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="/css/myPage/myPage-Modify.css">
+  <link rel="stylesheet" href="/css/common/atristPageHeader.css">
   
 
 </head>
 <body>
-
-  <header>
-    <div class="header">
-      
-      <div class="header-left-side">
-        <a href="/" id="header-logo">
-          <img src="../../static/images/logo.png" style="width:165px;"  />
-        </a>
-      </div>
-      
-      <div class="header-right-side">
-        
-        <form action="#" method="GET" style="display: inline-flex; border:none; ">
-          <span class="search-area">
-            <button id="searchBtn" class="fa-solid fa-magnifying-glass"> 
-              <input type="search" name="query" id="search-input" placeholder="상품명 혹은 아티스트 검색" 
-              autocomplete="off" > 
-            </button>
-          </span>
-        </form>
-      
-        <a href="#"> 공지사항 </a>
-        <span>|</span>
-        <a href="/shop/home">샵 고객센터</a>
-        <a href="#"><button id="loginPage"> 로그인</button></a>
-        <a href="#"><button  id="signUp">회원가입</button></a>
-      </div>    
-          
-    </div>
-
-  </header>
-
-
-
+  <th:block th:replace="~{common/atristPageHeader}"></th:block>
   
   <div class="all">
-    <div class="BgImage"><img src="../../static/image/아티스트 메인배경.jpg" width="100%" height="100%"></div>
+    <div class="BgImage"><img src="/image/아티스트 메인배경.jpg" width="100%" height="100%"></div>
 
     <div class="main">
 
       <div class="main-1">
         <div class="profile">
           <div class="profile-img">
-            <img src="../../static/image/user.png" width="100%" height="100%">
+            <img src="/image/user.png" width="100%" height="100%">
           </div>
           <div class="profile-info">
             <div class="nickName"><h4>민둥민두</h4></div>
@@ -151,12 +119,12 @@
                 <h3>프로필 이미지</h3>
               </div>
               <div class="profileImgModify">
-                <form action="#">
+                <form action="profile"  method="POST" name="myPageFrm" id="profileFrm" enctype="multipart/form-data">
                   <div class="profile-img-modify">
                     <label for="file">
-                      <div class="userImg"><img src="../../static/image/user.png" width="100%" height="100%"></div>
+                      <div class="userImg"><img src="/image/user.png" width="100%" height="100%"></div>
                     </label>
-                    <input type="file" name="file2" id="file2">
+                    <input type="file" name="memberProfile" id="file2" accept="image/*">
                   </div>
                 </form>
                 <div class="profileImgModifyBtn"><button>수정완료</button></div>

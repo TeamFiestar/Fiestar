@@ -343,6 +343,13 @@ a {
   margin-left: 180px;
 }
 
+#check-btn { display: none; }
+#check-btn:checked ~ .menubars { display: block; } 
+.menubars { 
+  display: none; 
+  list-style: none;
+  color: black;
+}
 
 
 
@@ -420,4 +427,9 @@ width: 800px;
   top: 20px;
   right: 30px;
   font-size: x-large;
+}
+
+dialog{
+  width: 1100PX;
+  height: AUTO;
 }
