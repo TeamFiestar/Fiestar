@@ -20,5 +20,6 @@ public class Member {
 	   private String memberProfile;
 	   private String memberEnrollDate;
 	   private String memberDelFl;
+	   private String memberBackImage;
 	   
 }
