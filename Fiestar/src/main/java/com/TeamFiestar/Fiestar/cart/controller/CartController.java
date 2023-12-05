@@ -32,9 +32,6 @@ public class CartController {
 //  전달된 데이터 받아와서 화면에 출력	
 
 	
-	
-	
-
 	@GetMapping("cartPage")
 	public String cartPage(Model model, 
 			@SessionAttribute(value = "loginMember", required = false) Member loginMember,

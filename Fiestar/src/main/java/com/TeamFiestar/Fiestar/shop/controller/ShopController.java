@@ -1,14 +1,14 @@
 package com.TeamFiestar.Fiestar.shop.controller;
 
-<<<<<<< HEAD
-import org.springframework.stereotype.Controller; 
-=======
+
+import org.springframework.stereotype.Controller;  
+
 
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
->>>>>>> origin/main
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.TeamFiestar.Fiestar.shop.model.service.ShopService;
