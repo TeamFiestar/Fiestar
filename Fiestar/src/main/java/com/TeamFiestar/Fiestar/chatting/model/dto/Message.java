@@ -16,4 +16,6 @@ public class Message {
 	private String messageSendTime;
 	private int chattingRoomNo;
 	private int memberNo;
+	private int sendAuthority;
+	private int artistGroupNo;
 }

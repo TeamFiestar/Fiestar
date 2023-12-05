@@ -66,8 +66,9 @@ public class DBConfig {
       // -> 해당 패키지에 있는 모든 클래스가 클래스명으로 별칭이 지정됨
 
       sessionFactoryBean.setTypeAliasesPackage("com.TeamFiestar.Fiestar.member.model.dto, "
-      										 + "com.TeamFiestar.Fiestar.media.model.dto, "
-      										 + "com.TeamFiestar.Fiestar.shop.model.dto");
+      										 + "com.TeamFiestar.Fiestar.chatting.model.dto");
+
+
       
       // 마이바티스 설정 파일 경로 지정
       sessionFactoryBean.setConfigLocation(applicationContext.getResource("classpath:mybatis-config.xml"));

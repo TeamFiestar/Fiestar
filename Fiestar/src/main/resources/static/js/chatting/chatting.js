@@ -3,6 +3,11 @@ let selectTargetNo; // 현재 채팅 대상
 let selectTargetName; // 대상의 이름
 let selectTargetProfile; // 대상의 프로필
 
+let chattingRoomNo;
+
+let nicknameList;
+
+const display = document.getElementsByClassName("chat-ul")[0];
 // 채팅방 입장 = 바로 접속
 function chattingEnter(e) {
   console.log(e.target);
@@ -20,7 +25,7 @@ function chattingEnter(e) {
 
 // 채팅 조회(비동기)
 function selectChatting() {
-  fetch("/chatting/select?+" + `chattingRoomNo=${selectChattingRoomNo}`)
+  fetch("/chatting?artistGroupNo=" + artistGroupNo)
     .then((resp) => resp.text())
     .then((messageList) => {
       console.log(messageList);
@@ -40,7 +45,15 @@ function selectChatting() {
         p.classList.add("chat");
         p.innerHTML = msg.messageContent;
 
-        if (loginMemberNo == msg.senderNo) {
+        // 유저 리스트
+        // const ul2 = document.querySelector(".user-list");
+
+        // const li2 = document.createElement("li");
+        // li2.classList.add("userName");
+        // li2.innerText = loginMember.memberNickname;
+        //
+
+        if (chattingRoomNo == msg.chattingRoomNo) {
           li.classList.add("mychat-list");
           li.append(span, p);
         } else {
@@ -61,43 +74,104 @@ function selectChatting() {
         }
 
         ul.append(li);
+        // ul2.append(li2);
         display.scrollTop = display.scrollHeight;
       }
     })
     .catch((e) => console.log(e));
 }
 
+function selectUserList() {
+  fetch("chatting?artistGroupNo=" + artistGroupNo)
+    .then((resp) => resp.text)
+    .then((userList) => {
+      console.log(userList);
+
+      const userNameList = document.querySelector(".user-list");
+      userNameList.innerHTML = "";
+
+      for (let user of userList) {
+        const li = document.createElement("li");
+        li.classList.add("userName");
+        li.innerHTML = user.memberNickname;
+
+        userNameList.append(li);
+      }
+    });
+}
+
+let userSock;
+
+if (loginMemberNo != "") {
+  console.log(userSock);
+  userSock = new SockJS("/userSock");
+}
+const userList = () => {
+  var obj = {
+    memberNo: loginMemberNo,
+    memberNickname: memberNickname,
+    artistGroupNo: artistGroupNo,
+  };
+  console.log(obj);
+  userSock.send(JSON.stringify(obj));
+};
+
+userSock.onmessage = function (e) {
+  result = JSON.parse(e.data);
+  console.log(result);
+
+  if (typeof result == "object") {
+    nicknameList = result;
+  } else {
+    nicknameList.splice(nicknameList.indexOf(result), 1);
+  }
+
+  const ul = document.querySelector(".user-list");
+  ul.innerHTML = "";
+
+  nicknameList.forEach((nickname) => {
+    const li = document.createElement("li");
+
+    li.classList.add("userName");
+    li.innerHTML = nickname;
+    ul.append(li);
+  });
+};
+
+//-------------------------------------------------
 let chattingSock;
 
 if (loginMemberNo != "") {
-  chattingSock = new SockJs("/chatSock");
+  console.log(chattingSock);
+  chattingSock = new SockJS("/chatSock");
 }
 // let chattingSock = new SockJS("/chatSock");
 
 const send = document.querySelector("#send");
 
-const sendMessage = () => {
-  const inputChat = document.querySelector("#inputChat");
+const inputChat = document.querySelector("#inputChat");
 
+const sendMessage = () => {
   if (inputChat.value.trim().length == 0) {
     alert("채팅을 입력해주세요");
     inputChat.value = "";
   } else {
     var obj = {
-      senderNo: loginMemberNo,
-      targetNo: selectTargetNo,
-      chattingRoomNo: selectChattingRoomNo,
+      memberNo: loginMemberNo,
+      sendAuthority: authority,
+      // chattingRoomNo: artistGroupNo,
+      artistGroupNo: artistGroupNo,
       messageContent: inputChat.value,
     };
     console.log(obj);
-
+    console.log(artistGroupNo);
     chattingSock.send(JSON.stringify(obj));
 
     inputChat.value = "";
   }
 };
 
-inputChat.addEventListner("keyup", (e) => {
+inputChat.addEventListener("keyup", (e) => {
   if (e.key == "Enter") {
     if (!e.shiftKey) {
       sendMessage();
@@ -105,49 +179,54 @@ inputChat.addEventListner("keyup", (e) => {
   }
 });
 
-chattingSock.onmesage = (e) => {
+chattingSock.onmessage = function (e) {
   const msg = JSON.parse(e.data);
   console.log(msg);
 
   // 현재 보고있는 경우 비동기
-  if (selectChattingRoomNo == msg.chattingRoomNo) {
+  if (artistGroupNo == msg.artistGroupNo) {
     const ul = document.querySelector(".chat-ul");
 
-    ul.innerHTML = "";
+    // ul.innerHTML = "";
 
-    for (let msg of messageList) {
-      const li = document.createElement("li");
+    // for (let msg of messageList) {
+    const li = document.createElement("li");
 
-      const span = document.createElement("span");
-      span.classList.add("chat-date");
-      span.innerText = msg.messageSendTime;
+    const span = document.createElement("span");
+    span.classList.add("chat-date");
+    span.innerText = msg.messageSendTime;
 
-      const p = document.createElement("p");
-      p.classList.add("chat");
-      p.innerHTML = msg.messageContent;
+    const p = document.createElement("p");
+    p.classList.add("chat");
+    p.innerHTML = msg.messageContent;
 
-      if (loginMemberNo == msg.senderNo) {
-        li.classList.add("mychat-list");
-        li.append(span, p);
-      } else {
-        li.classList.add("chat-list");
+    if (loginMemberNo == msg.memberNo) {
+      li.classList.add("mychat-list");
+      li.append(span, p);
+    } else {
+      li.classList.add("chat-list");
 
-        const img = document.createElement("img");
-        img.setAttribute("src", selectTargetProfile);
+      const img = document.createElement("img");
+      img.setAttribute("src", selectTargetProfile);
 
-        const div = document.createElement("div");
+      const div = document.createElement("div");
 
-        const b = document.createElement("b");
-        b.innerText = selectTargetName;
+      const b = document.createElement("b");
+      b.innerText = memberNickname;
 
-        const br = document.createElement("br");
+      const br = document.createElement("br");
 
-        div.append(b, br, p, span);
-        li.append(img, div);
-      }
-
-      ul.append(li);
-      display.scrollTop = display.scrollHeight;
+      div.append(b, br, p, span);
+      li.append(img, div);
     }
+
+    ul.append(li);
+
+    display.scrollTop = display.scrollHeight;
+    // }
   }
 };
+
+document.addEventListener("DOMContentLoaded", () => {
+  send.addEventListener("click", sendMessage);
+});
