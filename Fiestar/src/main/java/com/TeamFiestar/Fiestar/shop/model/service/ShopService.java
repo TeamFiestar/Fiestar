@@ -4,9 +4,11 @@ import java.util.Map;
 
 public interface ShopService {
 
-	Map<String, Object> shopMain(Map<String, Object> paramMap);
+	Map<String, Object> shopMain();
 
+	int shopMainCount();
 
+	
 
 
 }

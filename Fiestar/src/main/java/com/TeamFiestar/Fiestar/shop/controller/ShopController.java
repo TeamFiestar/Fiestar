@@ -1,15 +1,13 @@
 package com.TeamFiestar.Fiestar.shop.controller;
 
+
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import com.TeamFiestar.Fiestar.shop.model.service.ShopService;
-
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -21,17 +19,23 @@ public class ShopController {
 
 	
 	@GetMapping("home")
-	public String shopMain(Model model, 
-							@RequestParam Map<String, Object> paramMap) {
+	public String shopMain(Model model) {
 		
-		Map<String, Object> map = service.shopMain(paramMap);
+		Map<String, Object> map = service.shopMain();
 		model.addAttribute("map",map);
+	
+		int shopCount = service.shopMainCount();
+		model.addAttribute("shopCount", shopCount);
+		
 		
 		return "shop/home";
-	}
+	}	
 	
 	
+
 	
+	
+
 	
 	
 	

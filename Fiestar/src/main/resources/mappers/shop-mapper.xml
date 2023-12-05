@@ -4,12 +4,18 @@
 	
 	
 	<select id="shopMain" resultType="Product">
-		SELECT PRODUCT_IMAGE , PRODUCT_NAME , PRODUCT_PRICE 
+		SELECT PRODUCT_IMAGE, PRODUCT_NAME, PRODUCT_PRICE
 		FROM PRODUCT
 	</select>
+	
+	
+	<select id="shopMainCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM PRODUCT
+	</select>
+	
+	
 
-	
-	
-	
+
 
 </mapper>
