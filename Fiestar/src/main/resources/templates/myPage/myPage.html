@@ -4,56 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="../../static/css/myPage/myPage.css">
-  
-
+  <link rel="stylesheet" href="/css/myPage/myPage.css">
+  <link rel="stylesheet" href="/css/common/atristPageHeader.css">
 </head>
 <body>
 
-  <header>
-    <div class="header">
-      
-      <div class="header-left-side">
-        <a href="/" id="header-logo">
-          <img src="../../static/images/logo.png" style="width:165px;"  />
-        </a>
-      </div>
-      
-      <div class="header-right-side">
-        
-        <form action="#" method="GET" style="display: inline-flex; border:none; ">
-          <span class="search-area">
-            <button id="searchBtn" class="fa-solid fa-magnifying-glass"> 
-              <input type="search" name="query" id="search-input" placeholder="상품명 혹은 아티스트 검색" 
-              autocomplete="off" > 
-            </button>
-          </span>
-        </form>
-      
-        <a href="#"> 공지사항 </a>
-        <span>|</span>
-        <a href="/shop/home">샵 고객센터</a>
-        <a href="#"><button id="loginPage"> 로그인</button></a>
-        <a href="#"><button  id="signUp">회원가입</button></a>
-      </div>    
-          
-    </div>
-
-  </header>
-  
-  
-
-
+  <th:block th:replace="~{common/atristPageHeader}"></th:block>
   
   <div class="all">
-    <div class="BgImage"><img src="../../static/image/아티스트 메인배경.jpg" width="100%" height="100%"></div>
+    <div class="BgImage"><img src="/image/아티스트 메인배경.jpg" width="100%" height="100%"></div>
 
     <div class="main">
 
       <div class="main-1">
         <div class="profile">
           <div class="profile-img">
-            <img src="../../static/image/user.png" width="100%" height="100%">
+            <img src="/image/user.png" width="100%" height="100%">
           </div>
           <div class="profile-info">
             <div class="nickName"><h4>민둥민두</h4></div>
@@ -67,61 +33,61 @@
         <div class="sidebar">
           <div class="Bulletin">
             <div class="icon">
-              <img src="../../static/image/게시글.png" width="100%" height="100%">
+              <img src="/image/게시글.png" width="100%" height="100%">
             </div>
             <div class="center">
-              <a href="#">내가 작성한 게시글</a>
+              <a href="/myPage/myPage">내가 작성한 게시글</a>
             </div>
             <div class="side">
-              <img src="../../static/image/Vector 9.png" width="100%" height="100%">
+              <img src="/image/Vector 9.png" width="100%" height="100%">
             </div>
           </div>
 
           <div class="comment">
             <div class="icon">
-              <img src="../../static/image/댓글.png" width="100%" height="100%">
+              <img src="/image/댓글.png" width="100%" height="100%">
             </div>
             <div class="center">
-              <a href="#">내가 작성한 댓글</a>
+              <a href="/myPage/myPage-comment">내가 작성한 댓글</a>
             </div>
             <div class="side">
-              <img src="../../static/image/Vector 9.png" width="100%" height="100%">
+              <img src="/image/Vector 9.png" width="100%" height="100%">
             </div>
           </div>
 
           <div class="artist">
             <div class="icon">
-              <img src="../../static/image/아티스트.png" width="100%" height="100%">
+              <img src="/image/아티스트.png" width="100%" height="100%">
             </div>
             <div class="center">
-              <a href="#">구독한 아티스트</a>
+              <a href="/myPage/myPage-artist">구독한 아티스트</a>
             </div>
             <div class="side">
-              <img src="../../static/image/Vector 9.png" width="100%" height="100%">
+              <img src="/image/Vector 9.png" width="100%" height="100%">
             </div>
           </div>
 
           <div class="Purchase">
             <div class="icon">
-              <img src="../../static/image/구매내역.png" width="100%" height="100%">
+              <img src="/image/구매내역.png" width="100%" height="100%">
             </div>
             <div class="center">
-              <a href="#">구매내역</a>
+              <a href="/myPage/myPage-Purchase">구매내역</a>
             </div>
             <div class="side">
-              <img src="../../static/image/Vector 9.png" width="100%" height="100%">
+              <img src="/image/Vector 9.png" width="100%" height="100%">
             </div>
           </div>
 
           <div class="Notice">
             <div class="icon"> 
-              <img src="../../static/image/공지사항.png" width="100%" height="100%">
+              <img src="/image/공지사항.png" width="100%" height="100%">
             </div>
             <div class="center">
-              <a href="#">공지사항</a>
+              <a href="/myPage/myPage-Withdrawal">공지사항</a>
             </div>
             <div class="side">
-              <img src="../../static/image/Vector 9.png" width="100%" height="100%">
+              <img src="/image/Vector 9.png" width="100%" height="100%">
             </div>
           </div>
 
@@ -138,7 +104,7 @@
           <div class="myBulletin">
             <div class="myProfile">
               <div class="profile-img-small">
-                <img src="../../static/image/user.png" width="100%">
+                <img src="/image/user.png" width="100%">
               </div>
               <div class="profile-info-small">
                 <div class="nickName-small"><h4>민둥민두</h4></div>
@@ -147,8 +113,8 @@
             </div>
             <div class="myContent"><h3>지금 코노 가는중!!</h3></div>
             <div class="delete">
-              <img src="../../static/image/Heart.png">
-              <img src="../../static/image/Speech Bubble.png">
+              <img src="/image/Heart.png">
+              <img src="/image/Speech Bubble.png">
             </div>
           </div>
           <hr class="myPageHr" width="730px" color="gray"><br><br>
@@ -156,7 +122,7 @@
           <div class="myBulletin">
             <div class="myProfile">
               <div class="profile-img-small">
-                <img src="../../static/image/user.png" width="100%">
+                <img src="/image/user.png" width="100%">
               </div>
               <div class="profile-info-small">
                 <div class="nickName-small"><h3>민둥민두</h3></div>
@@ -165,8 +131,8 @@
             </div>
             <div class="myContent"><h3>지금 코노 가는중!!!</h3></div>
             <div class="delete">
-              <img src="../../static/image/Heart.png">
-              <img src="../../static/image/Speech Bubble.png">
+              <img src="/image/Heart.png">
+              <img src="/image/Speech Bubble.png">
             </div>
           </div>
 
@@ -175,7 +141,7 @@
           <div class="myBulletin">
             <div class="myProfile">
               <div class="profile-img-small">
-                <img src="../../static/image/user.png" width="100%">
+                <img src="/image/user.png" width="100%">
               </div>
               <div class="profile-info-small">
                 <div class="nickName-small"><h3>민둥민두</h3></div>
@@ -184,8 +150,8 @@
             </div>
             <div class="myContent"><h3>지금 코노 가는중!!!</h3></div>
             <div class="delete">
-              <img src="../../static/image/Heart.png">
-              <img src="../../static/image/Speech Bubble.png">
+              <img src="/image/Heart.png">
+              <img src="/image/Speech Bubble.png">
             </div>
           </div>
 
@@ -194,7 +160,7 @@
           <div class="myBulletin">
             <div class="myProfile">
               <div class="profile-img-small">
-                <img src="../../static/image/user.png" width="100%">
+                <img src="/image/user.png" width="100%">
               </div>
               <div class="profile-info-small">
                 <div class="nickName-small"><h3>민둥민두</h3></div>
@@ -203,8 +169,8 @@
             </div>
             <div class="myContent"><h3>지금 코노 가는중!!!</h3></div>
             <div class="delete">
-              <img src="../../static/image/Heart.png">
-              <img src="../../static/image/Speech Bubble.png">
+              <img src="/image/Heart.png">
+              <img src="/image/Speech Bubble.png">
             </div>
           </div>
 
@@ -212,9 +178,40 @@
 
         </div>
 
-        <div class="pagination-area">
-          <div class="pagination"><< < 1 2 3 4 5 6 7 8 9 10 > >></div>
+        <div class="pagination-area" >
+          <ul class="pagination">
+
+            <!-- 첫 페이지로 이동 -->
+            <li>
+              <a >&lt;&lt;</a>
+            </li>
+
+            <!-- 이전 목록 마지막 번호로 이동 -->
+            <li>
+              <a >&lt;</a>
+            </li>
+
+            <th:block >
+
+              <!-- 현재 보고있는 페이지 -->
+              <li >
+                <a class="current">1</a>
+              </li>
+
+              <!-- 보고있지 않은 페이지 -->
+              <li >
+                <a>2</a>
+              </li>
+            </th:block>
+
+            <!-- 다음 목록 시작 번호로 이동 -->
+            <li><a>&gt;</a></li>
+
+            <!-- 끝 페이지로 이동 -->
+            <li><a>&gt;&gt;</a></li>
+          </ul>
         </div>
+
         
       </div>
     </div>

@@ -5,6 +5,7 @@ import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 
+import com.TeamFiestar.Fiestar.chatting.model.handler.ChattingUserHandler;
 import com.TeamFiestar.Fiestar.chatting.model.handler.ChattingWebsocketHandler;
 import com.TeamFiestar.Fiestar.common.interceptor.ChattingHandShakeInterceptor;
 import com.TeamFiestar.Fiestar.main.model.websocket.TestWebsocketHandler;
@@ -18,6 +19,7 @@ public class WebSocketConfig implements WebSocketConfigurer{
 
 	private final ChattingWebsocketHandler chattingWebsocketHandler;
 	private final TestWebsocketHandler testWebsocketHandler;
+	private final ChattingUserHandler chattingUserHandler;
 	
 	private final ChattingHandShakeInterceptor chattingHandShakeInterceptor;
 	
@@ -30,9 +32,15 @@ public class WebSocketConfig implements WebSocketConfigurer{
 		.withSockJS();
 		
 		registry.addHandler(chattingWebsocketHandler, "/chatSock")
-			.setAllowedOriginPatterns("https://localhost/","https://127.0.0.1/")
+			.setAllowedOriginPatterns("https://localhost/","https://127.0.0.1/","http://192.168.10.18/")
 			.addInterceptors(chattingHandShakeInterceptor)
 			.withSockJS();
+		
+		registry.addHandler(chattingUserHandler, "/userSock")
+		.setAllowedOriginPatterns("https://localhost/","https://127.0.0.1/","http://192.168.10.18/")
+		.addInterceptors(chattingHandShakeInterceptor)
+		.withSockJS();
+		
 	}
 	
 }

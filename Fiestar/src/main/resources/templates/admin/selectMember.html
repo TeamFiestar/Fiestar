@@ -20,12 +20,7 @@
         <section>
           <article id="search-container">
             <input type="text" />
-            <a href=""
-              ><i
-                class="fa-solid fa-magnifying-glass fa-xl"
-                style="color: #7743db"
-              ></i
-            ></a>
+            <a href=""><i class="fa-solid fa-magnifying-glass fa-xl" style="color: #7743db"></i></a>
           </article>
           <article>
             <a href="">로그아웃</a>
@@ -34,9 +29,7 @@
             <a href="">마이페이지</a>
           </article>
           <article>
-            <a href=""
-              ><i class="fa-solid fa-store fa-xl" style="color: #7743db"></i
-            ></a>
+            <a href=""><i class="fa-solid fa-store fa-xl" style="color: #7743db"></i></a>
           </article>
         </section>
       </header>
@@ -120,54 +113,7 @@
       </div>
     </div>
     <main>
-      <div>
-        <div class="sidebar">
-          <aside>
-            <nav>
-              <ul>
-                <ul class="sidebar-list" id="member-search">
-                  <li>
-                    회원 관리
-                    <ul id="sidebar-sublist">
-                      <li>
-                        <a href="selectMember.html" id="a">일반 회원 조회</a>
-                      </li>
-                      <li>
-                        <a href="deleteMember.html" id="a">탈퇴 회원 조회</a>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-                <ul class="sidebar-list" id="member-search">
-                  <li>
-                    주문 배송 관리
-                    <ul id="sidebar-sublist">
-                      <li><a href="order.html" id="a">주문 배송 조회</a></li>
-                    </ul>
-                  </li>
-                </ul>
-                <ul class="sidebar-list" id="member-search">
-                  <li>
-                    신고 관리
-                    <ul id="sidebar-sublist">
-                      <li><a href="report.html" id="a">게시글 신고</a></li>
-                    </ul>
-                  </li>
-                </ul>
-                <ul class="sidebar-list" id="member-search">
-                  <li>
-                    메인 공지사항
-                    <ul id="sidebar-sublist">
-                      <li><a href="notice.html" id="a">공지사항 목록</a></li>
-                      <li><a href="noticeAdd.html" id="a">공지사항 등록</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </ul>
-            </nav>
-          </aside>
-        </div>
-      </div>
+      <th:block th:replace="~{common/admin}"></th:block>
       <div class="main">
         <h1>일반 회원 조회</h1>
         <br />

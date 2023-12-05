@@ -19,66 +19,8 @@
       </div>
     </div>
     <main>
-      <div>
-        <div class="sidebar">
-          <aside>
-            <nav>
-              <ul>
-                <ul class="sidebar-list" id="member-search">
-                  <li>
-                    회원 관리
-                    <ul>
-                      <li>
-                        <a href="subscribeMember.html" id="a">구독 회원 조회</a>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-
-                <ul class="sidebar-list" id="member-search">
-                  <li>
-                    주문 배송 관리
-                    <ul>
-                      <li><a href="artistOrder.html" id="a">배송 조회</a></li>
-                    </ul>
-                  </li>
-                </ul>
-                <ul class="sidebar-list" id="member-search">
-                  <li>
-                    굿즈 관리
-                    <ul>
-                      <li><a href="goods.html" id="a">굿즈 등록</a></li>
-                    </ul>
-                  </li>
-                </ul>
-                <ul class="sidebar-list" id="member-search">
-                  <li>
-                    신고 관리
-                    <ul>
-                      <li>
-                        <a href="artistReport.html" id="a">게시글 신고</a>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-                <ul class="sidebar-list" id="member-search">
-                  <li>
-                    아티스트 공지사항
-                    <ul id="sidebar-sublist">
-                      <li>
-                        <a href="artistnotice.html" id="a">아티스트 공지사항 목록</a>
-                      </li>
-                      <li>
-                        <a href="artistNoticeAdd.html" id="a">아티스트 공지사항 등록</a>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </ul>
-            </nav>
-          </aside>
-        </div>
-      </div>
+      <!-- th:replace -->
+      <th:block th:replace="~{common/adminArtist}"></th:block>
       <div class="report-main">
         <h4>NewJeans</h4>
         <h1>신고 조회</h1>
