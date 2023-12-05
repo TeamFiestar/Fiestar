@@ -1,5 +1,7 @@
 package com.TeamFiestar.Fiestar.media.model.dto;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -18,5 +20,7 @@ public class Media {
 	private int mediaCount;
 	private int artistGroupNo;
 	private String mediaTime;
+	
+	private List<MediaComment> mediaCommentList;
 	
 }

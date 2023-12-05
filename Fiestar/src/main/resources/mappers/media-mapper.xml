@@ -2,6 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.TeamFiestar.Fiestar.media.model.mapper.MediaMapper">
 	
+	<resultMap id="mediaRM" type="Media">
+		<collection property="mediaCommentList"
+		select="selectMediaComment"
+		column="MEDIA_NO"
+		javaType="java.util.ArrayList"
+		ofType="MediaComment"/>
+	</resultMap>
+	
+	<!-- 미디어 댓글 조회 -->
+	<select id="selectMediaComment" resultType="MediaComment">
+		SELECT *
+		FROM MEDIA_COMMENT MC 
+		WHERE MEDIA_NO = #{mediaNo}
+	</select>
+	
+	<!-- 미디어 상세 조회 -->
+	<select id="mediaDetail" resultMap="mediaRM">
+		SELECT *
+		FROM MEDIA M
+		WHERE MEDIA_NO = #{mediaNo}
+	</select>
+	
+	
 	<select id="selectMediaList">
 		
 		SELECT *

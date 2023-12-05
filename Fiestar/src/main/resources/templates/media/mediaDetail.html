@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/css/media/media.css" />
+  </head>
+
+
+  <body>
+    
+    
+    
+    <div id="modalContainer" class="hidden">
+      <div id="modalContent">
+        <p>모달 창 입니다.</p>
+        <button id="modalCloseButton" onclick="modalClose()">닫기</button>
+      </div>
+    </div>
+
+
+    <div class="div-wrapper">
+      <div class="frame">
+        <div class="div">
+          <div class="frame-2">
+            <div class="frame-3">
+              <div class="rectangle" id="remote-playerlist"></div>
+              <img class="male-user" src="/img/male-user-10.png" />
+            </div>
+            <div class="frame-4">
+              <div class="frame-5"><button class="replay-btn agora-btn" id="host-join" onclick="tokenGenerator('host', 1)">host join</button></div>
+              <div class="frame-5"><button class="audience-btn agora-btn" id="audience-join" onclick="tokenGenerator('audience', 2)">audience join</button></div>
+              <div class="frame-5"><button class="leave agora-btn" id="leave">leave</button></div>
+              <div class="text-wrapper-2">미디어/라이브 제목</div>
+              <div class="frame-6">
+                <img class="vector" src="/img/vector-13.svg" />
+                <div class="text-wrapper-3">4k(조회수)</div>
+              </div>
+            </div>
+            <div class="comment-area-in">
+              <img class="img" src="/img/male-user.png" />
+              <div class="comment-writer-area"><div class="text-wrapper-4">게시글 작성자</div></div>
+              <div class="text-wrapper-5">11.21. 02:43</div>
+              <img class="comment-profile" src="/img/frame-11979-9.svg" />
+            </div>
+            <div class="frame-10"><div class="text-wrapper-6">작성자 설명</div></div>
+          </div>
+          <div class="frame-wrapper">
+            <div class="comment-list-area">
+              <div class="comment-count">
+                <img src="/img/vector-9.svg" class="back-button" onclick="goBack()">
+                <div class="text-wrapper-7">N개의 댓글</div>
+              </div>
+              <div class="comment-list">
+
+                 <!-- 댓글 -->
+                <div class="comment-area" >
+
+                  <div class="comment-area-in">
+
+                    <img class="img" src="/img/male-user.png" />
+
+                    <div class="comment-writer-area">
+                      <div class="comment-writer">댓글 작성자</div>
+                      <div class="comment-date">11.21. 02:43</div>
+                    </div>
+
+                    <div class="comment-profile">
+                      <img class="report-img" src="/img/report-img.svg" onclick="modalOpen()"/>
+                    </div>
+
+                  </div>
+
+                  <div class="comment-content-area">
+                    <div class="comment-content">
+                      와 재밌다!-------------------------------------------------------------------------------------------------------------------------------------------
+                    </div>
+                  </div>
+
+                  <div class="speech-bubble-wrapper">
+                    <img class="speech-bubble" src="/img/speech-bubble.png" th:onclick="|loadReplies(this, ${mediaCommentNo})|"/>
+                  </div>
+
+                </div>
+
+
+
+
+
+                <div class="new-comment-area hide">
+                  <!-- 여기에 나타날 새로운 댓글 창 -->
+                  <div class="comment-area-in">
+                    <img class="img" src="/img/male-user.png" />
+
+                    <div class="comment-writer-area">
+                      <div class="comment-writer">답글 작성자</div>
+                      <div class="comment-date">11.21. 02:43</div>
+                    </div>
+
+                    <img class="comment-profile" src="/img/frame-11979.png" />
+                  </div>
+
+                  <div class="comment-content-area">
+                    <div class="comment-content">와 르세라핌!</div>
+                  </div>
+
+                  <div class="speech-bubble-wrapper">
+                    <img class="speech-bubble" src="/img/speech-bubble.png" />
+                  </div>
+                </div>
+
+              </div>
+              <div class="comment-input-area">
+                <input type="hidden" value="0" id="parent-comment-no">
+                <textarea class="comment-input" id="comment-input" placeholder="댓글을 입력하세요"></textarea>
+                <div class="comment-input-btn">
+                  <div class="up-arrow-wrapper" onclick="" ><img class="up-arrow" src="/img/up-arrow.png" /></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script th:inline="javascript">
+
+      const mediaCommentList = /*[[${mediaDetail.mediaCommentList}]]*/ "미디어 댓글 리스트";
+      const loginMemberNo = /*[[${session.loginMember?.memberNo}]]*/ "회원번호";
+      const loginMemberNickname = /*[[${session.loginMember?.memberNickname}]]*/ "회원닉네임";
+      const mediaNo = /*[[${mediaNo}]]*/ "미디어 번호";
+
+    </script>
+
+    <script src="https://download.agora.io/sdk/release/AgoraRTC_N.js"></script>
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/media/media.js"></script>
+    <script src="/js/basicLive.js"></script>
+  </body>
+</html>
