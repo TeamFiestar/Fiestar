@@ -17,26 +17,29 @@ public class ShopServiceImpl implements ShopService{
 
 	private final ShopMapper mapper;
 	
-	
 	@Override
-	public Map<String, Object> shopMain() {
+	public Map<String, Object> shopMain(Map<String, Object> paramMap) {
 		
-		List<Product> productList = mapper.shopMain();
+		List<Product> productList = mapper.shopMain(paramMap);
 		Map<String, Object> map = new HashMap<>();
 		map.put("productList", productList);
-		
 		return map;
 	}
 	
-	
 	@Override
 	public int shopMainCount() {
-		
 		return mapper.shopMainCount();
 	}
-	
-	
-	
+		
+	@Override
+	public Map<String, Object> searchList(Map<String, Object> paramMap) {
+		List<Product> productList = mapper.searchList();
+		Map<String, Object> map = new HashMap<>();
+		map.put("productList", productList);
+		return map;
+	}
+
+		
 
 	
 	
