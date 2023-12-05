@@ -52,15 +52,15 @@
               <div class="comment-list">
 
                  <!-- 댓글 -->
-                <div class="comment-area" >
+                <div class="comment-area" th:each="comment : ${mediaDetail.mediaCommentList}" th:object="${comment}">
 
                   <div class="comment-area-in">
 
                     <img class="img" src="/img/male-user.png" />
 
                     <div class="comment-writer-area">
-                      <div class="comment-writer">댓글 작성자</div>
-                      <div class="comment-date">11.21. 02:43</div>
+                      <div class="comment-writer" th:text="*{memberNickname}">댓글 작성자</div>
+                      <div class="comment-date" th:text="*{mediaCommentEnrollDate}">11.21. 02:43</div>
                     </div>
 
                     <div class="comment-profile">
@@ -70,13 +70,13 @@
                   </div>
 
                   <div class="comment-content-area">
-                    <div class="comment-content">
-                      와 재밌다!-------------------------------------------------------------------------------------------------------------------------------------------
+                    <div class="comment-content" th:text="*{mediaCommentContent}">
+                      와 재밌다!
                     </div>
                   </div>
 
                   <div class="speech-bubble-wrapper">
-                    <img class="speech-bubble" src="/img/speech-bubble.png" th:onclick="|loadReplies(this, ${mediaCommentNo})|"/>
+                    <img class="speech-bubble" src="/img/speech-bubble.png" th:onclick="|loadReplies(this, *{mediaCommentNo})|"/>
                   </div>
 
                 </div>
@@ -112,7 +112,7 @@
                 <input type="hidden" value="0" id="parent-comment-no">
                 <textarea class="comment-input" id="comment-input" placeholder="댓글을 입력하세요"></textarea>
                 <div class="comment-input-btn">
-                  <div class="up-arrow-wrapper" onclick="" ><img class="up-arrow" src="/img/up-arrow.png" /></div>
+                  <div class="up-arrow-wrapper"><img class="up-arrow" id="up-arrow" src="/img/up-arrow.png" onclick="submitComment()" /></div>
                 </div>
               </div>
             </div>

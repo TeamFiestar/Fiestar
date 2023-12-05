@@ -20,6 +20,7 @@ public class Media {
 	private int mediaCount;
 	private int artistGroupNo;
 	private String mediaTime;
+	private int parentCommentNo;
 	
 	private List<MediaComment> mediaCommentList;
 	
