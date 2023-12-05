@@ -2,60 +2,32 @@
 <header>
   <div class="header">
     
-      <div class="header-left-side">
-        <a href="/" id="header-logo">
-          <img src="/images/logo.png" style="width:165px;"  />
-        </a>
-      </div>
+    <div class="header-left-side">
+      <a href="/" id="header-logo">
+        <img src="/images/logo.png" style="width:165px;"  />
+      </a>
+    </div>
     
-      <div class="header-right-side">
-        <!-- <th:block th:if="${session.loginMember == null}"> -->
-          <form action="#" method="GET" style="display: inline-flex; border:none; ">
-                <span class="search-area">
-                <!--  autocomplete="off" : 브라우저 제공 자동완성 off -->
-                <button id="searchBtn" class="fa-solid fa-magnifying-glass"> 
-                  <input type="search" name="query" id="search-input" placeholder="상품명 혹은 아티스트 검색" 
-                  autocomplete="off" > 
-                </button>
-
-                </span>
-          </form>
+    <div class="header-right-side">
+       
+      <form action="#" method="GET" style="display: inline-flex; border:none;">
+        <span class="search-area">
+          <button id="searchBtn" class="fa-solid fa-magnifying-glass"> 
+            <input type="search" name="query" id="search-input" placeholder="상품명 혹은 아티스트 검색" autocomplete="off" > 
+          </button>
+        </span>
+      </form>
       
-        <a href="#"> 공지사항 </a>
-        <span>|</span>
-        <a href="/shop/home">샵 고객센터</a>
+      <a href="#"> 공지사항 </a>
+      <span>|</span>
+      <a href="/shop/home">샵 고객센터</a>
 
-        <a href="/member/login"><button id="loginPage"> 로그인</button></a>
-        <a href="/member/signup"><button  id="signUp">회원가입</button></a>
-      
-      <!-- </th:block> -->
+      <a href="/member/login"><button id="loginPage"> 로그인</button></a>
+      <a href="/member/signup"><button  id="signUp">회원가입</button></a>
   
-          <!-- <th:block th:unless="${session.loginMember == null}">
-
-             <input type="text" id="search-area" placeholder="상품명 혹은 아티스트 검색"></input>
-              <a href="#"> 카트 <th:block th:text="{카트에 담긴 갯수}"></th:block>  </a>
-              <a href="#"> 주문/배송 </a>
-              <a href="#"> 공지사항 </a>
-              <span>|</span>
-              <a href="#">샵 고객센터</a>
-                          
-                  <img th:if="${session.loginMember.profileImg == null}" th:src="#{user.default.image}" id="memberHeaderProfile">
-                                    
-                
-                  <img th:unless="${session.loginMember.profileImg == null}" th:src="${session.loginMember.profileImg}" id="memberHeaderProfile">
-              </a>    
-                
-                <div class="header-menu">
-                  <a href="/myPage/myPage-home">마이페이지</a>
-                  <a href="/member/logout" id="logoutBtn">로그아웃</a>
-                </div>
-  
-              </div>
-            </th:block>
-          -->
-          </div>    
+    </div>    
         
-      </div>
+  </div>
 
   </div>
 </header>
