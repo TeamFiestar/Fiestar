@@ -90,7 +90,9 @@ optionSelect.addEventListener("change", () => {
   let selectedPrice = document.createElement("span");
   selectedPrice.classList.add("selected-price");
 
-  selectedPrice.innerHTML = "₩" + productPrice.getAttribute("value").toLocaleString();
+  let productPrice2 = productPrice.getAttribute("value");
+
+  selectedPrice.innerText = "₩" + productPrice2.toLocaleString();
 
   // let totalcostNum = i*productPrice.getAttribute("value");
   // selectedprice.innerHTML = "₩" + totalcostNum.toLocaleString();
@@ -148,9 +150,8 @@ function minusBtn(e) {
   e.nextSibling.textContent = i;
   let totalcostNum = i*productPrice.getAttribute("value");
   e.parentElement.nextElementSibling.textContent = "₩" + totalcostNum.toLocaleString();
-  totalPrice.textContent = "₩" + totalcostNum.toLocaleString();
   totalNoProduct( );
-  totalCost()
+  totalCost();
   } 
 
 };
@@ -176,11 +177,11 @@ function totalNoProduct( ) {
 
 function totalCost() {
 
-  selectedPrice = 110000;
+  let selectedPrice = 110000;
 
   let total = 0;
 
-  total = selectedPrice * totalProduct.value;
+  total = selectedPrice * totalProduct.getAttribute('value');
 
 
   totalPrice.textContent = "₩" + total.toLocaleString();
