@@ -36,11 +36,11 @@
 		
 		FROM BOARD B
 		JOIN "MEMBER" USING("MEMBER_NO")
-		JOIN "ARTIST" USING
+	<!--	JOIN "ARTIST" USING-->
 		
-		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
+		<!--WHERE ARTIST_GROUP_NO = #{artistGroupNo}-->
 		
-		AND BOARD_DEL_FL = 'N'
+		WHERE BOARD_DEL_FL = 'N'
 		ORDER BY BOARD_NO DESC
 	</select>
 	
