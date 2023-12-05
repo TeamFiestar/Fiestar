@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.TeamFiestar.Fiestar.member.model.DTO.Member;
+import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
 public interface MyPageService {
 
