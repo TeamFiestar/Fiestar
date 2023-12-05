@@ -1,5 +1,6 @@
 package com.TeamFiestar.Fiestar.chatting.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,7 @@ import com.TeamFiestar.Fiestar.chatting.model.dto.ChattingRoom;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
 @Controller
-@SessionAttributes({"loginMember","artistGroupNo"})
+@SessionAttributes({"loginMember","artistGroupNo","memberNickname"})
 public class ChattingController {
 
 	@GetMapping("chat")
@@ -26,8 +27,13 @@ public class ChattingController {
 	@GetMapping("chatting/{artistGroupNo:[0-9]+}")
 	public String chatting(@PathVariable("artistGroupNo") int artistGroupNo, @SessionAttribute("loginMember") Member loginMember, Model model) {
 
+//		List<String> userList = new ArrayList<>();
+//		userList.add(loginMember.getMemberNickname());
+//		
+//		model.addAttribute("userList",userList);
 		model.addAttribute("artistGroupNo",artistGroupNo);
 		model.addAttribute("loginMember", loginMember);
+		model.addAttribute("memberNickname",loginMember.getMemberNickname());
 		return "chatting/chatting";
 	}
 	

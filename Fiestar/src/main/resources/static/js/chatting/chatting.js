@@ -5,6 +5,8 @@ let selectTargetProfile; // 대상의 프로필
 
 let chattingRoomNo;
 
+let nicknameList;
+
 const display = document.getElementsByClassName("chat-ul")[0];
 // 채팅방 입장 = 바로 접속
 function chattingEnter(e) {
@@ -23,7 +25,7 @@ function chattingEnter(e) {
 
 // 채팅 조회(비동기)
 function selectChatting() {
-  fetch("/chatting/select?+" + `chattingRoomNo=${selectChattingRoomNo}&memberNo=${loginMemberNo}`)
+  fetch("/chatting?artistGroupNo=" + artistGroupNo)
     .then((resp) => resp.text())
     .then((messageList) => {
       console.log(messageList);
@@ -44,11 +46,11 @@ function selectChatting() {
         p.innerHTML = msg.messageContent;
 
         // 유저 리스트
-        const ul2 = document.querySelector(".user-list");
+        // const ul2 = document.querySelector(".user-list");
 
-        const li2 = document.createElement("li");
-        li2.classList.add("userName");
-        li2.innerText = loginMember.memberNickname;
+        // const li2 = document.createElement("li");
+        // li2.classList.add("userName");
+        // li2.innerText = loginMember.memberNickname;
         //
 
         if (chattingRoomNo == msg.chattingRoomNo) {
@@ -72,13 +74,71 @@ function selectChatting() {
         }
 
         ul.append(li);
-        ul2.append(li2);
+        // ul2.append(li2);
         display.scrollTop = display.scrollHeight;
       }
     })
     .catch((e) => console.log(e));
 }
 
+function selectUserList() {
+  fetch("chatting?artistGroupNo=" + artistGroupNo)
+    .then((resp) => resp.text)
+    .then((userList) => {
+      console.log(userList);
+
+      const userNameList = document.querySelector(".user-list");
+      userNameList.innerHTML = "";
+
+      for (let user of userList) {
+        const li = document.createElement("li");
+        li.classList.add("userName");
+        li.innerHTML = user.memberNickname;
+
+        userNameList.append(li);
+      }
+    });
+}
+
+let userSock;
+
+if (loginMemberNo != "") {
+  console.log(userSock);
+  userSock = new SockJS("/userSock");
+}
+const userList = () => {
+  var obj = {
+    memberNo: loginMemberNo,
+    memberNickname: memberNickname,
+    artistGroupNo: artistGroupNo,
+  };
+  console.log(obj);
+  userSock.send(JSON.stringify(obj));
+};
+
+userSock.onmessage = function (e) {
+  result = JSON.parse(e.data);
+  console.log(result);
+
+  if (typeof result == "object") {
+    nicknameList = result;
+  } else {
+    nicknameList.splice(nicknameList.indexOf(result), 1);
+  }
+
+  const ul = document.querySelector(".user-list");
+  ul.innerHTML = "";
+
+  nicknameList.forEach((nickname) => {
+    const li = document.createElement("li");
+
+    li.classList.add("userName");
+    li.innerHTML = nickname;
+    ul.append(li);
+  });
+};
+
+//-------------------------------------------------
 let chattingSock;
 
 if (loginMemberNo != "") {
@@ -152,7 +212,7 @@ chattingSock.onmessage = function (e) {
       const div = document.createElement("div");
 
       const b = document.createElement("b");
-      b.innerText = selectTargetName;
+      b.innerText = memberNickname;
 
       const br = document.createElement("br");
 
