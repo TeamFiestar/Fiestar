@@ -20,7 +20,16 @@ a {
   text-decoration: none;
 }
 
+@font-face{
+  font-family: 'Pretendard-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400; 
+  font-style: normal;
+}
 
+*{
+  font-family: 'Pretendard-Regular' !important;
+}
 
 
 .screen {
@@ -192,7 +201,8 @@ a {
   height: 18px;
   align-items: center;
   justify-content: center;
-  position: relative;
+  position: absolute;
+  padding-top: 3px;
   top: 88%;
   left: 82%;
   background-color: #515151;
@@ -261,6 +271,7 @@ a {
   text-align: center;
   letter-spacing: 0;
   line-height: normal;
+  text-align: left;
   white-space: nowrap;
 }
 
@@ -281,6 +292,7 @@ a {
   width: 150px;
   height: 35px;
   border-radius: 20px;
+  margin-right: 15px;
 }
 .selectBox .select {
   width: inherit;
@@ -307,6 +319,7 @@ a {
   width: 35px; 
   height: inherit;
   border-left: 2px solid rgb(0, 0, 0);
+  padding-right: 4px;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -4,37 +4,46 @@
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
 }
+
+
+@font-face{
+  font-family: 'Pretendard-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400; 
+  font-style: normal;
+}
+
+*{
+  font-family: 'Pretendard-Regular' !important;
+}
+
+
 html,
 body {
   margin: 0px;
   height: 100%;
-}
+}  
 /* a blue color as a generic focus style */
 button:focus-visible {
   outline: 2px solid #4a90e2 !important;
   outline: -webkit-focus-ring-color auto 5px !important;
-}
+}  
 a {
   text-decoration: none;
-}
+}  
 
 
 
 .screen {
   display: flex;
-  flex-direction: column;
   width: 1440px;
-  height: 2452px;
-  align-items: flex-start;
-  gap: 10px;
   padding: 80px 170px 0px;
-  position: relative;
+  margin: auto;
   background-color: #000000;
 }
 
 .screen .frame {
   display: flex;
-  gap: 10px;
   padding: 0px 20px;
   flex: 1;
   align-self: stretch;
@@ -42,8 +51,7 @@ a {
   flex-grow: 1;
   background-color: #ffffff;
   flex-direction: column;
-  align-items: flex-start;
-  position: relative;
+  margin-bottom: 50px;
 }
 
 .screen .div-wrapper {

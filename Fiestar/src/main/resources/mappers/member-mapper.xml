@@ -17,12 +17,13 @@
 		(SEQ_MEMBER_NO.NEXTVAL, 
 		#{memberEmail},
 		#{memberPw},
-		#{memberAddess},
+		#{memberNickname},
+		#{memberAddress},
 		#{memberGender},
 		DEFAULT,
 		NULL,
 		DEFAULT,
-		DEFAULT,
+		DEFAULT
 		)
 	</insert>
 

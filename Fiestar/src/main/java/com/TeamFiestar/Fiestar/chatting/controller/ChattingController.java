@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.TeamFiestar.Fiestar.chatting.model.dto.ChattingRoom;
-import com.TeamFiestar.Fiestar.member.model.DTO.Member;
+import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
 @Controller
 @SessionAttributes({"loginMember"})
@@ -21,5 +21,12 @@ public class ChattingController {
 		return "chatting/chatting";
 	}
 	
+	@GetMapping("/chatting/enter/")
+	public String chatting(int targetNo, @SessionAttribute("loginMember") Member member) {
+		
+		
+		
+		return "chatting/chatting";
+	}
 	
 }

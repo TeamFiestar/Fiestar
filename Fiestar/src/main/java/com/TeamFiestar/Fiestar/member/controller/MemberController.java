@@ -1,17 +1,25 @@
 package com.TeamFiestar.Fiestar.member.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.TeamFiestar.Fiestar.member.model.DTO.Member;
+import com.TeamFiestar.Fiestar.member.model.dto.Member;
 import com.TeamFiestar.Fiestar.member.model.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("member")
+@Slf4j
+@SessionAttributes({"loginMember"})
 public class MemberController {
 	
 	private final MemberService service;
@@ -27,7 +35,7 @@ public class MemberController {
 	}
 	
 	@PostMapping("login")
-	public String login(Member inputMember) {
+	public String login(Member inputMember, Model model) {
 		
 		Member loginMember = service.login(inputMember);
 		
@@ -35,6 +43,8 @@ public class MemberController {
 			
 			return "redirect:login";
 		}
+		
+		model.addAttribute("loginMember", loginMember);
 		
 		return "redirect:/";
 	}

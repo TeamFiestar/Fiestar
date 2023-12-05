@@ -1,19 +1,3 @@
-* {
-  font-family: 'Pretendard-Regular';
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-
-
-@font-face {
-  font-family: 'Pretendard-Regular';
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-}
-
 body {
   display: flex;
   justify-content: center;
@@ -26,87 +10,7 @@ a {
   text-decoration: none;
 }
 
-/* 헤더 */
-header {
-  width: 100%;
-  height: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
-/* 로고 */
-header>section:nth-of-type(1) {
-  margin-left: 50px;
-  width: 30%;
-  display: flex;
-  justify-content: start;
-}
-
-/* 메뉴 */
-header>section:nth-of-type(2) {
-  margin-right: 50px;
-  width: 70%;
-  height: 80px;
-  display: flex;
-  justify-content: end;
-}
-
-/* 메뉴들 */
-header article {
-  padding: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-header a {
-  color: black;
-  font-size: 20px
-}
-
-/* 네비게이션 바 */
-#navSection {
-  width: 100%;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 25px 0;
-}
-
-
-nav {
-  width: 100%;
-  background-color: #7743DB;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-nav ul li {
-  margin: 0;
-  padding: 15px 100px;
-}
-
-nav ul li a {
-  color: white;
-  font-size: 20px;
-}
-
-#board {
-  width: 1100px;
-  background-color: white;
-  flex-direction: column;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2px;
-}
 
 /* 아티스트 프로필 */
 #teamProfile {
@@ -153,7 +57,7 @@ nav ul li a {
   width: 10%;
 }
 
-#postingSection>p {
+.btn-open-popup {
   width: 80%;
   font-size: 24px;
 }
@@ -162,8 +66,10 @@ nav ul li a {
   width: 5%;
 }
 
-/* 게시글(사진 X) */
-.publishedText {
+
+
+/* 게시글(사진+글) */
+#publishedImage {
   margin-top: 80px;
   padding: 30px;
   background-color: #ffffff;
@@ -171,6 +77,7 @@ nav ul li a {
   align-items: flex-start;
   border-bottom: 2.5px solid #dbdbdb;
 }
+
 
 .profile {
   height: 36px;
@@ -181,35 +88,21 @@ nav ul li a {
 }
 
 .profile>div {
-  padding: 10px;
+  padding-right: 15px;
 }
 
-.textbox {
-  align-items: center;
-  display: flex;
-  padding: 10px;
-  font-size: 20px;
-  margin-bottom: 20px;
+#imgprofile{
+  height: 70px;
+  width: 70px;
+  border-radius: 100;
 }
 
-.reaction {
-  margin-top: 15px;
-}
-
-.reaction>i {
-  padding: 5px;
+#profileImg{
+  height: 100%;
+  width: 100%;
 }
 
 
-
-/* 게시글(사진+글) */
-#publishedImage {
-  padding: 30px;
-  background-color: #ffffff;
-  width: 1100px;
-  border-bottom: 2.5px solid #dbdbdb;
-
-}
 
 /* 이미지 슬라이드 */
 .imgage-container {
@@ -275,4 +168,268 @@ nav ul li a {
 .dot-container {
   margin-top: -30px;
   margin-bottom: 30px;
+}
+
+.textbox{
+  margin-top: 20px;
+}
+
+/* 게시판 작성 modal */
+.feedWriteModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+  display: none;
+
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.feedWriteModal.show {
+  display: block;
+}
+
+.feedWriteModal.hidden {
+  display: hidden;
+}
+
+.modal-body {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  padding: 40px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+
+  transform: translateX(-50%) translateY(-50%);
+  justify-content: end;
+  align-items: center;
+  overflow: auto;
+  height: 800px;
+  flex-direction: row;
+}
+
+.modalCloseButton {
+  display: flex;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: x-large;
+}
+
+.modal-write h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.modal-write {
+  width: 800px;
+  margin-top: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.modal-write>h1 {
+  font-size: 30px;
+}
+
+.modal-write>p {
+  font-size: 20px;
+  color: #848484;
+}
+
+.btn-open-popup>a {
+  text-decoration: none;
+  color: #848484;
+  width: 75%;
+}
+
+.modal-feedWrite {
+  margin-top: 20px;
+  height: 100%;
+  padding-top: 10px 0px;
+}
+
+#feedWirte {
+  resize: none;
+  width: 800px;
+  height: 300px;
+  font-size: 20px;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+
+#feedWirte:focus {
+  outline: none;
+
+}
+
+.modal-elements {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  width: 100%;
+  padding: 0px 30px;
+}
+
+.fa-image {
+  color: #7743DB;
+}
+
+.modal-btn button {
+  padding: 10px 20px;
+  background-color: #7743DB;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: large;
+  margin-top: 20px;
+}
+
+.boardImg-container > h4{
+  margin: 20px 0px;
+}
+
+.img-box {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+/* 이미지를 감싸는 div */
+.boardImg {
+  width: 200px;
+  height: 200px;
+}
+
+.boardImg>label {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.inputImage {
+  display: none;
+}
+
+
+/* 이미지 */
+.boardImg img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.delete-image {
+  position: absolute;
+  font-size: 20px;
+  cursor: pointer;
+  margin-top: -200px;
+  margin-left: 180px;
+}
+
+#check-btn { display: none; }
+#check-btn:checked ~ .menubars { display: block; } 
+.menubars { 
+  display: none; 
+  list-style: none;
+  color: black;
+}
+
+
+
+/* 게시판 상세페이지 modal */
+.feedDetailModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.feedDetailModal.show {
+  display: block;
+}
+
+.feedDetailModal.hidden {
+  display: hidden;
+}
+
+#dmodal-body{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 40px;
+  transform: translateX(-50%) translateY(-50%);
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  justify-content: end;
+  overflow: auto;
+  height: 800px;
+  flex-direction: row;
+  display: flex;
+}
+
+.feedImg{
+  width: 1100px;
+}
+
+
+.feedContent{
+background-color: #ffffff;
+padding: 20px 0px;
+width: 800px;
+}
+
+.comment-container{
+  width: 300px;
+  padding: 20px;
+}
+
+.comment-write >textarea{
+  margin-top: 50px;
+}
+
+.feedContent{
+  width: 500px;
+  font-size: 15px;
+}
+
+.element{
+  margin-left: 300px;
+}
+
+
+.closeModal {
+  display: flex;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: x-large;
+}
+
+dialog{
+  width: 1100PX;
+  height: AUTO;
 }

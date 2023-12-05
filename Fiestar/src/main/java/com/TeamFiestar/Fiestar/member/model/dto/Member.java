@@ -1,4 +1,4 @@
-package com.TeamFiestar.Fiestar.member.model.DTO;
+package com.TeamFiestar.Fiestar.member.model.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

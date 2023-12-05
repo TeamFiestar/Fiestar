@@ -1,6 +1,6 @@
 package com.TeamFiestar.Fiestar.member.model.service;
 
-import com.TeamFiestar.Fiestar.member.model.DTO.Member;
+import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
 public interface MemberService {
 

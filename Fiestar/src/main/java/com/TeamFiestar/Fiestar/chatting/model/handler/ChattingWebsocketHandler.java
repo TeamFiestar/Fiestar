@@ -8,7 +8,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.TeamFiestar.Fiestar.chatting.model.dto.Message;
 import com.TeamFiestar.Fiestar.chatting.model.service.ChatService;
-import com.TeamFiestar.Fiestar.member.model.DTO.Member;
+import com.TeamFiestar.Fiestar.member.model.dto.Member;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
@@ -67,7 +67,7 @@ public class ChattingWebsocketHandler extends TextWebSocketHandler{
             	int chattingRoomNo = ((Message)temp.getAttribute("loginMember")).getChattingRoomNo();
             	log.debug("채팅방 번호 : " + chattingRoomNo);
             	
-            	if(chattingRoomNo == msg.getTargetNo() || chattingRoomNo == msg.getSenderNo()) {
+            	if(chattingRoomNo == msg.getTargetNo() || loginMemberNo == msg.getSenderNo()) {
             		s.sendMessage(new TextMessage(new Gson().toJson(msg)));
             	}
             }

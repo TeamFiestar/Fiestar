@@ -18,23 +18,31 @@
         </article>
     </section> -->
 
-</header>
+<!-- 로그인 후 -->
 
-<!-- 로그인 후 header -->
 <header>
     <section>
-        <a href="/" src="" alt="로고이미지"></a>
+        <a href="/">
+            <img src="/artistHomepageImg/logo.png" id="logoImg">
+        </a>
     </section>
 
     <section>
         <article>
-            <a href=""><i class="fa-solid fa-magnifying-glass fa-xl" style="color: #7743DB"></i></a>
+            <div class="search">
+                <input type="text">
+                <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #7743DB"></i>
+            </div>
         </article>
         <article>
-            <a href="">로그아웃</a>
-        </article>
-        <article>
-            <a href="">마이페이지</a>
+            <div class="dropdown">
+                <span class="dropbtn"><i class="fa-regular fa-circle-user fa-2xl" style="color: #7743DB"></i></span>
+                <div class="dropdown-content">
+                    <a href="/myPage/myPage">마이 페이지</a>
+                    <a href="#">로그아웃</a>
+                    <a href="#">관리자 페이지</a>
+                </div>
+            </div>
         </article>
         <article>
             <a href=""><i class="fa-solid fa-store fa-xl" style=" color: #7743DB"></i></a>

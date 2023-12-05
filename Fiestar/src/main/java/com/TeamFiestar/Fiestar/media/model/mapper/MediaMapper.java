@@ -12,4 +12,10 @@ public interface MediaMapper {
 
 	List<Media> selectMediaList(Map<String, Object> map);
 
+	/** 미디어 삽입
+	 * @param inserMedia
+	 * @return
+	 */
+	int insertMedia(Media inserMedia);
+
 }

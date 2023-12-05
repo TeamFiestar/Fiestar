@@ -19,127 +19,20 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: #F7F7FA;
 }
 
 a {
   text-decoration: none;
 }
 
-/* 헤더 */
-header {
-  width: 100%;
-  height: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
-/* 로고 */
-header>section:nth-of-type(1) {
-  margin-left: 50px;
-  width: 30%;
-  display: flex;
-  justify-content: start;
-}
-
-/* 검색하기 */
-#search-container {
-  background-color: #e5d8fd;
-  display: flex;
-  align-self: center;
-  border-radius: 5px;
-  height: 40px;
-  margin-right: 10px;
-}
-
-#search-container>input {
-  border: none;
-  height: 30px;
-  width: 250px;
-  background-color: #e5d8fd;
-  margin-right: 7px;
-  color: #7743DB;
-}
-
-#search-container>input:focus {
-  outline: none;
-}
-
-
-
-/* 메뉴 */
-header>section:nth-of-type(2) {
-  margin-right: 50px;
-  width: 70%;
-  height: 80px;
-  display: flex;
-  justify-content: end;
-}
-
-/* 메뉴들 */
-header article {
-  padding: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-header a {
-  color: #000000;
-  text-decoration: none;
-  font-size: 20px
-}
-
-/* 네비게이션 바 */
-#navSection {
-  width: 100%;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 25px 0;
-}
-
-nav {
-  width: 100%;
-  background-color: #7743DB;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-nav ul li {
-  margin: 0;
-  padding: 15px 100px;
-}
-
-nav ul li a {
-  text-decoration: none;
-  color: #ffffff;
-  font-size: 20px;
-}
-
-.board {
-  background-color: white;
-  flex-direction: column;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2px;
-  width: 100%;
-}
 
 /* 아티스트 별 최신 글 */
 
 .swiper-container {
-  width: 100%;
+  width: 1100px;
   background: linear-gradient(0deg, #ffffff 0%, #936bdb 100%);
-  height: 350px;
+  height: 250px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -147,6 +40,8 @@ nav ul li a {
   padding-bottom: 36px;
   position: relative;
   margin-bottom: 40px;
+  overflow: hidden;
+  padding: 0px 20px;
 }
 
 
@@ -343,3 +238,83 @@ nav ul li a {
   margin-bottom: 30px;
 }
 
+
+.feedDetailModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.feedDetailModal.show {
+  display: block;
+}
+
+.feedDetailModal.hidden {
+  display: hidden;
+}
+
+#dmodal-body{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 40px;
+  transform: translateX(-50%) translateY(-50%);
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  justify-content: end;
+  overflow: auto;
+  height: 800px;
+  flex-direction: row;
+  display: flex;
+}
+
+.feedImg{
+  width: 1100px;
+}
+
+
+.feedContent{
+background-color: #ffffff;
+padding: 20px 0px;
+width: 800px;
+}
+
+.comment-container{
+  width: 300px;
+  padding: 20px;
+}
+
+.comment-write >textarea{
+  margin-top: 50px;
+}
+
+.feedContent{
+  width: 500px;
+  font-size: 15px;
+}
+
+.element{
+  margin-left: 300px;
+}
+
+
+.closeModal {
+  display: flex;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: x-large;
+}
+
+dialog{
+  width: 1100PX;
+  height: AUTO;
+}

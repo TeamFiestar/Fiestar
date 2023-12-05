@@ -1,3 +1,8 @@
+let selectChattingNo; // 선택한 채팅방 번호
+let selectTargetNo; // 현재 채팅 대상
+let selectTargetName; // 대상의 이름
+let selectTargetProfile; // 대상의 프로필
+
 // 채팅방 입장 = 바로 접속
 function chattingEnter(e) {
   console.log(e.target);
@@ -5,6 +10,7 @@ function chattingEnter(e) {
 
   const targetNo = e.currentTarget.getAttribute("artistGroupNo");
 
+  // targetNo == 채팅방 번호 == 아티스트 그룹 번호
   fetch("/chatting/enter?targetNo=" + targetNo)
     .then((resp) => resp.text())
     .then((artistGroupNo) => {
