@@ -14,280 +14,70 @@
   <th:block th:replace="~{common/shopHeader}"></th:block>
  
   
-  <main style="aspect-ratio: auto 531/299;">
+  <main style="aspect-ratio: auto 531/299;" th:with="productList = ${map.productList}">
 
     <section class="homeMain">
 
-    <section class="artist-shop-list-area">
-      <a href="" id="artist-shop-lists-all">전체</a>
-      <a href="" id="artist-shop-lists">
-          <img class="artist-main-logo" src="/images/newJeans_logo.jpg">
-          <span id="artist-shop-name">NewJeans</span>
-      </a>
-      <a href="" id="artist-shop-lists">
-          <img class="artist-main-logo" src="/images/newJeans_logo.jpg">
-          <span id="artist-shop-name">NewJeans</span>
-      </a>
-    </section>
 
-    <div class="shop-sorting-area">
-      <div class="shop-sorting-amount">xx개</div>
-      <!-- <select name="sort" id="sort" class="shop-sorting-type" style="border:none; color:blue;">
-        <option value="1">신상품 순</option>
-        <option value="2">높은가격순</option>
-        <option value="3">낮은가격순</option>
-      </select> -->
-    
-      <div class="shop-sorting-type" name="sort" id="sort">
-        <option value="1">신상품 순</option>
-        <option value="2">높은가격순</option>
-        <option value="3">낮은가격순</option>
-      </div>
-    </div>
-
-    <section class="artist-shop-product">
-        <div class="product-area"> 
-          <div class="product-area-detail">
-            <div class="product-list">
-                <a href="/shop/shopDetail" class="product-profile">
-                  <div class="product-image-area"> 
-                    <img src="/images/product1.jpg">
-                  </div>
-               
-                  <div class="product-name-area">
-                    <div class="product-name"> ZIPUP HOODIE [MEGAPHONE:BLACK] </div>
-                    <br>
-                    <div class="product-price">₩25,000</div>
-                  </div>
-                </a>  
-            </div>
-            <div class="product-list">
-              <a href="/shop/shopDetail" class="product-profile">
-                <div class="product-image-area"> 
-                  <img src="/images/product1.jpg">
-                </div>
-             
-                <div class="product-name-area">
-                  <div class="product-name"> ZIPUP HOODIE [MEGAPHONE:BLACK] </div>
-                  <br>
-                  <div class="product-price">₩25,000</div>
-                </div>
-              </a>  
-          </div>
-          <div class="product-list">
-            <a href="/shop/shopDetail" class="product-profile">
-              <div class="product-image-area"> 
-                <img src="/images/product1.jpg">
-              </div>
-           
-              <div class="product-name-area">
-                <div class="product-name"> ZIPUP HOODIE [MEGAPHONE:BLACK] </div>
-                <br>
-                <div class="product-price">₩25,000</div>
-              </div>
-            </a>  
-        </div>
-        <div class="product-list">
-          <a href="/shop/shopDetail" class="product-profile">
-            <div class="product-image-area"> 
-              <img src="/images/product1.jpg">
-            </div>
-         
-            <div class="product-name-area">
-              <div class="product-name"> ZIPUP HOODIE [MEGAPHONE:BLACK] </div>
-              <br>
-              <div class="product-price">₩25,000</div>
-            </div>
-          </a>  
-      </div><div class="product-list">
-        <a href="/shop/shopDetail" class="product-profile">
-          <div class="product-image-area"> 
-            <img src="/images/product1.jpg">
-          </div>
-       
-          <div class="product-name-area">
-            <div class="product-name"> ZIPUP HOODIE [MEGAPHONE:BLACK] </div>
-            <br>
-            <div class="product-price">₩25,000</div>
-          </div>
-        </a>  
-    </div><div class="product-list">
-      <a href="/shop/shopDetail" class="product-profile">
-        <div class="product-image-area"> 
-          <img src="/images/product1.jpg">
-        </div>
-     
-        <div class="product-name-area">
-          <div class="product-name"> ZIPUP HOODIE [MEGAPHONE:BLACK] </div>
-          <br>
-          <div class="product-price">₩25,000</div>
-        </div>
-      </a>  
-  </div><div class="product-list">
-    <a href="/shop/shopDetail" class="product-profile">
-      <div class="product-image-area"> 
-        <img src="/images/product1.jpg">
-      </div>
-   
-      <div class="product-name-area">
-        <div class="product-name"> ZIPUP HOODIE [MEGAPHONE:BLACK] </div>
-        <br>
-        <div class="product-price">₩25,000</div>
-      </div>
-    </a>  
-</div><div class="product-list">
-  <a href="/shop/shopDetail" class="product-profile">
-    <div class="product-image-area"> 
-      <img src="/images/product1.jpg">
-    </div>
- 
-    <div class="product-name-area">
-      <div class="product-name"> ZIPUP HOODIE [MEGAPHONE:BLACK] </div>
-      <br>
-      <div class="product-price">₩25,000</div>
-    </div>
-  </a>  
-</div><div class="product-list">
-  <a href="/shop/shopDetail" class="product-profile">
-    <div class="product-image-area"> 
-      <img src="/images/product1.jpg">
-    </div>
- 
-    <div class="product-name-area">
-      <div class="product-name"> ZIPUP HOODIE [MEGAPHONE:BLACK] </div>
-      <br>
-      <div class="product-price">₩25,000</div>
-    </div>
-  </a>  
-</div><div class="product-list">
-  <a href="/shop/shopDetail" class="product-profile">
-    <div class="product-image-area"> 
-      <img src="/images/product1.jpg">
-    </div>
- 
-    <div class="product-name-area">
-      <div class="product-name"> ZIPUP HOODIE [MEGAPHONE:BLACK] </div>
-      <br>
-      <div class="product-price">₩25,000</div>
-    </div>
-  </a>  
-</div><div class="product-list">
-  <a href="/shop/shopDetail" class="product-profile">
-    <div class="product-image-area"> 
-      <img src="/images/product1.jpg">
-    </div>
- 
-    <div class="product-name-area">
-      <div class="product-name"> ZIPUP HOODIE [MEGAPHONE:BLACK] </div>
-      <br>
-      <div class="product-price">₩25,000</div>
-    </div>
-  </a>  
-</div>
-<div class="product-list">
-  <a href="/shop/shopDetail" class="product-profile">
-    <div class="product-image-area"> 
-      <img src="/images/product1.jpg">
-    </div>
- 
-    <div class="product-name-area">
-      <div class="product-name"> ZIPUP HOODIE [MEGAPHONE:BLACK] </div>
-      <br>
-      <div class="product-price">₩25,000</div>
-    </div>
-  </a>  
-</div><div class="product-list">
-  <a href="/shop/shopDetail" class="product-profile">
-    <div class="product-image-area"> 
-      <img src="/images/product1.jpg">
-    </div>
- 
-    <div class="product-name-area">
-      <div class="product-name"> ZIPUP HOODIE [MEGAPHONE:BLACK] </div>
-      <br>
-      <div class="product-price">₩25,000</div>
-    </div>
-  </a>  
-</div><div class="product-list">
-  <a href="/shop/shopDetail" class="product-profile">
-    <div class="product-image-area"> 
-      <img src="/images/product1.jpg">
-    </div>
- 
-    <div class="product-name-area">
-      <div class="product-name"> ZIPUP HOODIE [MEGAPHONE:BLACK] </div>
-      <br>
-      <div class="product-price">₩25,000</div>
-    </div>
-  </a>  
-</div><div class="product-list">
-  <a href="/shop/shopDetail" class="product-profile">
-    <div class="product-image-area"> 
-      <img src="/images/product1.jpg">
-    </div>
- 
-    <div class="product-name-area">
-      <div class="product-name"> ZIPUP HOODIE [MEGAPHONE:BLACK] </div>
-      <br>
-      <div class="product-price">₩25,000</div>
-    </div>
-  </a>  
-</div><div class="product-list">
-  <a href="/shop/shopDetail" class="product-profile">
-    <div class="product-image-area"> 
-      <img src="/images/product1.jpg">
-    </div>
- 
-    <div class="product-name-area">
-      <div class="product-name"> ZIPUP HOODIE [MEGAPHONE:BLACK] </div>
-      <br>
-      <div class="product-price">₩25,000</div>
-    </div>
-  </a>  
-</div><div class="product-list">
-  <a href="/shop/shopDetail" class="product-profile">
-    <div class="product-image-area"> 
-      <img src="/images/product1.jpg">
-    </div>
- 
-    <div class="product-name-area">
-      <div class="product-name"> ZIPUP HOODIE [MEGAPHONE:BLACK] </div>
-      <br>
-      <div class="product-price">₩25,000</div>
-    </div>
-  </a>  
-</div><div class="product-list">
-                <a href="/shop/shopDetail" class="product-profile">
-                  <div class="product-image-area"> 
-                    <img src="/images/product1.jpg">
-                  </div>
-               
-                  <div class="product-name-area">
-                    <div class="product-name"> ZIPUP HOODIE [MEGAPHONE:BLACK] </div>
-                    <br>
-                    <div class="product-price">₩25,000</div>
-                  </div>
-                </a>  
-            </div>
-          </div>
-        </div>
-
+      <section class="artist-shop-list-area">
+        <a href="" id="artist-shop-lists-all">전체</a>
+        <a href="" id="artist-shop-lists">
+            <img class="artist-main-logo" src="/images/newJeans_logo.jpg">
+            <span id="artist-shop-name">NewJeans</span>
+        </a>
+        <a href="" id="artist-shop-lists">
+            <img class="artist-main-logo" src="/images/newJeans_logo.jpg">
+            <span id="artist-shop-name">NewJeans</span>
+        </a>
       </section>
 
-    <div class="pagination-box">
-      <ul class="pagination">
-
-        <li><a href="" class="current">1</a> </li>
-
+      <div class="shop-sorting-area">
+        <div class="shop-sorting-amount" th:text="${shopCount}">상품의 총 개수</div>
+      
+       
+          <div class="shop-sorting-type" name="sort" id="sort">
+            <option value="1">신상품 순</option>
+            <option value="2">높은가격순</option>
+            <option value="3">낮은가격순</option>
+          </div>
         
-      </ul>
+      </div>
+    </form>
 
-    </div>
+      <section class="artist-shop-product" >
+        <div class="product-area"> 
+          <div class="product-area-detail">
+            <div class="product-list" th:each=" product: ${productList}" th:object="${product}">
+              <a href="/shop/shopDetail" class="product-profile">
+                <div class="product-image-area" th:text="*{productImage}"> 
+                  <img src="/images/product1.jpg">
+                </div>
+            
+                <div class="product-name-area" >
+                  <div class="product-name" th:text="*{productName}">상품 이름</div>
+                  <br>
+                  <div class="product-price" th:text="*{productPrice}">상품 가격</div>
+                </div>
+
+              </a>  
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="pagination-box">
+        <ul class="pagination">
+          <li><a href="" class="current">1</a> </li>
+        </ul>
+      </div>
     </section>
   </main>
 
   <th:block th:replace = "~{common/footer}"></th:block> 
 
+  <script th:inline="javascript">
+    const productList = /*[[${map.productList}]]*/ "상품리스트";
+  </script>
 
   <script src="https://kit.fontawesome.com/f7459b8054.js" crossorigin="anonymous"></script>
 </body>
