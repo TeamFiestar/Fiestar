@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -15,9 +16,12 @@ import com.TeamFiestar.Fiestar.media.model.dto.Media;
 import com.TeamFiestar.Fiestar.media.model.service.MediaService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @RequestMapping("media")
+@Slf4j
 @RequiredArgsConstructor
 public class MediaController {
 	
@@ -42,18 +46,20 @@ public class MediaController {
 		List<Media> mediaList = service.selectMediaList(map);
 		
 		model.addAttribute("mediaList", mediaList);
+		model.addAttribute("key", key);
+		
+		log.debug("mediaTitle : " + mediaList);
 		
 		return "media/mediaList";
 	}
 	
-	@GetMapping("{artistGroupNo:[0-9]+}/insert")
+	@PostMapping("insert")
 	public String mediaInsert(
-			@PathVariable("artistGroupNo") int artistGroupNo
-			,Media inserMedia) {
+			Media inserMedia) {
 		
 		int result = service.insertMedia(inserMedia);
 		
-		return "redirect:artist/" + artistGroupNo;
+		return "redirect:list";
 	}
 	
 	
