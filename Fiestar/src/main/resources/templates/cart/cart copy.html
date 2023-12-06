@@ -67,7 +67,7 @@
                <!-- </div> -->
    
                <div>
-                  <span th:text="${cart.productOptionName}" class="item-option">옵션 : </span>
+                  <span th:text="${cart.productOptionName}" class="item-option" style="font-size: 12px;">옵션 : </span>
                </div>
    
                <!-- 상품 수량 + & -  -->
@@ -100,10 +100,9 @@
                      <i class="fa-solid fa-minus" id="minus"></i>
                   </label>
    
-                  <!-- 수량 -->
-                  <span th:text="${cart.productCount}" class="item-count"></span>
-                  
                   <!-- 더하기 -->
+                  <span th:text="${cart.productCount}" class="item-count"></span>
+   
                   <label class="plus">
                      <input type="button" class="input-plus">
                      <i class="fa-solid fa-plus" id="plus"></i>
@@ -125,31 +124,31 @@
          
 
 
-         <!-- 개별 상품 체크 -->
-         <!-- <div class="item-list">
-         
+         <div class="item-list">
+
+            <!-- 개별 상품 체크 -->
             <div class="select-item">
                <label class="cart-check">
                   <input type='checkbox' class="selectEach">
                   <i class="fa-regular fa-circle-check"></i>
                </label>
-            </div> -->
+            </div>
 
             <!-- 이미지 영역 -->
-<!-- 
+
             <img src="/images/photobook.png" alt="">
 
 
 
             <a href="#" class="keyring">LE SSERAFIM</a>
 
-            <span class="item-option" style="font-size: 12px;">옵션 : BLACK</span> -->
+            <span class="item-option" style="font-size: 12px;">옵션 : BLACK</span>
 
             <!-- <select name="option" id="option-btn"></select>
                    -->
 
 
-         <!-- </div>
+         </div>
 
          <div class="item-amount">
 
@@ -166,7 +165,7 @@
                <span class="amount-price" style="font-weight: bold;">$100</span>
             </div>
 
-         </div> -->
+         </div>
 
 
 
