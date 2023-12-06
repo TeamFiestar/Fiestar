@@ -1,6 +1,6 @@
 package com.TeamFiestar.Fiestar.cart.model.dto;
 
-import lombok.Getter;
+import lombok.Getter; 
 import lombok.Setter;
 
 @Getter
