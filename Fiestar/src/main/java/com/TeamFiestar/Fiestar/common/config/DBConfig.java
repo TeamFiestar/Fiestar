@@ -67,7 +67,17 @@ public class DBConfig {
 
       sessionFactoryBean.setTypeAliasesPackage("com.TeamFiestar.Fiestar");
       
+<<<<<<< HEAD
 
+=======
+      
+//
+//      sessionFactoryBean.setTypeAliasesPackage("com.TeamFiestar.Fiestar.member.model.dto, "
+//      										 + "com.TeamFiestar.Fiestar.media.model.dto, "
+//      										 + "com.TeamFiestar.Fiestar.shop.model.dto");
+//
+//      
+>>>>>>> origin/changwoo
       // 마이바티스 설정 파일 경로 지정
       sessionFactoryBean.setConfigLocation(applicationContext.getResource("classpath:mybatis-config.xml"));
       
