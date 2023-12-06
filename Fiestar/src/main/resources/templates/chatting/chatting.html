@@ -9,7 +9,7 @@
   </head>
   <body>
     <th:block th:replace="~{common/atristPageHeader}">헤더</th:block>
-    <section id="navSection">
+    <!-- <section id="navSection">
       <nav>
         <ul>
           <li><a href="/artistHomepage/feed">Feed</a></li>
@@ -20,7 +20,8 @@
           <li><a href="">공지사항</a></li>
         </ul>
       </nav>
-    </section>
+    </section> -->
+    <th:block th:replace="~{common/artistPageNavi}">nav바</th:block>
     <main>
       <div class="chatting-area">
         <ul class="chat-ul">
@@ -75,8 +76,10 @@
 
     <script th:inline="javascript">
       const loginMember = /*[[${session.loginMember}]]*/ "로그인 회원";
-      const loginMemberNo = /*[[${session.loginMember?.memberNo}]]*/ "로그인회원번호";
-      const memberNickname = /*[[${session.loginMember?.memberNickname}]]*/ "닉네임";
+      const loginMemberNo =
+        /*[[${session.loginMember?.memberNo}]]*/ "로그인회원번호";
+      const memberNickname =
+        /*[[${session.loginMember?.memberNickname}]]*/ "닉네임";
       const authority = /*[[${session.loginMember?.memberAuthority}]]*/ "권한";
       const userDefaultImage = /*[[#{user.default.image}]]*/ "기본 이미지";
       const artistGroupNo = /*[[${artistGroupNo}]]*/ "그룹번호";
