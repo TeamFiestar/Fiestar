@@ -23,7 +23,7 @@ import org.apache.ibatis.annotations.Mapper;
 =======
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
->>>>>>> origin/main
+
 
 @Mapper
 public interface MyPageMapper {

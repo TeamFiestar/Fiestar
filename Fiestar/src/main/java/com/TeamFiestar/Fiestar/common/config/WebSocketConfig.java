@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 //package com.TeamFiestar.Fiestar.common.config;
 //
 //import org.springframework.context.annotation.Configuration;
@@ -37,7 +37,7 @@
 //	}
 //	
 //}
-=======
+
 package com.TeamFiestar.Fiestar.common.config;
 
 import org.springframework.context.annotation.Configuration;
@@ -84,4 +84,4 @@ public class WebSocketConfig implements WebSocketConfigurer{
 	}
 	
 }
->>>>>>> origin/main
+

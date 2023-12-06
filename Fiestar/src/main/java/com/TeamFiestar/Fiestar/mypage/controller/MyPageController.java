@@ -1,15 +1,14 @@
-//package com.TeamFiestar.Fiestar.mypage.controller;
-//
+package com.TeamFiestar.Fiestar.mypage.controller;
 
-<<<<<<< HEAD
-//import java.io.IOException;
-=======
+
 import java.io.IOException;
->>>>>>> origin/main
+
+import java.io.IOException; 
+
 
 //import java.io.IOException; 
 
-<<<<<<< HEAD
+
 //import java.util.Map;
 //
 //import org.springframework.stereotype.Controller;
@@ -20,10 +19,10 @@ import java.io.IOException;
 //import org.springframework.web.multipart.MultipartFile;
 //import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 //
-=======
+
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 import com.TeamFiestar.Fiestar.mypage.service.MyPageService;
->>>>>>> origin/main
+
 
 //import com.TeamFiestar.Fiestar.member.model.DTO.Member;
 

@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-//package com.TeamFiestar.Fiestar.mypage.service;
+
+//package com.TeamFiestar.Fiestar.mypage.service; 
 //
 //import java.io.File;
 //import java.io.IOException;
@@ -61,10 +61,10 @@
 //	}
 //
 //}
-=======
+
 package com.TeamFiestar.Fiestar.mypage.service;
 
-import java.io.File;
+import java.io.File; 
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -124,4 +124,3 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 }
->>>>>>> origin/main

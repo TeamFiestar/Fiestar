@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 //package com.TeamFiestar.Fiestar.mypage.service;
 //
 //import java.io.IOException;
@@ -16,7 +16,7 @@
 //
 //
 //}
-=======
+
 package com.TeamFiestar.Fiestar.mypage.service;
 
 import java.io.IOException;
@@ -35,4 +35,4 @@ public interface MyPageService {
 
 
 }
->>>>>>> origin/main
+
