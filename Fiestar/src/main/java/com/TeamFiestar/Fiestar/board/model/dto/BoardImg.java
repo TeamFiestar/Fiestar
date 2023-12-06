@@ -15,8 +15,13 @@ public class BoardImg {
 	private int boardNo;
 	private String imgPath;
 	private int imgOrder;
+	private String imgRename;
+	private String imgOriginalName;
+	
 	
 	private MultipartFile uploadFile;
+
+	
 	
 	
 }

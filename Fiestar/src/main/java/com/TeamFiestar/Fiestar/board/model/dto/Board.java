@@ -24,12 +24,14 @@ public class Board {
 	private String artistGroupTitle;
 	
 	// 상세 조회 시 
+	private int readCount;
 	private int boardCommentNo;
 	private String boardCommentContent;
 	private int commentCount;
 	private int likeCount;
 	private String memberNickname;
 	private String memberProfile;
+	private String memberAuthority;
 	
 	private List<BoardImg> imageList;
 	

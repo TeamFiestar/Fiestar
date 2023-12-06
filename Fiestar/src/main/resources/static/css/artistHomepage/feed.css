@@ -260,7 +260,7 @@ a {
   padding-top: 10px 0px;
 }
 
-#feedWirte {
+#feedWrite2 {
   resize: none;
   width: 800px;
   height: 300px;
@@ -269,7 +269,7 @@ a {
   margin-bottom: 10px;
 }
 
-#feedWirte:focus {
+#feedWrite2:focus {
   outline: none;
 
 }

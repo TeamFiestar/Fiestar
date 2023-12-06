@@ -1,6 +1,6 @@
 // 이미지 슬라이드
 let slideIndex = 1;
-showSlides(slideIndex);
+// showSlides(slideIndex);
 
 function plusSlides(n) {
   showSlides(slideIndex += n);
@@ -10,21 +10,21 @@ function currentSlide(n) {
   showSlides(slideIndex = n);
 }
 
-function showSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("slide");
-  let dots = document.getElementsByClassName("dot");
-  if (n > slides.length) { slideIndex = 1 }
-  if (n < 1) { slideIndex = slides.length }
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex - 1].style.display = "block";
-  dots[slideIndex - 1].className += " active";
-}
+// function showSlides(n) {
+//   let i;
+//   let slides = document.getElementsByClassName("slide");
+//   let dots = document.getElementsByClassName("dot");
+//   if (n > slides.length) { slideIndex = 1 }
+//   if (n < 1) { slideIndex = slides.length }
+//   for (i = 0; i < slides.length; i++) {
+//     slides[i].style.display = "none";
+//   }
+//   for (i = 0; i < dots.length; i++) {
+//     dots[i].className = dots[i].className.replace(" active", "");
+//   }
+//   slides[slideIndex - 1].style.display = "block";
+//   dots[slideIndex - 1].className += " active";
+// }
 
 // /* 게시글 작성 modal */
 // const wmodal = document.querySelector(".feedWriteModal");
@@ -91,26 +91,33 @@ function showSlides(n) {
 
 
 
-
-const toggleModal = (event) => {
-  event.preventDefault();
-  const modal = document.getElementById(event.currentTarget.getAttribute("data-target"));
-  typeof modal != "undefined" && modal != null && isModalOpen(modal) ? closeModal(modal) : openModal(modal);
-};
-
-
-const isModalOpen = (modal) => {
+function openModal(){
+  const modal = document.getElementById('feedDetail');
   modal.classList.add("show");
-  modal_background.classList.add("show");
   document.body.style.overflow = "hidden";
-};
+  
+}
 
-const closeModal = (modal) => {
-  modal.classList.removw("show");
-  modal_background.classList.remove("show");
+function wopenModal() {
+  const modal = document.getElementById('feedWrite');
+  modal.classList.add("show");
+  document.body.style.overflow = "hidden";
+
+}
+
+function closeModal(){
+  const modal = document.getElementById('feedDetail');
+  modal.classList.remove("show");
   document.body.style.overflow = "";
-};
+  
+}
 
+function wcloseModal() {
+  const modal = document.getElementById('feedWrite');
+  modal.classList.remove("show");
+  document.body.style.overflow = "";
+
+}
 
 
 
@@ -233,3 +240,25 @@ for (let i = 0; i < inputImageList.length; i++) {
   });
 
 } 
+
+const modalBtn = document.querySelector(".modal-btn");
+
+modalBtn.addEventListener('submit', e =>{
+
+  const content = document.querySelector("[name='feedWrite2']");
+
+  // 제목 미입력 상태
+ 
+  // 내용 미입력
+  if(content.value.trim().length == 0 ) {
+    alert("내용을 입력 해주세요.");
+
+    e.preventDefault(); // form 제출 X
+    content.value = "";
+    content.focus();
+
+    return;
+
+  }
+});
+
