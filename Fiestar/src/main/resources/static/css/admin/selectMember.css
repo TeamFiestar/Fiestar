@@ -29,7 +29,7 @@ header {
 .modal.show {
   display: block;
 }
-.modal.hidden {
+.hidden {
   display: hidden;
 }
 

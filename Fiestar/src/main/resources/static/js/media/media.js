@@ -9,6 +9,19 @@ function modalClose() {
   modal.classList.add('hidden');
 }
 
+/* 삭제 모달 */
+const deleteModal = document.getElementById('deleteModalContainer');
+let deleteCommentNo;
+
+function deleteModalOpen(commentNo) {
+  deleteCommentNo = commentNo;
+  console.log(deleteCommentNo);
+  deleteModal.classList.remove('hidden');
+}
+function deleteModalClose() {
+  deleteModal.classList.add('hidden');
+}
+
 
 // 클릭한 댓글을 제외한 모든 댓글을 사라지게 함
 function loadReplies(element, commentNo) {
@@ -29,12 +42,14 @@ function loadReplies(element, commentNo) {
 
   var hideComment = document.querySelectorAll('.new-comment-area');
   hideComment.forEach(function (c) {
-    c.classList.remove('hide');
+    c.remove();
   });
 
   // 뒤로가기 버튼 표시
   var backButton = document.querySelector('.back-button');
   backButton.style.display = 'block';
+
+  generateComment();
 
 }
 
@@ -94,8 +109,8 @@ function submitComment() {
     }
 
   })
+  .catch(err => console.log(err));
 }
-
 
 
 
@@ -109,6 +124,10 @@ function generateComment(){
   if(parentCommentNo == 0){
     commentLists.innerHTML = "";
   }
+  var hideComment = document.querySelectorAll('.new-comment-area');
+  hideComment.forEach(function (c) {
+    c.remove();
+  });
   
   
   fetch("/mediaComment/selectComment?mediaNo=" + mediaNo + "&mediaParentCommentNo=" + parentCommentNo)
@@ -162,9 +181,15 @@ function generateComment(){
       reportImg.className = "report-img";
       reportImg.src = "/img/report-img.svg";
       reportImg.onclick = modalOpen;
+
+      const deleteImg = document.createElement("img");
+      deleteImg.className = "delete-cross";
+      deleteImg.src = "/img/close_ring.png";
+      deleteImg.setAttribute('onclick', `deleteModalOpen(${comment.mediaCommentNo})`);
+
     
       // report-img를 comment-profile에 추가
-      commentProfile.appendChild(reportImg);
+      commentProfile.append(deleteImg, reportImg);
     
       // img, comment-writer-area, comment-profile을 comment-area-in에 추가
       commentAreaIn.appendChild(img);
@@ -189,12 +214,15 @@ function generateComment(){
     
       // "speech-bubble" 클래스를 가진 이미지 엘리먼트 생성하고 onclick 이벤트 설정
       var speechBubble = document.createElement("img");
-      speechBubble.className = "speech-bubble";
-      speechBubble.src = "/img/speech-bubble.png";
-      speechBubble.onclick = function() {
-          loadReplies(speechBubble);
-      };
-    
+      if(parentCommentNo == 0){
+        
+        speechBubble.className = "speech-bubble";
+        speechBubble.src = "/img/speech-bubble.png";
+        speechBubble.onclick = function() {
+            loadReplies(speechBubble);
+        };
+      
+      }
       // speech-bubble을 speech-bubble-wrapper에 추가
       speechBubbleWrapper.appendChild(speechBubble);
     
@@ -207,4 +235,77 @@ function generateComment(){
       commentLists.append(commentArea)
     }
   })
+}
+
+function deleteComment(){
+  fetch("/mediaComment/deleteComment",{
+    method : "Put",
+    headers : {"Content-Type" : "application/json"},
+    body : deleteCommentNo
+  })
+  .then(resp => resp.text())
+  .then(reulst => {
+    if(reulst > 0){
+      alert("댓글이 삭제되었습니다")
+      generateComment();
+      deleteModalClose()
+    }
+  })
+  .catch(err => console.log(err));
+
+}
+
+
+function changeLike(likeBtn, commentNo){
+
+  if( loginMemberNo == null){
+    alert("로그인 후 이용해 주십시오")
+    return;
+  }
+  
+  const data = {
+    memberNo : loginMemberNo,
+    mediaCommentNo : commentNo
+  }
+
+  if(likeBtn.classList.contains('gray')){
+    
+    
+    fetch("/mediaComment/insertLike",{
+      method : "POST",
+      headers : {"Content-Type" : "application/json"},
+      body : JSON.stringify(data)
+    })
+    .then(resp => resp.text())
+    .then(result => {
+      if(result > 0){
+        likeBtn.src = "/img/like_heart_r.svg";
+        likeBtn.classList.add('red');
+        likeBtn.classList.remove('gray');
+        
+      }
+    })
+    .catch(err => console.log(err));
+  }
+  if(likeBtn.classList.contains('red')){
+    
+    
+    fetch("/mediaComment/deleteLike",{
+      method : "DELETE",
+      headers : {"Content-Type" : "application/json"},
+      body : JSON.stringify(data)
+    })
+    .then(resp => resp.text())
+    .then(result => {
+      if(result > 0){
+        likeBtn.src = "/img/like_heart_w.svg";
+        likeBtn.classList.add('gray');
+        likeBtn.classList.remove('red');
+        
+      }
+    })
+    .catch(err => console.log(err));
+  }
+
+
 }
