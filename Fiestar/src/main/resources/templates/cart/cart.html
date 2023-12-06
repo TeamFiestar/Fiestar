@@ -34,7 +34,7 @@
                                                             -->
 
             <label class="cart-check">
-               <input type='checkbox' id="selectAll">
+               <input type='checkbox' id="selectAll" name="selectAll">
                <i class="fa-regular fa-circle-check"></i>
             </label>
 
@@ -48,7 +48,7 @@
                <!-- 개별 상품 체크 -->
                <div class="select-item">
                   <label class="cart-check">
-                     <input type='checkbox' class="selectEach">
+                     <input type='checkbox' class="selectEach" name="selectEach">
                      <i class="fa-regular fa-circle-check"></i>
                   </label>
                </div>
@@ -67,7 +67,8 @@
                <!-- </div> -->
    
                <div>
-                  <span th:text="${cart.productOptionName}" class="item-option">옵션 : </span>
+                  <span class="option-text"> 옵션 : </span> 
+                  <span th:text="${cart.productOptionName}" class="item-option"></span>
                </div>
    
                <!-- 상품 수량 + & -  -->

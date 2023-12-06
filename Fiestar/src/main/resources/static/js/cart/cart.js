@@ -17,63 +17,101 @@ selectAll.addEventListener("change", () => {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-const minusList = document.getElementsByClassName("input-minus");
-const plusList = document.getElementsByClassName("input-plus");
-const itemCountList = document.getElementsByClassName("item-amount");
-
-
+const plus = document.querySelector(".plus");
+const minus = document.querySelector(".minus");
+const each = document.querySelector(".item-count");
+const price = docoment.querySelector(".amount-price");
 
 
-
-
-
-for(let i = 0; i < minusList.length; i++){
-
-   minusList[i].addEventListener("click", e => {
-      minusItemCountFn(e.target, i);
-
-   });
-}
-
-
-
-
-
-let plus = document.getElementsByClassName("input-plus");
-let itemCount = document.getElementsByClassName("item-amount");  
-let amountPrice = document.getElementsByClassName("amount-price");
-
-
-
-
-
-      let i=0; i<input.value; i++
-
-
-   }
-
-   console.log(minus.innerText);
-   if(i > 0) {
-      i--
-      itemCount.innnerText = i;
-      let amountPriceNum = i*132;
-      amountPrice.innerText = "$" + amountPriceNum.toLocaleString();
-      
-   } else {
-      amountPrice.innerText = "$" + 0
-   }
-
-});
-
+let a = 1;
+let b = 132;
 
 plus.addEventListener("click", () => {
-   i++
-   itemCount.innerText = i;
-   let amountPriceNum = i*132;
-   amountPrice.innerText = "$" + amountPriceNum.toLocaleString();
+   a++;
+   each.innerText = a;
+   price.innerText = a*b;
+   console.log("")
 
 });
+
+minus.addEventListener("click", () => {
+   if(a > 1){
+      a--;
+      each.innerText = a;
+
+   }
+
+});
+
+
+
+
+
+
+
+
+
+// const minusList = document.getElementsByClassName("input-minus");
+// const plusList = document.getElementsByClassName("input-plus");
+
+// - or + 버튼 동작이 발생하면 수량의 개수를 변경
+
+// const itemCountList = document.getElementsByClassName("item-amount");
+
+
+// let minus = document.getElementsByClassName("input-minus")
+
+
+
+
+
+
+// for(let i = 0; i < minusList.length; i++){
+
+//    minusList[i].addEventListener("click", e => {
+//       minusItemCountFn(e.target, i);
+
+//    });
+// }
+
+
+
+
+
+// let plus = document.getElementsByClassName("input-plus");
+// let itemCount = document.getElementsByClassName("item-amount");  
+// let amountPrice = document.getElementsByClassName("amount-price");
+
+
+
+
+
+//       let i=0; i<input.value; i++
+
+
+//    }
+
+//    console.log(minus.innerText);
+//    if(i > 0) {
+//       i--
+//       itemCount.innnerText = i;
+//       let amountPriceNum = i*132;
+//       amountPrice.innerText = "$" + amountPriceNum.toLocaleString();
+      
+//    } else {
+//       amountPrice.innerText = "$" + 0
+//    }
+
+// });
+
+
+// plus.addEventListener("click", () => {
+//    i++
+//    itemCount.innerText = i;
+//    let amountPriceNum = i*132;
+//    amountPrice.innerText = "$" + amountPriceNum.toLocaleString();
+
+// });
 
 
 
@@ -112,31 +150,22 @@ plus.addEventListener("click", () => {
 // });
 
 
-// 수량, 상품 하나 가격, 총 가격
 
 
+// function howMany(selectObject) {
+//    var numberSelected = 0;
+//    for (var i = 0; i < selectObject.options.length; i++) {
+//      if (selectObject.options[i].selected) {
+//        numberSelected++;
+//      }
+//    }
+//    return numberSelected;
+//  }
 
-// const productPrice = document.querySelector(".product-price");
-// const selectedPrice = document.querySelector(".selected-price");
-
-// const totalProduct = document.querySelector("#totalProduct");
-// const totalPrice = document.querySelector("#totalPrice");
-
-
-// const selectEach = document.getElementById("selectEach");
-
-// const xBtn = document.getElementById("xBtn");
-
-// const minus = document.getElementById("minus");
-
-// const plus = document.getElementById("plus");
-
-// selectAll 클릭 시 버튼 색상 변경
-
-// selectAll.addEventListener("click", e => {
-
-
-
+//  var btn = document.getElementById("btn");
+//  btn.addEventListener("click", function () {
+//    alert(
+//      "Number of options selected: " + howMany(document.selectForm.musicTypes),
 
 
 

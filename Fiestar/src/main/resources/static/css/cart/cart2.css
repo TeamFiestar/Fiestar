@@ -65,6 +65,12 @@ h1 {
    /* border-bottom: solid rgb(217, 217, 217) 1px;    */
 }
 
+.option-text{
+   font-size: 14px;
+   margin-left: 60px;
+}
+
+
 .item-list > a{
    text-decoration: none;
    font-size: 18px;
@@ -73,7 +79,7 @@ h1 {
 .item-option{
    font-size: 14px;
    color: rgb(173, 177, 184);
-   margin-left: 18px;
+   margin-left: 2px;
 
 }
 
