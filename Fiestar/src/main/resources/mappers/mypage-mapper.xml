@@ -1,12 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.TeamFiestar.Fiestar.mypage.mapper.MyPageMapper">
-	
+
+	<select id="selectMemberPw" resultType="string">
+		SELECT MEMBER_PW FROM "MEMBER"
+		WHERE MEMBER_NO = #{memberNo}
+	</select>
+
+	<update id="withdrawal">
+		UPDATE "MEMBER" SET
+		MEMBER_DEL_FL = 'Y'
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+
 	<!-- 프로필 이미지 바꾸기 -->
 	<update id="profile">
-		UPDATE "MEMBER" 
+		UPDATE "MEMBER"
 		SET MEMBER_PROFILE = #{memberProfile}
 		WHERE MEMBER_NO = #{memberNo}
 	</update>
+
+	<update id="changeBackImg">
+		UPDATE "MEMBER"
+		SET MEMBER_BACK_IMAGE = #{memberBackImage}
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+
+	<update id="info">
+		UPDATE "MEMBER" SET
+		MEMBER_NICKNAME = #{memberNickname},
+		MEMBER_ADDRESS = #{memberAddress}
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+
 
 </mapper>
