@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 //package com.TeamFiestar.Fiestar.shop.controller;
 //
 //
@@ -99,11 +99,11 @@
 //	
 //
 //}
-=======
+
 package com.TeamFiestar.Fiestar.shop.controller;
 
 
-import org.springframework.stereotype.Controller;  
+import org.springframework.stereotype.Controller;   
 
 
 import java.util.Map;
@@ -201,4 +201,4 @@ public class ShopController {
 	
 
 }
->>>>>>> origin/changwoo
+

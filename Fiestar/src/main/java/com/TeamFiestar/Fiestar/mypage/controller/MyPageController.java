@@ -1,10 +1,10 @@
 //package com.TeamFiestar.Fiestar.mypage.controller;
 //
-<<<<<<< HEAD
+
 //import java.io.IOException;
-=======
+
 //import java.io.IOException; 
->>>>>>> origin/changwoo
+
 //import java.util.Map;
 //
 //import org.springframework.stereotype.Controller;
@@ -15,11 +15,11 @@
 //import org.springframework.web.multipart.MultipartFile;
 //import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 //
-<<<<<<< HEAD
+
 //import com.TeamFiestar.Fiestar.member.model.DTO.Member;
-=======
+
 //import com.TeamFiestar.Fiestar.member.model.dto.Member;
->>>>>>> origin/changwoo
+
 //import com.TeamFiestar.Fiestar.mypage.service.MyPageService;
 //
 //import lombok.RequiredArgsConstructor;
@@ -60,7 +60,7 @@
 //	public String myPageWithdrawal() {
 //		return "myPage/myPage-Withdrawal";
 //	}
-<<<<<<< HEAD
+
 //	
 //	/* 회원 정보 수정 */
 //	// 배경 변경
@@ -70,7 +70,7 @@
 ////	@GetMapping("profile")
 ////	public String profile(@SessionAttribute("loginMember") Member loginMember,
 ////			@RequestParam("memberProfile") MultipartFile memberProfile,
-=======
+
 	
 	/* 회원 정보 수정 */
 	// 배경 변경
@@ -80,7 +80,7 @@
 //	@GetMapping("profile")
 //	public String profile(@SessionAttribute("loginMember") Member loginMember,
 //			@RequestParam("memberProfile") MultipartFile memberProfile,
->>>>>>> origin/changwoo
+
 ////			RedirectAttributes ra) throws IllegalStateException, IOException {
 ////		
 ////		int result = service.profile(loginMember, memberProfile);
@@ -97,17 +97,11 @@
 ////		return "redirect:myPage-Modify";
 ////		
 ////	}
-<<<<<<< HEAD
+
 //	
 //
 //	
 //	
 //
-=======
-	
 
-	
-	
-
->>>>>>> origin/changwoo
 //}

@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 //package com.TeamFiestar.Fiestar.mypage.mapper;
 //
 //import org.apache.ibatis.annotations.Mapper;
@@ -14,7 +14,7 @@
 //
 //
 //}
-=======
+
 package com.TeamFiestar.Fiestar.mypage.mapper;
 
 import org.apache.ibatis.annotations.Mapper; 
@@ -29,4 +29,4 @@ public interface MyPageMapper {
 //
 
 }
->>>>>>> origin/changwoo
+
