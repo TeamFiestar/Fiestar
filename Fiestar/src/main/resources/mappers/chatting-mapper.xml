@@ -4,7 +4,14 @@
 	
 	<insert id="insertMessage">
 		INSERT INTO "MESSAGE"
-		VALUES(SEQ_MESSAGE_NO.NEXTVAL, #{messageContent}, DEFAULT, #{memberNo}, #{chattingRoomNo}, #{mediaTime})
+
+		VALUES(SEQ_MESSAGE_NO.NEXTVAL, #{messageContent}, SYSDATE, #{memberNo}, #{artistGroupNo})
+
 	</insert>
 
+	<select id="selectMember" resultType="_int">
+		SELECT MEMBER_NICKNAME
+		FROM MEMBER
+		WHERE MEMBER_NO = #{memberNo}
+	</select>
 </mapper>

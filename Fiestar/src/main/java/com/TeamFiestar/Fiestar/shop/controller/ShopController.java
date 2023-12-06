@@ -113,6 +113,8 @@ import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import com.TeamFiestar.Fiestar.shop.model.service.ShopService;
 import lombok.RequiredArgsConstructor;
 
@@ -125,23 +127,23 @@ public class ShopController {
 
 	
 	@GetMapping("home")
-	public String shopMain(Model model) {
+	public String shopMain(Model model,
+							@RequestParam Map<String, Object> paramMap ) {
 		
-		Map<String, Object> map = service.shopMain();
-		model.addAttribute("map",map);
-	
-		int shopCount = service.shopMainCount();
-		model.addAttribute("shopCount", shopCount);
-		
-		
+		if(paramMap.get("query") == null) {
+			Map<String, Object> map = service.shopMain(paramMap);
+			model.addAttribute("map",map);
+			int shopCount = service.shopMainCount();
+			model.addAttribute("shopCount", shopCount);
+		}else {
+			Map<String, Object> map =  service.searchList(paramMap);
+			model.addAttribute("map",map);
+			int shopCount = service.shopMainCount();
+			model.addAttribute("shopCount", shopCount);
+		}
 		return "shop/home";
 	}	
 	
-	
-
-	
-	
-
 	
 	
 	
@@ -150,11 +152,6 @@ public class ShopController {
 		return "shop/noticeDetail";
 	}
 	
-	
-	
-	
-	
-	
 	@GetMapping("shopNotice")
 	public String shopNotice() {
 		return "shop/shopNotice";
@@ -162,26 +159,10 @@ public class ShopController {
 	
 	
 	
-	
-	
-	
-	
-	
-	
 	@GetMapping("noticeList")
 	public String noticeList() {
 		return "shop/noticeList";
 	}
-	
-	
-	
-	
-	
-	
-
-	
-	
-	
 	
 	
 	

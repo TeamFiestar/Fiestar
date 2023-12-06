@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.TeamFiestar.Fiestar.chatting.model.dto.Message;
 import com.TeamFiestar.Fiestar.chatting.model.mapper.ChattingMapper;
+import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,6 +18,11 @@ public class ChatServiceImpl implements ChatService{
 	@Override
 	public int insertMessage(Message msg) {
 		return mapper.insertMessage(msg);
+	}
+	
+	@Override
+	public int selectMember(int i) {
+		return mapper.selectMember(i);
 	}
 	
 }

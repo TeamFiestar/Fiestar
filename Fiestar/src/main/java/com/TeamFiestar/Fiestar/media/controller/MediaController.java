@@ -53,6 +53,16 @@ public class MediaController {
 		return "media/mediaList";
 	}
 	
+	@GetMapping("{mediaNo:[0-9]+}/detail")
+	public String mediaDetail(@PathVariable("mediaNo") int mediaNo, Model model) {
+		
+		Media mediaDetail = service.mediaDetail(mediaNo);
+		
+		model.addAttribute("mediaDetail",mediaDetail);
+		
+		return "media/mediaDetail";
+	}
+	
 	@PostMapping("insert")
 	public String mediaInsert(
 			Media inserMedia) {
@@ -61,6 +71,7 @@ public class MediaController {
 		
 		return "redirect:list";
 	}
+	
 	
 	
 	
