@@ -12,10 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.TeamFiestar.Fiestar.shop.model.service.ShopService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-<<<<<<< HEAD
-=======
-
->>>>>>> bb0ffc91bf8c2291a8c989b7a0aaf47b648dfa4d
 
 @Controller
 @RequestMapping("shop")
