@@ -1,4 +1,15 @@
 <!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="../../static/css/artistHomepage/artist.css">
+  <link rel="stylesheet" href="/css/artistHomepage/artist.css">
+  <link rel="stylesheet" href="/css/common/atristPageHeader.css">
+  <title>artist</title>
+</head>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   
   <head>
@@ -10,7 +21,6 @@
     <link rel="stylesheet" href="/css/common/artistPageNavi.css">
     <title>artist</title>
   </head>
-
 <body>
   <th:block th:replace="~{common/atristPageHeader}"></th:block>
   <th:block th:replace="~{common/artistPageNavi}"></th:block>
@@ -19,7 +29,7 @@
   <div class="feedDetailModal" id="feedDetail" style="display: relative; z-index:2">
     <div id="dmodal-body">
       <div>
-        <button class="closeModal" data-target="feedDetail" onClick="toggleModal(event)">X</button>
+        <button class="closeModal" data-target="feedDetail" onclick="closeModal()">X</button>
       </div>
       <div class="feedContent">
         <div class="profile">
@@ -99,7 +109,7 @@
     <!-- 아티스트 별 최신 글 -->
     <div class="swiper-container">
       <div class="swiper-wrapper">
-        <div class="swiper-slide" data-target="feedDetail" onClick="toggleModal(event)">
+        <div class="swiper-slide" data-target="feedDetail" onclick="openModal()">
           <!-- 프로필 사진이 있는 경우 -->
           <!--           <div><img src="image1.jpg" alt="프로필 사진"></div> -->
           <!-- 프로필 사진이 없는 경우  -->
@@ -111,7 +121,7 @@
             <span>오늘 온라인으로 보고 계셨던 피어나도 공연 재밌었나요??</span>
           </div>
         </div>
-        <div class="swiper-slide" data-target="feedDetail" onClick="toggleModal(event)">
+        <div class="swiper-slide" data-target="feedDetail" onclick="openModal()">
           <div><i class="fa-regular fa-circle-user fa-2xl" style="color: #7743DB"></i></div>
           <div>
             <div>
@@ -120,7 +130,7 @@
             <span>맛있는 거 먹고 이번 주도 화이팅이에요</span>
           </div>
         </div>
-        <div class="swiper-slide" data-target="feedDetail" onClick="toggleModal(event)">
+        <div class="swiper-slide" data-target="feedDetail" onclick="openModal()">
           <div><i class="fa-regular fa-circle-user fa-2xl" style="color: #7743DB"></i></div>
           <div>
             <div>
@@ -130,7 +140,7 @@
               모두 원하시는 결과 얻으시길 바랍니다</span>
           </div>
         </div>
-        <div class="swiper-slide" data-target="feedDetail" onClick="toggleModal(event)">
+        <div class="swiper-slide" data-target="feedDetail" onclick="openModal()">
           <div><i class="fa-regular fa-circle-user fa-2xl" style="color: #7743DB"></i></div>
           <div>
             <div>
@@ -139,7 +149,7 @@
             <span>피어나 이거 생각보다 작아요 AirPods케이스 ㅋㅋㅋㅋㅋ</span>
           </div>
         </div>
-        <div class="swiper-slide" data-target="feedDetail" onClick="toggleModal(event)">
+        <div class="swiper-slide" data-target="feedDetail" onclick="openModal()">
           <div><i class="fa-regular fa-circle-user fa-2xl" style="color: #7743DB"></i></div>
           <div>
             <div>
@@ -176,14 +186,14 @@
               <p>1시간 전</p>
             </div>
           </section>
-          <section class="textbox" data-target="feedDetail" onClick="toggleModal(event)">
+          <section class="textbox" data-target="feedDetail" onclick="openModal()">
             맛있는 거 먹고 이번 주도 화이팅이에요
           </section>
           <!-- 댓글 좋아요 -->
           <section class="reaction">
             <i class="fa-regular fa-heart fa-xl"></i> <span>234</span>
-            <i class="fa-regular fa-comment fa-xl"  data-target="feedDetail" onClick="toggleModal(event)"></i> 
-            <span data-target="feedDetail" onClick="toggleModal(event)">234</span>
+            <i class="fa-regular fa-comment fa-xl"  data-target="feedDetail" onclick="openModal()"></i> 
+            <span data-target="feedDetail" onclick="openModal()">234</span>
           </section>
         </section>
       </section>
@@ -209,7 +219,7 @@
               <p>1시간 전</p>
             </div>
           </section>
-          <section class="imgage-container" data-target="feedDetail" onClick="toggleModal(event)">
+          <section class="imgage-container" data-target="feedDetail" onclick="openModal()">
             <div class="img-container">
               <div><a class="prev" onclick="plusSlides(-1)"><i class="fa-solid fa-chevron-left fa-2xl"
                     style="color: #7743DB"></i></a></div>
@@ -243,7 +253,7 @@
             </div>
           </section>
 
-          <section class="textbox" data-target="feedDetail" onClick="toggleModal(event)">
+          <section class="textbox" data-target="feedDetail" onclick="openModal()">
             LE SSERAFIM (르세라핌)은 대한민국의 걸그룹이다. 세상의 시선에 흔들리지 않고 두려움 없이
             앞으로 나아가겠다는 자기 확신과 강한 의지를 바탕으로 비상할 준비를 마친 그룹은 2022년 5월, 대망의 첫 미니 앨범 [FEARLESS]를 공개하며 가요계에 출사표를 던졌다.
             방시혁 총괄 프로듀서의 진두지휘 아래 얼터너티브 팝, 디스코-펑크, R&B 등 다양한 장르의 음악이 그룹만의 스타일로 탄생했고 멤버 김채원과 허윤진은 수록곡 'Blue
@@ -255,8 +265,8 @@
           <!-- 댓글 좋아요 -->
           <section class="reaction">
             <i class="fa-regular fa-heart fa-xl"></i> <span>234</span>
-            <i class="fa-regular fa-comment fa-xl"  data-target="feedDetail" onClick="toggleModal(event)"></i> 
-            <span data-target="feedDetail" onClick="toggleModal(event)">234</span>
+            <i class="fa-regular fa-comment fa-xl"  data-target="feedDetail" onclick="openModal()"></i> 
+            <span data-target="feedDetail" onclick="openModal()">234</span>
           </section>
 
         </section>

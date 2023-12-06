@@ -57,21 +57,34 @@ const swiper = new Swiper('.swiper-container', {
   },
 });
 
-const toggleModal = (event) => {
-  event.preventDefault();
-  const modal = document.getElementById(event.currentTarget.getAttribute("data-target"));
-  typeof modal != "undefined" && modal != null && isModalOpen(modal) ? closeModal(modal) : openModal(modal);
-};
+// const toggleModal = (event) => {
+//   console.log(event);
+//   event.preventDefault();
+//   typeof modal != "undefined" && modal != null && isModalOpen(modal) ? closeModal(modal) : openModal(modal);
+// };
 
+// const modal_background = document.getElementById('feedDetail');
 
-const isModalOpen = (modal) => {
+// const isModalOpen = (modal) => {
+//   // modal_background.classList.add("show");
+// };
+
+// const closeModal = (modal) => {
+//   modal.classList.remov("show");
+//   // modal_background.classList.remove("show");
+//   document.body.style.overflow = "";
+// };
+
+function openModal(){
+  const modal = document.getElementById('feedDetail');
   modal.classList.add("show");
-  modal_background.classList.add("show");
   document.body.style.overflow = "hidden";
-};
+  
+}
 
-const closeModal = (modal) => {
-  modal.classList.removw("show");
-  modal_background.classList.remove("show");
+function closeModal(){
+  const modal = document.getElementById('feedDetail');
+  modal.classList.remove("show");
   document.body.style.overflow = "";
-};
+  
+}

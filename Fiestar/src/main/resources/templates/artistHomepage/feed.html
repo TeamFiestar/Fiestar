@@ -5,12 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>feed</title>
+    <link rel="stylesheet" href="../../static/css/artistHomepage/feed.css">
     <link rel="stylesheet" href="/css/artistHomepage/feed.css">
     <link rel="stylesheet" href="/css/common/atristPageHeader.css">
     <link rel="stylesheet" href="/css/common/artistPageNavi.css">
 </head>
 
 <body>
+    <h1 th:text="${artistGroupTitle}"></h1>
 
     <th:block th:replace="~{common/atristPageHeader}"></th:block>
     <th:block th:replace="~{common/artistPageNavi}"></th:block>
@@ -19,7 +21,7 @@
     <form action="">
         <div class="feedWriteModal" id="feedWrite">
             <div id="feedWriteModal" class="modal-body">
-                <button class="modalCloseButton" data-target="feedWrite" onClick="toggleModal(event)">X</button>
+                <button class="modalCloseButton" data-target="feedWrite" onclick="modalClose()">X</button>
                 <div class="modal-write">
                     <h1>게시글 작성</h1>
                     <p>LE SSERAFIM</p>
@@ -106,7 +108,7 @@
     <div class="feedDetailModal" id="feedDetail">
         <div id="dmodal-body">
             <div>
-                <button class="closeModal" data-target="feedDetail" onClick="toggleModal(event)">X</button>
+                <button class="closeModal" data-target="feedDetail" onclick="modalClose()">X</button>
             </div>
             <div class="feedContent">
                 <div class="profile">

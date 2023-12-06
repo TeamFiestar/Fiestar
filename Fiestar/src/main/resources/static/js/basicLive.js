@@ -145,7 +145,7 @@ async function join() {
       localTracks.videoTrack = await AgoraRTC.createCameraVideoTrack();
     }
 
-    localTracks.videoTrack.play("local-player");
+    localTracks.videoTrack.play("remote-playerlist");
     $("#local-player-name").text(`localTrack(${options.uid})`);
     $("#joined-setup").css("display", "flex");
 
@@ -185,7 +185,7 @@ async function subscribe(user, mediaType) {
   
   if (mediaType === 'video') {
     const player = $(`
-      <div id="player-wrapper-${uid}">
+      <div id="player-wrapper-${uid}" class="player">
         <p class="player-name">remoteUser(${uid})</p>
         <div id="player-${uid}" class="player"></div>
       </div>

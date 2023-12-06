@@ -31,4 +31,11 @@ public class MediaServiceImpl implements MediaService{
 		return result;
 	}
 	
+	// 미디어 디테일
+	@Override
+	public Media mediaDetail(int mediaNo) {
+		
+		return mapper.mediaDetail(mediaNo);
+	}
+	
 }

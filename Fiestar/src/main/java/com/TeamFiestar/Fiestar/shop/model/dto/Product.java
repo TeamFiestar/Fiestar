@@ -14,4 +14,5 @@ public class Product {
 	private String productImage;
 	private String productProduction;
 	private int productPrice;
+	private String artistGroupTitle;
 }

@@ -1,0 +1,53 @@
+package com.TeamFiestar.Fiestar.media.controller;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.xml.stream.events.Comment;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.TeamFiestar.Fiestar.media.model.dto.MediaComment;
+import com.TeamFiestar.Fiestar.media.model.service.MediaCommentService;
+
+import jakarta.annotation.Resource;
+import lombok.RequiredArgsConstructor;
+
+@RestController
+@RequestMapping("mediaComment")
+@RequiredArgsConstructor
+public class MediaCommentController {
+
+	private final MediaCommentService service;
+	
+	@PostMapping("inputComment")
+	@ResponseBody
+	public int inputComment(@RequestBody MediaComment inputComment) {
+		
+		int result = service.inputComment(inputComment);
+		
+		return result;
+		
+	}
+	
+	@GetMapping(value="selectComment", produces = "application/json")
+	@ResponseBody
+	public List<Comment> selectComment(@RequestParam("mediaNo") int mediaNo, @RequestParam("mediaParentCommentNo") int mediaParentCommentNo) {
+		
+		Map<String, Integer> map = new HashMap<>();
+		map.put("mediaNo", mediaNo);
+		map.put("mediaParentCommentNo", mediaParentCommentNo);
+		
+		return service.selectComment(map);
+		
+	}
+	
+}

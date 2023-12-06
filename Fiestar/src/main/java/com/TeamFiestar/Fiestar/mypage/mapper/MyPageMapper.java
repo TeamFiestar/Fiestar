@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
+
 @Mapper
 public interface MyPageMapper {
 
