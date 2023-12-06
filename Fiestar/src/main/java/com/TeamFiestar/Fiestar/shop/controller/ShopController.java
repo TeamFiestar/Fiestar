@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.TeamFiestar.Fiestar.shop.model.service.ShopService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping("shop")
 @RequiredArgsConstructor
+@Slf4j
 public class ShopController {
 	
 	private final ShopService service;
@@ -29,11 +31,14 @@ public class ShopController {
 			model.addAttribute("map",map);
 			int shopCount = service.shopMainCount();
 			model.addAttribute("shopCount", shopCount);
+		
+			
 		}else {
 			Map<String, Object> map =  service.searchList(paramMap);
 			model.addAttribute("map",map);
 			int shopCount = service.shopMainCount();
 			model.addAttribute("shopCount", shopCount);
+			
 		}
 		return "shop/home";
 	}	
