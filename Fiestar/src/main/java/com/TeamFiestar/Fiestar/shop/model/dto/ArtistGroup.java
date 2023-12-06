@@ -7,12 +7,12 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Product {
-	private int productNo;
+public class ArtistGroup {
+	
 	private int artistGroupNo;
-	private String productName;
-	private String productImage;
-	private String productProduction;
-	private int productPrice;
+	private int artistGroupAdminNo;
 	private String artistGroupTitle;
+	private String artistGroupProfile;
+	private String artistGroupIntroduce;
+
 }

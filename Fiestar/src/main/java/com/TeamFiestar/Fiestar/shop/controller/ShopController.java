@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.TeamFiestar.Fiestar.shop.model.service.ShopService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 
 @Controller
 @RequestMapping("shop")
@@ -22,24 +24,37 @@ public class ShopController {
 	
 	@GetMapping("home")
 	public String shopMain(Model model,
-							@RequestParam Map<String, Object> paramMap ) {
+							@RequestParam Map<String, Object> paramMap,
+							@RequestParam(name="shopSearch", required = false, defaultValue = "") String shopSearch) {
 		
-		if(paramMap.get("query") == null) {
-			Map<String, Object> map = service.shopMain(paramMap);
+		if(paramMap.get("shopSearch") == null) {
+			Map<String, Object> map = service.shopMain();
 			model.addAttribute("map",map);
-			int shopCount = service.shopMainCount();
+			int shopCount = service.shopCount();
 			model.addAttribute("shopCount", shopCount);
 		}else {
+			paramMap.put("shopSearch", shopSearch);
 			Map<String, Object> map =  service.searchList(paramMap);
 			model.addAttribute("map",map);
-			int shopCount = service.shopMainCount();
+			int shopCount = service.shopSearchCount(paramMap);
 			model.addAttribute("shopCount", shopCount);
+			
 		}
 		return "shop/home";
 	}	
 	
-	
-	
+	@GetMapping("home/{artistGroupTitle}")
+	public String artistGroupShop(Model model,
+									Map<String, Object> paramMap,
+									@RequestParam("artistGroupNo") int artistGroupNo) {
+		
+		paramMap.put("artistGroupNo", artistGroupNo);
+		int shopCount = service.shopGroupCount(paramMap);
+		model.addAttribute("shopCount", shopCount);
+		Map<String, Object> map = service.artistGroupShop(paramMap);
+		model.addAttribute("map", map);
+		return "shop/home";
+	}
 	
 	@GetMapping("noticeDetail")
 	public String noticeDetail() {
