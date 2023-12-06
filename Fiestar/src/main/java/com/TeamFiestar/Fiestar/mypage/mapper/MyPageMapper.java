@@ -17,10 +17,8 @@
 
 package com.TeamFiestar.Fiestar.mypage.mapper;
 
-import org.apache.ibatis.annotations.Mapper; 
+import org.apache.ibatis.annotations.Mapper;  
 
-<<<<<<< HEAD
-=======
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
 
