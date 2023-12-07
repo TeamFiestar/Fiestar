@@ -13,10 +13,15 @@
 <body>
   <th:block th:replace="~{common/atristPageHeader}"></th:block>
 
-  <div class="all">
+  <div class="all" th:object="${session.loginMember}">
     <div class="BgImage">
-      <img th:unless="${session.loginMember.memberBackImage == null}" th:src="${session.loginMember.memberBackImage}" width="100%" height="100%" id="memberBackImage">
-      <img th:if="${session.loginMember.memberBackImage == null}" th:src="${session.loginMember.memberBackImage}" width="100%" height="100%" id="memberBackImage">
+      <!-- 배경이미지 없음 -->
+      <img th:if="${session.loginMember.memberBackImage == null}" th:src="${session.loginMember.memberBackImage}"
+        width="100%" height="100%" id="memberBackImage">
+
+      <!-- 배경 이미지 있음 -->
+      <img th:unless="${session.loginMember.memberBackImage == null}" th:src="${session.loginMember.memberBackImage}"
+        width="100%" height="100%" id="memberBackImage">
     </div>
 
     <div class="main">
@@ -35,16 +40,14 @@
               <h3>배경화면</h3>
             </div>
             <div class="chooseBgImage">
-              <form action="backImg" method="POST" name="myPageBackFrm" id="backFrm" enctype="multipart/form-data">
-                <div class="mainImg">
-                  <label for="inputBackImg">
-                    <div class="btn-upload1">
-                      <h1>+</h1>
-                    </div>
-                  </label>
-                  <input type="file" name="memberBackImage" id="inputBackImg">
-                </div>
-              </form>
+              <div class="mainImg">
+                <label for="inputBackImg">
+                  <div class="btn-upload1">
+                    <h1>+</h1>
+                  </div>
+                </label>
+                <input type="file" name="memberBackImage" id="inputBackImg">
+              </div>
             </div>
 
             <div class="profileTxt">
@@ -56,7 +59,7 @@
                   <label for="imageInput">
                     <!-- 프로필 이미지 없음 -->
                     <div class="userImg"><img th:if="${session.loginMember.memberProfile == null}"
-                        th:src="#{user.default.image}" width="100%" height="100%" id="memberProfile">
+                        th:src="${session.loginMember.memberProfile}" width="100%" height="100%" id="memberProfile">
                     </div>
                     <!-- 프로필 이미지 있음 -->
                     <div class="userImg">
@@ -71,10 +74,10 @@
             </form>
 
 
-            <form action="info" method="POST" name="myPageForm" id="updateInfo" th:object="${session.loginMember}">
+            <form action="info" method="POST" name="myPageForm" id="updateInfo">
               <div class="emailModify">
                 <div class="modifySection1">
-                  <h3>이메일</h3> 
+                  <h3>이메일</h3>
                 </div>
                 <div class="modifySection2">
                   <h3 th:text="*{memberEmail}">javaman@gmail.com</h3>
@@ -147,8 +150,8 @@
 
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script src="/js/myPage/myPage.js"></script>
-  <script th:inline="javascript">
 
+  <script th:inline="javascript">
     const memberAddress = /*[[${session.loginMember.memberAddress}]]*/ "회원 주소";
 
     if (memberAddress != null) {
@@ -161,7 +164,6 @@
         item.value = arr[index];
       });
     }
-
   </script>
 
 

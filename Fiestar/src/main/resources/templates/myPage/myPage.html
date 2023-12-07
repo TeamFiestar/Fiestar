@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,150 +8,107 @@
   <link rel="stylesheet" href="/css/myPage/myPage.css">
   <link rel="stylesheet" href="/css/myPage/myPage-navi.css">
   <link rel="stylesheet" href="/css/common/atristPageHeader.css">
+  <link rel="stylesheet" href="/css/common/footer.css" />
 </head>
+
 <body>
 
   <th:block th:replace="~{common/atristPageHeader}"></th:block>
-  
+
   <div class="BgImage">
-    <img th:unless="${session.loginMember.memberBackImage == null}" th:src="${session.loginMember.memberBackImage}" width="100%" height="100%" id="memberBackImage">
-    <img th:if="${session.loginMember.memberBackImage == null}" th:src="${session.loginMember.memberBackImage}" width="100%" height="100%" id="memberBackImage">
+    <img th:unless="${session.loginMember.memberBackImage == null}" th:src="${session.loginMember.memberBackImage}"
+      width="100%" height="100%" id="memberBackImage">
+    <img th:if="${session.loginMember.memberBackImage == null}" th:src="${session.loginMember.memberBackImage}"
+      width="100%" height="100%" id="memberBackImage">
   </div>
 
-    <div class="main">
-      
-      <th:block th:replace="~{myPage/myPage-navi2}"></th:block>
+  <div class="main" th:with="boardList=${map.boardList}, pagination=${map.pagination}">
+
+    <th:block th:replace="~{myPage/myPage-navi2}"></th:block>
 
 
 
 
-      <div class="main-2">
-        <div class="contentTitle">
-          <h2>내가 작성한 게시글</h2>
-        </div>
-        <div class="content">
-
-          <div class="myBulletin">
-            <div class="myProfile">
-              <div class="profile-img-small">
-                <img src="/image/user.png" width="100%">
-              </div>
-              <div class="profile-info-small">
-                <div class="nickName-small"><h4>민둥민두</h4></div>
-                <div class="date-small"><h6>2023-11-28</h6></div>
-              </div>
-            </div>
-            <div class="myContent"><h3>지금 코노 가는중!!</h3></div>
-            <div class="delete">
-              <img src="/image/Heart.png">
-              <img src="/image/Speech Bubble.png">
-            </div>
-          </div>
-          <hr class="myPageHr" width="730px" color="gray"><br><br>
-
-          <div class="myBulletin">
-            <div class="myProfile">
-              <div class="profile-img-small">
-                <img src="/image/user.png" width="100%">
-              </div>
-              <div class="profile-info-small">
-                <div class="nickName-small"><h3>민둥민두</h3></div>
-                <div class="date-small"><h5>2023-11-28</h5></div>
-              </div>
-            </div>
-            <div class="myContent"><h3>지금 코노 가는중!!!</h3></div>
-            <div class="delete">
-              <img src="/image/Heart.png">
-              <img src="/image/Speech Bubble.png">
-            </div>
-          </div>
-
-          <hr class="myPageHr" width="750px" color="gray"><br><br>
-
-          <div class="myBulletin">
-            <div class="myProfile">
-              <div class="profile-img-small">
-                <img src="/image/user.png" width="100%">
-              </div>
-              <div class="profile-info-small">
-                <div class="nickName-small"><h3>민둥민두</h3></div>
-                <div class="date-small"><h5>2023-11-28</h5></div>
-              </div>
-            </div>
-            <div class="myContent"><h3>지금 코노 가는중!!!</h3></div>
-            <div class="delete">
-              <img src="/image/Heart.png">
-              <img src="/image/Speech Bubble.png">
-            </div>
-          </div>
-
-          <hr class="myPageHr" width="750px" color="gray"><br><br>
-
-          <div class="myBulletin">
-            <div class="myProfile">
-              <div class="profile-img-small">
-                <img src="/image/user.png" width="100%">
-              </div>
-              <div class="profile-info-small">
-                <div class="nickName-small"><h3>민둥민두</h3></div>
-                <div class="date-small"><h5>2023-11-28</h5></div>
-              </div>
-            </div>
-            <div class="myContent"><h3>지금 코노 가는중!!!</h3></div>
-            <div class="delete">
-              <img src="/image/Heart.png">
-              <img src="/image/Speech Bubble.png">
-            </div>
-          </div>
-
-          <hr class="myPageHr" width="750px" color="gray"><br><br>
-
-        </div>
-
-        <div class="pagination-area" >
-          <ul class="pagination">
-
-            <!-- 첫 페이지로 이동 -->
-            <li>
-              <a >&lt;&lt;</a>
-            </li>
-
-            <!-- 이전 목록 마지막 번호로 이동 -->
-            <li>
-              <a >&lt;</a>
-            </li>
-
-            <th:block >
-
-              <!-- 현재 보고있는 페이지 -->
-              <li >
-                <a class="current">1</a>
-              </li>
-
-              <!-- 보고있지 않은 페이지 -->
-              <li >
-                <a>2</a>
-              </li>
-            </th:block>
-
-            <!-- 다음 목록 시작 번호로 이동 -->
-            <li><a>&gt;</a></li>
-
-            <!-- 끝 페이지로 이동 -->
-            <li><a>&gt;&gt;</a></li>
-          </ul>
-        </div>
-
-        
+    <div class="main-2" >
+      <div class="contentTitle">
+        <h2>내가 작성한 게시글</h2>
       </div>
+      <div class="content"th:each="board : ${boardList}" th:object="${board}">
+
+        <div th:if="${#lists.size(boardList) == 0}">
+          <span>게시글이 존재하지 않습니다.</span>
+        </div>
+
+        <div class="myBulletin" th:unless="${#lists.size(boardList) == 0}">
+          <div class="myProfile">
+            <div class="profile-img-small">
+              <img src="/image/user.png" width="100%">
+            </div>
+            <div class="profile-info-small">
+              <div class="nickName-small">
+                <h4 th:text="${session.loginMember.memberNickname}">민둥민두</h4>
+              </div>
+              <div class="date-small">
+                <h6 th:text="*{boardEnrollDate}">2023-11-28</h6>
+              </div>
+            </div>
+          </div>
+          <div class="myContent">
+            <h3 th:text="*{boardContent}">지금 코노 가는중!!</h3>
+          </div>
+          <div class="delete">
+            <img src="/image/Heart.png"> <span>21</span>
+            <img src="/image/Speech Bubble.png"> <span>3</span>
+            
+            <form action="deleteBoard" method="POST">
+              <div><button>게시글 삭제</button></div>
+            </form>
+          </div>
+        </div>
+        <hr class="myPageHr" width="730px" color="gray">
+      </div>
+
+      <div class="pagination-area" th:if="${#lists.size(boardList) > 0}">
+        <ul class="pagination">
+
+          <!-- 첫 페이지로 이동 -->
+          <li>
+            <a th:href="@{/myPage/myPage(cp=1)}">&lt;&lt;</a>
+          </li>
+
+          <!-- 이전 목록 마지막 번호로 이동 -->
+          <li>
+            <a th:href="@{/myPage/myPage(cp=${pagination.prevPage})}">&lt;</a>
+          </li>
+
+          <th:block th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}">
+
+            <!-- 현재 보고있는 페이지 -->
+            <li th:if="${i == pagination.currentPage}"><a class="current" th:text="${i}">1</a></li>
+
+            <!-- 보고있지 않은 페이지 -->
+            <li th:unless="${i == pagination.currentPage}"><a th:href="@{/myPage/myPage(cp=${i})}" th:text="${i}">2</a>
+            </li>
+          </th:block>
+
+          <!-- 다음 목록 시작 번호로 이동 -->
+          <li><a th:href="@{/myPage/myPage(cp=${pagination.nextPage})}">&gt;</a></li>
+
+          <!-- 끝 페이지로 이동 -->
+          <li><a th:href="@{/myPage/myPage(cp=${pagination.maxPage})}">&gt;&gt;</a></li>
+        </ul>
+      </div>
+
+
     </div>
-  
   </div>
+
+  </div>
+
+  <th:block th:replace="~{common/footer}"></th:block>
+
 
   <script src="https://kit.fontawesome.com/2434a52ecc.js" crossorigin="anonymous"></script>
 </body>
+
 </html>
-
-
-
-

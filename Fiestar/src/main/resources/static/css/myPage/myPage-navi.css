@@ -8,7 +8,7 @@
 .profile{
   width: 280px;
   height: 110px;
-  background-color: rgb(255, 255, 255);
+  background-color: #F3F3F3;
   border-radius: 10px;
   margin: 30px auto;
   display: flex;
@@ -81,13 +81,11 @@
 
 
 
-
-
 /* 사이드바 */
 .sidebar{
   width: 280px;
   height: 250px;
-  background-color: rgb(255, 255, 255);
+  background-color: #F3F3F3;
   border-radius: 10px;
   margin: 30px auto;
   /* box-shadow: 4px 4px 4px rgb(150, 150, 150); */

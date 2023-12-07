@@ -19,9 +19,6 @@
   background-color: #f5f7fa;
 }
 
-hr{
-  margin: 0 auto;
-}
 
 
 /***********************************************배경화면 이미지*******************************************/
@@ -49,21 +46,19 @@ hr{
   width: 780px;
   height: 45px;
   margin: 15px auto;
-  /* text-shadow: 4px 4px 4px rgb(150, 150, 150); */
 }
 
 .contentTitle h2{
   padding-top: 15px;
-  color: rgba(119, 67, 219, 1);
+  color: #7743db;
 }
 
 .content{
   width: 780px;
-  min-height: 415px;
-  background-color: rgb(255, 255, 255);
-  /* box-shadow: 4px 4px 4px rgb(150, 150, 150); */
+  background-color: #F3F3F3;
   border-radius: 10px;
   margin: 0 auto;
+  padding: 20px;
 }
 
 
@@ -117,16 +112,66 @@ hr{
   margin-top: 25px;
 }
 
+.myPageHr{
+  margin-top: 20px;
+}
+
+
+.delete {
+  display: flex;
+  align-items: center;
+}
+
+.delete img {
+  width: 30px; 
+  margin-right: 5px;
+}
+
+.delete span {
+  font-size: 16px;
+  color: #555;
+  margin-right: 15px;
+}
+
+.delete button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #7743db;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 500px;
+}
+
+.delete button:hover {
+  background-color: #6639b9;
+}
 
 
 .pagination-area {
-  width: 700px;
-  margin: 50px auto;
   text-align: center;
+  margin-top: 20px;
 }
+
 .pagination {
-  font-size: 20px;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
 }
+
+.pagination li {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+.pagination li a {
+  text-decoration: none;
+  padding: 8px 12px;
+  margin: 2px;
+}
+
 
 
 

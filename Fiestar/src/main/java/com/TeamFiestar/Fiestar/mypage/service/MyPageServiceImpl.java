@@ -2,14 +2,21 @@ package com.TeamFiestar.Fiestar.mypage.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.TeamFiestar.Fiestar.board.model.dto.Board;
+import com.TeamFiestar.Fiestar.board.model.dto.Comment;
 import com.TeamFiestar.Fiestar.common.utility.Util;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
+import com.TeamFiestar.Fiestar.mypage.dto.Pagination;
 import com.TeamFiestar.Fiestar.mypage.mapper.MyPageMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -66,45 +73,51 @@ public class MyPageServiceImpl implements MyPageService {
 		return result;
 	}
 
-	// 프로필 배경 이미지 바꾸기
+	
+	// 내가 작성한 게시글 조회
 	@Override
-	public int changeBackImg(Member loginMember, MultipartFile memberBackImage) throws IllegalStateException, IOException {
+	public Map<String, Object> selectMyFeedList(Member loginMember, int cp) {
 		
-		String backup = loginMember.getMemberBackImage();	
-		String rename = null;
 		
-		if (memberBackImage.getSize() > 0) {
-			rename = Util.fileRename(memberBackImage.getOriginalFilename());
-			loginMember.setMemberBackImage(webpath + rename);
-		} else {
-			loginMember.setMemberBackImage(null);
-		}
-
-		int result = mapper.changeBackImg(loginMember);
-
-		if (result > 0) {
-			if (memberBackImage.getSize() > 0) {
-				memberBackImage.transferTo(new File(folderPath + rename));
-			} else {
-				loginMember.setMemberProfile(backup);
-			}
-		}
+		// 내가 작성한 게시글 개수 조회
+		int listCount = mapper.listCount(loginMember);
 		
-		return 0;
+		Pagination pagination = new Pagination(cp, listCount);
+		
+		int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
+		int limit = pagination.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit); 
+		
+		List<Board> boardList = mapper.selectMyFeedList(rowBounds, loginMember.getMemberNo());
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("pagination", pagination);
+		map.put("boardList", boardList);
+		
+		return map;
+		
 	}
 	
-	// 프로필 정보 바꾸기
+	// 내가 작성한 댓글 조회
 	@Override
-	public int info(Member updateMember, String[] memberAddress) {
-	
-		if(updateMember.getMemberAddress().equals(",,")) {
-			updateMember.setMemberAddress(null);
-		}else {
-			String address = String.join("^^^", memberAddress);
-			updateMember.setMemberAddress(address);
-		}
-		
-		return mapper.info(updateMember);
-	}
+	public Map<String, Object> MyCommentList(Member loginMember, int cp) {
 
+		// 내가 작성한 댓글 수 조회
+		int listCount = mapper.commentCount(loginMember);
+		
+		Pagination pagination = new Pagination(cp, listCount);
+		
+		int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
+		int limit = pagination.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit); 
+		
+		List<Comment> commentList = mapper.MyCommentList(loginMember, rowBounds);
+		
+		
+		
+		return null;
+	}
+	
 }

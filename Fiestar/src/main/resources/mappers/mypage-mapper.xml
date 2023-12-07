@@ -20,18 +20,31 @@
 		WHERE MEMBER_NO = #{memberNo}
 	</update>
 
-	<update id="changeBackImg">
-		UPDATE "MEMBER"
-		SET MEMBER_BACK_IMAGE = #{memberBackImage}
+	<!--내가 작성한 글 개수 -->
+	<select id="listCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM BOARD
 		WHERE MEMBER_NO = #{memberNo}
-	</update>
+		AND BOARD_DEL_FL = 'N'
+	</select>
+	
+	<!--내가 작성한 글 조회-->
+	<select id="selectMyFeedList" resultType="Board">
+		SELECT MEMBER_NO, BOARD_CONTENT, BOARD_ENROLL_DATE, MEMBER_NICKNAME, MEMBER_PROFILE
+		FROM BOARD
+		JOIN MEMBER USING( MEMBER_NO)
+		WHERE MEMBER_NO = #{memberNo}
+		AND BOARD_DEL_FL = 'N'
+	</select>
+	
 
-	<update id="info">
-		UPDATE "MEMBER" SET
-		MEMBER_NICKNAME = #{memberNickname},
-		MEMBER_ADDRESS = #{memberAddress}
-		WHERE MEMBER_NO = #{memberNo}
-	</update>
+	<select id="commentCount" resultType="_int">
+		SELECT COUNT(*)
+	</select>
+	
+	<select id="MyCommentList">
+		
+	</select>
 
 
 </mapper>

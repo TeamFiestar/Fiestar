@@ -15,10 +15,11 @@ public interface MyPageService {
 	// 프로필 이미지 바꾸기
 	int profile(Member loginMember, MultipartFile memberProfile) throws IllegalStateException, IOException;
 
-	// 프로필 배경 이미지 바꾸기
-	int changeBackImg(Member loginMember, MultipartFile memberBackImage) throws IllegalStateException, IOException;
+	// 내가 작성한 게시글 조회
+	Map<String, Object> selectMyFeedList(Member loginMember, int cp);
 
-	// 프로필 정보 바꾸기
-	int info(Member updateMember, String[] memberAddress);
+	// 내가 작성한 댓글 조회
+	Map<String, Object> MyCommentList(Member loginMember, int cp);
+
 
 }

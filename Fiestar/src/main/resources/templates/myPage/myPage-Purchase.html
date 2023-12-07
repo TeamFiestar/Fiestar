@@ -16,16 +16,14 @@
 
   <div class="all">
     <div class="BgImage">
-      <img th:unless="${session.loginMember.memberBackImage == null}" th:src="${session.loginMember.memberBackImage}"
-        width="100%" height="100%" id="memberBackImage">
-      <img th:if="${session.loginMember.memberBackImage == null}" th:src="${session.loginMember.memberBackImage}"
-        width="100%" height="100%" id="memberBackImage">
+      <img th:unless="${session.loginMember.memberBackImage == null}" th:src="${session.loginMember.memberBackImage}" width="100%" height="100%" id="memberBackImage">
+      <img th:if="${session.loginMember.memberBackImage == null}" th:src="${session.loginMember.memberBackImage}"width="100%" height="100%" id="memberBackImage">
     </div>
     
     <div class="main">
       <th:block th:replace="~{myPage/myPage-navi2}"></th:block>
 
-      <div class="main-2" th:object="${session.loginMember}">
+      <div class="main-2">
         <div class="contentTitle">
           <h2>구매 내역</h2>
         </div>
@@ -33,7 +31,7 @@
 
           <div class="buyAll">
             <div class="buyDate">
-              <li>[2023.11.23]</li>
+              <li >[2023.11.23]</li>
             </div>
             <div class="deliver">
               <li>[배송중]</li>
@@ -44,7 +42,7 @@
               </div>
               <div class="item">
                 <div class="itemName">
-                  <h3>LE SSERAFIM 2024 SEASON'S GREETINGS</h3>
+                  <h3 >LE SSERAFIM 2024 SEASON'S GREETINGS</h3>
                 </div>
                 <div class="itemCount">
                   <li>상품개수 : 3개</li>
