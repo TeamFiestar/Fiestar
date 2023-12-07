@@ -32,7 +32,7 @@ a {
   display: flex;
   width: 1440px;
   margin: auto;
-  padding: 80px 50px 0px 50px;
+  padding: 0px 50px 0px 50px;
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
