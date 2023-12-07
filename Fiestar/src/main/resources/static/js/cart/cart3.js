@@ -9,6 +9,10 @@
 // innerText : 시작태그, 종료태그  사이에 작성된 글 
 
 
+
+
+
+
 const selectAll = document.getElementById("selectAll");
 const selectEachList = document.getElementsByClassName("selectEach");
 const totalPrice = document.getElementById("totalPrice");
@@ -30,8 +34,6 @@ const plusList = document.querySelectorAll(".plus");
 // minus 버튼
 const minusList = document.querySelectorAll(".minus");
 
-
-
 const clacPrice = (btn) => {
 
    const itemCount = btn.parentElement.children[1];
@@ -41,16 +43,13 @@ const clacPrice = (btn) => {
    amountPrice.innerText = Number(itemCount.innerText) * Number(defaultPrice.innerText);
 }
 
-// 체크된 상품의 가격 
-
 const checkedPrice = () => {
    const checkList = document.querySelectorAll(".selectEach:checked");
 
    let sum = 0;
 
 
-   // 체크리스트에서 체크 박스 하나씩 꺼내온다.
-
+   // 
    for(let checkbox of checkList){
       const amountPrice = checkbox.parentElement.parentElement.parentElement.nextElementSibling.children[1].innerText;
       sum += Number(amountPrice);
@@ -58,6 +57,9 @@ const checkedPrice = () => {
 
    totalPrice.innerText = sum;
 }
+
+
+
 
 
 for(let i=0; i<plusList.length; i++) {
@@ -70,6 +72,7 @@ for(let i=0; i<plusList.length; i++) {
       checkedPrice();
    });
 }
+
 
 for(let i=0; i<minusList.length; i++) {
    minusList[i].addEventListener("click", e => {
@@ -85,13 +88,11 @@ for(let i=0; i<minusList.length; i++) {
    });
 }
 
+
 // 체크 상태가 변했을 때 checkedPrice(); 수행
 document.addEventListener("change", e => {
    
-   checkedPrice();
-   
 });
-
 
 
 // 문서가 로딩 완료 되었을 때 checkedPrice() 수행
@@ -99,3 +100,21 @@ document.addEventListener('DOMContentLoaded', () => {
    checkedPrice() ;
 });
 
+
+
+
+
+// function howMany(selectObject) {
+//    var numberSelected = 0;
+//    for (var i = 0; i < selectObject.options.length; i++) {
+//      if (selectObject.options[i].selected) {
+//        numberSelected++;
+//      }
+//    }
+//    return numberSelected;
+//  }
+
+//  var btn = document.getElementById("btn");
+//  btn.addEventListener("click", function () {
+//    alert(
+//      "Number of options selected: " + howMany(document.selectForm.musicTypes),
