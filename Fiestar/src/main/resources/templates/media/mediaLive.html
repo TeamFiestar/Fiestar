@@ -41,53 +41,50 @@
         <div class="div">
           <div class="frame-2">
             <div class="frame-3">
-              <!-- <div class="rectangle" id="remote-playerlist"></div> -->
-              <iframe  id="youtube-url"
-              th:src="|https://www.youtube.com/embed/${mediaDetail.mediaAddress}|" 
-              title="YouTube video player" frameborder="0"></iframe>
+              <div class="rectangle" id="remote-playerlist"></div>
               <img class="male-user" src="/img/male-user-10.png" />
             </div>
             <div class="frame-4">
-              <!-- <div class="frame-5"><button class="replay-btn agora-btn" id="host-join" onclick="tokenGenerator('host', 1)">host join</button></div>
+              <div class="frame-5"><button class="replay-btn agora-btn" id="host-join" onclick="tokenGenerator('host', 1)">host join</button></div>
               <div class="frame-5"><button class="audience-btn agora-btn" id="audience-join" onclick="tokenGenerator('audience', 2)">audience join</button></div>
-              <div class="frame-5"><button class="leave agora-btn" id="leave">leave</button></div> -->
-              <div class="media-title" th:text="${mediaDetail.mediaTitle}">미디어/라이브 제목</div>
+              <div class="frame-5"><button class="leave agora-btn" id="leave">leave</button></div>
+              <div class="media-title">미디어/라이브 제목</div>
               <div class="frame-6">
                 <img class="view-img" src="/img/view.svg" />
-                <div class="media-view-count" th:text="${mediaDetail.mediaCount}">4k(조회수)</div>
+                <div class="media-view-count">4k(조회수)</div>
               </div>
             </div>
             <div class="comment-area-in">
               <img class="profile-img" src="/img/male-user.png" />
-              <div class="comment-writer-area"><div class="media-title-wrapper" th:text="${artistGroupTitle}">게시글 작성자</div></div>
+              <div class="comment-writer-area"><div class="media-title-wrapper">게시글 작성자</div></div>
               <div class="media-enroll-date-wrapper" >11.21. 02:43</div>
               <img class="comment-profile" src="/img/frame-11979-9.svg" />
             </div>
-            <div class="frame-10"><div class="text-wrapper-6" th:text="${mediaDetail.mediaDescription}">작성자 설명</div></div>
+            <div class="frame-10"><div class="text-wrapper-6">작성자 설명</div></div>
           </div>
           <div class="frame-wrapper">
             <div class="comment-list-area">
               <div class="comment-count">
                 <img src="/img/vector-9.svg" class="back-button" onclick="goBack()">
-                <div class="text-wrapper-7" >[[${mediaDetail.mediaCommentList.size}]]개의 댓글</div>
+                <div class="text-wrapper-7" >채팅창</div>
               </div>
               <div class="comment-list">
 
                  <!-- 댓글 -->
-                <div class="comment-area" th:each="comment : ${mediaDetail.mediaCommentList}" th:object="${comment}">
+                <div class="comment-area">
 
                   <div class="comment-area-in">
 
                     <img class="profile-img" src="/img/male-user.png" />
 
                     <div class="comment-writer-area">
-                      <div class="comment-writer" th:text="*{memberNickname}">댓글 작성자</div>
-                      <div class="comment-date" th:text="*{mediaCommentEnrollDate}">11.21. 02:43</div>
+                      <div class="comment-writer" >댓글 작성자</div>
+                      <div class="comment-date">11.21. 02:43</div>
                     </div>
 
                     <div class="comment-profile">
-                      <img class="delete-cross" src="/img/close_ring.png" th:onclick="|deleteModalOpen(*{mediaCommentNo})|"/>
-                      <img class="report-img" src="/img/report-img.svg" onclick="modalOpen()"/>
+                      <img class="delete-cross" src="/img/close_ring.png"/>
+                      <img class="report-img" src="/img/report-img.svg"/>
                     </div>
 
                   </div>
@@ -107,36 +104,6 @@
 
                 </div>
 
-
-
-
-
-                <div class="new-comment-list">
-
-                  <div class="new-comment-area hide">
-                    <!-- 여기에 나타날 새로운 댓글 창 -->
-                    <div class="comment-area-in">
-                      <img class="img" src="/img/male-user.png" />
-  
-                      <div class="comment-writer-area">
-                        <div class="comment-writer">답글 작성자</div>
-                        <div class="comment-date">11.21. 02:43</div>
-                      </div>
-  
-                      <img class="comment-profile" src="/img/frame-11979.png" />
-                    </div>
-  
-                    <div class="comment-content-area">
-                      <div class="comment-content">와 르세라핌!</div>
-                    </div>
-  
-                    <div class="speech-bubble-wrapper">
-                      <img class="speech-bubble" src="/img/speech-bubble.png" />
-                    </div>
-                  </div>
-                  
-                </div>
-
               </div>
               <div class="comment-input-area">
                 <input type="hidden" value="0" id="parent-comment-no">
@@ -154,13 +121,16 @@
 
     <script th:inline="javascript">
 
-      const mediaCommentList = /*[[${mediaDetail.mediaCommentList}]]*/ "미디어 댓글 리스트";
       const loginMemberNo = /*[[${session.loginMember?.memberNo}]]*/ "회원번호";
       const loginMemberNickname = /*[[${session.loginMember?.memberNickname}]]*/ "회원닉네임";
       const mediaNo = /*[[${mediaNo}]]*/ "미디어 번호";
+      const artistGroupTitle = /*[[${artistGroupTitle}]]*/ "artistGroupTitle";
 
     </script>
 
+    <script src="https://download.agora.io/sdk/release/AgoraRTC_N.js"></script>
+    <script src="/js/jquery-3.4.1.min.js"></script>
     <script src="/js/media/media.js"></script>
+    <script src="/js/basicLive.js"></script>
   </body>
 </html>

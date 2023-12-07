@@ -130,7 +130,7 @@ function generateComment(){
   });
   
   
-  fetch("/mediaComment/selectComment?mediaNo=" + mediaNo + "&mediaParentCommentNo=" + parentCommentNo)
+  fetch("/mediaComment/selectComment?mediaNo=" + mediaNo + "&mediaParentCommentNo=" + parentCommentNo+ "&memberNo=3")
   .then(resp => resp.json())
   .then(commentList =>{
     console.log(commentList);
@@ -151,7 +151,7 @@ function generateComment(){
     
       // "img" 클래스를 가진 이미지 엘리먼트 생성하고 src 속성 설정
       var img = document.createElement("img");
-      img.className = "img";
+      img.className = "profile-img";
       img.src = "/img/male-user.png";
     
       // "comment-writer-area" 클래스를 가진 div 생성
@@ -218,13 +218,27 @@ function generateComment(){
         
         speechBubble.className = "speech-bubble";
         speechBubble.src = "/img/speech-bubble.png";
-        speechBubble.onclick = function() {
-            loadReplies(speechBubble);
-        };
+        speechBubble.setAttribute("onclick", `loadReplies(this, ${comment.mediaCommentNo})`);
       
       }
+
+      // 좋아요
+      var likeheart = document.createElement("img");
+      if(comment.memberCommentLike == 0){
+        likeheart.className = "like-heart gray";
+        likeheart.src = "/img/like_heart_w.svg";
+        likeheart.setAttribute("onclick",`changeLike(this, ${comment.mediaCommentNo})`);
+      }
+      else{
+        likeheart.className = "like-heart red";
+        likeheart.src = "/img/like_heart_r.svg";
+        likeheart.setAttribute("onclick",`changeLike(this, ${comment.mediaCommentNo})`);
+      }
+      console.log(comment.memberCommentLike);
+
+
       // speech-bubble을 speech-bubble-wrapper에 추가
-      speechBubbleWrapper.appendChild(speechBubble);
+      speechBubbleWrapper.append(speechBubble ,likeheart );
     
       // comment-area-in, comment-content-area, speech-bubble-wrapper를 comment-area에 추가
       commentArea.appendChild(commentAreaIn);
@@ -235,6 +249,7 @@ function generateComment(){
       commentLists.append(commentArea)
     }
   })
+  .catch(err => console.log(err));
 }
 
 function deleteComment(){

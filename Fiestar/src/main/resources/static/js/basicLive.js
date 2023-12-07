@@ -17,7 +17,7 @@ var remoteUsers = {};
 // Agora 클라이언트 옵션 설정
 const options = {
   appid: "8db96ea10154462a8fcb52cee3d45ccb",
-  channel: "kang",
+  channel: artistGroupTitle,
   uid: null,
   token: "007eJxTYGipvMa+gdmjlPGF+u0XYm2mjpJvCpZ1npnC8j2lUPqp9hkFBouUJEuz1ERDA0NTExMzo0SLtOQkU6Pk1FTjFBPT5OQkiZlpqQ2BjAyc2t4MjFAI4rMwZCfmpTMwAAD7CB3N",
   role: "audience", // 기본 역할을 청취자로 설정
@@ -66,7 +66,7 @@ async function tokenGenerator(role, flag){
   let token = "token";
   
   console.log("flag : " + flag);
-  fetch("/media/generateToken?roleFlag="+flag)
+  fetch("/media/generateToken?roleFlag="+flag +"&channelName="+artistGroupTitle)
   .then( (response) => {
     console.log(response);
     return response.text();
@@ -91,7 +91,7 @@ async function joinSubmit(role, token) {
   $("#host-join").attr("disabled", true);
   $("#audience-join").attr("disabled", true);
   try {
-    options.channel = "kang";
+    options.channel = artistGroupTitle;
     options.uid = null;
     options.appid = "8db96ea10154462a8fcb52cee3d45ccb";
     options.token = token;

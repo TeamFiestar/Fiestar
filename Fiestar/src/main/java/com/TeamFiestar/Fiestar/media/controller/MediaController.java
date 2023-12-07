@@ -51,6 +51,7 @@ public class MediaController {
 		
 		model.addAttribute("mediaList", mediaList);
 		model.addAttribute("key", key);
+		model.addAttribute("artistGroupTitle",artistGroupTitle);
 		
 		return "media/mediaList";
 	}
@@ -63,6 +64,7 @@ public class MediaController {
 		Media mediaDetail = service.mediaDetail(mediaNo);
 		
 		model.addAttribute("mediaDetail",mediaDetail);
+		model.addAttribute("artistGroupTitle",artistGroupTitle);
 		
 		return "media/mediaDetail";
 	}
@@ -75,6 +77,15 @@ public class MediaController {
 		int result = service.insertMedia(inserMedia);
 		
 		return "redirect:list";
+	}
+	
+	@GetMapping("{artistGroupTitle}/media/live")
+	public String mediaLive(
+			@PathVariable("artistGroupTitle") String artistGroupTitle, Model model) {
+		model.addAttribute("artistGroupTitle",artistGroupTitle);
+		
+		
+		return "media/mediaLive";
 	}
 	
 	

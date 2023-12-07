@@ -42,9 +42,11 @@ public class MediaCommentController {
 	
 	@GetMapping(value="selectComment", produces = "application/json")
 	@ResponseBody
-	public List<Comment> selectComment(@RequestParam("mediaNo") int mediaNo, @RequestParam("mediaParentCommentNo") int mediaParentCommentNo) {
+	public List<Comment> selectComment(@RequestParam("mediaNo") int mediaNo, @RequestParam("mediaParentCommentNo") int mediaParentCommentNo
+			,@RequestParam("memberNo") int memberNo) {
 		
 		Map<String, Integer> map = new HashMap<>();
+		map.put("memberNo", memberNo);
 		map.put("mediaNo", mediaNo);
 		map.put("mediaParentCommentNo", mediaParentCommentNo);
 		

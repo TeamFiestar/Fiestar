@@ -43,18 +43,19 @@ public class MyPageServiceImpl implements MyPageService {
 			loginMember.setMemberProfile(null);
 		}
 
-		int result = mapper.profile(loginMember);
+//		int result = mapper.profile(loginMember);
 		
-		if(result > 0) {
-			if(memberProfile.getSize() >0) {
-				memberProfile.transferTo(new File(folderPath + rename));
-			} else {
-				loginMember.setMemberProfile(backup);
-			}
-		}
+//		if(result > 0) {
+//			if(memberProfile.getSize() >0) {
+//				memberProfile.transferTo(new File(folderPath + rename));
+//			} else {
+//				loginMember.setMemberProfile(backup);
+//			}
+//		}
 
 		
-		return result;
+//		return result;
+		return 0;
 		
 		
 	}
