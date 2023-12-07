@@ -24,4 +24,6 @@ public interface BoardMapper {
 
 	int countBoardLike(Integer integer);
 
+	int artistGroupNo(String artistGroupTitle);
+
 }

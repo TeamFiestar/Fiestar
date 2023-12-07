@@ -30,27 +30,85 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@SessionAttributes({"loginMember"})
+@SessionAttributes({"loginMember", "artistGroupTitle", "artistGroupNo"})
 @RequiredArgsConstructor
 public class BoardController {
 	
 	
 	private final BoardService service;
 	
+//	@GetMapping("{artistGroupTitle}/feed")
+//	public String selectBoard(Model model, @RequestParam Map<String, Object> paramMap, 
+//			@PathVariable("artistGroupTitle" ) String artistGroupTitle) {
+//		
+//			
+//			Map<String,Object> map = new HashMap<>();
+//			int artistGroupNo = service.artistGroupNo(artistGroupTitle);
+//			map.put("artistGroupNo", artistGroupNo);
+//	
+//			Board board = service.selectBoard(map);
+//			
+//			model.addAttribute("artistGroupNo",artistGroupNo);
+//			model.addAttribute("map", map);
+//			model.addAttribute("artistGroupTitle", artistGroupTitle);
+//			
+//			if(board != null) {
+//				model.addAttribute("board", board);
+//				
+//				if (board.getImageList().size() > 0) {
+//					BoardImg thumbnail = null;
+//					
+//					if(board.getImageList().get(0).getImgOrder() ==0) {
+//						thumbnail = board.getImageList().get(0);
+//						
+//					}
+//					model.addAttribute("thumbnail", thumbnail);
+//					model.addAttribute("start", thumbnail != null ? 1: 0);
+//				}
+//			}
+//			
+//			
+//		
+//		
+//		return "artistHomepage/feed";
+//	}
+	
 	@GetMapping("{artistGroupTitle}/feed")
 	public String selectBoard(Model model, @RequestParam Map<String, Object> paramMap, 
-			@PathVariable("artistGroupTitle" ) String artistGroupTitle ) {
-		{
-			
+			@PathVariable("artistGroupTitle" ) String artistGroupTitle) {
+		
+			int artistGroupNo = service.artistGroupNo(artistGroupTitle);
+			paramMap.put("artistGroupNo", artistGroupNo);
 			Map<String, Object> map = service.selectBoard(paramMap);
-			
+			model.addAttribute("artistGroupNo",artistGroupNo);
 			model.addAttribute("map", map);
 			model.addAttribute("artistGroupTitle", artistGroupTitle);
 			
-		}
+			
+		
 		
 		return "artistHomepage/feed";
 	}
+//	
+//	@GetMapping("{artistGroupTitle}/feed/{boardNo}")
+//	public String selectBoard(Model model, @RequestParam Map<String, Object> paramMap, 
+//			@PathVariable("artistGroupTitle" ) String artistGroupTitle, 
+//			@PathVariable("boardNo" ) int boardNo, Board boardDetail) {
+//		
+//			
+//			Map<String, Object> map = service.selectBoard(paramMap);
+//			map.put("boardNo", boardNo);
+//			int artistGroupNo = service.artistGroupNo(artistGroupTitle);
+//			model.addAttribute("artistGroupNo",artistGroupNo);
+//			model.addAttribute("boardDetail",boardDetail);
+//			
+//			model.addAttribute("map", map);
+//			model.addAttribute("artistGroupTitle", artistGroupTitle);
+//			
+//		
+//		
+//		return "artistHomepage/feed";
+//	}
 
 	@GetMapping("{artistGroupTitle}/feed/{boardNo:[0-9]+}")
 	public String detail(@PathVariable("artistGroupTitle") String artistGrouptTitle,

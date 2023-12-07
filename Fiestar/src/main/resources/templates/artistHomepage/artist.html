@@ -219,11 +219,11 @@
               <p>1시간 전</p>
             </div>
           </section>
-          <section class="imgage-container" data-target="feedDetail" onclick="openModal()">
+          <section class="imgage-container" data-target="feedDetail" >
             <div class="img-container">
               <div><a class="prev" onclick="plusSlides(-1)"><i class="fa-solid fa-chevron-left fa-2xl"
                     style="color: #7743DB"></i></a></div>
-              <div class="slideshow-container">
+              <div class="slideshow-container" onclick="openModal()">
                 <div class="slide">
                   <img src="/artistHomepageImg/1.jpg" width="100%">
                 </div>
@@ -244,13 +244,13 @@
                     style="color: #7743DB"></i></a></div>
             </div>
 
-            <div style="text-align:center" class="dot-container">
+            <!-- <div style="text-align:center" class="dot-container">
               <span class="dot" onclick="currentSlide(1)"></span>
               <span class="dot" onclick="currentSlide(2)"></span>
               <span class="dot" onclick="currentSlide(3)"></span>
               <span class="dot" onclick="currentSlide(4)"></span>
               <span class="dot" onclick="currentSlide(5)"></span>
-            </div>
+            </div> -->
           </section>
 
           <section class="textbox" data-target="feedDetail" onclick="openModal()">

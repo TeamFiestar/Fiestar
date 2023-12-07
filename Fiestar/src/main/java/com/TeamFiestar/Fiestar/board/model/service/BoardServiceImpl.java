@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.TeamFiestar.Fiestar.board.model.dto.Board;
 import com.TeamFiestar.Fiestar.board.model.mapper.BoardMapper;
@@ -13,16 +14,40 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class BoardServiceImpl implements BoardService {
 
 	private final BoardMapper mapper;
 	
+//	@Override
+//	public Board selectBoard(Map<String, Object> map) {
+//		
+//		List<Board> boardList = mapper.selectBoard(map);
+//		
+//		Board paramMap = new HashMap<>();
+//		
+//		if (map.containsKey("boardNo")) {
+//			Board boardDetail = mapper.detail(map);
+//			map.put("boardDetail",boardDetail);
+//		}
+//		
+//		map.put("boardList", boardList);
+//		
+//		
+//		return paramMap;
+//	}
 	@Override
 	public Map<String, Object> selectBoard(Map<String, Object> paramMap) {
 		
 		List<Board> boardList = mapper.selectBoard(paramMap);
 		
 		Map<String, Object> map = new HashMap<>();
+		
+		if (paramMap.containsKey("boardNo")) {
+			Board boardDetail = mapper.detail(map);
+			map.put("boardDetail",boardDetail);
+		}
+		
 		map.put("boardList", boardList);
 		
 		
@@ -65,6 +90,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int updateReadCount(int boardNo) {
 		return mapper.updateBoardCount(boardNo);
+	}
+	
+	@Override
+	public int artistGroupNo(String artistGroupTitle) {
+		return mapper.artistGroupNo(artistGroupTitle);
 	}
 	
 	
