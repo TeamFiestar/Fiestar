@@ -8,4 +8,11 @@
 		ORDER BY MEMBER_NO
 	</select>
 	
+	<select id="selectBoard" resultType="Board">
+		SELECT  BOARD_CONTENT,
+		(SELECT ARTIST_GROUP_TITLE FROM ARTIST_GROUP AG WHERE B.ARTIST_GROUP_NO = AG.ARTIST_GROUP_NO)
+		FROM BOARD B
+		WHERE MEMBER_NO = #{memberNo}
+	</select>
+	
 </mapper>
