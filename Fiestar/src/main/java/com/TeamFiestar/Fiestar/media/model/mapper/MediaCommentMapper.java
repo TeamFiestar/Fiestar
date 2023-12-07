@@ -16,4 +16,10 @@ public interface MediaCommentMapper {
 
 	List<Comment> selectComment(Map<String, Integer> map);
 
+	int deleteComment(int commentNo);
+
+	int insertLike(MediaComment comment);
+
+	int deleteLike(MediaComment comment);
+
 }

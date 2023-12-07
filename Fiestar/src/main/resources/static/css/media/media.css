@@ -33,7 +33,7 @@ a {
   flex-direction: column;
   width: 1440px;
   align-items: flex-start;
-  padding: 80px 50px 0px;
+  padding: 0px 50px 0px;
 /* position: relative; */
 
   background-color: #ffffff;
@@ -60,7 +60,7 @@ a {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 80px 0px 0px;
+  padding: 40px 0px 0px;
   /* position: relative; */
   flex: 1;
   align-self: stretch;
@@ -279,8 +279,8 @@ a {
 
 .report-img{
   cursor: pointer;
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   overflow: hidden;
 }
 
@@ -445,7 +445,7 @@ a {
 
 .div-wrapper .speech-bubble-wrapper {
   display: flex;
-  height: 18px;
+  height: 21px;
   align-items: flex-start;
   padding: 0px 0px 0px 40px;
 /* position: relative; */
@@ -458,7 +458,7 @@ a {
 /* position: relative; */
 
   align-self: stretch;
-  width: 18px;
+  width: 21px;
 }
 
 .div-wrapper .comment-input-area {
@@ -544,11 +544,6 @@ a {
   display: none !important;
 }
 
-
-.new-comment-area {
-  opacity: 0; 
-}
-
 .back-button {
   display: none; /* 처음에는 뒤로가기 버튼을 숨김 */
   cursor: pointer;
@@ -562,7 +557,7 @@ a {
   cursor: pointer;
 }
 
-#modalContainer {
+#modalContainer,  #deleteModalContainer{
   width: 100%;
   height: 100%;
   position: fixed;
@@ -577,12 +572,17 @@ a {
 #modalContent {
   position: absolute;
   background-color: #ffffff;
-  width: 300px;
-  height: 150px;
-  padding: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    min-height: 190px;
+    padding: 30px 24px 20px;
+    text-align: center;
 }
 
-#modalContainer.hidden {
+
+
+#modalContainer.hidden, #deleteModalContainer.hidden {
   display: none;
 }
 
@@ -593,4 +593,59 @@ a {
 
 .player-name {
   margin: 8px 4px;
+}
+
+
+#youtube-url{
+  width: 100%;
+  height: 100%;
+}
+
+.new-comment-list{
+  display: flex;
+  flex-direction: column;
+}
+
+.delete-cross{
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  margin-right: 4px;
+}
+
+.modal-sub{
+  align-items: center;
+  color: #111;
+  display: flex;
+  flex-grow: 1;
+  font-size: 15px;
+  justify-content: center;
+  line-height: 23px;
+  overflow-wrap: break-word;
+  white-space: pre-line;
+  word-break: break-word;
+}
+
+.modal-btn-area{
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  gap: 10px;
+}
+
+.modal-btn{
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  height: 50px;
+  line-height: 19px;
+  width: 170px;
+}
+
+.like-heart{
+  width: 21px;
+  height: 21px;
+  fill: white;
+  margin-left: 7px;
+  cursor: pointer;
 }

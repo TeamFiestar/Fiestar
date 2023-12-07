@@ -5,12 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="/css/media/mediaInsert.css">
+  <link rel="stylesheet" href="/css/common/artistPageHeader.css">
+  <link rel="stylesheet" href="/css/common/artistPageNavi.css">
 </head>
 <body>
+
+  <th:block th:replace="~{common/atristPageHeader}"></th:block>
+  <th:block th:replace="~{common/artistPageNavi}"></th:block>
+
   <div class="frame">
     
     <div class="media-frame">
-      <form action="/media/insert" method="post" style="margin: auto;">
+      <form th:action="|/${artistGroupTitle}/media/insert|" method="post" style="margin: auto;">
       <div class="media-edit">미디어 작성</div>
       
       <div class="media-insert">

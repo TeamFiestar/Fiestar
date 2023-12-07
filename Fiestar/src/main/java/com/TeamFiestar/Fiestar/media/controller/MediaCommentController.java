@@ -7,8 +7,10 @@ import java.util.Map;
 import javax.xml.stream.events.Comment;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +23,7 @@ import com.TeamFiestar.Fiestar.media.model.service.MediaCommentService;
 import jakarta.annotation.Resource;
 import lombok.RequiredArgsConstructor;
 
-@RestController
+@Controller
 @RequestMapping("mediaComment")
 @RequiredArgsConstructor
 public class MediaCommentController {
@@ -48,6 +50,24 @@ public class MediaCommentController {
 		
 		return service.selectComment(map);
 		
+	}
+	
+	@PutMapping("deleteComment")
+	@ResponseBody
+	public int deleteComment(@RequestBody int commentNo) {
+		return service.deleteComment(commentNo);
+	}
+	
+	@PostMapping("insertLike")
+	@ResponseBody
+	public int insertLike(@RequestBody MediaComment comment) {
+		return service.insertLike(comment);
+	}
+	
+	@DeleteMapping("deleteLike")
+	@ResponseBody
+	public int deleteLike(@RequestBody MediaComment comment) {
+		return service.deleteLike(comment);
 	}
 	
 }

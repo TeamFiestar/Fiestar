@@ -9,31 +9,35 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.annotation.ApplicationScope;
 
 import com.TeamFiestar.Fiestar.media.model.dto.Media;
 import com.TeamFiestar.Fiestar.media.model.service.MediaService;
 
+import jakarta.servlet.ServletContext;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
-@RequestMapping("media")
-@Slf4j
 @RequiredArgsConstructor
 public class MediaController {
 	
 	private final MediaService service;
 	
-	@GetMapping("insert")
-	public String mediaInsert() {
+	
+	@GetMapping("{artistGroupTitle}/media/insert")
+	public String mediaInsert(
+			@PathVariable("artistGroupTitle") String artistGroupTitle, Model model) {
+		model.addAttribute("artistGroupTitle",artistGroupTitle);
+		
+
+		
 		return "media/mediaInsert";
 	}
 	
-	@GetMapping("list")
+	@GetMapping("{artistGroupTitle}/media/list")
 	public String mediaList(
+			@PathVariable("artistGroupTitle") String artistGroupTitle,
 			@RequestParam(name="key", required = false, defaultValue = "1") int key,
 			@RequestParam(name="mediaTitle", required = false, defaultValue = "") String mediaTitle
 			,Model model) {
@@ -48,13 +52,13 @@ public class MediaController {
 		model.addAttribute("mediaList", mediaList);
 		model.addAttribute("key", key);
 		
-		log.debug("mediaTitle : " + mediaList);
-		
 		return "media/mediaList";
 	}
 	
-	@GetMapping("{mediaNo:[0-9]+}/detail")
-	public String mediaDetail(@PathVariable("mediaNo") int mediaNo, Model model) {
+	@GetMapping("{artistGroupTitle}/media/{mediaNo:[0-9]+}/detail")
+	public String mediaDetail(
+			@PathVariable("artistGroupTitle") String artistGroupTitle,
+			@PathVariable("mediaNo") int mediaNo, Model model) {
 		
 		Media mediaDetail = service.mediaDetail(mediaNo);
 		
@@ -63,16 +67,15 @@ public class MediaController {
 		return "media/mediaDetail";
 	}
 	
-	@PostMapping("insert")
+	@PostMapping("{artistGroupTitle}/media/insert")
 	public String mediaInsert(
+			@PathVariable("artistGroupTitle") String artistGroupTitle,
 			Media inserMedia) {
 		
 		int result = service.insertMedia(inserMedia);
 		
 		return "redirect:list";
 	}
-	
-	
 	
 	
 }
