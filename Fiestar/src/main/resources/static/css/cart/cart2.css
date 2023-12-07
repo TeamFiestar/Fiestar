@@ -242,7 +242,13 @@ img{
 
 .amount > label{
    background-color: #eff7ff;
+   cursor: pointer;
 }
+
+.amount > label > i{
+   pointer-events: none;
+}
+
 
 .item-count{
    background-color: #eff7ff;
@@ -294,7 +300,7 @@ border-radius: 4px;
 
 
 .cart-check{  
-   color: rgb(0, 229, 255);  
+   color: black;
    font-size: 22px;
 }
 
@@ -312,5 +318,5 @@ border-radius: 4px;
 
 .cart-check > input:checked + i{
    /* color: rgb(0, 229, 255);  */
-   color: black;
+   color: rgb(0, 229, 255);  
 }

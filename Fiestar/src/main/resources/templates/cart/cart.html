@@ -34,7 +34,7 @@
                                                             -->
 
             <label class="cart-check">
-               <input type='checkbox' id="selectAll" name="selectAll">
+               <input type='checkbox' id="selectAll" name="selectAll" checked>
                <i class="fa-regular fa-circle-check"></i>
             </label>
 
@@ -48,13 +48,13 @@
                <!-- 개별 상품 체크 -->
                <div class="select-item">
                   <label class="cart-check">
-                     <input type='checkbox' class="selectEach" name="selectEach">
+                     <input type='checkbox' class="selectEach" name="selectEach" checked th:value="${cart.cartNo}">
                      <i class="fa-regular fa-circle-check"></i>
                   </label>
                </div>
    
                <!-- 이미지 영역 -->
-   
+               
    
                <img src="/images/keyring.png" alt="">
    
@@ -96,25 +96,26 @@
                <div class="amount">
    
                   <!-- 수량 빼기 -->
-                  <label class="minus">
-                     <input type="button" class="input-minus">
-                     <i class="fa-solid fa-minus" id="minus"></i>
+                  <label class="minus" th:cartNo="${cart.cartNo}">
+                     <i class="fa-solid fa-minus"></i>
                   </label>
    
                   <!-- 수량 -->
                   <span th:text="${cart.productCount}" class="item-count"></span>
                   
                   <!-- 더하기 -->
-                  <label class="plus">
-                     <input type="button" class="input-plus">
-                     <i class="fa-solid fa-plus" id="plus"></i>
+                  <label class="plus" th:cartNo="${cart.cartNo}">
+                     <i class="fa-solid fa-plus"></i>
                   </label>
-   
+                  
+                  <span th:text="${cart.productPrice}" class="default-price"></span>
+
                </div>
+               
+               <!-- <th:block th:text="${cart.productPrice}" class="default-price"></th:block> -->
    
-   
-   
-               <span th:text="${cart.productPrice}" class="amount-price" style="font-weight: bold;"></span>
+               <span th:text="${cart.productPrice} * ${cart.productCount} " class="amount-price" style="font-weight: bold;"></span>
+               
    
                <label class="x-btn">
                   <input type="button" value="">
@@ -176,7 +177,7 @@
          <div class="total">
             <span>총 결제 금액</span>
 
-            <div class="sc-e98633bc-7 iUJKwp">$15.58</div>
+            <div class="sc-e98633bc-7 iUJKwp" id="totalPrice">$15.58</div>
 
             <button type="submit" class="checkOut-btn">결제하기</button>
 
@@ -184,11 +185,8 @@
 
       </form>
 
-
    </section>
-
 
    <script src="/js/cart/cart.js"></script>
 </body>
-
 </html>

@@ -4,150 +4,95 @@
 
 // X 버튼 눌렀을 때 
 
+// value : input 태그만 가질 수 있는 입력값.
+// innerHtml : 시작태그, 종료태그  사이에 작성된 글 + HTML 요소
+// innerText : 시작태그, 종료태그  사이에 작성된 글 
+
+
+
+
+
 const selectAll = document.getElementById("selectAll");
 const selectEachList = document.getElementsByClassName("selectEach");
+const totalPrice = document.getElementById("totalPrice");
 
 selectAll.addEventListener("change", () => {
 
    for(let selectEach of selectEachList){
       selectEach.checked = selectAll.checked;
    }
-
 });
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////
+// plus 버튼
+const plusList = document.querySelectorAll(".plus"); 
 
-const plus = document.querySelector(".plus");
-const minus = document.querySelector(".minus");
-const each = document.querySelector(".item-count");
-const price = docoment.querySelector(".amount-price");
+// minus 버튼
+const minusList = document.querySelectorAll(".minus");
 
+const clacPrice = (btn) => {
 
-let a = 1;
-let b = 132;
+   const itemCount = btn.parentElement.children[1];
+   const defaultPrice = btn.parentElement.children[3];
+   const amountPrice = btn.parentElement.nextElementSibling;
 
-plus.addEventListener("click", () => {
-   a++;
-   each.innerText = a;
-   price.innerText = a*b;
-   console.log("")
+   amountPrice.innerText = Number(itemCount.innerText) * Number(defaultPrice.innerText);
+}
 
-});
+const checkedPrice = () => {
+   const checkList = document.querySelectorAll(".selectEach:checked");
 
-minus.addEventListener("click", () => {
-   if(a > 1){
-      a--;
-      each.innerText = a;
+   let sum = 0;
 
+   for(let checkbox of checkList){
+      const amountPrice = checkbox.parentElement.parentElement.parentElement.nextElementSibling.children[1].innerText;
+      sum += Number(amountPrice);
    }
 
+   totalPrice.innerText = sum;
+}
+
+
+
+
+
+for(let i=0; i<plusList.length; i++) {
+   plusList[i].addEventListener("click", e => {
+      // e -> 발생한 이벤트 정보를 담고 있는 객체 ,  e.target -> 이벤트가 일어난 요소 
+      let itemCount = e.target.previousElementSibling;
+      itemCount.innerText = Number(itemCount.innerText) + 1;
+
+      clacPrice(e.target)
+      checkedPrice();
+   });
+}
+
+
+for(let i=0; i<minusList.length; i++) {
+   minusList[i].addEventListener("click", e => {
+      // e -> 발생한 이벤트 정보를 담고 있는 객체 ,  e.target -> 이벤트가 일어난 요소 
+      let itemCount = e.target.nextElementSibling;
+
+      if(itemCount.innerText > 1 ) {
+         itemCount.innerText = Number(itemCount.innerText) - 1;
+         
+         clacPrice(e.target);
+         checkedPrice();
+      }
+   });
+}
+
+
+// 체크 상태가 변했을 때 checkedPrice(); 수행
+document.addEventListener("change", e => {
+   
 });
 
 
+// 문서가 로딩 완료 되었을 때 checkedPrice() 수행
+document.addEventListener('DOMContentLoaded', () => {
+   checkedPrice() ;
+});
 
-
-
-
-
-
-
-// const minusList = document.getElementsByClassName("input-minus");
-// const plusList = document.getElementsByClassName("input-plus");
-
-// - or + 버튼 동작이 발생하면 수량의 개수를 변경
-
-// const itemCountList = document.getElementsByClassName("item-amount");
-
-
-// let minus = document.getElementsByClassName("input-minus")
-
-
-
-
-
-
-// for(let i = 0; i < minusList.length; i++){
-
-//    minusList[i].addEventListener("click", e => {
-//       minusItemCountFn(e.target, i);
-
-//    });
-// }
-
-
-
-
-
-// let plus = document.getElementsByClassName("input-plus");
-// let itemCount = document.getElementsByClassName("item-amount");  
-// let amountPrice = document.getElementsByClassName("amount-price");
-
-
-
-
-
-//       let i=0; i<input.value; i++
-
-
-//    }
-
-//    console.log(minus.innerText);
-//    if(i > 0) {
-//       i--
-//       itemCount.innnerText = i;
-//       let amountPriceNum = i*132;
-//       amountPrice.innerText = "$" + amountPriceNum.toLocaleString();
-      
-//    } else {
-//       amountPrice.innerText = "$" + 0
-//    }
-
-// });
-
-
-// plus.addEventListener("click", () => {
-//    i++
-//    itemCount.innerText = i;
-//    let amountPriceNum = i*132;
-//    amountPrice.innerText = "$" + amountPriceNum.toLocaleString();
-
-// });
-
-
-
-// const minus = document.getElementsByClassName("input-minus");
-// const plus = document.getElementsByClassName("input-plus");
-
-
-
-
-// let minus = document.getElementsByClassName("input-minus");
-// let plus = document.getElementsByClassName("input-plus");
-// let itemCount = document.getElementsByClassName("item-amount");  
-// let amountPrice = document.getElementsByClassName("amount-price");
-
-
-// minus.addEventListener("click", () => {
-//    if(i > 0) {
-//       i--
-//       itemCount.textContent = i;
-//       let amountPriceNum = i*132;
-//       amountPrice.textContent = "$" + amountPriceNum.toLocaleString();
-      
-//    } else {
-//       amountPrice.textContent = "$" + 0
-//    }
-
-// });
-
-
-// plus.addEventListener("click", () => {
-//    i++
-//    itemCount.textContent = i;
-//    let amountPriceNum = i*132;
-//    amountPrice.textContent = "$" + amountPriceNum.toLocaleString();
-
-// });
 
 
 
@@ -166,6 +111,3 @@ minus.addEventListener("click", () => {
 //  btn.addEventListener("click", function () {
 //    alert(
 //      "Number of options selected: " + howMany(document.selectForm.musicTypes),
-
-
-
