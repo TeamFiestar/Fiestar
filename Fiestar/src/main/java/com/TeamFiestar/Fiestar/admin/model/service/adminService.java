@@ -11,4 +11,5 @@ public interface adminService {
 
 	List<Board> selectBoard(int memberNo);
 
+
 }

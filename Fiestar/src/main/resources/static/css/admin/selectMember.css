@@ -18,7 +18,7 @@ header {
 .modal.show {
   display: block;
 }
-.hidden {
+.modal.hidden {
   display: hidden;
 }
 
@@ -51,6 +51,7 @@ header {
   table-layout: fixed;
   margin-top: 30px;
   text-align: center;
+  border: 1px solid black;
 }
 .modal-body th:nth-child(1) {
   width: 10%;
