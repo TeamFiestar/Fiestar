@@ -1,39 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>일반 회원 조회</title>
-    <link rel="stylesheet" href="../../static/css/admin/selectMember.css" />
+    <link rel="stylesheet" href="/css/common/artistPageHeader.css" />
+    <link rel="stylesheet" href="/css/admin/selectMember.css" />
   </head>
   <body>
-    <header>
-      <section>
-        <a href="/"><img src="logo.png" alt="로고이미지" width="150px" /></a>
-      </section>
-
-      <header>
-        <section>
-          <a href="/" src="" alt="로고이미지"></a>
-        </section>
-
-        <section>
-          <article id="search-container">
-            <input type="text" />
-            <a href=""><i class="fa-solid fa-magnifying-glass fa-xl" style="color: #7743db"></i></a>
-          </article>
-          <article>
-            <a href="">로그아웃</a>
-          </article>
-          <article>
-            <a href="">마이페이지</a>
-          </article>
-          <article>
-            <a href=""><i class="fa-solid fa-store fa-xl" style="color: #7743db"></i></a>
-          </article>
-        </section>
-      </header>
-    </header>
+    <th:block th:replace="~{common/artistPageHeader}">헤더</th:block>
     <div class="modal">
       <div id="modal" class="modal-body">
         <button id="modalCloseButton">X</button>
@@ -41,72 +16,14 @@
         <table border="1" style="border-collapse: collapse" class="modal-table">
           <tbody>
             <tr class="th">
-              <th>번호</th>
               <th>게시글 내용</th>
-              <th>종류</th>
               <th>게시글 아티스트</th>
+              <th>게시글 작성 날짜</th>
             </tr>
-            <tr class="tr">
-              <td>1</td>
-              <td>
-                와~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~!!!!!!!!!!!!!!!!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-              </td>
-              <td>댓글</td>
-              <td>뉴진스</td>
-            </tr>
-            <tr class="tr">
-              <td>2</td>
-              <td>와~~~~~~~~~~~~~~~~~~~~~~~~~~~~</td>
-              <td>댓글</td>
-              <td>아이브</td>
-            </tr>
-            <tr class="tr">
-              <td>3</td>
-              <td>와~~~~~~~~~~~~~~~~~~~~~~~~~~~~</td>
-              <td>댓글</td>
-              <td>르세라핌</td>
-            </tr>
-            <tr class="tr">
-              <td>4</td>
-              <td>와~~~~~~~~~~~~~~~~~~~~~~~~~~~~</td>
-              <td>댓글</td>
-              <td>박보영</td>
-            </tr>
-            <tr class="tr">
-              <td>5</td>
-              <td>와~~~~~~~~~~~~~~~~~~~~~~~~~~~~</td>
-              <td>댓글</td>
-              <td>라이즈</td>
-            </tr>
-            <tr class="tr">
-              <td>6</td>
-              <td>와~~~~~~~~~~~~~~~~~~~~~~~~~~~~</td>
-              <td>댓글</td>
-              <td>손흥민</td>
-            </tr>
-            <tr class="tr">
-              <td>5</td>
-              <td>와~~~~~~~~~~~~~~~~~~~~~~~~~~~~</td>
-              <td>댓글</td>
-              <td>라이즈</td>
-            </tr>
-            <tr class="tr">
-              <td>6</td>
-              <td>와~~~~~~~~~~~~~~~~~~~~~~~~~~~~</td>
-              <td>댓글</td>
-              <td>손흥민</td>
-            </tr>
-            <tr class="tr">
-              <td>5</td>
-              <td>와~~~~~~~~~~~~~~~~~~~~~~~~~~~~</td>
-              <td>댓글</td>
-              <td>라이즈</td>
-            </tr>
-            <tr class="tr">
-              <td>6</td>
-              <td>와~~~~~~~~~~~~~~~~~~~~~~~~~~~~</td>
-              <td>댓글</td>
-              <td>손흥민</td>
+            <tr class="tr" th:eact="board : ${boardList}" th:object="${board}">
+              <td th:text="*{boardContent}">게시글 내용</td>
+              <td th:text="*{artistGroupTitle}">뉴진스</td>
+              <td th:text="*{boardEnrollDate}">2023년 12월 07일</td>
             </tr>
           </tbody>
         </table>
@@ -127,39 +44,13 @@
             <th>신고 누적 횟수</th>
             <th>강제 탈퇴</th>
           </tr>
-          <tr class="tr-body">
-            <td>1</td>
-            <td>ㅇㅇㅇ</td>
-            <td class="btn-open-popup">qwerqwer1234@gmail.com</td>
-            <td>서울특별시 종로구 종로 33 그랑서울 타워[1] 3층 롤파크</td>
-            <td>일반</td>
-            <td>3</td>
-            <td><button>탈퇴</button></td>
-          </tr>
-          <tr class="tr-body">
-            <td>1</td>
-            <td>ㅇㅇㅇ</td>
-            <td>qwerqwer1234@gmail.com</td>
-            <td>서울특별시 종로구 종로 33 그랑서울 타워[1] 3층 롤파크</td>
-            <td>일반</td>
-            <td>3</td>
-            <td><button>탈퇴</button></td>
-          </tr>
-          <tr class="tr-body">
-            <td>1</td>
-            <td>ㅇㅇㅇ</td>
-            <td>qwerqwer1234@gmail.com</td>
-            <td>서울특별시 종로구 종로 33 그랑서울 타워[1] 3층 롤파크</td>
-            <td>일반</td>
-            <td>3</td>
-            <td><button>탈퇴</button></td>
-          </tr>
-          <tr class="tr-body">
-            <td>1</td>
-            <td>ㅇㅇㅇ</td>
-            <td>qwerqwer1234@gmail.com</td>
-            <td>서울특별시 종로구 종로 33 그랑서울 타워[1] 3층 롤파크</td>
-            <td>일반</td>
+          <tr class="tr-body" th:each="member : ${memberList}" th:object="${member}">
+            <td th:text="*{memberNo}">1</td>
+            <td th:text="*{memberNickname}">ㅇㅇㅇ</td>
+            <td class="btn-open-popup" th:text="*{memberEmail}">qwerqwer1234@gmail.com</td>
+            <td th:text="*{memberAddress}">서울특별시 종로구 종로 33 그랑서울 타워[1] 3층 롤파크</td>
+            <th:block th:if="*{memberAuthority == 1}"></th:block>
+            <td th:text="일반">권한</td>
             <td>3</td>
             <td><button>탈퇴</button></td>
           </tr>

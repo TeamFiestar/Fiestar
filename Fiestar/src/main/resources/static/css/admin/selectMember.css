@@ -1,18 +1,7 @@
-@font-face {
-  font-family: "Pretendard-Regular";
-  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
-    format("woff");
-  font-weight: 400;
-  font-style: normal;
-}
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
 header {
   background-color: aqua;
-  height: 80px;
+  /* height: 130px; */
+  width: 100%;
 }
 .modal {
   position: fixed;
@@ -29,7 +18,7 @@ header {
 .modal.show {
   display: block;
 }
-.modal.hidden {
+.hidden {
   display: hidden;
 }
 
@@ -67,13 +56,10 @@ header {
   width: 10%;
 }
 .modal-body th:nth-child(2) {
-  width: 65%;
+  width: 70%;
 }
 .modal-body th:nth-child(3) {
-  width: 10%;
-}
-.modal-body th:nth-child(4) {
-  width: 15%;
+  width: 20%;
 }
 .th {
   height: 70px;
@@ -236,6 +222,7 @@ main {
   border-radius: 5px;
   padding: 0 5px;
   outline: none;
+  border: 1px solid black;
 }
 #pagination-button {
   width: 50px;

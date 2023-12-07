@@ -1,3 +1,4 @@
+
 package com.TeamFiestar.Fiestar.mypage.mapper;
 
 import java.util.List;
@@ -8,6 +9,8 @@ import org.apache.ibatis.session.RowBounds;
 import com.TeamFiestar.Fiestar.board.model.dto.Board;
 import com.TeamFiestar.Fiestar.board.model.dto.Comment;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
+
+
 
 @Mapper
 public interface MyPageMapper {
@@ -31,10 +34,11 @@ public interface MyPageMapper {
 	int commentCount(Member loginMember);
 
 	List<Comment> MyCommentList(Member loginMember, RowBounds rowBounds);
-
-
-
 	
-	
-
 }
+
+
+
+	
+	
+

@@ -1,5 +1,6 @@
 package com.TeamFiestar.Fiestar.mypage.controller;
 
+
 import java.io.IOException;
 import java.util.Map;
 
@@ -25,10 +26,6 @@ public class MyPageController {
 
 	private final MyPageService service;
 
-	@GetMapping("myPage/myPage-artist")
-	public String myPageArtist() {
-		return "myPage/myPage-artist";
-	}
 
 	@GetMapping("myPage/myPage-Modify")
 	public String myPageModify() {
@@ -118,6 +115,5 @@ public class MyPageController {
 		return "myPage/myPage-comment";
 	}
 
-	
 
 }

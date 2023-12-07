@@ -19,6 +19,7 @@ public class Media {
 	private String mediaEnrollDate;
 	private int mediaCount;
 	private int artistGroupNo;
+	private String artistGroupTitle;
 	private String mediaTime;
 	private int parentCommentNo;
 	
