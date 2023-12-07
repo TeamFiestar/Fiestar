@@ -15,6 +15,23 @@ const totalPrice = document.getElementById("totalPrice");
 
 
 
+const xBtnList = document.querySelectorAll(".x-btn");
+console.log(xBtnList);
+
+for(i = 0; i < xBtnList.length; i++) {
+   xBtnList[i].addEventListener("click", e => {
+
+      e.target.parentElement.parentElement.children[1].remove();
+      e.target.parentElement.parentElement.parentElement.remove();
+      
+   });
+
+
+}
+
+
+
+
 selectAll.addEventListener("change", () => {
 
    // 향상된 for 문 selectEachList -> selectEach를 하나씩 꺼낸다.
@@ -60,6 +77,7 @@ const checkedPrice = () => {
 }
 
 
+
 for(let i=0; i<plusList.length; i++) {
    plusList[i].addEventListener("click", e => {
       // e -> 발생한 이벤트 정보를 담고 있는 객체 ,  e.target -> 이벤트가 일어난 요소 
@@ -98,4 +116,45 @@ document.addEventListener("change", e => {
 document.addEventListener('DOMContentLoaded', () => {
    checkedPrice() ;
 });
+
+// const itemList =  document.getElementsByClassName("item-list1");
+
+// console.log(itemList.length);
+// for(let i = 0; i < itemList.length; i++){
+//    if(itemList.length < 1) {
+//       alert("1개 이상 상품을 담아주세요")
+//    }
+
+// }
+
+
+// const xBtnList = document.querySelectorAll(".x-btn");
+// console.log(xBtnList);
+
+// for(i = 0; i < xBtnList.length; i++) {
+//    xBtnList[i].addEventListener("click", e => {
+
+//       e.target.parentElement.parentElement.children[1].remove();
+//       e.target.parentElement.parentElement.parentElement.remove();
+      
+//    });
+
+
+// }
+
+
+
+
+// ----------------------------------------------------------------------------
+
+// 한 행 삭제 
+
+// const xBtn = document.querySelector(".x-btn");
+
+// xBtn.addEventListener("click", e => {
+
+//    e.target.parentElement.parentElement.parentElement.remove();
+   
+// });
+
 
