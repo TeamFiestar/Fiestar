@@ -4,36 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>일반 회원 조회</title>
+    <link rel="stylesheet" href="/css/common/artistPageHeader" />
     <link rel="stylesheet" href="/css/admin/selectMember.css" />
   </head>
   <body>
-    <header>
-      <section>
-        <a href="/"><img src="logo.png" alt="로고이미지" width="150px" /></a>
-      </section>
-
-      <header>
-        <section>
-          <a href="/" src="" alt="로고이미지"></a>
-        </section>
-
-        <section>
-          <article id="search-container">
-            <input type="text" />
-            <a href=""><i class="fa-solid fa-magnifying-glass fa-xl" style="color: #7743db"></i></a>
-          </article>
-          <article>
-            <a href="">로그아웃</a>
-          </article>
-          <article>
-            <a href="">마이페이지</a>
-          </article>
-          <article>
-            <a href=""><i class="fa-solid fa-store fa-xl" style="color: #7743db"></i></a>
-          </article>
-        </section>
-      </header>
-    </header>
+    <th:block th:replace="~{common/artistPageHeader}">헤더</th:block>
     <div class="modal">
       <div id="modal" class="modal-body">
         <button id="modalCloseButton">X</button>
