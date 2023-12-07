@@ -36,9 +36,9 @@
       
        
           <div class="shop-sorting-type" name="sort" id="sort">
-            <option value="1">신상품 순</option>
-            <option value="2">높은가격순</option>
-            <option value="3">낮은가격순</option>
+            <button id="dateBtn"><option value="1">신상품 순</option></button>
+            <button id="highPrice"><option value="2">높은가격순</option></button>
+            <button id="lowPrice"><option value="3">낮은가격순</option></button>
           </div>
         
       </div>
@@ -47,20 +47,20 @@
       <section class="artist-shop-product" >
         <div class="product-area"> 
           <div class="product-area-detail">
+
             <div class="product-list" th:each=" product: ${productList}" th:object="${product}">
               <a href="/shop/shopDetail" class="product-profile">
                 <div class="product-image-area" th:text="*{productImage}"> 
                   <img src="/images/product1.jpg">
                 </div>
-            
                 <div class="product-name-area" >
                   <div class="product-name" th:text="*{productName}">상품 이름</div>
                   <br>
                   <div class="product-price" th:text="*{productPrice}">상품 가격</div>
                 </div>
-
               </a>  
             </div>
+            
           </div>
         </div>
       </section>
@@ -79,6 +79,7 @@
     const productList = /*[[${map.productList}]]*/ "상품리스트";
   </script>
 
+  <script src="/js/shop/shopMain.js"></script>
   <script src="https://kit.fontawesome.com/f7459b8054.js" crossorigin="anonymous"></script>
 </body>
 </html>

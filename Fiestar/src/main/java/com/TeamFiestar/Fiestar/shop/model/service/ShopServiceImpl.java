@@ -18,6 +18,7 @@ public class ShopServiceImpl implements ShopService{
 
 	private final ShopMapper mapper;
 	
+	//쇼피몰 메인페이지 전체 조회
 	@Override
 	public Map<String, Object> shopMain() {
 		
@@ -29,11 +30,13 @@ public class ShopServiceImpl implements ShopService{
 		return map;
 	}
 	
+	//쇼핑몰 상품 전체 개수
 	@Override
 	public int shopCount() {
 		return mapper.shopCount();
 	}
 	
+	//쇼핑몰 검색 상품 조회
 	@Override
 	public Map<String, Object> searchList(Map<String, Object> paramMap) {
 		List<Product> productList = mapper.searchList(paramMap);
@@ -44,13 +47,13 @@ public class ShopServiceImpl implements ShopService{
 		return map;
 	}
 	
-	
+	//쇼핑몰 검색 상품 개수
 	@Override
 	public int shopSearchCount(Map<String, Object> paramMap) {
 		return mapper.shopSearchCount(paramMap);
 	}
 	
-	
+	//아티스트 그룹별 상품 조회
 	@Override
 	public Map<String, Object> artistGroupShop(Map<String, Object> paramMap) {
 	
@@ -62,13 +65,19 @@ public class ShopServiceImpl implements ShopService{
 		return map;
 	}
 	
+	//아티스트 그룹별 상품 개수
 	@Override
 	public int shopGroupCount(Map<String, Object> paramMap) {
 		
 		return mapper.shopGroupCount(paramMap);
 	}
+	
+	//높은 금액순으로 상품 정렬
+	@Override
+	public List<Product> selectHigh(Map<String, Object> paramMap) {
 		
-
+		return mapper.selectHigh(paramMap);
+	}
 	
 
 		
