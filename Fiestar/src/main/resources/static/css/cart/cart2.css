@@ -249,7 +249,6 @@ img{
    pointer-events: none;
 }
 
-
 .item-count{
    background-color: #eff7ff;
 }
@@ -298,7 +297,9 @@ border-radius: 4px;
    background: bottom;
 }
 
-
+.default-price{
+   display: none;
+}
 .cart-check{  
    color: black;
    font-size: 22px;
