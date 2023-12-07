@@ -72,11 +72,11 @@ public class ShopServiceImpl implements ShopService{
 		return mapper.shopGroupCount(paramMap);
 	}
 	
-	//높은 금액순으로 상품 정렬
+	//정렬
 	@Override
-	public List<Product> selectHigh(Map<String, Object> paramMap) {
+	public List<Product> selectSort(Map<String, Object> paramMap) {
 		
-		return mapper.selectHigh(paramMap);
+		return mapper.selectSort(paramMap);
 	}
 	
 

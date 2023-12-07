@@ -34,8 +34,8 @@ public interface ShopMapper {
 	//아티스트 그룹별 상품 개수
 	int shopGroupCount(Map<String, Object> paramMap);
 
-	//높은 금액순으로 상품 정렬
-	List<Product> selectHigh(Map<String, Object> paramMap);
+	//정렬
+	List<Product> selectSort(Map<String, Object> paramMap);
 
 
 

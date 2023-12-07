@@ -55,10 +55,11 @@
 		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
 	</select>
 	
-	<!--높은 금액 순으로 정렬-->
-	<select id="selectHigh" resultType="Product">
+	<!--정렬-->
+	<select id="selectSort" resultType="Product">
 		SELECT * 
 		FROM PRODUCT
+		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
 		ORDER BY 
 		<if test="key == 1">
 			 PRODUCT_REGISTRATION_DATE DESC

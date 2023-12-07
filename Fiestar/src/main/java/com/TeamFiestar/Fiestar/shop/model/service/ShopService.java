@@ -42,11 +42,11 @@ public interface ShopService {
 	 */
 	int shopGroupCount(Map<String, Object> paramMap);
 
-	/**높은 금액순으로 상품 정렬
+	/**정렬
 	 * @param paramMap 
 	 * @return
 	 */
-	List<Product> selectHigh(Map<String, Object> paramMap);
+	List<Product> selectSort(Map<String, Object> paramMap);
 
 
 
