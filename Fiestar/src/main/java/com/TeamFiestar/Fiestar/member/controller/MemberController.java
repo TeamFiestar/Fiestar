@@ -3,9 +3,11 @@ package com.TeamFiestar.Fiestar.member.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 import com.TeamFiestar.Fiestar.member.model.service.MemberService;
@@ -60,6 +62,19 @@ public class MemberController {
 		
 		return "redirect:signup";
 		
+	}
+	
+	@GetMapping("login/{memberEmail}")
+	public String quickLogin( @PathVariable("memberEmail") String memberEmail, Model model) {
+		
+		Member loginMember = service.quickLogin(memberEmail);
+		
+		model.addAttribute("loginMember", loginMember);
+		
+		return "redirect:/";
+		
+
+	
 	}
 	
 }
