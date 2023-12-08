@@ -204,63 +204,49 @@ form.addEventListener("submit", e => {
 
 // ---------------------------------------------------------------------------------------------------
 
-for(let i=0; i<plusList.length; i++) {
-   plusList[i].addEventListener("click", e => {
-      // e -> 발생한 이벤트 정보를 담고 있는 객체 ,  e.target -> 이벤트가 일어난 요소 
-      // let itemCount = e.target.previousElementSibling;
-      // itemCount.innerText = Number(itemCount.innerText) + 1;
+// for(let i=0; i<plusList.length; i++) {
+//    plusList[i].addEventListener("click", e => {
+//       // e -> 발생한 이벤트 정보를 담고 있는 객체 ,  e.target -> 이벤트가 일어난 요소 
+//       // let itemCount = e.target.previousElementSibling;
+//       // itemCount.innerText = Number(itemCount.innerText) + 1;
 
-      clacPrice(e.target)
-      checkedPrice();
+//       clacPrice(e.target)
+//       checkedPrice();
 
 
-// 클릭이 일어난 장바구니의 번호 & 수량
-// 장바구니 번호, 수량값을 담아 DB로 전달
-//  
+// // 클릭이 일어난 장바구니의 번호 & 수량
+// // 장바구니 번호, 수량값을 담아 DB로 전달
+// //  
       
-   let cartNo = e.target.parentElement.parentElement.parentElement.children[3];
-   let itemCount = e.target.previousElementSibling;
-   const obj = {"CartNo":cartNo.innerText, "item-Count": itemCount.innerText}
+//    let cartNo = e.target.parentElement.parentElement.parentElement.children[3];
+//    let itemCount = e.target.previousElementSibling;
+//    const obj = {"CartNo":cartNo.innerText, "item-Count": itemCount.innerText}
 
 
-fetch("/cartPage", { 
-   method : "POST", // 데이터 전달 방식을 POST로 지정
-   headers: {"Content-Type": "application/JSON"}, // 요청 데이터의 형식을 JSON으로 지정
-   body : JSON.stringify(obj) // JS객체를 JSON 형태로 변환하여 Body에 추가
-   })
+// fetch("/cartPage", { 
+//    method : "POST", // 데이터 전달 방식을 POST로 지정
+//    headers: {"Content-Type": "application/JSON"}, // 요청 데이터의 형식을 JSON으로 지정
+//    body : JSON.stringify(obj) // JS객체를 JSON 형태로 변환하여 Body에 추가
+//    })
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////
+// //////////////////////////////////////////////////////////////////////////////////////////////
 
-   .then(response => JSON ) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
+//    .then(response => JSON ) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
 
-   .then(result => {
-      if{result > 0} {
+//    // .then(result => {
+//    //    if{result > 0} {
 
-         //  결과를 어떻게 출력       
+//          //  결과를 어떻게 출력       
 
-         itemCount.innerText = Number(itemCount.innerText) + 1;
-      }
+//          itemCount.innerText = Number(itemCount.innerText) + 1;
+//       }
 
-   }); // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
-   .catch( err => {}) // 예외 발생 시 처리할 내용을 작성
+//    // }); 
+//    // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
+//    // .catch( err => {}) 
+//    // 예외 발생 시 처리할 내용을 작성
 
-   });
+// //    });
 
-}
-
-
-.then(result => {
-   if(result > 0){
-       clearInterval(authTimer);
-       authKeyMessage.innerText = "인증되었습니다.";
-       authKeyMessage.classList.add("confirm");
-       checkObj.authKey = true;
-
-       authKey.disabled = true;
-   } else{
-       alert("인증번호가 일치하지 않습니다.")
-       checkObj.authKey = false;
-   }
-})
-.catch(err => console.log(err));
+// // }
