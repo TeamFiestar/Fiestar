@@ -5,11 +5,13 @@
 * {
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+  font-family: 'Pretendard-Regular';
 }
 html,
 body {
   margin: 0px;
   height: 100%;
+  
 }
 /* a blue color as a generic focus style */
 button:focus-visible {
@@ -24,6 +26,13 @@ a {
   font-family: 'Pretendard-Regular';
   src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
   font-weight: 400; 
+  font-style: normal;
+}
+
+@font-face{
+  font-family: 'Pretendard-bold';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 900; 
   font-style: normal;
 }
 
@@ -42,9 +51,9 @@ a {
   height: 1180px;
   align-items: flex-start;
   gap: 10px;
-  padding: 80px 50px 0px;
+  padding: 0px 50px 0px;
   position: relative;
-  background-color: #ffffff;
+  background-color: #1e1e1e;
 }
 
 .screen .frame {
@@ -52,13 +61,13 @@ a {
   flex-direction: column;
   align-items: flex-start;
   gap: 20px;
-  padding: 80px 0px 0px;
+  padding: 40px 0px 0px;
   position: relative;
   flex: 1;
   align-self: stretch;
   width: 100%;
   flex-grow: 1;
-  background-color: #000000;
+  background-color: #1e1e1e;
 }
 
 .screen .div {
@@ -191,7 +200,7 @@ a {
   width: 310px;
   height: 180px;
   background-color: #757575;
-  border-radius: 20px;
+  border-radius: 15px;
   overflow: hidden;
 }
 
@@ -246,33 +255,27 @@ a {
   width: 300px;
   align-items: flex-start;
   gap: 10px;
-  padding: 10px;
+  padding: 10px 0;
   position: relative;
   flex: 1;
   flex-grow: 1;
 }
 
-.screen .vector {
+.screen .view-img {
   position: relative;
   align-self: stretch;
-  width: 15px;
+  width: 22px;
 }
 
 /* 조회수 */
 .screen .media-hits {
-  position: relative;
+  display: flex;
   align-self: stretch;
-  width: 77px;
-  margin-top: -1px;
-  font-family: "Inter", Helvetica;
-  font-weight: 500;
+  flex-grow: 1;
   color: #ffffff;
   font-size: 15px;
-  text-align: center;
-  letter-spacing: 0;
-  line-height: normal;
-  text-align: left;
-  white-space: nowrap;
+  align-items: center;
+
 }
 
 .screen .media-img-div {

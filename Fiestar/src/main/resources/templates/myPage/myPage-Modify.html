@@ -6,170 +6,104 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="/css/myPage/myPage-Modify.css">
+  <link rel="stylesheet" href="/css/myPage/myPage-navi.css">
   <link rel="stylesheet" href="/css/common/atristPageHeader.css">
-
-
 </head>
 
 <body>
   <th:block th:replace="~{common/atristPageHeader}"></th:block>
 
-  <div class="all">
-    <div class="BgImage"><img src="/image/아티스트 메인배경.jpg" width="100%" height="100%"></div>
+  <div class="all" th:object="${session.loginMember}">
+    <div class="BgImage">
+      <!-- 배경이미지 없음 -->
+      <img th:if="${session.loginMember.memberBackImage == null}" th:src="${session.loginMember.memberBackImage}"
+        width="100%" height="100%" id="memberBackImage">
+
+      <!-- 배경 이미지 있음 -->
+      <img th:unless="${session.loginMember.memberBackImage == null}" th:src="${session.loginMember.memberBackImage}"
+        width="100%" height="100%" id="memberBackImage">
+    </div>
 
     <div class="main">
-
-      <div class="main-1">
-        <div class="profile">
-          <div class="profile-img">
-            <img src="/image/user.png" width="100%" height="100%">
-          </div>
-          <div class="profile-info">
-            <div class="nickName">
-              <h4>민둥민두</h4>
-            </div>
-            <div class="email">
-              <h4>javaman@gmail.com</h4>
-            </div>
-            <div class="logout">
-              <h4><a href="">로그아웃</a></h4>
-            </div>
-          </div>
-        </div>
-
-        <hr class="myPageHr" width="280px" color="gray">
-
-        <div class="sidebar">
-          <div class="Bulletin">
-            <div class="icon">
-              <img src="../../static/image/게시글.png" width="100%" height="100%">
-            </div>
-            <div class="center">
-              <a href="#">내가 작성한 게시글</a>
-            </div>
-            <div class="side">
-              <img src="../../static/image/Vector 9.png" width="100%" height="100%">
-            </div>
-          </div>
-
-          <div class="comment">
-            <div class="icon">
-              <img src="../../static/image/댓글.png" width="100%" height="100%">
-            </div>
-            <div class="center">
-              <a href="#">내가 작성한 댓글</a>
-            </div>
-            <div class="side">
-              <img src="../../static/image/Vector 9.png" width="100%" height="100%">
-            </div>
-          </div>
-
-          <div class="artist">
-            <div class="icon">
-              <img src="../../static/image/아티스트.png" width="100%" height="100%">
-            </div>
-            <div class="center">
-              <a href="#">구독한 아티스트</a>
-            </div>
-            <div class="side">
-              <img src="../../static/image/Vector 9.png" width="100%" height="100%">
-            </div>
-          </div>
-
-          <div class="Purchase">
-            <div class="icon">
-              <img src="../../static/image/구매내역.png" width="100%" height="100%">
-            </div>
-            <div class="center">
-              <a href="#">구매내역</a>
-            </div>
-            <div class="side">
-              <img src="../../static/image/Vector 9.png" width="100%" height="100%">
-            </div>
-          </div>
-
-          <div class="Notice">
-            <div class="icon">
-              <img src="../../static/image/공지사항.png" width="100%" height="100%">
-            </div>
-            <div class="center">
-              <a href="#">공지사항</a>
-            </div>
-            <div class="side">
-              <img src="../../static/image/Vector 9.png" width="100%" height="100%">
-            </div>
-          </div>
-
-        </div>
-      </div>
+      <th:block th:replace="~{myPage/myPage-navi2}"></th:block>
 
       <div class="main-2">
         <div class="contentTitle">
           <h2>회원 정보 수정</h2>
         </div>
         <div class="content">
-          <form action="#">
-            <div class="ModifyAll">
-              <div class="bgTxt">
-                <h3>배경화면</h3>
-              </div>
-              <div class="chooseBgImage">
-                <form action="post" enctype="multipart/form-data">
-                  <div class="mainImg">
-                    <label for="file">
-                      <div class="btn-upload1">
-                        <h1>+</h1>
-                      </div>
-                    </label>
-                    <input type="file" name="file" id="file">
-                  </div>
-                </form>
-              </div>
 
-              <div class="profileTxt">
-                <h3>프로필 이미지</h3>
-              </div>
-              <div class="profileImgModify">
-                <form action="profile" method="POST" name="myPageFrm" id="profileFrm" enctype="multipart/form-data">
-                  <div class="profile-img-modify">
-                    <label for="imageInput">
-                      <div class="userImg"><img src="/image/user.png" width="100%" height="100%" id="profileImg"></div>
-                    </label>
-                    <input type="file" name="memberProfile" id="imageInput" accept="image/*">
+
+
+          <div class="ModifyAll">
+            <div class="bgTxt">
+              <h3>배경화면</h3>
+            </div>
+            <div class="chooseBgImage">
+              <div class="mainImg">
+                <label for="inputBackImg">
+                  <div class="btn-upload1">
+                    <h1>+</h1>
                   </div>
-                </form>
+                </label>
+                <input type="file" name="memberBackImage" id="inputBackImg">
+              </div>
+            </div>
+
+            <div class="profileTxt">
+              <h3>프로필 이미지</h3>
+            </div>
+            <form action="profile" method="POST" name="myPageFrm" id="profileFrm" enctype="multipart/form-data">
+              <div class="profileImgModify">
+                <div class="profile-img-modify">
+                  <label for="imageInput">
+                    <!-- 프로필 이미지 없음 -->
+                    <div class="userImg"><img th:if="${session.loginMember.memberProfile == null}"
+                        th:src="${session.loginMember.memberProfile}" width="100%" height="100%" id="memberProfile">
+                    </div>
+                    <!-- 프로필 이미지 있음 -->
+                    <div class="userImg">
+                      <img th:unless="${session.loginMember.memberProfile == null}"
+                        th:src="${session.loginMember.memberProfile}" width="100%" height="100%" id="memberProfile">
+                    </div>
+                  </label>
+                  <input type="file" name="memberProfile" id="imageInput" accept="image/*">
+                </div>
                 <div class="profileImgModifyBtn"><button>수정완료</button></div>
               </div>
+            </form>
 
 
+            <form action="info" method="POST" name="myPageForm" id="updateInfo">
               <div class="emailModify">
                 <div class="modifySection1">
                   <h3>이메일</h3>
                 </div>
                 <div class="modifySection2">
-                  <h3>javaman@gmail.com</h3>
+                  <h3 th:text="*{memberEmail}">javaman@gmail.com</h3>
                 </div>
               </div>
+
               <div class="nickNameModify">
                 <div class="modifySection1">
                   <h3>닉네임</h3>
                 </div>
-                <div class="modifySection2"><input type="text"></div>
+                <div class="modifySection2"><input type="text" th:value="*{memberNickname}"></div>
               </div>
+
               <div class="pwModify">
                 <div class="modifySection1">
                   <h3>비밀번호</h3>
                 </div>
                 <div class="modifySection2"><input type="password"></div>
               </div>
+
               <div class="pwCheckModify">
                 <div class="modifySection1">
                   <h3>비밀번호 확인</h3>
                 </div>
                 <div class="modifySection2"><input type="password"></div>
               </div>
-
-
 
               <div class="profileTxt">
                 <h3>주소</h3>
@@ -178,17 +112,17 @@
               <div class="address">
 
                 <div class="signUp-input-area">
-                  <input type="text" name="memberAddress" placeholder="우편번호" maxlength="6">
+                  <input type="text" name="memberAddress" placeholder="우편번호" maxlength="6" id="postcode">
 
-                  <button type="button">검색</button>
+                  <button type="button" onclick="sample6_execDaumPostcode()">검색</button>
                 </div>
 
                 <div class="signUp-input-area">
-                  <input type="text" name="memberAddress" placeholder="도로명/지번 주소">
+                  <input type="text" name="memberAddress" placeholder="도로명/지번 주소" id="address">
                 </div>
 
                 <div class="signUp-input-area">
-                  <input type="text" name="memberAddress" placeholder="상세 주소">
+                  <input type="text" name="memberAddress" placeholder="상세 주소" id="detailAddress">
                 </div>
               </div>
 
@@ -196,17 +130,17 @@
               <div class="ModifyBtn">
                 <button>수정완료</button>
               </div>
+            </form>
 
 
 
-              <div class="WithdrawalBtn">
-                <a href="#">
-                  <p>피에스타 회원 탈퇴하기</p>
-                </a>
-              </div>
-
+            <div class="WithdrawalBtn">
+              <a href="/myPage/myPage-Withdrawal">
+                <p>피에스타 회원 탈퇴하기</p>
+              </a>
             </div>
-          </form>
+
+          </div>
 
         </div>
       </div>
@@ -214,8 +148,23 @@
   </div>
 
 
-
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script src="/js/myPage/myPage.js"></script>
+
+  <script th:inline="javascript">
+    const memberAddress = /*[[${session.loginMember.memberAddress}]]*/ "회원 주소";
+
+    if (memberAddress != null) {
+
+      const arr = memberAddress.split("^^^");
+
+      const inputs = document.querySelectorAll("[name='memberAddress']");
+
+      inputs.forEach((item, index) => {
+        item.value = arr[index];
+      });
+    }
+  </script>
 
 
 
