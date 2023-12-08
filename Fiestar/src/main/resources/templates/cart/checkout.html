@@ -7,7 +7,11 @@
    <script src="https://kit.fontawesome.com/d6c32512de.js" crossorigin="anonymous"></script>
    <link rel="stylesheet" href="../../static/css/cart/checkout.css">
 <<<<<<< HEAD
+   <link rel="stylesheet" href="../../static/css/common/shopHeader.css"> 
 =======
+<<<<<<< HEAD
+=======
+>>>>>>> origin/main
    
 
 >>>>>>> origin/main
@@ -17,79 +21,16 @@
 <body>
 
 
-   <!-- 헤더 -->
-
-
-   <header>
-      <div class="header">
-        
-          <div class="header-left-side">
-            <a href="/" id="header-logo">
-              <img src="/images/logo.png" style="width:165px;"/>
-            </a>
-          </div>
-        
-          <div class="header-right-side">
-            <!-- <th:block th:if="${session.loginMember == null}"> -->
-              <form action="#" method="GET" style="display: inline-flex; border:none; ">
-                    <span class="search-area">
-                    <!--  autocomplete="off" : 브라우저 제공 자동완성 off -->
-                    <button id="searchBtn" class="fa-solid fa-magnifying-glass"> 
-                      <input type="search" name="query" id="search-input" placeholder="상품명 혹은 아티스트 검색" 
-                      autocomplete="off" > 
-                    </button>
-    
-                    </span>
-    
-          </form>
-          
-            <a href="#"> 공지사항 </a>
-            <span>|</span>
-            <a href="/shop/home">샵 고객센터</a>
-    
-            <a href="#"><button id="loginPage"> 로그인</button></a>
-            <a href="#"><button  id="signUp">회원가입</button></a>
-          
-          <!-- </th:block> -->
-      
-              <!-- <th:block th:unless="${session.loginMember == null}">
-    
-                 <input type="text" id="search-area" placeholder="상품명 혹은 아티스트 검색"></input>
-                  <a href="#"> 카트 <th:block th:text="{카트에 담긴 갯수}"></th:block>  </a>
-                  <a href="#"> 주문/배송 </a>
-                  <a href="#"> 공지사항 </a>
-                  <span>|</span>
-                  <a href="#">샵 고객센터</a>
-                              
-                      <img th:if="${session.loginMember.profileImg == null}" th:src="#{user.default.image}" id="memberHeaderProfile">
-                                        
-                    
-                      <img th:unless="${session.loginMember.profileImg == null}" th:src="${session.loginMember.profileImg}" id="memberHeaderProfile">
-                  </a>    
-                    
-                    <div class="header-menu">
-                      <a href="/myPage/myPage-home">마이페이지</a>
-                      <a href="/member/logout" id="logoutBtn">로그아웃</a>
-                    </div>
-      
-                  </div>
-                </th:block>
-              -->
-              </div>    
-            
-          </div>
-    
-      </div>
-    </header>
-
-
-
+  
     <!-- 헤더 -->
 
-
+   <th:block th:replace="~{common/shopHeader}"></th:block>
 
    <section class="frame">
 
+      <form action="checkoutResult" method="post">
+
+      
       <div class="content"> 
 
          <div class="cart-area">
@@ -184,7 +125,7 @@
               
                         <hr class="check-list-line"
                         style="height: 1px;"
-                        style="border: 0;">
+                        >
 
             </div>
 
@@ -193,39 +134,46 @@
 
 
 
-
+            
            
-               <form class="order-list">
+               <div class="order-list">
 
-                     <span class="order-name" style="font-weight: bold;" style="font-size: 18px;">주문자</span>
+                     <span class="order-name" style="font-weight: bold;">주문자</span>
 
                      <button class="name-btn">변경</button>
 
 
-                     <div class="order-input">
-
-                        <div class="name-input-area">
-                           주문자 명
-                           <div class="name-input">
-                              <input type="text" placeholder="*필수 작성 항목입니다.">
-                           </div>
-                        </div>
-
-                        <div class="phonenumber-input-area">
-                           전화번호
-                           <div class="phonenumber-input">
-                              <input type="text" placeholder="*필수 작성 항목입니다."> 
-                           </div>
-                        </div>
-
-                     </div>
-                        
-               </form>
                      
 
-               <form class="shipping-list">
+                        <div style="font-size: 16px;">
 
-                  <span class="shipping-name" style="font-weight: bold;" style="font-size: 18px;">배송지</span>
+                        <div style="margin-top: 44px;">주문자 명</div>
+                        <div class="name-input">
+                           <input type="text" placeholder="*필수 작성 항목입니다." class="order-input"
+                           style="padding-left: 8px;">
+                        </div>
+                     
+                     
+                     <div class="phonenumber-input-area">
+                        전화번호
+                        <div class="phonenumber-input">
+                           <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;" > 
+                           </div>
+                        </div>
+
+                        </div>
+
+                  </div>
+                        
+                        <!-- <div class="name-input-area">
+                     </div>
+                        
+               </div> -->
+                     
+
+               <div class="shipping-list">
+
+                  <span class="shipping-name" style="font-weight: bold;">배송지</span>
 
 
                   <button class="shipping-btn">변경</button>
@@ -239,7 +187,7 @@
                         <button class="address-btn">주소 찾기</button>
 
                      <div class="address-input">
-                           <input type="text" placeholder="*필수 작성 항목입니다.">
+                           <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;">
                         </div>
                      </div>
 
@@ -248,7 +196,7 @@
                         
                         <div class="input-detail">
 
-                           <input type="text" placeholder="*필수 작성 항목입니다."> 
+                           <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;"> 
 
 
                         </div>
@@ -256,11 +204,11 @@
 
                   </div>
                      
-            </form>
+            </div>
                   
             <hr class="check-list-line" style="color: rgb(115, 130, 92);"
-            style="height: 1px;"
-            style="border: 0;">
+           
+            >
          
             
          <div class="price-detail">
@@ -269,7 +217,7 @@
                <span class="detail-price" style="font-weight: bold;">결제 금액</span>
 
                   <div class="detail">
-                     <span class="product-price" style="font-size: 16px;" style="margin-right: 10px;" >상품 가격 </span>
+                     <span class="product-price" style="font-size: 16px;"  >상품 가격 </span>
                       <span class="price" style="margin-left: 1014px;">100$</span>
 
                       <div class="shipping-price" style="font-size: 16px;">배송비
@@ -340,10 +288,10 @@
                               
                         </div> -->
                         
-                        <form class="cash">
+                        <div class="cash">
                            <input type="radio">
                            계좌 입금
-                        </form>
+                        </div>
 
                      <!-- </div> -->
                      
@@ -359,18 +307,18 @@
                      </li>
                   </div>
 
-                  <form class="checkout-area">
+                  <div class="checkout-area">
 
                      <button type="submit" class="checkOut-btn">결제하기</button>
 
 
-                  </form>
+                  </div>
          
             </div>
 
 
 
-               
+         </form>
          
    </section>
 </body>

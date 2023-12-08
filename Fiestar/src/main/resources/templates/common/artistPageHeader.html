@@ -1,26 +1,27 @@
-<!-- 로그인 전 header -->
-<!-- <header>
+<header th:if="${session.loginMember == null}">
     <section>
-        <a href="/" src="logo.png" alt="로고이미지"></a>
+        <a href="/" src="artistHomepageImg/logo.png" alt="로고이미지"></a>
     </section>
 
     <section>
         <article>
-            <a href="">로그인</a>
+            <a href="/member/login">로그인</a>
         </article>
 
         <article>
-            <a href="">회원가입</a>
+            <a href="/member/signup">회원가입</a>
         </article>
 
         <article>
-            <a href=""></a>
+            <a href="/shop/home"></a>
         </article>
-    </section> -->
+    </section>
+</header>
+
 
 <!-- 로그인 후 -->
 
-<header>
+<header th:if="${session.loginMember != null}">
     <section>
         <a href="/">
             <img src="/artistHomepageImg/logo.png" id="logoImg">
@@ -41,12 +42,12 @@
                 <div class="dropdown-content">
                     <a href="/myPage/myPage">마이 페이지</a>
                     <a href="#">로그아웃</a>
-                    <a href="#">관리자 페이지</a>
+                    <a href="/admin/artistNotice">관리자 페이지</a>
                 </div>
             </div>
         </article>
         <article>
-            <a href=""><i class="fa-solid fa-store fa-xl" style=" color: #7743DB"></i></a>
+            <a href="/shop/home"><i class="fa-solid fa-store fa-xl" style=" color: #7743DB"></i></a>
         </article>
     </section>
 </header>

@@ -30,4 +30,20 @@ public class MediaCommentServiceImpl implements MediaCommentService{
 		return mapper.selectComment(map);
 	}
 	
+	@Override
+	public int deleteComment(int commentNo) {
+		return mapper.deleteComment(commentNo);
+	}
+	
+	
+	@Override
+	public int insertLike(MediaComment comment) {
+		return mapper.insertLike(comment);
+	}
+	
+	@Override
+	public int deleteLike(MediaComment comment) {
+		return mapper.deleteLike(comment);
+	}
+	
 }

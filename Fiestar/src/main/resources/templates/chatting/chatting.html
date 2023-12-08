@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="/css/common/atristPageHeader.css" />
+    <link rel="stylesheet" href="/css/common/artistPageHeader.css" />
     <link rel="stylesheet" href="/css/chatting/chatting.css" />
   </head>
   <body>
-    <th:block th:replace="~{common/atristPageHeader}">헤더</th:block>
-    <section id="navSection">
+    <th:block th:replace="~{common/artistPageHeader}">헤더</th:block>
+    <!-- <section id="navSection">
       <nav>
         <ul>
           <li><a href="/artistHomepage/feed">Feed</a></li>
@@ -20,7 +20,8 @@
           <li><a href="">공지사항</a></li>
         </ul>
       </nav>
-    </section>
+    </section> -->
+    <th:block th:replace="~{common/artistPageNavi}">nav바</th:block>
     <main>
       <div class="chatting-area">
         <ul class="chat-ul">

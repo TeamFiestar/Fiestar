@@ -1,0 +1,80 @@
+<div class="main-1" th:object="${member}">
+  <div class="profile">
+    <div class="profile-img">
+      <a href="/myPage/myPage-Modify">
+        <img th:if="${session.loginMember.memberProfile == null}" th:src="#{user.default.image}" width="100%" height="100%">
+        <img th:unless="${session.loginMember.memberProfile == null}" th:src="${session.loginMember.memberProfile}" width="100%" height="100%" >
+      </a>
+    </div>
+    <div class="profile-info">
+      <div class="nickName"><h4 th:text="${session.loginMember.memberNickname}">민둥민두</h4></div>
+      <div class="email"><h4 th:text="${session.loginMember.memberEmail}">javaman@gmail.com</h4></div>
+      <div class="logout"><h4><a href="">로그아웃</a></h4></div>
+    </div>
+  </div>
+
+  <hr class="myPageHr" width="280px" color="gray">
+
+  <div class="sidebar">
+    <div class="Bulletin">
+      <div class="icon">
+        <img src="/image/게시글.png" width="100%" height="100%">
+      </div>
+      <div class="center">
+        <a href="/myPage/myPage">내가 작성한 게시글</a>
+      </div>
+      <div class="side">
+        <img src="/image/Vector 9.png" width="100%" height="100%">
+      </div>
+    </div>
+
+    <div class="comment">
+      <div class="icon">
+        <img src="/image/댓글.png" width="100%" height="100%">
+      </div>
+      <div class="center">
+        <a href="/myPage/mypage-comment">내가 작성한 댓글</a>
+      </div>
+      <div class="side">
+        <img src="/image/Vector 9.png" width="100%" height="100%">
+      </div>
+    </div>
+
+    <div class="artist">
+      <div class="icon">
+        <img src="/image/아티스트.png" width="100%" height="100%">
+      </div>
+      <div class="center">
+        <a href="/myPage/myPage-artist">구독한 아티스트</a>
+      </div>
+      <div class="side">
+        <img src="/image/Vector 9.png" width="100%" height="100%">
+      </div>
+    </div>
+
+    <div class="Purchase">
+      <div class="icon">
+        <img src="/image/구매내역.png" width="100%" height="100%">
+      </div>
+      <div class="center">
+        <a href="/myPage/myPage-Purchase">구매내역</a>
+      </div>
+      <div class="side">
+        <img src="/image/Vector 9.png" width="100%" height="100%">
+      </div>
+    </div>
+
+    <div class="Notice">
+      <div class="icon"> 
+        <img src="/image/공지사항.png" width="100%" height="100%">
+      </div>
+      <div class="center">
+        <a href="#">공지사항</a>
+      </div>
+      <div class="side">
+        <img src="/image/Vector 9.png" width="100%" height="100%">
+      </div>
+    </div>
+
+  </div>
+</div>
