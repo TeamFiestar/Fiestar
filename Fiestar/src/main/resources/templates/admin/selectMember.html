@@ -37,15 +37,18 @@
         <h1>일반 회원 조회</h1>
         <br />
         <table border="1" style="border-collapse: collapse" class="main-table">
-          <tr class="tr-head">
-            <th>회원 번호</th>
-            <th>닉네임</th>
-            <th>아이디(이메일)</th>
-            <th>주소</th>
-            <th>권한</th>
-            <th>신고 누적 횟수</th>
-            <th>강제 탈퇴</th>
-          </tr>
+          <thead>
+            <tr class="tr-head">
+              <th>회원 번호</th>
+              <th>닉네임</th>
+              <th>아이디(이메일)</th>
+              <th>주소</th>
+              <th>권한</th>
+              <th>신고 누적 횟수</th>
+              <th>강제 탈퇴</th>
+            </tr>
+          </thead>
+          <!-- <tbody id="memberTableBody"></tbody> -->
           <!-- <th:block th:if="${#}"></th:block> -->
           <tr class="tr-body" th:each="member : ${memberList}" th:object="${member}">
             <td th:text="*{memberNo}">1</td>
@@ -60,6 +63,7 @@
             <td><button>탈퇴</button></td>
           </tr>
         </table>
+        <!-- 페이지네이션 -->
         <div class="pagination-area" th:if="${#lists.size(memberList) > 0}">
           <ul class="pagination" th:if="${param.key == null}">
             <li>
@@ -83,13 +87,13 @@
               <a th:href="@{/admin/selectMember(cp=${pagination.maxPage})}">&gt;&gt;</a>
             </li>
           </ul>
-          <!--  -->
+          <!-- 검색 -->
           <ul class="pagination" th:unless="${param.key == null}">
             <li>
               <a th:href="@{/admin/selectMember(cp=1, key=${param.key}, query=${param.query})}">&lt;&lt;</a>
             </li>
             <li>
-              <a th:href="@{/admin/selectMember(cp=${pagination.prevPage}, key={param.key}, query={param.query})}"
+              <a th:href="@{/admin/selectMember(cp=${pagination.prevPage}, key=${param.key}, query=${param.query})}"
                 >&lt;</a
               >
             </li>
@@ -98,18 +102,18 @@
                 <a th:text="${i}">currentPage</a>
               </li>
               <li th:unless="${i == pagination.currentPage}">
-                <a th:href="@{/admin/selectMember(cp=${i}, key={param.key}, query=${param.query})}" th:text="${i}"
+                <a th:href="@{/admin/selectMember(cp=${i}, key=${param.key}, query=${param.query})}" th:text="${i}"
                   >cp</a
                 >
               </li>
             </th:block>
             <li>
-              <a th:href="@{/admin/selectMember(cp=${pagination.nextPage}, key={param.key}, query={param.query})}"
+              <a th:href="@{/admin/selectMember(cp=${pagination.nextPage}, key=${param.key}, query=${param.query})}"
                 >&gt;</a
               >
             </li>
             <li>
-              <a th:href="@{/admin/selectMember(cp=${pagination.maxPage}, key={param.key}, query={param.query})}"
+              <a th:href="@{/admin/selectMember(cp=${pagination.maxPage}, key=${param.key}, query=${param.query})}"
                 >&gt;&gt;</a
               >
             </li>
@@ -153,6 +157,49 @@
         modal_background.classList.add("show");
       }
     </script> -->
+    <!-- <script th:inline="javascript">
+      /*<![CDATA[*/
+      // 페이지 로드 후 실행
+      document.addEventListener("DOMContentLoaded", function () {
+        // 서버에서 데이터를 비동기식으로 가져오는 함수
+        function fetchData() {
+          fetch("/admin/selectMember") // 실제 API 엔드포인트로 대체
+            .then((response) => response.json())
+            .then((data) => {
+              // 가져온 데이터를 테이블에 추가
+              updateTable(data);
+            })
+            .catch((error) => {
+              console.error("Error fetching data:", error);
+            });
+        }
+
+        // 테이블 업데이트 함수
+        function updateTable(data) {
+          var tableBody = document.getElementById("memberTableBody");
+          tableBody.innerHTML = ""; // 기존 테이블 내용 비우기
+
+          // 데이터를 테이블에 추가
+          data.memberList.forEach(function (member) {
+            var row = '<tr class="tr-body">';
+            row += "<td>" + member.memberNo + "</td>";
+            row += "<td>" + member.memberNickname + "</td>";
+            row +=
+              '<td class="btn-open-popup" onclick="openModal(' + member.memberNo + ')">' + member.memberEmail + "</td>";
+            row += "<td>" + member.memberAddress + "</td>";
+            row += "<td>" + (member.memberAuthority == 1 ? "일반" : "") + "</td>";
+            row += "<td>" + member.reportCount + "</td>";
+            row += '<td><button onclick="withdraw(' + member.memberNo + ')">탈퇴</button></td>';
+            row += "</tr>";
+            tableBody.insertAdjacentHTML("beforeend", row);
+          });
+        }
+
+        // 페이지 로드 시 데이터 가져오기
+        fetchData();
+      });
+    </script> -->
+
     <script src="/js/admin/selectMember.js"></script>
     <script th:inline="javascript"></script>
   </body>

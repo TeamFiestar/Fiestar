@@ -8,6 +8,7 @@
 		ORDER BY MEMBER_NO
 	</select>-->
 	
+	<!-- 일반회원조회 -->
 	<select id="selectBoard" resultType="Board">
 		SELECT  BOARD_CONTENT,
 		(SELECT ARTIST_GROUP_TITLE FROM ARTIST_GROUP AG WHERE B.ARTIST_GROUP_NO = AG.ARTIST_GROUP_NO) ARTIST_GROUP_TITLE, BOARD_ENROLL_DATE
@@ -25,7 +26,7 @@
 		SELECT MEMBER_NO , MEMBER_NICKNAME , MEMBER_EMAIL , MEMBER_ADDRESS, MEMBER_AUTHORITY  
 		FROM MEMBER
 		WHERE MEMBER_DEL_FL = 'N'
-		ORDER BY MEMBER_NO
+		ORDER BY MEMBER_NO DESC
 	</select>
 	
 	<select id="countMember" resultType="_int">
@@ -35,10 +36,10 @@
 			<when test='key == "memberNo"'>
 				AND MEMBER_NO LIKE '%${query}%'
 			</when>
-			<when test='key == "memberNickname"'>
+			<when test='key == "memberEmail"'>
 				AND MEMBER_EMAIL LIKE '%${query}%'
 			</when>
-			<when test='key == "memberEmail"'>
+			<when test='key == "memberNickname"'>
 				AND MEMBER_NICKNAME LIKE '%${query}%'
 			</when>
 		</choose>
@@ -53,13 +54,64 @@
 			<when test='key == "memberNo"'>
 				AND MEMBER_NO LIKE '%${query}%'
 			</when>
-			<when test='key == "memberNickname"'>
+			<when test='key == "memberEmail"'>
 				AND MEMBER_EMAIL LIKE '%${query}%'
 			</when>
-			<when test='key == "memberEmail"'>
+			<when test='key == "memberNickname"'>
 				AND MEMBER_NICKNAME LIKE '%${query}%'
 			</when>
 		</choose>
 		ORDER BY MEMBER_NO DESC
 	</select>
+	
+	<!-- 탈퇴 회원 조회 -->
+	<select id="countDeleteMember" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE MEMBER_DEL_FL = 'Y'
+	</select>
+	
+	<select id="deleteMember" resultType="Member">
+		SELECT MEMBER_NO , MEMBER_NICKNAME , MEMBER_EMAIL , MEMBER_ADDRESS, MEMBER_AUTHORITY  
+		FROM MEMBER
+		WHERE MEMBER_DEL_FL = 'Y'
+		ORDER BY MEMBER_NO DESC
+	</select>
+	
+	<select id="countDeleteList" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE MEMBER_DEL_FL = 'Y'
+		<choose>
+			<when test='key == "memberNo"'>
+				AND MEMBER_NO LIKE '%${query}%'
+			</when>
+			<when test='key == "memberEmail"'>
+				AND MEMBER_EMAIL LIKE '%${query}%'
+			</when>
+			<when test='key == "memberNickname"'>
+				AND MEMBER_NICKNAME LIKE '%${query}%'
+			</when>
+		</choose>
+	</select>
+	
+	<select id="searchDelete" resultType="Member">
+		SELECT MEMBER_NO , MEMBER_NICKNAME , MEMBER_EMAIL , MEMBER_ADDRESS, MEMBER_AUTHORITY  
+		FROM MEMBER
+		WHERE MEMBER_DEL_FL = 'Y'
+		<choose>
+			<when test='key == "memberNo"'>
+				AND MEMBER_NO LIKE '%${query}%'
+			</when>
+			<when test='key == "memberEmail"'>
+				AND MEMBER_EMAIL LIKE '%${query}%'
+			</when>
+			<when test='key == "memberNickname"'>
+				AND MEMBER_NICKNAME LIKE '%${query}%'
+			</when>
+		</choose>
+		ORDER BY MEMBER_NO DESC
+	</select>
+	
+	
+	
+	
 </mapper>

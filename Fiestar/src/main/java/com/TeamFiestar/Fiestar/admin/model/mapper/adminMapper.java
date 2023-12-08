@@ -24,4 +24,14 @@ public interface adminMapper {
 
 	List<Member> searchMember(RowBounds rowBounds, Map<String, Object> paramMap);
 
+	int countDeleteMember(Member member);
+
+	List<Member> deleteMember(RowBounds rowBounds);
+
+	int countDeleteList(Map<String, Object> paramMap);
+
+	List<Member> searchDelete(RowBounds rowBounds, Map<String, Object> paramMap);
+
+	
+
 }

@@ -14,5 +14,11 @@ public interface adminService {
 
 	Map<String, Object> searchMember(Map<String, Object> paramMap, int cp);
 
+	Map<String, Object> deleteMember(Member member, int cp);
+
+	Map<String, Object> searchDeleteMember(Map<String, Object> paramMap, int cp);
+
+	
+
 
 }
