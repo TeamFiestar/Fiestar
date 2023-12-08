@@ -65,14 +65,21 @@ h1 {
    /* border-bottom: solid rgb(217, 217, 217) 1px;    */
 }
 
+.option-text{
+   font-size: 14px;
+   margin-left: 60px;
+}
+
+
 .item-list > a{
    text-decoration: none;
    font-size: 18px;
    color: black;
 }
 .item-option{
+   font-size: 14px;
    color: rgb(173, 177, 184);
-   margin-left: 18px;
+   margin-left: 2px;
 
 }
 
@@ -235,6 +242,11 @@ img{
 
 .amount > label{
    background-color: #eff7ff;
+   cursor: pointer;
+}
+
+.amount > label > i{
+   pointer-events: none;
 }
 
 .item-count{
@@ -285,9 +297,11 @@ border-radius: 4px;
    background: bottom;
 }
 
-
+.default-price{
+   display: none;
+}
 .cart-check{  
-   color: rgb(0, 229, 255);  
+   color: black;
    font-size: 22px;
 }
 
@@ -305,5 +319,9 @@ border-radius: 4px;
 
 .cart-check > input:checked + i{
    /* color: rgb(0, 229, 255);  */
-   color: black;
+   color: rgb(0, 229, 255);  
+}
+
+.cartNo{
+   /* display: none; */
 }

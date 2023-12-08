@@ -19,7 +19,7 @@
 
    <section class="frame"> 
 
-      <form action="checkout" method="post" id="checkoutFrm">
+      <form action="checkout" method="post">
 
          <div class="cart-area">
             <h1 class="cart">CART</h1>
@@ -34,31 +34,27 @@
                                                             -->
 
             <label class="cart-check">
-               <input type='checkbox' id="selectAll" name="selectAll" checked>
+               <input type='checkbox' id="selectAll">
                <i class="fa-regular fa-circle-check"></i>
             </label>
 
             <span>해당 상품 전체 선택</span>
          </div>
 
-
-
-         <div class="item-list1" th:each="cart : ${cartList}"> 
-         
+   
+         <div class="item-list1" th:each="cart : ${cartList}">
             <div class="item-list">
    
                <!-- 개별 상품 체크 -->
                <div class="select-item">
                   <label class="cart-check">
-                                                                                 <!-- 체크된 장바구니 번호 -->
-                                                                                 <!-- 폼 태그에 체크된 카트 넘버를 담아 넘긴다. checked th:value="${cart.cartNo}" -->
-                     <input type='checkbox' class="selectEach" name="selectEach" checked th:value="${cart.cartNo}">
+                     <input type='checkbox' class="selectEach">
                      <i class="fa-regular fa-circle-check"></i>
                   </label>
                </div>
    
                <!-- 이미지 영역 -->
-               
+   
    
                <img src="/images/keyring.png" alt="">
    
@@ -67,13 +63,11 @@
                <!-- <div class="item-name"> -->
                <!-- <a th:href="@{}" class="keyring">뉴진스 키링</a> -->
                
-                <div th:text="${cart.productName}" class="keyring"></div>
-                <span th:text="${cart.cartNo}" class="cartNo"></span> 
+                <div th:text="${cart.productName}" class="keyring"></div> 
                <!-- </div> -->
    
                <div>
-                  <span class="option-text"> 옵션 : </span> 
-                  <span th:text="${cart.productOptionName}" class="item-option"></span>
+                  <span th:text="${cart.productOptionName}" class="item-option" style="font-size: 12px;">옵션 : </span>
                </div>
    
                <!-- 상품 수량 + & -  -->
@@ -101,26 +95,24 @@
                <div class="amount">
    
                   <!-- 수량 빼기 -->
-                  <label class="minus" th:cartNo="${cart.cartNo}">
-                     <i class="fa-solid fa-minus"></i>
+                  <label class="minus">
+                     <input type="button" class="input-minus">
+                     <i class="fa-solid fa-minus" id="minus"></i>
                   </label>
    
-                  <!-- 수량 -->
-                  <span th:text="${cart.productCount}" class="item-count"></span>
-                  
                   <!-- 더하기 -->
-                  <label class="plus" th:cartNo="${cart.cartNo}">
-                     <i class="fa-solid fa-plus"></i>
-                  </label>
-                  
-                  <span th:text="${cart.productPrice}" class="default-price"></span>
-
-               </div>
-               
-               <!-- <th:block th:text="${cart.productPrice}" class="default-price"></th:block> -->
+                  <span th:text="${cart.productCount}" class="item-count"></span>
    
-               <span th:text="${cart.productPrice} * ${cart.productCount} " class="amount-price" style="font-weight: bold;"></span>
-               
+                  <label class="plus">
+                     <input type="button" class="input-plus">
+                     <i class="fa-solid fa-plus" id="plus"></i>
+                  </label>
+   
+               </div>
+   
+   
+   
+               <span th:text="${cart.productPrice}" class="amount-price" style="font-weight: bold;"></span>
    
                <label class="x-btn">
                   <input type="button" value="">
@@ -132,31 +124,31 @@
          
 
 
-         <!-- 개별 상품 체크 -->
-         <!-- <div class="item-list">
-         
+         <div class="item-list">
+
+            <!-- 개별 상품 체크 -->
             <div class="select-item">
                <label class="cart-check">
                   <input type='checkbox' class="selectEach">
                   <i class="fa-regular fa-circle-check"></i>
                </label>
-            </div> -->
+            </div>
 
             <!-- 이미지 영역 -->
-<!-- 
+
             <img src="/images/photobook.png" alt="">
 
 
 
             <a href="#" class="keyring">LE SSERAFIM</a>
 
-            <span class="item-option" style="font-size: 12px;">옵션 : BLACK</span> -->
+            <span class="item-option" style="font-size: 12px;">옵션 : BLACK</span>
 
             <!-- <select name="option" id="option-btn"></select>
                    -->
 
 
-         <!-- </div>
+         </div>
 
          <div class="item-amount">
 
@@ -173,7 +165,7 @@
                <span class="amount-price" style="font-weight: bold;">$100</span>
             </div>
 
-         </div> -->
+         </div>
 
 
 
@@ -182,16 +174,19 @@
          <div class="total">
             <span>총 결제 금액</span>
 
-            <div class="sc-e98633bc-7 iUJKwp" id="totalPrice">$15.58</div>
+            <div class="sc-e98633bc-7 iUJKwp">$15.58</div>
 
-            <button type="submit" class="checkOut-btn" id="checkOut-btn" >결제하기</button>
+            <button type="submit" class="checkOut-btn">결제하기</button>
 
          </div>
 
       </form>
 
+
    </section>
+
 
    <script src="/js/cart/cart.js"></script>
 </body>
+
 </html>

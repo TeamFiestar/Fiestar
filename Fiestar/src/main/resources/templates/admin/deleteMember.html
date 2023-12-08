@@ -4,11 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>탈퇴 회원 조회</title>
-    <link rel="stylesheet" href="../../static/css/admin/selectMember.css" />
+    <link rel="stylesheet" href="/css/common/artistPageHeader.css" />
+    <link rel="stylesheet" href="/css/admin/deleteMember.css" />
   </head>
   <body>
-    <header>헤더+nav</header>
-    <main>
+    <th:block th:replace="~{common/artistPageHeader}">헤더</th:block>
+    <main th:with="deleteList=${map.deleteList}, pagination=${map.pagination}">
       <th:block th:replace="~{common/admin}"></th:block>
       <div class="main">
         <h1>탈퇴 회원 조회</h1>
@@ -23,98 +24,77 @@
               <th>권한</th>
               <th>탈퇴 복구</th>
             </tr>
-            <tr class="tr-body">
-              <td>1</td>
-              <td>ㅇㅇㅇ</td>
-              <td>qwerqwer1234@gmail.com</td>
-              <td>서울특별시 종로구 종로 33 그랑서울 타워[1] 3층 롤파크</td>
-              <td>일반</td>
-              <td><button>탈퇴</button></td>
-            </tr>
-            <tr class="tr-body">
-              <td>1</td>
-              <td>ㅇㅇㅇ</td>
-              <td>qwerqwer1234@gmail.com</td>
-              <td>서울특별시 종로구 종로 33 그랑서울 타워[1] 3층 롤파크</td>
-              <td>일반</td>
-              <td><button>탈퇴</button></td>
-            </tr>
-            <tr class="tr-body">
-              <td>1</td>
-              <td>ㅇㅇㅇ</td>
-              <td>qwerqwer1234@gmail.com</td>
-              <td>서울특별시 종로구 종로 33 그랑서울 타워[1] 3층 롤파크</td>
-              <td>일반</td>
-              <td><button>탈퇴</button></td>
-            </tr>
-            <tr class="tr-body">
-              <td>1</td>
-              <td>ㅇㅇㅇ</td>
-              <td>qwerqwer1234@gmail.com</td>
-              <td>서울특별시 종로구 종로 33 그랑서울 타워[1] 3층 롤파크</td>
-              <td>일반</td>
-              <td><button>탈퇴</button></td>
-            </tr>
-            <tr class="tr-body">
-              <td>1</td>
-              <td>ㅇㅇㅇ</td>
-              <td>qwerqwer1234@gmail.com</td>
-              <td>서울특별시 종로구 종로 33 그랑서울 타워[1] 3층 롤파크</td>
-              <td>일반</td>
-              <td><button>탈퇴</button></td>
-            </tr>
-            <tr class="tr-body">
-              <td>1</td>
-              <td>ㅇㅇㅇ</td>
-              <td>qwerqwer1234@gmail.com</td>
-              <td>서울특별시 종로구 종로 33 그랑서울 타워[1] 3층 롤파크</td>
-              <td>일반</td>
-              <td><button>탈퇴</button></td>
-            </tr>
-
-            <tr class="tr-body">
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td><button>탈퇴</button></td>
-            </tr>
-            <tr class="tr-body">
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td><button>탈퇴</button></td>
-            </tr>
-            <tr class="tr-body">
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td><button>탈퇴</button></td>
-            </tr>
-            <tr class="tr-body">
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+            <tr class="tr-body" th:each="member : ${deleteList}" th:object="${member}">
+              <td th:text="*{memberNo}">회원 번호</td>
+              <td th:text="*{memberNickname}">회원 닉네임</td>
+              <td th:text="*{memberEmail}">회원 아이디(이메일)</td>
+              <td th:text="*{memberAddress}">회원 주소</td>
+              <td th:text="*{memberAuthority}">권한</td>
               <td><button>탈퇴</button></td>
             </tr>
           </tbody>
         </table>
-        <div class="pagination-area">
-          <div class="pagination"><< < 1 2 3 4 5 6 7 8 9 10 > >></div>
-          <form>
-            <select id="select">
+        <div class="pagination-area" th:if="${#lists.size(deleteList) > 0}">
+          <ul class="pagination" th:if="${param.key == null}">
+            <li>
+              <a th:href="@{/admin/deleteMember(cp=1)}">&lt;&lt;</a>
+            </li>
+            <li>
+              <a th:href="@{/admin/deleteMember(cp=${pagination.prevPage})}">&lt;</a>
+            </li>
+            <th:block th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}">
+              <li th:if="${i == pagination.currentPage}">
+                <a th:text="${i}">currentPage</a>
+              </li>
+              <li th:unless="${i == pagination.currentPage}">
+                <a th:href="@{/admin/deleteMember(cp=${i})}" th:text="${i}">cp</a>
+              </li>
+            </th:block>
+            <li>
+              <a th:href="@{/admin/deleteMember(cp=${pagination.nextPage})}">&gt;</a>
+            </li>
+            <li>
+              <a th:href="@{/admin/deleteMember(cp=${pagination.maxPage})}">&gt;&gt;</a>
+            </li>
+          </ul>
+          <!-- 검색 -->
+          <ul class="pagination" th:unless="${param.key == null}">
+            <li>
+              <a th:href="@{/admin/deleteMember(cp=1, key=${param.key}, query=${param.query})}">&lt;&lt;</a>
+            </li>
+            <li>
+              <a th:href="@{/admin/deleteMember(cp=${pagination.prevPage}, key=${param.key}, query=${param.query})}"
+                >&lt;</a
+              >
+            </li>
+            <th:block th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}">
+              <li th:if="${i == pagination.currentPage}">
+                <a th:text="${i}">currentPage</a>
+              </li>
+              <li th:unless="${i == pagination.currentPage}">
+                <a th:href="@{/admin/deleteMember(cp=${i}, key=${param.key}, query=${param.query})}" th:text="${i}"
+                  >cp</a
+                >
+              </li>
+            </th:block>
+            <li>
+              <a th:href="@{/admin/deleteMember(cp=${pagination.nextPage}, key=${param.key}, query=${param.query})}"
+                >&gt;</a
+              >
+            </li>
+            <li>
+              <a th:href="@{/admin/deleteMember(cp=${pagination.maxPage}, key=${param.key}, query=${param.query})}"
+                >&gt;&gt;</a
+              >
+            </li>
+          </ul>
+          <form th:action="@{deleteMember}" method="get">
+            <select id="select" name="key">
               <option value="memberNo">회원번호</option>
               <option value="memberNickname">회원 닉네임</option>
               <option value="memberEmail">회원 이메일</option>
             </select>
-            <input type="text" id="inputSearch" />
+            <input type="text" id="inputSearch" name="query" />
             <button id="pagination-button">검색</button>
           </form>
         </div>

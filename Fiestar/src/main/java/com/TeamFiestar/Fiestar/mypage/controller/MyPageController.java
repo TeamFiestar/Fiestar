@@ -17,30 +17,29 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 import com.TeamFiestar.Fiestar.mypage.service.MyPageService;
+
 import lombok.RequiredArgsConstructor;
+import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @SessionAttributes({ "loginMember" })
+
 @RequiredArgsConstructor
 public class MyPageController {
 
 	private final MyPageService service;
 
-
+	
 	@GetMapping("myPage/myPage-Modify")
-	public String myPageModify() {
+	public String mypageModify() {
 		return "myPage/myPage-Modify";
 	}
-
-	@GetMapping("myPage-Purchase")
-	public String myPagePurchase() {
-		return "myPage/myPage-Purchase";
-	}
-
+	
 	@GetMapping("myPage/myPage-Withdrawal")
-	public String myPageWithdrawal() {
+	public String mypageWithdrawal() {
 		return "myPage/myPage-Withdrawal";
 	}
+	
 
 	// 회원 탈퇴
 	@PostMapping("withdrawal")
@@ -65,7 +64,7 @@ public class MyPageController {
 	}
 
 	// 프로필 변경
-	@PostMapping("profile")
+	@PostMapping("myPage/profile")
 	public String profile(@SessionAttribute("loginMember") Member loginMember,
 			@RequestParam("memberProfile") MultipartFile memberProfile, RedirectAttributes ra)
 			throws IllegalStateException, IOException {
@@ -87,6 +86,7 @@ public class MyPageController {
 	}
 	
 	
+	
 	// 내가 작성한 게시글 조회
 	@GetMapping("myPage/myPage")
 	public String myFeed(
@@ -101,6 +101,26 @@ public class MyPageController {
 		return "myPage/myPage";
 	}
 	
+	// 내가 작성한 게시글 삭제
+//	@PostMapping("myPage/deleteBoard")
+//	public String deleteBoard(@SessionAttribute("loginMember") Member loginMember,
+//			RedirectAttributes ra, String boardNo) {
+//		
+//		int result = service.deleteBoard(loginMember.getMemberNo(), boardNo);
+//		
+//		String message = null;
+//		
+//		if(result > 0) {
+//			message = "게시글이 성공적으로 삭제되었습니다.";
+//		} else {
+//			message = "게시글 삭제를 실패하였습니다.";
+//		}
+//		
+//		ra.addFlashAttribute("message", message);
+//		
+//		return "redirect:myPage/myPage";
+//	}
+	
 
 	// 내가 작성한 댓글 조회
 	@GetMapping("myPage/myPage-comment")
@@ -113,6 +133,35 @@ public class MyPageController {
 		model.addAttribute("map", map);
 		
 		return "myPage/myPage-comment";
+	}
+	
+
+	
+	// 내가 구독한 아티스트 조회
+	@GetMapping("myPage/myPage-artist")
+	public String myArtist(@SessionAttribute("loginMember") Member loginMember, Model model,
+			@RequestParam(value = "cp", required = false, defaultValue = "1") int cp,
+			@RequestParam Map<String, Object> paramMap) {
+		
+		Map<String, Object> map = service.myArtistList(loginMember, cp);
+		
+		model.addAttribute("map", map);
+		
+		return "myPage/myPage-artist";
+		
+	}
+	
+	// 구매목록 조회
+	@GetMapping("myPage/myPage-Purchase")
+	public String mypagePurchase(@SessionAttribute("loginMember") Member loginMember, Model model,
+			@RequestParam(value = "cp", required = false, defaultValue = "1") int cp,
+			@RequestParam Map<String, Object> paramMap) {
+		
+		Map<String, Object> map = service.myPurchaseList(loginMember, cp);
+		
+		model.addAttribute("map", map);
+		
+		return "myPage/myPage-Purchase";
 	}
 
 

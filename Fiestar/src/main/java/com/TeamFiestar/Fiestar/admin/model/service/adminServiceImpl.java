@@ -63,4 +63,46 @@ public class adminServiceImpl implements adminService{
 	public List<Board> selectBoard(int memberNo) {
 		return mapper.selectBoard(memberNo);
 	}
+	
+	
+	@Override
+	public Map<String, Object> deleteMember(Member member, int cp) {
+		int countList = mapper.countDeleteMember(member);
+		
+		AdminPagination pagination = new AdminPagination(countList, cp);
+		
+		int offset = (pagination.getCurrentPage()-1) * pagination.getLimit();
+		int limit = pagination.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		List<Member> deleteList = mapper.deleteMember(rowBounds);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("deleteList", deleteList);
+		map.put("pagination", pagination);
+		
+		return map;
+	}
+	
+	@Override
+	public Map<String, Object> searchDeleteMember(Map<String, Object> paramMap, int cp) {
+		int countList = mapper.countDeleteList(paramMap);
+	
+		AdminPagination pagination = new AdminPagination(countList, cp);
+		
+		int offset = (pagination.getCurrentPage()-1) * pagination.getLimit();
+		int limit = pagination.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		List<Member> deleteList = mapper.searchDelete(rowBounds, paramMap);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("deleteList", deleteList);
+		map.put("pagination", pagination);
+		
+		return map;
+	}
+	
 }

@@ -1,32 +1,34 @@
 <header th:if="${session.loginMember == null}">
-    <section>
-        <a href="/" src="artistHomepageImg/logo.png" alt="로고이미지"></a>
-    </section>
+  <section>
+    <a href="/" src="artistHomepageImg/logo.png" alt="로고이미지">
+      <img src="/artistHomepageImg/logo.png" id="logoImg" />
+    </a>
+  </section>
 
-    <section>
-        <article>
-            <a href="/member/login">로그인</a>
-        </article>
+  <section>
+    <article>
+      <a href="/member/login">로그인</a>
+    </article>
 
-        <article>
-            <a href="/member/signup">회원가입</a>
-        </article>
+    <article>
+      <a href="/member/signup">회원가입</a>
+    </article>
 
-        <article>
-            <a href="/shop/home"></a>
-        </article>
-    </section>
+    <article>
+      <a href="/shop/home"></a>
+    </article>
+  </section>
 </header>
-
 
 <!-- 로그인 후 -->
 
 <header th:if="${session.loginMember != null}">
-    <section>
-        <a href="/">
-            <img src="/artistHomepageImg/logo.png" id="logoImg">
-        </a>
-    </section>
+  <section>
+    <a href="/">
+      <img src="/artistHomepageImg/logo.png" id="logoImg" />
+    </a>
+  </section>
+
 
     <section>
         <article>
@@ -51,3 +53,4 @@
         </article>
     </section>
 </header>
+

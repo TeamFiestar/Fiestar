@@ -1,26 +1,36 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Document</title>
    <script src="https://kit.fontawesome.com/d6c32512de.js" crossorigin="anonymous"></script>
-   <link rel="stylesheet" href="/static/css/cart/checkout.css">
+   <link rel="stylesheet" href="../../static/css/cart/checkout.css">
+<<<<<<< HEAD
+   <link rel="stylesheet" href="../../static/css/common/shopHeader.css"> 
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> origin/main
+   
 
-   <link rel="stylesheet" href="/static/css/common/shopHeader.css"> 
-
-   <th:block th:replace="~{common/shopHeader}"></th:block>
+>>>>>>> origin/main
+   <!-- <link rel="stylesheet" href="../Fiesta/shopHeader.css"> -->
 
 </head>
-
 <body>
 
+
+  
     <!-- 헤더 -->
+
+   <th:block th:replace="~{common/shopHeader}"></th:block>
 
    <section class="frame">
 
       <form action="checkoutResult" method="post">
-     
+
+      
       <div class="content"> 
 
          <div class="cart-area">
@@ -40,7 +50,7 @@
 
                <!-- 이미지 영역 -->
                
-            <img src="/static/images/keyring.png" alt="">
+            <img src="../../static/images/keyring.png" alt="">
 
                   
                   <!-- 제품 상세 -->
@@ -73,7 +83,7 @@
             <div class="item-list">
                <!-- 이미지 영역 -->
                
-               <img src="/static/images/photobook.png" alt="">
+               <img src="../../static/images/photobook.png" alt="">
 
                   
                   <!-- 제품 상세 -->
@@ -248,6 +258,36 @@
                <div class="payment-method">
                      <span class="ass" style="font-weight: bold;">결제 수단</span>
 
+                     <!-- <div class="method"> -->
+
+                        <!-- <div class="kakao">
+                           <div>
+                              카카오 페이
+                           </div>
+
+                           <div class="select-kakao">
+                              <span> <i class="fa-regular fa-circle"></i> </span>
+                              <span> <img class="kakaopay" src="/src/main/resources/static/images/KakaoTalk_Photo_2023-11-28-22-43-41.png" alt=""> </span>
+                           </div>
+                              
+                        </div> -->
+                           
+                          
+<!--                           
+                        </div> -->
+
+                        <!-- <div class="credit-card">
+                           <div>
+                              신용카드
+                           </div>
+
+                           <div select-credit>
+                              <span> <i class="fa-regular fa-circle"></i> </span>
+                              <img class="visa" src="/src/main/resources/static/images/KakaoTalk_Photo_2023-11-28-22-43-46.png" alt="">
+                           </div>
+                              
+                        </div> -->
+                        
                         <div class="cash">
                            <input type="radio">
                            계좌 입금

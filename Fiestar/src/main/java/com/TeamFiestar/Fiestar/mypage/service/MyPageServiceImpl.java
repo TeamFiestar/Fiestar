@@ -15,7 +15,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.TeamFiestar.Fiestar.board.model.dto.Board;
 import com.TeamFiestar.Fiestar.board.model.dto.Comment;
 import com.TeamFiestar.Fiestar.common.utility.Util;
+import com.TeamFiestar.Fiestar.member.model.dto.ArtistSubscribe;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
+import com.TeamFiestar.Fiestar.member.model.dto.PurchaseList;
 import com.TeamFiestar.Fiestar.mypage.dto.Pagination;
 import com.TeamFiestar.Fiestar.mypage.mapper.MyPageMapper;
 
@@ -54,6 +56,7 @@ public class MyPageServiceImpl implements MyPageService {
 
 		String backup = loginMember.getMemberProfile();
 		String rename = null;
+		
 		if (memberProfile.getSize() > 0) {
 			rename = Util.fileRename(memberProfile.getOriginalFilename());
 			loginMember.setMemberProfile(webpath + rename);
@@ -73,51 +76,106 @@ public class MyPageServiceImpl implements MyPageService {
 		return result;
 	}
 
-	
+
 	// 내가 작성한 게시글 조회
 	@Override
 	public Map<String, Object> selectMyFeedList(Member loginMember, int cp) {
-		
-		
+
 		// 내가 작성한 게시글 개수 조회
 		int listCount = mapper.listCount(loginMember);
-		
+
 		Pagination pagination = new Pagination(cp, listCount);
-		
+
 		int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
 		int limit = pagination.getLimit();
-		
-		RowBounds rowBounds = new RowBounds(offset, limit); 
-		
+
+		RowBounds rowBounds = new RowBounds(offset, limit);
+
 		List<Board> boardList = mapper.selectMyFeedList(rowBounds, loginMember.getMemberNo());
-		
+
 		Map<String, Object> map = new HashMap<>();
 		map.put("pagination", pagination);
 		map.put("boardList", boardList);
-		
+
 		return map;
-		
+
 	}
 	
+//	//내가 작성한 게시글 삭제
+//	@Override
+//	public int deleteBoard(int memberNo, String boardNo) {
+//	
+//		return mapper.deleteBoard(boardNo);
+//		
+//	}
+
 	// 내가 작성한 댓글 조회
 	@Override
 	public Map<String, Object> MyCommentList(Member loginMember, int cp) {
 
 		// 내가 작성한 댓글 수 조회
 		int listCount = mapper.commentCount(loginMember);
-		
+
 		Pagination pagination = new Pagination(cp, listCount);
-		
+
 		int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
 		int limit = pagination.getLimit();
-		
-		RowBounds rowBounds = new RowBounds(offset, limit); 
-		
+
+		RowBounds rowBounds = new RowBounds(offset, limit);
+
 		List<Comment> commentList = mapper.MyCommentList(loginMember, rowBounds);
 		
-		
-		
-		return null;
+		Map<String, Object> map = new HashMap<>();
+		map.put("pagination", pagination);
+		map.put("commentList", commentList);
+
+
+		return map;
 	}
 	
+	// 내가 구독한 아티스트
+	@Override
+	public Map<String, Object> myArtistList(Member loginMember, int cp) {
+	
+		int listCount = mapper.artistCount(loginMember);
+		
+		Pagination pagination = new Pagination(cp, listCount);
+
+		int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
+		int limit = pagination.getLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		List<ArtistSubscribe> artistList = mapper.myArtistList(loginMember, rowBounds);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("pagination", pagination);
+		map.put("artistList", artistList);
+		
+		return map;
+	}
+	
+	// 구매목록
+	@Override
+	public Map<String, Object> myPurchaseList(Member loginMember, int cp) {
+
+		int listCount = mapper.purchaseCount(loginMember);
+		
+		Pagination pagination = new Pagination(cp, listCount);
+
+		int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
+		int limit = pagination.getLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		List<PurchaseList> purchaseList = mapper.myPurchaseList(loginMember, rowBounds);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("pagination", pagination);
+		map.put("purchaseList", purchaseList);
+		
+		return map;
+		
+	}
+
 }

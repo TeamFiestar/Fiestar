@@ -59,22 +59,22 @@ ul, li{
   width: 780px;
   height: 45px;
   margin: 15px auto;
- 
 }
+
+
 .contentTitle h1{
   padding-top: 15px;
 }
 
 .content{
   width: 780px;
-  min-height: 420px;
+  min-height: 200px;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
 }
-
 
 
 
@@ -297,6 +297,27 @@ header {
 
 
 
+.pagination-area {
+  text-align: center;
+  margin-top: 20px;
+}
 
+.pagination {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.pagination li {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+.pagination li a {
+  text-decoration: none;
+  padding: 8px 12px;
+  margin: 2px;
+}
 
 
