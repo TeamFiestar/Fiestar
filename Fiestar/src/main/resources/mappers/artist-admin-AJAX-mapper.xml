@@ -3,7 +3,20 @@
 <mapper namespace="com.TeamFiestar.Fiestar.admin.model.mapper.ArtistAdminAJAXMapper">
 	
 	<select id="selectArtistNotice">
-		
+		SELECT * FROM ARTIST_GROUP_NOTICE
+		WHERE ARTIST_GROUP_NOTICE_NO = #{artistGroupNoticeNo} 
 	</select>
 	
+	<update id="deleteNotice">
+		UPDATE ARTIST_GROUP_NOTICE 
+		SET ARTIST_GROUP_NOTICE_DEL_FL = 'Y'
+		WHERE ARTIST_GROUP_NOTICE_NO = #{noticeNo}
+	</update>
+	
+	<update id="updateNotice">
+		UPDATE ARTIST_GROUP_NOTICE SET 
+		ARTIST_GROUP_NOTICE_TITLE = #{artistGroupNoticeTitle},
+		ARTIST_GROUP_NOTICE_CONTENT = #{artistGroupNoticeContent}
+		WHERE ARTIST_GROUP_NOTICE_NO = #{artistGroupNoticeNo}
+	</update>
 </mapper>

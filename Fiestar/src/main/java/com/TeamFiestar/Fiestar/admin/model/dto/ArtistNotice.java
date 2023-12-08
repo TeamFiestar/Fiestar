@@ -12,9 +12,9 @@ import lombok.ToString;
 public class ArtistNotice {
 	
 	private int artistGroupNoticeNo;
-	private String artistGroupTitle;
-	private String artistGroupContent;
-	private String artistGroupDelFl;
+	private String artistGroupNoticeTitle;
+	private String artistGroupNoticeContent;
+	private String artistGroupNoticeDelFl;
 	private String artistGroupNoticeEnrollDate;
 	private int artistGroupNo;
 
