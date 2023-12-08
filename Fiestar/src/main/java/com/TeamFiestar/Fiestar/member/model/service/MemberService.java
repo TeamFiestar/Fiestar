@@ -16,4 +16,6 @@ public interface MemberService {
 	 */
 	int signup(Member inputMember);
 
+	Member quickLogin(String memberEmail);
+
 }

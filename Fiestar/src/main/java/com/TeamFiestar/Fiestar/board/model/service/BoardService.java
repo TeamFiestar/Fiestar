@@ -16,8 +16,6 @@ public interface BoardService {
 	// 게시글 좋아여 여부 확인
 	int likeCheck(Map<String, Object> map);
 
-	// 게시글 조회수 증가
-	int updateReadCount(int boardNo);
 	
 	// 게시글 좋아요 처리
 	int like(Map<String, Object> map);

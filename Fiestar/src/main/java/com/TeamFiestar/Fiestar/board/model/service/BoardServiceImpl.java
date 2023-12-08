@@ -87,10 +87,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	
-	@Override
-	public int updateReadCount(int boardNo) {
-		return mapper.updateBoardCount(boardNo);
-	}
+	
 	
 	@Override
 	public int artistGroupNo(String artistGroupTitle) {

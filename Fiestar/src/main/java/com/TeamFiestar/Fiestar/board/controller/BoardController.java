@@ -85,6 +85,8 @@ public class BoardController {
 			model.addAttribute("artistGroupTitle", artistGroupTitle);
 			
 			
+			
+			
 		
 		
 		return "artistHomepage/feed";
@@ -123,84 +125,84 @@ public class BoardController {
 		
 		String path = null;
 		
-		if(board != null) {
-			model.addAttribute("board", board);
-			path = "artistHomepage/feed";
-			
-			if(loginMember != null) {
-				map.put("memberNo", loginMember.getMemberNo());
-				int likeCheck = service.likeCheck(map);
-				
-				if(likeCheck ==1) model.addAttribute("likeCheck", "on");
-				
-			}
-			
-			if(loginMember == null || loginMember.getMemberNo() != board.getMemberNo()) {
-				
-				Cookie c = null;
-				
-				Cookie[] cookies = req.getCookies();
-				
-				if(cookies != null) {
-					for (Cookie cookie : cookies) {
-						if(cookie.getName().equals("readBoardNo")) {
-							c= cookie;
-							break;
-					}
-					
-				}
-			}
-				
-			int result= 0;
-			
-			if(c == null) {
-				
-				c= new Cookie("readBoardNo", "|" + boardNo + "|" );
-				
-				result = service.updateReadCount(boardNo);
-				
-					
-			} else {
-				
-				  if (c.getValue().indexOf("|" + boardNo + "|") == -1) {
-		                 // 쿠키에 현재 게시글 번호가 없다면
-
-		                 // 기존 값에 게시글 번호 추가해서 다시 세팅
-		                 c.setValue(c.getValue() + "|" + boardNo + "|");
-
-		                 // 조회수 증가 서비스 호출
-		                 result = service.updateReadCount(boardNo);
-		              }
-				
-			}
-			
-			 if (result > 0) {
-	              board.setReadCount(board.getReadCount() + 1);
-
-	              c.setPath("/");
-
-	              Calendar cal = Calendar.getInstance(); // 싱글톤 패턴
-	              cal.add(cal.DATE, 1); // cal이라는 곳에 24시간 후의 시간을 추가
-
-	              SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-	              Date a = new Date(); // 현재 시간
-
-	              Date temp = new Date(cal.getTimeInMillis()); // 다음날 (24시간 후)
-
-	              Date b = sdf.parse(sdf.format(temp));
-
-	              long diff = (b.getTime() - a.getTime()) / 1000;
-
-	              c.setMaxAge((int) diff); 
-
-	              resp.addCookie(c); 
-	           }
-				
-		}
-			
-			
-	}
+//		if(board != null) {
+//			model.addAttribute("board", board);
+//			path = "artistHomepage/feed";
+//			
+//			if(loginMember != null) {
+//				map.put("memberNo", loginMember.getMemberNo());
+//				int likeCheck = service.likeCheck(map);
+//				
+//				if(likeCheck ==1) model.addAttribute("likeCheck", "on");
+//				
+//			}
+//			
+//			if(loginMember == null || loginMember.getMemberNo() != board.getMemberNo()) {
+//				
+//				Cookie c = null;
+//				
+//				Cookie[] cookies = req.getCookies();
+//				
+//				if(cookies != null) {
+//					for (Cookie cookie : cookies) {
+//						if(cookie.getName().equals("readBoardNo")) {
+//							c= cookie;
+//							break;
+//					}
+//					
+//				}
+//			}
+//				
+//			int result= 0;
+//			
+//			if(c == null) {
+//				
+//				c= new Cookie("readBoardNo", "|" + boardNo + "|" );
+//				
+//				result = service.updateReadCount(boardNo);
+//				
+//					
+//			} else {
+//				
+//				  if (c.getValue().indexOf("|" + boardNo + "|") == -1) {
+//		                 // 쿠키에 현재 게시글 번호가 없다면
+//
+//		                 // 기존 값에 게시글 번호 추가해서 다시 세팅
+//		                 c.setValue(c.getValue() + "|" + boardNo + "|");
+//
+//		                 // 조회수 증가 서비스 호출
+//		                 result = service.updateReadCount(boardNo);
+//		              }
+//				
+//			}
+//			
+//			 if (result > 0) {
+//	              board.setReadCount(board.getReadCount() + 1);
+//
+//	              c.setPath("/");
+//
+//	              Calendar cal = Calendar.getInstance(); // 싱글톤 패턴
+//	              cal.add(cal.DATE, 1); // cal이라는 곳에 24시간 후의 시간을 추가
+//
+//	              SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//
+//	              Date a = new Date(); // 현재 시간
+//
+//	              Date temp = new Date(cal.getTimeInMillis()); // 다음날 (24시간 후)
+//
+//	              Date b = sdf.parse(sdf.format(temp));
+//
+//	              long diff = (b.getTime() - a.getTime()) / 1000;
+//
+//	              c.setMaxAge((int) diff); 
+//
+//	              resp.addCookie(c); 
+//	           }
+//				
+//		}
+//			
+//			
+//	}
 		
 		
 		return path;

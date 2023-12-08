@@ -83,8 +83,8 @@ a {
 
 /* 게시글(사진+글) */
 #boardListArea {
-  margin-top: 80px;
-  padding: 30px;
+  margin-top: 50px;
+  padding: 20px;
   background-color: #ffffff;
   width: 1100px;
   align-items: flex-start;
@@ -107,7 +107,7 @@ a {
 }
 
 .board-area>div {
-  padding-right: 15px;
+  padding-right: 10px;
 }
 
 #imgprofile{
@@ -133,12 +133,17 @@ a {
   margin-top: 30px;
 }
 
+
 .img-container {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   
+}
+
+.slideshow-container {
+  display: flex;
 }
 
 .prev,
@@ -160,13 +165,10 @@ a {
   /* 왼쪽 마진 추가 */
 }
 
-.slide {
-  display: none;
-}
 
 .slide>img {
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
 }
 
 .dot {

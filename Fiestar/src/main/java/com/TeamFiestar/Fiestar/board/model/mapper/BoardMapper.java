@@ -20,8 +20,6 @@ public interface BoardMapper {
 
 	int deleteBoardLike(Map<String, Object> map);
 
-	int updateBoardCount(int boardNo);
-
 	int countBoardLike(Integer integer);
 
 	int artistGroupNo(String artistGroupTitle);

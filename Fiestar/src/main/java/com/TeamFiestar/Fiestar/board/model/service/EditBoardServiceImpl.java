@@ -53,16 +53,16 @@ public class EditBoardServiceImpl implements EditBoardService{
 				BoardImg img = new BoardImg();
 				
 				img.setBoardNo(boardNo); 
-				img.setImgOrder(i); 	 
+				img.setBoardImageOrder(i); 	 
 				
 				
-				img.setImgOriginalName(images.get(i).getOriginalFilename()); 
+				img.setBoardImageOriginalName(images.get(i).getOriginalFilename()); 
 				
 				//웹 접근 경로
-				img.setImgPath(webPath);
+				img.setBoardImagePath(webPath);
 			
 				//변경된 파일명
-				img.setImgRename(Util.fileRename(images.get(i).getOriginalFilename())); 
+				img.setBoardImageRename(Util.fileRename(images.get(i).getOriginalFilename())); 
 				
 				//실제 업로드된 파일을 img에 세팅
 				img.setUploadFile(images.get(i));
@@ -82,7 +82,7 @@ public class EditBoardServiceImpl implements EditBoardService{
 		if(result == uploadList.size()) {
 			
 			for(BoardImg img : uploadList) {
-				img.getUploadFile().transferTo(new File(folderPath + img.getImgRename()));
+				img.getUploadFile().transferTo(new File(folderPath + img.getBoardImageRename()));
 			}
 		}else { 
 			
