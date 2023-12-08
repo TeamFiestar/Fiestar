@@ -2,17 +2,64 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.TeamFiestar.Fiestar.admin.model.mapper.adminMapper">
 	
-	<select id="selectMember" resultType="Member">
+	<!--<select id="selectMember" resultType="Member">
 		SELECT MEMBER_NO , MEMBER_NICKNAME , MEMBER_EMAIL , MEMBER_ADDRESS, MEMBER_AUTHORITY  
 		FROM MEMBER
 		ORDER BY MEMBER_NO
-	</select>
+	</select>-->
 	
 	<select id="selectBoard" resultType="Board">
 		SELECT  BOARD_CONTENT,
-		(SELECT ARTIST_GROUP_TITLE FROM ARTIST_GROUP AG WHERE B.ARTIST_GROUP_NO = AG.ARTIST_GROUP_NO)
+		(SELECT ARTIST_GROUP_TITLE FROM ARTIST_GROUP AG WHERE B.ARTIST_GROUP_NO = AG.ARTIST_GROUP_NO) ARTIST_GROUP_TITLE, BOARD_ENROLL_DATE
 		FROM BOARD B
-		WHERE MEMBER_NO = #{memberNo}
+		WHERE MEMBER_No = #{memberNo}
 	</select>
 	
+	<select id="countList" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE MEMBER_DEL_FL = 'N'
+	</select>
+	
+	
+	<select id="selectMember" resultType="Member">
+		SELECT MEMBER_NO , MEMBER_NICKNAME , MEMBER_EMAIL , MEMBER_ADDRESS, MEMBER_AUTHORITY  
+		FROM MEMBER
+		WHERE MEMBER_DEL_FL = 'N'
+		ORDER BY MEMBER_NO
+	</select>
+	
+	<select id="countMember" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE MEMBER_DEL_FL = 'N'
+		<choose>
+			<when test='key == "memberNo"'>
+				AND MEMBER_NO LIKE '%${query}%'
+			</when>
+			<when test='key == "memberNickname"'>
+				AND MEMBER_EMAIL LIKE '%${query}%'
+			</when>
+			<when test='key == "memberEmail"'>
+				AND MEMBER_NICKNAME LIKE '%${query}%'
+			</when>
+		</choose>
+	</select>
+	
+	
+	<select id="searchMember" resultType="Member">
+		SELECT MEMBER_NO , MEMBER_NICKNAME , MEMBER_EMAIL , MEMBER_ADDRESS, MEMBER_AUTHORITY  
+		FROM MEMBER
+		WHERE MEMBER_DEL_FL = 'N'
+		<choose>
+			<when test='key == "memberNo"'>
+				AND MEMBER_NO LIKE '%${query}%'
+			</when>
+			<when test='key == "memberNickname"'>
+				AND MEMBER_EMAIL LIKE '%${query}%'
+			</when>
+			<when test='key == "memberEmail"'>
+				AND MEMBER_NICKNAME LIKE '%${query}%'
+			</when>
+		</choose>
+		ORDER BY MEMBER_NO DESC
+	</select>
 </mapper>

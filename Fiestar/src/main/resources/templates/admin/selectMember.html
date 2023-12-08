@@ -11,11 +11,12 @@
     <th:block th:replace="~{common/artistPageHeader}">헤더</th:block>
     <div class="modal">
       <div id="modal" class="modal-body">
-        <button id="modalCloseButton">X</button>
-        <h1>닉네임회원이 작성한 글 및 댓글</h1>
+        <!-- <button id="modalCloseButton" onclick="closeModal()">X</button> -->
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h1>회원이 작성한 글</h1>
         <table border="1" style="border-collapse: collapse" class="modal-table">
-          <tbody>
-            <tr class="th">
+          <tbody class="tbody">
+            <!-- <tr class="th">
               <th>게시글 내용</th>
               <th>게시글 아티스트</th>
               <th>게시글 작성 날짜</th>
@@ -24,12 +25,13 @@
               <td th:text="*{boardContent}">게시글 내용</td>
               <td th:text="*{artistGroupTitle}">뉴진스</td>
               <td th:text="*{boardEnrollDate}">2023년 12월 07일</td>
-            </tr>
+            </tr> -->
           </tbody>
         </table>
+        <div id="dynamicTableContainer"></div>
       </div>
     </div>
-    <main>
+    <main th:with="memberList=${map.memberList}, pagination=${map.pagination}">
       <th:block th:replace="~{common/admin}"></th:block>
       <div class="main">
         <h1>일반 회원 조회</h1>
@@ -44,10 +46,13 @@
             <th>신고 누적 횟수</th>
             <th>강제 탈퇴</th>
           </tr>
+          <!-- <th:block th:if="${#}"></th:block> -->
           <tr class="tr-body" th:each="member : ${memberList}" th:object="${member}">
             <td th:text="*{memberNo}">1</td>
             <td th:text="*{memberNickname}">ㅇㅇㅇ</td>
-            <td class="btn-open-popup" th:text="*{memberEmail}">qwerqwer1234@gmail.com</td>
+            <td class="btn-open-popup" th:text="*{memberEmail}" th:onclick="|openModal(*{memberNo})|">
+              qwerqwer1234@gmail.com
+            </td>
             <td th:text="*{memberAddress}">서울특별시 종로구 종로 33 그랑서울 타워[1] 3층 롤파크</td>
             <th:block th:if="*{memberAuthority == 1}"></th:block>
             <td th:text="일반">권한</td>
@@ -55,21 +60,73 @@
             <td><button>탈퇴</button></td>
           </tr>
         </table>
-        <div class="pagination-area">
-          <div class="pagination"><< < 1 2 3 4 5 6 7 8 9 10 > >></div>
-          <form>
-            <select id="select">
+        <div class="pagination-area" th:if="${#lists.size(memberList) > 0}">
+          <ul class="pagination" th:if="${param.key == null}">
+            <li>
+              <a th:href="@{/admin/selectMember(cp=1)}">&lt;&lt;</a>
+            </li>
+            <li>
+              <a th:href="@{/admin/selectMember(cp=${pagination.prevPage})}">&lt;</a>
+            </li>
+            <th:block th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}">
+              <li th:if="${i == pagination.currentPage}">
+                <a th:text="${i}">currentPage</a>
+              </li>
+              <li th:unless="${i == pagination.currentPage}">
+                <a th:href="@{/admin/selectMember(cp=${i})}" th:text="${i}">cp</a>
+              </li>
+            </th:block>
+            <li>
+              <a th:href="@{/admin/selectMember(cp=${pagination.nextPage})}">&gt;</a>
+            </li>
+            <li>
+              <a th:href="@{/admin/selectMember(cp=${pagination.maxPage})}">&gt;&gt;</a>
+            </li>
+          </ul>
+          <!--  -->
+          <ul class="pagination" th:unless="${param.key == null}">
+            <li>
+              <a th:href="@{/admin/selectMember(cp=1, key=${param.key}, query=${param.query})}">&lt;&lt;</a>
+            </li>
+            <li>
+              <a th:href="@{/admin/selectMember(cp=${pagination.prevPage}, key={param.key}, query={param.query})}"
+                >&lt;</a
+              >
+            </li>
+            <th:block th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}">
+              <li th:if="${i == pagination.currentPage}">
+                <a th:text="${i}">currentPage</a>
+              </li>
+              <li th:unless="${i == pagination.currentPage}">
+                <a th:href="@{/admin/selectMember(cp=${i}, key={param.key}, query=${param.query})}" th:text="${i}"
+                  >cp</a
+                >
+              </li>
+            </th:block>
+            <li>
+              <a th:href="@{/admin/selectMember(cp=${pagination.nextPage}, key={param.key}, query={param.query})}"
+                >&gt;</a
+              >
+            </li>
+            <li>
+              <a th:href="@{/admin/selectMember(cp=${pagination.maxPage}, key={param.key}, query={param.query})}"
+                >&gt;&gt;</a
+              >
+            </li>
+          </ul>
+          <form th:action="@{selectMember}" method="get">
+            <select id="select" name="key">
               <option value="memberNo">회원번호</option>
               <option value="memberNickname">회원 닉네임</option>
               <option value="memberEmail">회원 이메일</option>
             </select>
-            <input type="text" id="inputSearch" />
+            <input type="text" id="inputSearch" name="query" />
             <button id="pagination-button">검색</button>
           </form>
         </div>
       </div>
     </main>
-    <script>
+    <!-- <script>
       const modal = document.querySelector(".modal");
       const btnOpenPopup = document.querySelector(".btn-open-popup");
       const modalCloseButton = document.getElementById("modalCloseButton");
@@ -95,6 +152,8 @@
         modal.classList.add("show");
         modal_background.classList.add("show");
       }
-    </script>
+    </script> -->
+    <script src="/js/admin/selectMember.js"></script>
+    <script th:inline="javascript"></script>
   </body>
 </html>
