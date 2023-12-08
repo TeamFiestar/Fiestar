@@ -7,12 +7,12 @@
   <title>Document</title>
   <link rel="stylesheet" href="/css/myPage/myPage-Withdrawal.css">
   <link rel="stylesheet" href="/css/myPage/myPage-navi.css">
-  <link rel="stylesheet" href="/css/common/atristPageHeader.css">
+  <link rel="stylesheet" href="/css/common/artistPageHeader.css">
 
 </head>
 
 <body>
-  <th:block th:replace="~{common/atristPageHeader}"></th:block>
+  <th:block th:replace="~{common/artistPageHeader}"></th:block>
   <div class="all">
     <div class="BgImage"><img src="/image/아티스트 메인배경.jpg" width="100%" height="100%"></div>
 
@@ -24,28 +24,20 @@
           <h2>회원 탈퇴</h2>
         </div>
         <div class="content">
-          <form action="#">
-            <div class="content-main">
+          <div class="content-main">
+            <form action="withdrawal" method="POST">
               <div class="pw">
                 <div class="pw1">
                   <li>비밀번호</li>
                 </div>
                 <div class="pw2">
-                  <input type="password">
-                </div>
-              </div>
-              <div class="pwCheck">
-                <div class="pw1">
-                  <li>비밀번호 확인</li>
-                </div>
-                <div class="pw2">
-                  <input type="password">
+                  <input type="password" name="memberPw" id="memberPw">
                 </div>
               </div>
               <div class="Explanation">
                 <li>탈퇴약관</li>
               </div>
-              <div class="scrollBox" style="overflow:scroll; width:500px; height:150px;">
+              <div class="scrollBox" style="overflow:scroll; width:600px; height:300px;">
                 <pre>
 제1장 총칙
 
@@ -258,9 +250,9 @@
 
               </div>
               <div class="WithdrawalBtn">
-                <form action="withdrawal" method="POST"><button>탈퇴하기</button></form>
+                <button>탈퇴하기</button>
               </div>
-            </div>
+          </div>
           </form>
         </div>
       </div>

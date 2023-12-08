@@ -7,144 +7,83 @@
   <title>Document</title>
   <link rel="stylesheet" href="/css/myPage/myPage-comment.css">
   <link rel="stylesheet" href="/css/myPage/myPage-navi.css">
-  <link rel="stylesheet" href="/css/common/atristPageHeader.css">
+  <link rel="stylesheet" href="/css/common/artistPageHeader.css">
+  <link rel="stylesheet" href="/css/common/footer.css" />
 
 
 </head>
 
 <body>
 
-  <header>
-    <th:block th:replace="~{common/atristPageHeader}"></th:block>
+    <th:block th:replace="~{common/artistPageHeader}"></th:block>
 
-    <div class="all">
+    <div class="all" >
       <div class="BgImage">
         <img th:unless="${session.loginMember.memberBackImage == null}" th:src="${session.loginMember.memberBackImage}"
           width="100%" height="100%" id="memberBackImage">
-        <img th:if="${session.loginMember.memberBackImage == null}" th:src="${session.loginMember.memberBackImage}"
-          width="100%" height="100%" id="memberBackImage">
+        <img th:if="${session.loginMember.memberBackImage == null}" th:src="#{user.default.backImg}" width="100%"
+          height="100%" id="memberBackImage">
       </div>
 
-      <div class="main">
+      <div class="main" th:with="commentList=${map.commentList}, pagination=${map.pagination}">
         <th:block th:replace="~{myPage/myPage-navi2}"></th:block>
 
 
-        <div class="main-2">
+        <div class="main-2" >
           <div class="contentTitle">
             <h2>내가 작성한 댓글</h2>
           </div>
-          <div class="content">
-            <div class="subBg">
+
+
+          <div class="content" th:each="comment : ${commentList}" th:object="${comment}">
+
+            <div class="subBg" th:if="${#lists.size(commentList) == 0}">
               <div class="commentMain">
                 <div class="section1">
-                  <div class="section1Img">
-                    <img src="/image/user.png" width="100%" height="100%">
-                  </div>
                   <div class="section1Title">
-                    <h4>다들 오늘 하루도 잘 지내셨나요~?</h4>
+                    <h4>작성된 댓글이 없습니다.</h4>
                   </div>
-                </div>
-                <div class="section2">
-                  <div class="section2Title">
-                    <h5>민둥민두</h5>
-                  </div>
-                </div>
-                <div class="section3">
-                  <h3>아주 잘 지냈습니다ㅎㅎ</h3>
-                </div>
-                <div class="section4">
-                  <div class="commentDate">
-                    <h5>2023-11-29</h5>
-                  </div>
-                  <div class="commentDelete"><button>댓글삭제</button></div>
                 </div>
               </div>
             </div>
 
-            <div class="subBg">
+            <div class="subBg" th:unless="${#lists.size(commentList) == 0}">
               <div class="commentMain">
                 <div class="section1">
                   <div class="section1Img">
-                    <img src="/image/user.png" width="100%" height="100%">
+                    <img th:if="${session.loginMember.memberProfile == null}" th:src="#{user.default.image}"
+                      width="100%" height="100%" id="memberProfile">
+                    <img th:unless="${session.loginMember.memberProfile == null}"
+                      th:src="${session.loginMember.memberProfile}" width="100%" height="100%" id="memberProfile">
                   </div>
                   <div class="section1Title">
-                    <h4>다들 오늘 하루도 잘 지내셨나요~?</h4>
+                    <h4 th:text="*{parentTitle}">다들 오늘 하루도 잘 지내셨나요~?</h4>
                   </div>
                 </div>
                 <div class="section2">
                   <div class="section2Title">
-                    <h5>민둥민두</h5>
+                    <h5 th:text="*{memberNickname}">민둥민두</h5>
                   </div>
                 </div>
                 <div class="section3">
-                  <h3>아주 잘 지냈습니다ㅎㅎ</h3>
+                  <h3 th:text="*{commentContent}">아주 잘 지냈습니다ㅎㅎ</h3>
                 </div>
                 <div class="section4">
                   <div class="commentDate">
-                    <h5>2023-11-29</h5>
+                    <h5 th:text="*{commentEnrollDate}">2023-11-29</h5>
                   </div>
-                  <div class="commentDelete"><button>댓글삭제</button></div>
+                  <form action="delComment" method="POST">
+                    <div class="commentDelete"><button>댓글삭제</button></div>
+                  </form>
                 </div>
               </div>
             </div>
 
-            <div class="subBg">
-              <div class="commentMain">
-                <div class="section1">
-                  <div class="section1Img">
-                    <img src="/image/user.png" width="100%" height="100%">
-                  </div>
-                  <div class="section1Title">
-                    <h4>다들 오늘 하루도 잘 지내셨나요~?</h4>
-                  </div>
-                </div>
-                <div class="section2">
-                  <div class="section2Title">
-                    <h5>민둥민두</h5>
-                  </div>
-                </div>
-                <div class="section3">
-                  <h3>아주 잘 지냈습니다ㅎㅎ</h3>
-                </div>
-                <div class="section4">
-                  <div class="commentDate">
-                    <h5>2023-11-29</h5>
-                  </div>
-                  <div class="commentDelete"><button>댓글삭제</button></div>
-                </div>
-              </div>
-            </div>
 
-            <div class="subBg">
-              <div class="commentMain">
-                <div class="section1">
-                  <div class="section1Img">
-                    <img src="/image/user.png" width="100%" height="100%">
-                  </div>
-                  <div class="section1Title">
-                    <h4>다들 오늘 하루도 잘 지내셨나요~?</h4>
-                  </div>
-                </div>
-                <div class="section2">
-                  <div class="section2Title">
-                    <h5>민둥민두</h5>
-                  </div>
-                </div>
-                <div class="section3">
-                  <h3>아주 잘 지냈습니다ㅎㅎ</h3>
-                </div>
-                <div class="section4">
-                  <div class="commentDate">
-                    <h5>2023-11-29</h5>
-                  </div>
-                  <div class="commentDelete"><button>댓글삭제</button></div>
-                </div>
-              </div>
-            </div>
 
           </div>
 
-          <div class="pagination-area" th:if="${#lists.size(boardList) > 0}">
+          <div class="pagination-area" th:if="${#lists.size(commentList) > 0}">
             <ul class="pagination">
 
               <!-- 첫 페이지로 이동 -->
