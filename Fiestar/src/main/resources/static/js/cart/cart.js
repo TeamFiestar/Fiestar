@@ -21,7 +21,7 @@ console.log(xBtnList);
 for(i = 0; i < xBtnList.length; i++) {
    xBtnList[i].addEventListener("click", e => {
       
-      e.target.parentElement.parentElement.children[1].remove();
+      // e.target.parentElement.parentElement.children[1].remove();
       e.target.parentElement.parentElement.parentElement.remove();
       checkedPrice();   
       // for(let selectEach of selectEachList){
@@ -39,7 +39,7 @@ for(i = 0; i < xBtnList.length; i++) {
 }
 
 
-
+// selectEachList에서 checked 된 수가 0 -> 제출 금지
 
 selectAll.addEventListener("change", () => {
 
@@ -73,6 +73,7 @@ const clacPrice = (btn) => {
 const checkedPrice = () => {
    const checkList = document.querySelectorAll(".selectEach:checked");
 
+
    let sum = 0;
 
 
@@ -84,8 +85,8 @@ const checkedPrice = () => {
    }
 
    totalPrice.innerText = sum;
-}
 
+}
 
 
 for(let i=0; i<plusList.length; i++) {
@@ -96,6 +97,7 @@ for(let i=0; i<plusList.length; i++) {
 
       clacPrice(e.target)
       checkedPrice();
+
    });
 }
 
@@ -126,6 +128,25 @@ document.addEventListener("change", e => {
 document.addEventListener('DOMContentLoaded', () => {
    checkedPrice() ;
 });
+
+const itemList = document.getElementsByClassName("item-list");
+const form = document.getElementById("checkoutFrm");
+
+// && checkList.length
+form.addEventListener("submit", e => {
+   if(itemList.length == 0 || totalPrice.innerText == 0) {
+      alert("선택된 상품이 없습니다.")         
+      e.preventDefault();
+      return;
+   }
+
+});
+   
+
+// console.log(itemList.length);
+// document.addEventListener("click", e => {
+   // for문으로 아이템 리스트 조회 만약 itemList.lengh == 0 -> 제출 금지
+   
 
 // const itemList =  document.getElementsByClassName("item-list1");
 
