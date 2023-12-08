@@ -1,13 +1,16 @@
 package com.TeamFiestar.Fiestar.admin.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.TeamFiestar.Fiestar.admin.model.service.adminService;
@@ -24,12 +27,16 @@ public class AdminController {
 	private final adminService service;
 	
 	@GetMapping("selectMember")
-	public String member(Model model) {
-		
-		List<Member> memberList = service.selectMember();
-		
-		
-		model.addAttribute("memberList",memberList);
+	public String member(Model model,Member member,
+					@RequestParam(value="cp", required = false, defaultValue = "1") int cp,
+					@RequestParam Map<String, Object> paramMap) {
+		if(paramMap.get("key") == null && paramMap.get("query") == null) {
+			Map<String, Object> map = service.selectMember(member,cp);
+			model.addAttribute("map", map);
+		}else {
+			Map<String, Object> map = service.searchMember(paramMap, cp);
+			model.addAttribute("map", map);
+		}
 		
 		return "admin/selectMember";
 	}
@@ -37,11 +44,9 @@ public class AdminController {
 	
 	@GetMapping("selectBoard")
 	@ResponseBody
-	public String selectBoard(int memberNo, Model model) {
+	public List<Board> selectBoard(@RequestParam(value="memberNo", required = false) int memberNo) {
 		List<Board> boardList = service.selectBoard(memberNo); 
-		model.addAttribute("boardList", boardList);
-		model.addAttribute("memberNo", memberNo);
-		return "redirect:selectMember";
+		return boardList;
 	}
 	
 	
