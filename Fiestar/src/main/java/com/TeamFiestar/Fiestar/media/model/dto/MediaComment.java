@@ -21,5 +21,6 @@ public class MediaComment {
 	private int mediaParentCommentNo;
 	
 	private int mediaCommentLike;
+	private int memberCommentLike;
 
 }

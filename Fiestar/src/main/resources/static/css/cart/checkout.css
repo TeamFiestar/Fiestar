@@ -10,9 +10,11 @@
    font-family: 'Pretendard-Regular';
 }
 
-* input {
+
+
+.order-input {
    font-size: 14px;
-   border: 1px solid rgb(173, 177, 184);
+    border: 1px solid rgb(173, 177, 184); 
    /* outline-color: rgb(69, 106, 227); */
    outline-color:rgba(119, 67, 219, 1);
    border-radius: 4px;
@@ -68,6 +70,7 @@ h1 {
    color: black;
 }
 .item-name{
+   margin-top: 32px;
    margin-left: 10px;
    position: absolute;
    top: 10px;
@@ -75,7 +78,7 @@ h1 {
 
 .item-option{
    margin-left: 10px;
-   margin-top: 2px;
+   margin-top: 32px;
    top: 30px;
    position: absolute;
    font-size: 14px;
@@ -94,13 +97,13 @@ h1 {
 
 
 .item-amount{
-   top: 10px;
+   top: 44%;
    position: absolute;
    right: 250px;  
 }
 
 .item-price{
-   top: 10px;
+   top: 44%;
    position: absolute;
    right: 8px;
 }
@@ -139,6 +142,10 @@ h1 {
    font-weight: 700;
 }
 
+.shipping-input{
+   font-size: 16px;
+}
+
 .shipping-list > .shipping-name{
    font-size: 22px;
    font-weight: 700;
@@ -146,10 +153,11 @@ h1 {
 }
 
 .order-input{
-
+   
    font-size: 16px;
    margin-top: 44px;
 }
+
 
 
 .name-input > input{
@@ -248,7 +256,8 @@ h1 {
     font-size: 18px;
     border: 1px solid rgb(173, 177, 184);
     color: rgb(135, 142, 150);
-    width: auto;
+
+    width: 42px;
     display: inline-flex;
 }
 
@@ -267,7 +276,7 @@ h1 {
     font-size: 18px;
     border: 1px solid rgb(173, 177, 184);
     color: rgb(135, 142, 150);
-    width: auto;
+    width: 42px;
     display: inline-flex;
 }
 
@@ -286,7 +295,7 @@ h1 {
     font-size: 14px;
     border: 1px solid rgb(173, 177, 184);
     color: rgb(135, 142, 150);
-    width: auto;
+    width:  60px;
     display: inline-flex;
 }
 
@@ -319,9 +328,7 @@ h1 {
 
 
 .total{
-
    margin-top: 140px;
-
    background-color: rgb(255, 254, 237);
    padding: 20px;
    display: flex;
@@ -333,12 +340,21 @@ h1 {
    border-bottom: solid rgb(217, 217, 217) 1px;
 }
 
+.total > .total-price{
+   background-color: rgb(255, 254, 237);
+}
+
+
+
 
 .total > div{
    letter-spacing: -1.2px;
 }
 
+
+
 .sc-e98633bc-7 {
+      background: rgb(255, 254, 237);
       right: 166px;
       position: absolute;
       letter-spacing: -1.2px;
@@ -377,7 +393,7 @@ border-radius: 4px;
 }
 
 .payment-method{
-
+   font-size: 16px;
    margin: 32px 0 0 16px;
    height: 80px;
    -webkit-box-align: center;

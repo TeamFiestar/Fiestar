@@ -18,6 +18,7 @@ a {
   text-decoration: none;
 }
 
+a:active { color:#7743DB; text-decoration: none;}
 
 
 /* 아티스트 프로필 */
@@ -63,6 +64,12 @@ a {
 #postingSection>img:first-child {
   margin-left: 30px;
 
+}
+
+#postingSection > a{
+  color: #000000;
+  margin-right: 550px;
+  font-size: 20px;
 }
 
 .btn-open-popup {
@@ -194,6 +201,29 @@ a {
 
 .textbox{
   margin-top: 20px;
+}
+
+
+.reaction {
+  margin: 20px 0px;
+}
+
+.reaction>i {
+  padding: 5px;
+}
+
+.reaction > span{
+  color: #7743DB;
+}
+
+.reaction > a{
+  text-decoration: none;
+  color: #7743DB;
+}
+
+.reaction > a:hover {
+  text-decoration: none;
+  color: #7743DB;
 }
 
 /* 게시판 작성 modal */
@@ -408,6 +438,7 @@ a {
   height: 800px;
   flex-direction: row;
   display: flex;
+  width: 1100px;
 }
 
 .feedImg{
@@ -418,7 +449,6 @@ a {
 .feedContent{
 background-color: #ffffff;
 padding: 20px 0px;
-width: 800px;
 }
 
 .comment-container{
@@ -435,9 +465,6 @@ width: 800px;
   font-size: 15px;
 }
 
-.element{
-  margin-left: 300px;
-}
 
 
 .closeModal {
@@ -454,4 +481,49 @@ width: 800px;
 dialog{
   width: 1100PX;
   height: AUTO;
+}
+
+.element {
+  position: relative;
+  display: inline-block;
+}
+
+#check-btn {
+  display: none; 
+}
+
+label {
+  cursor: pointer;
+}
+
+
+.menubars {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 100%; 
+  left: 0;
+  display: none; 
+  background-color: #fff; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+}
+
+.element:hover .menubars {
+  display: block; 
+  
+}
+
+.menubars a {
+  text-decoration: none;
+  color: #333; 
+}
+
+.menubars li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc; 
+}
+
+.menubars li:last-child {
+  border-bottom: none; 
 }
