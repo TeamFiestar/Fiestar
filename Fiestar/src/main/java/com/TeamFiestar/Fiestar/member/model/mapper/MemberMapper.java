@@ -10,5 +10,7 @@ public interface MemberMapper {
 	Member login(Member inputMember);
 
 	int signup(Member inputMember);
+
+	Member login(String memberEmail);
 	
 }

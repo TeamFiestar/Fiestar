@@ -1,16 +1,23 @@
+
 body {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   background-color: #F7F7FA;
+  
+  
+}
+
+main {
+  min-height: 1500px;
+  margin-bottom: 20px;
 }
 
 a {
   text-decoration: none;
 }
 
-a:active { color:#7743DB; text-decoration: none;}
 
 
 /* 아티스트 프로필 */
@@ -45,7 +52,7 @@ a:active { color:#7743DB; text-decoration: none;}
   display: flex;
   align-items: center;
   margin-top: 70px;
-  width: 1035px;
+  width: 1100px;
   background-color: #ffffff;
   height: 90px;
   border-radius: 100px;
@@ -53,15 +60,9 @@ a:active { color:#7743DB; text-decoration: none;}
 }
 
 
-#postingSection>i:first-child {
+#postingSection>img:first-child {
   margin-left: 30px;
-  width: 10%;
-}
 
-#postingSection > a{
-  color: #000000;
-  margin-right: 550px;
-  font-size: 20px;
 }
 
 .btn-open-popup {
@@ -69,33 +70,44 @@ a:active { color:#7743DB; text-decoration: none;}
   font-size: 24px;
 }
 
-#postingSection>i:last-child {
-  width: 5%;
+#postingSection>i {
+ 
+  display:flex;
+  justify-content: end;
+  font-size: 25px;
+  width: 74%;
+
 }
 
 
 
 /* 게시글(사진+글) */
-#publishedImage {
-  margin-top: 80px;
-  padding: 30px;
+#boardListArea {
+  margin-top: 50px;
+  padding: 20px;
   background-color: #ffffff;
   width: 1100px;
   align-items: flex-start;
   border-bottom: 2.5px solid #dbdbdb;
+  border-radius: 10px;
+}
+
+.list-area {
+  width: 100%;
+  
 }
 
 
-.profile {
-  height: 36px;
+.board-area {
+  height: auto;
   align-items: center;
   display: flex;
   min-width: 0;
   margin-bottom: 20px;
 }
 
-.profile>div {
-  padding-right: 15px;
+.board-area>div {
+  padding-right: 10px;
 }
 
 #imgprofile{
@@ -112,7 +124,7 @@ a:active { color:#7743DB; text-decoration: none;}
 
 
 /* 이미지 슬라이드 */
-.imgage-container {
+.image-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -121,11 +133,17 @@ a:active { color:#7743DB; text-decoration: none;}
   margin-top: 30px;
 }
 
+
 .img-container {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  
+}
+
+.slideshow-container {
+  display: flex;
 }
 
 .prev,
@@ -147,13 +165,10 @@ a:active { color:#7743DB; text-decoration: none;}
   /* 왼쪽 마진 추가 */
 }
 
-.slide {
-  display: none;
-}
 
 .slide>img {
-  width: 800px;
-  height: 800px;
+  width: 500px;
+  height: 500px;
 }
 
 .dot {
@@ -179,29 +194,6 @@ a:active { color:#7743DB; text-decoration: none;}
 
 .textbox{
   margin-top: 20px;
-}
-
-
-.reaction {
-  margin: 20px 0px;
-}
-
-.reaction>i {
-  padding: 5px;
-}
-
-.reaction > span{
-  color: #7743DB;
-}
-
-.reaction > a{
-  text-decoration: none;
-  color: #7743DB;
-}
-
-.reaction > a:hover {
-  text-decoration: none;
-  color: #7743DB;
 }
 
 /* 게시판 작성 modal */
@@ -290,7 +282,7 @@ a:active { color:#7743DB; text-decoration: none;}
   padding-top: 10px 0px;
 }
 
-#feedWirte {
+#feedWrite2 {
   resize: none;
   width: 800px;
   height: 300px;
@@ -299,7 +291,7 @@ a:active { color:#7743DB; text-decoration: none;}
   margin-bottom: 10px;
 }
 
-#feedWirte:focus {
+#feedWrite2:focus {
   outline: none;
 
 }
@@ -416,7 +408,6 @@ a:active { color:#7743DB; text-decoration: none;}
   height: 800px;
   flex-direction: row;
   display: flex;
-  width: 1100px;
 }
 
 .feedImg{
@@ -427,6 +418,7 @@ a:active { color:#7743DB; text-decoration: none;}
 .feedContent{
 background-color: #ffffff;
 padding: 20px 0px;
+width: 800px;
 }
 
 .comment-container{
@@ -443,6 +435,9 @@ padding: 20px 0px;
   font-size: 15px;
 }
 
+.element{
+  margin-left: 300px;
+}
 
 
 .closeModal {
@@ -459,49 +454,4 @@ padding: 20px 0px;
 dialog{
   width: 1100PX;
   height: AUTO;
-}
-
-.element {
-  position: relative;
-  display: inline-block;
-}
-
-#check-btn {
-  display: none; 
-}
-
-label {
-  cursor: pointer;
-}
-
-
-.menubars {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  top: 100%; 
-  left: 0;
-  display: none; 
-  background-color: #fff; 
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-}
-
-.element:hover .menubars {
-  display: block; 
-  
-}
-
-.menubars a {
-  text-decoration: none;
-  color: #333; 
-}
-
-.menubars li {
-  padding: 10px;
-  border-bottom: 1px solid #ccc; 
-}
-
-.menubars li:last-child {
-  border-bottom: none; 
 }
