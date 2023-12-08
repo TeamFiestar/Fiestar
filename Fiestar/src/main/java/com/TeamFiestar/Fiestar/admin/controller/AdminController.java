@@ -49,7 +49,21 @@ public class AdminController {
 		return boardList;
 	}
 	
-	
+	@GetMapping("deleteMember")
+	public String deleteMember(Model model, Member member,
+				@RequestParam(value="cp", required = false, defaultValue = "1")int cp,
+				@RequestParam Map<String, Object> paramMap) {
+		
+		if(paramMap.get("key") == null && paramMap.get("query") == null) {
+			Map<String, Object> map = service.deleteMember(member,cp);
+			model.addAttribute("map", map);
+		}else {
+			Map<String, Object> map = service.searchDeleteMember(paramMap, cp);
+			model.addAttribute("map", map);
+		}
+		
+		return "admin/deleteMember";
+	}
 	
 	
 	@GetMapping("notice")
