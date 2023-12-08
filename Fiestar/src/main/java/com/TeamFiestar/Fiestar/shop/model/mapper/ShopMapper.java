@@ -34,8 +34,17 @@ public interface ShopMapper {
 	//아티스트 그룹별 상품 개수
 	int shopGroupCount(Map<String, Object> paramMap);
 
-	//정렬
-	List<Product> selectSort(Map<String, Object> paramMap);
+	//상품 전체 조회 후 정렬
+	List<Product> selectAllSort(Map<String, Object> paramMap);
+	
+	//그룹별 상품 조회 후 정렬
+	List<Product> selectGroupSort(Map<String, Object> paramMap);
+
+	//상품 검색 조회 후 정렬
+	List<Product> selectSearchSort(Map<String, Object> paramMap);
+
+
+	
 
 
 

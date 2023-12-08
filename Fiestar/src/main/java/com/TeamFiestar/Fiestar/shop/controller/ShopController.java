@@ -71,21 +71,36 @@ public class ShopController {
 		return "shop/home";
 	}
 	
-	
-	/** 정렬
+	/** 그룹별 상품 조회 후 정렬
 	 * @return
 	 */
 	@GetMapping(value = "home/sortList" , produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public List<Product> sortList(@RequestParam("key") int key,
-									@RequestParam("artistGroupNo") int artistGroupNo,
-									Map<String, Object> paramMap){
+	public List<Product> AllsortList(@RequestParam Map<String, Object> paramMap){
 		
-		paramMap.put("key", key);
-		paramMap.put("artistGroupNo", artistGroupNo);
-		
-		return service.selectSort(paramMap);
+		return service.selectAllSort(paramMap);
 	}
+	
+	/** 그룹별 상품 조회 후 정렬
+	 * @return
+	 */
+	@GetMapping(value = "home/groupSortList" , produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public List<Product> sortList(@RequestParam Map<String, Object> paramMap){
+		
+		return service.selectGroupSort(paramMap);
+	}
+	
+	/** 상품 검색 조회 후 정렬
+	 * @return
+	 */
+	@GetMapping(value = "home/searchSortList" , produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public List<Product> searchSortList(@RequestParam Map<String, Object> paramMap){
+		
+		return service.selectSearchSort(paramMap);
+	}
+	
 	
 	
 	

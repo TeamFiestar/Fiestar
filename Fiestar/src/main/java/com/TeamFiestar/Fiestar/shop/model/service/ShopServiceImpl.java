@@ -72,11 +72,26 @@ public class ShopServiceImpl implements ShopService{
 		return mapper.shopGroupCount(paramMap);
 	}
 	
-	//정렬
+	//상품 전체 조회 후 정렬
 	@Override
-	public List<Product> selectSort(Map<String, Object> paramMap) {
+	public List<Product> selectAllSort(Map<String, Object> paramMap) {
 		
-		return mapper.selectSort(paramMap);
+		return mapper.selectAllSort(paramMap);
+	}
+
+	
+	//그룹별 상품 조회 후 정렬
+	@Override
+	public List<Product> selectGroupSort(Map<String, Object> paramMap) {
+		
+		return mapper.selectGroupSort(paramMap);
+	}
+	
+	//상품 검색 조회 후 정렬
+	@Override
+	public List<Product> selectSearchSort(Map<String, Object> paramMap) {
+		
+		return mapper.selectSearchSort(paramMap);
 	}
 	
 
