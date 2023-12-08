@@ -1,4 +1,4 @@
-<div class="main-1" th:object="${member}">
+<div class="main-1" th:object="${session.loginMember}">
   <div class="profile">
     <div class="profile-img">
       <a href="/myPage/myPage-Modify">
@@ -33,7 +33,7 @@
         <img src="/image/댓글.png" width="100%" height="100%">
       </div>
       <div class="center">
-        <a href="/myPage/mypage-comment">내가 작성한 댓글</a>
+        <a href="/myPage/myPage-comment">내가 작성한 댓글</a>
       </div>
       <div class="side">
         <img src="/image/Vector 9.png" width="100%" height="100%">
