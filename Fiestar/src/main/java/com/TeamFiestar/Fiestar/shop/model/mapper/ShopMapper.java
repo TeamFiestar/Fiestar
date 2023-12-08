@@ -5,18 +5,49 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.TeamFiestar.Fiestar.shop.model.dto.ArtistGroup;
 import com.TeamFiestar.Fiestar.shop.model.dto.Product;
 
 
 
 @Mapper
 public interface ShopMapper {
+	
+	//쇼핑몰 메인페이지 전체 조회
+	List<Product> shopMain();
+	
+	//쇼핑몰 상품 전체 개수
+	int shopCount();
 
-	List<Product> shopMain(Map<String, Object> paramMap);
+	//쇼핑몰 검색한 상품 조회
+	List<Product> searchList(Map<String, Object> paramMap);
 
-	int shopMainCount();
+	//쇼핑몰 검색한 상품 개수
+	int shopSearchCount(Map<String, Object> paramMap);
 
-	List<Product> searchList();
+	
+	List<ArtistGroup> artistSelect();
+
+	//아티스트 그룹별로 상품 조회
+	List<Product> artistGroupShop(Map<String, Object> paramMap);
+
+	//아티스트 그룹별 상품 개수
+	int shopGroupCount(Map<String, Object> paramMap);
+
+	//상품 전체 조회 후 정렬
+	List<Product> selectAllSort(Map<String, Object> paramMap);
+	
+	//그룹별 상품 조회 후 정렬
+	List<Product> selectGroupSort(Map<String, Object> paramMap);
+
+	//상품 검색 조회 후 정렬
+	List<Product> selectSearchSort(Map<String, Object> paramMap);
+
+
+	
+
+
+
 
 	
 

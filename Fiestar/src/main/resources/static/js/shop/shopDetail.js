@@ -94,9 +94,6 @@ optionSelect.addEventListener("change", () => {
 
   selectedPrice.innerText = "₩" + productPrice2.toLocaleString();
 
-  // let totalcostNum = i*productPrice.getAttribute("value");
-  // selectedprice.innerHTML = "₩" + totalcostNum.toLocaleString();
-
   
   productName.append(deleteList);
   span.append(button1, result, button2, optionName);
@@ -132,15 +129,7 @@ function plusBtn(e){
 
 };
 
-// plus.addEventListener("click", () => {
-//   i++
-//   result.textContent = i;
-//   let totalcostNum = i*productPrice.getAttribute("value");
-//   selectedprice.textContent = "₩" + totalcostNum.toLocaleString();
-//   totalProduct.textContent = "총 상품금액 (" + i +")개";
-//   totalPrice.textContent = "₩" + totalcostNum.toLocaleString();
 
-// });
 
 function minusBtn(e) {
   let i = e.nextSibling.innerText;
@@ -189,18 +178,7 @@ function totalCost() {
 
 }
 
-/* minus.addEventListener("click", () => {
-  if(i>1) {
-  i--
-  result.textContent = i;
-  let totalcostNum = i*productPrice.getAttribute("value");
-  selectedprice.textContent = "₩" + totalcostNum.toLocaleString();
-  totalProduct.textContent = "총 상품금액 (" + i +")개";
-  totalPrice.textContent = "₩" + totalcostNum.toLocaleString();
 
-  } 
-
-}); */
 
 
 

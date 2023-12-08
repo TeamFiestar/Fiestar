@@ -1,159 +1,43 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="../../static/css/myPage/myPage-Withdrawal.css">
-  
+  <link rel="stylesheet" href="/css/myPage/myPage-Withdrawal.css">
+  <link rel="stylesheet" href="/css/myPage/myPage-navi.css">
+  <link rel="stylesheet" href="/css/common/artistPageHeader.css">
 
 </head>
+
 <body>
-  
-  <header>
-    <div class="header">
-      
-      <div class="header-left-side">
-        <a href="/" id="header-logo">
-          <img src="../../static/images/logo.png" style="width:165px;"  />
-        </a>  
-      </div>
-      
-      <div class="header-right-side">
-        
-        <form action="#" method="GET" style="display: inline-flex; border:none; ">
-          <span class="search-area">
-            <button id="searchBtn" class="fa-solid fa-magnifying-glass"> 
-              <input type="search" name="query" id="search-input" placeholder="상품명 혹은 아티스트 검색" 
-              autocomplete="off" > 
-            </button>
-          </span>
-        </form>
-      
-        <a href="#"> 공지사항 </a>
-        <span>|</span>
-        <a href="/shop/home">샵 고객센터</a>
-        <a href="#"><button id="loginPage"> 로그인</button></a>
-        <a href="#"><button  id="signUp">회원가입</button></a>
-      </div>    
-          
-    </div>
-
-  </header>
-
-
-
-
-
+  <th:block th:replace="~{common/artistPageHeader}"></th:block>
   <div class="all">
-    <div class="BgImage"><img src="../../static/image/아티스트 메인배경.jpg" width="100%" height="100%"></div>
+    <div class="BgImage"><img src="/image/아티스트 메인배경.jpg" width="100%" height="100%"></div>
 
     <div class="main">
-
-      <div class="main-1">
-        <div class="profile">
-          <div class="profile-img">
-            <img src="../../static/image/user.png" width="100%" height="100%">
-          </div>
-          <div class="profile-info">
-            <div class="nickName"><h4>민둥민두</h4></div>
-            <div class="email"><h4>javaman@gmail.com</h4></div>
-            <div class="logout"><h4><a href="">로그아웃</a></h4></div>
-          </div>
-        </div>
-
-        <hr class="myPageHr" width="280px" color="gray">
-
-        <div class="sidebar">
-          <div class="Bulletin">
-            <div class="icon">
-              <img src="../../static/image/게시글.png" width="100%" height="100%">
-            </div>
-            <div class="center">
-              <a href="#">내가 작성한 게시글</a>
-            </div>
-            <div class="side">
-              <img src="../../static/image/Vector 9.png" width="100%" height="100%">
-            </div>
-          </div>
-
-          <div class="comment">
-            <div class="icon">
-              <img src="../../static/image/댓글.png" width="100%" height="100%">
-            </div>
-            <div class="center">
-              <a href="#">내가 작성한 댓글</a>
-            </div>
-            <div class="side">
-              <img src="../../static/image/Vector 9.png" width="100%" height="100%">
-            </div>
-          </div>
-
-          <div class="artist">
-            <div class="icon">
-              <img src="../../static/image/아티스트.png" width="100%" height="100%">
-            </div>
-            <div class="center">
-              <a href="#">구독한 아티스트</a>
-            </div>
-            <div class="side">
-              <img src="../../static/image/Vector 9.png" width="100%" height="100%">
-            </div>
-          </div>
-
-          <div class="Purchase">
-            <div class="icon">
-              <img src="../../static/image/구매내역.png" width="100%" height="100%">
-            </div>
-            <div class="center">
-              <a href="#">구매내역</a>
-            </div>
-            <div class="side">
-              <img src="../../static/image/Vector 9.png" width="100%" height="100%">
-            </div>
-          </div>
-
-          <div class="Notice">
-            <div class="icon"> 
-              <img src="../../static/image/공지사항.png" width="100%" height="100%">
-            </div>
-            <div class="center">
-              <a href="#">공지사항</a>
-            </div>
-            <div class="side">
-              <img src="../../static/image/Vector 9.png" width="100%" height="100%">
-            </div>
-          </div>
-
-          
-        </div>
-      </div>
+      <th:block th:replace="~{myPage/myPage-navi2}"></th:block>
 
       <div class="main-2">
         <div class="contentTitle">
           <h2>회원 탈퇴</h2>
         </div>
         <div class="content">
-          <form action="#">
-            <div class="content-main">
+          <div class="content-main">
+            <form action="withdrawal" method="POST">
               <div class="pw">
-                 <div class="pw1">
-                  <li>비밀번호</li>
-                 </div>
-                 <div class="pw2">
-                  <input type="password">
-                 </div>
-              </div>
-              <div class="pwCheck">
                 <div class="pw1">
-                  <li>비밀번호 확인</li>
-                 </div>
-                 <div class="pw2">
-                  <input type="password">
-                 </div>
+                  <li>비밀번호</li>
+                </div>
+                <div class="pw2">
+                  <input type="password" name="memberPw" id="memberPw">
+                </div>
               </div>
-              <div class="Explanation"><li>탈퇴약관</li></div>
-              <div class="scrollBox" style="overflow:scroll; width:500px; height:150px;" >
+              <div class="Explanation">
+                <li>탈퇴약관</li>
+              </div>
+              <div class="scrollBox" style="overflow:scroll; width:600px; height:300px;">
                 <pre>
 제1장 총칙
 
@@ -363,15 +247,21 @@
  본 약관은 2023년 11월 1일부터 적용됩니다.
  본 약관의 적용일자 이전 가입자 또한, 본 약관의 적용을 받습니다.
                 </pre>
-                
+
               </div>
-              <div class="WithdrawalBtn"><button>탈퇴하기</button></div>
-            </div>
+              <div class="WithdrawalBtn">
+                <button>탈퇴하기</button>
+              </div>
+          </div>
           </form>
         </div>
       </div>
     </div>
-  
+
   </div>
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script src="/js/myPage/myPage-Withdrawal.js"></script>
+
 </body>
+
 </html>

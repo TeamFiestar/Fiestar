@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="/css/common/atristPageHeader.css" />
+    <link rel="stylesheet" href="/css/common/artistPageHeader.css" />
     <link rel="stylesheet" href="/css/chatting/chatting.css" />
   </head>
   <body>
-    <th:block th:replace="~{common/atristPageHeader}">헤더</th:block>
+    <th:block th:replace="~{common/artistPageHeader}">헤더</th:block>
     <!-- <section id="navSection">
       <nav>
         <ul>
@@ -76,10 +76,8 @@
 
     <script th:inline="javascript">
       const loginMember = /*[[${session.loginMember}]]*/ "로그인 회원";
-      const loginMemberNo =
-        /*[[${session.loginMember?.memberNo}]]*/ "로그인회원번호";
-      const memberNickname =
-        /*[[${session.loginMember?.memberNickname}]]*/ "닉네임";
+      const loginMemberNo = /*[[${session.loginMember?.memberNo}]]*/ "로그인회원번호";
+      const memberNickname = /*[[${session.loginMember?.memberNickname}]]*/ "닉네임";
       const authority = /*[[${session.loginMember?.memberAuthority}]]*/ "권한";
       const userDefaultImage = /*[[#{user.default.image}]]*/ "기본 이미지";
       const artistGroupNo = /*[[${artistGroupNo}]]*/ "그룹번호";

@@ -77,7 +77,14 @@
   display: flex;
   justify-content: end;
   padding-left: 20px;
-  
+}
+
+.shop-sorting-type button{
+  border: none;
+}
+
+.shop-sorting-type button:hover{
+  cursor: pointer;
 }
 
 .shop-sorting-type option {

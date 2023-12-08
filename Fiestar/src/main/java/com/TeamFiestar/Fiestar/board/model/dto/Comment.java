@@ -11,6 +11,7 @@ public class Comment {
 	private int commentNo;
 	private String commentContent;
 	private String commentEnrollDate;
+	private String parentTitle;
 	private String commentDelFl;
 	private int boardNo;
 	private int memberNo;
@@ -18,5 +19,6 @@ public class Comment {
 	
 	private String memberNickname;
 	private String memberProfile;
+	
 
 }

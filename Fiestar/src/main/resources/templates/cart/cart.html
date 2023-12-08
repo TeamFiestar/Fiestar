@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <script src="/js/d6c32512de.js" crossorigin="anonymous"></script>
+   <script src="https://kit.fontawesome.com/d6c32512de.js" crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="/css/cart/cart2.css">
+   <!-- <link rel="stylesheet" href="../../static/css/common/shopHeader.css"> -->
+   <th:block th:replace="~{common/shopHeader}"></th:block>
+</head>
+
+
+<body>
+
+
+
+   <section class="frame"> 
+
+      <form action="checkout" method="post" id="checkoutFrm">
+
+         <div class="cart-area">
+            <h1 class="cart">CART</h1>
+         </div>
+
+         <!-- <div class="cart-list"> -->
+
+         <div class="select-all">
+
+
+            <!-- selectAll 버튼 클릭하면 모든 fa-regular circle check 색상 -> black으로 변경
+                                                            -->
+
+            <label class="cart-check">
+               <input type='checkbox' id="selectAll" name="selectAll" checked>
+               <i class="fa-regular fa-circle-check"></i>
+            </label>
+
+            <span>해당 상품 전체 선택</span>
+         </div>
+
+
+
+         <div class="item-list1" th:each="cart : ${cartList}"> 
+         
+            <div class="item-list">
+   
+               <!-- 개별 상품 체크 -->
+               <div class="select-item">
+                  <label class="cart-check">
+                                                                                 <!-- 체크된 장바구니 번호 -->
+                                                                                 <!-- 폼 태그에 체크된 카트 넘버를 담아 넘긴다. checked th:value="${cart.cartNo}" -->
+                     <input type='checkbox' class="selectEach" name="selectEach" checked th:value="${cart.cartNo}">
+                     <i class="fa-regular fa-circle-check"></i>
+                  </label>
+               </div>
+   
+               <!-- 이미지 영역 -->
+               
+   
+               <img src="/images/keyring.png" alt="">
+   
+   
+   
+               <!-- <div class="item-name"> -->
+               <!-- <a th:href="@{}" class="keyring">뉴진스 키링</a> -->
+               
+                <div th:text="${cart.productName}" class="keyring"></div>
+                <span th:text="${cart.cartNo}" class="cartNo"></span> 
+               <!-- </div> -->
+   
+               <div>
+                  <span class="option-text"> 옵션 : </span> 
+                  <span th:text="${cart.productOptionName}" class="item-option"></span>
+               </div>
+   
+               <!-- 상품 수량 + & -  -->
+   
+   
+               <!-- 개별 상품 가격 -->
+   
+   
+               <!-- 개별 상품 취소 -->
+               <!-- <i class="fa-solid fa-xmark" style="color: rgb(199, 199, 199);"></i>
+               
+                  
+                  <div item-info>
+                     <i class="fa-solid fa-minus"></i>
+                     <span>3</span>
+                     <i class="fa-solid fa-plus"></i>
+                     
+                     <span style="font-weight: bold;">$132</span>
+                  </div> -->
+            </div>
+   
+            <div class="item-amount">
+   
+   
+               <div class="amount">
+   
+                  <!-- 수량 빼기 -->
+                  <label class="minus" th:cartNo="${cart.cartNo}">
+                     <i class="fa-solid fa-minus"></i>
+                  </label>
+   
+                  <!-- 수량 -->
+                  <span th:text="${cart.productCount}" class="item-count"></span>
+                  
+                  <!-- 더하기 -->
+                  <label class="plus" th:cartNo="${cart.cartNo}">
+                     <i class="fa-solid fa-plus"></i>
+                  </label>
+                  
+                  <span th:text="${cart.productPrice}" class="default-price"></span>
+
+               </div>
+               
+               <!-- <th:block th:text="${cart.productPrice}" class="default-price"></th:block> -->
+   
+               <span th:text="${cart.productPrice} * ${cart.productCount} " class="amount-price" style="font-weight: bold;"></span>
+               
+   
+               <label class="x-btn">
+                  <input type="button" value="">
+                  <i class="fa-solid fa-xmark" id="xBtn" style="color: rgb(199, 199, 199);"></i>
+               </label>
+            </div>
+         </div>
+
+         
+
+
+         <!-- 개별 상품 체크 -->
+         <!-- <div class="item-list">
+         
+            <div class="select-item">
+               <label class="cart-check">
+                  <input type='checkbox' class="selectEach">
+                  <i class="fa-regular fa-circle-check"></i>
+               </label>
+            </div> -->
+
+            <!-- 이미지 영역 -->
+<!-- 
+            <img src="/images/photobook.png" alt="">
+
+
+
+            <a href="#" class="keyring">LE SSERAFIM</a>
+
+            <span class="item-option" style="font-size: 12px;">옵션 : BLACK</span> -->
+
+            <!-- <select name="option" id="option-btn"></select>
+                   -->
+
+
+         <!-- </div>
+
+         <div class="item-amount">
+
+            <i class="fa-solid fa-xmark" style="color: rgb(199, 199, 199);"></i>
+
+            <div item-info>
+
+               <div class="amount" style="background-color: #eff7ff;">
+                  <i class="fa-solid fa-minus" style="background-color: #eff7ff;"></i>
+                  <span class="item-count" style="background-color: #eff7ff;">10000</span>
+                  <i class="fa-solid fa-plus" style="background-color: #eff7ff;"></i>
+               </div>
+
+               <span class="amount-price" style="font-weight: bold;">$100</span>
+            </div>
+
+         </div> -->
+
+
+
+
+
+         <div class="total">
+            <span>총 결제 금액</span>
+
+            <div class="sc-e98633bc-7 iUJKwp" id="totalPrice">$15.58</div>
+
+            <button type="submit" class="checkOut-btn" id="checkOut-btn" >결제하기</button>
+
+         </div>
+
+      </form>
+
+   </section>
+
+   <script src="/js/cart/cart.js"></script>
+</body>
+</html>

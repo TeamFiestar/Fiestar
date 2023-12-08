@@ -42,265 +42,6 @@ ul, li{
   display: flex;
 }
 
-
-/*************************************************메인 왼쪽 화면**********************************************/
-.main-1{
-  width: 320px;
-}
-
-
-/* 프로필 */
-.profile{
-  width: 280px;
-  height: 110px;
-  background-color: rgb(255, 255, 255);
-  border-radius: 10px;
-  margin: 30px auto;
-  display: flex;
-  align-items: center;
-  /* box-shadow: 4px 4px 4px rgb(150, 150, 150); */
-}
-
-/* 프로필 이미지 */
-.profile-img{ 
-  width: 90px;
-  border-radius: 50%;
-  cursor: pointer;
-  padding-left: 10px;
-}
-
-/* 프로필 정보 */
-.profile-info{
-  width: 200px;
-  height: 100%;
-  padding-left: 10px;
-}
-
-/* 닉네임 */
-.nickName{
-  width: 100%;
-  height: 35px;
-  display: flex;
-  align-items: center;
-  padding-left: 15px;
-}
-.nickName h4{
-  font-weight: bolder;
-  font-size: 20px;
-}
-
-/* 이메일 */
-.email{
-  width: 100%;
-  height: 35px;
-  display: flex;
-  align-items: center;
-  padding-left: 15px;
-}
-.email h4{
-  font-weight: bolder;
-  font-size: 13px;
-}
-
-
-/* 로그아웃 */
-.logout{
-  width: 100%;
-  height: 35px;
-  display: flex;
-  align-items: center;
-  padding-left: 15px;
-  cursor: pointer;
-}
-
-.logout h4{
-  font-weight: bolder;
-  font-size: 15px;
-}
-
-.logout a{
-  text-decoration: none;
-  color: black;
-}
-
-
-
-
-
-
-/* 사이드바 */
-.sidebar{
-  width: 280px;
-  height: 250px;
-  background-color: rgb(255, 255, 255);
-  border-radius: 10px;
-  margin: 30px auto;
-  /* box-shadow: 4px 4px 4px rgb(150, 150, 150); */
-}
-
-.icon{
-  width: 25px;
-  height: 25px;
-  margin: 13px 15px;
-}
-
-.center{
-  width: 170px;
-  height: 100%;
-}
-
-.side{
-  width: 10px;
-  height: 15px;
-  margin: 16px 20px;
-
-}
-
-
-.Bulletin{
-  width: 100%;
-  height: 50px; 
-  border-radius: 10px;
-  display: flex;
-  cursor: pointer;
-}
-
-.Bulletin:hover{
-  background-color: rgb(119, 67, 219);
-}
-.Bulletin a{
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  color: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-}
-
-
-
-
-.comment{
-  width: 100%;
-  height: 50px;
-  border-radius: 10px;
-  display: flex;
-  cursor: pointer;
-}
-.comment:hover{
-  background-color: rgb(119, 67, 219);
-}
-.comment a{
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  color: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-}
-
-
-
-
-.artist{
-  width: 100%;
-  height: 50px;
-  border-radius: 10px;
-  display: flex;
-  cursor: pointer;
-}
-.artist:hover{
-  background-color: rgb(119, 67, 219);
-}
-.artist a{
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  color: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-}
-
-
-
-
-.Purchase{
-  width: 100%;
-  height: 50px;
-  border-radius: 10px;
-  display: flex;
-  cursor: pointer;
-}
-.Purchase:hover{
-  background-color: rgb(119, 67, 219);
-}
-.Purchase a{
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  color: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-}
-
-
-
-
-
-.Notice{
-  width: 100%;
-  height: 50px;
-  border-radius: 10px;
-  display: flex;
-  cursor: pointer;
-}
-.Notice:hover{
-  background-color: rgb(119, 67, 219);
-}
-.Notice a{
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  color: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-}
-
-
-
-.store{
-  width: 100%;
-  height: 50px;
-  border-radius: 10px;
-  display: flex;
-  cursor: pointer;
-}
-.store:hover{
-  background-color: rgb(119, 67, 219);
-}
-.store a{
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  color: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-}
-
-
-
 /************************************메인 오른쪽 화면*********************************/
 .main-2{
   width: 780px;
@@ -358,8 +99,6 @@ ul, li{
   grid-template-columns: repeat(4,140px);
   padding-top: 10px;
 }
-
-
 
 
 .artist-profile {
@@ -442,121 +181,26 @@ ul, li{
   margin-top: 8px;
 }
 
-
 .pagination-area {
-  width: 700px;
-  margin: 50px auto;
   text-align: center;
+  margin-top: 20px;
 }
+
 .pagination {
-  font-size: 20px;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
 }
 
-
-
-
-/* 임시헤더 */
-header {
-  position: sticky;
-  top: 0;
-  z-index: 500;
-  font-size: 14px;
-  border-bottom: 0.5px solid rgb(250, 250, 250);
-  background-color: white;
-}
-.header {
-  width: 1096px;
-  height: 80px;
-  display: flex;
-  flex-direction: row;
-  margin: auto;
-  align-items: center;
-  max-width: calc(var(--layout-max-width) + var(--layout-padding) * 2);
-  -webkit-box-pack: justify;
-  justify-content: space-between;
+.pagination li {
+  display: inline;
+  margin: 0;
+  padding: 0;
 }
 
-.header-right-side > a {
-  margin-left: 12px;
+.pagination li a {
   text-decoration: none;
-  color: rgb(135, 142, 150);
-  cursor: pointer;
+  padding: 8px 12px;
+  margin: 2px;
 }
 
-.header-right-side > span {
-  margin-left: 12px;
-}
-
-.search-area {
-  width: 280px;
-  height: 48px;
-  border-radius: 40px;
-  border:none;
-  background-color:  rgba(244, 246, 248, 0.922);
-  padding-left: 20px;
-
-}
-
-#searchBtn {
-  border: none;
-  padding-top: 14px;
-  background-color: rgba(244,246,248,0.922);
-  color: rgba(196, 196, 196, 1);
-  
-}
-
-#search-input {
-  padding-left: 10px;
-  border: none;
-  background-color: rgba(244,246,248,0.922);
-  font-size: 14px;
-  color: rgb(118, 118, 118);
-  width: 210px;
-  border-radius: 50px;
-}
-
-#search-input:focus{
-  border-color: none;
-  outline:0;
-  color: black;
-}
-
-#loginPage {
-  width: 80px;
-  height: 35px;
-  background-color: rgba(119, 67, 219, 1);
-  border-radius: 50px;
-  border: none;
-  color: white;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-#loginPage:hover {
-  background-color: rgb(104, 55, 194);
-  box-shadow: 2px 2px 2px 2px rgba(189, 83, 255, 0.153);
-}
-
-#loginPage a {
-  text-decoration: none;
-  background-color: rgba(119, 67, 219, 1);
-  color: white;
-  
-}
-
-
-#signUp {
-  width: 80px;
-  height: 35px;
-  background-color: white;
-  border-radius: 50px;
-  border: 1px solid rgba(119, 67, 219, 1);
-  color: rgba(119, 67, 219, 1);
-  font-size: 14px;
-  cursor: pointer;
-}
-
-#signUp:hover {
-  background-color: rgb(252, 250, 250);
-  box-shadow: 2px 2px 2px 2px rgba(189, 83, 255, 0.153);
-}
