@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -51,6 +52,17 @@ public class CartController {
 	}
 	
 	
+//	상품 수량 변경
+	
+//	@GetMapping(value="/cartPage/quantity", produces="application/json; charset=UTF-8") ?? 
+	
+
+//	받아 와야 하는 값 회원 번호 -> 장바구니 번호로 (상품 수량 )
+	
+
+	
+	
+	
 	
 	@GetMapping("checkoutResult")
 	public String checkoutResult() {
@@ -58,11 +70,11 @@ public class CartController {
 		return "cart/checkout-result";
 	}
 	
-	@PostMapping("checkout")
-	public String checkout() {
-		return "cart/checkout";
-	}
-	
+//	@PostMapping("checkout")
+//	public String checkout() {
+//		return "cart/checkout";
+//	}
+//	
 	
 	
 //	-----------------------------------------

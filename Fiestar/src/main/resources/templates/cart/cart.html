@@ -51,7 +51,7 @@
                <div class="select-item">
                   <label class="cart-check">
                                                                                  <!-- 체크된 장바구니 번호 -->
-                                                                                 <!-- 폼 태그에 체크된 카트 넘버를 담아 넘긴다. -->
+                                                                                 <!-- 폼 태그에 체크된 카트 넘버를 담아 넘긴다. checked th:value="${cart.cartNo}" -->
                      <input type='checkbox' class="selectEach" name="selectEach" checked th:value="${cart.cartNo}">
                      <i class="fa-regular fa-circle-check"></i>
                   </label>
@@ -67,7 +67,8 @@
                <!-- <div class="item-name"> -->
                <!-- <a th:href="@{}" class="keyring">뉴진스 키링</a> -->
                
-                <div th:text="${cart.productName}" class="keyring"></div> 
+                <div th:text="${cart.productName}" class="keyring"></div>
+                <span th:text="${cart.cartNo}" class="cartNo"></span> 
                <!-- </div> -->
    
                <div>
