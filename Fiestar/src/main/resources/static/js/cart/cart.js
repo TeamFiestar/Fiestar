@@ -20,11 +20,20 @@ console.log(xBtnList);
 
 for(i = 0; i < xBtnList.length; i++) {
    xBtnList[i].addEventListener("click", e => {
-
+      
       e.target.parentElement.parentElement.children[1].remove();
       e.target.parentElement.parentElement.parentElement.remove();
+      checkedPrice();   
+      // for(let selectEach of selectEachList){
+      //    selectEach.checked = selectAll.checked;
+      // }
       
+   // 이벤트가 발생 했을 때 -> checkedPrice(); 함수 호출
+   
+
+
    });
+
 
 
 }
@@ -40,6 +49,7 @@ selectAll.addEventListener("change", () => {
       selectEach.checked = selectAll.checked;
    }
 });
+
 
 // plus 버튼
 const plusList = document.querySelectorAll(".plus"); 
