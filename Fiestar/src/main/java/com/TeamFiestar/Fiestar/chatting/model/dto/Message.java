@@ -18,4 +18,6 @@ public class Message {
 	private int memberNo;
 	private int sendAuthority;
 	private int artistGroupNo;
+	private String memberProfile;
+	private String memberNickname;
 }

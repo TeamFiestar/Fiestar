@@ -18,14 +18,15 @@ import com.TeamFiestar.Fiestar.member.model.dto.Member;
 @SessionAttributes({"loginMember","artistGroupNo","memberNickname"})
 public class ChattingController {
 
-	@GetMapping("chat")
-	public String chat(@SessionAttribute("loginMember") Member loginMember, Model model) {
-//		model.addAttribute("memberNo", loginMember.getMemberNo());
-		return "chatting/chatting";
-	}
+//	@GetMapping("chat")
+//	public String chat(@SessionAttribute("loginMember") Member loginMember, Model model) {
+////		model.addAttribute("memberNo", loginMember.getMemberNo());
+//		return "chatting/chatting";
+//	}
 	
 	@GetMapping("chatting/{artistGroupNo:[0-9]+}")
-	public String chatting(@PathVariable("artistGroupNo") int artistGroupNo, @SessionAttribute("loginMember") Member loginMember, Model model) {
+	public String chatting(@PathVariable("artistGroupNo") int artistGroupNo, 
+			@SessionAttribute("loginMember") Member loginMember, Model model) {
 
 //		List<String> userList = new ArrayList<>();
 //		userList.add(loginMember.getMemberNickname());
@@ -34,6 +35,7 @@ public class ChattingController {
 		model.addAttribute("artistGroupNo",artistGroupNo);
 		model.addAttribute("loginMember", loginMember);
 		model.addAttribute("memberNickname",loginMember.getMemberNickname());
+//		model.addAttribute("memberProfile", loginMember.getMemberProfile());
 		return "chatting/chatting";
 	}
 	
