@@ -14,7 +14,7 @@
       <div class="goods-add">
         <h1>굿즈 등록</h1>
         <br />
-        <form action="/admin/goods">
+        <form action="/admin/goods" method="post" enctype="multipart/form-data">
           <div class="goods-title">
             상품명
             <input type="text" id="input-goodsTitle" name="goodsTitle"/>
@@ -33,12 +33,13 @@
           <div class="goods-content">
             상품 설명
             <br />
-            <textarea name="" class="input-goodsContent"></textarea>
+            <textarea class="input-goodsContent" name="shopContent"></textarea>
+            상품 설명 이미지
             <div class="goodsImg">
               <label for="img1">
                 <img src="#" class="goods-contentImg" />
               </label>
-              <input type="file" name="contentImg" id="img1" accept="image/*" class="input-goodsImg" />
+              <input type="file" name="shopImg" id="img1" accept="image/*" class="input-goodsImg" />
               <span class="delete-image">&times;</span>
             </div>
           </div>
@@ -49,12 +50,12 @@
               <label for="img2">
                 <img src="#" class="thumnail" />
               </label>
-              <input type="file" name="thumnail" id="img2" accept="image/*" class="input-goodsImg" />
+              <input type="file" name="shopImg" id="img2" accept="image/*" class="input-goodsImg" />
               <span class="delete-image">&times;</span>
             </div>
           </div>
           <div class="goods-btn-area">
-            <button class="goodsBtn">등록</button>
+            <button class="goodsBtn" type="submit">등록</button>
           </div>
         </form>
       </div>

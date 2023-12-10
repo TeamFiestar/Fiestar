@@ -1,15 +1,20 @@
 package com.TeamFiestar.Fiestar.shop.model.service;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.TeamFiestar.Fiestar.shop.model.dto.ArtistGroup;
 import com.TeamFiestar.Fiestar.shop.model.dto.Product;
 import com.TeamFiestar.Fiestar.shop.model.mapper.ShopMapper;
+
+import ch.qos.logback.classic.pattern.Util;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -17,6 +22,15 @@ import lombok.RequiredArgsConstructor;
 public class ShopServiceImpl implements ShopService{
 
 	private final ShopMapper mapper;
+	
+	
+	@Value("${my.shop.location}")
+	private String folderPath;  //서버 저장 폴더 경로
+	
+	@Value("${my.shop.webpath}")
+	private String webPath;  //웹 이미지 요청 경로
+	
+	
 	
 	//쇼피몰 메인페이지 전체 조회
 	@Override
@@ -93,6 +107,18 @@ public class ShopServiceImpl implements ShopService{
 		
 		return mapper.selectSearchSort(paramMap);
 	}
+	
+//	//상품 등록
+//	@Override
+//	public int insertGoods(Product product, List<MultipartFile> images) {
+//
+//		return null;
+//	
+//	}
+		
+		
+		
+		
 	
 
 		
