@@ -32,6 +32,25 @@ public interface adminMapper {
 
 	List<Member> searchDelete(RowBounds rowBounds, Map<String, Object> paramMap);
 
+	int update(Map<String, Object> paramMap);
+
+//	int restoration(int memberNo);
+
+	
+
+	List<Member> subscribeMember(RowBounds rowBounds, int artistGroupNo);
+
+	
+
+	List<Member> searchSubscribe(RowBounds rowBounds, Map<String, Object> paramMap, int artistGroupNo);
+
+	int countSubscribe(int artistGroupNo);
+
+	int countSearchSubscribe(Map<String, Object> map1);
+
+	
+
+
 	
 
 }

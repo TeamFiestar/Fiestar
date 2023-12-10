@@ -18,6 +18,15 @@ public interface adminService {
 
 	Map<String, Object> searchDeleteMember(Map<String, Object> paramMap, int cp);
 
+	int update(Map<String, Object> paramMap);
+
+//	int restoration(int memberNo);
+
+	Map<String, Object> subscribeMember(Member member, int cp, int artistGroupNo);
+
+	Map<String, Object> searchSubscribe(Map<String, Object> paramMap, int cp, int artistGroupNo);
+
+
 	
 
 

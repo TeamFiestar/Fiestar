@@ -8,10 +8,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.TeamFiestar.Fiestar.admin.model.service.adminService;
 import com.TeamFiestar.Fiestar.board.model.dto.Board;
@@ -61,8 +64,32 @@ public class AdminController {
 			Map<String, Object> map = service.searchDeleteMember(paramMap, cp);
 			model.addAttribute("map", map);
 		}
-		
 		return "admin/deleteMember";
+	}
+	
+	@PutMapping("deleteMember")
+	@ResponseBody
+	public String update(@RequestBody Map<String, Object> paramMap, RedirectAttributes ra) {
+		int result = service.update(paramMap);
+		if(result > 0) ra.addFlashAttribute("message", "복구 성공");
+		else ra.addFlashAttribute("message","복구 실패");
+		return "admin/deleteMember";
+	}
+	
+	
+	@GetMapping("subscribeMember/{artistGroupNo:[0-9]+}")
+	public String subscribe(Model model, Member member, @PathVariable("artistGroupNo") int artistGroupNo,
+				@RequestParam(value="cp", required = false, defaultValue = "1") int cp,
+				@RequestParam Map<String, Object> paramMap) {
+		
+		if(paramMap.get("key") == null && paramMap.get("query") == null) {
+			Map<String, Object> map = service.subscribeMember(member,cp, artistGroupNo);
+			model.addAttribute("map", map);
+		}else {
+			Map<String, Object> map = service.searchSubscribe(paramMap,cp,artistGroupNo);
+			model.addAttribute("map", map);
+		}
+		return "admin/subscribeMember";
 	}
 	
 	
@@ -75,4 +102,9 @@ public class AdminController {
 	public String register() {
 		return "admin/goods";
 	}
+	
+	
+	
+	
+	
 }

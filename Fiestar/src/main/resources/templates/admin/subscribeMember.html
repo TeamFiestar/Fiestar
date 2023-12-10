@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>구독 회원 조회</title>
-    <link rel="stylesheet" href="../../static/css/admin/subscribeMember.css" />
+    <link rel="stylesheet" href="/css/common/artistPageHeader.css" />
+    <link rel="stylesheet" href="/css/common/artistAdmin.css" />
+    <link rel="stylesheet" href="/css/admin/subscribeMember.css" />
   </head>
   <body>
-    <header>헤더+nav</header>
+    <th:block th:replace="~{common/artistPageHeader}">헤더</th:block>
     <div class="modal">
       <div id="modal" class="modal-body">
-        <button id="modalCloseButton">X</button>
+        <!-- <button id="modalCloseButton">X</button> -->
+        <span class="close" onclick="closeModal()">&times;</span>
         <h1>닉네임</h1>
         <table border="1" style="border-collapse: collapse" class="modal-table">
-          <tbody>
-            <tr class="th">
+          <tbody class="tbody">
+            <!-- <tr class="th">
               <th>번호</th>
               <th>게시글 내용</th>
               <th>종류</th>
@@ -25,57 +28,14 @@
                 와~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~!!!!!!!!!!!!!!!!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
               </td>
               <td>댓글</td>
-            </tr>
-            <tr class="tr">
-              <td>2</td>
-              <td>와~~~~~~~~~~~~~~~~~~~~~~~~~~~~</td>
-              <td>댓글</td>
-            </tr>
-            <tr class="tr">
-              <td>3</td>
-              <td>와~~~~~~~~~~~~~~~~~~~~~~~~~~~~</td>
-              <td>댓글</td>
-            </tr>
-            <tr class="tr">
-              <td>4</td>
-              <td>와~~~~~~~~~~~~~~~~~~~~~~~~~~~~</td>
-              <td>댓글</td>
-            </tr>
-            <tr class="tr">
-              <td>5</td>
-              <td>와~~~~~~~~~~~~~~~~~~~~~~~~~~~~</td>
-              <td>댓글</td>
-            </tr>
-            <tr class="tr">
-              <td>6</td>
-              <td>와~~~~~~~~~~~~~~~~~~~~~~~~~~~~</td>
-              <td>댓글</td>
-            </tr>
-            <tr class="tr">
-              <td>5</td>
-              <td>와~~~~~~~~~~~~~~~~~~~~~~~~~~~~</td>
-              <td>댓글</td>
-            </tr>
-            <tr class="tr">
-              <td>6</td>
-              <td>와~~~~~~~~~~~~~~~~~~~~~~~~~~~~</td>
-              <td>댓글</td>
-            </tr>
-            <tr class="tr">
-              <td>5</td>
-              <td>와~~~~~~~~~~~~~~~~~~~~~~~~~~~~</td>
-              <td>댓글</td>
-            </tr>
-            <tr class="tr">
-              <td>6</td>
-              <td>와~~~~~~~~~~~~~~~~~~~~~~~~~~~~</td>
-              <td>댓글</td>
-            </tr>
+            </tr> -->
           </tbody>
         </table>
       </div>
     </div>
-    <main>
+    <main
+      th:with="subscribeList=${map.subscribeList}, pagination=${map.pagination}"
+    >
       <!-- th:replace -->
       <th:block th:replace="~{common/adminArtist}"></th:block>
       <div class="main">
@@ -83,44 +43,40 @@
         <h1>구독 회원 조회</h1>
         <br />
         <table border="1" style="border-collapse: collapse" class="main-table">
-          <tr class="tr-head">
-            <th>회원 번호</th>
-            <th>닉네임</th>
-            <th>아이디(이메일)</th>
-            <th>주소</th>
-            <th>권한</th>
-            <th>강제 탈퇴</th>
-          </tr>
-          <tr class="tr-body">
-            <td>1</td>
-            <td>ㅇㅇㅇ</td>
-            <td class="btn-open-popup">qwerqwer1234@gmail.com</td>
-            <td>서울특별시 종로구 종로 33 그랑서울 타워[1] 3층 롤파크</td>
-            <td>일반</td>
-            <td><button>탈퇴</button></td>
-          </tr>
-          <tr class="tr-body">
-            <td>1</td>
-            <td>ㅇㅇㅇ</td>
-            <td>qwerqwer1234@gmail.com</td>
-            <td>서울특별시 종로구 종로 33 그랑서울 타워[1] 3층 롤파크</td>
-            <td>일반</td>
-            <td><button>탈퇴</button></td>
-          </tr>
-          <tr class="tr-body">
-            <td>1</td>
-            <td>ㅇㅇㅇ</td>
-            <td>qwerqwer1234@gmail.com</td>
-            <td>서울특별시 종로구 종로 33 그랑서울 타워[1] 3층 롤파크</td>
-            <td>일반</td>
-            <td><button>탈퇴</button></td>
-          </tr>
-          <tr class="tr-body">
-            <td>1</td>
-            <td>ㅇㅇㅇ</td>
-            <td>qwerqwer1234@gmail.com</td>
-            <td>서울특별시 종로구 종로 33 그랑서울 타워[1] 3층 롤파크</td>
-            <td>일반</td>
+          <thead>
+            <tr class="tr-head">
+              <th>회원 번호</th>
+              <th>닉네임</th>
+              <th>아이디(이메일)</th>
+              <th>주소</th>
+              <th>권한</th>
+              <th>신고 누적 횟수</th>
+              <th>강제 탈퇴</th>
+            </tr>
+          </thead>
+          <tr
+            class="tr-body"
+            th:each="member : ${subscribeList}"
+            th:object="${member}"
+          >
+            <td th:text="*{memberNo}">회원번호</td>
+            <td th:text="*{memberNickname}">회원 닉네임</td>
+            <td
+              class="btn-open-popup"
+              th:text="*{memberEmail}"
+              th:onclick="|openModal(*{memberNo})|"
+            >
+              회원 이메일
+            </td>
+            <td th:text="*{memberAddress}">회원 주소</td>
+            <th:block th:if="*{memberAuthority == 1}"
+              ><td th:text="일반">권한</td>
+            </th:block>
+            <th:block th:if="*{memberAuthority == 2}"
+              ><td th:text="아티스트">권한</td>
+            </th:block>
+
+            <td>3</td>
             <td><button>탈퇴</button></td>
           </tr>
         </table>
@@ -138,7 +94,7 @@
         </div>
       </div>
     </main>
-    <script>
+    <!-- <script>
       const modal = document.querySelector(".modal");
       const btnOpenPopup = document.querySelector(".btn-open-popup");
       const modalCloseButton = document.getElementById("modalCloseButton");
@@ -164,6 +120,6 @@
         modal.classList.add("show");
         modal_background.classList.add("show");
       }
-    </script>
+    </script> -->
   </body>
 </html>

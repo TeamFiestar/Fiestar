@@ -11,8 +11,7 @@
   box-sizing: border-box;
 }
 header {
-  background-color: aqua;
-  height: 80px;
+  width: 100%;
 }
 .modal {
   position: fixed;
@@ -91,81 +90,12 @@ main {
   display: flex;
   font-family: "Pretendard-Regular";
 }
-
-.sidebar {
-  width: 200px;
-  height: 100vh;
-  background-color: #212529;
-  border-radius: 10px;
-  padding-top: 30px;
-}
 .main {
   width: 1100px;
   height: 100%;
   margin: 0 auto;
   margin-top: 50px;
   /* overflow: auto; */
-}
-.sidebar-list {
-  height: 60px;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  padding: 0 20px;
-  justify-content: center;
-  /* margin: 20px 0; */
-  font-size: 24px;
-  margin-bottom: 20px;
-  cursor: pointer;
-}
-
-.sidebar-list:hover #member-search {
-  display: block;
-}
-
-#member-search ul {
-  opacity: 0;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease, opacity 0.3s ease;
-  padding-left: 10px;
-}
-
-#member-search:hover ul {
-  max-height: 100px; /* 적절한 높이로 설정 */
-  opacity: 1;
-}
-
-#member-search:hover li {
-  color: #d3a9ec;
-}
-#add:hover li > a {
-  color: #d3a9ec;
-}
-#a:hover {
-  color: #d3a9ec;
-}
-#member-search a {
-  font-size: 16px;
-}
-#sidebar-sublist {
-  margin-top: 10px;
-}
-.sidebar-title {
-  font-size: 25px;
-  padding-left: 10px;
-}
-
-.sidebar-list li {
-  list-style: none;
-  height: 30px;
-  font-size: 20px;
-  color: white;
-  /* display: none; */
-}
-.sidebar-list a {
-  text-decoration: none;
-  color: white;
 }
 
 .main-table {
@@ -191,19 +121,22 @@ main {
   width: 7%;
 }
 .tr-head > th:nth-child(2) {
-  width: 10%;
+  width: 8%;
 }
 .tr-head > th:nth-child(3) {
-  width: 28%;
+  width: 20%;
 }
 .tr-head > th:nth-child(4) {
   width: 42%;
 }
 .tr-head > th:nth-child(5) {
-  width: 5%;
+  width: 6%;
 }
 .tr-head > th:nth-child(6) {
-  width: 8%;
+  width: 7%;
+}
+.tr-head > th:nth-child(7) {
+  width: 10%;
 }
 .tr-body button {
   width: 50px;
@@ -234,7 +167,7 @@ main {
   width: 50px;
   height: 30px;
 }
-#modalCloseButton {
+.close {
   display: flex;
   background-color: white;
   border: none;

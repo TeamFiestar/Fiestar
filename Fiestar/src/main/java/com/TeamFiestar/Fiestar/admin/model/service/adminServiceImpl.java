@@ -105,4 +105,61 @@ public class adminServiceImpl implements adminService{
 		return map;
 	}
 	
+	@Override
+	public int update(Map<String, Object> paramMap) {
+		return mapper.update(paramMap);
+	}
+	
+	
+	@Override
+	public Map<String, Object> subscribeMember(Member member, int cp, int artistGroupNo) {
+		Map<String, Object> map1 = new HashMap<>();
+		map1.put("member", member);
+		map1.put("artistGroupNo",artistGroupNo);
+		
+		int countList = mapper.countSubscribe(artistGroupNo);
+		AdminPagination pagination = new AdminPagination(countList, cp);
+		
+		int offset = (pagination.getCurrentPage()-1) * pagination.getLimit();
+		int limit = pagination.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		List<Member> subscribeList = mapper.subscribeMember(rowBounds,artistGroupNo);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("subscribeList", subscribeList);
+		map.put("pagination", pagination);
+		
+		return map;
+	}
+	
+	
+	@Override
+	public Map<String, Object> searchSubscribe(Map<String, Object> paramMap, int cp, int artistGroupNo) {
+		Map<String, Object> map1 = new HashMap<>();
+		map1.put("paramMap", paramMap);
+		map1.put("artistGroupNo",artistGroupNo);
+		
+		int countList = mapper.countSearchSubscribe(map1);
+		AdminPagination pagination = new AdminPagination(countList, cp);
+		
+		int offset = (pagination.getCurrentPage()-1) * pagination.getLimit();
+		int limit = pagination.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		List<Member> subscribeList = mapper.searchSubscribe(rowBounds,paramMap,artistGroupNo);
+		Map<String, Object> map = new HashMap<>();
+		map.put("subscribeList", subscribeList);
+		map.put("pagination", pagination);
+		
+		return map;
+	}
+	
+//	@Override
+//	public int restoration(int memberNo) {
+//		return mapper.restoration(memberNo);
+//	}
+	
 }
