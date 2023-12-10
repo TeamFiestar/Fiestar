@@ -13,7 +13,7 @@ public interface ShopService {
 	/**쇼핑몰 메인페이지 전체 조회
 	 * @return
 	 */
-	Map<String, Object> shopMain();
+	Map<String, Object> shopMain(int cp);
 	
 	/**쇼핑몰 상품 전체 개수
 	 * @return
@@ -22,9 +22,10 @@ public interface ShopService {
 
 	/**쇼핑몰 검색한 상품 조회
 	 * @param paramMap
+	 * @param cp 
 	 * @return
 	 */
-	Map<String, Object> searchList(Map<String, Object> paramMap);
+	Map<String, Object> searchList(Map<String, Object> paramMap, int cp);
 	
 	/**쇼핑몰 검색한 상품 개수
 	 * @param paramMap
@@ -36,7 +37,7 @@ public interface ShopService {
 	 * @param paramMap
 	 * @return
 	 */
-	Map<String, Object> artistGroupShop(Map<String, Object> paramMap);
+	Map<String, Object> artistGroupShop(Map<String, Object> paramMap, int cp);
 
 	/**아티스트 그룹별 상품 개수
 	 * @param paramMap
