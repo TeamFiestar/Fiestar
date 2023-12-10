@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.TeamFiestar.Fiestar.admin.model.dto.ArtistNotice;
+import com.TeamFiestar.Fiestar.admin.model.dto.Report;
 import com.TeamFiestar.Fiestar.admin.model.service.ArtistAdminAJAXService;
 import com.TeamFiestar.Fiestar.admin.model.service.ArtistAdminService;
 
@@ -63,6 +64,18 @@ public class ArtistAdminContoller {
 		int result = service.artistNoticeAdd(artistGroupTitle, notice);
 		
 		return "redirect:/artistAdmin/{artistGroupTitle}/notice";
+	}
+	
+	
+	@GetMapping("{artistGroupTitle}/report")
+	public String artistReport(
+			@PathVariable("artistGroupTitle") String artistGroupTitle, Model model) {
+		model.addAttribute("artistGroupTitle",artistGroupTitle);
+		
+		List<Report> reportList = service.selectReportList(artistGroupTitle);
+		
+		return "admin/artistReport";
+		
 	}
 
 }

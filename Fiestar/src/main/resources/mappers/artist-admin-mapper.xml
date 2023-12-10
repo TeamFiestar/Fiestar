@@ -27,5 +27,16 @@
 		#{artistGroupNoticeContent},
 		'N', SYSDATE, #{artistGroupNo})
 	</insert>
+	
+	<select id="selectReportList">
+		SELECT 	REPORT_NO , REPORTER_NO , 
+			REPORT_TARGET_NO , REPORT_PROCEED , 
+			REPORT_URL ,REPORT_CONTENT , 
+			MEMBER_EMAIL ,MEMBER_NICKNAME 
+		FROM REPORT r  
+		JOIN "MEMBER" m ON(R.REPORT_TARGET_NO = M.MEMBER_NO)
+		WHERE R.ARTIST_GROUP_NO = #{artistGroupNo}
+	</select>
+	
 </mapper>
 

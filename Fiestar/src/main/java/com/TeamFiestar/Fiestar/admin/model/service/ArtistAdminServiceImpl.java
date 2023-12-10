@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.TeamFiestar.Fiestar.admin.model.dto.ArtistNotice;
+import com.TeamFiestar.Fiestar.admin.model.dto.Report;
 import com.TeamFiestar.Fiestar.admin.model.mapper.ArtistAdminMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -28,6 +29,12 @@ public class ArtistAdminServiceImpl implements ArtistAdminService{
 		int artistGroupNo = mapper.selectArtistGroupNo(artistGroupTitle);
 		notice.setArtistGroupNo(artistGroupNo);
 		return mapper.artistNoticeAdd(notice);
+	}
+	
+	@Override
+	public List<Report> selectReportList(String artistGroupTitle) {
+		int artistGroupNo = mapper.selectArtistGroupNo(artistGroupTitle);
+		return mapper.selectReportList(artistGroupNo);
 	}
 
 }
