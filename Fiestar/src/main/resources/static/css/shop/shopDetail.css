@@ -1,0 +1,293 @@
+
+.shopDetail-main {
+  width: 1096px;
+  margin: auto;
+  font-size: 14px;
+
+}
+
+.shopDetail-upper {
+  margin-top: 50px;
+  display: flex;
+  margin-bottom: 75px;
+}
+
+.product-image {
+  width: 500px;
+  height: 600px;
+  background-color: blanchedalmond;
+  object-fit: cover;
+
+}
+
+.product-image img {
+  object-fit: cover;
+}
+
+.product-detail{
+  margin-left: 80px;
+  width: 510px;
+  height: auto;
+}
+
+.artist-name {
+  font-weight:bold ;
+  font-size: 15px;
+}
+
+.product-name {
+  font-size:20px;
+  margin-top: 10px;
+
+}
+
+.product-price {
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 15px;
+}
+
+.product-delivery-info {
+  margin-top: 20px;
+  align-items: center;
+  display:flex;
+}
+
+.product-delivery-info img {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 5px;
+  
+}
+
+.product-delivery-info span {
+  font-size: 16px;
+  color:  rgba(119, 67, 219, 1);
+  padding-left: 8px;
+}
+
+.package-info {
+  width: 510px;
+  height: 53px;
+  background-color: rgba(244, 246, 248, 1);
+  padding: 10px;
+  line-height: 18px;
+  display: flex;
+  color: rgba(116, 116, 116, 1);
+}
+
+.package-info div {
+  background-color: rgba(244, 246, 248, 1);
+  height:30px;
+  color:brown;
+  width: 55px;
+  
+}
+
+.product-option {
+  color:  rgba(119, 67, 219, 1);
+  font-size: 16px;
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+}
+
+#optionSelect {
+  margin-left : 14px;
+  width: 436px;
+  height: 46px;
+  padding-left: 12px;
+  font-size: 16px;
+
+}
+
+.product-purchase-list {
+  margin-top: 20px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  width: 100%;
+  
+  
+}
+
+.product-purchase-name {
+  font-size: 16px;
+  margin-top: 22px;
+  justify-content: space-between;
+}
+
+
+.optionName {
+  font-size: 14px;
+  color: rgba(116, 116, 116, 1);
+  margin-left: 10px;
+  font-weight: 100;
+}
+
+.product-purchase-list span {
+  display: flex;
+  align-items: center;
+
+
+}
+
+.product-purchase-list div {
+  display: inline-flex;
+}
+
+.product-purchase-list div span:nth-child(1) {
+  width: 70%;
+}
+
+.product-purchase-list span:nth-child(2) {
+  width: 30%;
+  justify-content: end;
+}
+
+.option-area {
+ width:100%; 
+ margin: 20px 0;
+}
+
+.option-area .result {
+  margin:3px 6px;
+}
+
+.product-purchase-list button {
+  display: flex;
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+  border : 0.5px solid black; 
+  cursor: pointer;
+}
+
+#price {
+  justify-content: end;
+  margin-bottom: 10px;
+}
+
+.product-purchase-totalList {
+  margin-top: 15px;
+  justify-content: space-between;
+  display: flex;
+}
+
+.product-purchase-totalList:nth-child(1) {
+  width: 70%;
+}
+
+#totalProduct {
+  font-size: 18px;
+}
+
+#totalPrice {
+  justify-content: end;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+
+
+.product-purchase-area {
+  margin-top: 40px;
+  display: flex;
+  
+}
+
+.addCartBtn {
+  width: 240px;
+  height: 74px;
+  border: 1px solid rgba(119, 67, 219, 1);
+  border-radius: 5px;
+  cursor: pointer;
+  color : rgba(119, 67, 219, 1);
+  font-size: 16px;
+}
+
+.addCartBtn:hover {
+  background-color: rgb(252, 250, 250);
+}
+
+.purchaseBtn {
+  width: 240px;
+  height: 74px;
+  background-color: rgba(119, 67, 219, 1);
+  border-radius: 5px;
+  border: none;
+  justify-content: end;
+  margin-left: 30px;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+}
+
+.purchaseBtn:hover {
+  background-color: rgba(104, 55, 194);
+}
+
+.shopDetail-lower {
+  margin-top: 50px;
+}
+
+.product-image-area {
+  margin-top: 15px;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  
+}
+
+.product-image-area img {
+  width: 800px;
+  margin-left : 150px;
+  
+}
+
+.product-info-detail {
+  margin-top: 50px;
+
+  
+}
+
+.product-info-detail table {
+  margin-top: 30px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  margin-bottom: 70px;
+}
+
+
+.product-info-detail td {
+  padding: 10px;
+  border-bottom: 1px solid rgb(144, 140, 140);
+  
+}
+
+#info-title {
+  background-color: rgba(244,246,248,0.922); ;
+  width: 200px;
+  
+  
+}
+
+.product-info-return {
+  margin-top: 30px;
+}
+
+.product-info-return ul {
+  padding: 17px;
+  padding-bottom: 25px;
+  
+}
+
+.product-info-return li {
+  font-size: 16px;
+  padding-top: 10px;
+}
+
+
+
+

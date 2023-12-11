@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.TeamFiestar.Fiestar.shop.model.mapper.ShopMapper">
+	
+	
+	<!--상품 전체 조회-->
+	<select id="shopMain" resultType="Product">
+		SELECT PRODUCT_IMAGE, PRODUCT_NAME, PRODUCT_PRICE,ARTIST_GROUP_TITLE
+		FROM PRODUCT
+		JOIN ARTIST_GROUP USING (ARTIST_GROUP_NO)
+		
+	</select>
+	
+	<!--전체조회 상품 개수-->
+	<select id="shopCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM PRODUCT
+	</select>
+	
+	<!--검색조회 상품 개수-->
+	<select id="shopSearchCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM PRODUCT
+		WHERE PRODUCT_NAME LIKE '%${shopSearch}%'
+	</select>
+	
+	<!--검색 상품 조회-->
+	<select id="searchList" resultType="Product">
+		SELECT PRODUCT_IMAGE, PRODUCT_NAME, PRODUCT_PRICE,ARTIST_GROUP_TITLE
+		FROM PRODUCT
+		JOIN ARTIST_GROUP USING (ARTIST_GROUP_NO)
+		WHERE PRODUCT_NAME LIKE '%${shopSearch}%'
+		ORDER BY PRODUCT_NO DESC		
+	</select>
+	
+
+	<!--상품 등록한 아티스트 그룹 조회-->
+	<select id="artistSelect" resultType="ArtistGroup">
+		SELECT * FROM ARTIST_GROUP
+	</select>
+	
+	
+	<!--상품 등록한 아티스트 그룹 별 상품 조회-->
+	<select id="artistGroupShop" resultType="Product">
+		SELECT PRODUCT_IMAGE, PRODUCT_NAME, PRODUCT_PRICE,ARTIST_GROUP_TITLE
+		FROM PRODUCT
+		JOIN ARTIST_GROUP USING (ARTIST_GROUP_NO)
+		WHERE  ARTIST_GROUP_NO = #{artistGroupNo}
+	</select>
+	
+	<!--그룹별 상품 개수-->
+	<select id="shopGroupCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM PRODUCT
+		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
+	</select>
+	
+	
+	<!-- 전체 상품 조회 후 정렬-->
+	<select id="selectAllSort" resultType="Product">
+		SELECT * 
+		FROM PRODUCT
+		ORDER BY 
+		<if test="key == 1">
+			 PRODUCT_REGISTRATION_DATE DESC
+		</if>
+		<if test="key == 2">
+			PRODUCT_PRICE DESC
+		</if>
+		<if test="key == 3">
+			PRODUCT_PRICE ASC
+		</if>
+	</select>
+	
+	
+	
+	<!--그룹별 상품 조회 후 정렬-->
+	<select id="selectGroupSort" resultType="Product">
+		SELECT * 
+		FROM PRODUCT
+		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
+		ORDER BY 
+		<if test="key == 1">
+			 PRODUCT_REGISTRATION_DATE DESC
+		</if>
+		<if test="key == 2">
+			PRODUCT_PRICE DESC
+		</if>
+		<if test="key == 3">
+			PRODUCT_PRICE ASC
+		</if>
+	</select>
+	
+	
+	<!--상품 검색 조회 후 정렬-->
+	<select id="selectSearchSort" resultType="Product">
+		SELECT * 
+		FROM PRODUCT
+		WHERE PRODUCT_NAME LIKE '%${shopSearch}%'
+		ORDER BY 
+		<if test="key == 1">
+			 PRODUCT_REGISTRATION_DATE DESC
+		</if>
+		<if test="key == 2">
+			PRODUCT_PRICE DESC
+		</if>
+		<if test="key == 3">
+			PRODUCT_PRICE ASC
+		</if>
+	</select>
+	
+	
+	
+	
+
+
+
+
+</mapper>

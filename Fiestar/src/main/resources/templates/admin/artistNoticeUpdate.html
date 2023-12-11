@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>아티스트 공지사항 수정</title>
+    <link rel="stylesheet" href="../../static/css/admin/artistNoticeAdd.css" />
+  </head>
+  <body>
+    <header>헤더+nav</header>
+    <main>
+      <!-- th:replace -->
+      <th:block th:replace="~{common/adminArtist}"></th:block>
+      <div class="notice-add">
+        <h4>NewJeans</h4>
+        <h1>아티스트 공지사항 수정</h1>
+        <br />
+        <form action="#">
+          <div class="notice-title">
+            공지사항 제목
+            <br />
+            <input type="text" id="input-noticeTitle" />
+          </div>
+          <div class="notice-content">
+            공지사항 내용
+            <br />
+            <textarea name="" id="input-noticeContent"></textarea>
+          </div>
+          <div class="notice-btn">
+            <button id="btn-notice">등록</button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>굿즈 등록</title>
+    <link rel="stylesheet" href="/css/admin/goods.css" />
+  </head>
+  <body>
+    <header>헤더+nav</header>
+    <main>
+      <!-- th:replace -->
+      <th:block th:replace="~{common/adminArtist}"></th:block>
+      <div class="goods-add">
+        <h1>굿즈 등록</h1>
+        <br />
+        <form action="/admin/goods">
+          <div class="goods-title">
+            상품명
+            <input type="text" id="input-goodsTitle" name="goodsTitle"/>
+          </div>
+          <div class="goods-option">
+            상품 옵션
+            <br />
+            <div id="option-area">
+              <!-- <img src="../../static/img/다운로드.png" class="input-goodsPlus" onclick="optionPlus(this)" /> -->
+              <img src="/img/Add_light.png" onclick="optionPlus(this)" class="plusBtn" />
+              <div id="input-area">
+                <!-- <input type="text" class="input-goodsOption" /> -->
+              </div>
+            </div>
+          </div>
+          <div class="goods-content">
+            상품 설명
+            <br />
+            <textarea name="" class="input-goodsContent"></textarea>
+            <div class="goodsImg">
+              <label for="img1">
+                <img src="#" class="goods-contentImg" />
+              </label>
+              <input type="file" name="contentImg" id="img1" accept="image/*" class="input-goodsImg" />
+              <span class="delete-image">&times;</span>
+            </div>
+          </div>
+          <div class="goods-thumnail">
+            굿즈 썸네일
+            <br />
+            <div class="goodsImg">
+              <label for="img2">
+                <img src="#" class="thumnail" />
+              </label>
+              <input type="file" name="thumnail" id="img2" accept="image/*" class="input-goodsImg" />
+              <span class="delete-image">&times;</span>
+            </div>
+          </div>
+          <div class="goods-btn-area">
+            <button class="goodsBtn">등록</button>
+          </div>
+        </form>
+      </div>
+    </main>
+    <script src="/js/admin/goods.js"></script>
+  </body>
+</html>

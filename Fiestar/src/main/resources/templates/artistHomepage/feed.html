@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>feed</title>
+    <link rel="stylesheet" href="/css/artistHomepage/feed.css">
+    <link rel="stylesheet" href="/css/common/artistPageHeader.css">
+    <link rel="stylesheet" href="/css/common/artistPageNavi.css">
+</head>
+
+<body>
+
+
+    <th:block th:replace="~{common/artistPageHeader}"></th:block>
+    <th:block th:replace="~{common/artistPageNavi}"></th:block>
+    <th:block th:replace="~{artistHomepage/feedWrite}"></th:block>
+    <th:block th:replace="~{artistHomepage/feedDetail}"></th:block>
+
+
+    <main>
+            <div id="board">
+
+                <!-- 아티스트 프로필  페이지로 이동-->
+                <div id="teamProfile">
+                    <a href="">
+                        
+                        <img src="/artistHomepageImg/lesserafim.jpg" alt="아티스트프로필이미지" id="artistImg"></a>
+                    <a href="">
+                        <img src="/artistHomepageImg/bts.jpg" style="border-radius: 50%; margin-left: 20px;" >
+                        <p id="artistName" th:text="${artistGroupTitle}" style="margin-left: 20px; font-size: 70px;">LE SSERAFIM</p>
+                    </a>
+                </div>
+
+                <!-- 게시글 작성 -->
+                <div id="postingSection" data-target="feedWrite" onclick="wopenModal()">
+                    <img th:if="${session.loginMember.memberProfile == null}" th:src="#{user.default.image}" style="width:30px;"></img>
+                    <img th:unless="${session.loginMember.memberProfile == null}" th:src="${session.loginMember.memberProfile}" style="width:30px;"></img>
+                    <a href="#" th:text="|${artistGroupTitle}에 포스트를 남겨보세요.|" style="margin-left: 10px;">피에스타에 포스트를 남겨보세요.</a>
+                    <i class="fa-solid fa-image fa-2xl" ></i>
+                </div>
+            </div>
+
+            <div id="boardListArea" th:each="board : ${map.boardList}" th:object="${board}" onclick="openModal()">
+                <div class="list-area">
+                <!-- 게시글 목록(사진 + 글) -->
+
+                    <!-- 작성자 프로필 -->
+                    <div class="board-area" onclick="openModal()">
+                        <div>
+                            <!-- <i class="fa-regular fa-circle-user fa-2xl" style="color: #7743DB"></i> -->
+                            <img th:unless="*{memberProfile}" th:src="#{user.default.image}" style="width:40px;"> 
+                            <img th:if="*{memberProfile}" th:src="*{memberProfile}"style="width:40px; height:40px; border-radius:50%;">
+                        </div>
+                        <div>
+                            <Strong th:text="*{memberNickname}" style="font-size: 17px;" >카즈하</Strong>
+                            <!-- 아티스트인 경우에만 보임 -->
+                            <i th:if="*{memberAuthority} == 2" class="fa-solid fa-circle-check" style="color: #7743DB"></i>
+                            <p th:text="*{boardEnrollDate}" style="font-size: 14px; margin-top:5px; color:rgba(196, 196, 196, 1);">1시간 전</p>
+                        </div>
+                    </div>
+
+                        <section id="image-container" style="margin-bottom: 20px;" th:if="${board.imageList != null and board.imageList.size != 0}"  >
+                            <div class="img-container"  data-target="feedDetail" >
+                                <div class="slideshow-container" >
+                                   <th:block th:if="${#lists.size(board.imageList) &lt; 2}">
+                                       
+                                        <div class="slide" style="padding: 15px;" 
+                                        th:each="i : ${#numbers.sequence(0, #lists.size(board.imageList)-1, 1)}" 
+                                        th:with="path=|${board.imageList[i].boardImagePath}${board.imageList[i].boardImageRename}|">
+                                            <img th:src="${path}"  style="border-radius: 10px; ">
+                                        </div>
+    
+                                   </th:block>
+
+                                   <th:block th:unless="${#lists.size(board.imageList) &lt; 2}">
+                                       
+                                        <div class="slide" style="padding: 15px;" 
+                                        th:each="i : ${#numbers.sequence(0, 1, 1)}" 
+                                        th:with="path=|${board.imageList[i].boardImagePath}${board.imageList[i].boardImageRename}|">
+                                            <img th:src="${path}"  style="border-radius: 10px; ">
+                                        </div>
+    
+                                   </th:block>
+                                
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section class="textarea" th:text="*{boardContent}" style="margin-top: 10px; margin-left: 5px;">
+                       
+                    </section>
+
+                    <!-- 댓글 좋아요 -->
+                    <section class="reaction" style="display: flex; justify-content:end;">
+                        <i class="fa-solid fa-heart fa-xl" style="color: #7743DB; margin-top: 10px; font-size: 20px;" ></i> <span th:text="*{likeCount}" style="margin-left:7px;" >234</span>
+                        <a href="#"  data-target="feedDetail" onclick="openModal()"><i
+                                class="fa-regular fa-comment fa-xl" style="color: #7743DB; margin-left: 20px; font-size: 20px;"></i> <span th:text="*{commentCount}" style="margin-left:5px;" >234</span></a>
+                    </section>
+                </div>
+                </div>
+            </div>
+
+
+</main>
+    <script src="https://kit.fontawesome.com/2434a52ecc.js" crossorigin="anonymous"></script>
+    <script src="/js/artistHomepage/feed.js"></script>
+
+    <script th:inline="javascript">
+
+
+        // messages.properties의 값을 얻어와 전역 변수로 선언
+        const defaultImage = /*[[#{user.default.image}]]*/ "기본 이미지";
+        const boardDetail = /*[[${boardDetail}]]*/ "dadasas";
+      
+    </script>
+
+
+</body>
+
+</html>

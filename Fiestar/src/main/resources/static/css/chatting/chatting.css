@@ -1,0 +1,204 @@
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Pretendard-Regular";
+}
+body {
+  background-color: #222222;
+}
+/* header {
+  width: 100%;
+  height: 130px;
+} */
+main {
+  width: 1100px;
+  display: flex;
+  /* flex-direction: column; */
+  margin: auto;
+  background-color: #222222;
+  height: 830px;
+}
+.artist-name {
+  color: white;
+  height: 80px;
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+.chatting-area {
+  width: 700px;
+  height: 700px;
+  margin: 80px auto;
+  border: 0.5px solid black;
+  background-color: #cebae6;
+  border: none;
+  border-radius: 10px;
+}
+.chatting-area > ul {
+  list-style: none;
+  height: 600px;
+  overflow: auto;
+}
+.chat-list {
+  margin: 30px 0;
+  display: flex;
+  align-items: flex-start;
+  padding-left: 10px;
+}
+.chat-list > img {
+  margin-right: 10px;
+  border-radius: 50%;
+}
+.chatting-area > ul > li > img {
+  display: flex;
+  height: 50px;
+}
+.list-profile {
+  /* max-width: 50px; */
+  margin-right: 10px;
+}
+.chat {
+  display: inline-block;
+  background-color: #eee;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+  max-width: 300px;
+  margin-top: 5px;
+  word-break: break-all;
+  font-size: 16px;
+}
+.mychat-list {
+  margin: 20px 0;
+  text-align: right;
+  padding-right: 10px;
+}
+.mychat-list p {
+  background-color: yellow;
+  text-align: left;
+}
+.chat-date {
+  font-size: 12px;
+  margin-right: 3px;
+  margin-left: 3px;
+}
+.input-area {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  align-items: end;
+  border-radius: 10px;
+
+  /* align-items: end; */
+}
+#inputChat {
+  width: 100%;
+  height: 60px;
+  font-size: 14px;
+  resize: none;
+  border: none;
+  padding: 5px;
+}
+#inputChat:focus {
+  outline: none;
+}
+#send {
+  text-align: center;
+  margin: 5px;
+  border: none;
+  width: 60px;
+  height: 30px;
+  background-color: yellow;
+  border-radius: 10px;
+}
+
+.enter {
+  width: 200px;
+  height: 50px;
+  background-color: #cebae6;
+  text-align: center;
+}
+.chatList {
+  width: 200px;
+  margin-top: 80px;
+}
+.userName {
+  list-style: none;
+}
+.artirstImg > img {
+  width: 100%;
+  border-radius: 10px;
+}
+.userList {
+  margin-top: 30px;
+  background-color: #eee;
+  height: 450px;
+  border-radius: 10px;
+  overflow: auto;
+}
+.userTitle {
+  font-size: 20px;
+  padding: 10px 10px 20px 10px;
+  text-align: center;
+  border-bottom: 1px solid gray;
+  /* position: fixed; */
+}
+.userName {
+  padding: 0 5px;
+  margin: 10px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.chatting-area > ul::-webkit-scrollbar-track {
+  background-color: #cebae6;
+}
+
+/* nav바 */
+#navSection {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px 0;
+}
+
+nav {
+  width: 100%;
+  background-color: #7743db;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+nav ul li {
+  margin: 0;
+  padding: 15px 100px;
+}
+
+nav ul li a {
+  color: white;
+  font-size: 20px;
+}
+a {
+  text-decoration: none;
+}

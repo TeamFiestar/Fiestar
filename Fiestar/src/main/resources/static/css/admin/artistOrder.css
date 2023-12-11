@@ -1,0 +1,248 @@
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+header {
+  background-color: aqua;
+  height: 80px;
+}
+main {
+  display: flex;
+  font-family: "Pretendard-Regular";
+}
+
+.sidebar {
+  width: 200px;
+  height: 900px;
+  background-color: #212529;
+  border-radius: 10px;
+  padding-top: 30px;
+}
+.main {
+  width: 1240px;
+  height: 660px;
+  margin: 0 auto;
+  margin-top: 50px;
+  /* overflow: auto; */
+}
+.sidebar-list {
+  height: 60px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+  justify-content: center;
+  /* margin: 20px 0; */
+  font-size: 24px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.sidebar-list:hover #member-search {
+  display: block;
+}
+
+#member-search ul {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  padding-left: 10px;
+}
+
+#member-search:hover ul {
+  max-height: 100px; /* 적절한 높이로 설정 */
+  opacity: 1;
+}
+
+#member-search:hover li {
+  color: #d3a9ec;
+}
+#add:hover li > a {
+  color: #d3a9ec;
+}
+#a:hover {
+  color: #d3a9ec;
+}
+#member-search a {
+  font-size: 16px;
+}
+#sidebar-sublist {
+  margin-top: 10px;
+}
+.sidebar-title {
+  font-size: 25px;
+  padding-left: 10px;
+}
+
+.sidebar-list li {
+  list-style: none;
+  height: 30px;
+  font-size: 20px;
+  color: white;
+  /* display: none; */
+}
+.sidebar-list a {
+  text-decoration: none;
+  color: white;
+}
+.main-table {
+  width: 1240px;
+}
+.main-th-tr > th:nth-child(1) {
+  width: 6%;
+}
+.main-th-tr > th:nth-child(2) {
+  width: 9%;
+}
+.main-th-tr > th:nth-child(3) {
+  width: 25%;
+}
+.main-th-tr > th:nth-child(4) {
+  width: 20%;
+}
+.main-th-tr > th:nth-child(5) {
+  width: 10%;
+}
+.main-th-tr > th:nth-child(6) {
+  width: 10%;
+}
+.main-th-tr > th:nth-child(7) {
+  width: 10%;
+}
+.main-th-tr > th:nth-child(8) {
+  width: 10%;
+}
+.main-th-tr > th {
+  height: 70px;
+  background-color: #d3a9ec;
+}
+.main-tr-tr {
+  height: 60px;
+}
+.main-tr-tr > td {
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.main-tr-tr > td:nth-child(3) {
+  width: 300px;
+}
+.main-tr-tr > td:nth-child(4) {
+  width: 240px;
+}
+#order-select {
+  width: 80px;
+  height: 30px;
+}
+.pagination-area {
+  width: 700px;
+  margin: 50px auto;
+  text-align: center;
+}
+.pagination {
+  font-size: 20px;
+}
+#select {
+  width: 90px;
+  height: 30px;
+}
+#inputSearch {
+  width: 400px;
+  height: 30px;
+  margin: 0 10px;
+  border-radius: 5px;
+  padding: 0 5px;
+  outline: none;
+}
+#pagination-button {
+  width: 50px;
+  height: 30px;
+}
+.orderSelect {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 5px;
+  padding-right: 20px;
+}
+.price {
+  margin: 0 5px;
+  background-color: white;
+  border: none;
+  color: gray;
+  cursor: pointer;
+}
+.price:hover {
+  color: black;
+}
+
+header {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 로고 */
+header > section:nth-of-type(1) {
+  margin-left: 50px;
+  width: 30%;
+  display: flex;
+  justify-content: start;
+}
+
+/* 검색하기 */
+#search-container {
+  background-color: #e5d8fd;
+  display: flex;
+  align-self: center;
+  border-radius: 5px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+#search-container > input {
+  border: none;
+  height: 30px;
+  width: 250px;
+  background-color: #e5d8fd;
+  margin-right: 7px;
+  color: #7743db;
+}
+
+#search-container > input:focus {
+  outline: none;
+}
+
+/* 메뉴 */
+header > section:nth-of-type(2) {
+  margin-right: 50px;
+  width: 70%;
+  height: 80px;
+  display: flex;
+  justify-content: end;
+}
+
+/* 메뉴들 */
+header article {
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header a {
+  color: #000000;
+  text-decoration: none;
+  font-size: 20px;
+}

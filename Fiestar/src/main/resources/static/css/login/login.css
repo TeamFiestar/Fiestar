@@ -1,0 +1,166 @@
+@font-face{
+   font-family: 'Pretendard-Regular';
+   src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+   font-weight: 400; 
+   font-style: normal;
+}
+
+* {
+   box-sizing: border-box;
+   font-family: 'Pretendard-Regular';
+}
+
+.frame {
+   width: 1400px;
+   min-height: 600px;
+   margin:auto;
+   /* padding: 150px; */
+   position: relative;
+}
+
+
+/* 로그인 */
+h1 {
+   margin-top: 88px;
+   display: flex;
+   font-size: 26px;
+   font-weight: bold;
+   justify-content: center;
+   flex-wrap: wrap;
+}
+
+
+.logo{
+   width: 500px;
+   height: 250px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+
+.log-in-content {
+   
+   width: 500px;
+   height: 250px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.not-null{
+   color: rgb(87, 87, 87);
+   margin-top: 6px;
+   font-size: 14px;
+}
+
+* input{
+   border: 1px solid rgb(173, 177, 184);
+   outline-color: rgba(104, 55, 194);
+   margin-bottom: 30px;
+   font-size: 16px;
+
+
+}
+
+/* 내용 영역 */
+/* 
+.find-pw{
+   margin-top: 100px;
+   display: flex;
+   text-align: center;
+   justify-content: center; 
+} */
+
+
+.signup-area{
+   margin-top: 260px;
+   margin-left: 30%;
+   display: flex;
+   /* margin: auto; */
+   justify-content: center;
+   align-content: center;
+   flex-direction: column;
+}  
+
+.input-id > input{
+
+   border-radius: 4px;
+   width: 400px;
+   height: 42px;
+   transition-delay: 0ms;
+}
+
+
+.input-pw > input{
+   border-radius: 4px;
+   width: 400px;
+   height: 42px;
+   margin-bottom: 30px;
+}
+
+.checkout-area{
+   /* right: 28%;
+   position: relative; */
+}
+
+
+.checkout-area > .checkOut-btn, .checkOut-btn{
+   border-radius: 4px;
+    transition: all 300ms ease 0s;
+    margin: 0 0 34px 38px;
+    appearance: none;
+    background: none rgba(104, 55, 194);
+    border: none;
+    cursor: pointer;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 40px;
+    font-size: 20px;
+    font-weight: 500;
+    --horizontal-padding: 1.8rem;
+    color: rgb(255, 255, 255);
+    width: 160px;
+    display: inline-flex;
+    padding: 0 var(--horizontal-padding);
+}
+
+.input-pw{
+   margin-bottom: 40px;
+}
+
+/* .find-pw{
+   margin-top: 100px;
+   display: flex;
+   text-align: center;
+}
+justify-content: center;  */
+
+.find-pw >a {
+
+   color: rgb(217, 217, 217);
+   text-decoration: none;
+}
+
+.loginNpw {
+   /* display: flex;
+   flex-direction: column;
+   text-align: center;
+   justify-content: center; */
+   position: absolute;
+   left: 554px;
+   margin: auto;
+}
+
+
+.loginNpw>a{
+   /* display: flex;
+   flex-direction: column;
+   text-align: center;
+   justify-content: center; */
+   margin-top: 30px;
+}
+
+

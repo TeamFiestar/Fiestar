@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <script src="https://kit.fontawesome.com/d6c32512de.js" crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="/static/css/cart/checkout.css">
+
+   <link rel="stylesheet" href="/static/css/common/shopHeader.css"> 
+
+   <th:block th:replace="~{common/shopHeader}"></th:block>
+
+</head>
+
+<body>
+
+    <!-- 헤더 -->
+
+   <section class="frame">
+
+      <form action="checkoutResult" method="post">
+     
+      <div class="content"> 
+
+         <div class="cart-area">
+            <h1 class="cart">CHECKOUT</h1>
+         </div>
+
+         <!-- <div class="cart-list"> -->
+
+         <div class="select-all">
+            <span>주문 상품</span>
+         </div>
+
+            <!-- 상품 1개 개별 영역 -->
+         <div class="item-list">
+
+               <!-- 1번 -->
+
+               <!-- 이미지 영역 -->
+               
+            <img src="/static/images/keyring.png" alt="">
+
+                  
+                  <!-- 제품 상세 -->
+
+            <div class="item-text">
+
+               <div class="item-name">
+                  <a href="" class="keyring">뉴진스 키링</a>
+               </div> 
+
+               <div>
+                  <span class="item-option">옵션 : BLACK</span>
+               </div>
+
+            </div>
+
+            <!-- 상품 수량 -->
+               
+            <span class="item-amount">수량: 3</span>
+             
+            <!-- 개별 상품 가격 -->
+            <span class="item-price" style="font-weight: bold;">$132</span>
+
+         </div>
+
+
+
+            <!---------- 상품 2번 ---------->
+
+            <div class="item-list">
+               <!-- 이미지 영역 -->
+               
+               <img src="/static/images/photobook.png" alt="">
+
+                  
+                  <!-- 제품 상세 -->
+
+                  <div class="item-text">
+
+                    <div class="item-name">
+                       <a href="" class="keyring">LE SSERAFIM</a>
+                    </div> 
+
+                    <div>
+                       <span class="item-option">옵션 : BLACK</span>
+                    </div>
+
+                  </div>
+
+               <!-- 상품 수량 + & -  -->
+               
+               <span class="item-amount">수량: 3</span>
+             
+               <!-- 개별 상품 가격 -->
+               <span class="item-price" style="font-weight: bold;">$300</span>
+
+            </div>
+
+            <!-- ----------------------------------------------------------------------- -->
+
+
+            <div class="check-list">
+
+                  <!-- 총 상품 가격 -->
+                  
+                  <div>
+                     <span class="check-price">총 상품 가격(2장)</span>
+                     <span class="check-total" style="font-weight: bold;">$500</span>
+                  </div>
+                  
+                        <!-- 개별 상품 가격 -->
+              
+                        <hr class="check-list-line"
+                        style="height: 1px;"
+                        >
+
+            </div>
+
+
+            
+
+
+
+            
+           
+               <div class="order-list">
+
+                     <span class="order-name" style="font-weight: bold;">주문자</span>
+
+                     <button class="name-btn">변경</button>
+
+
+                     
+
+                        <div style="font-size: 16px;">
+
+                        <div style="margin-top: 44px;">주문자 명</div>
+                        <div class="name-input">
+                           <input type="text" placeholder="*필수 작성 항목입니다." class="order-input"
+                           style="padding-left: 8px;">
+                        </div>
+                     
+                     
+                     <div class="phonenumber-input-area">
+                        전화번호
+                        <div class="phonenumber-input">
+                           <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;" > 
+                           </div>
+                        </div>
+
+                        </div>
+
+                  </div>
+                        
+                        <!-- <div class="name-input-area">
+                     </div>
+                        
+               </div> -->
+                     
+
+               <div class="shipping-list">
+
+                  <span class="shipping-name" style="font-weight: bold;">배송지</span>
+
+
+                  <button class="shipping-btn">변경</button>
+
+
+                  <div class="shipping-input">
+
+
+                     <div class="shipping-address">
+                        도로명 주소
+                        <button class="address-btn">주소 찾기</button>
+
+                     <div class="address-input">
+                           <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;">
+                        </div>
+                     </div>
+
+                     <div class="address-detail">
+                        상세주소
+                        
+                        <div class="input-detail">
+
+                           <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;"> 
+
+
+                        </div>
+                     </div>
+
+                  </div>
+                     
+            </div>
+                  
+            <hr class="check-list-line" style="color: rgb(115, 130, 92);"
+           
+            >
+         
+            
+         <div class="price-detail">
+            
+            <!-- <div class="detail"> -->
+               <span class="detail-price" style="font-weight: bold;">결제 금액</span>
+
+                  <div class="detail">
+                     <span class="product-price" style="font-size: 16px;"  >상품 가격 </span>
+                      <span class="price" style="margin-left: 1014px;">100$</span>
+
+                      <div class="shipping-price" style="font-size: 16px;">배송비
+                     
+                        <span
+                        style="margin-left: 1014px;"
+                        >12$</span>
+                      </div>
+                  </div>
+
+         </div>
+
+
+
+
+
+         <!-- 총 상품 가격 -->
+       
+
+   
+                
+               <!-- 상품 수량 + & -  -->
+
+               <!-- 개별 상품 취소 -->
+
+
+            
+
+                     
+            <div class="total">
+               <div class="total-price" style="letter-spacing: -1.6px;">총 결제 금액</div>
+
+               <div class="sc-e98633bc-7 iUJKwp" style="letter-spacing: -1.2px;">$15.58</div>
+            </div>
+
+            
+               <!-- 결제 수단 -->
+               <div class="payment-method">
+                     <span class="ass" style="font-weight: bold;">결제 수단</span>
+
+                        <div class="cash">
+                           <input type="radio">
+                           계좌 입금
+                        </div>
+
+                     <!-- </div> -->
+                     
+                  </div>
+
+                  <div class="tou"> 유의사항 및 이용약관
+                     <li>
+                        이용가능 카드사 : 모든 국내 신용/체크카드
+                     </li>
+
+                     <li>
+                        주문 상품 정보, 가격, 배송, 반품, 교환, 환불 정책에 동의
+                     </li>
+                  </div>
+
+                  <div class="checkout-area">
+
+                     <button type="submit" class="checkOut-btn">결제하기</button>
+
+
+                  </div>
+         
+            </div>
+
+
+
+         </form>
+         
+   </section>
+</body>
+</html>

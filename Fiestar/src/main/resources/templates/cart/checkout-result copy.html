@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <script src="https://kit.fontawesome.com/d6c32512de.js" crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="../../static/css/cart/checkout-result.css">
+   <link rel="stylesheet" href="../../static/css/common/shopHeader.css">
+
+</head>
+<body>
+
+   <header>
+      <div class="header">
+        
+          <div class="header-left-side">
+            <a href="/" id="header-logo">
+              <img src="/images/logo.png" style="width:165px;"/>
+            </a>
+          </div>
+        
+          <div class="header-right-side">
+            <!-- <th:block th:if="${session.loginMember == null}"> -->
+              <form action="#" method="GET" style="display: inline-flex; border:none; ">
+                    <span class="search-area">
+                    <!--  autocomplete="off" : 브라우저 제공 자동완성 off -->
+                    <button id="searchBtn" class="fa-solid fa-magnifying-glass"> 
+                      <input type="search" name="query" id="search-input" placeholder="상품명 혹은 아티스트 검색" 
+                      autocomplete="off"> 
+                    </button>
+    
+                    </span>
+    
+          </form>
+          
+            <a href="#"> 공지사항 </a>
+            <span>|</span>
+            <a href="/shop/home">샵 고객센터</a>
+    
+            <a href="#"><button id="loginPage"> 로그인</button></a>
+            <a href="#"><button  id="signUp">회원가입</button></a>
+          
+          <!-- </th:block> -->
+      
+              <!-- <th:block th:unless="${session.loginMember == null}">
+    
+                 <input type="text" id="search-area" placeholder="상품명 혹은 아티스트 검색"></input>
+                  <a href="#"> 카트 <th:block th:text="{카트에 담긴 갯수}"></th:block>  </a>
+                  <a href="#"> 주문/배송 </a>
+                  <a href="#"> 공지사항 </a>
+                  <span>|</span>
+                  <a href="#">샵 고객센터</a>
+                              
+                      <img th:if="${session.loginMember.profileImg == null}" th:src="#{user.default.image}" id="memberHeaderProfile">
+                                        
+                    
+                      <img th:unless="${session.loginMember.profileImg == null}" th:src="${session.loginMember.profileImg}" id="memberHeaderProfile">
+                  </a>    
+                    
+                    <div class="header-menu">
+                      <a href="/myPage/myPage-home">마이페이지</a>
+                      <a href="/member/logout" id="logoutBtn">로그아웃</a>
+                    </div>
+      
+                  </div>
+                </th:block>
+              -->
+              </div>    
+            
+          </div>
+    
+      </div>
+    </header>
+
+   <section class="frame">
+
+      <form action="checkoutResult" method="get">
+
+     
+      <div class="content">
+
+         <div class="cart-area">
+            <h1 class="cart">주문이 완료 되었습니다!</h1>
+         </div>
+
+         <!-- <div class="cart-list"> -->
+
+         <div class="select-all">
+            <span>주문 내역</span>
+         </div>
+
+            <!-- 상품 1개 개별 영역 -->
+         <div class="item-list">
+
+               <!-- 1번 -->
+
+               <!-- 이미지 영역 -->
+
+            <img src="../../static/images/keyring.png" alt="">
+
+
+                  <!-- 제품 상세 -->
+
+            <div class="item-text">
+
+               <div class="item-name">
+                  <a href="" class="keyring">뉴진스 키링</a>
+               </div> 
+
+               <div>
+                  <span class="item-option">옵션 : BLACK</span>
+               </div>
+
+            </div>
+
+            <!-- 상품 수량 -->
+               
+            <span class="item-amount">수량: 3</span>
+             
+            <!-- 개별 상품 가격 -->
+            <span class="item-price" style="font-weight: bold;">$132</span>
+
+         </div>
+
+
+
+            <!---------- 상품 2번 ---------->
+
+            <div class="item-list">
+               <!-- 이미지 영역 -->
+               
+               <img src="../../static/images/photobook.png" alt="">
+
+
+                  
+                  <!-- 제품 상세 -->
+
+                  <div class="item-text">
+
+                    <div class="item-name">
+                       <a href="" class="keyring">LE SSERAFIM</a>
+                    </div> 
+
+                    <div>
+                       <span class="item-option">옵션 : BLACK</span>
+                    </div>
+
+                  </div>
+
+               <!-- 상품 수량 + & -  -->
+               
+               <span class="item-amount">수량: 3</span>
+             
+               <!-- 개별 상품 가격 -->
+               <span class="item-price" style="font-weight: bold;">$132</span>
+
+            </div>
+
+            <!-- ----------------------------------------------------------------------- -->
+
+            <div class="item-list">
+               <!-- 이미지 영역 -->
+               
+               <img src="../../static/images/photobook.png" alt="">
+
+
+                  
+                  <!-- 제품 상세 -->
+
+                  <div class="item-text">
+
+                    <div class="item-name">
+                       <a href="" class="keyring">LE SSERAFIM</a>
+                    </div> 
+
+                    <div>
+                       <span class="item-option">옵션 : BLACK</span>
+                    </div>
+
+                  </div>
+
+               <!-- 상품 수량 + & -  -->
+               
+               <span class="item-amount">수량: 3</span>
+             
+               <!-- 개별 상품 가격 -->
+               <span class="item-price" style="font-weight: bold;">$132</span>
+
+            </div>
+
+
+
+         <!-- 총 상품 가격 -->
+       
+
+   
+                
+               <!-- 상품 수량 + & -  -->
+
+               <!-- 개별 상품 취소 -->
+
+               <div class="order-list">
+
+                  <span class="order-name" style="font-weight: bold;">주문자</span>
+
+               
+                  <div class="order-input">
+
+                     <div class="name-input-area">
+                        이창우
+                        <div class="name-input">
+                        
+                        </div>
+                     </div>
+
+                     <div class="phonenumber-input-area">
+                        010-1111-2222
+
+                     </div>
+
+                  </div>
+                     
+            </div>
+                  
+
+      
+
+
+            <div class="order-list">
+
+               <span class="order-name" style="font-weight: bold;">배송지</span>
+
+               <div class="order-input">
+
+                  <div class="name-input-area">
+                     서울시 용산구 한강대로 22
+                     
+                  </div>
+
+                  <div class="phonenumber-input-area">
+                     1103호
+
+                  </div>
+
+               </div>
+                  
+         </div>
+
+            
+
+                     
+            <div class="total">
+               <span style="background-color: rgb(255, 254, 237);">총 결제 금액</span>
+
+               <div class="sc-e98633bc-7 iUJKwp" style="background-color: rgb(255, 254, 237);">$15.58</div>
+            </div>
+
+                  <div class="checkout-area">
+
+                     <button type="submit" class="checkOut-btn">주문 상태 확인</button>
+
+                  </div>
+      </div>
+
+               
+         </form>
+   </section>
+</body>
+</html>

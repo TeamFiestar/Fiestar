@@ -1,0 +1,14 @@
+<section id="navSection">
+  <nav>
+    <ul th:object="${board}">
+      <li><a th:href="|/${artistGroupTitle}/feed|">Feed</a></li>
+      <li><a th:href="|/${artistGroupTitle}/artist|">Artist</a></li>
+      <li><a th:href="|/${artistGroupTitle}/media/list|">Media</a></li>
+      <li><a th:href="|/${artistGroupTitle}/media/live|">Live</a></li>
+      <li><a th:href="|/${artistGroupTitle}/artist|">Chatting</a></li>
+      <li><a th:href="|/${artistGroupTitle}/artist|">공지사항</a></li>
+    </ul>
+  </nav>
+</section>
+
+<!-- th:href="@{/board/{boardCode}/{boardNo}(boardCode=${boardCode},boardNo=*{boardNo})}" -->
