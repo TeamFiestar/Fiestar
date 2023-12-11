@@ -9,6 +9,14 @@
 	</select>
 	
 	
+	<select id="noticeListCount">
+		SELECT COUNT(*)
+		FROM ARTIST_GROUP_NOTICE AGN 
+		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
+		AND ARTIST_GROUP_NOTICE_DEL_FL = 'N'
+		ORDER BY ARTIST_GROUP_NOTICE_NO 
+	</select>
+	
 	<select id="selectNoticeList">
 		SELECT ARTIST_GROUP_NOTICE_NO ,ARTIST_GROUP_NOTICE_TITLE ,ARTIST_GROUP_NOTICE_CONTENT ,
 		TO_CHAR(ARTIST_GROUP_NOTICE_ENROLL_DATE, 'YYYY/MM/DD') AS ARTIST_GROUP_NOTICE_ENROLL_DATE,
@@ -16,6 +24,8 @@
 		FROM ARTIST_GROUP_NOTICE AGN 
 		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
 		AND ARTIST_GROUP_NOTICE_DEL_FL = 'N'
+		<if test="notice.key == 1">AND ARTIST_GROUP_NOTICE_TITLE LIKE '%${notice.noticeSearch}%'</if>
+		<if test="notice.key == 2">AND ARTIST_GROUP_NOTICE_CONTENT LIKE '%${notice.noticeSearch}%'</if>
 		ORDER BY ARTIST_GROUP_NOTICE_NO 
 	</select>
 	
@@ -28,14 +38,39 @@
 		'N', SYSDATE, #{artistGroupNo})
 	</insert>
 	
-	<select id="selectReportList">
-		SELECT 	REPORT_NO , REPORTER_NO , 
-			REPORT_TARGET_NO , REPORT_PROCEED , 
-			REPORT_URL ,REPORT_CONTENT , 
-			MEMBER_EMAIL ,MEMBER_NICKNAME 
+	
+	<select id="reportListCount">
+		SELECT 	COUNT(*)
 		FROM REPORT r  
 		JOIN "MEMBER" m ON(R.REPORT_TARGET_NO = M.MEMBER_NO)
+		JOIN "MEMBER" m2 ON(R.REPORTER_NO = M2.MEMBER_NO)
 		WHERE R.ARTIST_GROUP_NO = #{artistGroupNo}
+		<if test="report.key == 1">AND M2.MEMBER_NICKNAME LIKE '%${report.reportSearch}%'</if>
+		<if test="report.key == 2">AND M2.MEMBER_EMAIL LIKE '%${report.reportSearch}%'</if>
+		<if test="report.key == 3">AND M.MEMBER_NICKNAME LIKE '%${report.reportSearch}%'</if>
+		<if test="report.key == 4">AND M.MEMBER_EMAIL LIKE '%${report.reportSearch}%'</if>
+		<if test="report.key == 5">AND REPORT_CONTENT LIKE '%${report.reportSearch}%'</if>
+	</select>
+	
+	
+	<select id="selectReportList">
+		SELECT 	REPORT_NO , REPORTER_NO 
+			REPORT_TARGET_NO , REPORT_PROCEED , 
+			REPORT_URL ,REPORT_CONTENT , 
+			M2.MEMBER_EMAIL AS REPORTER_EMAIL,
+			M2.MEMBER_NICKNAME AS REPORTER_NICKNAME,
+			REPORT_TARGET_NO ,
+			M.MEMBER_EMAIL AS REPORT_TARGET_EMAIL ,
+			M.MEMBER_NICKNAME AS REPORT_TARGET_NICKNAME
+		FROM REPORT r  
+		JOIN "MEMBER" m ON(R.REPORT_TARGET_NO = M.MEMBER_NO)
+		JOIN "MEMBER" m2 ON(R.REPORTER_NO = M2.MEMBER_NO)
+		WHERE R.ARTIST_GROUP_NO = #{artistGroupNo}
+		<if test="report.key == 1">AND M2.MEMBER_NICKNAME LIKE '%${report.reportSearch}%'</if>
+		<if test="report.key == 2">AND M2.MEMBER_EMAIL LIKE '%${report.reportSearch}%'</if>
+		<if test="report.key == 3">AND M.MEMBER_NICKNAME LIKE '%${report.reportSearch}%'</if>
+		<if test="report.key == 4">AND M.MEMBER_EMAIL LIKE '%${report.reportSearch}%'</if>
+		<if test="report.key == 5">AND REPORT_CONTENT LIKE '%${report.reportSearch}%'</if>
 	</select>
 	
 </mapper>

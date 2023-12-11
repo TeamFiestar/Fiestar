@@ -85,12 +85,12 @@
         </table>
         <div class="pagination-area">
           <div class="pagination"><< < 1 2 3 4 5 6 7 8 9 10 > >></div>
-          <form>
-            <select id="select">
-              <option value="1">공지 제목</option>
-              <option value="2">공지 내용</option>
+          <form th:action="|/artistAdmin/${artistGroupTitle}/notice|" method="get">
+            <select id="select" name="key">
+              <option value="1" th:selected="${key == 1}">공지 제목</option>
+              <option value="2" th:selected="${key == 2}">공지 내용</option>
             </select>
-            <input type="text" id="inputSearch" />
+            <input type="text" th:value="${noticeSearch}" id="inputSearch" name="noticeSearch" />
             <button id="pagination-button">검색</button>
           </form>
         </div>

@@ -12,4 +12,10 @@ public interface ChattingMapper {
 
 	int selectMember(int i);
 
+	int insertLiveMessage(Message msg);
+
+	int selectLiveChattingRoom(int artistGroupNo);
+
+	int createLiveChattingRoom(int artistGroupNo);
+
 }

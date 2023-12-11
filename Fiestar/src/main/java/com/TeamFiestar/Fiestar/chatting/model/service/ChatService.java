@@ -9,4 +9,12 @@ public interface ChatService {
 
 	int selectMember(int i);
 
+	int insertLiveMessage(Message msg);
+	
+	int selectLiveChattingRoom(String artistGroupTitle);
+	
+	int createLiveChattingRoom(String artistGroupTitle);
+
+	int createChattingRoom(String artistGroupTitle);
+
 }
