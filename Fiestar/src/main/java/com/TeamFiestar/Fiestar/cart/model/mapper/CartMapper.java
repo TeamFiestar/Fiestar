@@ -18,5 +18,9 @@ public interface CartMapper {
 
 	int deleteCart(int cartNo);
 
+	List<Cart> checkout(int memberNo);
+
+	
+
 
 }

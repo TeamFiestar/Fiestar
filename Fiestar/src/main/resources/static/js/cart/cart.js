@@ -151,8 +151,8 @@ const checkedPrice = () => {
       sum += Number(amountPrice);
    }
 
-   totalPrice.textContent = "$" + sum.toLocaleString();
-   // totalPrice.innerText = sum;
+   // totalPrice.textContent = "$" + sum.toLocaleString();
+   totalPrice.innerText = sum;
 }
 
 
@@ -245,29 +245,86 @@ document.addEventListener('DOMContentLoaded', () => {
    checkedPrice() ;
 });
 
+const form = document.getElementById("checkoutFrm");
+
+    form.addEventListener("submit", e => {
+        e.preventDefault(); // 기본 제출 동작 방지
+
+        // 체크된 항목들의 카트 번호 수집
+        const checkedItems = document.querySelectorAll(".selectEach:checked");
+        console.log("Checked Items:", checkedItems); // 체크된 항목들을 콘솔에 출력
+
+         const cartNumbers = Array.from(checkedItems).map(item.value);
+      //   console.log(item.value);
+ // 각 항목의 value 속성을 콘솔에 출력
+      //   const cartNumbers = Array.from(checkedItems).map(item => {
+      //       console.log("Item Value:", item.value); // 각 항목의 value 속성을 콘솔에 출력
+      //       // return item.value;
+
+      
+
+        // 체크된 항목이 없는 경우 경고
+        if (cartNumbers.length === 0) {
+            alert("선택된 상품이 없습니다.");
+            return;
+        }
+
+      });
+      
+   //    sendCheckoutRequest(cartNumbers);
+   //      function sendCheckoutRequest(cartNumbers) {
+   //       fetch('checkout', { 
+   //           method: 'POST',
+   //           headers: {
+   //               'Content-Type': 'application/json',
+   //           },
+   //           body: JSON.stringify({ cartNumbers: cartNumbers })
+   //       })
+   //       .then(response => {
+   //           if (!response.ok) {
+   //               throw new Error('Network response was not ok.');
+   //           }
+   //           return response.json();
+   //       })
+   //       .then(data => {
+   //           console.log('Checkout Success:', data);
+   //           // 성공적으로 처리된 후의 로직 (예: 페이지 리다이렉션)
+   //       })
+   //       .catch(error => {
+   //           console.error('Checkout Error:', error);
+   //       });
+   //   }
+
+
+   
 
 
 // ---------------------- 제출 버튼 --------------------------------
 
 // 버튼 클릭 -> 체크된 장바구니 번호 넘기기 
 
-const itemList = document.getElementsByClassName("item-list");
-const form = document.getElementById("checkoutFrm");
+// const itemList = document.getElementsByClassName("item-list");
+// console.log(itemList);
+// const form = document.getElementById("checkoutFrm");
 
-// && checkList.length
-form.addEventListener("submit", e => {
-   if(itemList.length == 0 || totalPrice.innerText == 0) {
-      alert("선택된 상품이 없습니다.")         
-      e.preventDefault();
-      return;
-   }
+// // && checkList.length
+// form.addEventListener("submit", e => {
 
-});
+//    if(itemList.length == 0 || totalPrice.innerText == 0) {
+//       alert("선택된 상품이 없습니다.")         
+//       e.preventDefault();
+//       return;
+//    }
+
+// });
+
+
+
 
 // 포스트 방식으로 체크된 장바구니 번호를 checkOut 페이지로 넘긴다.
 // 체크 아웃 페이지에서는 넘어온 
 
-
+const checkList = document.querySelectorAll(".selectEach:checked");
 
 
 

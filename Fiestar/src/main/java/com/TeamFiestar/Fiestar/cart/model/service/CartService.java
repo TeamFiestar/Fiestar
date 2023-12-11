@@ -25,6 +25,8 @@ public interface CartService {
 
 	int deleteCart(int cartNo);
 
+	List<Cart> checkout(int memberNo);
+
 
 	
 	

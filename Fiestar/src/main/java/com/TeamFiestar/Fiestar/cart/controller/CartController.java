@@ -89,9 +89,6 @@ public class CartController {
 
 	}
 
-	
-	
-
 //	
 //	@PostMapping("cartPage")
 //	public int updateCart(@RequestBody Cart cart) {

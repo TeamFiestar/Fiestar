@@ -37,4 +37,9 @@ public class CartServiceImpl implements CartService{
 		return mapper.deleteCart(cartNo);
 	}
 	
+	@Override
+	public List<Cart> checkout(int memberNo) {
+		// TODO Auto-generated method stub
+		return mapper.checkout(memberNo);
+	}
 }

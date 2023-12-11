@@ -34,6 +34,23 @@
 		WHERE CART_NO = #{cartNo}
 	</delete>
 	
+	<select id="checkout" resultType="Cart">
+		SELECT MEMBER_NO, 
+		PRODUCT_NAME, 
+		PRODUCT_IMAGE, 
+		PRODUCT_PRICE, 
+		PRODUCT_COUNT,
+		PRODUCT_NO,
+		PRODUCT_OPTION_NAME, 
+		CART_NO
+		FROM "CART"
+		JOIN "PRODUCT" USING(PRODUCT_NO)
+		LEFT JOIN "PRODUCT_OPTION" USING(PRODUCT_NO)
+		WHERE MEMBER_NO = #{memberNo}
+		
+		
+	</select>
+	
 	
 
 	
