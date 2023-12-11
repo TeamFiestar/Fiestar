@@ -1,35 +1,7 @@
-// 이미지 슬라이드
-let slideIndex = 1;
-showSlides(slideIndex);
-
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("slide");
-  let dots = document.getElementsByClassName("dot");
-  if (n > slides.length) { slideIndex = 1 }
-  if (n < 1) { slideIndex = slides.length }
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex - 1].style.display = "block";
-  dots[slideIndex - 1].className += " active";
-}
-
 
 
 /* 아티스트 별 최신글 */
-const swiper = new Swiper('.swiper-container', {
+const swiper = new swiper('.swiper-container', {
   //기본 셋팅
   //방향 셋팅 vertical 수직, horizontal 수평 설정이 없으면 수평
   direction: 'horizontal',
@@ -56,24 +28,6 @@ const swiper = new Swiper('.swiper-container', {
     prevEl: '.swiper-button-prev',
   },
 });
-
-// const toggleModal = (event) => {
-//   console.log(event);
-//   event.preventDefault();
-//   typeof modal != "undefined" && modal != null && isModalOpen(modal) ? closeModal(modal) : openModal(modal);
-// };
-
-// const modal_background = document.getElementById('feedDetail');
-
-// const isModalOpen = (modal) => {
-//   // modal_background.classList.add("show");
-// };
-
-// const closeModal = (modal) => {
-//   modal.classList.remov("show");
-//   // modal_background.classList.remove("show");
-//   document.body.style.overflow = "";
-// };
 
 function openModal(){
   const modal = document.getElementById('feedDetail');

@@ -16,6 +16,10 @@ public class Board {
 	private int boardNo;
 	private String boardContent;
 	private String boardEnrollDate;
+	private String boardEnrollDate2;
+	private String boardEnrollDateDd;
+	private String boardEnrollDateMon;
+	
 	private String BoardDelFl;
 	private int memberNo;
 

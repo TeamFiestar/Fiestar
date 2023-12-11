@@ -19,23 +19,6 @@ public class BoardServiceImpl implements BoardService {
 
 	private final BoardMapper mapper;
 	
-//	@Override
-//	public Board selectBoard(Map<String, Object> map) {
-//		
-//		List<Board> boardList = mapper.selectBoard(map);
-//		
-//		Board paramMap = new HashMap<>();
-//		
-//		if (map.containsKey("boardNo")) {
-//			Board boardDetail = mapper.detail(map);
-//			map.put("boardDetail",boardDetail);
-//		}
-//		
-//		map.put("boardList", boardList);
-//		
-//		
-//		return paramMap;
-//	}
 	@Override
 	public Map<String, Object> selectBoard(Map<String, Object> paramMap) {
 		
@@ -44,7 +27,7 @@ public class BoardServiceImpl implements BoardService {
 		Map<String, Object> map = new HashMap<>();
 		
 		if (paramMap.containsKey("boardNo")) {
-			Board boardDetail = mapper.detail(map);
+			Board boardDetail = mapper.boardDetail(map);
 			map.put("boardDetail",boardDetail);
 		}
 		
@@ -55,10 +38,15 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	// 게시글 상세 조회
-	@Override
-	public Board detail(Map<String, Object> map) {
-		return mapper.detail(map);
+@Override
+public Board boardDetail(Map<String, Object> map) {
+	
+	if (map.containsKey("boardNo")) {
+		Board boardDetail = mapper.boardDetail(map);
+		map.put("boardDetail",boardDetail);
 	}
+	return (Board)map.get("boardDetail");
+}
 	
 	// 게시글 좋아요 여부 확인
 	@Override
@@ -92,6 +80,22 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int artistGroupNo(String artistGroupTitle) {
 		return mapper.artistGroupNo(artistGroupTitle);
+	}
+	
+	@Override
+	public Map<String, Object> selectArtistBoard(Map<String, Object> paramMap) {
+		
+		List<Board> boardList = mapper.selectArtistBoard(paramMap);
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		if (paramMap.containsKey("boardNo")) {
+			Board boardDetail = mapper.boardDetail(map);
+			map.put("boardDetail",boardDetail);
+		}
+		
+		map.put("boardList", boardList);
+		return map;
 	}
 	
 	

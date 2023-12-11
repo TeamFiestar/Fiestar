@@ -24,10 +24,10 @@
 
                 <!-- 아티스트 프로필  페이지로 이동-->
                 <div id="teamProfile">
-                    <a href="">
+                    <a href="#">
                         
                         <img src="/artistHomepageImg/lesserafim.jpg" alt="아티스트프로필이미지" id="artistImg"></a>
-                    <a href="">
+                    <a href="#">
                         <img src="/artistHomepageImg/bts.jpg" style="border-radius: 50%; margin-left: 20px;" >
                         <p id="artistName" th:text="${artistGroupTitle}" style="margin-left: 20px; font-size: 70px;">LE SSERAFIM</p>
                     </a>
@@ -50,7 +50,7 @@
                     <div class="board-area" onclick="openModal()">
                         <div>
                             <!-- <i class="fa-regular fa-circle-user fa-2xl" style="color: #7743DB"></i> -->
-                            <img th:unless="*{memberProfile}" th:src="#{user.default.image}" style="width:40px;"> 
+                            <img th:unless="*{memberProfile}" th:src="#{user.default.image}" style="width:40px; height:40px; border-radius:50%;"> 
                             <img th:if="*{memberProfile}" th:src="*{memberProfile}"style="width:40px; height:40px; border-radius:50%;">
                         </div>
                         <div>
@@ -109,7 +109,7 @@
 
     <script th:inline="javascript">
 
-
+    
         // messages.properties의 값을 얻어와 전역 변수로 선언
         const defaultImage = /*[[#{user.default.image}]]*/ "기본 이미지";
         const boardDetail = /*[[${boardDetail}]]*/ "dadasas";

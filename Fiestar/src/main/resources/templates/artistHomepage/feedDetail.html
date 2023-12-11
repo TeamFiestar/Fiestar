@@ -1,12 +1,13 @@
    <!-- 게시글 상세보기 modal -->
-   <div class="feedDetailModal" id="feedDetail">
+   <div class="feedDetailModal" id="feedDetail" style="display:relative; z-index:3;"  th:object="${board}">
     <div id="dmodal-body">
         <div>
             <button class="closeModal" data-target="feedDetail" onclick="closeModal()">X</button>
         </div>
         <div class="feedContent">
             <div class="profile">
-                <div><a href="#"><i class="fa-regular fa-circle-user fa-2xl" style="color: #7743DB"></i></a></i>
+                <div>
+                    <i class="fa-regular fa-circle-user fa-2xl" style="color: #7743DB"></i>
                 </div>
                 <div>
                     <Strong>카즈하</Strong>
@@ -36,7 +37,7 @@
 
                 <!-- 이미지가 있을 경우 -->
                 <div class="feedImg">
-                    <img src="/artistHomepageImg/1.jpg" width="500px">
+                    <img src="/artistHomepageImg/1.jpg" width="620px">
                 </div>
                 <div class="feedContent">
                     LE SSERAFIM (르세라핌)은 대한민국의 걸그룹이다. 세상의 시선에 흔들리지 않고 두려움 없이

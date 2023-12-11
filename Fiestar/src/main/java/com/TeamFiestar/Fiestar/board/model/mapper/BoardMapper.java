@@ -12,7 +12,6 @@ public interface BoardMapper {
 
 	List<Board> selectBoard(Map<String, Object> paramMap);
 
-	Board detail(Map<String, Object> map);
 
 	int likeCheck(Map<String, Object> map);
 
@@ -23,5 +22,9 @@ public interface BoardMapper {
 	int countBoardLike(Integer integer);
 
 	int artistGroupNo(String artistGroupTitle);
+
+	List<Board> selectArtistBoard(Map<String, Object> paramMap);
+
+	Board boardDetail(Map<String, Object> map);
 
 }

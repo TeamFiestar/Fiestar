@@ -35,7 +35,8 @@
   
   	<!--게시글 조회-->
  	<select id="selectBoard" resultMap="board_rm">
-		SELECT BOARD_NO, MEMBER_AUTHORITY, MEMBER_NICKNAME, BOARD_CONTENT,MEMBER_PROFILE, MEMBER_NO,
+		SELECT BOARD_NO, MEMBER_AUTHORITY, MEMBER_NICKNAME, BOARD_CONTENT,MEMBER_PROFILE,  MEMBER_NO, 
+		
 		<![CDATA[	
 			
 			  	CASE  
@@ -57,12 +58,42 @@
 		
 		FROM BOARD B
 		JOIN "MEMBER" USING("MEMBER_NO")
-	<!--	JOIN "ARTIST" USING-->
-		
-		<!--WHERE ARTIST_GROUP_NO = #{artistGroupNo}-->
 		
 		WHERE BOARD_DEL_FL = 'N'
 		AND ARTIST_GROUP_NO = #{artistGroupNo}
+		ORDER BY BOARD_NO DESC
+	</select>
+	
+	
+	<!--아티스트 게시글 조회-->
+ 	<select id="selectArtistBoard" resultMap="board_rm">
+		SELECT BOARD_NO, MEMBER_AUTHORITY, MEMBER_NICKNAME, BOARD_CONTENT,MEMBER_PROFILE, MEMBER_NO,
+		TO_CHAR(BOARD_ENROLL_DATE2, 'DD') AS BOARD_ENROLL_DATE_DD, TO_CHAR(BOARD_ENROLL_DATE2, 'MON','NLS_DATE_LANGUAGE=ENGLISH') AS BOARD_ENROLL_DATE_MON,
+		<![CDATA[	
+			
+			  	CASE  
+			         WHEN SYSDATE - BOARD_ENROLL_DATE < 1/24/60
+			         THEN FLOOR( (SYSDATE - BOARD_ENROLL_DATE) * 24 * 60 * 60 ) || '초 전'
+			         WHEN SYSDATE - BOARD_ENROLL_DATE < 1/24
+			         THEN FLOOR( (SYSDATE - BOARD_ENROLL_DATE) * 24 * 60) || '분 전'
+			         WHEN SYSDATE - BOARD_ENROLL_DATE < 1
+			         THEN FLOOR( (SYSDATE - BOARD_ENROLL_DATE) * 24) || '시간 전'
+			         ELSE TO_CHAR(BOARD_ENROLL_DATE, 'YYYY-MM-DD')
+		      	END BOARD_ENROLL_DATE,	
+	      	]]>
+		
+		(SELECT COUNT(*) FROM "BOARD_LIKE" L 
+			WHERE L.BOARD_NO = B.BOARD_NO) LIKE_COUNT,
+		
+		(SELECT COUNT(*) FROM "BOARD_COMMENT" C
+	      		 WHERE C.BOARD_NO = B.BOARD_NO) COMMENT_COUNT
+		
+		FROM BOARD B
+		JOIN "MEMBER" USING("MEMBER_NO")
+	
+		WHERE BOARD_DEL_FL = 'N'
+		AND ARTIST_GROUP_NO = #{artistGroupNo}
+		AND MEMBER_AUTHORITY = 2
 		ORDER BY BOARD_NO DESC
 	</select>
 
@@ -70,7 +101,7 @@
 	<!-- ===========================게시글 상세 조회==================================-->
 	
 	<!--게시글 상세조회	-->
-	<select id="detail" resultMap="board_rm">
+	<select id="boardDetail" resultMap="board_rm">
 		SELECT BOARD_NO, BOARD_CONTENT, MEMBER_AUTHORITY,MEMBER_NICKNAME, MEMBER_PROFILE, MEMBER_NO,
 		
 		<![CDATA[	
@@ -167,6 +198,10 @@
 		CONNECT BY PRIOR BOARD_COMMENT_NO = BOARD_PARENT_COMMENT_NO
 		ORDER SIBLINGS BY BOARD_COMMENT_NO
 	</select>
+	
+	
+	
+	
 	
 
 
