@@ -88,6 +88,28 @@ const checkedPrice = () => {
 
 }
 
+// selectAll 체크박스 상태 변경 시
+selectAll.addEventListener("change", () => {
+   for (let selectEach of selectEachList) {
+      selectEach.checked = selectAll.checked;
+   }
+   checkedPrice(); // 총 가격 업데이트
+});
+
+// 각각의 selectEach 체크박스 상태 변경 시
+for (let selectEach of selectEachList) {
+   selectEach.addEventListener("change", () => {
+      checkedPrice(); // 총 가격 업데이트
+   });
+}
+
+
+
+
+
+
+
+
 
 // for(let i=0; i<plusList.length; i++) {
 //    plusList[i].addEventListener("click", e => {

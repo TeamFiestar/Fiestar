@@ -287,7 +287,7 @@ selectAll.addEventListener("change", () => {
 // plus 버튼 클릭 시 호출
 for (let i = 0; i < plusList.length; i++) {
    plusList[i].addEventListener("click", e => {
-      // ... 수량 증가 로직 ...
+      
       updateTotalPrice();
    });
 }
