@@ -2,8 +2,12 @@ package com.TeamFiestar.Fiestar.cart.model.service;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.TeamFiestar.Fiestar.cart.model.dto.Cart;
 
+@Transactional
 public interface CartService {
 	
 	
@@ -13,6 +17,12 @@ public interface CartService {
 	 * @return 장바구니 내용 조회
 	 */
 	List<Cart> cartPage(int memberNo);
+
+	int updateCart(Cart cart);
+
+	
+	
+	
 
 	
 	

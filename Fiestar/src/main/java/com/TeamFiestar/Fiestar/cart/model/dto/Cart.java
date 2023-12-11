@@ -12,10 +12,15 @@ public class Cart {
 	private String productName;
 	private String productImg;
 	private String productPrice;
-	private String productCount;
+	private	int productCount;
 	private int productNo;
 	private String productOptionName;
 	private int cartNo;
+	
+	private String eachPrice;
+	
+	
+	private String amountPrice;
 	
 	
 	

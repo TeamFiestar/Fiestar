@@ -21,5 +21,14 @@
 	
 	
 	
+    <update id="updateCart">
+        UPDATE "CART" SET
+        PRODUCT_COUNT = #{productCount},
+       	EACH_PRICE = #{eachPrice}
+        WHERE CART_NO = #{cartNo}
+    </update>
+	
+	
+	
 	
 </mapper>
