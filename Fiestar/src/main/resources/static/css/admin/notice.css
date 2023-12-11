@@ -154,7 +154,7 @@ main {
   width: 50px;
   height: 30px;
 }
-.noticeModal {
+.noticeModal, .updateModal {
   position: fixed;
   top: 0;
   left: 0;
@@ -165,10 +165,10 @@ main {
 
   background-color: rgba(0, 0, 0, 0.4);
 }
-.noticeModal.show {
+.show {
   display: block;
 }
-.noticeModal.hidden {
+.hidden {
   display: hidden;
 }
 .modal-body {
@@ -190,7 +190,8 @@ main {
   overflow: auto;
   height: 800px;
 }
-#modalCloseButton {
+
+.modalCloseButton {
   display: flex;
   background-color: white;
   border: none;
