@@ -1,6 +1,8 @@
 package com.TeamFiestar.Fiestar.cart.model.mapper;
 
-import java.util.List; 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.http.ResponseEntity;
@@ -14,5 +16,7 @@ public interface CartMapper {
 
 	int updateCart(Cart cart);
 
-	
+	int deleteCart(int cartNo);
+
+
 }

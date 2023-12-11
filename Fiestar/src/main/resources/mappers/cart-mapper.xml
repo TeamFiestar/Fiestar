@@ -27,7 +27,13 @@
        	EACH_PRICE = #{eachPrice}
         WHERE CART_NO = #{cartNo}
     </update>
-	
+    
+    
+    <delete id="deleteCart">
+		DELETE FROM CART
+		WHERE CART_NO = #{cartNo}
+	</delete>
+
 	
 	
 	

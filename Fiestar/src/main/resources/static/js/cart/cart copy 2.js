@@ -27,15 +27,15 @@ for (let i = 0; i < xBtnList.length; i++) {
 
       if (confirmation) {
          // "예"를 선택한 경우 상품 삭제 처리
-         const row = e.target.parentElement.parentElement.parentElement;
-         let cartNo = e.target.parentElement.previousElementSibling.previousElementSibling.children[4].innerText;
-
-         console.log(cartNo);
-
-         // 필요한 데이터 
+         const cartRow = e.target.parentElement.parentElement.parentElement;
+         let cartNo = e.target.parentElement.previousElementSibling.previousElementSibling;
+         let deletedCartNo = Number(cartNo.innerText);
 
          // 서버에 삭제 요청 보내기
-         sendDeleteRequest(cartNo, row);
+         sendDeleteRequest(deletedCartNo);
+
+         // 화면에서 상품 행 삭제
+         cartRow.remove();
 
          // 장바구니 총 가격을 다시 계산
          checkedPrice();
@@ -46,63 +46,30 @@ for (let i = 0; i < xBtnList.length; i++) {
    });
 }
 
-
       // for(let selectEach of selectEachList){
       //    selectEach.checked = selectAll.checked;
       // }
       
    // 이벤트가 발생 했을 때 -> checkedPrice(); 함수 호출
 
-function sendDeleteRequest(cartNo, row) {
+function sendDeleteRequest(cartNo) {
    fetch('cartPage', { 
-      method: 'delete',
+      method: 'POST',
       headers: {
          'Content-Type': 'application/json',
       },
-
-      body : cartNo
-      // body: JSON.stringify({ cartNo: cartNo })
-      // body : cartNo: Number(cartNo.innerText)
+      body: JSON.stringify({ cartNo: cartNo })
    })
-   .then(response => response.text() )
-
-   .then(result => {
-      console.log(result);
-      if(result > 0){
-         row.remove();
+   .then(response => {
+      if (response.ok) {
+   
+         return;
+      } else {
+         throw new Error('상품 삭제에 실패했습니다.');
       }
    })
-
    .catch(error => console.error('Error:', error));
-
 }
-
-// ----------------------------------------------------------
-
-// function sendDeleteRequest(cartNo) {
-//    fetch('cartPage', { 
-//       method: 'delete',
-//       headers: {
-//          'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify({ cartNo: Number(cartNo.innerText) })
-
-//    })
-//    .then(response => {
-//       if (response.ok) {
-   
-//          return;
-
-//       } else {
-//          throw new Error('상품 삭제에 실패했습니다.');
-//       }
-//    })
-//    .catch(error => console.error('Error:', error));
-// }
-
-
-
-
 
 // ---------------------- 삭제 ------------------------------
 

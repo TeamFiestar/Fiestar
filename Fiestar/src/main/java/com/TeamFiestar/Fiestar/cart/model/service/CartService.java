@@ -1,6 +1,8 @@
 package com.TeamFiestar.Fiestar.cart.model.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,9 +22,9 @@ public interface CartService {
 
 	int updateCart(Cart cart);
 
-	
-	
-	
+
+	int deleteCart(int cartNo);
+
 
 	
 	
