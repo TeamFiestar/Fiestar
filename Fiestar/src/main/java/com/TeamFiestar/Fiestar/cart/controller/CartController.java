@@ -122,12 +122,5 @@ public class CartController {
 		return "cart/checkout-result";
 	}
 
-//	@PostMapping("checkout")
-//	public String checkout() {
-//		return "cart/checkout";
-//	}
-//	
-
-//	-----------------------------------------
 
 }

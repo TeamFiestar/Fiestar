@@ -100,11 +100,8 @@ function sendDeleteRequest(cartNo, row) {
 //    .catch(error => console.error('Error:', error));
 // }
 
-
-
-
-
 // ---------------------- 삭제 ------------------------------
+
 
 
 selectAll.addEventListener("change", () => {
@@ -131,8 +128,15 @@ const clacPrice = (btn) => {
    const defaultPrice = btn.parentElement.children[3];
    const amountPrice = btn.parentElement.nextElementSibling;
 
-   amountPrice.innerText = Number(itemCount.innerText) * Number(defaultPrice.innerText);
+   // amountPrice = Number(itemCount.innerText) * Number(defaultPrice.innerText);
+   
+
+   amountPrice.innerText = Number(itemCount.innerText) * Number(defaultPrice.innerText)
+
+   // amountPrice.textContent = amountPrice.innerText.toLocaleString();
+   
 }
+
 
 // 체크된 상품의 가격 
 
@@ -147,7 +151,8 @@ const checkedPrice = () => {
       sum += Number(amountPrice);
    }
 
-   totalPrice.innerText = sum;
+   totalPrice.textContent = "$" + sum.toLocaleString();
+   // totalPrice.innerText = sum;
 }
 
 
@@ -164,12 +169,15 @@ for(let i=0; i<plusList.length; i++) {
       clacPrice(e.target);
       checkedPrice();
       let eachPrice = e.target.parentElement.nextElementSibling.innerText;
+
+      eachPrice.textContent = 
       
       console.log(eachPrice);
       // let newQuantity = itemCount.innerText; 
     
 
       sendUpdateRequest(cartNo, itemCount, eachPrice); // isSelected를 true로 가정
+
    });
 }
 
@@ -242,9 +250,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-
 // ---------------------- 제출 버튼 --------------------------------
+
+// 버튼 클릭 -> 체크된 장바구니 번호 넘기기 
 
 const itemList = document.getElementsByClassName("item-list");
 const form = document.getElementById("checkoutFrm");
@@ -259,9 +267,79 @@ form.addEventListener("submit", e => {
 
 });
 
-// 체크 버튼이 클릭 되면 체크된 장바구니 번호 & 상품 가격을 
-// 체크 버튼이 클릭되면 가격, 총 가격 넣기
 
+// for (let i = 0; i < xBtnList.length; i++) {
+//    xBtnList[i].addEventListener("click", e => {
+//       // 확인 메시지 표시
+//       const confirmation = confirm("선택하신 상품을 삭제하겠습니까?");
+
+//       if (confirmation) {
+//          // "예"를 선택한 경우 상품 삭제 처리
+//          const row = e.target.parentElement.parentElement.parentElement;
+//          let cartNo = e.target.parentElement.previousElementSibling.previousElementSibling.children[4].innerText;
+
+//          console.log(cartNo);
+
+//          // 필요한 데이터 
+
+//          // 서버에 삭제 요청 보내기
+//          sendDeleteRequest(cartNo, row);
+
+//          // 장바구니 총 가격을 다시 계산
+//          checkedPrice();
+         
+//       } else {
+//          // "아니오"를 선택한 경우 아무 작업도 하지 않음
+//       }
+//    });
+// }
+
+// function sendCart(cartNo, row) {
+//    fetch('cartPage', { 
+//       method: 'delete',
+//       headers: {
+//          'Content-Type': 'application/json',
+//       },
+
+//       body : cartNo
+//       // body: JSON.stringify({ cartNo: cartNo })
+//       // body : cartNo: Number(cartNo.innerText)
+//    })
+//    .then(response => response.text() )
+
+//    .then(result => {
+//       console.log(result);
+//       if(result > 0){
+//          row.remove();
+//       }
+//    })
+
+//    .catch(error => console.error('Error:', error));
+
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 체크 버튼이 클릭 되면    체크된 장바구니 번호 & 상품 가격을 
+
+// 결제 버튼 누르면 체크된 장바구니만 담아서 checkout - result에 
+
+//  결제 버튼 클릭 -> 체크된 장바구니 번호 & 
 
 
 // 총 결제 금액을 업데이트하는 함수
