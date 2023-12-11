@@ -67,7 +67,9 @@ h1 {
 
 .option-text{
    font-size: 14px;
-   margin-left: 60px;
+   /* margin-left: 60px; */
+   position: absolute;
+   /* left: 200px; */
 }
 
 
@@ -235,6 +237,11 @@ img{
 .input-plus{
    display: none;
 }
+
+.keyring{
+   margin-bottom: 8px;
+}
+
 
 .item-amount > .amount{
    background-color: #eff7ff;

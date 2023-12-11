@@ -156,9 +156,6 @@ const checkedPrice = () => {
 }
 
 
-
-
-
 for(let i=0; i<plusList.length; i++) {
    plusList[i].addEventListener("click", e => {
       // let amountPrice = e.target.nextElementSibling.nextElementSibling.nextElementSibling;
@@ -267,6 +264,15 @@ form.addEventListener("submit", e => {
 
 });
 
+// 포스트 방식으로 체크된 장바구니 번호를 checkOut 페이지로 넘긴다.
+// 체크 아웃 페이지에서는 넘어온 
+
+
+
+
+
+
+
 
 // for (let i = 0; i < xBtnList.length; i++) {
 //    xBtnList[i].addEventListener("click", e => {
@@ -317,6 +323,7 @@ form.addEventListener("submit", e => {
 //    .catch(error => console.error('Error:', error));
 
 // }
+
 
 
 

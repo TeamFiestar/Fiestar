@@ -19,6 +19,8 @@
 
    <section class="frame"> 
 
+      
+
       <form action="checkout" method="post" id="checkoutFrm">
 
          <div class="cart-area">
@@ -66,17 +68,20 @@
    
                <!-- <div class="item-name"> -->
                <!-- <a th:href="@{}" class="keyring">뉴진스 키링</a> -->
-               
-                <div th:text="${cart.productName}" class="keyring"></div>
+               <div class="item-nameNop">
 
-                
-               <!-- </div> -->
-   
-               <div>
-                  <span class="option-text"> 옵션 : </span> 
-                  <span th:text="${cart.productOptionName}" class="item-option"></span>
+                  <div th:text="${cart.productName}" class="keyring"></div>
+                  
+                  
+                  <!-- </div> -->
+                  
+                  <div>
+                     <span th:text="${cart.productOptionName}" class="option-text"> 옵션 : </span> 
+                     <span  class="option-text"> 옵션 : </span> 
+                     <!-- <span th:text="${cart.productOptionName}" class="item-option"></span> -->
+                  </div>
+                  
                </div>
-   
                <!-- 상품 수량 + & -  -->
    
    
@@ -153,8 +158,6 @@
             <!-- 이미지 영역 -->
 <!-- 
             <img src="/images/photobook.png" alt="">
-
-
 
             <a href="#" class="keyring">LE SSERAFIM</a>
 

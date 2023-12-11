@@ -89,20 +89,8 @@ public class CartController {
 
 	}
 
-//	 @DeleteMapping("cartPage")
-//	 public ResponseEntity<?> deleteCart(@RequestBody Cart cart) {
-//	        
-//	        try {
-//	          
-//	        	return ResponseEntity.ok().build();
-//	        	
-//	        } catch (Exception e) {
-//	        	
-//	            e.printStackTrace();
-//	            
-//	            return ResponseEntity.status(HttpStatus.NOT_MODIFIED).build();
-//	        }
-//	    }
+	
+	
 
 //	
 //	@PostMapping("cartPage")
@@ -121,6 +109,7 @@ public class CartController {
 
 		return "cart/checkout-result";
 	}
-
+	
+	
 
 }

@@ -33,6 +33,8 @@
 		DELETE FROM CART
 		WHERE CART_NO = #{cartNo}
 	</delete>
+	
+	
 
 	
 	
