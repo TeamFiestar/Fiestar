@@ -19,6 +19,7 @@ public class Comment {
 	
 	private String memberNickname;
 	private String memberProfile;
+	private String commentType;
 	
 
 }
