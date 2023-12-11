@@ -8,7 +8,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 
 import com.TeamFiestar.Fiestar.admin.model.dto.AdminPagination;
-import com.TeamFiestar.Fiestar.admin.model.mapper.adminMapper;
+import com.TeamFiestar.Fiestar.admin.model.mapper.AdminMapper;
 import com.TeamFiestar.Fiestar.board.model.dto.Board;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
@@ -16,9 +16,9 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class adminServiceImpl implements adminService{
+public class AdminServiceImpl implements AdminService{
 
-	private final adminMapper mapper;
+	private final AdminMapper mapper;
 	
 	@Override
 	public Map<String, Object> selectMember(Member member, int cp) {
@@ -59,10 +59,7 @@ public class adminServiceImpl implements adminService{
 	}
 	
 	
-	@Override
-	public List<Board> selectBoard(int memberNo) {
-		return mapper.selectBoard(memberNo);
-	}
+	
 	
 	
 	@Override
@@ -105,17 +102,11 @@ public class adminServiceImpl implements adminService{
 		return map;
 	}
 	
-	@Override
-	public int update(Map<String, Object> paramMap) {
-		return mapper.update(paramMap);
-	}
+	
 	
 	
 	@Override
 	public Map<String, Object> subscribeMember(Member member, int cp, int artistGroupNo) {
-		Map<String, Object> map1 = new HashMap<>();
-		map1.put("member", member);
-		map1.put("artistGroupNo",artistGroupNo);
 		
 		int countList = mapper.countSubscribe(artistGroupNo);
 		AdminPagination pagination = new AdminPagination(countList, cp);
@@ -125,8 +116,31 @@ public class adminServiceImpl implements adminService{
 		
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		List<Member> subscribeList = mapper.subscribeMember(rowBounds,artistGroupNo);
+		List<Member> subscribeList = mapper.subscribeMember(rowBounds, artistGroupNo);
+		String artistGroupTitle = mapper.subArtistTitle(artistGroupNo);
 		
+		Map<String, Object> map = new HashMap<>();
+		map.put("subscribeList", subscribeList);
+		map.put("pagination", pagination);
+		map.put("artistGroupTitle", artistGroupTitle);
+		
+		return map;
+	}
+	
+	
+	@Override
+	public Map<String, Object> searchSubscribe(Map<String, Object> paramMap, int cp, int artistGroupNo) {
+		paramMap.put("artistGroupNo", artistGroupNo);
+		
+		int countList = mapper.countSearchSubscribe(paramMap);
+		AdminPagination pagination = new AdminPagination(countList, cp);
+		
+		int offset = (pagination.getCurrentPage()-1) * pagination.getLimit();
+		int limit = pagination.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		List<Member> subscribeList = mapper.searchSubscribe(paramMap, rowBounds);
 		Map<String, Object> map = new HashMap<>();
 		map.put("subscribeList", subscribeList);
 		map.put("pagination", pagination);
@@ -136,25 +150,12 @@ public class adminServiceImpl implements adminService{
 	
 	
 	@Override
-	public Map<String, Object> searchSubscribe(Map<String, Object> paramMap, int cp, int artistGroupNo) {
-		Map<String, Object> map1 = new HashMap<>();
-		map1.put("paramMap", paramMap);
-		map1.put("artistGroupNo",artistGroupNo);
+	public List<Board> selectSubscribeBoard(int memberNo, int artistGroupNo) {
 		
-		int countList = mapper.countSearchSubscribe(map1);
-		AdminPagination pagination = new AdminPagination(countList, cp);
-		
-		int offset = (pagination.getCurrentPage()-1) * pagination.getLimit();
-		int limit = pagination.getLimit();
-		
-		RowBounds rowBounds = new RowBounds(offset, limit);
-		
-		List<Member> subscribeList = mapper.searchSubscribe(rowBounds,paramMap,artistGroupNo);
 		Map<String, Object> map = new HashMap<>();
-		map.put("subscribeList", subscribeList);
-		map.put("pagination", pagination);
-		
-		return map;
+		map.put("memberNo", memberNo);
+		map.put("artistGroupNo", artistGroupNo);
+		return mapper.selectSubscribeBoard(map);
 	}
 	
 //	@Override

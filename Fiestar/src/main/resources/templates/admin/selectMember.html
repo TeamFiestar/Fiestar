@@ -50,28 +50,18 @@
           </thead>
           <!-- <tbody id="memberTableBody"></tbody> -->
           <!-- <th:block th:if="${#}"></th:block> -->
-          <tr
-            class="tr-body"
-            th:each="member : ${memberList}"
-            th:object="${member}"
-          >
-            <td th:text="*{memberNo}">회원번호</td>
-            <td th:text="*{memberNickname}">회원 닉네임</td>
-            <td
-              class="btn-open-popup"
-              th:text="*{memberEmail}"
-              th:onclick="|openModal(*{memberNo})|"
-            >
-              회원 이메일
-            </td>
-            <td th:text="*{memberAddress}">회원 주소</td>
-            <th:block th:if="*{memberAuthority == 1}"
-              ><td th:text="일반">권한</td></th:block
-            >
-
-            <td>3</td>
-            <td><button>탈퇴</button></td>
-          </tr>
+          <tbody class="tbody2">
+            <tr class="tr-body" th:each="member : ${memberList}" th:object="${member}">
+              <td th:text="*{memberNo}">회원번호</td>
+              <td th:text="*{memberNickname}">회원 닉네임</td>
+              <td class="btn-open-popup" th:text="*{memberEmail}" th:onclick="|openModal(*{memberNo})|">회원 이메일</td>
+              <td th:text="*{memberAddress}">회원 주소</td>
+              <th:block th:if="*{memberAuthority == 1}"><td th:text="일반">권한</td></th:block>
+              <th:block th:if="*{memberAuthority == 2}"><td th:text="아티스트">권한</td> </th:block>
+              <td th:text="*{countReport}">신고 누적 횟수</td>
+              <td><button onclick="withDraw(this)">탈퇴</button></td>
+            </tr>
+          </tbody>
         </table>
         <!-- 페이지네이션 -->
         <div class="pagination-area" th:if="${#lists.size(memberList) > 0}">
@@ -80,70 +70,50 @@
               <a th:href="@{/admin/selectMember(cp=1)}">&lt;&lt;</a>
             </li>
             <li>
-              <a th:href="@{/admin/selectMember(cp=${pagination.prevPage})}"
-                >&lt;</a
-              >
+              <a th:href="@{/admin/selectMember(cp=${pagination.prevPage})}">&lt;</a>
             </li>
-            <th:block
-              th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}"
-            >
+            <th:block th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}">
               <li th:if="${i == pagination.currentPage}">
                 <a th:text="${i}">currentPage</a>
               </li>
               <li th:unless="${i == pagination.currentPage}">
-                <a th:href="@{/admin/selectMember(cp=${i})}" th:text="${i}"
-                  >cp</a
-                >
+                <a th:href="@{/admin/selectMember(cp=${i})}" th:text="${i}">cp</a>
               </li>
             </th:block>
             <li>
-              <a th:href="@{/admin/selectMember(cp=${pagination.nextPage})}"
-                >&gt;</a
-              >
+              <a th:href="@{/admin/selectMember(cp=${pagination.nextPage})}">&gt;</a>
             </li>
             <li>
-              <a th:href="@{/admin/selectMember(cp=${pagination.maxPage})}"
-                >&gt;&gt;</a
-              >
+              <a th:href="@{/admin/selectMember(cp=${pagination.maxPage})}">&gt;&gt;</a>
             </li>
           </ul>
           <!-- 검색 -->
           <ul class="pagination" th:unless="${param.key == null}">
             <li>
-              <a
-                th:href="@{/admin/selectMember(cp=1, key=${param.key}, query=${param.query})}"
-                >&lt;&lt;</a
-              >
+              <a th:href="@{/admin/selectMember(cp=1, key=${param.key}, query=${param.query})}">&lt;&lt;</a>
             </li>
             <li>
-              <a
-                th:href="@{/admin/selectMember(cp=${pagination.prevPage}, key=${param.key}, query=${param.query})}"
+              <a th:href="@{/admin/selectMember(cp=${pagination.prevPage}, key=${param.key}, query=${param.query})}"
                 >&lt;</a
               >
             </li>
-            <th:block
-              th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}"
-            >
+            <th:block th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}">
               <li th:if="${i == pagination.currentPage}">
                 <a th:text="${i}">currentPage</a>
               </li>
               <li th:unless="${i == pagination.currentPage}">
-                <a
-                  th:href="@{/admin/selectMember(cp=${i}, key=${param.key}, query=${param.query})}"
-                  th:text="${i}"
+                <a th:href="@{/admin/selectMember(cp=${i}, key=${param.key}, query=${param.query})}" th:text="${i}"
                   >cp</a
                 >
               </li>
             </th:block>
             <li>
-              <a
-                th:href="@{/admin/selectMember(cp=${pagination.nextPage}, key=${param.key}, query=${param.query})}"
+              <a th:href="@{/admin/selectMember(cp=${pagination.nextPage}, key=${param.key}, query=${param.query})}"
                 >&gt;</a
               >
             </li>
             <li>
-              <a
-                th:href="@{/admin/selectMember(cp=${pagination.maxPage}, key=${param.key}, query=${param.query})}"
+              <a th:href="@{/admin/selectMember(cp=${pagination.maxPage}, key=${param.key}, query=${param.query})}"
                 >&gt;&gt;</a
               >
             </li>

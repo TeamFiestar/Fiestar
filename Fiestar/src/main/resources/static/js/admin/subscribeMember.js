@@ -7,7 +7,7 @@ const tbody = document.querySelector(".tbody");
 const tr = document.querySelector("tr");
 
 function selectBoard(memberNo) {
-  fetch("/admin/selectBoard?memberNo=" + memberNo)
+  fetch("/admin/selectSubscribeBoard/" + artistGroupNo + "?memberNo=" + memberNo)
     .then((resp) => resp.json())
     .then((boardList) => {
       console.log(boardList);
@@ -44,3 +44,24 @@ function selectBoard(memberNo) {
       });
     });
 }
+function openModal(memberNo) {
+  // Show the modal
+  modal.style.display = "block";
+
+  // Call the selectBoard function with the memberNo parameter
+  selectBoard(memberNo);
+}
+
+// Close the modal
+function closeModal() {
+  modal.style.display = "none";
+}
+
+// Call openModal function with the memberNo parameter when needed
+// For example, when a button is clicked
+btnOpenPopup.addEventListener("click", function () {
+  openModal(memberNo);
+});
+window.addEventListener("click", (e) => {
+  e.target === modal_background ? closeModal() : false;
+});

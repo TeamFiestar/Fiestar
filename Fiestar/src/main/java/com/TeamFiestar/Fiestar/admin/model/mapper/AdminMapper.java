@@ -10,11 +10,9 @@ import com.TeamFiestar.Fiestar.board.model.dto.Board;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
 @Mapper
-public interface adminMapper {
+public interface AdminMapper {
 
 //	List<Member> selectMember();
-
-	List<Board> selectBoard(int memberNo);
 
 	int countList(Member member);
 
@@ -32,21 +30,22 @@ public interface adminMapper {
 
 	List<Member> searchDelete(RowBounds rowBounds, Map<String, Object> paramMap);
 
-	int update(Map<String, Object> paramMap);
+	
 
 //	int restoration(int memberNo);
 
-	
-
+	int countSubscribe(int artistGroupNo);
 	List<Member> subscribeMember(RowBounds rowBounds, int artistGroupNo);
 
 	
-
-	List<Member> searchSubscribe(RowBounds rowBounds, Map<String, Object> paramMap, int artistGroupNo);
-
-	int countSubscribe(int artistGroupNo);
-
 	int countSearchSubscribe(Map<String, Object> map1);
+	List<Member> searchSubscribe(Map<String, Object> map1, RowBounds rowBounds);
+
+
+	List<Board> selectSubscribeBoard(Map<String, Object> map);
+
+	String subArtistTitle(int artistGroupNo);
+
 
 	
 

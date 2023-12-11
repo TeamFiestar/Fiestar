@@ -6,11 +6,11 @@ import java.util.Map;
 import com.TeamFiestar.Fiestar.board.model.dto.Board;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
-public interface adminService {
+public interface AdminService {
 
 	Map<String, Object> selectMember(Member member, int cp);
 
-	List<Board> selectBoard(int memberNo);
+	
 
 	Map<String, Object> searchMember(Map<String, Object> paramMap, int cp);
 
@@ -18,13 +18,15 @@ public interface adminService {
 
 	Map<String, Object> searchDeleteMember(Map<String, Object> paramMap, int cp);
 
-	int update(Map<String, Object> paramMap);
+	
 
 //	int restoration(int memberNo);
 
 	Map<String, Object> subscribeMember(Member member, int cp, int artistGroupNo);
 
 	Map<String, Object> searchSubscribe(Map<String, Object> paramMap, int cp, int artistGroupNo);
+
+	List<Board> selectSubscribeBoard(int memberNo, int artistGroupNo);
 
 
 	

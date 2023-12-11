@@ -1,70 +1,56 @@
 const trBody = document.querySelector(".tr-body");
-const recoverBtn = document.querySelector(".recoverBtn");
+// const recoverBtn = document.querySelector(".recoverBtn");
 const tbody = document.querySelector(".tbody");
 
-// function selectDeleteMember() {
-//   fetch("/admin/deleteMember")
-//     .then((resp) => resp.json())
-//     .then((map) => {
-//       console.log(map);
+function selectDelMember() {
+  fetch("/admin/selectDelMember")
+    .then((resp) => resp.json())
+    .then((map) => {
+      console.log(map);
+      console.log(map.deleteList);
 
-//       tbody.innerHTML = "";
+      tbody.innerHTML = "";
 
-//       const tr = document.createElement("tr");
-//       tr.classList.add("tr-head");
+      map.deleteList.forEach(function (member) {
+        // var member = [...map.deleteList] {
+        console.log(member);
+        const tr2 = document.createElement("tr");
+        tr2.classList.add("tr-body");
 
-//       const th1 = document.createElement("th");
-//       const th2 = document.createElement("th");
-//       const th3 = document.createElement("th");
-//       const th4 = document.createElement("th");
-//       const th5 = document.createElement("th");
-//       const th6 = document.createElement("th");
-//       th1.innerText = "회원 번호";
-//       th2.innerText = "닉네임";
-//       th3.innerText = "아이디(이메일)";
-//       th4.innerText = "주소";
-//       th5.innerText = "권한";
-//       th6.innerText = "탈퇴 복구";
+        const td1 = document.createElement("td");
+        const td2 = document.createElement("td");
+        const td3 = document.createElement("td");
+        const td4 = document.createElement("td");
+        const td5 = document.createElement("td");
+        const td6 = document.createElement("td");
+        const btn = document.createElement("button");
+        btn.classList.add("recoverBtn");
+        btn.setAttribute("data-flag", member.memberDelFl);
+        btn.setAttribute("onClick", "recoverBtn(this)");
+        btn.innerText = "복구";
 
-//       tr.append(th1, th2, th3, th4, th5, th6);
-//       tbody.append(tr);
+        td1.innerHTML = member.memberNo;
+        td2.innerHTML = member.memberNickname;
+        td3.innerHTML = member.memberEmail;
+        td4.innerHTML = member.memberAddress;
 
-//       map.deleteList.forEach(function (member) {
-//         console.log(member);
-//         const tr2 = document.createElement("tr");
-//         tr.classList.add("tr-body");
+        if (member.memberAuthority === 1) td5.innerText = "일반";
+        else if (member.memberAuthority === 2) td5.innerText = "아티스트";
+        else if (member.memberAuthority === 3) td5.innerText = "일반 관리자";
+        else td5.innerText = "아티스트 관리자";
 
-//         const td1 = document.createElement("td");
-//         const td2 = document.createElement("td");
-//         const td3 = document.createElement("td");
-//         const td4 = document.createElement("td");
-//         const td5 = document.createElement("td");
-//         const td6 = document.createElement("td");
-//         const btn = document.createElement("button");
-//         btn.classList.add("recoverBtn");
-//         btn.setAttribute("data-flag", member.memberDelFl);
+        td6.append(btn);
 
-//         td1.innerHTML = member.memberNo;
-//         td2.innerHTML = member.memberNickname;
-//         td3.innerHTML = member.memberEmail;
-//         td4.innerHTML = member.memberAddress;
-
-//         if (member.memberAuthority === 1) td5.innerText = "일반";
-//         else if (member.memberAuthority === 2) td5.innerText = "아티스트";
-//         else if (member.memberAuthority === 3) td5.innerText = "일반 관리자";
-
-//         td6.append(btn);
-
-//         tr2.append(td1, td2, td3, td4, td5, td6);
-//         tbody.append(tr2);
-//       });
-//     });
-// }
+        tr2.append(td1, td2, td3, td4, td5, td6);
+        tbody.append(tr2);
+      });
+    });
+}
 // recoverBtn.setAttribute("data-flag", memberDelFl);
-recoverBtn.addEventListener("click", (e) => {
-  const flag = e.target.getAttribute("data-flag") == "N" ? "Y" : "N";
+function recoverBtn(thisbtn) {
+  const flag = thisbtn.getAttribute("data-flag") == "N" ? "Y" : "N";
 
-  const temp = e.target.parentElement.parentElement.children[0];
+  const temp = thisbtn.parentElement.parentElement.children[0];
   const targetNo = temp.innerText;
 
   const obj = {};
@@ -76,21 +62,22 @@ recoverBtn.addEventListener("click", (e) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(obj),
   })
-    .then((resp) => resp.json)
+    .then((resp) => resp.text())
     .then((result) => {
+      console.log(result);
       if (result > 0) {
-        if (flag == "Y") {
-          recoverBtn.setAttribute("data-flag", flag);
-        } else {
-          alert("복구 실패");
-        }
+        // recoverBtn.setAttribute("data-flag", flag);
+        alert("복구 성공");
+      } else {
+        alert("복구 실패");
       }
+      selectDelMember();
       // selectDeleteMember();
     })
     .catch((e) => {
       console.log(e);
     });
-});
+}
 
 // document.addEventListener("DOMContentLoaded", function () {
 //   var memberTableBody = document.getElementById("memberTableBody");

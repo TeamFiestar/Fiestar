@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.TeamFiestar.Fiestar.admin.model.service.adminService;
+import com.TeamFiestar.Fiestar.admin.model.service.AdminService;
 import com.TeamFiestar.Fiestar.board.model.dto.Board;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
@@ -27,7 +27,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AdminController {
 
-	private final adminService service;
+	private final AdminService service;
 	
 	@GetMapping("selectMember")
 	public String member(Model model,Member member,
@@ -44,19 +44,10 @@ public class AdminController {
 		return "admin/selectMember";
 	}
 	
-	
-	@GetMapping("selectBoard")
-	@ResponseBody
-	public List<Board> selectBoard(@RequestParam(value="memberNo", required = false) int memberNo) {
-		List<Board> boardList = service.selectBoard(memberNo); 
-		return boardList;
-	}
-	
 	@GetMapping("deleteMember")
 	public String deleteMember(Model model, Member member,
 				@RequestParam(value="cp", required = false, defaultValue = "1")int cp,
 				@RequestParam Map<String, Object> paramMap) {
-		
 		if(paramMap.get("key") == null && paramMap.get("query") == null) {
 			Map<String, Object> map = service.deleteMember(member,cp);
 			model.addAttribute("map", map);
@@ -67,14 +58,7 @@ public class AdminController {
 		return "admin/deleteMember";
 	}
 	
-	@PutMapping("deleteMember")
-	@ResponseBody
-	public String update(@RequestBody Map<String, Object> paramMap, RedirectAttributes ra) {
-		int result = service.update(paramMap);
-		if(result > 0) ra.addFlashAttribute("message", "복구 성공");
-		else ra.addFlashAttribute("message","복구 실패");
-		return "admin/deleteMember";
-	}
+
 	
 	
 	@GetMapping("subscribeMember/{artistGroupNo:[0-9]+}")
@@ -85,13 +69,22 @@ public class AdminController {
 		if(paramMap.get("key") == null && paramMap.get("query") == null) {
 			Map<String, Object> map = service.subscribeMember(member,cp, artistGroupNo);
 			model.addAttribute("map", map);
+			model.addAttribute("artistGroupNo", artistGroupNo);
 		}else {
 			Map<String, Object> map = service.searchSubscribe(paramMap,cp,artistGroupNo);
 			model.addAttribute("map", map);
+			model.addAttribute("artistGroupNo", artistGroupNo);
 		}
 		return "admin/subscribeMember";
 	}
 	
+	@GetMapping("selectSubscribeBoard/{artistGroupNo:[0-9]+}")
+	@ResponseBody
+	public List<Board> selectSubscribeBoard(@RequestParam(value="memberNo", required = false) int memberNo,
+										@PathVariable("artistGroupNo") int artistGroupNo) {
+		List<Board> boardList = service.selectSubscribeBoard(memberNo,artistGroupNo); 
+		return boardList;
+	}
 	
 	@GetMapping("notice")
 	public String admin() {
