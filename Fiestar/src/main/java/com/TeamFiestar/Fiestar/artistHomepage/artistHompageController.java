@@ -9,8 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class artistHompageController {
 	
 	
+	@GetMapping("artistprofile/profileModify")
+	public String profileModify() {
+		return "artistprofile/profileModify";
+	}
+	
 	@GetMapping("artistprofile/profile")
-	public String artistProfile() {
+	public String artistprofile() {
 		return "artistprofile/profile";
 	}
 }

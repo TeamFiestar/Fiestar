@@ -53,7 +53,7 @@ public class MyPageServiceImpl implements MyPageService {
 
 		RowBounds rowBounds = new RowBounds(offset, limit);
 
-		List<Board> boardList = mapper.selectMyFeedList(loginMember.getMemberNo(),rowBounds);
+		List<Board> boardList = mapper.selectMyFeedList(loginMember.getMemberNo(), rowBounds);
 
 		Map<String, Object> map = new HashMap<>();
 		map.put("pagination", pagination);
@@ -155,62 +155,91 @@ public class MyPageServiceImpl implements MyPageService {
 		return mapper.deleteBoard(map);
 
 	}
-	
+
+	// 댓글 삭제
+	@Override
+	public int delComment(int memberNo, int commentNo, String commentType) {
+
+		Map<String, Object> map = new HashMap<>();
+		map.put("memberNo", memberNo);
+		map.put("commentNo", commentNo);
+		map.put("commentType", commentType);
+
+		return mapper.delComment(map);
+	}
+
 	// 프로필 이미지 변경
 	@Override
 	public int profile(MultipartFile memberProfile, Member loginMember) throws IllegalStateException, IOException {
 
 		String backup = loginMember.getMemberProfile();
-		
+
 		String rename = null;
-		
-		if(memberProfile.getSize() > 0) {
+
+		if (memberProfile.getSize() > 0) {
 			rename = Util.fileRename(memberProfile.getOriginalFilename());
 			loginMember.setMemberProfile(webpath + rename);
 		} else {
 			loginMember.setMemberProfile(null);
 		}
-		
+
 		int result = mapper.profile(loginMember);
-		
-		if(result > 0) {
-			if(memberProfile.getSize() > 0) {
+
+		if (result > 0) {
+			if (memberProfile.getSize() > 0) {
 				memberProfile.transferTo(new File(folderPath + rename));
 			} else {
 				loginMember.setMemberProfile(backup);
 			}
 		}
-		
+
 		return result;
 	}
-	
-	// 프로필 정보 변경
+
+	// 프로필 배경 이미지 변경
 	@Override
 	public int backImg(MultipartFile memberBackImage, Member loginMember) throws IllegalStateException, IOException {
-		
+
 		String backup = loginMember.getMemberBackImage();
-		
+
 		String rename = null;
-		
-		if(memberBackImage.getSize() > 0) {
+
+		if (memberBackImage.getSize() > 0) {
 			rename = Util.fileRename(memberBackImage.getOriginalFilename());
 			loginMember.setMemberBackImage(webpath + rename);
 		} else {
 			loginMember.setMemberBackImage(backup);
 		}
-		
+
 		int result = mapper.backImg(loginMember);
-		
-		if(result > 0) {
-			if(memberBackImage.getSize() > 0) {
+
+		if (result > 0) {
+			if (memberBackImage.getSize() > 0) {
 				memberBackImage.transferTo(new File(folderPath + rename));
 			} else {
 				loginMember.setMemberBackImage(backup);
 			}
 		}
-		
+
 		return result;
 	}
-	
+
+	// 댓글 삭제
+	@Override
+	public int info(Member updateMember, String[] memberAddress) {
+
+		if (updateMember.getMemberAddress().equals(",,")) {
+			updateMember.setMemberAddress(null); // null로 변환
+
+		} else { // 주소를 입력한 경우
+			// 배열 -> 문자열로 합쳐서 inputMember에 추가
+			String address = String.join("^^^", memberAddress);
+			updateMember.setMemberAddress(address);
+		}
+
+		// mapper 호출 후 결과 반환
+		return mapper.info(updateMember);
+
+	}
 
 }
