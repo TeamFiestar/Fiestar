@@ -197,10 +197,10 @@
 	</select>
 	
 	
-	<insert id="artistGroupRegi">
+	<insert id="artistGroupRegi" parameterType="ArtistGroup">
 		INSERT INTO ARTIST_GROUP
 		VALUES( SEQ_ARTIST_GROUP_NO.NEXTVAL, #{artistGroupAdminNo}, #{artistGroupTitle},
-			#{artistGroupProfile}, '', #{artistGroupImage}, #{artistGroupBackimg})
+			#{artistGroupProfile}, 'introduction', #{artistGroupImage}, #{artistGroupBackimg},null)
 	</insert>
 	
 	

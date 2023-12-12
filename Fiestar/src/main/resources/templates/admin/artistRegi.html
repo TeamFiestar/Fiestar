@@ -16,19 +16,34 @@
       <div class="artistGroup-add">
         <h1>아티스트 그룹 등록</h1>
         <br />
-        <form action="/admin/artistGroupRegi" method="post" enctype="multipart/form-data" id="artistGroupFrm">
+        <form
+          action="/admin/artistGroupRegi"
+          method="post"
+          enctype="multipart/form-data"
+          id="artistGroupFrm"
+        >
           <div class="artistGroup-title">
             <h4>아티스트 그룹 명</h4>
-            <input type="text" id="input-artistGroupTitle" name="artistGroupTitle" />
+            <input
+              type="text"
+              id="input-artistGroupTitle"
+              name="artistGroupTitle"
+            />
           </div>
           <div class="artistGroup-backImg">
             <h4>아티스트 그룹 배경이미지</h4>
             <br />
             <div class="artistGroupBackImg">
               <label for="img1">
-                <img src="" class="backImg" />
+                <img src="" class="backImg preview" />
               </label>
-              <input type="file" name="backImg" id="img1" accept="image/*" class="input-artistGroupImg" />
+              <input
+                type="file"
+                name="backImg"
+                id="img1"
+                accept="image/*"
+                class="input-artistGroupImg"
+              />
               <span class="delete-image">&times;</span>
             </div>
           </div>
@@ -37,9 +52,15 @@
             <br />
             <div class="artistGroupProfile">
               <label for="img2">
-                <img src="" class="profile" />
+                <img src="" class="profile preview" />
               </label>
-              <input type="file" name="profile" id="img2" accept="image/*" class="input-artistGroupImg" />
+              <input
+                type="file"
+                name="profile"
+                id="img2"
+                accept="image/*"
+                class="input-artistGroupImg"
+              />
               <span class="delete-image">&times;</span>
             </div>
           </div>
@@ -47,10 +68,16 @@
             <h4>아티스트 그룹 이미지</h4>
             <br />
             <div class="artistGroupImg">
-              <label for="img2">
-                <img src="" class="image" />
+              <label for="img3">
+                <img src="" class="image preview" />
               </label>
-              <input type="file" name="image" id="img2" accept="image/*" class="input-artistGroupImg" />
+              <input
+                type="file"
+                name="image"
+                id="img3"
+                accept="image/*"
+                class="input-artistGroupImg"
+              />
               <span class="delete-image">&times;</span>
             </div>
           </div>

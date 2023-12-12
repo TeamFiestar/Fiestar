@@ -2,10 +2,12 @@ const backImg = document.querySelector(".backImg");
 const profile = document.querySelector(".profile");
 const image = document.querySelector(".image");
 
-const inputImg = document.querySelector(".input-artistGroupImg");
-const deleteImg = document.querySelector(".delete-image");
+const previewList = document.getElementsByClassName("preview");
 
-const backupList = new Array(inputImg.length);
+const inputImgList = document.getElementsByClassName("input-artistGroupImg");
+const deleteImgList = document.getElementsByClassName("delete-image");
+
+const backupList = new Array(inputImgList.length);
 
 const changeImage = (imgInput, order) => {
   const maxSize = 1024 * 1024 * 10;
@@ -13,6 +15,7 @@ const changeImage = (imgInput, order) => {
   const uploadFIle = imgInput.files[0];
 
   if (uploadFIle == undefined) {
+    console.log("파일 취소");
     const temp = backupList[order].cloneNode(true);
 
     imgInput.after(temp);
@@ -41,6 +44,7 @@ const changeImage = (imgInput, order) => {
         changeImage(imgInput, order);
       });
     }
+    return;
   }
 
   const reader = new FileReader();
@@ -50,33 +54,39 @@ const changeImage = (imgInput, order) => {
   reader.onload = (e) => {
     const url = e.target.result;
 
-    backImg.src = url;
-    profile.src = url;
-    image.src = url;
+    previewList[order].src = url;
 
     backupList[order] = imgInput.cloneNode(true);
   };
 };
 
-for (let i = 0; i < inputImg.length; i++) {
-  inputImg[i].addEventListener("change", (e) => {
+for (let i = 0; i < inputImgList.length; i++) {
+  inputImgList[i].addEventListener("change", (e) => {
     changeImage(e.target, i);
   });
 
-  deleteImg[i].addEventListener("click", () => {
-    if (i == 0) {
-      backImg.removeAttribute("src");
-      backImg.value = "";
-      backImg = undefined;
-    } else if (i == 1) {
-      profile.removeAttribute("src");
-      profile.value = "";
-      profile = undefined;
-    } else {
-      image.removeAttribute("src");
-      image.value = "";
-      image = undefined;
-    }
+  deleteImgList[i].addEventListener("click", () => {
+    // if (i == 0) {
+    //   backImg.removeAttribute("src");
+    //   backImg.value = "";
+    //   backImg = undefined;
+    // } else if (i == 1) {
+    //   profile.removeAttribute("src");
+    //   profile.value = "";
+    //   profile = undefined;
+    // } else {
+    //   image.removeAttribute("src");
+    //   image.value = "";
+    //   image = undefined;
+    // }
+
+    previewList[i].removeAttribute("src"); // "src" 속성 삭제
+
+    // input 태그 파일 제거
+    inputImgList[i].value = "";
+
+    // 같은 위치 backup 요소 제거
+    backupList[i] = undefined;
   });
 }
 
