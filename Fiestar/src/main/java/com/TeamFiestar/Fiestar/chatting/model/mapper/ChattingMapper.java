@@ -1,5 +1,7 @@
 package com.TeamFiestar.Fiestar.chatting.model.mapper;
 
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.TeamFiestar.Fiestar.chatting.model.dto.Message;
@@ -16,6 +18,6 @@ public interface ChattingMapper {
 
 	int selectLiveChattingRoom(int artistGroupNo);
 
-	int createLiveChattingRoom(int artistGroupNo);
+	int createLiveChattingRoom(Map<String, Integer> map);
 
 }

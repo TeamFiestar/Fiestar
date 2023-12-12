@@ -30,7 +30,7 @@ public class ArtistAdminServiceImpl implements ArtistAdminService{
 			int listCount = mapper.noticeListCount(map);
 			
 			/* Pagination */
-			Pagination pagination = new Pagination(cp, listCount, 8, 10);
+			Pagination pagination = new Pagination(cp, listCount, 10, 10);
 			
 			int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
 			
@@ -39,7 +39,7 @@ public class ArtistAdminServiceImpl implements ArtistAdminService{
 			RowBounds rowBounds = new RowBounds(offset, limit);
 			/* Pagination */
 
-			List<ArtistNotice> noticeList = mapper.selectNoticeList(map);
+			List<ArtistNotice> noticeList = mapper.selectNoticeList(map, rowBounds);
 			
 			
 			return noticeList;

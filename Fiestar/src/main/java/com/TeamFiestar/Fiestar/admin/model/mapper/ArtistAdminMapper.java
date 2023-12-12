@@ -14,7 +14,7 @@ public interface ArtistAdminMapper {
 
 	int selectArtistGroupNo(Object object);
 
-	List<ArtistNotice> selectNoticeList(Map<String, Object> map);
+	List<ArtistNotice> selectNoticeList(Map<String, Object> map, RowBounds rowBounds);
 
 	int artistNoticeAdd(ArtistNotice notice);
 

@@ -68,11 +68,13 @@
         <h1>아티스트 공지사항 목록</h1>
         <br />
         <table border="1" style="border-collapse: collapse" class="notice-table">
-          <tr class="notice-tr-th">
-            <th>공지사항 번호</th>
-            <th>제목</th>
-            <th>날짜</th>
-          </tr>
+          <thead>
+            <tr class="notice-tr-th">
+              <th>공지사항 번호</th>
+              <th>제목</th>
+              <th>날짜</th>
+            </tr>
+          </thead>
           <tbody id="noticeBody">
             <tr class="notice-tr-td" th:each="notice : ${noticeList}" th:object="${notice}">
               <td th:text="*{artistGroupNoticeNo}">1</td>

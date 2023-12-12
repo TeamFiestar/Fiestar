@@ -28,6 +28,7 @@ public class ArtistAdminContoller {
 	
 	private final ArtistAdminService service;
 	
+	// 아티스트 공지사항 목록 조회
 	@GetMapping("{artistGroupTitle}/notice")
 	public String artistNotice(
 			@RequestParam(value="cp", required=false , defaultValue="1" ) int cp,
@@ -50,6 +51,7 @@ public class ArtistAdminContoller {
 		return "admin/artistNotice";
 	}
 	
+	// 아티스트 공지사항 등록 조회
 	@GetMapping("{artistGroupTitle}/noticeAdd")
 	public String artistNoticeAdd(
 			@PathVariable("artistGroupTitle") String artistGroupTitle, Model model){
@@ -58,6 +60,7 @@ public class ArtistAdminContoller {
 		
 		return "admin/artistNoticeAdd";
 	}
+	
 	
 	@GetMapping("{artistGroupTitle}/noticeUpdate")
 	public String artistNoticeUpdate(
@@ -68,6 +71,7 @@ public class ArtistAdminContoller {
 		return "admin/artistNoticeUpdate";
 	}
 	
+	// 아티스트 공지사항 등록
 	@PostMapping("{artistGroupTitle}/noticeAdd")	
 	public String artistNoticeAdd(
 			@PathVariable("artistGroupTitle") String artistGroupTitle, Model model, ArtistNotice notice){
@@ -79,7 +83,7 @@ public class ArtistAdminContoller {
 		return "redirect:/artistAdmin/{artistGroupTitle}/notice";
 	}
 	
-	
+	// 신고 조회
 	@GetMapping("{artistGroupTitle}/report")
 	public String artistReport(
 			@RequestParam(value="cp", required=false , defaultValue="1" ) int cp,
@@ -92,6 +96,16 @@ public class ArtistAdminContoller {
 		model.addAttribute("reportSearch",report.getReportSearch());
 		
 		return "admin/artistReport";
+		
+	}
+	
+	
+	@GetMapping("{artistGroupTitle}/order")
+	public String artistOrder(
+			@RequestParam(value="cp", required=false , defaultValue="1" ) int cp,
+			@PathVariable("artistGroupTitle") String artistGroupTitle) {
+		
+		return "admin/artistOrder";
 		
 	}
 

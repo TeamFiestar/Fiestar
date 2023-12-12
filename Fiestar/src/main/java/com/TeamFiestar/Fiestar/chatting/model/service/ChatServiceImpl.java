@@ -1,5 +1,8 @@
 package com.TeamFiestar.Fiestar.chatting.model.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,22 +35,24 @@ public class ChatServiceImpl implements ChatService{
 		return mapper.insertLiveMessage(msg);
 	}
 	
+	
+	@Override
+	public int createLiveChattingRoom(String artistGroupTitle) {
+		int artistGroupNo = artistAdminMapper.selectArtistGroupNo(artistGroupTitle);
+		Map<String, Integer> map = new HashMap<>();
+		map.put("artistGroupNo", artistGroupNo);
+		
+		int result = mapper.createLiveChattingRoom(map);
+		
+		return map.get("liveChattingRoomNo"); 
+	}
+	
+	
 	@Override
 	public int selectLiveChattingRoom(String artistGroupTitle) {
 		int artistGroupNo = artistAdminMapper.selectArtistGroupNo(artistGroupTitle);
 		return mapper.selectLiveChattingRoom(artistGroupNo);
 	}
 	
-	@Override
-	public int createLiveChattingRoom(String artistGroupTitle) {
-		int artistGroupNo = artistAdminMapper.selectArtistGroupNo(artistGroupTitle);
-		return mapper.createLiveChattingRoom(artistGroupNo);
-	}
-	
-	@Override
-	public int createChattingRoom(String artistGroupTitle) {
-		int artistGroupNo = artistAdminMapper.selectArtistGroupNo(artistGroupTitle);
-		return mapper.createLiveChattingRoom(artistGroupNo);
-	}
 	
 }

@@ -1,5 +1,6 @@
 let gereateToken;
 let chattingSock;
+let liveChattingRoomNo;
 
 // Agora 클라이언트 생성
 var client = AgoraRTC.createClient({
@@ -26,25 +27,12 @@ const options = {
 
 // 데모는 URL 매개변수로 채널에 자동으로 참여할 수 있음
 $(() => {
-  var urlParams = new URL(location.href).searchParams;
-  options.appid = urlParams.get("appid");
-  options.channel = urlParams.get("channel");
-  options.token = urlParams.get("token");
-  options.uid = urlParams.get("uid");
-  if (options.appid && options.channel) {
-    console.log(options.appid);
-    $("#uid").val(options.uid);
-    $("#appid").val(options.appid);
-    $("#token").val(options.token);
-    $("#channel").val(options.channel);
-    $("#join-form").submit();
+  if(authority == 1){
+    tokenGenerator('audience', 2);
   }
 });
 
-// 호스트로 역할 변경 버튼 클릭 이벤트 처리
-$("#host-join").click(function (e) {
-  options.role = "host";
-});
+
 
 // 저지연 청취자로 역할 변경 버튼 클릭 이벤트 처리
 $("#lowLatency").click(function (e) {
@@ -62,7 +50,6 @@ $("#ultraLowLatency").click(function (e) {
 
 // 비동기 토큰생성 
 async function tokenGenerator(role, flag){
-
   let token = "token";
   
   console.log("flag : " + flag);
@@ -74,21 +61,24 @@ async function tokenGenerator(role, flag){
   .then ( (res) =>{
     console.log("res : " + res);
     options.token = res;
-
+    
     joinSubmit(role, res)
   })
   .catch( (e) => {
     console.log(e);
   })
-
-
+  
+  
 };
 
 // 폼 제출 시 이벤트 처리
 async function joinSubmit(role, token) {
+  await leave();
   options.role = role;
 
-  $("#host-join").attr("disabled", true);
+  if(authority != 1){
+    $("#host-join").attr("disabled", true);
+  }
   $("#audience-join").attr("disabled", true);
   try {
     options.channel = artistGroupTitle;
@@ -144,6 +134,7 @@ async function join() {
     if (!localTracks.videoTrack) {
       localTracks.videoTrack = await AgoraRTC.createCameraVideoTrack();
     }
+    createChattingRoom();
 
     localTracks.videoTrack.play("remote-playerlist");
     $("#local-player-name").text(`localTrack(${options.uid})`);
@@ -179,6 +170,7 @@ async function leave() {
 
 // 원격 사용자 구독 함수
 async function subscribe(user, mediaType) {
+  selectLiveChattingRoom();
   console.log("시청자 참여 성공");
   const uid = user.uid;
   await client.subscribe(user, mediaType);
@@ -228,6 +220,7 @@ const createChattingRoom = () => {
   })
   .then( resp => resp.text())
   .then(result =>{
+    liveChattingRoomNo = result;
     console.log(result);
   })
   .catch(err => console.log(err));
@@ -237,7 +230,9 @@ const selectLiveChattingRoom = () => {
 
   fetch("/chatting/selectLiveChattingRoom?artistGroupTitle=" + artistGroupTitle)
   .then(resp => resp.text())
-  .then(ChattingRoomNo => {
+  .then(result => {
+    liveChattingRoomNo = result;
+    console.log(result);
     
   })
   .catch(err => console.log(err));
@@ -300,6 +295,11 @@ const chattingJoin = () => {
 const inputChat = document.getElementById('chatting-input');
 
 const sendMessage = () => {
+  if (!chattingSock){
+    alert("방송이 시작되지 않았습니다");
+    return;
+  }
+
   if (inputChat.value.trim().length == 0) {
     alert("채팅을 입력해주세요");
     inputChat.value = "";
@@ -310,7 +310,7 @@ const sendMessage = () => {
       memberProfile : loginMember.memberProfile,
       sendAuthority: authority,
       messageContent: inputChat.value,
-      liveChattingRoomNo : 1
+      liveChattingRoomNo : liveChattingRoomNo
     };
     console.log(obj);
     chattingSock.send(JSON.stringify(obj));
@@ -319,3 +319,8 @@ const sendMessage = () => {
   }
 };
 
+// 호스트로 역할 변경 버튼 클릭 이벤트 처리
+$("#host-join").click(function (e) {
+  console.log(e);
+  options.role = "host";
+});
