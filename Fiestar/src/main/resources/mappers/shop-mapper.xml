@@ -8,6 +8,7 @@
 		SELECT PRODUCT_IMAGE, PRODUCT_NAME, PRODUCT_PRICE,ARTIST_GROUP_TITLE
 		FROM PRODUCT
 		JOIN ARTIST_GROUP USING (ARTIST_GROUP_NO)
+		ORDER BY PRODUCT_NO DESC
 		
 	</select>
 	
@@ -108,6 +109,32 @@
 			PRODUCT_PRICE ASC
 		</if>
 	</select>
+	
+	
+	<!--상품 등록-->
+	<insert id="insertGoods" parameterType="Product" useGeneratedKeys="true">
+		<selectKey order="BEFORE" resultType="_int" keyProperty="productNo">
+			SELECT SEQ_PRODUCT_NO.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO "PRODUCT"
+		VALUES(#{productNo},#{artistGroupNo},#{productName},#{productProduction},#{productPrice}, DEFAULT)
+	</insert>
+	
+	
+	<!--이미지 업로드-->
+	<insert id="insertImageList" parameterType="list">
+		INSERT INTO "PRODUCT_IMAGE"
+		<foreach collection="list" item="img" separator=" UNION ">
+			 SELECT NEXT_PRODUCT_IMAGE(),
+			 		#{img.productImagePath},
+			 		#{img.productImageRename},
+			 		#{img.productOriginal},
+			 		#{img.productImageOrder},
+			 		#{img.productNo}
+			 FROM DUAL
+		 </foreach>
+	</insert>
+	
 	
 	
 	

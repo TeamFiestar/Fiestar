@@ -17,5 +17,8 @@ public class ArtistNotice {
 	private String artistGroupNoticeDelFl;
 	private String artistGroupNoticeEnrollDate;
 	private int artistGroupNo;
+	
+	private int key;
+	private String noticeSearch;
 
 }

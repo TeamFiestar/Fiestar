@@ -59,6 +59,13 @@ public interface MyPageMapper {
 	// 프로필 정보 변경
 	int backImg(Member loginMember);
 
+	// 댓글 삭제
+	int delComment(Map<String, Object> map);
+
+	// 프로필 정보 변경
+	int info(Member updateMember);
+
+
 
 
 

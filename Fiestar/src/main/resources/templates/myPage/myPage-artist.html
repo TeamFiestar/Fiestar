@@ -25,7 +25,7 @@
         height="100%" id="memberBackImage">
     </div>
 
-    <div class="main">
+    <div class="main" th:with="artistList=${map.artistList}, pagination=${map.pagination}">
       <th:block th:replace="~{myPage/myPage-navi2}"></th:block>
 
       <div class="main-2">
@@ -35,7 +35,7 @@
         <div class="content">
 
           <div class="no-content" th:if="${#lists.size(artistList) == 0}">
-            게시글이 없음!
+            <span> 구독한 아티스트가 없습니다. </span>
           </div>
 
 
@@ -45,7 +45,7 @@
                 <ul>
                   <li>
                     <div class="artist-list">
-                      <a href="#" class="artist-profile">
+                      <a href="/artistprofile/profile" class="artist-profile">
                         <div class="artist-image-area">
                           <img src="./image/에스파.jpeg">
                         </div>
@@ -67,40 +67,40 @@
         </div>
       </div>
     </div>
-  </div>
-    
-  <div class="pagination-area">
-    <ul class="pagination">
 
-      <!-- 첫 페이지로 이동 -->
-      <li>
-        <a th:href="@{/myPage/myPage-artist(cp=1)}">&lt;&lt;</a>
-      </li>
+    <div class="pagination-area">
+      <ul class="pagination">
 
-      <!-- 이전 목록 마지막 번호로 이동 -->
-      <li>
-        <a th:href="@{/myPage/myPage-artist(cp=${pagination.prevPage})}">&lt;</a>
-      </li>
-
-      <th:block th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}">
-
-        <!-- 현재 보고있는 페이지 -->
-        <li th:if="${i == pagination.currentPage}"><a class="current" th:text="${i}">1</a></li>
-
-        <!-- 보고있지 않은 페이지 -->
-        <li th:unless="${i == pagination.currentPage}"><a th:href="@{/myPage/myPage-artist(cp=${i})}"
-            th:text="${i}">2</a>
+        <!-- 첫 페이지로 이동 -->
+        <li>
+          <a th:href="@{/myPage/myPage-artist(cp=1)}">&lt;&lt;</a>
         </li>
-      </th:block>
 
-      <!-- 다음 목록 시작 번호로 이동 -->
-      <li><a th:href="@{/myPage/myPage-artist(cp=${pagination.nextPage})}">&gt;</a></li>
+        <!-- 이전 목록 마지막 번호로 이동 -->
+        <li>
+          <a th:href="@{/myPage/myPage-artist(cp=${pagination.prevPage})}">&lt;</a>
+        </li>
 
-      <!-- 끝 페이지로 이동 -->
-      <li><a th:href="@{/myPage/myPage-artist(cp=${pagination.maxPage})}">&gt;&gt;</a></li>
-    </ul>
+        <th:block th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}">
+
+          <!-- 현재 보고있는 페이지 -->
+          <li th:if="${i == pagination.currentPage}"><a class="current" th:text="${i}">1</a></li>
+
+          <!-- 보고있지 않은 페이지 -->
+          <li th:unless="${i == pagination.currentPage}"><a th:href="@{/myPage/myPage-artist(cp=${i})}"
+              th:text="${i}">2</a>
+          </li>
+        </th:block>
+
+        <!-- 다음 목록 시작 번호로 이동 -->
+        <li><a th:href="@{/myPage/myPage-artist(cp=${pagination.nextPage})}">&gt;</a></li>
+
+        <!-- 끝 페이지로 이동 -->
+        <li><a th:href="@{/myPage/myPage-artist(cp=${pagination.maxPage})}">&gt;&gt;</a></li>
+      </ul>
+    </div>
+
   </div>
-
 
   <th:block th:replace="~{common/footer}"></th:block>
 
