@@ -156,18 +156,6 @@ public class MyPageServiceImpl implements MyPageService {
 
 	}
 
-	// 댓글 삭제
-	@Override
-	public int delComment(int memberNo, int commentNo, String commentType) {
-
-		Map<String, Object> map = new HashMap<>();
-		map.put("memberNo", memberNo);
-		map.put("commentNo", commentNo);
-		map.put("commentType", commentType);
-
-		return mapper.delComment(map);
-	}
-
 	// 프로필 이미지 변경
 	@Override
 	public int profile(MultipartFile memberProfile, Member loginMember) throws IllegalStateException, IOException {
@@ -196,10 +184,12 @@ public class MyPageServiceImpl implements MyPageService {
 		return result;
 	}
 
-	// 프로필 배경 이미지 변경
+	// 프로필 정보 변경
 	@Override
-	public int backImg(MultipartFile memberBackImage, Member loginMember) throws IllegalStateException, IOException {
+	public int info(Member updateMember, String[] memberAddress, MultipartFile memberBackImage, Member loginMember)
+			throws IllegalStateException, IOException {
 
+		// 프로칠 이미지 변경
 		String backup = loginMember.getMemberBackImage();
 
 		String rename = null;
@@ -211,9 +201,9 @@ public class MyPageServiceImpl implements MyPageService {
 			loginMember.setMemberBackImage(backup);
 		}
 
-		int result = mapper.backImg(loginMember);
+		int backImg = mapper.backImg(loginMember);
 
-		if (result > 0) {
+		if (backImg > 0) {
 			if (memberBackImage.getSize() > 0) {
 				memberBackImage.transferTo(new File(folderPath + rename));
 			} else {
@@ -221,25 +211,37 @@ public class MyPageServiceImpl implements MyPageService {
 			}
 		}
 
-		return result;
-	}
-
-	// 댓글 삭제
-	@Override
-	public int info(Member updateMember, String[] memberAddress) {
+		// 프로필 주소 변경
 
 		if (updateMember.getMemberAddress().equals(",,")) {
-			updateMember.setMemberAddress(null); // null로 변환
-
+			updateMember.setMemberAddress(null);
 		} else { // 주소를 입력한 경우
 			// 배열 -> 문자열로 합쳐서 inputMember에 추가
 			String address = String.join("^^^", memberAddress);
 			updateMember.setMemberAddress(address);
 		}
 
-		// mapper 호출 후 결과 반환
-		return mapper.info(updateMember);
+		int updateAddress = mapper.info(updateMember);
 
+		return 0;
+
+	}
+
+	@Override
+	public int delComment(int memberNo, int commentNo, String commentType) {
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("commentNo", commentNo);
+		map.put("memberNo", memberNo);
+		map.put("commentType", commentType);
+		
+		// 미디어 댓글 삭제
+		if(commentType == "MEDIA") {
+			return mapper.deleteMediaComment(map);
+		} else {
+			return mapper.deleteBoardComment(map);
+		}
+		
 	}
 
 }

@@ -179,16 +179,7 @@ const inputBackImg = document.getElementById("inputBackImg");
 
 if (inputBackImg != null) { // #inputBackImg 존재할 때
 
-    /* 프로필 이미지 변경(선택) 시 수행할 함수 */
     const changeImageFn = e => {
-
-        console.log(e.target); // input 태그
-        console.log(e.target.value); // 업로드 파일 경로(fakepath 형태로 출력)
-
-        /* 이게 중요!!! */
-        console.log(e.target.files); // 업로드된 파일의 정보가 담긴 배열 반환
-        // * 실제 파일 *
-        console.log(e.target.files[0]); // 업로드된 파일 중 첫 번째 파일
 
         const uploadFile = e.target.files[0];
 
@@ -279,5 +270,5 @@ if (inputBackImg != null) { // #inputBackImg 존재할 때
     // change 이벤트 : input의 이전 값과 현재 값이 다를 때 발생
     inputBackImg.addEventListener("change", changeImageFn);
 
-
 }
+
