@@ -61,5 +61,15 @@
       </div>
     </main>
     <script src="/js/admin/goods.js"></script>
+    
+    <script th:inline = "javascript">
+      //const testMember = /*[[${testMember}]]*/"테스트 멤버 입니다.";
+     //console.log(testMember.memberNo);
+  
+     //RedirctAttributes를 통해 전달된 message출력
+     const message = /*[[${message}]]*/ "전달받은 message";
+      //             message가 없다면 null
+      if(message != null) alert(message);
+  </script>
   </body>
 </html>

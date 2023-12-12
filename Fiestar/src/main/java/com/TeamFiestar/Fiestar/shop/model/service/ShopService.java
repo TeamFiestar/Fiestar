@@ -1,5 +1,6 @@
 package com.TeamFiestar.Fiestar.shop.model.service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -69,7 +70,7 @@ public interface ShopService {
 	 * @param paramMap
 	 * @return
 	 */
-	int insertGoods(Product product, List<MultipartFile> images);
+	int insertGoods(Product product, List<MultipartFile> images)throws IllegalStateException, IOException;
 
 	
 

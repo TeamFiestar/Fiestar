@@ -8,6 +8,7 @@ import org.apache.ibatis.session.RowBounds;
 
 import com.TeamFiestar.Fiestar.shop.model.dto.ArtistGroup;
 import com.TeamFiestar.Fiestar.shop.model.dto.Product;
+import com.TeamFiestar.Fiestar.shop.model.dto.ProductImage;
 
 
 
@@ -43,6 +44,11 @@ public interface ShopMapper {
 
 	//상품 검색 조회 후 정렬
 	List<Product> selectSearchSort(Map<String, Object> paramMap);
+
+	//상품 등록
+	int insertGoods(Product product);
+
+	int insertImageList(List<ProductImage> imageList);
 
 
 	

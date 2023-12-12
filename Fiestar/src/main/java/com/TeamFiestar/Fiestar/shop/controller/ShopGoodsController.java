@@ -1,12 +1,13 @@
 package com.TeamFiestar.Fiestar.shop.controller;
 
+import java.io.IOException;
 import java.util.List;
-import java.util.Map;
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,14 +35,18 @@ public class ShopGoodsController {
 	@PostMapping("goods")
 	public String insertGoods(RedirectAttributes ra,
 						Product product,
-						@RequestParam("name") String name,
-						@RequestParam("shopContent") String shopContent,
-						@RequestParam("shopImg") List<MultipartFile> images) {
+						@RequestParam("shopImg") List<MultipartFile> images) throws IllegalStateException, IOException{
 		
 		int productNo = service.insertGoods(product,images);
 		
+		if(productNo > 0) {
+			ra.addFlashAttribute("message","상품 등록 성공");
+			return "redirect:shop/shopDetail";
+		}
 		
-		return "redirect:shop/shopDetail";
+		ra.addFlashAttribute("message","상품 등록 실패");
+		return "redirect:admin/goods";
+		
 	}
 
 }
