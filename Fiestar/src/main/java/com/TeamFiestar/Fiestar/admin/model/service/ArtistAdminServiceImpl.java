@@ -8,6 +8,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 
 import com.TeamFiestar.Fiestar.admin.model.dto.ArtistNotice;
+import com.TeamFiestar.Fiestar.admin.model.dto.Purchase;
 import com.TeamFiestar.Fiestar.admin.model.dto.Report;
 import com.TeamFiestar.Fiestar.admin.model.mapper.ArtistAdminMapper;
 import com.TeamFiestar.Fiestar.mypage.dto.Pagination;
@@ -73,6 +74,14 @@ public class ArtistAdminServiceImpl implements ArtistAdminService{
 		
 		
 		return mapper.selectReportList(map, rowBounds);
+	}
+	
+	
+	
+	@Override
+	public List<Purchase> selectPurchaseList(String artistGroupTitle) {
+		int artistGroupNo = mapper.selectArtistGroupNo(artistGroupTitle);
+		return mapper.selectPurchaseList(artistGroupNo);
 	}
 
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.TeamFiestar.Fiestar.admin.model.dto.ArtistNotice;
+import com.TeamFiestar.Fiestar.admin.model.dto.Purchase;
 import com.TeamFiestar.Fiestar.admin.model.dto.Report;
 import com.TeamFiestar.Fiestar.admin.model.service.ArtistAdminAJAXService;
 import com.TeamFiestar.Fiestar.admin.model.service.ArtistAdminService;
@@ -104,6 +105,7 @@ public class ArtistAdminContoller {
 	public String artistOrder(
 			@RequestParam(value="cp", required=false , defaultValue="1" ) int cp,
 			@PathVariable("artistGroupTitle") String artistGroupTitle) {
+		List<Purchase> purchaseList = service.selectPurchaseList(artistGroupTitle);
 		
 		return "admin/artistOrder";
 		

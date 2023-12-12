@@ -73,5 +73,10 @@
 		<if test="report.key == 5">AND REPORT_CONTENT LIKE '%${report.reportSearch}%'</if>
 	</select>
 	
+	
+	<select id="selectPurchaseList">
+		
+	</select>
+	
 </mapper>
 
