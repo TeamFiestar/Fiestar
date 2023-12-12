@@ -57,25 +57,24 @@ public class BoardController {
 	}
 	
 	@GetMapping("{artistGroupTitle}/feed/{boardNo:[0-9]+}")
-	public String detail(Model model, 
-			@RequestParam Map<String, Object> paramMap, 
+	public String boardDetail(Model model, 
 			@PathVariable("artistGroupTitle" ) String artistGroupTitle, 
 			@SessionAttribute(value = "loginMember", required = false) Member loginMember,
-			@PathVariable("boardNo" ) int boardNo, 
-			Board boardDetail) {
-		
+			@PathVariable("boardNo" ) int boardNo
+			) {
+//		Board boardDetail
 			int artistGroupNo = service.artistGroupNo(artistGroupTitle);
-//			Map<String, Object> map = service.detail(paramMap);
 			Map<String, Object> map = new HashMap<>();
 			map.put("boardNo", boardNo);
+			map.put("artistGroupTitle", artistGroupTitle);
 			
 			
 			Board board = service.boardDetail(map);
 			
-			model.addAttribute("map", map);
-			model.addAttribute("artistGroupNo", artistGroupNo);
-			model.addAttribute("boardDetail",boardDetail);
-			model.addAttribute("artistGroupTitle", artistGroupTitle);
+//			model.addAttribute("map", map);
+//			model.addAttribute("artistGroupNo", artistGroupNo);
+//			model.addAttribute("boardDetail",boardDetail);
+//			model.addAttribute("artistGroupTitle", artistGroupTitle);
 			
 			String path = null;
 			
@@ -97,6 +96,18 @@ public class BoardController {
 			}
 		
 		return path;
+	}
+	
+	@GetMapping("AJAXboardDetail")
+	@ResponseBody
+	public Board AJAXboardDetail(@RequestParam("boardNo") int boardNo) {
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("boardNo", boardNo);
+		
+		Board board = service.boardDetail(map);
+		
+		return board;
 	}
 
 //	@GetMapping("{artistGroupTitle}/feed/{boardNo:[0-9]+}")

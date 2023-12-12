@@ -118,6 +118,7 @@
 	      	]]>
 			
 			
+			
 
 			(SELECT COUNT(*) FROM "BOARD_LIKE" L 
 			WHERE L.BOARD_NO = B.BOARD_NO) LIKE_COUNT

@@ -1,5 +1,5 @@
 
-function openModal(artistGroupTitle, boardNo) {
+function openModal(boardNo) {
   // 새로운 URL 생성
   var newUrl = "/" + artistGroupTitle + "/feed/" + boardNo;
   console.log(artistGroupTitle);
@@ -13,29 +13,73 @@ function openModal(artistGroupTitle, boardNo) {
   history.pushState(stateObj, "", newUrl);
 
   // 페이지의 내용을 동적으로 업데이트하는 함수 호출 (예시로 updatePageContent 함수 사용)
-  updatePageContent(artistGroupTitle, boardNo);
+  updatePageContent( boardNo);
 
   const modal = document.getElementById('feedDetail');
   modal.classList.add("show");
   document.body.style.overflow = "hidden";
 
 
+
 }
 
  // 예시로 {artistGroupTitle}과 {boardNo}에 값을 할당
- var dynamicArtistGroupTitle = "BTS";
- var dynamicBoardNo = 123;
  
  // openModal 함수 호출
- openModal(dynamicArtistGroupTitle, dynamicBoardNo);
+//  if(dynamicBoardNo){
+//   console.log(dynamicBoardNo);
+//    openModal( dynamicBoardNo);
+//  }
 
-// 예시로 페이지의 내용을 업데이트하는 함수
-function updatePageContent(artistGroupTitle, boardNo) {
+function updatePageContent(boardNo) {
+
+
   // 여기에 페이지 내용을 동적으로 업데이트하는 로직을 추가
-  console.log("Updating content for artistGroupTitle: " + artistGroupTitle + ", boardNo: " + boardNo);
+  fetch("/AJAXboardDetail?boardNo="+ boardNo)
+  .then(resp => resp.json())
+  .then(board => {
+    console.log(board);
+    const boardNickname = document.getElementById('boardNickname');
+    boardNickname.innerText = board.memberNickname;
+    const boardDate = document.getElementById('boardDate');
+    boardDate.innerText = board.boardEnrollDate;
+
+    const feedMain = document.querySelector('.feedMain');
+    feedMain.innerText = board.boardContent;
+
+    const profileImage = document.getElementById('profileImage');
+
+    if(board.memberProfile) {
+      profileImage.src = board.memberProfile;
+    } else {
+      profileImage.src = defaultImage;
+    }
+
+    const indicator = document.querySelector('#indicator');
+    
+    if(board.memberAuthority == 2) {
+      indicator.classList.add("fa-solid", "fa-circle-check");
+      indicator.style.color = "#7743DB";
+    }else {
+      indicator.classList.remove("fa-solid", "fa-circle-check");
+      indicator.style.color = ""; 
+    }
+
+  });
 }
 
 
+function closeModal(stateObj){
+
+  var newUrl = "/" + artistGroupTitle + "/feed";
+  history.pushState(stateObj, "", newUrl);
+
+  updatePageContent();
+  const modal = document.getElementById('feedDetail');
+  modal.classList.remove("show");
+  document.body.style.overflow = "";
+  
+}
 
 
 // function openModal(){
@@ -52,12 +96,7 @@ function wopenModal() {
 
 }
 
-function closeModal(){
-  const modal = document.getElementById('feedDetail');
-  modal.classList.remove("show");
-  document.body.style.overflow = "";
-  
-}
+
 
 function wcloseModal() {
   const modal = document.getElementById('feedWrite');

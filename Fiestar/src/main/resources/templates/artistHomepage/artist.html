@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <link rel="stylesheet" href="/css/artistHomepage/artist.css">
+  <link rel="stylesheet" href="/css/artistHomepage/feedDetail.css">
   <link rel="stylesheet" href="/css/common/artistPageHeader.css">
   <link rel="stylesheet" href="/css/common/artistPageNavi.css">
   <title>artist</title>
@@ -22,7 +23,7 @@
   <section class="board"  style="display: relative; z-index:1">
     <div class="swiper-container" >
       <div class="swiper-wrapper" >
-        <div class="swiper-slide" data-target="feedDetail" th:each="board : ${map.boardList}" th:object="${board}" onclick="openModal()" >
+        <div class="swiper-slide" data-target="feedDetail" th:each="board : ${map.boardList}" th:object="${board}" th:onclick="|openModal(*{boardNo})|" >
   
           <div style="margin-left: 6px; display: flex;">
             <img th:unless="*{memberProfile}" th:src="#{user.default.image}" style="width:35px; height:35px; border-radius:50%;"> 
@@ -130,6 +131,7 @@
       // messages.properties의 값을 얻어와 전역 변수로 선언
       const defaultImage = /*[[#{user.default.image}]]*/ "기본 이미지";
       const boardDetail = /*[[${boardDetail}]]*/ "dadasas";
+      const artistGroupTitle = /*[[${artistGroupTitle}]]*/ "dadasas";
     
   </script>
 

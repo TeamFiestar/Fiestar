@@ -41,11 +41,11 @@ public class BoardServiceImpl implements BoardService {
 @Override
 public Board boardDetail(Map<String, Object> map) {
 	
-	if (map.containsKey("boardNo")) {
-		Board boardDetail = mapper.boardDetail(map);
-		map.put("boardDetail",boardDetail);
-	}
-	return (Board)map.get("boardDetail");
+//	if (map.containsKey("boardNo")) {
+//		Board boardDetail = mapper.boardDetail(map);
+//		map.put("boardDetail",boardDetail);
+//	}
+	return mapper.boardDetail(map);
 }
 	
 	// 게시글 좋아요 여부 확인
