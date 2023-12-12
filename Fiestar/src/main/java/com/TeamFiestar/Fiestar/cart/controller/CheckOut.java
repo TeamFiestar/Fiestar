@@ -35,6 +35,7 @@ public class CheckOut {
 	    	// cartNoList -> "9,13,15"
 	    	//https://yjh5369.tistory.com/entry/java-List%EB%A5%BC-%EB%AC%B8%EC%9E%90%EC%97%B4%EB%A1%9C-Join%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95
 	    	
+	    	
 	    	Set<String> set = new LinkedHashSet<>(cartNoList);
 	    	String selectNo = String.join(",", set);
 	    	
@@ -42,29 +43,28 @@ public class CheckOut {
 	    	
 	        List<Cart> checkout = cartService.checkout(selectNo);
 	        
-	        int totalQuantity = 0;
+	        int totalQuantity = 0; 
 	        int totalPrice = 0;
 	        int purchasePrice = 0;
 	        
 	        
 	        for (Cart cart : checkout) {
 	        	
-	            totalQuantity += cart.getProductCount();
+	            totalQuantity += cart.getProductCount(); // 총 상품 수량
 	            
-	            totalPrice += cart.getProductPrice();
+	            totalPrice += cart.getProductPrice(); // 총 상품 가격
 	            
-	            purchasePrice = (totalPrice + 2500);
+	            purchasePrice = (totalPrice + 2500); // 총 결제 가격
 	        }
 	        
 	        // 뷰에 데이터 전달
 	        model.addAttribute("totalQuantity", totalQuantity); // 총 개수를 모델에 추가     
 	        
-	        model.addAttribute("totalPrice", totalPrice);
+	        model.addAttribute("totalPrice", totalPrice); // 총 가격을 모델에 추가
 	        
-	        model.addAttribute("purchasePrice", purchasePrice);
+	        model.addAttribute("purchasePrice", purchasePrice); // 결제 금액 총 상품 가격 + 배송비
 
-	        // 뷰에 데이터 전달
-	        model.addAttribute("checkout", checkout);
+	        model.addAttribute("checkout", checkout); // 뷰에 데이터 전달
 	        
 
 	        return "cart/checkout"; // 결제 화면 페이지 뷰 이름
