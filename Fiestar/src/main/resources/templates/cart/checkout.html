@@ -89,9 +89,19 @@
                <!-- 총 상품 가격 -->
 
                <div>
-                  <span class="check-price">총 상품 가격(2장)</span>
-                  <span class="check-total" style="font-weight: bold;">$500</span>
+
+                   <p> 총 상품 수량 (<span th:text="${totalQuantity}"></span>)
+                  
+                  </p> 
+                  
                </div>
+
+                  <!-- <span class="check-price">총 상품 가격()</span> -->
+                  <div>                     
+                   총 상품 가격 $ <span th:text="${totalPrice}"> </span>
+                  </div> 
+
+               
 
                <!-- 개별 상품 가격 -->
 
@@ -187,11 +197,11 @@
 
                <div class="detail">
                   <span class="product-price" style="font-size: 16px;">상품 가격 </span>
-                  <span class="price" style="margin-left: 1014px;">100$</span>
+                  <span th:text="${totalPrice}"></span>
 
                   <div class="shipping-price" style="font-size: 16px;">배송비
 
-                     <span style="margin-left: 1014px;">12$</span>
+                     <span style="margin-left: 1014px;">2500</span>
                   </div>
                </div>
 
@@ -215,9 +225,11 @@
 
 
             <div class="total">
+               
                <div class="total-price" style="letter-spacing: -1.6px;">총 결제 금액</div>
 
-               <div class="sc-e98633bc-7 iUJKwp" style="letter-spacing: -1.2px;">$15.58</div>
+               <p> <span th:text="${purchasePrice}"></span> </p>
+
             </div>
 
 
