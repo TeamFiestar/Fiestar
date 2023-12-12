@@ -35,10 +35,11 @@ public class ShopController {
 	@GetMapping("home")
 	public String shopMain(Model model,
 							@RequestParam Map<String, Object> paramMap,
+							@RequestParam(value ="cp", required = false, defaultValue = "1") int cp,
 							@RequestParam(name="shopSearch", required = false, defaultValue = "") String shopSearch) {
 		
 		if(paramMap.get("shopSearch") == null) {
-			Map<String, Object> map = service.shopMain();
+			Map<String, Object> map = service.shopMain(cp);
 			model.addAttribute("map",map);
 			int shopCount = service.shopCount();
 			model.addAttribute("shopCount", shopCount);
@@ -46,7 +47,7 @@ public class ShopController {
 			
 		}else {
 			paramMap.put("shopSearch", shopSearch);
-			Map<String, Object> map =  service.searchList(paramMap);
+			Map<String, Object> map =  service.searchList(paramMap,cp);
 			model.addAttribute("map",map);
 			int shopCount = service.shopSearchCount(paramMap);
 			model.addAttribute("shopCount", shopCount);
@@ -64,12 +65,13 @@ public class ShopController {
 	@GetMapping("home/{artistGroupTitle}")
 	public String artistGroupShop(Model model,
 									Map<String, Object> paramMap,
-									@RequestParam("artistGroupNo") int artistGroupNo) {
+									@RequestParam("artistGroupNo") int artistGroupNo,
+									@RequestParam(value ="cp", required = false, defaultValue = "1") int cp) {
 		
 		paramMap.put("artistGroupNo", artistGroupNo);
 		int shopCount = service.shopGroupCount(paramMap);
 		model.addAttribute("shopCount", shopCount);
-		Map<String, Object> map = service.artistGroupShop(paramMap);
+		Map<String, Object> map = service.artistGroupShop(paramMap, cp);
 		model.addAttribute("map", map);
 		return "shop/home";
 	}
