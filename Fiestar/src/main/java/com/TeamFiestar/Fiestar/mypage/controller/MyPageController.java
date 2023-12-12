@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -83,6 +84,27 @@ public class MyPageController {
 		model.addAttribute("map", map);
 
 		return "myPage/myPage-comment";
+	}
+	
+	
+	// 내가 작성한 댓글 삭제
+	@PostMapping("delComment")
+	public String delComment(@SessionAttribute("loginMember") Member loginMember,
+			@RequestParam("commentType") String commentType,
+			RedirectAttributes ra, @RequestParam("commentNo") int commentNo) {
+		
+		int result = service.delComment(loginMember.getMemberNo(), commentNo, commentType);
+		
+		String message = null;
+		if(result > 0) {
+			message = "댓글을 삭제하였습니다.";
+		} else {
+			message = "댓글 삭제를 실패하였습니다.";
+		}
+		
+		ra.addFlashAttribute("message", message);
+		
+		return "redirect:myPage-comment";
 	}
 
 	// 내가 구독한 아티스트 조회
@@ -179,5 +201,36 @@ public class MyPageController {
 
 		return "redirect:myPage-Modify";
 	}
+	
+	@PostMapping("info")
+	public String info(@RequestParam("memberAddress") String[] memberAddress,
+			@RequestParam("memberPw") String memberPw,
+			@SessionAttribute("loginMember") Member loginMember, 
+			@ModelAttribute Member updateMember,
+			RedirectAttributes ra) {
+		
+		updateMember.setMemberNo( loginMember.getMemberNo() );
+		
+		int result = service.info(updateMember, memberAddress);
+		
+		String message = null;
+
+		
+		if (result > 0) {
+			message = "프로필 정보가 변경되었습니다.";
+			loginMember.setMemberNickname(updateMember.getMemberNickname());
+			loginMember.setMemberAddress(updateMember.getMemberAddress());
+			
+		} else {
+			message = "프로필 정보 변경을 실패했습니다.";
+		}
+
+		ra.addFlashAttribute("message", message);
+
+		return "redirect:myPage-Modify";
+		
+	}
+	
+	
 	
 }

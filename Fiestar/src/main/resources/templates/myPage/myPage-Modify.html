@@ -32,48 +32,48 @@
         <div class="content">
 
           <form action="profile" method="POST" name="myPageFrm" id="profileFrm" enctype="multipart/form-data">
-            <div class="profileTxt">
-              <h3>프로필 이미지</h3>
-            </div>
-            <div class="profileImgModify">
-              <div class="profile-img-modify">
-                <label for="imageInput">
-                  <!-- 프로필 이미지 없음 -->
-                  <div class="userImg"><img th:if="${session.loginMember.memberProfile == null}"
-                      th:src="#{user.default.image}" width="100%" height="100%" id="memberProfile">
-                  </div>
-                  <!-- 프로필 이미지 있음 -->
-                  <div class="userImg">
-                    <img th:unless="${session.loginMember.memberProfile == null}"
-                      th:src="${session.loginMember.memberProfile}" width="100%" height="100%" id="memberProfile">
-                  </div>
-                </label>
-                <input type="file" name="memberProfile" id="imageInput" accept="image/*">
+            <div class="ModifyAll">
+              <div class="profileTxt">
+                <h3>프로필 이미지</h3>
               </div>
-              <div class="profileImgModifyBtn"><button>수정완료</button></div>
-            </div>
+              <div class="profileImgModify">
+                <div class="profile-img-modify">
+                  <label for="imageInput">
+                    <!-- 프로필 이미지 없음 -->
+                    <div class="userImg"><img th:if="${session.loginMember.memberProfile == null}"
+                        th:src="#{user.default.image}" width="100%" height="100%" id="memberProfile">
+                    </div>
+                    <!-- 프로필 이미지 있음 -->
+                    <div class="userImg">
+                      <img th:unless="${session.loginMember.memberProfile == null}"
+                        th:src="${session.loginMember.memberProfile}" width="100%" height="100%" id="memberProfile">
+                    </div>
+                  </label>
+                  <input type="file" name="memberProfile" id="imageInput" accept="image/*">
+                </div>
+                <div class="profileImgModifyBtn"><button>수정완료</button></div>
+              </div>
           </form>
 
           <form action="backImg" method="POST" name="myPageForm" id="updateInfo" enctype="multipart/form-data">
-            <div class="ModifyAll">
-              <div class="bgTxt">
-                <h3>배경화면</h3>
+            <div class="bgTxt">
+              <h3>배경화면</h3>
+            </div>
+            <div class="chooseBgImage">
+              <div class="mainImg">
+                <label for="inputBackImg">
+                  <div class="btn-upload1">
+                    <h1>+</h1>
+                  </div>
+                </label>
+                <input type="file" name="memberBackImage" id="inputBackImg">
               </div>
-              <div class="chooseBgImage">
-                <div class="mainImg">
-                  <label for="inputBackImg">
-                    <div class="btn-upload1">
-                      <h1>+</h1>
-                    </div>
-                  </label>
-                  <input type="file" name="memberBackImage" id="inputBackImg">
-                </div>
-              </div>
+            </div>
           </form>
 
 
 
-          <form action="info" method="POST" >
+          <form action="info" method="POST">
             <div class="emailModify">
               <div class="modifySection1">
                 <h3>이메일</h3>

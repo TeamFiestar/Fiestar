@@ -52,7 +52,9 @@
             <div class="subBg" th:each="comment : ${commentList}" th:object="${comment}">
               <div class="commentMain">
                 <form action="delComment" method="POST">
+
                   <input type="hidden" name="commentNo" th:value="*{commentNo}">
+                  <input type="hidden" name="commentType" th:value="*{commentType}">
                   <div class="section1">
                     <div class="section1Img">
                       <img th:if="${session.loginMember.memberProfile == null}" th:src="#{user.default.image}"
