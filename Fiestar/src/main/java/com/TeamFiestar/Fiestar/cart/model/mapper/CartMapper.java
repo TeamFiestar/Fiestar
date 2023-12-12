@@ -1,6 +1,6 @@
 package com.TeamFiestar.Fiestar.cart.model.mapper;
 
-import java.util.HashMap;
+import java.util.HashMap; 
 import java.util.List;
 import java.util.Map;
 
@@ -18,9 +18,8 @@ public interface CartMapper {
 
 	int deleteCart(int cartNo);
 
-	List<Cart> checkout(int memberNo);
+	List<Cart> checkout(String selectNo);
 
 	
-
 
 }

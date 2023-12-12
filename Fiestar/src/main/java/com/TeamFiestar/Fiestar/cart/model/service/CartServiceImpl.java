@@ -1,6 +1,6 @@
 package com.TeamFiestar.Fiestar.cart.model.service;
 
-import java.util.HashMap;
+import java.util.HashMap; 
 import java.util.List;
 import java.util.Map;
 
@@ -38,8 +38,10 @@ public class CartServiceImpl implements CartService{
 	}
 	
 	@Override
-	public List<Cart> checkout(int memberNo) {
-		// TODO Auto-generated method stub
-		return mapper.checkout(memberNo);
+	public List<Cart> checkout(String selectNo) {
+		return mapper.checkout(selectNo);
 	}
+	
+	
+	
 }
