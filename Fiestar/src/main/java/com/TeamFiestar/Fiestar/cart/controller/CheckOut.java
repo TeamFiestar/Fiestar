@@ -48,7 +48,8 @@ public class CheckOut {
 	        
 	        
 	        for (Cart cart : checkout) {
-	            totalQuantity += cart.getProductCount(); // 여기서 getQuantity()는 Cart 객체의 상품 개수를 반환하는 메소드입니다.
+	        	
+	            totalQuantity += cart.getProductCount();
 	            
 	            totalPrice += cart.getProductPrice();
 	            
