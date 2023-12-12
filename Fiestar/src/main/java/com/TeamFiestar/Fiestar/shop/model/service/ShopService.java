@@ -66,11 +66,6 @@ public interface ShopService {
 	 */
 	List<Product> selectSearchSort(Map<String, Object> paramMap);
 	
-	/**상품 등록
-	 * @param paramMap
-	 * @return
-	 */
-	int insertGoods(Product product, List<MultipartFile> images)throws IllegalStateException, IOException;
 
 	
 

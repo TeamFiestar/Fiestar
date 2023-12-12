@@ -1,5 +1,6 @@
 package com.TeamFiestar.Fiestar.admin.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,11 +13,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.TeamFiestar.Fiestar.admin.model.dto.ArtistNotice;
 import com.TeamFiestar.Fiestar.admin.model.dto.Report;
 import com.TeamFiestar.Fiestar.admin.model.service.ArtistAdminAJAXService;
 import com.TeamFiestar.Fiestar.admin.model.service.ArtistAdminService;
+import com.TeamFiestar.Fiestar.shop.model.dto.Product;
 
 import lombok.RequiredArgsConstructor;
 
@@ -75,7 +79,6 @@ public class ArtistAdminContoller {
 	@PostMapping("{artistGroupTitle}/noticeAdd")	
 	public String artistNoticeAdd(
 			@PathVariable("artistGroupTitle") String artistGroupTitle, Model model, ArtistNotice notice){
-		
 		model.addAttribute("artistGroupTitle",artistGroupTitle);
 		
 		int result = service.artistNoticeAdd(artistGroupTitle, notice);
@@ -106,6 +109,33 @@ public class ArtistAdminContoller {
 			@PathVariable("artistGroupTitle") String artistGroupTitle) {
 		
 		return "admin/artistOrder";
+	}
+	
+	
+	@GetMapping("{artistGroupTitle}/goods")
+	public String register(
+			@PathVariable("artistGroupTitle") String artistGroupTitle, Model model) {
+		model.addAttribute("artistGroupTitle",artistGroupTitle);
+		return "admin/goods";
+	}
+	
+	/*상품 등록
+	 *  */
+	@PostMapping("{artistGroupTitle}/goods")
+	public String insertGoods(RedirectAttributes ra,
+								Product product,
+								@PathVariable("artistGroupTitle") String artistGroupTitle,
+								@RequestParam("shopImg") List<MultipartFile> images) throws IllegalStateException, IOException{
+		
+		int productNo = service.insertGoods(product,images,artistGroupTitle);
+		
+		if(productNo > 0) {
+			ra.addFlashAttribute("message","상품 등록 성공");
+			return "redirect:/shop/shopDetail";
+		}
+		
+		ra.addFlashAttribute("message","상품 등록 실패");
+		return "redirect:goods";
 		
 	}
 

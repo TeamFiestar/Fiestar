@@ -76,7 +76,7 @@ public class ShopController {
 		return "shop/home";
 	}
 	
-	/** 그룹별 상품 조회 후 정렬
+	/** 전체 상품 조회 후 정렬
 	 * @return
 	 */
 	@GetMapping(value = "home/sortList" , produces = "application/json; charset=UTF-8")
@@ -107,6 +107,13 @@ public class ShopController {
 	}
 	
 	
+	@GetMapping("{artistGroupTitle}/Detail")
+	public String shopDetail() {
+		
+		return null;
+	}
+	
+	
 	
 	
 	
@@ -129,12 +136,7 @@ public class ShopController {
 	
 	
 	
-	@GetMapping("shopDetail")
-	public String shopDetail() {
-		return "shop/shopDetail";
-			
-	}
-	
+
 	
 	
 	

@@ -28,17 +28,12 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 @Transactional(rollbackFor = Exception.class)
-@PropertySource("classpath:/config.properties")
 public class ShopServiceImpl implements ShopService{
 
 	private final ShopMapper mapper;
 	
 	
-	@Value("${my.shop.location}")
-	private String folderPath;  //서버 저장 폴더 경로
-	
-	@Value("${my.shop.webpath}")
-	private String webPath;  //웹 이미지 요청 경로
+
 	
 	
 	
@@ -149,71 +144,6 @@ public class ShopServiceImpl implements ShopService{
 		return mapper.selectSearchSort(paramMap);
 	}
 	
-	//상품 등록
-	@Override
-	public int insertGoods(Product product, List<MultipartFile> images) throws IllegalStateException, IOException {
-
-		int result = mapper.insertGoods(product);
-		if(result == 0) {
-			return 0; 
-		}
-		
-		//조회한 상품번호 시퀀스값 저장
-		int productNo = product.getProductNo();
-		
-		List<ProductImage> imageList = new ArrayList<>();
-		
-		//images에서 업로드된 파일 선별하기
-		for(int i = 0; i<images.size(); i++) {
-			
-			//i번째 요소의 파일 크기가 0보다 크다(파일이 있다)
-			if(images.get(i).getSize() > 0) {
-				
-				ProductImage img = new ProductImage();
-				
-				img.setProductNo(productNo); //몇 번 게시글의 이미지?
-				img.setProductImageOrder(i); //몇 번째 이미지?(인덱스)
-				
-				//원본 파일명(다운로드에서 사용)
-				img.setProductImageRename(images.get(i).getOriginalFilename());
-				
-				//웹 접근 경로
-				img.setProductImagePath(webPath);
-			
-				//변경된 파일명
-				img.setProductImageRename(Util.fileRename(images.get(i).getOriginalFilename()));
-				
-				//실제 업로드된 파일을 img에 세팅
-				img.setUploadFile(images.get(i));
-				
-				//uploadList에 추가
-				imageList.add(img);
-				
-			}
-		}
-		//images에서 업로드된 파일을 선별했으나 아무것도 없을 때
-		if(imageList.isEmpty()) {
-			return productNo;
-		}
-		//images에 실제로 업로드된 이미지가 있을 때
-		//uploadList 를 통째로 mapper로 전달해 일괄 삽입
-		result = mapper.insertImageList(imageList);
-		if(result == imageList.size() ) {
-			//업로드된 이미지를 서버(folderPath)에 저장
-			for(ProductImage img : imageList) {
-				img.getUploadFile().transferTo(new File(folderPath + img.getProductImageRename()));
-			}
-		}else {
-			
-			throw new shopException("파일 정보 DB 삽입 실패");
-		}
-		
-		return productNo;
-	}
-		
-		
-		
-		
 	
 
 		

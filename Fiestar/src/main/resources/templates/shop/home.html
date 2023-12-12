@@ -30,7 +30,7 @@
          </th:block>
         </section>
      
-
+ 
       <div class="shop-sorting-area">
         <div class="shop-sorting-amount" th:text="${shopCount}">상품의 총 개수</div>
       
@@ -42,14 +42,14 @@
           </div>
         
       </div>
-    </form>
+      
 
       <section class="artist-shop-product" >
         <div class="product-area"> 
           <div class="product-area-detail">
 
             <div class="product-list" th:each=" product: ${productList}" th:object="${product}">
-              <a href="/shop/shopDetail" class="product-profile">
+              <a th:href="|/shop/${artistGroupNo}/shopDetail|" class="product-profile">
                 <div class="product-image-area" th:text="*{productImage}"> 
                   <img src="/images/product1.jpg">
                 </div>
