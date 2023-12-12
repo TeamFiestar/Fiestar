@@ -8,13 +8,20 @@
   <link rel="stylesheet" href="/css/myPage/myPage-Withdrawal.css">
   <link rel="stylesheet" href="/css/myPage/myPage-navi.css">
   <link rel="stylesheet" href="/css/common/artistPageHeader.css">
+  <link rel="stylesheet" href="/css/common/footer.css" />
+
 
 </head>
 
 <body>
   <th:block th:replace="~{common/artistPageHeader}"></th:block>
   <div class="all">
-    <div class="BgImage"><img src="/image/아티스트 메인배경.jpg" width="100%" height="100%"></div>
+    <div class="BgImage">
+      <img th:unless="${session.loginMember.memberBackImage == null}" th:src="${session.loginMember.memberBackImage}"
+        width="100%" height="100%" id="memberBackImage">
+      <img th:if="${session.loginMember.memberBackImage == null}" th:src="#{user.default.backImg}" width="100%"
+        height="100%" id="memberBackImage">
+    </div>
 
     <div class="main">
       <th:block th:replace="~{myPage/myPage-navi2}"></th:block>
@@ -25,7 +32,7 @@
         </div>
         <div class="content">
           <div class="content-main">
-            <form action="withdrawal" method="POST">
+            <form action="withdrawal" method="POST" name="myPageFrm" id="secessionFrm">
               <div class="pw">
                 <div class="pw1">
                   <li>비밀번호</li>
@@ -253,12 +260,15 @@
                 <button>탈퇴하기</button>
               </div>
           </div>
-          </form>
         </div>
       </div>
     </div>
+    </form>
 
   </div>
+
+  <th:block th:replace="~{common/footer}"></th:block>
+
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script src="/js/myPage/myPage-Withdrawal.js"></script>
 

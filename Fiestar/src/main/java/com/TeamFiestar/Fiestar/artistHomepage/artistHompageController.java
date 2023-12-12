@@ -6,12 +6,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("{artistHomepage}")
 public class artistHompageController {
 	
 	
-	@GetMapping("memberFeed")
-	public String memberFeed() {
-		return "artistHomepage/memberFeed";
+	@GetMapping("artistprofile/profileModify")
+	public String profileModify() {
+		return "artistprofile/profileModify";
+	}
+	
+	@GetMapping("artistprofile/profile")
+	public String artistprofile() {
+		return "artistprofile/profile";
 	}
 }

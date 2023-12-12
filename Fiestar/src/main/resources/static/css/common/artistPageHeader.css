@@ -47,6 +47,7 @@ header>section:nth-of-type(2) {
   display: inline-block;
   display: relative;
   z-index: 2;
+  height: 50px;
 }
 
 .dropdown-content {
@@ -99,4 +100,4 @@ header article {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} 

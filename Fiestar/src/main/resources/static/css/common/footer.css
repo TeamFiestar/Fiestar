@@ -9,19 +9,19 @@ footer {
 .footer1 {
   display: flex;
   flex-direction: row;
-  margin-top : 50px;
+  margin-top: 50px;
 }
 
 .footer2 {
   display: flex;
   flex-direction: row;
   margin-top: 30px;
-
+  margin-bottom: 30PX;
 }
 
 hr {
   margin-top: 100px;
-  color : rgba(173, 177, 184, 1);
+  color: rgba(173, 177, 184, 1);
 }
 
 .footer1>article>* {
@@ -30,16 +30,16 @@ hr {
 
 footer a {
   text-decoration: none;
-  color : rgba(173, 177, 184, 1);
+  color: rgba(173, 177, 184, 1);
 }
 
-.footer1 >article > span {
- font-size: 20px;
+.footer1>article>span {
+  font-size: 20px;
 }
 
-.footer2 > pre {
+.footer2>pre {
   font-size: 15px;
-  color : rgba(173, 177, 184, 1);
+  color: rgba(173, 177, 184, 1);
 }
 
 footer span {
