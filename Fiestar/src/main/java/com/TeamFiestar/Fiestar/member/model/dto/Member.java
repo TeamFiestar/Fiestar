@@ -20,9 +20,11 @@ public class Member {
 	   private String memberProfile;
 	   private String memberEnrollDate;
 	   private String memberDelFl;
-
+	   
 	   private int chattingRoomNo;
 	   private String memberBackImage;
+	   
+	   
 
 	   
 }

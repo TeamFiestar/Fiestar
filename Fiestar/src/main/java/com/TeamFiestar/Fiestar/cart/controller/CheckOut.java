@@ -30,6 +30,7 @@ public class CheckOut {
 	                           @SessionAttribute(value = "loginMember", required = false) Member loginMember, 
 	                           @RequestParam("selectEach") List<String> cartNoList, Member member) {
 	    	
+	    	
 	    	// List를 ,로 구분되는 String으로 변환하는 방법
 	    	// cartNoList -> "9,13,15"
 	    	//https://yjh5369.tistory.com/entry/java-List%EB%A5%BC-%EB%AC%B8%EC%9E%90%EC%97%B4%EB%A1%9C-Join%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95
@@ -39,6 +40,7 @@ public class CheckOut {
 	    	
 	        // 선택된 장바구니 항목 조회
 	        List<Cart> checkout = cartService.checkout(selectNo);
+	        
 	        
 	        // 뷰에 데이터 전달
 	        model.addAttribute("checkout", checkout);
