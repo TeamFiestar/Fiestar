@@ -16,10 +16,9 @@ public class Cart {
 	private int productNo;
 	private String productOptionName;
 	private int cartNo;
-	
 	private String eachPrice;
-	
-	
+	private String memberAddress;
+	private String memberNickname;
 	private String amountPrice;
 	
 	

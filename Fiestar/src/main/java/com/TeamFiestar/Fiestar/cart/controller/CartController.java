@@ -55,6 +55,7 @@ public class CartController {
 		return "cart/cart";
 	}
 
+	
 	@PostMapping("cartPage")
 	public ResponseEntity<?> updateCart(@RequestBody Cart cart) {
 		int updatedRows = service.updateCart(cart);

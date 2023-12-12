@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.TeamFiestar.Fiestar.cart.model.dto.Cart;
+import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
 @Transactional
 public interface CartService {
@@ -22,10 +23,11 @@ public interface CartService {
 
 	int updateCart(Cart cart);
 
-
 	int deleteCart(int cartNo);
 
 	List<Cart> checkout(String selectNo);
+
+
 
 	
 }

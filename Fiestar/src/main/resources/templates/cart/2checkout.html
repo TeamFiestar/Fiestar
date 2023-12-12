@@ -6,8 +6,9 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Document</title>
    <script src="https://kit.fontawesome.com/d6c32512de.js" crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="../../static/css/cart/checkout.css">
 
-   <link rel="stylesheet" href="/css/cart/checkout.css">
+   <link rel="stylesheet" href="/static/css/common/shopHeader.css">
 
    <th:block th:replace="~{common/shopHeader}"></th:block>
 
@@ -44,7 +45,7 @@
 
                   <!-- 이미지 영역 -->
 
-                  <img src="/images/keyring.png" alt="">
+                  <img src="/static/images/keyring.png" alt="">
 
 
                   <!-- 제품 상세 -->
@@ -101,7 +102,7 @@
 
 
 
-<!-- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
 
 
 
@@ -117,11 +118,9 @@
 
                <div style="font-size: 16px;">
 
-                  <!-- <div style="margin-top: 44px;">주문자 명</div> -->
-               
+                  <div style="margin-top: 44px;">주문자 명</div>
                   <div class="name-input">
-                      <!-- <div th:text="${checkoutItem.memberNickname}" class="default-price"></div> -->
-                     <!-- <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;"> -->
+                     <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;">
                   </div>
 
 
@@ -143,8 +142,8 @@
 
 
             <div class="shipping-list">
-               <!-- <span th:text="${checkoutItem.memberAddress}" class="default-price"></span> -->
-               <!-- <span class="shipping-name" style="font-weight: bold;">배송지</span> -->
+
+               <span class="shipping-name" style="font-weight: bold;">배송지</span>
 
 
                <button class="shipping-btn">변경</button>

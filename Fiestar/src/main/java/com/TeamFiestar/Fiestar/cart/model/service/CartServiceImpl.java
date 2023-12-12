@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.TeamFiestar.Fiestar.cart.model.dto.Cart;
 import com.TeamFiestar.Fiestar.cart.model.mapper.CartMapper;
+import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
 
 @Service
@@ -42,6 +43,5 @@ public class CartServiceImpl implements CartService{
 		return mapper.checkout(selectNo);
 	}
 	
-	
-	
+
 }

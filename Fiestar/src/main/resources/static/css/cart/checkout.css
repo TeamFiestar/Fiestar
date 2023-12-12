@@ -257,7 +257,7 @@ h1 {
     border: 1px solid rgb(173, 177, 184);
     color: rgb(135, 142, 150);
 
-    width: 42px;
+    /* width: 42px; */
     display: inline-flex;
 }
 
@@ -272,11 +272,11 @@ h1 {
     justify-content: center;
     -webkit-box-align: center;
     align-items: center;
-    height: 30px;
-    font-size: 18px;
+    height: 32px;
+    font-size: 16px;
     border: 1px solid rgb(173, 177, 184);
     color: rgb(135, 142, 150);
-    width: 42px;
+    /* width: 42px; */
     display: inline-flex;
 }
 
@@ -291,11 +291,11 @@ h1 {
     justify-content: center;
     -webkit-box-align: center;
     align-items: center;
-    height: 28px;
-    font-size: 14px;
+    height: 32px;
+    font-size: 16px;
     border: 1px solid rgb(173, 177, 184);
     color: rgb(135, 142, 150);
-    width:  60px;
+    /* width:  60px; */
     display: inline-flex;
 }
 

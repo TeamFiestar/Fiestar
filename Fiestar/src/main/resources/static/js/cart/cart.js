@@ -29,7 +29,7 @@ for (let i = 0; i < xBtnList.length; i++) {
          // "예"를 선택한 경우 상품 삭제 처리
          const row = e.target.parentElement.parentElement.parentElement;
          let cartNo = e.target.parentElement.previousElementSibling.previousElementSibling.children[4].innerText;
-
+         
          console.log(cartNo);
 
          // 필요한 데이터 
@@ -37,9 +37,7 @@ for (let i = 0; i < xBtnList.length; i++) {
          // 서버에 삭제 요청 보내기
          sendDeleteRequest(cartNo, row);
 
-         // 장바구니 총 가격을 다시 계산
-         checkedPrice();
-         
+
       } else {
          // "아니오"를 선택한 경우 아무 작업도 하지 않음
       }
@@ -70,12 +68,16 @@ function sendDeleteRequest(cartNo, row) {
       console.log(result);
       if(result > 0){
          row.remove();
+
+         // 장바구니 총 가격을 다시 계산
+         checkedPrice();
       }
    })
 
    .catch(error => console.error('Error:', error));
 
 }
+
 
 
 selectAll.addEventListener("change", () => {
@@ -105,9 +107,6 @@ const clacPrice = (btn) => {
    amountPrice.innerText = Number(itemCount.innerText) * Number(defaultPrice.innerText)
    
    // amountPrice = Number(itemCount.innerText) * Number(defaultPrice.innerText);
-   
-
-
    // amountPrice.textContent = amountPrice.innerText.toLocaleString();
    
 }
@@ -195,12 +194,20 @@ function sendUpdateRequest(cartNo, itemCount, eachPrice) {
 }
 
 
-// 체크 상태가 변했을 때 checkedPrice(); 수행
-document.addEventListener("change", e => {
-   console.log(checkedItems)
-   checkedPrice();
+// // 체크 상태가 변했을 때 checkedPrice(); 수행
+// document.addEventListener("change", e => {
+//    console.log(checkedItems)
+//    checkedPrice();
    
-});
+// });
+
+
+// 각각의 selectEach 체크박스 상태 변경 시
+// for (let selectEach of selectEachList) {
+//    selectEach.addEventListener("change", e => {
+//       checkedPrice(); // 총 가격 업데이트
+//    });
+// }
 
 // selectAll 체크박스 상태 변경 시
 selectAll.addEventListener("change", () => {
@@ -218,6 +225,22 @@ selectAll.addEventListener("change", () => {
 // }
 
 
+// 각각의 selectEach 체크박스 상태 변경 시
+for (let selectEach of selectEachList) {
+   selectEach.addEventListener("change", e => {
+      checkedPrice(); // 총 가격 업데이트
+   });
+}
+
+
+
+document.addEventListener("change", e => {
+   
+   checkedPrice();
+   
+});
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -233,7 +256,7 @@ const form = document.getElementById("checkoutFrm");
 
 // && checkList.length
 form.addEventListener("submit", e => {
-
+   
    if(itemList.length == 0 || totalPrice.innerText == 0) {
       alert("선택된 상품이 없습니다.")         
       e.preventDefault();
@@ -243,12 +266,8 @@ form.addEventListener("submit", e => {
 });
 
 
-
-
 // 결제 버튼 클릭 시 -> 아이템 리스트에서 체크 선택된 아이템 리스트 안에 포함된 장바구니 번호(폼 태그에 담김) 
 // checkout 뷰로 전달
-
-
 
 // const itemList = document.getElementsByClassName("item-list");
 // const form = document.getElementById("checkoutFrm");
@@ -324,81 +343,3 @@ form.addEventListener("submit", e => {
 
 
 // ---------------------------------------------------------------------------
-
-
-
-
-// const form = document.getElementById("checkoutFrm");
-
-//     form.addEventListener("submit", e => {
-//         e.preventDefault(); // 기본 제출 동작 방지
-
-//         // 체크된 항목들의 카트 번호 수집
-//         const checkedItems = document.querySelectorAll(".selectEach:checked");
-//         console.log("Checked Items:", checkedItems); // 체크된 항목들을 콘솔에 출력
-
-//         const cartNumbers = Array.from(checkedItems).map(item.value);
-
-//         console.log(item.value);
-//  각 항목의 value 속성을 콘솔에 출력
-//         const cartNumbers = Array.from(checkedItems).map(item => {
-//             console.log("Item Value:", item.value); // 각 항목의 value 속성을 콘솔에 출력
-//             // return item.value;
-
-      
-
-//         // 체크된 항목이 없는 경우 경고
-//         if (checkedItems.length === 0) {
-//             alert("선택된 상품이 없습니다.");
-//             return;
-//         }
-
-//       });
-      
-   //    sendCheckoutRequest(checkedItems);
-   //      function sendCheckoutRequest(checkedItems) {
-   //       fetch('checkout', { 
-   //           method: 'POST',
-   //           headers: {
-   //               'Content-Type': 'application/json',
-   //           },
-   //           body: JSON.stringify({ checkedItems: checkedItems })
-   //       })
-   //       .then(response => {
-   //           if (!response.ok) {
-   //               throw new Error('Network response was not ok.');
-   //           }
-   //           return response.json();
-   //       })
-   //       .then(data => {
-   //           console.log('Checkout Success:', data);
-   //           // 성공적으로 처리된 후의 로직 (예: 페이지 리다이렉션)
-   //       })
-   //       .catch(error => {
-   //           console.error('Checkout Error:', error);
-
-     
-
-
-   
-
-
-// ---------------------- 제출 버튼 --------------------------------
-
-// 버튼 클릭 -> 체크된 장바구니 번호 넘기기 
-
-// const itemList = document.getElementsByClassName("item-list");
-// console.log(itemList);
-// const form = document.getElementById("checkoutFrm");
-
-// // && checkList.length
-// form.addEventListener("submit", e => {
-
-//    if(itemList.length == 0 || totalPrice.innerText == 0) {
-//       alert("선택된 상품이 없습니다.")         
-//       e.preventDefault();
-//       return;
-//    }
-
-// });
-

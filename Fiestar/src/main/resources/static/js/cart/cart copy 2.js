@@ -27,7 +27,7 @@ for (let i = 0; i < xBtnList.length; i++) {
 
       if (confirmation) {
          // "예"를 선택한 경우 상품 삭제 처리
-         const cartRow = e.target.parentElement.parentElement.parentElement;
+         const cartRow = e.target.parentElement.nextElementSibling;
          let cartNo = e.target.parentElement.previousElementSibling.previousElementSibling;
          let deletedCartNo = Number(cartNo.innerText);
 

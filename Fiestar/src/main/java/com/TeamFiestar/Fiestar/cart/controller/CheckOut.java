@@ -28,7 +28,7 @@ public class CheckOut {
 	    
 	    public String checkout(Model model, 
 	                           @SessionAttribute(value = "loginMember", required = false) Member loginMember, 
-	                           @RequestParam("selectEach") List<String> cartNoList ) {
+	                           @RequestParam("selectEach") List<String> cartNoList, Member member) {
 	    	
 	    	// List를 ,로 구분되는 String으로 변환하는 방법
 	    	// cartNoList -> "9,13,15"
@@ -37,10 +37,9 @@ public class CheckOut {
 	    	Set<String> set = new LinkedHashSet<>(cartNoList);
 	    	String selectNo = String.join(",", set);
 	    	
-
 	        // 선택된 장바구니 항목 조회
 	        List<Cart> checkout = cartService.checkout(selectNo);
-
+	        
 	        // 뷰에 데이터 전달
 	        model.addAttribute("checkout", checkout);
 
