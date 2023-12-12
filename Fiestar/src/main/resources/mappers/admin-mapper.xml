@@ -195,4 +195,13 @@
 		SELECT ARTIST_GROUP_TITLE FROM ARTIST_GROUP
 		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
 	</select>
+	
+	
+	<insert id="artistGroupRegi">
+		INSERT INTO ARTIST_GROUP
+		VALUES( SEQ_ARTIST_GROUP_NO.NEXTVAL, #{artistGroupAdminNo}, #{artistGroupTitle},
+			#{artistGroupProfile}, '', #{artistGroupImage}, #{artistGroupBackimg})
+	</insert>
+	
+	
 </mapper>

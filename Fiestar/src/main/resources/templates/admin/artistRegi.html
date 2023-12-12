@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>아티스트 등록</title>
+    <link rel="stylesheet" href="/css/common/artistPageHeader.css" />
+    <link rel="stylesheet" href="/css/common/artistAdmin.css" />
+    <link rel="stylesheet" href="/css/admin/artistRegi.css" />
+  </head>
+  <body>
+    <th:block th:replace="~{common/artistPageHeader}">헤더</th:block>
+    <main>
+      <!-- th:replace -->
+      <th:block th:replace="~{common/adminArtist}">사이드바</th:block>
+      <div class="artistGroup-add">
+        <h1>아티스트 그룹 등록</h1>
+        <br />
+        <form action="/admin/artistGroupRegi" method="post" enctype="multipart/form-data" id="artistGroupFrm">
+          <div class="artistGroup-title">
+            <h4>아티스트 그룹 명</h4>
+            <input type="text" id="input-artistGroupTitle" name="artistGroupTitle" />
+          </div>
+          <div class="artistGroup-backImg">
+            <h4>아티스트 그룹 배경이미지</h4>
+            <br />
+            <div class="artistGroupBackImg">
+              <label for="img1">
+                <img src="" class="backImg" />
+              </label>
+              <input type="file" name="backImg" id="img1" accept="image/*" class="input-artistGroupImg" />
+              <span class="delete-image">&times;</span>
+            </div>
+          </div>
+          <div class="artistGroup-profile">
+            <h4>아티스트 그룹 프로필 사진</h4>
+            <br />
+            <div class="artistGroupProfile">
+              <label for="img2">
+                <img src="" class="profile" />
+              </label>
+              <input type="file" name="profile" id="img2" accept="image/*" class="input-artistGroupImg" />
+              <span class="delete-image">&times;</span>
+            </div>
+          </div>
+          <div class="artistGroup-image">
+            <h4>아티스트 그룹 이미지</h4>
+            <br />
+            <div class="artistGroupImg">
+              <label for="img2">
+                <img src="" class="image" />
+              </label>
+              <input type="file" name="image" id="img2" accept="image/*" class="input-artistGroupImg" />
+              <span class="delete-image">&times;</span>
+            </div>
+          </div>
+          <div class="artistGroup-btn-area">
+            <button class="artistGroupBtn" type="submit">등록</button>
+          </div>
+        </form>
+      </div>
+    </main>
+    <script src="/js/admin/artistRegi.js"></script>
+  </body>
+</html>

@@ -1,5 +1,6 @@
 package com.TeamFiestar.Fiestar.admin.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -14,10 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.TeamFiestar.Fiestar.admin.model.service.AdminService;
 import com.TeamFiestar.Fiestar.board.model.dto.Board;
+//import com.TeamFiestar.Fiestar.member.model.dto.ArtistGroup;
+import com.TeamFiestar.Fiestar.member.model.dto.ArtistGroup1;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
 import lombok.RequiredArgsConstructor;
@@ -97,7 +102,32 @@ public class AdminController {
 	}
 	
 	
+	@GetMapping("regi")
+	public String regi() {
+		return "admin/artistRegi";
+	}
 	
+	@PostMapping("artistGroupRegi")
+	public String artistGroupRegi(@RequestParam("backImg") MultipartFile backImg,
+			@RequestParam("profile") MultipartFile profile,
+			@RequestParam("image") MultipartFile image,
+			@RequestParam("artistGroupTitle") String artistGroupTitle,
+			@SessionAttribute("loginMember") Member loginMember,
+			ArtistGroup1 artistGroup,
+			RedirectAttributes ra
+			
+			) throws IllegalStateException, IOException {
+		int adminNo = loginMember.getMemberNo();
+		int result = service.artistGroupRegi(backImg, profile, image, artistGroupTitle, 
+				adminNo, artistGroup);
+		String message = null;
+		
+		if(result>0) {
+			ra.addFlashAttribute("message", "등록 성공");
+		}else ra.addFlashAttribute("message", "등록 실패");
+		
+		return "redirect:artistRegi";
+	}
 	
 	
 }

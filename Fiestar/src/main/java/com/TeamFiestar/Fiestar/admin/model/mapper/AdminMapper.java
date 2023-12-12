@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
 
 import com.TeamFiestar.Fiestar.board.model.dto.Board;
+//import com.TeamFiestar.Fiestar.member.model.dto.ArtistGroup;
+import com.TeamFiestar.Fiestar.member.model.dto.ArtistGroup1;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
 @Mapper
@@ -45,6 +47,8 @@ public interface AdminMapper {
 	List<Board> selectSubscribeBoard(Map<String, Object> map);
 
 	String subArtistTitle(int artistGroupNo);
+
+	int artistGroupRegi(ArtistGroup1 artistGroup);
 
 
 

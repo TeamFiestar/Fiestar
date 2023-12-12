@@ -1,15 +1,22 @@
 package com.TeamFiestar.Fiestar.admin.model.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.TeamFiestar.Fiestar.admin.model.dto.AdminPagination;
 import com.TeamFiestar.Fiestar.admin.model.mapper.AdminMapper;
 import com.TeamFiestar.Fiestar.board.model.dto.Board;
+import com.TeamFiestar.Fiestar.common.utility.Util;
+//import com.TeamFiestar.Fiestar.member.model.dto.ArtistGroup;
+import com.TeamFiestar.Fiestar.member.model.dto.ArtistGroup1;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
 import lombok.RequiredArgsConstructor;
@@ -19,6 +26,22 @@ import lombok.RequiredArgsConstructor;
 public class AdminServiceImpl implements AdminService{
 
 	private final AdminMapper mapper;
+	
+	@Value("${artist.image.webpath}")
+	private String imagepath;
+	@Value("${artist.profile.webpath}")
+	private String profilepath;
+	@Value("${artist.backImg.webpath}")
+	private String backpath;
+	
+	@Value("${artist.image.location}")
+	private String imagefolder;
+	@Value("${artist.profile.location}")
+	private String profilefolder;
+	@Value("${artist.backImg.location}")
+	private String backfolder;
+	
+	
 	
 	@Override
 	public Map<String, Object> selectMember(Member member, int cp) {
@@ -57,10 +80,6 @@ public class AdminServiceImpl implements AdminService{
 		map.put("pagination", pagination);
 		return map;
 	}
-	
-	
-	
-	
 	
 	@Override
 	public Map<String, Object> deleteMember(Member member, int cp) {
@@ -156,6 +175,47 @@ public class AdminServiceImpl implements AdminService{
 		map.put("artistGroupNo", artistGroupNo);
 		return mapper.selectSubscribeBoard(map);
 	}
+	
+	
+	@Override
+	public int artistGroupRegi(MultipartFile backImg, MultipartFile profile, MultipartFile image,
+			String artistGroupTitle, int adminNo, ArtistGroup1 artistGroup) throws IllegalStateException, IOException {
+		
+		artistGroup.setArtistGroupAdminNo(adminNo);
+		artistGroup.setArtistGroupTitle(artistGroupTitle);
+		
+		String backupProfile = artistGroup.getArtistGroupProfile();
+		String backupBack = artistGroup.getArtistGroupBackimg();
+		String backupImg = artistGroup.getArtistGroupImage();
+		
+		String backRename = null;
+		String profileRename = null;
+		String imageRename = null;
+		if(backImg.getSize()>0 && profile.getSize()>0 && image.getSize()>0) {
+			backRename = Util.fileRename(backImg.getOriginalFilename());
+			profileRename = Util.fileRename(profile.getOriginalFilename());
+			imageRename = Util.fileRename(image.getOriginalFilename());
+			
+			artistGroup.setArtistGroupProfile(profilepath + profileRename);
+			artistGroup.setArtistGroupBackimg(backpath + backRename);
+			artistGroup.setArtistGroupImage(imagepath + imageRename);
+		}
+		int result = mapper.artistGroupRegi(artistGroup);
+		
+		if(result>0) {
+			if(backImg.getSize()>0 && profile.getSize()>0 && image.getSize()>0) {
+				backImg.transferTo(new File(backfolder + backRename));
+				profile.transferTo(new File(profilefolder + profileRename));
+				image.transferTo(new File(imagefolder + imageRename));
+			}
+		}else {
+			artistGroup.setArtistGroupProfile(backupProfile);
+			artistGroup.setArtistGroupBackimg(backupBack);
+			artistGroup.setArtistGroupImage(backupImg);
+		}
+		return result;
+	}
+	
 	
 //	@Override
 //	public int restoration(int memberNo) {
