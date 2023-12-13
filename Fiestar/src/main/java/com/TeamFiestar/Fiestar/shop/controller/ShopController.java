@@ -10,9 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.TeamFiestar.Fiestar.shop.model.dto.Product;
 import com.TeamFiestar.Fiestar.shop.model.service.ShopService;
@@ -107,10 +109,30 @@ public class ShopController {
 	}
 	
 	
-	@GetMapping("{artistGroupTitle}/Detail")
-	public String shopDetail() {
+	/**상품 상세조회
+	 * @param productNo
+	 * @param model
+	 * @param product
+	 * @param ra
+	 * @return
+	 */
+	@GetMapping("shopDetail/{productNo:[0-9]+}")
+	public String shopDetail(@PathVariable("productNo") int productNo,
+								Model model, Product product,
+								RedirectAttributes ra) {
 		
-		return null;
+		Product prod = service.shopDetail(productNo);
+		String path = null;
+		
+		if(prod != null) {
+			model.addAttribute("prod", prod);
+			path = "shop/shopDetail";
+		}else {
+			path = "redirect:/shop/home";
+			ra.addFlashAttribute("message", "해당 게시글이 존재하지않습니다");  //footer.html에서 출력
+		}
+		
+		return path;
 	}
 	
 	

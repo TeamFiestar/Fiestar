@@ -131,7 +131,7 @@ public class ArtistAdminContoller {
 		
 		if(productNo > 0) {
 			ra.addFlashAttribute("message","상품 등록 성공");
-			return "redirect:/shop/shopDetail";
+			return "redirect:/shop/shopDetail/" + productNo;
 		}
 		
 		ra.addFlashAttribute("message","상품 등록 실패");

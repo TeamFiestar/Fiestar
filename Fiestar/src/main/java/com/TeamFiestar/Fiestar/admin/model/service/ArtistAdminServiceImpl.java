@@ -111,6 +111,8 @@ public class ArtistAdminServiceImpl implements ArtistAdminService{
 		
 		List<ProductImage> imageList = new ArrayList<>();
 		
+		
+				
 		//images에서 업로드된 파일 선별하기
 		for(int i = 0; i<images.size(); i++) {
 			
@@ -126,7 +128,7 @@ public class ArtistAdminServiceImpl implements ArtistAdminService{
 				img.setProductImageRename(images.get(i).getOriginalFilename());
 				
 				//웹 접근 경로
-				img.setProductImagePath(webPath);
+//				img.setProductImagePath(webPath);
 			
 				//변경된 파일명
 				img.setProductImageRename(Util.fileRename(images.get(i).getOriginalFilename()));

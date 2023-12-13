@@ -144,6 +144,13 @@ public class ShopServiceImpl implements ShopService{
 		return mapper.selectSearchSort(paramMap);
 	}
 	
+	//상품 상세 조회
+	@Override
+	public Product shopDetail(int productNo) {
+		
+		
+		return mapper.shopDetail(productNo);
+	}
 	
 
 		

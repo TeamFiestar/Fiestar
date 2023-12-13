@@ -89,7 +89,8 @@
 		INSERT INTO "PRODUCT_IMAGE"
 		<foreach collection="list" item="img" separator=" UNION ">
 			 SELECT NEXT_IMG_NO(),
-			 		#{img.productImagePath},
+			 		#{img.productImageContent},
+			 		#{img.productImageThumbnail},
 			 		#{img.productImageRename},
 			 		#{img.productImageOriginal},
 			 		#{img.productImageOrder},

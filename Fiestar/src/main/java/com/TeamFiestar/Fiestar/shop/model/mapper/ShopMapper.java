@@ -45,6 +45,9 @@ public interface ShopMapper {
 	//상품 검색 조회 후 정렬
 	List<Product> selectSearchSort(Map<String, Object> paramMap);
 
+	//상품 상세 조회
+	Product shopDetail(int productNo);
+
 
 
 

@@ -65,6 +65,12 @@ public interface ShopService {
 	 * @return
 	 */
 	List<Product> selectSearchSort(Map<String, Object> paramMap);
+
+	/**상품 상세 조회
+	 * @param productNo
+	 * @return
+	 */
+	Product shopDetail(int productNo);
 	
 
 	
