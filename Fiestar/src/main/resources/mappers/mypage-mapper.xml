@@ -61,7 +61,7 @@
 		MEDIA_COMMENT_CONTENT AS COMMENT_CONTENT,
 		TO_CHAR(MEDIA_COMMENT_ENROLL_DATE, 'YYYY.MM.DD') AS COMMENT_ENROLL_DATE,
 		(SELECT m.MEDIA_TITLE FROM MEDIA m WHERE mc.MEDIA_NO = m.MEDIA_NO) AS
-		PARENT_TITLE, 
+		PARENT_TITLE,
 		'MEDIA' AS COMMENT_TYPE
 		FROM MEDIA_COMMENT mc
 		JOIN MEMBER m ON mc.MEMBER_NO = m.MEMBER_NO
@@ -94,7 +94,7 @@
 	<select id="myPurchaseList" resultType="PurchaseList">
 		SELECT PURCHASE_LIST_NO ,PURCHASE_NO ,PRODUCT_NO ,PRODUCT_QUANTITY ,
 		PURCHASE_LIST_NO, MEMBER_NO,
-		PURCHASE_STATUS ,PURCHASE_DATE , PRODUCT_NAME, 
+		PURCHASE_STATUS ,PURCHASE_DATE , PRODUCT_NAME,
 		PURCHASE_PRICE
 		FROM PURCHASE_LIST
 		JOIN PURCHASE p USING (PURCHASE_NO)
@@ -129,21 +129,14 @@
 		WHERE MEMBER_NO =#{memberNo}
 	</update>
 
-	<!-- 프로필 배경 변경-->
-	<update id="backImg">
-		UPDATE MEMBER SET
-		MEMBER_BACK_IMAGE = #{memberBackImage}
-		WHERE MEMBER_NO =#{memberNo}
-	</update>
-
-
-	<!-- 프로필 정보 변경-->
 	<update id="info">
 		UPDATE "MEMBER" SET
 		MEMBER_NICKNAME = #{memberNickname},
-		MEMBER_ADDRESS = #{memberAddress}
+		MEMBER_ADDRESS = #{memberAddress},
+		MEMBER_BACK_IMAGE = #{memberBackImage}
 		WHERE MEMBER_NO = #{memberNo}
 	</update>
+
 
 	<update id="deleteMediaComment">
 		UPDATE MEDIA_COMMENT SET

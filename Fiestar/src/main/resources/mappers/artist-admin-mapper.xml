@@ -1,42 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.TeamFiestar.Fiestar.admin.model.mapper.ArtistAdminMapper">
+<mapper namespace="com.TeamFiestar.Fiestar.admin.model.mapper.ArtistProfileMapper">
 	
-	<select id="selectArtistGroupNo">
-		SELECT ARTIST_GROUP_NO 
-		FROM ARTIST_GROUP AG 
-		WHERE ARTIST_GROUP_TITLE = #{artistGroupTitle}
-	</select>
-	
-	
-	<select id="selectNoticeList">
-		SELECT ARTIST_GROUP_NOTICE_NO ,ARTIST_GROUP_NOTICE_TITLE ,ARTIST_GROUP_NOTICE_CONTENT ,
-		TO_CHAR(ARTIST_GROUP_NOTICE_ENROLL_DATE, 'YYYY/MM/DD') AS ARTIST_GROUP_NOTICE_ENROLL_DATE,
-		ARTIST_GROUP_NO 
-		FROM ARTIST_GROUP_NOTICE AGN 
-		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
-		AND ARTIST_GROUP_NOTICE_DEL_FL = 'N'
-		ORDER BY ARTIST_GROUP_NOTICE_NO 
-	</select>
-	
-	
-	<insert id="artistNoticeAdd">
-		INSERT INTO ARTIST_GROUP_NOTICE AGN VALUES 
-		(SEQ_ARTIST_NOTICE_NO.NEXTVAL, 
-		#{artistGroupNoticeTitle}, 
-		#{artistGroupNoticeContent},
-		'N', SYSDATE, #{artistGroupNo})
-	</insert>
-	
-	<select id="selectReportList">
-		SELECT 	REPORT_NO , REPORTER_NO , 
-			REPORT_TARGET_NO , REPORT_PROCEED , 
-			REPORT_URL ,REPORT_CONTENT , 
-			MEMBER_EMAIL ,MEMBER_NICKNAME 
-		FROM REPORT r  
-		JOIN "MEMBER" m ON(R.REPORT_TARGET_NO = M.MEMBER_NO)
-		WHERE R.ARTIST_GROUP_NO = #{artistGroupNo}
-	</select>
-	
+
 </mapper>
 

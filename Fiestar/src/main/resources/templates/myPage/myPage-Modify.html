@@ -32,7 +32,7 @@
         <div class="content">
 
           <div class="ModifyAll">
-              <form action="profile" method="POST" name="myPageFrm" id="profileFrm" enctype="multipart/form-data">
+            <form action="profile" method="POST" name="myPageFrm" id="profileFrm" enctype="multipart/form-data">
               <div class="profileTxt">
                 <h3>프로필 이미지</h3>
               </div>
@@ -46,17 +46,17 @@
                     <!-- 프로필 이미지 있음 -->
                     <div class="userImg">
                       <img th:unless="${session.loginMember.memberProfile == null}"
-                        th:src="${session.loginMember.memberProfile}" width="100%" height="100%" id="memberProfile" 
+                        th:src="${session.loginMember.memberProfile}" width="100%" height="100%" id="memberProfile"
                         style="width: 80px; height: 80px; border-radius: 100%; object-fit:cover">
                     </div>
                   </label>
                   <input type="file" name="memberProfile" id="imageInput" accept="image/*">
                 </div>
                 <div class="profileImgModifyBtn"><button>수정완료</button></div>
-              </form>
-              </div>
+            </form>
+          </div>
 
-          <form action="info" method="POST" name="myPageForm" id="updateInfo" enctype="multipart/form-data">
+          <form action="info" method="POST" name="infoForm" id="updateInfo" enctype="multipart/form-data">
             <div class="bgTxt">
               <h3>배경화면</h3>
             </div>
@@ -121,12 +121,12 @@
                 <input type="text" name="memberAddress" placeholder="상세 주소" id="detailAddress">
               </div>
             </div>
+
+
+            <div class="ModifyBtn">
+              <button>수정완료</button>
+            </div>
           </form>
-
-
-          <div class="ModifyBtn">
-            <button>수정완료</button>
-          </div>
 
 
 
@@ -161,6 +161,7 @@
         item.value = arr[index];
       });
     }
+
 
   </script>
 

@@ -119,3 +119,99 @@ if (imageInput != null) { // #imageInput 존재할 때
 }
 
 
+
+
+/* f로고 미리보기, 제거 */
+const artistLogo = document.getElementById("artistLogo");
+let logoInput = document.querySelector("#logoInput"); // input 태그
+
+
+if (logoInput != null) { // #imageInput 존재할 때
+
+    /* 프로필 이미지 변경(선택) 시 수행할 함수 */
+    const changeImageFn = e => {
+
+        console.log(e.target); // input 태그
+        console.log(e.target.value); // 업로드 파일 경로(fakepath 형태로 출력)
+
+        /* 이게 중요!!! */
+        console.log(e.target.files); // 업로드된 파일의 정보가 담긴 배열 반환
+        // * 실제 파일 *
+        console.log(e.target.files[0]); // 업로드된 파일 중 첫 번째 파일
+
+        const uploadFile = e.target.files[0];
+
+        // ---------- 파일을 한 번 선택한 후 취소했을 때 ----------
+        if (uploadFile == undefined) { // 취소를 눌러서 files[0]에 파일이 없을 때
+            console.log("파일 선택이 취소됨");
+
+            // 1) backup한 요소를 복제
+            const temp = backupInput.cloneNode(true);
+
+            // 2) 화면에 원본 input을 temp로 바꾸기
+            logoInput.after(temp); // 원본 다음에 temp 추가
+            logoInput.remove(); // 원본을 화면에서 제거
+            logoInput = temp; // temp를 imageInput 변수에 대입
+
+            // 복제본은 이벤트가 복제 안되니까 다시 이벤트를 추가
+            logoInput.addEventListener("change", changeImageFn);
+
+            return;
+        }
+
+
+        // ---------- 선택된 파일의 크기가 지정된 크기를 초과하는 경우 ----------
+        const maxSize = 1024 * 1024; // 1MB (byte 단위)
+
+        if (uploadFile.size > maxSize) {
+            alert("1MB 이하의 이미지만 업로드 가능합니다");
+
+            if (statusCheck == -1) { // 이미지 변경이 없었을 때
+
+                // 최대 크기를 초과해도 input에 value가 남기 때문에
+                // 이를 제거하는 코드가 필요하다!
+                logoInput.value = ''; // value 삭제
+                // 동시에 files도 삭제됨
+                statusCheck = -1; // 선택 없음 상태
+
+
+            } else { // 기존 이미지가 있었을 때
+
+                // 1) backup한 요소를 복제
+                const temp = backupInput.cloneNode(true);
+
+                // 2) 화면에 원본 input을 temp로 바꾸기
+                logoInput.after(temp); // 원본 다음에 temp 추가
+                logoInput.remove(); // 원본을 화면에서 제거
+                logoInput = temp; // temp를 imageInput 변수에 대입
+
+                // 복제본은 이벤트가 복제 안되니까 다시 이벤트를 추가
+                logoInput.addEventListener("change", changeImageFn);
+
+                statusCheck = 1;
+            }
+
+
+            return;
+        }
+
+
+        // ---------- 선택된 이미지 파일을 읽어와 미리 보기 만들기 ----------
+
+        const reader = new FileReader();
+
+        reader.onload = e => {
+
+            artistLogo.setAttribute("src", reader.result);
+
+            statusCheck = 1; 
+
+            
+            backupInput = logoInput.cloneNode(true);
+        }
+    }
+
+    logoInput.addEventListener("change", changeImageFn);
+
+}
+

@@ -185,63 +185,40 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 	// 프로필 정보 변경
-	@Override
-	public int info(Member updateMember, String[] memberAddress, MultipartFile memberBackImage, Member loginMember)
-			throws IllegalStateException, IOException {
+//	@Override
+//	public int info(Member updateMember, String[] memberAddress, MultipartFile memberBackImage, Member loginMember)
+//			throws IllegalStateException, IOException {
+//		
+//		// 프로필 주소 변경
+//		if (updateMember.getMemberAddress().equals(",,")) {
+//			updateMember.setMemberAddress(null);
+//		} else { // 주소를 입력한 경우
+//			// 배열 -> 문자열로 합쳐서 inputMember에 추가
+//			String address = String.join("^^^", memberAddress);
+//			updateMember.setMemberAddress(address);
+//		}
+//
+//		int result = mapper.info(updateMember);
+//
+//		return result;
 
-		// 프로칠 이미지 변경
-		String backup = loginMember.getMemberBackImage();
-
-		String rename = null;
-
-		if (memberBackImage.getSize() > 0) {
-			rename = Util.fileRename(memberBackImage.getOriginalFilename());
-			loginMember.setMemberBackImage(webpath + rename);
-		} else {
-			loginMember.setMemberBackImage(backup);
-		}
-
-		int backImg = mapper.backImg(loginMember);
-
-		if (backImg > 0) {
-			if (memberBackImage.getSize() > 0) {
-				memberBackImage.transferTo(new File(folderPath + rename));
-			} else {
-				loginMember.setMemberBackImage(backup);
-			}
-		}
-
-		// 프로필 주소 변경
-
-		if (updateMember.getMemberAddress().equals(",,")) {
-			updateMember.setMemberAddress(null);
-		} else { // 주소를 입력한 경우
-			// 배열 -> 문자열로 합쳐서 inputMember에 추가
-			String address = String.join("^^^", memberAddress);
-			updateMember.setMemberAddress(address);
-		}
-
-		int updateAddress = mapper.info(updateMember);
-
-		return 0;
-
-	}
+//	}
 
 	@Override
 	public int delComment(int memberNo, int commentNo, String commentType) {
-		
+
 		Map<String, Object> map = new HashMap<>();
 		map.put("commentNo", commentNo);
 		map.put("memberNo", memberNo);
 		map.put("commentType", commentType);
-		
+
 		// 미디어 댓글 삭제
-		if(commentType == "MEDIA") {
+		if (commentType == "MEDIA") {
 			return mapper.deleteMediaComment(map);
 		} else {
 			return mapper.deleteBoardComment(map);
 		}
-		
+
 	}
 
 }

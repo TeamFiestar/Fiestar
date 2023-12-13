@@ -32,8 +32,8 @@ public interface MyPageService {
 	int profile(MultipartFile memberProfile, Member loginMember) throws IllegalStateException, IOException;
 
 	// 프로필 정보 변경
-	int info(Member updateMember, String[] memberAddress, MultipartFile memberBackImage, Member loginMember)
-			throws IllegalStateException, IOException;
+//	int info(Member updateMember, String[] memberAddress, MultipartFile memberBackImage, Member loginMember)
+//			throws IllegalStateException, IOException;
 
 	// 댓글 삭제
 	int delComment(int memberNo, int commentNo, String commentType);

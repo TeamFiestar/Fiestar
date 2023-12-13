@@ -50,17 +50,14 @@ public interface MyPageMapper {
 	// 회원 탈퇴
 	int withDrawal(int memberNo);
 
-	// 내가 작성한 게시글 삭
+	// 내가 작성한 게시글 삭제
 	int deleteBoard(Map<String, Object> map);
 
 	// 프로필 이미지 변경
 	int profile(Member loginMember);
-
-	// 프로필 배경 이미지 변경
-	int backImg(Member loginMember);
-
-	// 프로필 정보 변경
-	int info(Member updateMember);
+//
+//	// 프로필 정보 변경
+//	int info(Member updateMember);
 
 	// 미디어 댓글 삭제
 	int deleteMediaComment(Map<String, Object> map);

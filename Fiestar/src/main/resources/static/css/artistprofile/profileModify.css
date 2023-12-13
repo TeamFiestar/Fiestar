@@ -80,8 +80,8 @@ img{
 }
 
 .btn-upload1 > img{
-  width: 1098px;
-  height: 698px;
+  width: 1090px;
+  height: 690px;
 }
 
 .btn-upload1 h1 {
@@ -99,6 +99,7 @@ img{
   border: 2px solid white;
   border-radius: 10px;
 }
+
 .artistIntro-name:hover{
   border-color: rgb(119, 67, 219);
 }
