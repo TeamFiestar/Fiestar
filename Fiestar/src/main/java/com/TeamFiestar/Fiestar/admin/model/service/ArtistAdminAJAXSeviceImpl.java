@@ -5,6 +5,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.TeamFiestar.Fiestar.admin.model.dto.ArtistNotice;
+import com.TeamFiestar.Fiestar.admin.model.dto.Purchase;
 import com.TeamFiestar.Fiestar.admin.model.mapper.ArtistAdminAJAXMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -28,6 +29,11 @@ public class ArtistAdminAJAXSeviceImpl implements ArtistAdminAJAXService{
 	@Override
 	public int updateNotice(ArtistNotice inputNotice) {
 		return mapper.updateNotice(inputNotice);
+	}
+	
+	@Override
+	public int updatePurchase(Purchase purchase) {
+		return mapper.updatePurchase(purchase);
 	}
 
 }

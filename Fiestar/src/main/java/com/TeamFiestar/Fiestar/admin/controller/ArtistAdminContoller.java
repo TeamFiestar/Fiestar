@@ -38,14 +38,14 @@ public class ArtistAdminContoller {
 		
 		model.addAttribute("artistGroupTitle",artistGroupTitle);
 		
-		Map<String, Object> map = new HashMap<>();
+		Map<String, Object> paramMap = new HashMap<>();
 		
-		map.put("notice", notice);
-		map.put("artistGroupTitle", artistGroupTitle);
+		paramMap.put("notice", notice);
+		paramMap.put("artistGroupTitle", artistGroupTitle);
 		
-		List<ArtistNotice> noticeList = service.ArtistNoticeList(map, cp);
+		Map<String, Object> map = service.ArtistNoticeList(paramMap, cp);
 		
-		model.addAttribute("noticeList", noticeList);
+		model.addAttribute("map", map);
 		model.addAttribute("key", notice.getKey());
 		model.addAttribute("noticeSearch", notice.getNoticeSearch());
 		
@@ -91,8 +91,8 @@ public class ArtistAdminContoller {
 			@PathVariable("artistGroupTitle") String artistGroupTitle, Model model, Report report) {
 		model.addAttribute("artistGroupTitle",artistGroupTitle);
 		
-		List<Report> reportList = service.selectReportList(artistGroupTitle, report, cp);
-		model.addAttribute("reportList",reportList);
+		Map<String, Object> map = service.selectReportList(artistGroupTitle, report, cp);
+		model.addAttribute("map",map);
 		model.addAttribute("key",report.getKey());
 		model.addAttribute("reportSearch",report.getReportSearch());
 		
@@ -100,12 +100,15 @@ public class ArtistAdminContoller {
 		
 	}
 	
-	
+	// 아티스트 주문 조회
 	@GetMapping("{artistGroupTitle}/order")
 	public String artistOrder(
 			@RequestParam(value="cp", required=false , defaultValue="1" ) int cp,
-			@PathVariable("artistGroupTitle") String artistGroupTitle) {
-		List<Purchase> purchaseList = service.selectPurchaseList(artistGroupTitle);
+			@PathVariable("artistGroupTitle") String artistGroupTitle, Model model,
+			Purchase searchPurchase) {
+		Map<String, Object> map = service.selectPurchaseList(artistGroupTitle, cp);
+		
+		model.addAttribute("map",map);
 		
 		return "admin/artistOrder";
 		

@@ -11,11 +11,14 @@ public class Purchase {
 
 	private int purchaseNo;
 	private int purchasePrice;
-	private String purchaseStatus;
-	private String purchaseDate;
+	private int purchaseStatus;
 	private int memberNo;
 	private int artistGroupNo;
-	
 	private int productSum;
+	private int key;
 	
+	private String purchaseDate;
+	private String memberNickname;
+	private String memberAddress;
+	private String orderSearch;
 }

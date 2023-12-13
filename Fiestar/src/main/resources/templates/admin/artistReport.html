@@ -18,7 +18,7 @@
         </div>
       </div>
     </div>
-    <main>
+    <main th:with="reportList = ${map.reportList}">
       <!-- th:replace -->
       <th:block th:replace="~{common/adminArtist}"></th:block>
       <div class="report-main">
