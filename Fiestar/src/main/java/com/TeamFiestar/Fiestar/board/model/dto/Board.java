@@ -36,6 +36,7 @@ public class Board {
 	private String memberNickname;
 	private String memberProfile;
 	private String memberAuthority;
+	private int likeCheck;
 	
 	private List<BoardImg> imageList;
 	

@@ -60,7 +60,7 @@ public Board boardDetail(Map<String, Object> map) {
 		
 		int result = 0;
 		
-		if( (Integer) (map.get("check")) ==1) {
+		if( (Integer) (map.get("likeCheck")) == 1) {
 			result = mapper.deleteBoardLike(map);
 		} else {
 			
@@ -69,9 +69,8 @@ public Board boardDetail(Map<String, Object> map) {
 		
 		if(result == 0) {
 			return -1;
-			
 		}
-		return mapper.countBoardLike((Integer) map.get("boardNo") );
+		return result;
 	}
 	
 	

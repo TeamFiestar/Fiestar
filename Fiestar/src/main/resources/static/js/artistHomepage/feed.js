@@ -1,4 +1,9 @@
 
+let likeCheck;
+let likeCount2;
+const dataObj = {};
+const likeImg = document.querySelector('#likeImg');
+
 function openModal(boardNo) {
   // 새로운 URL 생성
   var newUrl = "/" + artistGroupTitle + "/feed/" + boardNo;
@@ -13,23 +18,27 @@ function openModal(boardNo) {
   history.pushState(stateObj, "", newUrl);
 
   // 페이지의 내용을 동적으로 업데이트하는 함수 호출 (예시로 updatePageContent 함수 사용)
-  updatePageContent( boardNo);
+  updatePageContent(boardNo);
 
   const modal = document.getElementById('feedDetail');
   modal.classList.add("show");
   document.body.style.overflow = "hidden";
 
-
-
 }
 
- // 예시로 {artistGroupTitle}과 {boardNo}에 값을 할당
- 
- // openModal 함수 호출
-//  if(dynamicBoardNo){
-//   console.log(dynamicBoardNo);
-//    openModal( dynamicBoardNo);
-//  }
+
+function closeModal(stateObj){
+
+  var newUrl = "/" + artistGroupTitle + "/feed";
+  history.pushState(stateObj, "", newUrl);
+
+  updatePageContent();
+  const modal = document.getElementById('feedDetail');
+  modal.classList.remove("show");
+  document.body.style.overflow = "";
+  
+}
+
 
 function updatePageContent(boardNo) {
 
@@ -65,21 +74,102 @@ function updatePageContent(boardNo) {
       indicator.style.color = ""; 
     }
 
+    if(board.imageList && board.imageList.length > 0) {
+      const feedImg = document.querySelector('.feedImg');
+      feedImg.innerHTML = '';
+
+      board.imageList.forEach(image => {
+        const imgElement = document.createElement('img');
+        const imagePath = image.boardImagePath + image.boardImageRename;
+
+        imgElement.src = imagePath;
+
+        feedImg.appendChild(imgElement);
+      });
+
+
+    } else {
+      const feedImg = document.querySelector('.feedImg');
+      feedImg.innerHTML ='';
+
+    }
+
+    const feedLikeCount = document.querySelector('#feedLikeCount');
+    feedLikeCount.innerText = board.likeCount;
+
+    console.log(board.likeCheck);
+
+    if(board.likeCheck == 1){
+      likeImg.classList.add("fa-solid");
+      likeImg.classList.remove("fa-regular");
+    }
+    else{
+      likeImg.classList.remove("fa-solid");
+      likeImg.classList.add("fa-regular");
+    }
+
+
+    likeCount2 = board.likeCount;
+
+    const textWrapper = document.querySelector('.text-wrapper');
+    textWrapper.innerText = board.commentCount + "개의 댓글";
+
+    dataObj.boardNo = boardNo;
+    dataObj.likeCheck = board.likeCheck;
+
+
+    
+    
   });
 }
 
 
-function closeModal(stateObj){
 
-  var newUrl = "/" + artistGroupTitle + "/feed";
-  history.pushState(stateObj, "", newUrl);
+likeImg.addEventListener("click", (e) => {
+  if (!loginCheck) {
+    alert("로그인을 먼저 해주세요");
+    return;
+  }
 
-  updatePageContent();
-  const modal = document.getElementById('feedDetail');
-  modal.classList.remove("show");
-  document.body.style.overflow = "";
-  
-}
+
+  if (e.target.classList.contains("fa-regular")) {
+    likeCheck = 0;
+  } else {
+    likeCheck = 1;
+  }
+
+
+  console.log(dataObj);
+
+  fetch("/AJAXboardDetail/like",{
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(dataObj),
+  })
+    .then((resp) => resp.text())
+    .then((count) => {
+      if (count == -1) {
+        console.log("좋아요 실패");
+        return;
+      }
+      e.target.classList.toggle("fa-regular");
+      e.target.classList.toggle("fa-solid");
+      const feedLikeCount = document.querySelector('#feedLikeCount');
+      if(likeCheck == 1){
+        likeCount2 = likeCount2 - 1;
+        dataObj.likeCheck = 0;
+      }else{
+        likeCount2 = likeCount2 + 1;
+        dataObj.likeCheck = 1;
+      }
+
+      e.target.nextElementSibling.innerText = likeCount2;
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+});
+
 
 
 // function openModal(){

@@ -100,10 +100,12 @@ public class BoardController {
 	
 	@GetMapping("AJAXboardDetail")
 	@ResponseBody
-	public Board AJAXboardDetail(@RequestParam("boardNo") int boardNo) {
+	public Board AJAXboardDetail(@RequestParam("boardNo") int boardNo,
+			@SessionAttribute(value = "loginMember", required = false) Member loginMember) {
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("boardNo", boardNo);
+		map.put("memberNo", loginMember.getMemberNo());
 		
 		Board board = service.boardDetail(map);
 		
@@ -146,14 +148,14 @@ public class BoardController {
 //	}
 		
 	
-	@PostMapping("like")
+	@PostMapping("AJAXboardDetail/like")
 	@ResponseBody
 	public int like(@RequestBody Map<String, Object> paramMap, @SessionAttribute("loginMember") Member loginMember) {
 		
 		paramMap.put("memberNo", loginMember.getMemberNo());
 		
 		
-		return service.likeCheck(paramMap);
+		return service.like(paramMap);
 	}
 	
 	
