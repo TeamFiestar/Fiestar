@@ -1,35 +1,7 @@
-// 이미지 슬라이드
-let slideIndex = 1;
-showSlides(slideIndex);
-
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("slide");
-  let dots = document.getElementsByClassName("dot");
-  if (n > slides.length) { slideIndex = 1 }
-  if (n < 1) { slideIndex = slides.length }
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex - 1].style.display = "block";
-  dots[slideIndex - 1].className += " active";
-}
-
 
 
 /* 아티스트 별 최신글 */
-const swiper = new Swiper('.swiper-container', {
+const swiper = new swiper('.swiper-container', {
   //기본 셋팅
   //방향 셋팅 vertical 수직, horizontal 수평 설정이 없으면 수평
   direction: 'horizontal',
@@ -57,32 +29,47 @@ const swiper = new Swiper('.swiper-container', {
   },
 });
 
-// const toggleModal = (event) => {
-//   console.log(event);
-//   event.preventDefault();
-//   typeof modal != "undefined" && modal != null && isModalOpen(modal) ? closeModal(modal) : openModal(modal);
-// };
+function openModal(boardNo) {
+  // 새로운 URL 생성
+  var newUrl = "/" + artistGroupTitle + "/feed/" + boardNo;
+  console.log(artistGroupTitle);
+  console.log(boardNo);
+  console.log(newUrl);
 
-// const modal_background = document.getElementById('feedDetail');
+  // 상태 객체 (필요에 따라 사용)
+  var stateObj = { artistGroupTitle: artistGroupTitle, boardNo: boardNo };
 
-// const isModalOpen = (modal) => {
-//   // modal_background.classList.add("show");
-// };
+  // 새로운 URL로 이동 (페이지의 내용을 로드하지 않음)
+  history.pushState(stateObj, "", newUrl);
 
-// const closeModal = (modal) => {
-//   modal.classList.remov("show");
-//   // modal_background.classList.remove("show");
-//   document.body.style.overflow = "";
-// };
+  // 페이지의 내용을 동적으로 업데이트하는 함수 호출 (예시로 updatePageContent 함수 사용)
+  updatePageContent(artistGroupTitle, boardNo);
 
-function openModal(){
   const modal = document.getElementById('feedDetail');
   modal.classList.add("show");
   document.body.style.overflow = "hidden";
-  
+
+
 }
 
-function closeModal(){
+ // 예시로 {artistGroupTitle}과 {boardNo}에 값을 할당
+ 
+ // openModal 함수 호출
+ openModal(dynamicArtistGroupTitle, dynamicBoardNo);
+
+// 예시로 페이지의 내용을 업데이트하는 함수
+function updatePageContent(artistGroupTitle, boardNo) {
+  // 여기에 페이지 내용을 동적으로 업데이트하는 로직을 추가
+  console.log("Updating content for artistGroupTitle: " + artistGroupTitle + ", boardNo: " + boardNo);
+}
+
+
+function closeModal(stateObj){
+
+  var newUrl = "/" + artistGroupTitle + "/feed";
+  history.pushState(stateObj, "", newUrl);
+
+  updatePageContent();
   const modal = document.getElementById('feedDetail');
   modal.classList.remove("show");
   document.body.style.overflow = "";

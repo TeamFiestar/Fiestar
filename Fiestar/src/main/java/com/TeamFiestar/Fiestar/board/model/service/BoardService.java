@@ -11,7 +11,8 @@ public interface BoardService {
 //	Board selectBoard(Map<String, Object> map);
 
 	// 게시글 상세조회
-	Board detail(Map<String, Object> map);
+//	Map<String, Object> detail(Map<String, Object> paramMap);
+	Board boardDetail(Map<String, Object> map);
 	
 	// 게시글 좋아여 여부 확인
 	int likeCheck(Map<String, Object> map);
@@ -21,6 +22,10 @@ public interface BoardService {
 	int like(Map<String, Object> map);
 
 	int artistGroupNo(String artistGroupTitle);
+
+	Map<String, Object> selectArtistBoard(Map<String, Object> paramMap);
+
+
 
 
 }

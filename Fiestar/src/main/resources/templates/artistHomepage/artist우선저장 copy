@@ -6,13 +6,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <link rel="stylesheet" href="/css/artistHomepage/artist.css">
-  <link rel="stylesheet" href="/css/artistHomepage/feedDetail.css">
   <link rel="stylesheet" href="/css/common/artistPageHeader.css">
   <link rel="stylesheet" href="/css/common/artistPageNavi.css">
   <title>artist</title>
 </head>
-
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="/css/artistHomepage/artist.css">
+    <link rel="stylesheet" href="/css/common/artistPageHeader.css">
+    <link rel="stylesheet" href="/css/common/artistPageNavi.css">
+    <title>artist</title>
+  </head>
 <body>
   <th:block th:replace="~{common/artistPageHeader}"></th:block>
   <th:block th:replace="~{common/artistPageNavi}"></th:block>
@@ -21,28 +29,27 @@
     
   <!-- 아티스트 별 최신 글 -->
   <section class="board"  style="display: relative; z-index:1">
-    <div class="swiper-container" >
-      <div class="swiper-wrapper" >
-        <div class="swiper-slide" data-target="feedDetail" th:each="board : ${map.boardList}" th:object="${board}" th:onclick="|openModal(*{boardNo})|" >
-  
-          <div style="margin-left: 6px; display: flex;">
-            <img th:unless="*{memberProfile}" th:src="#{user.default.image}" style="width:35px; height:35px; border-radius:50%;"> 
-            <img th:if="*{memberProfile}" th:src="*{memberProfile}"style="width:35px; height:35px; border-radius:50%;">
-            <div style="margin: 9px; ">
-              <strong th:text="*{memberNickname}">카즈하</strong> <i class="fa-solid fa-circle-check" style="color: #7743DB"></i>
-            </div>
+  <div class="swiper-container" >
+    <div class="swiper-wrapper" >
+      <div class="swiper-slide" data-target="feedDetail" th:each="board : ${map.boardList}" th:object="${board}" onclick="openModal()" >
+ 
+        <div>
+          <img th:unless="*{memberProfile}" th:src="#{user.default.image}" style="width:40px; height:40px; border-radius:50%;"> 
+          <img th:if="*{memberProfile}" th:src="*{memberProfile}"style="width:40px; height:40px; border-radius:50%;">
+        </div>
+        <div>
+          <div>
+            <strong th:text="*{memberNickname}">카즈하</strong> <i class="fa-solid fa-circle-check" style="color: #7743DB"></i>
           </div>
-          <div style="margin-left: 6px; margin-top:15px;">
-            
-            <span class="newContent" th:text="*{boardContent}" >오늘 온라인으로 보고 계셨던 피어나도 공연 재밌었나요??</span>
-          </div>
+          <span th:text="*{boardContent}">오늘 온라인으로 보고 계셨던 피어나도 공연 재밌었나요??</span>
         </div>
       </div>
-
-      <!-- 방향 버튼 상황에 따라 추가 삭제가능 -->
-      <div class="swiper-button-prev" ></div>
-      <div class="swiper-button-next"></div>
     </div>
+
+    <!-- 방향 버튼 상황에 따라 추가 삭제가능 -->
+    <div class="swiper-button-prev" ></div>
+    <div class="swiper-button-next"></div>
+  </div>
 
 
 
@@ -91,29 +98,31 @@
                   th:with="path=|${board.imageList[i].boardImagePath}${board.imageList[i].boardImageRename}|">
                   <img th:src="${path}"  style="border-radius: 10px; ">
                 </div>
+
                </th:block>
 
+
               </div>
+             
             </div>
 
+   
           </section>
 
-          <section class="textbox" data-target="feedDetail" style="font-size: 18px; height: 45px; margin-top: 5px;"   th:text="*{boardContent}" onclick="openModal()">
+          <section class="textbox" data-target="feedDetail"   th:text="*{boardContent}"onclick="openModal()">
             LE SSERAFIM (르세라핌)은 대한민국의 걸그룹이다. 
             
           </section>
 
           <!-- 댓글 좋아요 -->
-          <section class="reaction" style="display: flex; justify-content:end; align-items: center;">
-            <i class="fa-solid fa-heart fa-xl" style="color: #7743DB; margin-top: 2px; font-size: 20px;" ></i> <span th:text="*{likeCount}" style="margin-left:7px;" >234</span>
+          <section class="reaction" style="display: flex; justify-content:end;">
+            <i class="fa-solid fa-heart fa-xl" style="color: #7743DB; margin-top: 10px; font-size: 20px;" ></i> <span th:text="*{likeCount}" style="margin-left:7px;" >234</span>
             <a href="#"  data-target="feedDetail" onclick="openModal()"><i
                     class="fa-regular fa-comment fa-xl" style="color: #7743DB; margin-left: 20px; font-size: 20px;"></i> 
                     <span th:text="*{commentCount}" style="margin-left:5px;" >234</span></a>
           </section>
 
-          <div style="border: 0.5px dashed rgba(164, 164, 164, 0.3); width:1010px;">
-
-          </div>
+          <hr>
         </section>
       </section>
     </section>
@@ -125,16 +134,6 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/2434a52ecc.js" crossorigin="anonymous"></script>
     <script src="/js/artistHomepage/artist.js"></script>
-    <script th:inline="javascript">
-
-
-      // messages.properties의 값을 얻어와 전역 변수로 선언
-      const defaultImage = /*[[#{user.default.image}]]*/ "기본 이미지";
-      const boardDetail = /*[[${boardDetail}]]*/ "dadasas";
-      const artistGroupTitle = /*[[${artistGroupTitle}]]*/ "dadasas";
-    
-  </script>
-
 </body>
 
 </html>
