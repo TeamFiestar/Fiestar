@@ -50,6 +50,12 @@ public interface AdminMapper {
 
 	int artistGroupRegi(ArtistGroup1 artistGroup);
 
+	int test(int adminNo);
+
+	ArtistGroup1 artistGroupUpdate(int memberNo);
+
+	int GroupUpdate(ArtistGroup1 artistGroup);
+
 
 
 	

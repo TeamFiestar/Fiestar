@@ -23,4 +23,9 @@ public interface AdminAjaxService {
 	Map<String, Object> searchMember(Map<String, Object> paramMap, int cp);
 
 	String nickname(int memberNo);
+
+	int changeAuthority(Map<String, Object> paramMap);
+
+
+	
 }

@@ -18,7 +18,9 @@
   margin-bottom: 20px;
   cursor: pointer;
 }
-
+.artist {
+  margin-bottom: 40px;
+}
 .sidebar-list:hover #member-search {
   display: block;
 }

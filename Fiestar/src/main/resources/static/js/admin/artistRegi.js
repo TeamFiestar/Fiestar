@@ -1,13 +1,15 @@
-const backImg = document.querySelector(".backImg");
-const profile = document.querySelector(".profile");
-const image = document.querySelector(".image");
+// const backImg = document.querySelector(".backImg");
+// const profile = document.querySelector(".profile");
+// const image = document.querySelector(".image");
 
-const previewList = document.getElementsByClassName("preview");
+// const previewList = document.getElementsByClassName("preview");
 
 const inputImgList = document.getElementsByClassName("input-artistGroupImg");
 const deleteImgList = document.getElementsByClassName("delete-image");
 
 const backupList = new Array(inputImgList.length);
+
+const deleteOrderSet = new Set();
 
 const changeImage = (imgInput, order) => {
   const maxSize = 1024 * 1024 * 10;
@@ -57,6 +59,8 @@ const changeImage = (imgInput, order) => {
     previewList[order].src = url;
 
     backupList[order] = imgInput.cloneNode(true);
+
+    deleteOrderSet.delete(order);
   };
 };
 
@@ -66,20 +70,6 @@ for (let i = 0; i < inputImgList.length; i++) {
   });
 
   deleteImgList[i].addEventListener("click", () => {
-    // if (i == 0) {
-    //   backImg.removeAttribute("src");
-    //   backImg.value = "";
-    //   backImg = undefined;
-    // } else if (i == 1) {
-    //   profile.removeAttribute("src");
-    //   profile.value = "";
-    //   profile = undefined;
-    // } else {
-    //   image.removeAttribute("src");
-    //   image.value = "";
-    //   image = undefined;
-    // }
-
     previewList[i].removeAttribute("src"); // "src" 속성 삭제
 
     // input 태그 파일 제거
@@ -87,6 +77,8 @@ for (let i = 0; i < inputImgList.length; i++) {
 
     // 같은 위치 backup 요소 제거
     backupList[i] = undefined;
+
+    deleteOrderSet.add(i);
   });
 }
 
@@ -110,3 +102,9 @@ artistGroupFrm.addEventListener("submit", (e) => {
     return;
   }
 });
+
+function groupDelete() {
+  fetch("/admin/groupDelete", {
+    method: "delete",
+  });
+}

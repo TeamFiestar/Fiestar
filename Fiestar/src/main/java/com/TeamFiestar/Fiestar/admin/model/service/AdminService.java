@@ -35,7 +35,13 @@ public interface AdminService {
 
 
 
-	int artistGroupRegi(MultipartFile backImg, MultipartFile profile, MultipartFile image, String artistGroupTitle, int adminNo, ArtistGroup1 artistGroup) throws IllegalStateException, IOException;
+	int artistGroupRegi(MultipartFile backImg, MultipartFile profile, MultipartFile image,
+			String artistGroupTitle, int adminNo, ArtistGroup1 artistGroup) throws IllegalStateException, IOException;
+
+	ArtistGroup1 artistGroupUpdate(int memberNo);
+
+	int GroupUpdate(MultipartFile backImg, MultipartFile profile, MultipartFile image, String artistGroupTitle,
+			int adminNo, ArtistGroup1 artistGroup) throws IllegalStateException, IOException;
 
 
 

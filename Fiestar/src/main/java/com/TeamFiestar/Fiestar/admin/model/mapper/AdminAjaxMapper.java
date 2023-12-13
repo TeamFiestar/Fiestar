@@ -35,4 +35,7 @@ public interface AdminAjaxMapper {
 	List<Member> searchMember(RowBounds rowBounds);
 
 	String nickname(int memberNo);
+
+	int changeAuthority(Map<String, Object> paramMap);
+
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.TeamFiestar.Fiestar.admin.model.service.AdminAjaxService;
@@ -81,4 +82,14 @@ public class AdminAjaxController {
 			return map;
 		}
 	}
+	
+	
+	@PutMapping("changeAuthority")
+	@ResponseBody
+	public int changeAuthority(@RequestBody Map<String, Object> paramMap) {
+		int result = service.changeAuthority(paramMap);
+		return result;
+	}
+	
+	
 }

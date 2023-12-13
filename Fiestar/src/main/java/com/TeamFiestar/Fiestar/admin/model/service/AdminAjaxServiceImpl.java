@@ -120,4 +120,13 @@ public class AdminAjaxServiceImpl implements AdminAjaxService{
 		
 		return map;
 	}
+	
+	@Override
+	public int changeAuthority(Map<String, Object> paramMap) {
+		return mapper.changeAuthority(paramMap);
+	}
+	
+	
+	
+	
 }

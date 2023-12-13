@@ -203,5 +203,25 @@
 			#{artistGroupProfile}, 'introduction', #{artistGroupImage}, #{artistGroupBackimg},null)
 	</insert>
 	
+	<select id="test" resultType="_int">
+		SELECT COUNT(*) FROM ARTIST_GROUP
+		WHERE ARTIST_GROUP_ADMIN_NO = #{adminNo}
+	</select>
+	
+	
+	<select id="artistGroupUpdate" resultType="ArtistGroup1">
+		SELECT ARTIST_GROUP_TITLE, ARTIST_GROUP_PROFILE, ARTIST_GROUP_IMAGE, ARTIST_GROUP_BACKIMG
+		FROM ARTIST_GROUP
+		WHERE ARTIST_GROUP_ADMIN_NO = #{memberNo}
+	</select>
+	
+	<update id="GroupUpdate">
+		UPDATE ARTIST_GROUP SET 
+		ARTIST_GROUP_TITLE = #{artistGroupTitle},
+		ARTIST_GROUP_PROFILE = #{artistGroupProfile},
+		ARTIST_GROUP_IMAGE = #{artistGroupImage},
+		ARTIST_GROUP_BACKIMG = #{artistGroupBackimg}
+		WHERE ARTIST_GROUP_ADMIN_NO = #{artistGroupAdminNo}
+	</update>
 	
 </mapper>

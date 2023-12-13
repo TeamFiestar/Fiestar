@@ -99,13 +99,31 @@ function selectMemberAjax() {
         td3.setAttribute("onclick", "openModal(" + member.memberNo + ")");
         td4.innerHTML = member.memberAddress;
 
-        if (member.memberAuthority === 1) td5.innerText = "일반";
-        else if (member.memberAuthority === 2) td5.innerText = "아티스트";
-        else if (member.memberAuthority === 3) td5.innerText = "일반 관리자";
-        else td5.innerText = "아티스트 관리자";
+        // if (member.memberAuthority === 1) td5.innerText = "일반";
+        // else if (member.memberAuthority === 2) td5.innerText = "아티스트";
+        // else if (member.memberAuthority === 3) td5.innerText = "일반 관리자";
+        // else td5.innerText = "아티스트 관리자";
+        const select = document.createElement("select");
+        select.setAttribute("name", "memberAuthority");
+        select.setAttribute("onClick", "changeAuthority(" + member.memberNo + ", this)");
+        select.classList.add("authority");
 
+        const option1 = document.createElement("option");
+        const option2 = document.createElement("option");
+        const option3 = document.createElement("option");
+        const option4 = document.createElement("option");
+
+        option1.innerText = "일반";
+        option2.innerText = "아티스트";
+        option3.innerText = "일반 관리자";
+        option4.innerText = "아티스트 관리자";
+
+        select.append(option1, option2, option3, option4);
+
+        td5.append(select);
         td6.innerHTML = member.countReport;
         td7.append(btn);
+        // td7.append(select);
 
         tr.append(td1, td2, td3, td4, td5, td6, td7);
 
@@ -143,5 +161,21 @@ function withDraw(thisbtn) {
     })
     .catch((e) => {
       console.log(e);
+    });
+}
+
+function changeAuthority(memberNo, btn) {
+  console.log(btn.value);
+  fetch("/admin/changeAuthority", {
+    method: "put",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ memberNo: memberNo, memberAuthority: btn.value }),
+  })
+    .then((resp) => resp.text())
+    .then((result) => {
+      if (result > 0) alert("권한 변경 성공");
+      else alert("권한 변경 실패");
+      // btn.
+      // selectMemberAjax();
     });
 }

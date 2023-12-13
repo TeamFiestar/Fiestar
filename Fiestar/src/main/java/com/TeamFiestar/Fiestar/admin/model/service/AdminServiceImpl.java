@@ -20,8 +20,10 @@ import com.TeamFiestar.Fiestar.member.model.dto.ArtistGroup1;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class AdminServiceImpl implements AdminService{
 
@@ -181,6 +183,9 @@ public class AdminServiceImpl implements AdminService{
 	public int artistGroupRegi(MultipartFile backImg, MultipartFile profile, MultipartFile image,
 			String artistGroupTitle, int adminNo, ArtistGroup1 artistGroup) throws IllegalStateException, IOException {
 		
+		int test = mapper.test(adminNo);
+		if(test > 0) return 0;
+		else {
 		artistGroup.setArtistGroupAdminNo(adminNo);
 		artistGroup.setArtistGroupTitle(artistGroupTitle);
 		
@@ -214,8 +219,57 @@ public class AdminServiceImpl implements AdminService{
 			artistGroup.setArtistGroupImage(backupImg);
 		}
 		return result;
+		}
+	
 	}
 	
+	
+	@Override
+	public ArtistGroup1 artistGroupUpdate(int memberNo) {
+		return mapper.artistGroupUpdate(memberNo);
+	}
+	
+	@Override
+	public int GroupUpdate(MultipartFile backImg, MultipartFile profile, MultipartFile image, String artistGroupTitle,
+			int adminNo, ArtistGroup1 artistGroup) throws IllegalStateException, IOException {
+		int test = mapper.test(adminNo);
+		if(test == 0) return 0;
+		else {
+			artistGroup.setArtistGroupAdminNo(adminNo);
+			artistGroup.setArtistGroupTitle(artistGroupTitle);
+			
+			String backupProfile = artistGroup.getArtistGroupProfile();
+			String backupBack = artistGroup.getArtistGroupBackimg();
+			String backupImg = artistGroup.getArtistGroupImage();
+			
+			String backRename = null;
+			String profileRename = null;
+			String imageRename = null;
+			if(backImg.getSize()>0 && profile.getSize()>0 && image.getSize()>0) {
+				backRename = Util.fileRename(backImg.getOriginalFilename());
+				profileRename = Util.fileRename(profile.getOriginalFilename());
+				imageRename = Util.fileRename(image.getOriginalFilename());
+				
+				artistGroup.setArtistGroupProfile(profilepath + profileRename);
+				artistGroup.setArtistGroupBackimg(backpath + backRename);
+				artistGroup.setArtistGroupImage(imagepath + imageRename);
+			}
+			int result = mapper.GroupUpdate(artistGroup);
+			
+			if(result>0) {
+				if(backImg.getSize()>0 && profile.getSize()>0 && image.getSize()>0) {
+					backImg.transferTo(new File(backfolder + backRename));
+					profile.transferTo(new File(profilefolder + profileRename));
+					image.transferTo(new File(imagefolder + imageRename));
+				}
+			}else {
+				artistGroup.setArtistGroupProfile(backupProfile);
+				artistGroup.setArtistGroupBackimg(backupBack);
+				artistGroup.setArtistGroupImage(backupImg);
+			}
+			return result;
+		}
+	}
 	
 //	@Override
 //	public int restoration(int memberNo) {
