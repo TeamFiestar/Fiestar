@@ -23,8 +23,13 @@ public class Member {
 	   
 	   private int chattingRoomNo;
 	   private String memberBackImage;
+<<<<<<< HEAD
 	   
 	   
+=======
+	   private String artistGroupTitle;
+	   private int countReport;
+>>>>>>> 57aa3582455605f789563ffba93b197734ad4684
 
 	   
 }

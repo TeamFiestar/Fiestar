@@ -19,4 +19,9 @@
 		ARTIST_GROUP_NOTICE_CONTENT = #{artistGroupNoticeContent}
 		WHERE ARTIST_GROUP_NOTICE_NO = #{artistGroupNoticeNo}
 	</update>
+	
+	<update id="updatePurchase">
+		UPDATE PURCHASE SET PURCHASE_STATUS = #{purchaseStatus}
+		WHERE PURCHASE_NO = #{purchaseNo}
+	</update>
 </mapper>

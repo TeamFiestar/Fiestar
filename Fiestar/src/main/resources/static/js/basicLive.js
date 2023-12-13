@@ -222,6 +222,7 @@ const createChattingRoom = () => {
   .then(result =>{
     liveChattingRoomNo = result;
     console.log(result);
+    chattingJoin();
   })
   .catch(err => console.log(err));
 }
@@ -233,7 +234,7 @@ const selectLiveChattingRoom = () => {
   .then(result => {
     liveChattingRoomNo = result;
     console.log(result);
-    
+    chattingJoin();
   })
   .catch(err => console.log(err));
 

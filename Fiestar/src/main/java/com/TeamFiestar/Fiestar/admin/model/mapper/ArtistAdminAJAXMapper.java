@@ -5,6 +5,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.TeamFiestar.Fiestar.admin.model.dto.ArtistNotice;
+import com.TeamFiestar.Fiestar.admin.model.dto.Purchase;
 
 
 @Mapper
@@ -15,6 +16,8 @@ public interface ArtistAdminAJAXMapper {
 	int deleteNotice(int noticeNo);
 
 	int updateNotice(ArtistNotice inputNotice);
+
+	int updatePurchase(Purchase purchase);
 
 
 }

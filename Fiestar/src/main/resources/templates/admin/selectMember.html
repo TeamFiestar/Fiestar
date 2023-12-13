@@ -50,18 +50,37 @@
           </thead>
           <!-- <tbody id="memberTableBody"></tbody> -->
           <!-- <th:block th:if="${#}"></th:block> -->
-          <tr class="tr-body" th:each="member : ${memberList}" th:object="${member}">
-            <td th:text="*{memberNo}">1</td>
-            <td th:text="*{memberNickname}">ㅇㅇㅇ</td>
-            <td class="btn-open-popup" th:text="*{memberEmail}" th:onclick="|openModal(*{memberNo})|">
-              qwerqwer1234@gmail.com
-            </td>
-            <td th:text="*{memberAddress}">서울특별시 종로구 종로 33 그랑서울 타워[1] 3층 롤파크</td>
-            <th:block th:if="*{memberAuthority == 1}"></th:block>
-            <td th:text="일반">권한</td>
-            <td>3</td>
-            <td><button>탈퇴</button></td>
-          </tr>
+          <tbody class="tbody2">
+            <tr class="tr-body" th:each="member : ${memberList}" th:object="${member}">
+              <td th:text="*{memberNo}">회원번호</td>
+              <td th:text="*{memberNickname}">회원 닉네임</td>
+              <td class="btn-open-popup" th:text="*{memberEmail}" th:onclick="|openModal(*{memberNo})|">회원 이메일</td>
+              <td th:text="*{memberAddress}">회원 주소</td>
+              <!-- <th:block th:if="*{memberAuthority == 1}"
+                ><td th:text="일반">권한</td></th:block
+              >
+              <th:block th:if="*{memberAuthority == 2}"
+                ><td th:text="아티스트">권한</td>
+              </th:block> -->
+              <td>
+                <select
+                  name="memberAuthority"
+                  id="authority"
+                  class="authority"
+                  th:onChange="|changeAuthority(*{memberNo}, this)|"
+                >
+                  <option value="1" th:selected="*{memberAuthority==1}">일반</option>
+                  <option value="2" th:selected="*{memberAuthority==2}">아티스트</option>
+                  <option value="3" th:selected="*{memberAuthority==3}">일반 관리자</option>
+                  <option value="4" th:selected="*{memberAuthority==4}">아티스트 관리자</option>
+                </select>
+              </td>
+              <td th:text="*{countReport}">신고 누적 횟수</td>
+              <td>
+                <button onclick="withDraw(this)">탈퇴</button>
+              </td>
+            </tr>
+          </tbody>
         </table>
         <!-- 페이지네이션 -->
         <div class="pagination-area" th:if="${#lists.size(memberList) > 0}">
@@ -201,6 +220,8 @@
     </script> -->
 
     <script src="/js/admin/selectMember.js"></script>
-    <script th:inline="javascript"></script>
+    <script th:inline="javascript">
+      const memberNickname = /*[[${memberNickname}]]*/ "회원닉네임";
+    </script>
   </body>
 </html>
