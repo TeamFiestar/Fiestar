@@ -19,7 +19,7 @@
 
    <section class="frame">
 
-      <form action="checkoutResult" method="post">
+      <form action="checkoutResult" method="post" >
 
          <div class="content">
 
@@ -61,7 +61,7 @@
                      </div>
 
                      <div>
-                        <span th:text="${checkoutItem.productOptionName}" class="option-text"> 옵션 : </span>
+                       <span class="optionTag"> 옵션: </span> <span th:text="${checkoutItem.productOptionName}" class="option-text"></span>
                         
                      </div>
 
@@ -70,11 +70,16 @@
                   <!-- 상품 수량 -->
 
                   <!-- <span class="item-amount">수량: 3</span> -->
-                  <span th:text="${checkoutItem.productCount}" class="item-count"></span>
 
-                  <!-- 개별 상품 가격 -->
-                  <span th:text="${checkoutItem.productPrice}" class="default-price"></span>
-                  
+                  <span class="countNPrice">
+
+                     <span th:text="${checkoutItem.productCount}" class="item-count"></span>
+                     
+                     <!-- 개별 상품 가격 -->
+                     
+                     <span th:text="${checkoutItem.productPrice}" class="default-price"></span>
+                     
+                  </span>
 
                </div>
 
@@ -97,9 +102,9 @@
                </div>
 
                   <!-- <span class="check-price">총 상품 가격()</span> -->
-                  <div>                     
+                  <span class="totalItemPrice">                     
                    총 상품 가격 $ <span th:text="${totalPrice}"> </span>
-                  </div> 
+                  </span> 
 
                
 
@@ -127,18 +132,22 @@
 
                <div style="font-size: 16px;">
 
-                  <!-- <div style="margin-top: 44px;">주문자 명</div> -->
-               
+                  <!-- <div style="margin-top: 44px;">주문자 이름</div> -->
+                  
                   <div class="name-input">
-                      <!-- <div th:text="${checkoutItem.memberNickname}" class="default-price"></div> -->
+                     <!-- <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;" th:value="${session.loginMember.memberNickname}" name="memberName"> -->
+                      <!-- <div th:text="${session.loginMember.memberAddress}" class="default-price"></div> -->
+                      <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;" name="order-name">
+               
                      <!-- <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;"> -->
                   </div>
 
 
                   <div class="phonenumber-input-area">
+                     <!-- <div th:text="${session.loginMember.memberPhoneNumber}" class="default-price"></div> -->
                      전화번호
                      <div class="phonenumber-input">
-                        <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;">
+                        <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;" maxlength="11" >
                      </div>
                   </div>
 
@@ -157,7 +166,7 @@
                <!-- <span class="shipping-name" style="font-weight: bold;">배송지</span> -->
 
 
-               <button class="shipping-btn">변경</button>
+               <!-- <button class="shipping-btn">변경</button> -->
 
 
                <div class="shipping-input">
@@ -168,7 +177,14 @@
                      <button class="address-btn">주소 찾기</button>
 
                      <div class="address-input">
-                        <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;">
+                        
+                           
+                        </div>
+                        <label for="">
+   
+                           <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;" th:value="${session.loginMember.memberAddress}" name="memberAddress">
+
+                        </label>
                      </div>
                   </div>
 
@@ -177,7 +193,7 @@
 
                      <div class="input-detail">
 
-                        <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;">
+                        <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;" name="memberAddress">
 
 
                      </div>
@@ -197,7 +213,7 @@
 
                <div class="detail">
                   <span class="product-price" style="font-size: 16px;">상품 가격 </span>
-                  <span th:text="${totalPrice}"></span>
+                  <span th:text="${totalPrice}" class="totalProduct-price"></span>
 
                   <div class="shipping-price" style="font-size: 16px;">배송비
 
@@ -228,7 +244,7 @@
                
                <div class="total-price" style="letter-spacing: -1.6px;">총 결제 금액</div>
 
-               <p> <span th:text="${purchasePrice}"></span> </p>
+               <p> <span th:text="${purchasePrice}" class="total-price"></span> </p>
 
             </div>
 
@@ -264,12 +280,52 @@
             </div>
 
          </div>
+<!--          
+         <div class="myPage-row info-address">
+            <input type="text" name="memberAddress" placeholder="우편번호" id="postcode">
+            <button type="button" onclick="sample6_execDaumPostcode()">검색</button>
+        </div>
 
+        <div class="myPage-row info-address">
+            <input type="text" name="memberAddress"  placeholder="도로명/지번 주소" id="address">                
+        </div>
+
+        <div class="myPage-row info-address">
+            <input type="text" name="memberAddress"  placeholder="상세 주소" id="detailAddress">                
+        </div> -->
 
 
       </form>
 
    </section>
+
+
+   <script src="/js/cart/checkout.js"> </script>
+
+    <!-- <script th:inline="javascript">
+
+        const memberAddress = /*[[${session.loginMember.memberAddress}]]*/ "회원주소"
+
+        // 주소가 있을 경우 (A^^^B^^^c)
+        if(memberAddress != null) {
+
+            // 1) 문자열을 ^^^을 기준으로 쪼개어 배열로 반환
+            const arr = memberAddress.split("^^^"); // [A,B,C]
+
+            // 2) name 속성값이 "memberAddress"인 요소를 모두 얻어옴
+            const inputs = document.querySelectorAll("[name='memberAddress']");
+            
+            // 배열 or NodeList.forEach( () => {} )
+            // 배열 or NodeList의 모든 요소를 순차 접근하는 향상된 for문
+            // item : 현재 접근 중인 요소
+            // index : 현재 접근 중인 요소의 인덱스가 담긴다
+
+            // 3) input 요소에 arr의 값을 순서대로 대입
+            inputs.forEach( (item, index) => {
+                item.value = arr[index];
+            } );
+        }  -->
+
 
 </body>
 
