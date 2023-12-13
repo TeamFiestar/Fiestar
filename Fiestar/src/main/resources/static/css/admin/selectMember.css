@@ -194,19 +194,22 @@ main {
   width: 42%;
 }
 .tr-head > th:nth-child(5) {
-  width: 6%;
+  width: 8%;
 }
 .tr-head > th:nth-child(6) {
   width: 7%;
 }
 .tr-head > th:nth-child(7) {
-  width: 10%;
+  width: 8%;
 }
 .tr-body button {
-  width: 50px;
-  height: 28px;
+  width: 60px;
+  height: 30px;
 }
-
+.authority {
+  width: 80px;
+  height: 30px;
+}
 .pagination-area {
   width: 700px;
   margin: 50px auto;

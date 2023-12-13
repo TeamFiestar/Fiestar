@@ -1,0 +1,81 @@
+.sidebar {
+  width: 200px;
+  height: 100%;
+  background-color: #212529;
+  border-radius: 10px;
+  padding-top: 30px;
+}
+
+.sidebar-list {
+  height: 60px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+  justify-content: center;
+  /* margin: 20px 0; */
+  font-size: 24px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+.artist {
+  margin-bottom: 40px;
+}
+.sidebar-list:hover #member-search {
+  display: block;
+}
+
+#member-search ul {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  padding-left: 10px;
+}
+
+#member-search:hover ul {
+  max-height: 100px; /* 적절한 높이로 설정 */
+  opacity: 1;
+}
+
+#member-search:hover li {
+  color: #d3a9ec;
+}
+#add:hover li > a {
+  color: #d3a9ec;
+}
+#a:hover {
+  color: #d3a9ec;
+}
+#member-search a {
+  font-size: 16px;
+}
+#sidebar-sublist {
+  margin-top: 10px;
+}
+.sidebar-title {
+  font-size: 25px;
+  padding-left: 10px;
+}
+
+.sidebar-list li {
+  list-style: none;
+  height: 30px;
+  font-size: 20px;
+  color: white;
+  /* display: none; */
+}
+.sidebar-list a {
+  text-decoration: none;
+  color: white;
+}
+.report-main {
+  width: 1240px;
+  height: 660px;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+.report-table {
+  width: 1240px;
+  margin: 0 auto;
+}
