@@ -45,7 +45,18 @@ h1 {
 /* .item-list {
    border-bottom: 1px solid #ccc; /* 회색의 1픽셀 두께의 경계선 */
    
-   
+   .check-list {
+      display: flex; /* Flexbox 레이아웃 사용 */
+      justify-content: space-between; /* 요소들을 양 끝에 배치 */
+      align-items: center; /* 세로 중앙 정렬 */
+      width: 100%; /* 전체 너비 사용 */
+  }
+  
+  .totalItemPrice {
+      white-space: nowrap; /* 줄 바꿈 방지 */
+      overflow: hidden; /* 내용이 넘칠 경우 숨김 */
+      text-overflow: ellipsis; /* 넘칠 경우 말줄임표 표시 */
+  }
    
 
 
@@ -199,7 +210,7 @@ hr {
 
 
 .order-list{
-   margin: 32px 0 32px 16px;
+   margin: 90px 0 32px 16px;
    /* border-bottom: solid rgb(217, 217, 217) 1px; */
 }
 

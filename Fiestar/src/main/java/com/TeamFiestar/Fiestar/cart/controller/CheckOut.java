@@ -49,13 +49,13 @@ public class CheckOut {
 	        
 	        int purchasePrice = 0;
 	        
-	        int price = 0;
+	        
 	        
 	        for (Cart cart : checkout) {
 	        	
 	        	totalQuantity += cart.getProductCount(); // 총 상품 수량
 	            
-	        	totalPrice += cart.getProductPrice(); // 총 상품 가격
+	        	totalPrice += cart.getProductCount() * cart.getProductPrice(); // 총 상품 가격
 	        	
 	        	purchasePrice = (totalPrice + 2500); // 총 결제 가격
 	       
@@ -70,7 +70,6 @@ public class CheckOut {
 	        
 	        // 뷰에 데이터 전달
 	        
-	        model.addAttribute("price", price);
 	        	      
 	        model.addAttribute("totalQuantity", totalQuantity); // 총 개수를 모델에 추가     
 	        
