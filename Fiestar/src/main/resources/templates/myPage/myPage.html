@@ -14,14 +14,15 @@
 <body>
 
   <th:block th:replace="~{common/artistPageHeader}"></th:block>
+  <div class="all">
 
   <div class="BgImage">
     <!-- 배경화면 없음 -->
     <img th:if="${session.loginMember.memberBackImage == null}" th:src="#{user.default.backImg}" width="100%"
       height="100%" id="memberBackImage">
-    
-      <!-- 배경화면 있음 -->
-      <img th:unless="${session.loginMember.memberBackImage == null}" th:src="${session.loginMember.memberBackImage}"
+
+    <!-- 배경화면 있음 -->
+    <img th:unless="${session.loginMember.memberBackImage == null}" th:src="${session.loginMember.memberBackImage}"
       width="100%" height="100%" id="memberBackImage">
   </div>
 
@@ -29,49 +30,48 @@
 
     <th:block th:replace="~{myPage/myPage-navi2}"></th:block>
 
-
-
-
     <div class="main-2">
       <div class="contentTitle">
         <h2>내가 작성한 게시글</h2>
       </div>
-      <div class="content" th:each="board : ${boardList}" th:object="${board}">
+      <div class="content">
 
         <div th:if="${#lists.size(boardList) == 0}">
           <span>게시글이 존재하지 않습니다.</span>
         </div>
 
-        <div class="myBulletin" th:unless="${#lists.size(boardList) == 0}">
-          <div class="myProfile">
-            <div class="profile-img-small">
-              <img th:if="${session.loginMember.memberProfile == null}" th:src="#{user.default.image}" width="100%"
-                height="100%" id="memberProfile">
-              <img th:unless="${session.loginMember.memberProfile == null}"
-                th:src="${session.loginMember.memberProfile}" width="100%" height="100%" id="memberProfile">
-            </div>
-            <div class="profile-info-small">
-              <div class="nickName-small">
-                <h4 th:text="${session.loginMember.memberNickname}">민둥민두</h4>
-              </div>
-              <div class="date-small">
-                <h6 th:text="*{boardEnrollDate}">2023-11-28</h6>
-              </div>
-            </div>
-          </div>
-          <div class="myContent">
-            <h3 th:text="*{boardContent}">지금 코노 가는중!!</h3>
-          </div>
-          <div class="delete">
-            <img src="/image/Heart.png"> <span>21</span>
-            <img src="/image/Speech Bubble.png"> <span>3</span>
-
+        <th:block th:unless="${#lists.size(boardList) == 0}">
+          <div class="myBulletin" th:each="board : ${boardList}" th:object="${board}">
             <form action="deleteBoard" method="POST">
-              <div><button>게시글 삭제</button></div>
+              <input type="hidden" name="boardNo" th:value="*{boardNo}" />
+              <div class="myProfile">
+                <div class="profile-img-small">
+                  <img th:if="${session.loginMember.memberProfile == null}" th:src="#{user.default.image}" width="100%"
+                    height="100%" id="memberProfile">
+                  <img th:unless="${session.loginMember.memberProfile == null}"
+                    th:src="${session.loginMember.memberProfile}" width="100%" height="100%" id="memberProfile">
+                </div>
+                <div class="profile-info-small">
+                  <div class="nickName-small">
+                    <h4 th:text="${session.loginMember.memberNickname}">민둥민두</h4>
+                  </div>
+                  <div class="date-small">
+                    <h6 th:text="*{boardEnrollDate}">2023-11-28</h6>
+                  </div>
+                </div>
+              </div>
+              <div class="myContent">
+                <h3 th:text="*{boardContent}">지금 코노 가는중!!</h3>
+              </div>
+              <div class="delete">
+                <img src="/image/Heart.png"> <span>21</span>
+                <img src="/image/Speech Bubble.png"> <span>3</span>
+
+                <div><button type="submit">게시글 삭제</button></div>
+              </div>
             </form>
+            <hr class="myPageHr" width="730px" color="gray">
           </div>
-        </div>
-        <hr class="myPageHr" width="730px" color="gray">
       </div>
 
       <div class="pagination-area" th:if="${#lists.size(boardList) > 0}">

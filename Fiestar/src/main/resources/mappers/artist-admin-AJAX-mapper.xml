@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.TeamFiestar.Fiestar.admin.model.mapper.ArtistAdminAJAXMapper">
+	
+	<select id="selectArtistNotice">
+		SELECT * FROM ARTIST_GROUP_NOTICE
+		WHERE ARTIST_GROUP_NOTICE_NO = #{artistGroupNoticeNo} 
+	</select>
+	
+	<update id="deleteNotice">
+		UPDATE ARTIST_GROUP_NOTICE 
+		SET ARTIST_GROUP_NOTICE_DEL_FL = 'Y'
+		WHERE ARTIST_GROUP_NOTICE_NO = #{noticeNo}
+	</update>
+	
+	<update id="updateNotice">
+		UPDATE ARTIST_GROUP_NOTICE SET 
+		ARTIST_GROUP_NOTICE_TITLE = #{artistGroupNoticeTitle},
+		ARTIST_GROUP_NOTICE_CONTENT = #{artistGroupNoticeContent}
+		WHERE ARTIST_GROUP_NOTICE_NO = #{artistGroupNoticeNo}
+	</update>
+	
+	<update id="updatePurchase">
+		UPDATE PURCHASE SET PURCHASE_STATUS = #{purchaseStatus}
+		WHERE PURCHASE_NO = #{purchaseNo}
+	</update>
+</mapper>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="/css/media/media.css" />
+    <link rel="stylesheet" href="/css/media/mediaLive.css" />
     <link rel="stylesheet" href="/css/common/artistPageHeader.css">
     <link rel="stylesheet" href="/css/common/artistPageNavi.css">
   </head>
@@ -78,28 +78,16 @@
                     <img class="profile-img" src="/img/male-user.png" />
 
                     <div class="comment-writer-area">
-                      <div class="comment-writer" >댓글 작성자</div>
+                      <div class="comment-writer" >채팅 참가자</div>
                       <div class="comment-date">11.21. 02:43</div>
-                    </div>
-
-                    <div class="comment-profile">
-                      <img class="delete-cross" src="/img/close_ring.png"/>
-                      <img class="report-img" src="/img/report-img.svg"/>
                     </div>
 
                   </div>
 
                   <div class="comment-content-area">
-                    <div class="comment-content" th:text="*{mediaCommentContent}">
+                    <div class="comment-content">
                       와 재밌다!
                     </div>
-                  </div>
-
-                  <div class="speech-bubble-wrapper">
-                    <img class="speech-bubble" src="/img/speech-bubble.png" th:onclick="|loadReplies(this, *{mediaCommentNo})|"/>
-                    <img th:if="*{memberCommentLike != 0}"  class="like-heart red" src="/img/like_heart_r.svg" th:onclick="|changeLike(this, *{mediaCommentNo})|">
-                    <img th:if="*{memberCommentLike == 0}"  class="like-heart gray" src="/img/like_heart_w.svg" th:onclick="|changeLike(this, *{mediaCommentNo})|">
-                    <span style="color: white;" th:text="*{memberCommentLike}"></span>
                   </div>
 
                 </div>
@@ -107,9 +95,9 @@
               </div>
               <div class="comment-input-area">
                 <input type="hidden" value="0" id="parent-comment-no">
-                <textarea class="comment-input" id="comment-input" placeholder="댓글을 입력하세요"></textarea>
-                <div class="comment-input-btn">
-                  <div class="up-arrow-wrapper"><img class="up-arrow" id="up-arrow" src="/img/up-arrow.png" onclick="submitComment()" /></div>
+                <textarea class="chatting-input" id="chatting-input" placeholder="댓글을 입력하세요"></textarea>
+                <div class="chatting-input-btn">
+                  <div class="up-arrow-wrapper"><img class="up-arrow" id="up-arrow" src="/img/up-arrow.png" onclick="sendMessage()" /></div>
                 </div>
               </div>
             </div>
@@ -121,16 +109,21 @@
 
     <script th:inline="javascript">
 
+      const loginMember = /*[[${session.loginMember}]]*/ "회원번호";
       const loginMemberNo = /*[[${session.loginMember?.memberNo}]]*/ "회원번호";
       const loginMemberNickname = /*[[${session.loginMember?.memberNickname}]]*/ "회원닉네임";
+      const authority = /*[[${session.loginMember?.memberAuthority}]]*/ "권한";
       const mediaNo = /*[[${mediaNo}]]*/ "미디어 번호";
       const artistGroupTitle = /*[[${artistGroupTitle}]]*/ "artistGroupTitle";
 
     </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+
+    
+
     <script src="https://download.agora.io/sdk/release/AgoraRTC_N.js"></script>
     <script src="/js/jquery-3.4.1.min.js"></script>
-    <script src="/js/media/media.js"></script>
     <script src="/js/basicLive.js"></script>
   </body>
 </html>

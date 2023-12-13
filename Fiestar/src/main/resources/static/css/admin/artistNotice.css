@@ -22,6 +22,10 @@ main {
   font-family: "Pretendard-Regular";
 }
 
+.notice-title{
+  cursor: pointer;
+}
+
 .sidebar {
   width: 200px;
   height: 100vh;
@@ -59,6 +63,13 @@ main {
   overflow: hidden;
   transition: max-height 0.3s ease, opacity 0.3s ease;
   padding-left: 10px;
+}
+
+.modalCloseButton {
+  display: flex;
+  background-color: white;
+  border: none;
+  cursor: pointer;
 }
 
 #member-search:hover ul {
@@ -123,7 +134,7 @@ main {
   height: 70px;
 }
 .notice-tr-td {
-  height: 60px;
+  height: 50px;
   text-align: center;
 }
 .notice-tr-td > td {
@@ -154,7 +165,7 @@ main {
   width: 50px;
   height: 30px;
 }
-.noticeModal {
+.noticeModal, .updateModal {
   position: fixed;
   top: 0;
   left: 0;
@@ -165,10 +176,10 @@ main {
 
   background-color: rgba(0, 0, 0, 0.4);
 }
-.noticeModal.show {
+.show {
   display: block;
 }
-.noticeModal.hidden {
+.hidden {
   display: hidden;
 }
 .modal-body {
@@ -223,7 +234,7 @@ main {
   justify-content: end;
   margin-top: 20px;
 }
-.modal-noticeUpdate > button {
+.modal-noticeUpdate > button, #update-notice-btn {
   width: 80px;
   height: 30px;
   margin: 0 5px;
@@ -232,6 +243,56 @@ main {
   color: gray;
   cursor: pointer;
 }
-.modal-noticeUpdate > button:hover {
+
+.modal-noticeUpdate > button:hover, #update-notice-btn:hover {
+  font-weight: bold;
   color: black;
+}
+
+
+
+
+
+#input-noticeTitle {
+  font-family: "Pretendard-Regular";
+  width: 800px;
+  height: 40px;
+  padding-left: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  outline: none;
+  margin-top: 10px;
+}
+
+.notice-content {
+  width: 800px;
+  margin: 30px auto;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#input-noticeContent {
+  font-family: "Pretendard-Regular";
+  width: 800px;
+  height: 300px;
+  font-size: 16px;
+  margin-top: 10px;
+  outline: none;
+  border-radius: 5px;
+  padding: 0 10px;
+  resize: none;
+}
+
+.notice-btn {
+  display: flex;
+  justify-content: end;
+  margin-right: 30px;
+  margin-top: 50px;
+}
+
+#btn-notice {
+  width: 80px;
+  height: 36px;
+  border-radius: 5px;
+  cursor: pointer;
 }

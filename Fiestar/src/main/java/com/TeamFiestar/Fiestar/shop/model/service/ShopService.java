@@ -1,7 +1,10 @@
 package com.TeamFiestar.Fiestar.shop.model.service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import com.TeamFiestar.Fiestar.shop.model.dto.Product;
 
@@ -11,7 +14,7 @@ public interface ShopService {
 	/**쇼핑몰 메인페이지 전체 조회
 	 * @return
 	 */
-	Map<String, Object> shopMain();
+	Map<String, Object> shopMain(int cp);
 	
 	/**쇼핑몰 상품 전체 개수
 	 * @return
@@ -20,9 +23,10 @@ public interface ShopService {
 
 	/**쇼핑몰 검색한 상품 조회
 	 * @param paramMap
+	 * @param cp 
 	 * @return
 	 */
-	Map<String, Object> searchList(Map<String, Object> paramMap);
+	Map<String, Object> searchList(Map<String, Object> paramMap, int cp);
 	
 	/**쇼핑몰 검색한 상품 개수
 	 * @param paramMap
@@ -34,7 +38,7 @@ public interface ShopService {
 	 * @param paramMap
 	 * @return
 	 */
-	Map<String, Object> artistGroupShop(Map<String, Object> paramMap);
+	Map<String, Object> artistGroupShop(Map<String, Object> paramMap, int cp);
 
 	/**아티스트 그룹별 상품 개수
 	 * @param paramMap
@@ -61,6 +65,12 @@ public interface ShopService {
 	 * @return
 	 */
 	List<Product> selectSearchSort(Map<String, Object> paramMap);
+	
+	/**상품 등록
+	 * @param paramMap
+	 * @return
+	 */
+	int insertGoods(Product product, List<MultipartFile> images)throws IllegalStateException, IOException;
 
 	
 
