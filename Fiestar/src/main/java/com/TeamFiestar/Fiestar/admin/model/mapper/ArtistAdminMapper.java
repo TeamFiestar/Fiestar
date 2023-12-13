@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
 
 import com.TeamFiestar.Fiestar.admin.model.dto.ArtistNotice;
+import com.TeamFiestar.Fiestar.admin.model.dto.Purchase;
 import com.TeamFiestar.Fiestar.admin.model.dto.Report;
 
 @Mapper
@@ -23,6 +24,11 @@ public interface ArtistAdminMapper {
 	int reportListCount(Map<String, Object> map);
 
 	int noticeListCount(Map<String, Object> map);
+
+	List<Purchase> selectPurchaseList(int artistGroupNo, RowBounds rowBounds);
+
+	int orderListCount(int artistGroupNo);
+
 	
 	
 

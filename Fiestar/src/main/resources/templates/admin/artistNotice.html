@@ -60,7 +60,7 @@
 
 
 
-    <main>
+    <main th:with="noticeList = ${map.noticeList}">
       <!-- th:replace -->
       <th:block th:replace="~{common/adminArtist}"></th:block>
       <div class="noticeSelect">

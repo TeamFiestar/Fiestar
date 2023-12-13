@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>아티스트 담당 배송조회</title>
-    <link rel="stylesheet" href="/css/admin/artistOrder.css" />
-  </head>
-  <body>
-    <header>헤더+nav</header>
-    <main>
-      <!-- th:replace -->
-      <th:block th:replace="~{common/adminArtist}"></th:block>
-      <div class="main">
-        <h4>NewJeans</h4>
-        <h1>배송 조회</h1>
-        <br />
-        <div class="orderSelect">
-          <button class="price">높은가격순</button>
-          <button class="price">낮은가격순</button>
-        </div>
-        <table class="main-table" border="1" style="border-collapse: collapse">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>아티스트 담당 배송조회</title>
+  <link rel="stylesheet" href="/css/admin/artistOrder.css" />
+</head>
+
+<body>
+  <header>헤더+nav</header>
+  <main th:with="purchaseList = ${map.purchaseList}, pagination = ${map.pagination}">
+    <!-- th:replace -->
+    <th:block th:replace="~{common/adminArtist}"></th:block>
+    <div class="main">
+      <h4>NewJeans</h4>
+      <h1>배송 조회</h1>
+      <br />
+      <div class="orderSelect">
+        <button class="price">높은가격순</button>
+        <button class="price">낮은가격순</button>
+      </div>
+      <table class="main-table" border="1" style="border-collapse: collapse">
+        <thead>
+
           <tr class="main-th-tr">
             <th>주문 번호</th>
             <th>닉네임</th>
@@ -30,86 +34,88 @@
             <th>주문 날짜</th>
             <th>배송 상태</th>
           </tr>
-          <tr class="main-tr-tr">
-            <td>1</td>
-            <td>닉네임닉네임</td>
-            <td>서울특별시 중구 남대문로 120 대일빌딩 2층, 3층 11-123</td>
-            <td>10주년 앨범</td>
-            <td>2</td>
-            <td>50,000</td>
-            <td>2023/11/29</td>
+
+        </thead>
+
+        <tbody>
+
+          <tr class="main-tr-tr" th:each="purchase : ${purchaseList}" th:object="${purchase}">
+            <td th:text="*{purchaseNo}">1</td>
+            <td th:text="*{memberNickname}">닉네임닉네임</td>
+            <td th:text="*{memberAddress}">서울특별시 중구 남대문로 120 대일빌딩 2층, 3층 11-123</td>
+            <td th:text="*{purchaseNo}">10주년 앨범</td>
+            <td th:text="*{productSum}">2</td>
+            <td th:text="*{purchasePrice}">50,000</td>
+            <td th:text="*{purchaseDate}">2023/11/29</td>
             <td>
               <form>
-                <select id="order-select">
-                  <option value="1">주문 완료</option>
-                  <option value="2">배송 준비</option>
-                  <option value="3">배송 중</option>
+                <select id="order-select" th:onChange="|changeStatus(*{purchaseNo},this)|">
+                  <option value="1" th:selected="*{purchaseStatus == 1}">주문 완료</option>
+                  <option value="2" th:selected="*{purchaseStatus == 2}">배송 준비</option>
+                  <option value="3" th:selected="*{purchaseStatus == 3}">배송 중</option>
                 </select>
               </form>
             </td>
           </tr>
-          <tr class="main-tr-tr">
-            <td>2</td>
-            <td>10주년 앨범</td>
-            <td>1</td>
-            <td>25,000</td>
-            <td>2023/11/27</td>
-            <td>
-              <form>
-                <select id="order-select">
-                  <option value="1">주문 완료</option>
-                  <option value="2">배송 준비</option>
-                  <option value="3">배송 중</option>
-                </select>
-              </form>
-            </td>
-          </tr>
-          <tr class="main-tr-tr">
-            <td>2</td>
-            <td>10주년 앨범</td>
-            <td>1</td>
-            <td>25,000</td>
-            <td>2023/11/27</td>
-            <td>
-              <form>
-                <select id="order-select">
-                  <option value="1">주문 완료</option>
-                  <option value="2">배송 준비</option>
-                  <option value="3">배송 중</option>
-                </select>
-              </form>
-            </td>
-          </tr>
-          <tr class="main-tr-tr">
-            <td>2</td>
-            <td>10주년 앨범</td>
-            <td>1</td>
-            <td>25,000</td>
-            <td>2023/11/27</td>
-            <td>
-              <form>
-                <select id="order-select">
-                  <option value="1">주문 완료</option>
-                  <option value="2">배송 준비</option>
-                  <option value="3">배송 중</option>
-                </select>
-              </form>
-            </td>
-          </tr>
-        </table>
-        <div class="pagination-area">
-          <div class="pagination"><< < 1 2 3 4 5 6 7 8 9 10 > >></div>
-          <form>
-            <select id="select">
-              <option value="memberNo">회원번호</option>
-              <option value="memberNickname">회원 닉네임</option>
-              <option value="memberEmail">회원 이메일</option>
-            </select>
-            <input type="text" id="inputSearch" />
-            <button id="pagination-button">검색</button>
-          </form>
+
+        </tbody>
+      </table>
+      <div class="pagination-area">
+
+        <div class="pagination-area" th:if="${#lists.size(purchaseList) > 0}">
+
+          <ul class="pagination">
+
+            <!-- 첫 페이지로 이동 -->
+            <li><a th:href="@{/artistAdmin/{artistGroupTitle}/order(artistGroupTitle=${artistGroupTitle}, cp=1,  ) }">&lt;&lt;</a></li>
+
+            <!-- 이전 목록 마지막 번호로 이동 -->
+            <li><a th:href="@{/artistAdmin/{artistGroupTitle}/order(artistGroupTitle=${artistGroupTitle}, cp=${pagination.prevPage }  )}">&lt;</a>
+            </li>
+
+
+            <!-- 현재 보고있는 페이지 -->
+            <!-- #numbers.sequence(1,10) 1~10증가하며 차례대로 추가한 리스트 -->
+            <th:block th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}">
+              <li th:if="${i == pagination.currentPage}">
+                <a class="current" th:text="${i}">1</a>
+              </li>
+
+              <!-- 보고있지 않은 페이지 -->
+              <li th:unless="${i == pagination.currentPage}">
+                <a th:href="@{/artistAdmin/{artistGroupTitle}/order(artistGroupTitle=${artistGroupTitle}, cp=${i}  )} " th:text="${i}">2</a>
+              </li>
+            </th:block>
+
+
+
+            <!-- 다음 목록 시작 번호로 이동 -->
+            <li><a th:href="@{/artistAdmin/{artistGroupTitle}/order(artistGroupTitle=${artistGroupTitle}, cp=${pagination.nextPage }  )}">&gt;</a>
+            </li>
+
+            <!-- 끝 페이지로 이동 -->
+            <li><a
+                th:href="@{/artistAdmin/{artistGroupTitle}/order(artistGroupTitle=${artistGroupTitle}, cp=${pagination.maxPage }  )}">&gt;&gt;</a>
+            </li>
+          </ul>
         </div>
+
+
+
+        <form th:action="|/artistAdmin/${artistGroupTitle}/order|" method="get">
+          <select id="select" name="key">
+            <option value="1" th:selected="${key == 1}">회원번호</option>
+            <option value="2" th:selected="${key == 2}">회원 닉네임</option>
+            <option value="3" th:selected="${key == 3}">회원 이메일</option>
+          </select>
+          <input type="text" id="inputSearch" name="orderSearch"/>
+          <button id="pagination-button">검색</button>
+        </form>
       </div>
-    </main>
-  </body>
+    </div>
+  </main>
+
+  <script src="/js/admin/artistOrder.js"></script>
+</body>
+
 </html>
