@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.TeamFiestar.Fiestar.cart.model.dto.Cart;
+import com.TeamFiestar.Fiestar.cart.model.dto.Orderer;
 import com.TeamFiestar.Fiestar.cart.model.service.CartService;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
@@ -87,15 +88,15 @@ public class CheckOut {
 	    
 	    
 	    // ---------------------------------------------------------------------------------------------
-	    
+
 
 		@PostMapping("checkoutResult")
-		public String checkoutResult() {
+		public String checkoutResult( Model model, 
+                @SessionAttribute(value = "loginMember") Member loginMember, 
+                @RequestParam("selectEach") List<String> orderList, Orderer orderer) {
 			
-		// 결제 페이지에서 넘겨주는 정보 받아오기
-			
-//			장바구니 번호로 연결 -> 
-//			구매자 이름, 전화번호, 주소 
+		
+		
 			
 			return "cart/checkout-result";
 		}

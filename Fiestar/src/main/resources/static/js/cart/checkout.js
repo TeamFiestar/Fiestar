@@ -43,6 +43,22 @@ addressChangeBtn.addEventListener("click", e => {
 });
 
 
+const form = document.getElementById("nameChangeBtn")
+
+form.addEventListener("submit", e => {  
+
+    if(nameInput.value.trim().length || address1.value.trim().length || address2.trim().length || address3.trim().length == 0){
+        alert("주문자 정보를 입력해주세요.")
+        e.preventDefault();
+        return;
+    }
+
+
+        
+ });
+
+
+
 // 주소 API
 
 function sample6_execDaumPostcode() {
