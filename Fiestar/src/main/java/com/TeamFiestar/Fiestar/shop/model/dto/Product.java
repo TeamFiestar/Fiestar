@@ -1,5 +1,7 @@
 package com.TeamFiestar.Fiestar.shop.model.dto;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -15,5 +17,7 @@ public class Product {
 	private String productProduction;
 	private int productPrice;
 	private String artistGroupTitle;
+	
+	private List<ProductImage> imageList;
 	
 }

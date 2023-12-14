@@ -44,8 +44,8 @@
           <div class="product-area-detail">
             <div class="product-list" th:each=" product:${productList}" th:object="${product}">
               <a th:href="@{/shop/shopDetail/{productNo}(productNo=*{productNo})}" class="product-profile">
-                <div class="product-image-area" th:text="*{productImage}"> 
-                  <img src="/images/product1.jpg">
+                <div class="product-image-area"> 
+                  <img src="/images">        
                 </div>
                 <div class="product-name-area" >
                   <div class="product-name" th:text="*{productName}">상품 이름</div>
