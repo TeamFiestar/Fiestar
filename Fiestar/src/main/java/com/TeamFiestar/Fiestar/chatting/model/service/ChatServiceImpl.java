@@ -54,5 +54,10 @@ public class ChatServiceImpl implements ChatService{
 		return mapper.selectLiveChattingRoom(artistGroupNo);
 	}
 	
+	@Override
+	public String artistGroupImage(String artistGroupTitle) {
+		return mapper.artistGroupImage(artistGroupTitle);
+	}
+	
 	
 }

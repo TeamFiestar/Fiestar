@@ -63,7 +63,7 @@
         </div>
         <div class="chatList">
           <div class="artirstImg">
-            <img src="/images/newJeans.jpg" id="artistImg" />
+            <img th:src="|${artistGroupImage}|" id="artistImg" />
           </div>
           <div class="userList">
             <div class="userTitle">유저 닉네임</div>
@@ -79,12 +79,15 @@
 
     <script th:inline="javascript">
       const loginMember = /*[[${session.loginMember}]]*/ "로그인 회원";
-      const loginMemberNo = /*[[${session.loginMember?.memberNo}]]*/ "로그인회원번호";
-      const memberNickname = /*[[${session.loginMember?.memberNickname}]]*/ "닉네임";
+      const loginMemberNo =
+        /*[[${session.loginMember?.memberNo}]]*/ "로그인회원번호";
+      const memberNickname =
+        /*[[${session.loginMember?.memberNickname}]]*/ "닉네임";
       const authority = /*[[${session.loginMember?.memberAuthority}]]*/ "권한";
       const userDefaultImage = /*[[#{user.default.image}]]*/ "기본 이미지";
       const artistGroupNo = /*[[${artistGroupNo}]]*/ "그룹번호";
-      const memberProfile = /*[[${session.loginMember?.memberProfile}]]*/ "로그인 회원 프로필";
+      const memberProfile =
+        /*[[${session.loginMember?.memberProfile}]]*/ "로그인 회원 프로필";
     </script>
 
     <script src="/js/chatting/chatting.js"></script>
