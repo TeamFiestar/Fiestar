@@ -85,18 +85,13 @@
 	
 	
 	<!--이미지 업로드-->
-	<insert id="insertImageList" parameterType="list">
+	<insert id="insertImage" parameterType="ProductImage">
+		<selectKey order="BEFORE" resultType="_int" keyProperty="productImageNo">
+			SELECT SEQ_PRODUCT_IMAGE_NO.NEXTVAL FROM DUAL
+		</selectKey>
 		INSERT INTO "PRODUCT_IMAGE"
-		<foreach collection="list" item="img" separator=" UNION ">
-			 SELECT NEXT_IMG_NO(),
-			 		#{img.productImageContent},
-			 		#{img.productImageThumbnail},
-			 		#{img.productImageRename},
-			 		#{img.productImageOriginal},
-			 		#{img.productImageOrder},
-			 		#{img.productNo}
-			 FROM DUAL
-		 </foreach>
+		VALUES(#{productImageNo},#{productImageContent},#{productImageRename},#{productImageOriginal},#{productImageOrder}, #{productNo}, #{productImageThumbnail},
+		#{productImageThumbnailRename})
 	</insert>
 	
 	

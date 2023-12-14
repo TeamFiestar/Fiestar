@@ -29,6 +29,6 @@ public interface ArtistAdminMapper {
 	//상품 등록
 	int insertGoods(Product product);
 
-	int insertImageList(List<ProductImage> imageList);
+	int insertImage(ProductImage img);
 
 }

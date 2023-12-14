@@ -23,6 +23,6 @@ public interface ArtistAdminService {
 	 * @param paramMap
 	 * @return
 	 */
-	int insertGoods(Product product, List<MultipartFile> images, String artistGroupTitle)throws IllegalStateException, IOException;
+	int insertGoods(Product product,String artistGroupTitle, MultipartFile contentImg, MultipartFile thumbnailImg)throws IllegalStateException, IOException;
 
 }

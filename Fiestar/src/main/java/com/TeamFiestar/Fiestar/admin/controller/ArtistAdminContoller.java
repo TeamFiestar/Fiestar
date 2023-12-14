@@ -125,9 +125,10 @@ public class ArtistAdminContoller {
 	public String insertGoods(RedirectAttributes ra,
 								Product product,
 								@PathVariable("artistGroupTitle") String artistGroupTitle,
-								@RequestParam("shopImg") List<MultipartFile> images) throws IllegalStateException, IOException{
+								@RequestParam("contentImg") MultipartFile contentImg,
+								@RequestParam ("thumbnailImg") MultipartFile thumbnailImg) throws IllegalStateException, IOException{
 		
-		int productNo = service.insertGoods(product,images,artistGroupTitle);
+		int productNo = service.insertGoods(product,artistGroupTitle, contentImg, thumbnailImg);
 		
 		if(productNo > 0) {
 			ra.addFlashAttribute("message","상품 등록 성공");
