@@ -1,79 +1,202 @@
    <!-- 게시글 상세보기 modal -->
-   <div class="feedDetailModal" id="feedDetail">
+   <div class="feedDetailModal" id="feedDetail" style="display:relative; z-index:3;">
     <div id="dmodal-body">
         <div>
             <button class="closeModal" data-target="feedDetail" onclick="closeModal()">X</button>
         </div>
         <div class="feedContent">
-            <div class="profile">
-                <div><a href="#"><i class="fa-regular fa-circle-user fa-2xl" style="color: #7743DB"></i></a></i>
-                </div>
-                <div>
-                    <Strong>카즈하</Strong>
-                    <!-- 아티스트인 경우에만 보임 -->
-                    <i class="fa-solid fa-circle-check" style="color: #7743DB"></i>
-                    <p>1시간 전</p>
-                </div>
-                <div class="element">
-                    <input id="check-btn" type="checkbox" />
-                    <label for="check-btn"><i class="fa-solid fa-ellipsis-vertical fa-2x"></i></label>
-                    <ul class="menubars">
-                        <a href="#">
-                            <li>신고하기</li>
-                        </a>
-                        <a href="#">
-                            <li>수정하기</li>
-                        </a>
-                        <a href="#">
-                            <li>삭제하기</li>
-                        </a>
-                    </ul>
-                </div>
+            <div class="profile" style="display:flex;">
+                <span>
+                    <img id="profileImage" style="width:40px; height:40px; border-radius:50%;">
+                </span>        
+                <span class="profile-upper">
+                    <span>
+                        <Strong id="boardNickname">카즈하</Strong>
+                        <!-- 아티스트인 경우에만 보임 -->
+                        <i id="indicator"></i>
+                        <p id="boardDate">1시간 전</p>
+                    </span>
+                    <span class="element">
+                        
+                            <input id="check-btn" type="checkbox" />
+                            <label for="check-btn"><i class="fa-solid fa-ellipsis-vertical fa-2x" style="color:gray; font-size:26px;"></i></label>
+                            <div class="menubars">
+                                <a href="#">
+                                    <li>신고하기</li>
+                                </a>
+                                <a href="#">
+                                    <li>수정하기</li>
+                                </a>
+                                <a href="#">
+                                    <li>삭제하기</li>
+                                </a>
+                            </div>
+                        
+                    </span>
+                </span>
+               
             </div>
 
             <!-- 이미지 없음 -->
-            <div class="content">
-
-                <!-- 이미지가 있을 경우 -->
-                <div class="feedImg">
-                    <img src="/artistHomepageImg/1.jpg" width="500px">
+            <div class="contentArea">
+                <div class="feedMain">
+                    비동기로 내용
                 </div>
-                <div class="feedContent">
-                    LE SSERAFIM (르세라핌)은 대한민국의 걸그룹이다. 세상의 시선에 흔들리지 않고 두려움 없이
-                    앞으로 나아가겠다는 자기 확신과 강한 의지를 바탕으로 비상할 준비를 마친 그룹은 2022년 5월, 대망의 첫 미니 앨범 [FEARLESS]를 공개하며 가요계에 출사표를
-                    던졌다.
-                    방시혁 총괄 프로듀서의 진두지휘 아래 얼터너티브 팝, 디스코-펑크, R&B 등 다양한 장르의 음악이 그룹만의 스타일로 탄생했고 멤버 김채원과 허윤진은 수록곡 'Blue
-                    Flame'의 작사에 참여하는 등 앨범에 각별한 애정을 내비치며 새로운 여정의 설렘과 각오를 담았다.
-                    데뷔와 동시에 각종 신기록을 쏟아낸 그룹은 같은 해 10월 두 번째 EP [ANTIFRAGILE]로 성공 가도를 이어가며 강력한 팬덤을 구축해 나갔다. 2023년 5월에는
-                    첫 번째
-                    정규 앨범 [UNFORGIVEN]을 발매, 타인의 평가에 개의치 않고 르세라핌 만의 길을 개척하겠다는 각오를 주제로 삼았고 월드 클래스 뮤지션들이 참여해 그룹의 위상을
-                    입증했다.
+                <!-- 이미지가 있을 경우 -->
+                <div class="feedImg" style="padding-top: 15px;">
+                    <!-- <img src="/artistHomepageImg/lesserafim.jpg" alt="아티스트프로필이미지" id="artistImg"> --> 
                 </div>
             </div>
+
+            <div class="likeArea">
+              <i class="fa-heart" th:classappend="${likeCheck} ? fa-solid : fa-regular" id="likeImg" style="color: #7743DB; margin-top: 10px; font-size: 20px;" ></i> <span id="feedLikeCount" style="margin-left:3px; font-size: 17px;" >234</span>
+
+            </div>
+
+
         </div>
 
         <div class="comment-container">
-            <div class="profile">
-                <div><a href="#"><i class="fa-regular fa-circle-user fa-2xl" style="color: #7743DB"></i></a></i>
+            <div class="comment-list-area">
+                <div class="comment-count">
+                  <div class="text-wrapper" >1개의 댓글</div>
                 </div>
-                <div>
-                    <Strong>카즈하</Strong>
-                    <!-- 아티스트인 경우에만 보임 -->
-                    <i class="fa-solid fa-circle-check" style="color: #7743DB"></i>
-                    <p>1시간 전</p>
+                <div class="comment-list">
+  
+                   <!-- 댓글 -->
+                  <div class="comment-area" >
+                    <!-- th:each="comment : ${mediaDetail.mediaCommentList}" th:object="${comment}" -->
+                    <div class="comment-area-in" style="display: flex;">
+  
+                      <img class="profile-img" src="/img/male-user.png" width="40px"/>
+  
+                      <div class="comment-writer-area">
+                        <div class="comment-writer" >댓글 작성자</div>
+                        <div class="comment-date" >11.21. 02:43</div>
+                      </div>
+  
+                      <div class="comment-profile">
+                        <img class="delete-cross" src="/img/close_ring.png" />
+                        <img class="report-img" src="/img/report-img.svg" onclick="modalOpen()"/>
+                      </div>
+  
+                    </div>
+  
+                    <div class="comment-content-area">
+                      <div class="comment-content" >
+                        와 재밌다!sdjksljlkdfdfdfadfanjf l;kdaj fldksjfasdjflkd ajsjlfkaaaaaa aaaaaaaaaaaaaaaaaa aajkj
+                      </div>
+                    </div>
+  
+                    <div class="speech-bubble-wrapper">
+                      <img class="speech-bubble" src="/img/speech-bubble.png" />
+                      <img  class="like-heart red" src="/img/like_heart_r.svg" >
+                      <img   class="like-heart gray" src="/img/like_heart_w.svg" >
+                      <span  ></span>
+                    </div>
+  
+                  </div>
+                  <div class="comment-area" >
+                    <!-- th:each="comment : ${mediaDetail.mediaCommentList}" th:object="${comment}" -->
+                    <div class="comment-area-in" style="display: flex;">
+  
+                      <img class="profile-img" src="/img/male-user.png" width="40px"/>
+  
+                      <div class="comment-writer-area">
+                        <div class="comment-writer" >댓글 작성자</div>
+                        <div class="comment-date" >11.21. 02:43</div>
+                      </div>
+  
+                      <div class="comment-profile">
+                        <img class="delete-cross" src="/img/close_ring.png" />
+                        <img class="report-img" src="/img/report-img.svg" onclick="modalOpen()"/>
+                      </div>
+  
+                    </div>
+  
+                    <div class="comment-content-area">
+                      <div class="comment-content" >
+                        와 재밌다!sdjksljlkdfdfdfadfanjf l;kdaj fldksjfasdjflkd ajsjlfkaaaaaa aaaaaaaaaaaaaaaaaa aajkj
+                      </div>
+                    </div>
+  
+                    <div class="speech-bubble-wrapper">
+                      <img class="speech-bubble" src="/img/speech-bubble.png" />
+                      <img  class="like-heart red" src="/img/like_heart_r.svg" >
+                      <img   class="like-heart gray" src="/img/like_heart_w.svg" >
+                      <span  ></span>
+                    </div>
+  
+                  </div>
+                  <div class="comment-area" >
+                    <!-- th:each="comment : ${mediaDetail.mediaCommentList}" th:object="${comment}" -->
+                    <div class="comment-area-in" style="display: flex;">
+  
+                      <img class="profile-img" src="/img/male-user.png" width="40px"/>
+  
+                      <div class="comment-writer-area">
+                        <div class="comment-writer" >댓글 작성자</div>
+                        <div class="comment-date" >11.21. 02:43</div>
+                      </div>
+  
+                      <div class="comment-profile">
+                        <img class="delete-cross" src="/img/close_ring.png" />
+                        <img class="report-img" src="/img/report-img.svg" onclick="modalOpen()"/>
+                      </div>
+  
+                    </div>
+  
+                    <div class="comment-content-area">
+                      <div class="comment-content" >
+                        와 재밌다!sdjksljlkdfdfdfadfanjf l;kdaj fldksjfasdjflkd ajsjlfkaaaaaa aaaaaaaaaaaaaaaaaa aajkj
+                      </div>
+                    </div>
+  
+                    <div class="speech-bubble-wrapper">
+                      <img class="speech-bubble" src="/img/speech-bubble.png" />
+                      <img  class="like-heart red" src="/img/like_heart_r.svg" >
+                      <img   class="like-heart gray" src="/img/like_heart_w.svg" >
+                      <span  ></span>
+                    </div>
+  
+                  </div>
+  
+                  <div class="new-comment-list">
+  
+                    <div class="new-comment-area hide">
+                      <!-- 여기에 나타날 새로운 댓글 창 -->
+                      <div class="comment-area-in">
+                        <img class="img" src="/img/male-user.png" />
+    
+                        <div class="comment-writer-area">
+                          <div class="comment-writer">답글 작성자</div>
+                          <div class="comment-date">11.21. 02:43</div>
+                        </div>
+    
+                        <img class="comment-profile" src="/img/frame-11979.png" />
+                      </div>
+    
+                      <div class="comment-content-area">
+                        <div class="comment-content">와 르세라핌!</div>
+                      </div>
+    
+                      <div class="speech-bubble-wrapper">
+                        <img class="speech-bubble" src="/img/speech-bubble.png" />
+                      </div>
+                    </div>
+                    
+                  </div>
+  
                 </div>
-            </div>
-
-            <div class="textbox">
-                저도요!!!!!!!!!
-            </div>
-
-            <form action="">
-                <div class="comment-write">
-                    <textarea class="comment-input" placeholder="댓글을 입력하세요"></textarea>
-                    <button class="submitBtn"><i class="fa-solid fa-arrow-up"></i></button>
+                <div class="comment-input-area">
+                  <input type="hidden" value="0" id="parent-comment-no">
+                  <input type="text" class="comment-input" id="comment-input" placeholder="댓글을 입력하세요" style="color:#7743DB"></input>
+                  <div class="comment-input-btn">
+                   <img class="up-arrow" id="up-arrow" src="/img/male-user.png" onclick="submitComment()">
+                  </div>
                 </div>
-            </form>
+              </div>
+           
         </div>
     </div>
 </div>

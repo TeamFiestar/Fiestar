@@ -1,126 +1,144 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 
-  <link rel="stylesheet" href="../../static/css/artistprofile/profileModify.css">
+  <link rel="stylesheet" href="/css/artistprofile/profileModify.css">
+  <link rel="stylesheet" href="/css/common/artistPageHeader.css">
+  <link rel="stylesheet" href="/css/common/footer.css" />
 </head>
- <body>
+
+<body>
+  <th:block th:replace="~{common/artistPageHeader}"></th:block>
+
   <div class="all">
-    <div class="profiletxt"><h3>아티스트 프로필 배경화면</h3></div>
-    <div class="Img">
-      <form action="post" enctype="multipart/form-data">
+
+    <form action="update" method="POST" id="profileFrm" enctype="multipart/form-data">
+
+      <div class="profiletxt">
+        <h3>아티스트 프로필 배경화면</h3>
+      </div>
+      <div class="Img">
         <div class="mainImg">
-          <label for="file">
-            <div class="btn-upload1"><h1>+</h1></div>
+          <label for="imageInput">
+            <div class="btn-upload1">
+              <img src="/artistHomepageImg/1-6.jpg" alt="아티스트 배경 이미지" id="artistGroupBackImg"  style="object-fit:cover">
+              <h1>+</h1>
+            </div>
           </label>
-          <input type="file" name="file" id="file">
+          <input type="file" name="artistGroupBackImg" id="imageInput" accept="image/*" class="file">
         </div>
-      </form>
-      <div class="artistIntro">
-        <div class="artistIntro-name">
-          <label for="file">
-            <div class="btn-upload2"><h1>+</h1></div>
-          </label>
-          <input type="file" name="file" id="file">
-        </div>
-      </div>
-      <div class="profiletxt"><h3>아티스트 소개글 작성</h3></div>
-      <div class="artistIntro-content">
-        <label for="content"></label>
-        <textarea class="form-control" rows="5" id="content" name="boardContent"></textarea>
-      </div>
-    </div>
 
-    
-    <div class="profiletxt"><h3>프로필 사진</h3></div>
+        <div class="artistIntro">
+          <div class="artistIntro-name">
+            <label for="logoInput">
+              <div class="btn-upload2">
+                <img src="/artistHomepageImg/1234.png" alt="아티스트 배경 이미지" id="artistLogo"  style="object-fit:cover">
+                <h1>+</h1>
+              </div>
+            </label>
+            <input type="file" name="artistLogo" id="logoInput" style="display: none;">
+          </div>
+        </div>
 
-    <div class="profileALl">
-     
-      <div class="profileImg">
-        <div class="profileImage">
-          <label for="file">
-            <div class="btn-upload3"><h2>+</h2></div>
-          </label>
-          <input type="file" name="file" id="file">
-        </div>
-        <div class="profileName">
-          <input type="text" placeholder="이름을 작성해주세요">
-        </div>
-      </div>
-    
-    
-      <div class="profileImg">
-        <div class="profileImage">
-          <label for="file">
-            <div class="btn-upload3"><h2>+</h2></div>
 
-          </label>
-          <input type="file" name="file" id="file">
+
+
+        <div class="profiletxt">
+          <h3>아티스트 소개글 작성</h3>
         </div>
-        <div class="profileName">
-          <input type="text" placeholder="이름을 작성해주세요">
-        </div>
-      </div>
-    
-    
-      <div class="profileImg">
-        <div class="profileImage">
-          <label for="file">
-            <div class="btn-upload3"><h2>+</h2></div>
-          </label>
-          <input type="file" name="file" id="file">
-        </div>
-        <div class="profileName">
-          <input type="text" placeholder="이름을 작성해주세요">
-        </div>
-      </div>
-  
-    
-      <div class="profileImg">
-        <div class="profileImage">
-          <label for="file">
-            <div class="btn-upload3"><h2>+</h2></div>
-          </label>
-          <input type="file" name="file" id="file">
-        </div>
-        <div class="profileName">
-          <input type="text" placeholder="이름을 작성해주세요">
-        </div>
-      </div>
-    
-  
-      <div class="profileImg">
-        <div class="profileImage">
-          <label for="file">
-            <div class="btn-upload3"><h2>+</h2></div>
-          </label>
-          <input type="file" name="file" id="file">
-        </div>
-        <div class="profileName">
-          <input type="text" placeholder="이름을 작성해주세요">
+        <div class="artistIntro-content">
+          <label for="content"></label>
+          <textarea class="form-control" id="content" name="artistGroupIntroduction"></textarea>
         </div>
       </div>
 
-      <div class="plus"><h1>+</h1></div>
 
-      <div class="profileImg">
-        <div class="profileImage">
-          <button class="plusBtn"></button>
+      <div class="profiletxt">
+        <h3>프로필 사진</h3>
+      </div>
+
+      <div class="profileALl">
+
+        <div class="profileImg">
+          <div class="profileImage">
+            <label for="file">
+              <div class="btn-upload3">
+                <img src="/artistHomepageImg/1-6.jpg" alt="아티스트 프로필">
+                <h2>+</h2>
+              </div>
+            </label>
+            <input type="file" name="file" id="file" class="file">
+          </div>
+          <div class="profileName">
+            <input type="text" placeholder="이름을 작성해주세요">
+          </div>
         </div>
-      </div>    
-    </div>
+
+
+        <div class="profileImg">
+          <div class="profileImage">
+            <label for="file">
+              <div class="btn-upload3">
+                <h2>+</h2>
+              </div>
+
+            </label>
+            <input type="file" name="file" id="file" class="file">
+          </div>
+          <div class="profileName">
+            <input type="text" placeholder="이름을 작성해주세요">
+          </div>
+        </div>
+
+
+        <div class="profileImg">
+          <div class="profileImage">
+            <label for="file">
+              <div class="btn-upload3">
+                <h2>+</h2>
+              </div>
+            </label>
+            <input type="file" name="artistProdctuinProfile" id="inputProdctuinProfile" class="file">
+          </div>
+          <div class="profileName">
+            <input type="text" placeholder="이름을 작성해주세요">
+          </div>
+        </div>
+
+
+        <div class="plus">
+          <h1>+</h1>
+        </div>
+
+        <div class="profileImg">
+          <div class="profileImage">
+            <button class="plusBtn"></button>
+          </div>
+        </div>
+      </div>
+    </form>
 
     <div class="ModifyBtn">
       <button>수정하기</button>
     </div>
-    
+
   </div>
+  <th:block th:replace="~{common/footer}"></th:block>
+  <script src="/js/artistprofile/profileModify.js"></script>
+  <script src="https://kit.fontawesome.com/2434a52ecc.js" crossorigin="anonymous"></script>
+
+  <script>
+    const artistGroupTitle =  /*[[${artistGroupTitle}]]*/"아티스트 그룹 이름";
+
+  </script>
 
 
- </body>
-  
+
+
+</body>
 
 </html>

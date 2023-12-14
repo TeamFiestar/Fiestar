@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>아티스트 공지사항 등록</title>
-    <link rel="stylesheet" href="../../static/css/admin/artistNoticeAdd.css" />
+    <link rel="stylesheet" href="/css/admin/artistNoticeAdd.css" />
   </head>
   <body>
     <header>헤더+nav</header>
@@ -15,16 +15,16 @@
         <h4>NewJeans</h4>
         <h1>아티스트 공지사항 등록</h1>
         <br />
-        <form action="#">
+        <form th:action="|/artistAdmin/${artistGroupTitle}/noticeAdd|" method="post">
           <div class="notice-title">
             공지사항 제목
             <br />
-            <input type="text" id="input-noticeTitle" />
+            <input name="artistGroupNoticeTitle" type="text" id="input-noticeTitle" />
           </div>
           <div class="notice-content">
             공지사항 내용
             <br />
-            <textarea name="" id="input-noticeContent"></textarea>
+            <textarea name="artistGroupNoticeContent" id="input-noticeContent"></textarea>
           </div>
           <div class="notice-btn">
             <button id="btn-notice">등록</button>

@@ -1,5 +1,6 @@
 let gereateToken;
-
+let chattingSock;
+let liveChattingRoomNo;
 
 // Agora 클라이언트 생성
 var client = AgoraRTC.createClient({
@@ -26,25 +27,12 @@ const options = {
 
 // 데모는 URL 매개변수로 채널에 자동으로 참여할 수 있음
 $(() => {
-  var urlParams = new URL(location.href).searchParams;
-  options.appid = urlParams.get("appid");
-  options.channel = urlParams.get("channel");
-  options.token = urlParams.get("token");
-  options.uid = urlParams.get("uid");
-  if (options.appid && options.channel) {
-    console.log(options.appid);
-    $("#uid").val(options.uid);
-    $("#appid").val(options.appid);
-    $("#token").val(options.token);
-    $("#channel").val(options.channel);
-    $("#join-form").submit();
+  if(authority == 1){
+    tokenGenerator('audience', 2);
   }
 });
 
-// 호스트로 역할 변경 버튼 클릭 이벤트 처리
-$("#host-join").click(function (e) {
-  options.role = "host";
-});
+
 
 // 저지연 청취자로 역할 변경 버튼 클릭 이벤트 처리
 $("#lowLatency").click(function (e) {
@@ -62,7 +50,6 @@ $("#ultraLowLatency").click(function (e) {
 
 // 비동기 토큰생성 
 async function tokenGenerator(role, flag){
-
   let token = "token";
   
   console.log("flag : " + flag);
@@ -74,21 +61,24 @@ async function tokenGenerator(role, flag){
   .then ( (res) =>{
     console.log("res : " + res);
     options.token = res;
-
+    
     joinSubmit(role, res)
   })
   .catch( (e) => {
     console.log(e);
   })
-
-
+  
+  
 };
 
 // 폼 제출 시 이벤트 처리
 async function joinSubmit(role, token) {
+  await leave();
   options.role = role;
 
-  $("#host-join").attr("disabled", true);
+  if(authority != 1){
+    $("#host-join").attr("disabled", true);
+  }
   $("#audience-join").attr("disabled", true);
   try {
     options.channel = artistGroupTitle;
@@ -144,6 +134,7 @@ async function join() {
     if (!localTracks.videoTrack) {
       localTracks.videoTrack = await AgoraRTC.createCameraVideoTrack();
     }
+    createChattingRoom();
 
     localTracks.videoTrack.play("remote-playerlist");
     $("#local-player-name").text(`localTrack(${options.uid})`);
@@ -179,6 +170,8 @@ async function leave() {
 
 // 원격 사용자 구독 함수
 async function subscribe(user, mediaType) {
+  selectLiveChattingRoom();
+  console.log("시청자 참여 성공");
   const uid = user.uid;
   await client.subscribe(user, mediaType);
   console.log("subscribe success");
@@ -219,208 +212,116 @@ function handleUserUnpublished(user, mediaType) {
   }
 }
 
+const createChattingRoom = () => {
+  fetch("/chatting/createChattingRoom",{
+    method : "POST",
+    headers : {"Content-Type" : "application/json"},
+    body : artistGroupTitle
+  })
+  .then( resp => resp.text())
+  .then(result =>{
+    liveChattingRoomNo = result;
+    console.log(result);
+    chattingJoin();
+  })
+  .catch(err => console.log(err));
+}
+
+const selectLiveChattingRoom = () => {
+
+  fetch("/chatting/selectLiveChattingRoom?artistGroupTitle=" + artistGroupTitle)
+  .then(resp => resp.text())
+  .then(result => {
+    liveChattingRoomNo = result;
+    console.log(result);
+    chattingJoin();
+  })
+  .catch(err => console.log(err));
+
+}
 
 
+const chattingJoin = () => {
 
+  console.log(chattingSock);
+  chattingSock = new SockJS("/liveSock");
+  
+  chattingSock.onmessage = function (e) {
+    const msg = JSON.parse(e.data);
+    console.log(msg);
 
+    const commentArea = document.createElement('div');
+    commentArea.className = 'comment-area';
 
+    const commentAreaIn = document.createElement('div');
+    commentAreaIn.className = 'comment-area-in';
 
+    const profileImg = document.createElement('img');
+    profileImg.className = 'profile-img';
+    profileImg.src = msg.memberProfile;
 
-// // Agora 클라이언트 생성
-// var client = AgoraRTC.createClient({
-//   mode: "live",
-//   codec: "vp8"
-// });
+    const commentWriterArea = document.createElement('div');
+    commentWriterArea.className = 'comment-writer-area';
 
-// // 로컬 트랙 및 원격 사용자, 옵션 초기화
-// var localTracks = {
-//   videoTrack: null,
-//   audioTrack: null
-// };
-// var remoteUsers = {};
+    const commentWriter = document.createElement('div');
+    commentWriter.className = 'comment-writer';
+    commentWriter.textContent = msg.memberNickname;
 
-// // Agora 클라이언트 옵션 설정
-// var options = {
-//   appid: "8db96ea10154462a8fcb52cee3d45ccb",
-//   channel: "kang",
-//   uid: null,
-//   token: "007eJxTYGipvMa+gdmjlPGF+u0XYm2mjpJvCpZ1npnC8j2lUPqp9hkFBouUJEuz1ERDA0NTExMzo0SLtOQkU6Pk1FTjFBPT5OQkiZlpqQ2BjAyc2t4MjFAI4rMwZCfmpTMwAAD7CB3N",
-//   role: "audience", // 기본 역할을 청취자로 설정
-//   audienceLatency: 1
-// };
+    const commentDate = document.createElement('div');
+    commentDate.className = 'comment-date';
+    commentDate.textContent = msg.messageSendTime;
+    
+    commentWriterArea.append(commentWriter, commentDate)
 
-// // 데모는 URL 매개변수로 채널에 자동으로 참여할 수 있음
-// window.addEventListener('DOMContentLoaded', function () {
-//   var urlParams = new URL(location.href).searchParams;
-//   options.appid = urlParams.get("appid");
-//   options.channel = urlParams.get("channel");
-//   options.token = urlParams.get("token");
-//   options.uid = urlParams.get("uid");
-//   if (options.appid && options.channel) {
-//     console.log(options.appid);
-//     document.getElementById("uid").value = options.uid;
-//     document.getElementById("appid").value = options.appid;
-//     document.getElementById("token").value = options.token;
-//     document.getElementById("channel").value = options.channel;
-//     document.getElementById("join-form").submit();
-//   }
-// });
+    commentAreaIn.append(profileImg, commentWriterArea);
 
-// // 호스트로 역할 변경 버튼 클릭 이벤트 처리
-// document.getElementById("host-join").addEventListener("click", function (e) {
-//   options.role = "host";
-// });
+    const commentContentArea = document.createElement('div');
+    commentContentArea.className = 'comment-content-area';
 
-// // 저지연 청취자로 역할 변경 버튼 클릭 이벤트 처리
-// document.getElementById("lowLatency").addEventListener("click", function (e) {
-//   options.role = "audience";
-//   options.audienceLatency = 1;
-//   document.getElementById("join-form").submit();
-// });
+    const commentContent = document.createElement('div');
+    commentContent.className = 'comment-content';
+    commentContent.textContent = msg.messageContent;
 
-// // 초저지연 청취자로 역할 변경 버튼 클릭 이벤트 처리
-// document.getElementById("ultraLowLatency").addEventListener("click", function (e) {
-//   options.role = "audience";
-//   options.audienceLatency = 2;
-//   document.getElementById("join-form").submit();
-// });
+    commentContentArea.append(commentContent);
 
-// // 폼 제출 시 이벤트 처리
-// async function joinSubmit(role) {
-//   options.role = role;
-//   document.getElementById("host-join").disabled = true;
-//   document.getElementById("audience-join").disabled = true;
-//   try {
-//     options.channel = "kang";
-//     options.uid = null;
-//     options.appid = "8db96ea10154462a8fcb52cee3d45ccb";
-//     options.token = "007eJxTYGipvMa+gdmjlPGF+u0XYm2mjpJvCpZ1npnC8j2lUPqp9hkFBouUJEuz1ERDA0NTExMzo0SLtOQkU6Pk1FTjFBPT5OQkiZlpqQ2BjAyc2t4MjFAI4rMwZCfmpTMwAAD7CB3N";
-//     console.log(options);
-//     await join();
-//     if (options.role === "host") {
-//       document.getElementById("success-alert a").href = `index.html?appid=${options.appid}&channel=${options.channel}&token=${options.token}`;
-//       if (options.token) {
-//         document.getElementById("success-alert-with-token").style.display = "block";
-//       } else {
-//         document.getElementById("success-alert a").href = `index.html?appid=${options.appid}&channel=${options.channel}&token=${options.token}`;
-//         document.getElementById("success-alert").style.display = "block";
-//       }
-//     }
-//   } catch (error) {
-//     console.error(error);
-//   } finally {
-//     document.getElementById("leave").disabled = false;
-//   }
-// }
+    commentArea.append(commentAreaIn, commentContentArea);
 
-// // 퇴장 버튼 클릭 이벤트 처리
-// document.getElementById("leave").addEventListener("click", function (e) {
-//   console.log("leave1");
-//   leave();
-//   console.log("leave2");
-// });
+    commentList = document.querySelector('.comment-list');
 
-// // 채널 참여 함수
-// async function join() {
-//   if (options.role === "audience") {
-//     client.setClientRole(options.role, {
-//       level: options.audienceLatency
-//     });
-//     client.on("user-published", handleUserPublished);
-//     client.on("user-unpublished", handleUserUnpublished);
-//     console.log("user-published");
-//   } else {
-//     client.setClientRole(options.role);
-//     console.log("setClientRole(options.role)");
-//   }
-//   console.log("client.join()");
-//   console.log(options);
-//   options.uid = await client.join(options.appid, options.channel, options.token || null, options.uid || null);
-//   console.log("client.join().next");
+    commentList.append(commentArea);
 
-//   if (options.role === "host") {
-//     if (!localTracks.audioTrack) {
-//       localTracks.audioTrack = await AgoraRTC.createMicrophoneAudioTrack({
-//         encoderConfig: "music_standard"
-//       });
-//     }
-//     if (!localTracks.videoTrack) {
-//       localTracks.videoTrack = await AgoraRTC.createCameraVideoTrack();
-//     }
+  }
+}
 
-//     localTracks.videoTrack.play("local-player");
-//     document.getElementById("local-player-name").textContent = `localTrack(${options.uid})`;
-//     document.getElementById("joined-setup").style.display = "flex";
+const inputChat = document.getElementById('chatting-input');
 
-//     await client.publish(Object.values(localTracks));
-//     console.log("publish success");
-//   }
-// }
+const sendMessage = () => {
+  if (!chattingSock){
+    alert("방송이 시작되지 않았습니다");
+    return;
+  }
 
-// // 퇴장 함수
-// async function leave() {
-//   console.log("leave3");
+  if (inputChat.value.trim().length == 0) {
+    alert("채팅을 입력해주세요");
+    inputChat.value = "";
+  } else {
+    var obj = {
+      memberNo: loginMemberNo,
+      memberNickname : loginMember.memberNickname,
+      memberProfile : loginMember.memberProfile,
+      sendAuthority: authority,
+      messageContent: inputChat.value,
+      liveChattingRoomNo : liveChattingRoomNo
+    };
+    console.log(obj);
+    chattingSock.send(JSON.stringify(obj));
 
-//   for (var trackName in localTracks) {
-//     var track = localTracks[trackName];
-//     if (track) {
-//       track.stop();
-//       track.close();
-//       localTracks[trackName] = undefined;
-//     }
-//   }
-//   console.log("leave4");
+    inputChat.value = "";
+  }
+};
 
-//   remoteUsers = {};
-//   document.getElementById("remote-playerlist").innerHTML = "";
-
-//   await client.leave();
-//   document.getElementById("local-player-name").textContent = "";
-//   document.getElementById("host-join").disabled = false;
-//   document.getElementById("audience-join").disabled = false;
-//   document.getElementById("leave").disabled = true;
-//   document.getElementById("joined-setup").style.display = "none";
-//   console.log("client leaves channel success");
-// }
-
-// // 원격 사용자 구독 함수
-// async function subscribe(user, mediaType) {
-//   const uid = user.uid;
-//   await client.subscribe(user, mediaType);
-//   console.log("subscribe success");
-
-//   if (mediaType === 'video') {
-//     const playerWrapper = document.createElement('div');
-//     playerWrapper.id = `player-wrapper-${uid}`;
-//     playerWrapper.innerHTML = `
-//       <p class="player-name">remoteUser(${uid})</p>
-//       <div id="player-${uid}" class="player"></div>
-//     `;
-//     document.getElementById("remote-playerlist").appendChild(playerWrapper);
-//     user.videoTrack.play(`player-${uid}`, {
-//       fit: "contain"
-//     });
-//   }
-
-//   if (mediaType === 'audio') {
-//     user.audioTrack.play();
-//   }
-// }
-
-// // 원격 사용자가 미디어를 게시할 때 호출되는 이벤트 처리 함수
-// function handleUserPublished(user, mediaType) {
-//   console.log('"user-published" event for remote users is triggered.');
-//   const id = user.uid;
-//   remoteUsers[id] = user;
-//   subscribe(user, mediaType);
-// }
-
-// // 원격 사용자가 미디어 게시를 중지할 때 호출되는 이벤트 처리 함수
-// function handleUserUnpublished(user, mediaType) {
-//   console.log('"user-unpublished" event for remote users is triggered.');
-//   if (mediaType === 'video') {
-//     const id = user.uid;
-//     delete remoteUsers[id];
-//     document.getElementById(`player-wrapper-${id}`).remove();
-//   }
-// }
+// 호스트로 역할 변경 버튼 클릭 이벤트 처리
+$("#host-join").click(function (e) {
+  console.log(e);
+  options.role = "host";
+});

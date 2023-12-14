@@ -37,41 +37,7 @@ public class BoardController {
 	
 	private final BoardService service;
 	
-//	@GetMapping("{artistGroupTitle}/feed")
-//	public String selectBoard(Model model, @RequestParam Map<String, Object> paramMap, 
-//			@PathVariable("artistGroupTitle" ) String artistGroupTitle) {
-//		
-//			
-//			Map<String,Object> map = new HashMap<>();
-//			int artistGroupNo = service.artistGroupNo(artistGroupTitle);
-//			map.put("artistGroupNo", artistGroupNo);
-//	
-//			Board board = service.selectBoard(map);
-//			
-//			model.addAttribute("artistGroupNo",artistGroupNo);
-//			model.addAttribute("map", map);
-//			model.addAttribute("artistGroupTitle", artistGroupTitle);
-//			
-//			if(board != null) {
-//				model.addAttribute("board", board);
-//				
-//				if (board.getImageList().size() > 0) {
-//					BoardImg thumbnail = null;
-//					
-//					if(board.getImageList().get(0).getImgOrder() ==0) {
-//						thumbnail = board.getImageList().get(0);
-//						
-//					}
-//					model.addAttribute("thumbnail", thumbnail);
-//					model.addAttribute("start", thumbnail != null ? 1: 0);
-//				}
-//			}
-//			
-//			
-//		
-//		
-//		return "artistHomepage/feed";
-//	}
+
 	
 	@GetMapping("{artistGroupTitle}/feed")
 	public String selectBoard(Model model, @RequestParam Map<String, Object> paramMap, 
@@ -85,46 +51,84 @@ public class BoardController {
 			model.addAttribute("artistGroupTitle", artistGroupTitle);
 			
 			
-			
-			
 		
 		
 		return "artistHomepage/feed";
 	}
-//	
-//	@GetMapping("{artistGroupTitle}/feed/{boardNo}")
-//	public String selectBoard(Model model, @RequestParam Map<String, Object> paramMap, 
-//			@PathVariable("artistGroupTitle" ) String artistGroupTitle, 
-//			@PathVariable("boardNo" ) int boardNo, Board boardDetail) {
-//		
-//			
-//			Map<String, Object> map = service.selectBoard(paramMap);
-//			map.put("boardNo", boardNo);
-//			int artistGroupNo = service.artistGroupNo(artistGroupTitle);
-//			model.addAttribute("artistGroupNo",artistGroupNo);
-//			model.addAttribute("boardDetail",boardDetail);
-//			
-//			model.addAttribute("map", map);
-//			model.addAttribute("artistGroupTitle", artistGroupTitle);
-//			
-//		
-//		
-//		return "artistHomepage/feed";
-//	}
-
+	
 	@GetMapping("{artistGroupTitle}/feed/{boardNo:[0-9]+}")
-	public String detail(@PathVariable("artistGroupTitle") String artistGrouptTitle,
+	public String boardDetail(Model model, 
+			@PathVariable("artistGroupTitle" ) String artistGroupTitle, 
 			@SessionAttribute(value = "loginMember", required = false) Member loginMember,
-			Model model,
-			@PathVariable("boardNo") int boardNo, RedirectAttributes ra, HttpServletRequest req, HttpServletResponse resp) throws ParseException {
+			@PathVariable("boardNo" ) int boardNo
+			) {
+//		Board boardDetail
+			int artistGroupNo = service.artistGroupNo(artistGroupTitle);
+			Map<String, Object> map = new HashMap<>();
+			map.put("boardNo", boardNo);
+			map.put("artistGroupTitle", artistGroupTitle);
+			
+			
+			Board board = service.boardDetail(map);
+			
+//			model.addAttribute("map", map);
+//			model.addAttribute("artistGroupNo", artistGroupNo);
+//			model.addAttribute("boardDetail",boardDetail);
+//			model.addAttribute("artistGroupTitle", artistGroupTitle);
+			
+			String path = null;
+			
+			if(board != null) {
+				model.addAttribute("board", board);
+				path = "artistHomepage/feedDetail";
+				
+			if(loginMember != null) {
+					map.put("memberNo", loginMember.getMemberNo());
+					int likeCheck = service.likeCheck(map);
+					
+					if(likeCheck ==1) model.addAttribute("likeCheck", "on");
+					
+				}
+				
+					
+			} else {
+				path = "redirect:/artistHomepage/feed";
+			}
+		
+		return path;
+	}
+	
+	@GetMapping("AJAXboardDetail")
+	@ResponseBody
+	public Board AJAXboardDetail(@RequestParam("boardNo") int boardNo,
+			@SessionAttribute(value = "loginMember", required = false) Member loginMember) {
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("boardNo", boardNo);
+		map.put("memberNo", loginMember.getMemberNo());
 		
-		Board board = service.detail(map);
+		Board board = service.boardDetail(map);
 		
-		String path = null;
-		
+		return board;
+	}
+
+//	@GetMapping("{artistGroupTitle}/feed/{boardNo:[0-9]+}")
+//	public String detail(@PathVariable("artistGroupTitle") String artistGrouptTitle,
+//			@SessionAttribute(value = "loginMember", required = false) Member loginMember,
+//			Model model,
+//			@PathVariable("boardNo") int boardNo, Board boardDetail,
+//			RedirectAttributes ra, HttpServletRequest req, HttpServletResponse resp) 
+//			throws ParseException {
+//		
+//		Map<String, Object> map = new HashMap<>();
+//		map.put("boardNo", boardNo);
+//		
+//		Board board = service.detail(map);
+//		
+//		model.addAttribute("boardDetail",boardDetail);
+//		
+//		String path = null;
+//		
 //		if(board != null) {
 //			model.addAttribute("board", board);
 //			path = "artistHomepage/feed";
@@ -137,89 +141,22 @@ public class BoardController {
 //				
 //			}
 //			
-//			if(loginMember == null || loginMember.getMemberNo() != board.getMemberNo()) {
-//				
-//				Cookie c = null;
-//				
-//				Cookie[] cookies = req.getCookies();
-//				
-//				if(cookies != null) {
-//					for (Cookie cookie : cookies) {
-//						if(cookie.getName().equals("readBoardNo")) {
-//							c= cookie;
-//							break;
-//					}
-//					
-//				}
-//			}
-//				
-//			int result= 0;
-//			
-//			if(c == null) {
-//				
-//				c= new Cookie("readBoardNo", "|" + boardNo + "|" );
-//				
-//				result = service.updateReadCount(boardNo);
-//				
-//					
-//			} else {
-//				
-//				  if (c.getValue().indexOf("|" + boardNo + "|") == -1) {
-//		                 // 쿠키에 현재 게시글 번호가 없다면
-//
-//		                 // 기존 값에 게시글 번호 추가해서 다시 세팅
-//		                 c.setValue(c.getValue() + "|" + boardNo + "|");
-//
-//		                 // 조회수 증가 서비스 호출
-//		                 result = service.updateReadCount(boardNo);
-//		              }
-//				
-//			}
-//			
-//			 if (result > 0) {
-//	              board.setReadCount(board.getReadCount() + 1);
-//
-//	              c.setPath("/");
-//
-//	              Calendar cal = Calendar.getInstance(); // 싱글톤 패턴
-//	              cal.add(cal.DATE, 1); // cal이라는 곳에 24시간 후의 시간을 추가
-//
-//	              SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//
-//	              Date a = new Date(); // 현재 시간
-//
-//	              Date temp = new Date(cal.getTimeInMillis()); // 다음날 (24시간 후)
-//
-//	              Date b = sdf.parse(sdf.format(temp));
-//
-//	              long diff = (b.getTime() - a.getTime()) / 1000;
-//
-//	              c.setMaxAge((int) diff); 
-//
-//	              resp.addCookie(c); 
-//	           }
 //				
 //		}
-//			
+//		return path;
 //			
 //	}
 		
-		
-		return path;
-		
-	}
 	
-	@PostMapping("like")
+	@PostMapping("AJAXboardDetail/like")
 	@ResponseBody
 	public int like(@RequestBody Map<String, Object> paramMap, @SessionAttribute("loginMember") Member loginMember) {
 		
 		paramMap.put("memberNo", loginMember.getMemberNo());
 		
 		
-		return service.likeCheck(paramMap);
+		return service.like(paramMap);
 	}
-	
-	
 	
 	
 	
@@ -229,8 +166,10 @@ public class BoardController {
 			@PathVariable("artistGroupTitle" ) String artistGroupTitle) {
 		{
 			
-			Map<String, Object> map = service.selectBoard(paramMap);
-			
+			int artistGroupNo = service.artistGroupNo(artistGroupTitle);
+			paramMap.put("artistGroupNo", artistGroupNo);
+			Map<String, Object> map = service.selectArtistBoard(paramMap);
+			model.addAttribute("artistGroupNo",artistGroupNo);
 			model.addAttribute("map", map);
 			model.addAttribute("artistGroupTitle", artistGroupTitle);
 			
@@ -238,4 +177,10 @@ public class BoardController {
 		
 		return "artistHomepage/artist";
 	}
+	
+	
+	
+	
+	
+	
 }
