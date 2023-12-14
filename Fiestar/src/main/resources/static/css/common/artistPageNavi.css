@@ -14,6 +14,7 @@ nav {
 }
 
 nav ul {
+  min-width: 1500px;
   list-style: none;
   display: flex;
   align-items: center;
@@ -22,13 +23,25 @@ nav ul {
 
 nav ul li {
   margin: 0;
-  padding: 15px 100px;
+  width: 260px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 nav ul li a {
   color: white;
   font-size: 20px;
+  font-weight: bold;
 }
+
+nav ul li a:hover {
+  color: rgb(202, 202, 202);
+}
+
+
 a {
   text-decoration: none;
 }
+

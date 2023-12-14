@@ -72,8 +72,7 @@
 
 
 .ModifyAll{
-  width: 650px;
-  height: 1000px;
+  width: 700px;
   margin: 0 auto;
 }
 
@@ -303,7 +302,6 @@
   margin: 0 auto;
   width: 200px;
   height: 40px;
-  
 }
 
 .WithdrawalBtn a{
@@ -317,6 +315,10 @@
 .center a {
   text-decoration: none;
   color: black;
+}
+
+.WithdrawalBtn p{
+  margin-bottom: 20px;
 }
 
 
