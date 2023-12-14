@@ -67,8 +67,14 @@ hr {
    margin: 20px 0; /* 위아래 여백 추가 */
 }
 
+.totalQuantityNprice{
+   margin: 10px;
+   display: flex;
+}
 
-
+.totalProduct-price{
+   margin-left: 900px;
+}
 
 .select-all{
    font-weight: bold;
