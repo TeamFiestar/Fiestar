@@ -66,31 +66,28 @@ public class AdminController {
 
 	
 	
-	@GetMapping("subscribeMember")
-	public String subscribe(Model model, Member member,
+	@GetMapping("subscribeMember/{artistGroupNo:[0-9]+}")
+	public String subscribe(Model model, Member member, @PathVariable("artistGroupNo") int artistGroupNo,
 				@RequestParam(value="cp", required = false, defaultValue = "1") int cp,
-				@RequestParam Map<String, Object> paramMap,
-				@SessionAttribute("loginMember") Member loginMember) {
-		int memberNo = loginMember.getMemberNo();
+				@RequestParam Map<String, Object> paramMap) {
+		
 		if(paramMap.get("key") == null && paramMap.get("query") == null) {
-			Map<String, Object> map = service.subscribeMember(member,cp, memberNo);
+			Map<String, Object> map = service.subscribeMember(member,cp, artistGroupNo);
 			model.addAttribute("map", map);
-//			model.addAttribute("artistGroupNo");
+			model.addAttribute("artistGroupNo", artistGroupNo);
 		}else {
-			Map<String, Object> map = service.searchSubscribe(paramMap,cp,memberNo);
+			Map<String, Object> map = service.searchSubscribe(paramMap,cp,artistGroupNo);
 			model.addAttribute("map", map);
-//			model.addAttribute("artistGroupNo", artistGroupNo);
+			model.addAttribute("artistGroupNo", artistGroupNo);
 		}
 		return "admin/subscribeMember";
 	}
 	
-	@GetMapping("selectSubscribeBoard")
+	@GetMapping("selectSubscribeBoard/{artistGroupNo:[0-9]+}")
 	@ResponseBody
 	public List<Board> selectSubscribeBoard(@RequestParam(value="memberNo", required = false) int memberNo,
-//										@PathVariable("artistGroupNo") int artistGroupNo,
-										@SessionAttribute("loginMember") Member loginMember) {
-		int loginMemberNo = loginMember.getMemberNo();
-		List<Board> boardList = service.selectSubscribeBoard(loginMemberNo); 
+										@PathVariable("artistGroupNo") int artistGroupNo) {
+		List<Board> boardList = service.selectSubscribeBoard(memberNo,artistGroupNo); 
 		return boardList;
 	}
 	

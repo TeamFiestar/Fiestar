@@ -54,22 +54,39 @@
               <th>강제 탈퇴</th>
             </tr>
           </thead>
-          <tr class="tr-body" th:each="member : ${subscribeList}" th:object="${member}">
+          <tr
+            class="tr-body"
+            th:each="member : ${subscribeList}"
+            th:object="${member}"
+          >
             <td th:text="*{memberNo}">회원번호</td>
             <td th:text="*{memberNickname}">회원 닉네임</td>
-            <td class="btn-open-popup" th:text="*{memberEmail}" th:onclick="|openModal(*{memberNo})|">회원 이메일</td>
+            <td
+              class="btn-open-popup"
+              th:text="*{memberEmail}"
+              th:onclick="|openModal(*{memberNo})|"
+            >
+              회원 이메일
+            </td>
             <td th:text="*{memberAddress}">회원 주소</td>
-            <th:block th:if="*{memberAuthority == 1}"><td th:text="일반">권한</td> </th:block>
-            <th:block th:if="*{memberAuthority == 2}"><td th:text="아티스트">권한</td> </th:block>
+            <th:block th:if="*{memberAuthority == 1}"
+              ><td th:text="일반">권한</td>
+            </th:block>
+            <th:block th:if="*{memberAuthority == 2}"
+              ><td th:text="아티스트">권한</td>
+            </th:block>
 
-            <td th:text="*{countReport}">신고 누적 횟수</td>
+            <td>3</td>
             <td><button onclick="withDraw(this)">탈퇴</button></td>
           </tr>
         </table>
         <div class="pagination-area" th:if="${#lists.size(subscribeList) > 0}">
           <ul class="pagination" th:if="${param.key == null}">
             <li>
-              <a th:href="@{/admin/subscribeMember/{artistGroupNo}(artistGroupNo=${artistGroupNo})(cp=1)}">&lt;&lt;</a>
+              <a
+                th:href="@{/admin/subscribeMember/{artistGroupNo}(artistGroupNo=${artistGroupNo})(cp=1)}"
+                >&lt;&lt;</a
+              >
             </li>
             <li>
               <a
@@ -77,7 +94,9 @@
                 >&lt;</a
               >
             </li>
-            <th:block th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}">
+            <th:block
+              th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}"
+            >
               <li th:if="${i == pagination.currentPage}">
                 <a th:text="${i}">currentPage</a>
               </li>
@@ -116,7 +135,9 @@
                 >&lt;</a
               >
             </li>
-            <th:block th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}">
+            <th:block
+              th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}"
+            >
               <li th:if="${i == pagination.currentPage}">
                 <a th:text="${i}">currentPage</a>
               </li>
@@ -141,7 +162,10 @@
               >
             </li>
           </ul>
-          <form th:action="@{{artistGroupNo}(artistGroupNo=${artistGroupNo})}" method="get">
+          <form
+            th:action="@{{artistGroupNo}(artistGroupNo=${artistGroupNo})}"
+            method="get"
+          >
             <select id="select" name="key">
               <option value="memberNo">회원번호</option>
               <option value="memberNickname">회원 닉네임</option>

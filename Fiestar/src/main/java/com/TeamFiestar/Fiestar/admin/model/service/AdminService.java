@@ -27,11 +27,11 @@ public interface AdminService {
 
 //	int restoration(int memberNo);
 
-	Map<String, Object> subscribeMember(Member member, int cp, int artistGroupNo );
+	Map<String, Object> subscribeMember(Member member, int cp, int artistGroupNo);
 
-	Map<String, Object> searchSubscribe(Map<String, Object> paramMap, int cp, int memberNo);
+	Map<String, Object> searchSubscribe(Map<String, Object> paramMap, int cp, int artistGroupNo);
 
-	List<Board> selectSubscribeBoard(int loginMemberNo);
+	List<Board> selectSubscribeBoard(int memberNo, int artistGroupNo);
 
 
 

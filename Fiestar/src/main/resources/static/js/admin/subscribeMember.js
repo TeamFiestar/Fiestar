@@ -8,7 +8,9 @@ const h1 = document.querySelector(".h1");
 const tr = document.querySelector("tr");
 
 function selectBoard(memberNo) {
-  fetch("/admin/selectSubscribeBoard?memberNo=" + memberNo)
+  fetch(
+    "/admin/selectSubscribeBoard/" + artistGroupNo + "?memberNo=" + memberNo
+  )
     .then((resp) => resp.json())
     .then((boardList) => {
       console.log(boardList);

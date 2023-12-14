@@ -127,9 +127,9 @@ public class AdminServiceImpl implements AdminService{
 	
 	
 	@Override
-	public Map<String, Object> subscribeMember(Member member, int cp, int memberNo) {
+	public Map<String, Object> subscribeMember(Member member, int cp, int artistGroupNo) {
 		
-		int countList = mapper.countSubscribe(memberNo);
+		int countList = mapper.countSubscribe(artistGroupNo);
 		AdminPagination pagination = new AdminPagination(countList, cp);
 		
 		int offset = (pagination.getCurrentPage()-1) * pagination.getLimit();
@@ -137,8 +137,8 @@ public class AdminServiceImpl implements AdminService{
 		
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		List<Member> subscribeList = mapper.subscribeMember(rowBounds, memberNo);
-		String artistGroupTitle = mapper.subArtistTitle(memberNo);
+		List<Member> subscribeList = mapper.subscribeMember(rowBounds, artistGroupNo);
+		String artistGroupTitle = mapper.subArtistTitle(artistGroupNo);
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("subscribeList", subscribeList);
@@ -150,8 +150,8 @@ public class AdminServiceImpl implements AdminService{
 	
 	
 	@Override
-	public Map<String, Object> searchSubscribe(Map<String, Object> paramMap, int cp, int memberNo) {
-		paramMap.put("memberNo", memberNo);
+	public Map<String, Object> searchSubscribe(Map<String, Object> paramMap, int cp, int artistGroupNo) {
+		paramMap.put("artistGroupNo", artistGroupNo);
 		
 		int countList = mapper.countSearchSubscribe(paramMap);
 		AdminPagination pagination = new AdminPagination(countList, cp);
@@ -170,11 +170,11 @@ public class AdminServiceImpl implements AdminService{
 	}
 	
 	@Override
-	public List<Board> selectSubscribeBoard(int loginMemberNo) {
+	public List<Board> selectSubscribeBoard(int memberNo, int artistGroupNo) {
 		
 		Map<String, Object> map = new HashMap<>();
-		map.put("memberNo", loginMemberNo);
-//		map.put("artistGroupNo", artistGroupNo);
+		map.put("memberNo", memberNo);
+		map.put("artistGroupNo", artistGroupNo);
 		return mapper.selectSubscribeBoard(map);
 	}
 	
