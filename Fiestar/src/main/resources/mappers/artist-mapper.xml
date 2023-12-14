@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.TeamFiestar.Fiestar.artist.model.mapper.ArtistMapper">
+	
+	<select id="artistGroupBackimg" resultType="string">
+		SELECT ARTIST_GROUP_BACKIMG FROM ARTIST_GROUP
+		WHERE ARTIST_GROUP_TITLE = #{artistGroupTitle}
+	</select>
+	
+	<select id="artist" resultType="Artist">
+		SELECT ARTIST_PRODUCTION_PROFILE FROM ARTIST
+		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
+	</select>
+</mapper>
+

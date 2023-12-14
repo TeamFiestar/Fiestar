@@ -1,308 +1,263 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-
-  <link rel="stylesheet" href="/css/artistprofile/profile.css">
-</head>
- <body>
-
-
-  <header>
-    <div class="header">
-      
-      <div class="header-left-side">
-        <a href="/" id="header-logo">
-          <img src="../../static/images/logo.png" style="width:165px;"  />
-        </a>
-      </div>
-      
-      <div class="header-right-side">
-        
-        <form action="#" method="GET" style="display: inline-flex; border:none; ">
-          <span class="search-area">
-            <button id="searchBtn" class="fa-solid fa-magnifying-glass"> 
-              <input type="search" name="query" id="search-input" placeholder="상품명 혹은 아티스트 검색" 
-              autocomplete="off" > 
-            </button>
-          </span>
-        </form>
-      
-        <a href="#"> 공지사항 </a>
-        <span>|</span>
-        <a href="/shop/home">샵 고객센터</a>
-        <a href="#"><button id="loginPage"> 로그인</button></a>
-        <a href="#"><button  id="signUp">회원가입</button></a>
-      </div>    
-          
-    </div>
-
-  </header>
-
-
-
-  <div class="all">
-    
-    <div class="artistprofileMain">
-
-      <div class="artistprofileImg">
-        <img src="../../static/image/아티스트 메인배경.jpg" width="100%" height="100%">
-      </div>
-
-      <div class="artistprofileMainIntro">
-        <div class="artistprofileMainIntroAll">
-          <div class="artistprofileMainIntroImg">
-            <!-- 이름 로고 -->
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/common/artistPageHeader.css" />
+    <link rel="stylesheet" href="/css/artistprofile/profile.css" />
+  </head>
+  <body>
+    <th:block th:replace="~{common/artistPageHeader}">헤더</th:block>
+    <main>
+      <div class="all">
+        <div class="artistprofileMain">
+          <div class="artistprofileImg">
+            <img
+              src="/static/image/아티스트 메인배경.jpg"
+              width="100%"
+              height="100%"
+            />
           </div>
 
-          <div class="artistprofileMainIntroText">
-            <p>THE PLAY CLASS:y <br>
-              항상 새롭고 즐거운 클라씨만의 놀이공간으로 초대할께</p>
+          <div class="artistprofileMainIntro">
+            <div class="artistprofileMainIntroAll">
+              <div class="artistprofileMainIntroImg">
+                <!-- 이름 로고 -->
+              </div>
+
+              <div class="artistprofileMainIntroText">
+                <p>
+                  THE PLAY CLASS:y <br />
+                  항상 새롭고 즐거운 클라씨만의 놀이공간으로 초대할께
+                </p>
+              </div>
+            </div>
           </div>
-       
+        </div>
+
+        <div class="profiletxt"><h3>프로필</h3></div>
+
+        <div class="artistImage">
+          <ul>
+            <li>
+              <a href="#">
+                <div class="soloImg">
+                  <img
+                    src="../../static/image/보은.jpeg"
+                    width="100%"
+                    height="100%"
+                  />
+                </div>
+                <strong class="profileName">보은</strong>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="textVideo">
+          <div class="profiletxt"><h3>Media</h3></div>
+          <div class="artistvideo">
+            <ul>
+              <li>
+                <a href="#">
+                  <div class="videoImg">
+                    <img
+                      src="../../static/image/비디오이미지.jpeg"
+                      width="100%"
+                      height="100%"
+                    />
+                  </div>
+                  <div class="videoDate">11.29.16:10</div>
+                  <strong class="videoComment">안녀엉</strong>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <div class="videoImg">
+                    <img
+                      src="../../static/image/비디오이미지.jpeg"
+                      width="100%"
+                      height="100%"
+                    />
+                  </div>
+                  <div class="videoDate">11.29.16:10</div>
+                  <strong class="videoComment">안녀엉</strong>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <div class="videoImg">
+                    <img
+                      src="../../static/image/비디오이미지.jpeg"
+                      width="100%"
+                      height="100%"
+                    />
+                  </div>
+                  <div class="videoDate">11.29.16:10</div>
+                  <strong class="videoComment">안녀엉</strong>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <div class="videoImg">
+                    <img
+                      src="../../static/image/비디오이미지.jpeg"
+                      width="100%"
+                      height="100%"
+                    />
+                  </div>
+                  <div class="videoDate">11.29.16:10</div>
+                  <strong class="videoComment">안녀엉</strong>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <div class="videoImg">
+                    <img
+                      src="../../static/image/비디오이미지.jpeg"
+                      width="100%"
+                      height="100%"
+                    />
+                  </div>
+                  <div class="videoDate">11.29.16:10</div>
+                  <strong class="videoComment">안녀엉</strong>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <div class="videoImg">
+                    <img
+                      src="../../static/image/비디오이미지.jpeg"
+                      width="100%"
+                      height="100%"
+                    />
+                  </div>
+                  <div class="videoDate">11.29.16:10</div>
+                  <strong class="videoComment">안녀엉</strong>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <div class="videoImg">
+                    <img
+                      src="../../static/image/비디오이미지.jpeg"
+                      width="100%"
+                      height="100%"
+                    />
+                  </div>
+                  <div class="videoDate">11.29.16:10</div>
+                  <strong class="videoComment">안녀엉</strong>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="ArtistShop">
+          <div class="profiletxt"><h3>Artist Shop</h3></div>
+          <div class="artistShop">
+            <ul>
+              <li>
+                <a href="#">
+                  <div class="shopImg">
+                    <img
+                      src="../../static/image/상품.png"
+                      width="100%"
+                      height="100%"
+                    />
+                  </div>
+                  <strong class="shopComment">방탄소년단 앨범</strong>
+                  <div class="shopPrice">가격 :45,000원</div>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <div class="shopImg">
+                    <img
+                      src="../../static/image/상품.png"
+                      width="100%"
+                      height="100%"
+                    />
+                  </div>
+                  <strong class="shopComment">방탄소년단 앨범</strong>
+                  <div class="shopPrice">가격 :45,000원</div>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <div class="shopImg">
+                    <img
+                      src="../../static/image/상품.png"
+                      width="100%"
+                      height="100%"
+                    />
+                  </div>
+                  <strong class="shopComment">방탄소년단 앨범</strong>
+                  <div class="shopPrice">가격 :45,000원</div>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <div class="shopImg">
+                    <img
+                      src="../../static/image/상품.png"
+                      width="100%"
+                      height="100%"
+                    />
+                  </div>
+                  <strong class="shopComment">방탄소년단 앨범</strong>
+                  <div class="shopPrice">가격 :45,000원</div>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <div class="shopImg">
+                    <img
+                      src="../../static/image/상품.png"
+                      width="100%"
+                      height="100%"
+                    />
+                  </div>
+                  <strong class="shopComment">방탄소년단 앨범</strong>
+                  <div class="shopPrice">가격 :45,000원</div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="Notice">
+          <ul>
+            <li>
+              <a href="#">
+                <span class="NoticeTitle">공지</span>
+                <span class="NoticeContent"
+                  >[이벤트]위버스 커뮤니티 오픈 기념 이벤트!</span
+                >
+                <span>></span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="NoticeTitle">공지</span>
+                <span class="NoticeContent"
+                  >[이벤트]위버스 커뮤니티 오픈 기념 이벤트!</span
+                >
+                <span>></span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="NoticeTitle">공지</span>
+                <span class="NoticeContent"
+                  >[이벤트]위버스 커뮤니티 오픈 기념 이벤트!</span
+                >
+                <span>></span>
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
-    </div>
-
-
-
-
-
-    <div class="profiletxt"><h3>프로필</h3></div>
-
-    <div class="artistImage">
-      <ul> 
-        <li>
-          <a href="#">
-            <div class="soloImg">
-              <img src="../../static/image/보은.jpeg" width="100%" height="100%">
-            </div>
-            <strong class="profileName">보은</strong>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <div class="soloImg">
-              <img src="../../static/image/윤경.jpeg" width="100%" height="100%">
-            </div>
-            <strong class="profileName">윤경</strong>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <div class="soloImg">
-              <img src="../../static/image/지민.jpeg" width="100%" height="100%">
-            </div>
-            <strong class="profileName">지민</strong>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <div class="soloImg">
-              <img src="../../static/image/채원.jpeg" width="100%" height="100%">
-            </div>
-            <strong class="profileName">채원</strong>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <div class="soloImg">
-              <img src="../../static/image/형서.jpeg" width="100%" height="100%">
-            </div>
-            <strong class="profileName">형서</strong>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <div class="soloImg">
-              <img src="../../static/image/혜주.jpeg" width="100%" height="100%">
-            </div>
-            <strong class="profileName">혜주</strong>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <div class="soloImg">
-              <img src="../../static/image/선유.jpeg" width="100%" height="100%">
-            </div>
-            <strong class="profileName">선유</strong>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <div class="soloImg">
-              <img src="../../static/image/선유.jpeg" width="100%" height="100%">
-            </div>
-            <strong class="profileName">선유</strong>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <div class="soloImg">
-              <img src="../../static/image/선유.jpeg" width="100%" height="100%">
-            </div>
-            <strong class="profileName">선유</strong>
-          </a>
-        </li>
-
-      </ul>
-    </div>
-
-
-    <div class="textVideo">
-      <div class="profiletxt"><h3>Media</h3></div>
-      <div class="artistvideo">
-        <ul> 
-          <li>
-            <a href="#">
-              <div class="videoImg">
-                <img src="../../static/image/비디오이미지.jpeg" width="100%" height="100%">
-              </div>
-              <div class="videoDate">11.29.16:10</div>
-              <strong class="videoComment">안녀엉</strong>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div class="videoImg">
-                <img src="../../static/image/비디오이미지.jpeg" width="100%" height="100%">
-              </div>
-              <div class="videoDate">11.29.16:10</div>
-              <strong class="videoComment">안녀엉</strong>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div class="videoImg">
-                <img src="../../static/image/비디오이미지.jpeg" width="100%" height="100%">
-              </div>
-              <div class="videoDate">11.29.16:10</div>
-              <strong class="videoComment">안녀엉</strong>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div class="videoImg">
-                <img src="../../static/image/비디오이미지.jpeg" width="100%" height="100%">
-              </div>
-              <div class="videoDate">11.29.16:10</div>
-              <strong class="videoComment">안녀엉</strong>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div class="videoImg">
-                <img src="../../static/image/비디오이미지.jpeg" width="100%" height="100%">
-              </div>
-              <div class="videoDate">11.29.16:10</div>
-              <strong class="videoComment">안녀엉</strong>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div class="videoImg">
-                <img src="../../static/image/비디오이미지.jpeg" width="100%" height="100%">
-              </div>
-              <div class="videoDate">11.29.16:10</div>
-              <strong class="videoComment">안녀엉</strong>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div class="videoImg">
-                <img src="../../static/image/비디오이미지.jpeg" width="100%" height="100%">
-              </div>
-              <div class="videoDate">11.29.16:10</div>
-              <strong class="videoComment">안녀엉</strong>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="ArtistShop">
-      <div class="profiletxt"><h3>Artist Shop</h3></div>
-      <div class="artistShop">
-        <ul>
-          <li>
-            <a href="#">
-              <div class="shopImg">
-                <img src="../../static/image/상품.png" width="100%" height="100%">
-              </div>
-              <strong class="shopComment">방탄소년단 앨범</strong>
-              <div class="shopPrice">가격 :45,000원</div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div class="shopImg">
-                <img src="../../static/image/상품.png" width="100%" height="100%">
-              </div>
-              <strong class="shopComment">방탄소년단 앨범</strong>
-              <div class="shopPrice">가격 :45,000원</div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div class="shopImg">
-                <img src="../../static/image/상품.png" width="100%" height="100%">
-              </div>
-              <strong class="shopComment">방탄소년단 앨범</strong>
-              <div class="shopPrice">가격 :45,000원</div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div class="shopImg">
-                <img src="../../static/image/상품.png" width="100%" height="100%">
-              </div>
-              <strong class="shopComment">방탄소년단 앨범</strong>
-              <div class="shopPrice">가격 :45,000원</div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div class="shopImg">
-                <img src="../../static/image/상품.png" width="100%" height="100%">
-              </div>
-              <strong class="shopComment">방탄소년단 앨범</strong>
-              <div class="shopPrice">가격 :45,000원</div>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="Notice">
-      <ul>
-        <li>
-          <a href="#">
-            <span class="NoticeTitle">공지</span>
-            <span class="NoticeContent">[이벤트]위버스 커뮤니티 오픈 기념 이벤트!</span>
-            <span>></span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="NoticeTitle">공지</span>
-            <span class="NoticeContent">[이벤트]위버스 커뮤니티 오픈 기념 이벤트!</span>
-            <span>></span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="NoticeTitle">공지</span>
-            <span class="NoticeContent">[이벤트]위버스 커뮤니티 오픈 기념 이벤트!</span>
-            <span>></span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-
- </body>
-  
-
+    </main>
+  </body>
 </html>
