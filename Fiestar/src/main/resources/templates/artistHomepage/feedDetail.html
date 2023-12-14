@@ -5,7 +5,7 @@
             <button class="closeModal" data-target="feedDetail" onclick="closeModal()">X</button>
         </div>
         <div class="feedContent">
-            <div class="profile" style="display:flex;">
+            <div class="profileDetail" style="display:flex;">
                 <span>
                     <img id="profileImage" style="width:40px; height:40px; border-radius:50%;">
                 </span>        
@@ -24,12 +24,14 @@
                                 <a href="#">
                                     <li>신고하기</li>
                                 </a>
-                                <a href="#">
-                                    <li>수정하기</li>
-                                </a>
-                                <a href="#">
-                                    <li>삭제하기</li>
-                                </a>
+                                <!-- <th:block th:if="${session.loginMember != null and session.loginMember.memberNo == Board.memberNo}"> -->
+                                  <a href="#">
+                                      <li>수정하기</li>
+                                  </a>
+                                  <a href="#">
+                                      <li>삭제하기</li>
+                                  </a>
+                                <!-- </th:block> -->
                             </div>
                         
                     </span>
@@ -64,11 +66,11 @@
                 <div class="comment-list">
   
                    <!-- 댓글 -->
-                  <div class="comment-area" >
-                    <!-- th:each="comment : ${mediaDetail.mediaCommentList}" th:object="${comment}" -->
-                    <div class="comment-area-in" style="display: flex;">
+                  <div class="comment-area"  >
+                    <!-- th:classappend="${comment.boardParentCommentNo} != 0 ? child-comment" -->
+                    <div class="comment-area-in">
   
-                      <img class="profile-img" src="/img/male-user.png" width="40px"/>
+                      <img class="profile-img" src="/img/male-user.png" />
   
                       <div class="comment-writer-area">
                         <div class="comment-writer" >댓글 작성자</div>
@@ -76,8 +78,8 @@
                       </div>
   
                       <div class="comment-profile">
-                        <img class="delete-cross" src="/img/close_ring.png" />
-                        <img class="report-img" src="/img/report-img.svg" onclick="modalOpen()"/>
+                        <button class="delete-cross">X</button>
+                        <img class="report-img" src="/img/report-img.svg" onclick="reportOpen()"/>
                       </div>
   
                     </div>
@@ -88,83 +90,18 @@
                       </div>
                     </div>
   
-                    <div class="speech-bubble-wrapper">
-                      <img class="speech-bubble" src="/img/speech-bubble.png" />
-                      <img  class="like-heart red" src="/img/like_heart_r.svg" >
-                      <img   class="like-heart gray" src="/img/like_heart_w.svg" >
-                      <span  ></span>
-                    </div>
-  
-                  </div>
-                  <div class="comment-area" >
-                    <!-- th:each="comment : ${mediaDetail.mediaCommentList}" th:object="${comment}" -->
-                    <div class="comment-area-in" style="display: flex;">
-  
-                      <img class="profile-img" src="/img/male-user.png" width="40px"/>
-  
-                      <div class="comment-writer-area">
-                        <div class="comment-writer" >댓글 작성자</div>
-                        <div class="comment-date" >11.21. 02:43</div>
-                      </div>
-  
-                      <div class="comment-profile">
-                        <img class="delete-cross" src="/img/close_ring.png" />
-                        <img class="report-img" src="/img/report-img.svg" onclick="modalOpen()"/>
-                      </div>
-  
-                    </div>
-  
-                    <div class="comment-content-area">
-                      <div class="comment-content" >
-                        와 재밌다!sdjksljlkdfdfdfadfanjf l;kdaj fldksjfasdjflkd ajsjlfkaaaaaa aaaaaaaaaaaaaaaaaa aajkj
-                      </div>
-                    </div>
-  
-                    <div class="speech-bubble-wrapper">
-                      <img class="speech-bubble" src="/img/speech-bubble.png" />
-                      <img  class="like-heart red" src="/img/like_heart_r.svg" >
-                      <img   class="like-heart gray" src="/img/like_heart_w.svg" >
-                      <span  ></span>
-                    </div>
-  
-                  </div>
-                  <div class="comment-area" >
-                    <!-- th:each="comment : ${mediaDetail.mediaCommentList}" th:object="${comment}" -->
-                    <div class="comment-area-in" style="display: flex;">
-  
-                      <img class="profile-img" src="/img/male-user.png" width="40px"/>
-  
-                      <div class="comment-writer-area">
-                        <div class="comment-writer" >댓글 작성자</div>
-                        <div class="comment-date" >11.21. 02:43</div>
-                      </div>
-  
-                      <div class="comment-profile">
-                        <img class="delete-cross" src="/img/close_ring.png" />
-                        <img class="report-img" src="/img/report-img.svg" onclick="modalOpen()"/>
-                      </div>
-  
-                    </div>
-  
-                    <div class="comment-content-area">
-                      <div class="comment-content" >
-                        와 재밌다!sdjksljlkdfdfdfadfanjf l;kdaj fldksjfasdjflkd ajsjlfkaaaaaa aaaaaaaaaaaaaaaaaa aajkj
-                      </div>
-                    </div>
-  
-                    <div class="speech-bubble-wrapper">
-                      <img class="speech-bubble" src="/img/speech-bubble.png" />
-                      <img  class="like-heart red" src="/img/like_heart_r.svg" >
-                      <img   class="like-heart gray" src="/img/like_heart_w.svg" >
-                      <span  ></span>
+                    <div class="comment-like-area">
+
+                      <i class="fa-heart" th:classappend="${likeComment} ? fa-solid : fa-regular" id="likeImg" style="color: #7743DB; margin-top: 10px; font-size: 20px;" ></i> <span id="commentLikeCount" style="margin-left:3px; font-size: 17px;" >234</span>
+                      <i class="fa-regular fa-comment fa-xl" style="color: #7743DB; margin-left: 20px; font-size: 20px;"></i>
                     </div>
   
                   </div>
   
-                  <div class="new-comment-list">
+                  <!-- <div class="new-comment-list">
   
                     <div class="new-comment-area hide">
-                      <!-- 여기에 나타날 새로운 댓글 창 -->
+                      여기에 나타날 새로운 댓글 창 
                       <div class="comment-area-in">
                         <img class="img" src="/img/male-user.png" />
     
@@ -185,7 +122,7 @@
                       </div>
                     </div>
                     
-                  </div>
+                  </div> -->
   
                 </div>
                 <div class="comment-input-area">

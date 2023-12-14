@@ -62,7 +62,6 @@ public class BoardController {
 			@SessionAttribute(value = "loginMember", required = false) Member loginMember,
 			@PathVariable("boardNo" ) int boardNo
 			) {
-//		Board boardDetail
 			int artistGroupNo = service.artistGroupNo(artistGroupTitle);
 			Map<String, Object> map = new HashMap<>();
 			map.put("boardNo", boardNo);
@@ -71,10 +70,6 @@ public class BoardController {
 			
 			Board board = service.boardDetail(map);
 			
-//			model.addAttribute("map", map);
-//			model.addAttribute("artistGroupNo", artistGroupNo);
-//			model.addAttribute("boardDetail",boardDetail);
-//			model.addAttribute("artistGroupTitle", artistGroupTitle);
 			
 			String path = null;
 			
@@ -111,41 +106,6 @@ public class BoardController {
 		
 		return board;
 	}
-
-//	@GetMapping("{artistGroupTitle}/feed/{boardNo:[0-9]+}")
-//	public String detail(@PathVariable("artistGroupTitle") String artistGrouptTitle,
-//			@SessionAttribute(value = "loginMember", required = false) Member loginMember,
-//			Model model,
-//			@PathVariable("boardNo") int boardNo, Board boardDetail,
-//			RedirectAttributes ra, HttpServletRequest req, HttpServletResponse resp) 
-//			throws ParseException {
-//		
-//		Map<String, Object> map = new HashMap<>();
-//		map.put("boardNo", boardNo);
-//		
-//		Board board = service.detail(map);
-//		
-//		model.addAttribute("boardDetail",boardDetail);
-//		
-//		String path = null;
-//		
-//		if(board != null) {
-//			model.addAttribute("board", board);
-//			path = "artistHomepage/feed";
-//			
-//			if(loginMember != null) {
-//				map.put("memberNo", loginMember.getMemberNo());
-//				int likeCheck = service.likeCheck(map);
-//				
-//				if(likeCheck ==1) model.addAttribute("likeCheck", "on");
-//				
-//			}
-//			
-//				
-//		}
-//		return path;
-//			
-//	}
 		
 	
 	@PostMapping("AJAXboardDetail/like")
@@ -172,6 +132,8 @@ public class BoardController {
 			model.addAttribute("artistGroupNo",artistGroupNo);
 			model.addAttribute("map", map);
 			model.addAttribute("artistGroupTitle", artistGroupTitle);
+			
+			
 			
 		}
 		

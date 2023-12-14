@@ -1,6 +1,7 @@
 package com.TeamFiestar.Fiestar.board.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,23 +18,35 @@ public class CommentServiceImpl implements CommentService {
 
 	private final CommentMapper mapper;
 	
-	@Override
-	public List<Comment> select(int boardNo) {
-		return mapper.select(boardNo);
-	}
 	
 	@Override
 	public int insert(Comment comment) {
 		return mapper.insert(comment);
 	}
 	
+	
 	@Override
-	public int update(Comment comment) {
-		return mapper.update(comment);
+	public int delete(int boardCommentNo) {
+		return mapper.delete(boardCommentNo);
 	}
 	
 	@Override
-	public int delete(int commentNo) {
-		return mapper.delete(commentNo);
+	public List<Comment> select(Map<String, Integer> map) {
+		return mapper.select(map);
+	}
+	
+	@Override
+	public int likeComment(Comment comment) {
+		return mapper.likeComment(comment);
+	}
+	
+	@Override
+	public int deleteLike(Comment comment) {
+		return mapper.deleteLike(comment);
+	}
+	
+	@Override
+	public int likeClick(Map<String, Integer> map) {
+		return mapper.likeClick(map);
 	}
 }

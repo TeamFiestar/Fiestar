@@ -3,6 +3,7 @@ let likeCheck;
 let likeCount2;
 const dataObj = {};
 const likeImg = document.querySelector('#likeImg');
+let boardNo2;
 
 function openModal(boardNo) {
   // 새로운 URL 생성
@@ -19,6 +20,7 @@ function openModal(boardNo) {
 
   // 페이지의 내용을 동적으로 업데이트하는 함수 호출 (예시로 updatePageContent 함수 사용)
   updatePageContent(boardNo);
+  generateComment(boardNo);
 
   const modal = document.getElementById('feedDetail');
   modal.classList.add("show");
@@ -48,6 +50,8 @@ function updatePageContent(boardNo) {
   .then(resp => resp.json())
   .then(board => {
     console.log(board);
+
+    /* ----------------- 아이디 등 인적사항 및 피드 내용 -------------------------- */
     const boardNickname = document.getElementById('boardNickname');
     boardNickname.innerText = board.memberNickname;
     const boardDate = document.getElementById('boardDate');
@@ -73,7 +77,9 @@ function updatePageContent(boardNo) {
       indicator.classList.remove("fa-solid", "fa-circle-check");
       indicator.style.color = ""; 
     }
+     /* ------------------------------------------------------------ */
 
+    /* ----------------- 업로드된 이미지 표시 -------------------------- */
     if(board.imageList && board.imageList.length > 0) {
       const feedImg = document.querySelector('.feedImg');
       feedImg.innerHTML = '';
@@ -94,6 +100,9 @@ function updatePageContent(boardNo) {
 
     }
 
+     /* ------------------------------------------------------------ */
+
+    /* ----------------- 피드 좋아요 표시 -------------------------- */
     const feedLikeCount = document.querySelector('#feedLikeCount');
     feedLikeCount.innerText = board.likeCount;
 
@@ -111,17 +120,180 @@ function updatePageContent(boardNo) {
 
     likeCount2 = board.likeCount;
 
+    
+    
+    const commentList = board.commentList;
+
+    // 'boardCommentDelFl'이 'N'인 댓글만 필터링
+    const validComments = commentList.filter(comment => comment.boardCommentDelFl === 'N');
+
+    const commentCount = validComments.length;
+
     const textWrapper = document.querySelector('.text-wrapper');
-    textWrapper.innerText = board.commentCount + "개의 댓글";
+
+    textWrapper.innerText = commentCount + "개의 댓글";
+
 
     dataObj.boardNo = boardNo;
     dataObj.likeCheck = board.likeCheck;
+
+    boardNo2 = board.boardNo;
+    /* ------------------------------------------------------------ */
+
+    /* ----------------- 댓글 표시 -------------------------- */
+    
+
+
+    
+
+    /* ------------------------------------------------------------ */
 
 
     
     
   });
 }
+
+function generateComment(boardNo3) {
+
+  if(!boardNo3) {
+    console.log("Invalid boardNo3:", boardNo3);
+    return;
+  }
+
+  const commentLists = document.querySelector(".comment-list");
+  commentLists.innerHTML = "";
+
+  fetch("/AJAXboardDetail?boardNo="+ boardNo3)
+  .then(resp => resp.json())
+  .then(response => {
+    console.log("response", response);
+    
+
+    // console.log("commentList" + commentList.board.boardCommentList);
+
+    if (response.commentList && response.commentList.length > 0) {
+      const commentList = response.commentList;
+
+
+    for (let comment of commentList) {
+
+      console.log("Comment content:", comment.boardCommentContent);
+
+      if (comment.boardCommentDelFl === "Y") {
+        // 삭제된 댓글인 경우 목록에 추가하지 않음
+        continue;
+      }
+    
+      const  commentArea = document.createElement("div");
+      commentArea.className = "comment-area";
+
+      const  commentAreaIn = document.createElement("div");
+      commentAreaIn.className = "comment-area-in";
+
+      if(comment.boardParentCommentNo !=0) commentArea.classList.add("child-comment");
+      if(comment.boardCommentDelFl == "Y") commentArea.innerText = "삭제된 댓글 입니다.";
+      else {
+    
+
+      // "img" 클래스를 가진 이미지 엘리먼트 생성하고 src 속성 설정
+      const img = document.createElement("img");
+      img.className = "profile-img";
+      if(comment.memberProfile) {
+        img.src = comment.memberProfile;
+      } else {
+        img.src = defaultImage;
+      }
+
+      var commentWriterArea = document.createElement("div");
+      commentWriterArea.className = "comment-writer-area";
+    
+      // "comment-writer" 클래스를 가진 div 생성하고 텍스트 내용 설정
+      var commentWriter = document.createElement("div");
+      commentWriter.className = "comment-writer";
+      commentWriter.textContent = comment.memberNickname;
+
+      var commentDate = document.createElement("div");
+      commentDate.className = "comment-date";
+      commentDate.textContent = comment.boardCommentEnrollDate;
+
+      commentWriterArea.appendChild(commentWriter);
+      commentWriterArea.appendChild(commentDate);
+
+      var commentProfile = document.createElement("div");
+      commentProfile.className = "comment-profile";
+
+      var reportImg = document.createElement("img");
+      reportImg.className = "report-img";
+      reportImg.src = "/img/report-img.svg";
+      // reportImg.onclick = reportOpen;
+
+      if(loginMemberNo == comment.memberNo) {
+      const deleteBtn = document.createElement("button");
+      deleteBtn.classname = "delete-cross";
+      deleteBtn.innerText = "X";
+
+      deleteBtn.setAttribute("onclick", "deleteComment(" + comment.boardCommentNo + ")");
+
+      commentProfile.append(deleteBtn, reportImg)
+    } else {
+
+      commentProfile.append(reportImg);
+    }
+
+      commentAreaIn.appendChild(img);
+      commentAreaIn.appendChild(commentWriterArea);
+      commentAreaIn.appendChild(commentProfile);
+
+      var commentContentArea = document.createElement("div");
+      commentContentArea.className = "comment-content-area";
+
+      var commentContent = document.createElement("div");
+      commentContent.className = "comment-content";
+      commentContent.textContent = comment.boardCommentContent;
+
+      commentContentArea.appendChild(commentContent);
+
+      const commentLikeArea = document.createElement("div");
+      commentLikeArea.className = "comment-like-area";
+
+      const heartComment = document.createElement("i");
+      heartComment.className = "fa-heart";
+      if(comment.likeClickComment == 0 ) heartComment.classList.add("fa-regular");
+      else heartComment.classList.add("fa-solid");
+
+      heartComment.setAttribute("onclick", "likeComment(this, " +comment.boardCommentNo + ")" );
+      heartComment.setAttribute("comment-no", comment.boardCommentNo);
+
+      const likeCountComment = document.createElement("span");
+      likeCountComment.className = "commentLikeCount";
+      likeCountComment.innerText = comment.likeCountComment;
+
+      const childCommentBtn = document.createElement("i");
+      childCommentBtn.className = "fa-regular";
+      childCommentBtn.className = "fa-comment";
+      childCommentBtn.className = "fa-xl";
+      childCommentBtn.setAttribute("onclick", "showInsertComment(" + comment.boardCommentNo + ", this)");
+    
+      commentLikeArea.append(heartComment, likeCountComment, childCommentBtn );
+      commentAreaIn.appendChild(commentLikeArea);
+
+    }
+    commentArea.append(commentAreaIn);
+    commentLists.appendChild(commentArea);
+  
+  }
+  updateCommentCount(response.commentList.length);
+
+  } else {
+    console.error("Invalid response structure or missing data");
+  }
+}
+  
+  )
+  .catch((e) => console.log(e));
+
+};
 
 
 
@@ -171,13 +343,174 @@ likeImg.addEventListener("click", (e) => {
 });
 
 
+function submitComment() {
+  console.log(boardNo2);
+  const commentInput = document.getElementById('comment-input');
+  const commentContent = commentInput.value.trim();
 
-// function openModal(){
-//   const modal = document.getElementById('feedDetail');
-//   modal.classList.add("show");
-//   document.body.style.overflow = "hidden";
-  
-// }
+  if (commentContent.trim().length == 0) {
+    alert("댓글을 먼저 작성해주세요");
+
+    commentInput.value = "";
+    commentInput.focus();
+    return;
+  }
+
+
+  const dataObj = {
+    boardCommentContent: commentContent,
+    memberNo: loginMemberNo,
+    boardNo: boardNo2
+
+  };
+  console.log(boardNo2);
+  console.log(dataObj);
+
+  fetch("/comment",{
+    method : "POST",
+    headers : {"Content-Type" : "application/json"},
+    body : JSON.stringify(dataObj)
+  })
+  .then(resp => resp.text())
+  .then(result => {
+
+    if(result > 0){
+      alert("댓글 등록 성공");
+
+      commentInput.value = "";
+      generateComment(boardNo2);
+
+    } else {
+      alert("댓글을 등록하지 못했습니다.");
+    }
+
+  })
+  .catch(err => console.log(err));
+
+}
+
+function deleteComment(boardCommentNo) {
+  if (confirm("정말로 삭제 하시겠습니까?")) {
+    fetch("/comment", {
+      method: "DELETE",
+      headers: { "Content-type": "application/json" },
+      body: boardCommentNo,
+    })
+      .then((resp) => resp.text())
+      .then((result) => {
+        if (result > 0) {
+          alert("삭제되었습니다.");
+          generateComment(boardNo2);
+        } else {
+          alert("삭제를 실패하였습니다.");
+        }
+      })
+      .catch((e) => console.log(e));
+  }
+}
+
+
+/* ----------------------------------------------------------------------------------- */
+function showInsertComment(boardParentCommentNo, btn) {
+
+  const textarea = document.createElement("textarea");
+  textarea.classList.add("commentInsertContent");
+
+  btn.parentElement.after(textarea);
+
+  const commentBtnArea = document.createElement("div");
+  commentBtnArea.classList.add("comment-btn-area");
+
+  const insertBtn = document.createElement("button");
+  insertBtn.innerText = "등록";
+  insertBtn.setAttribute("onclick", "insertChildComment(" + boardParentCommentNo + ", this)");
+
+  const cancelBtn = document.createElement("button");
+  cancelBtn.innerText = "취소";
+  cancelBtn.setAttribute("onclick", "insertCancel(this)");
+
+  commentBtnArea.append(insertBtn, cancelBtn);
+
+  textarea.after(commentBtnArea);
+}
+
+function insertCancel(btn) {
+  btn.parentElement.previousElementSibling.remove();
+  btn.parentElement.remove();
+}
+
+
+function insertChildComment(boardParentCommentNo, btn) {
+  const boardCommentContent = btn.parentElement.previousElementSibling.value;
+
+  if (boardCommentContent.trim().length == 0) {
+    alert("답글 작성 후 등록 버튼을 클릭해주세요.");
+    btn.parentElement.previousElementSibling.value = "";
+    btn.parentElement.previousElementSibling.focus();
+    return;
+  }
+
+  const dataObj = {
+    boardCommentContent: boardCommentContent,
+    memberNo: loginMemberNo,
+    boardNo: boardNo2,
+    boardParentCommentNo: boardParentCommentNo,
+  };
+
+  fetch("/comment", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(dataObj),
+  })
+    .then((resp) => resp.text())
+    .then((result) => {
+      if (result > 0) {
+        alert("답글이 등록되었습니다.");
+        generateComment(boardNo2);
+      } else {
+        alert("답글 등록에 실패했습니다...");
+      }
+    })
+    .catch((err) => console.log(err));
+}
+
+function likeComment(btn, boardCommentNo) {
+ 
+  let check;
+
+  if (btn.classList.contains("fa-regular")) {
+    check = 0;
+  } else {
+    check = 1;
+  }
+
+  const data = { check: check, boardCommentNo: boardCommentNo };
+
+  fetch("/commentLike", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  })
+    .then((resp) => resp.text())
+    .then((count) => {
+      if (count == -1) {
+        console.log("좋아요 실패");
+        return;
+      }
+      btn.classList.toggle("fa-regular");
+      btn.classList.toggle("fa-solid");
+
+      btn.nextElementSibling.innerText = count;
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+}
+
+
+
+
+
 
 function wopenModal() {
   const modal = document.getElementById('feedWrite');
@@ -195,95 +528,3 @@ function wcloseModal() {
 
 }
 
-
-
-// 이미지 슬라이드
-// let slideIndex = 1;
-// showSlides(slideIndex);
-
-// function plusSlides(n) {
-//   showSlides(slideIndex += n);
-// }
-
-// function currentSlide(n) {
-//   showSlides(slideIndex = n);
-// }
-
-// function showSlides(n) {
-//   let i;
-//   let slides = document.getElementsByClassName("slide");
-//   let dots = document.getElementsByClassName("dot");
-//   if (n > slides.length) { slideIndex = 1 }
-//   if (n < 1) { slideIndex = slides.length }
-//   for (i = 0; i < slides.length; i++) {
-//     slides[i].style.display = "none";
-//   }
-//   for (i = 0; i < dots.length; i++) {
-//     dots[i].className = dots[i].className.replace(" active", "");
-//   }
-//   slides[slideIndex - 1].style.display = "block";
-//   dots[slideIndex - 1].className += " active";
-// }
-
-// /* 게시글 작성 modal */
-// const wmodal = document.querySelector(".feedWriteModal");
-// const btnOpenPopup = document.querySelector(".btn-open-popup");
-// const modalCloseButton = document.querySelector(".modalCloseButton");
-// const wmodal_background = document.querySelector(".feedWriteModal");
-
-// btnOpenPopup.addEventListener("click", () => {
-//   open();
-// });
-
-// //Hide modal
-// modalCloseButton.addEventListener("click", () => {
-//   close();
-// });
-
-// window.addEventListener("click", (e) => {
-//   e.target === wmodal_background ? close() : false;
-// });
-
-
-// function close() {
-//   wmodal.classList.remove("show");
-//   wmodal_background.classList.remove("show");
-//   document.body.style.overflow = "";
-
-// }
-// function open() {
-//   wmodal.classList.add("show");
-//   wmodal_background.classList.add("show");
-//   document.body.style.overflow = "hidden";
-// }
-
-// const dmodal = document.querySelector(".feedDetailModal");
-// const openModal = document.querySelector(".openModal");
-// const closeModal = document.querySelector(".closeModal");
-// const dmodal_background = document.querySelector(".feedDetailModal");
-
-// openModal.addEventListener("click", () => {
-//   dopen();
-// });
-
-// //Hide modal
-// closeModal.addEventListener("click", () => {
-//   dclose();
-// });
-
-// window.addEventListener("click", (e) => {
-//   e.target === dmodal_background ? dclose() : false;
-// });
-
-
-// function dclose() {
-//   dmodal.classList.remove("show");
-//   dmodal_background.classList.remove("show");
-//   document.body.style.overflow = "";
-
-// }
-// function dopen() {
-//   dmodal.classList.add("show");
-//   dmodal_background.classList.add("show");
-//   document.body.style.overflow = "hidden";
-// }
