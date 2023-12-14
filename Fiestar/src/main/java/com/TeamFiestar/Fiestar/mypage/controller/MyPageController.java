@@ -180,7 +180,7 @@ public class MyPageController {
 
 		return "redirect:myPage-Modify";
 	}
-
+	
 
 	
 	

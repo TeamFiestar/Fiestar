@@ -273,10 +273,57 @@ if (inputBackImg != null) { // #inputBackImg 존재할 때
 }
 
 
+// -------------------------------------------------------------------------------------------
+/* 제출 전 유효성 검사 */
+
 const updateInfo = document.getElementById("updateInfo");
 
 updateInfo.addEventListener("submit", e => {
 
-    
+    const nickname = document.getElementsByName("memberNickname");
+    const memberPw = document.getElementsByName("memberPw");
+    const postcode = document.getElementById("postcode");
+    const address = document.getElementById("address");
+    const detailAddress = document.getElementById("detailAddress");
+
+    console.log(e.target);
+
+    if(nickname.value.trim().length == 0){
+        alert("닉네임을 입력 해주세요");
+        e.preventDefault(); // form 제출 x
+        title.value = "";
+        title.focus();
+        return;
+    }
+    if(memberPw.value.trim().length == 0){
+        alert("비밀번호를 입력 해주세요");
+        e.preventDefault(); // form 제출 x
+        memberPw.value = "";
+        memberPw.focus();
+        return;
+    }
+    if(postcode.value.trim().length == 0){
+        alert("우편번호를 입력 해주세요");
+        e.preventDefault(); // form 제출 x
+        postcode.value = "";
+        postcode.focus();
+        return;
+    }
+    if(address.value.trim().length == 0){
+        alert("주소를 입력 해주세요");
+        e.preventDefault(); // form 제출 x
+        address.value = "";
+        address.focus();
+        return;
+    }
+    if(detailAddress.value.trim().length == 0){
+        alert("상세주소를 입력 해주세요");
+        e.preventDefault(); // form 제출 x
+        detailAddress.value = "";
+        detailAddress.focus();
+        return;
+    }
 
 });
+
+
