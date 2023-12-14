@@ -55,15 +55,14 @@ public interface MyPageMapper {
 
 	// 프로필 이미지 변경
 	int profile(Member loginMember);
-//
-//	// 프로필 정보 변경
-//	int info(Member updateMember);
 
 	// 미디어 댓글 삭제
 	int deleteMediaComment(Map<String, Object> map);
 
 	// 피드 댓글 삭제
 	int deleteBoardComment(Map<String, Object> map);
+
+	int info(Member updateMember, Member loginMember);
 
 
 

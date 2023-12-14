@@ -129,15 +129,6 @@
 		WHERE MEMBER_NO =#{memberNo}
 	</update>
 
-	<update id="info">
-		UPDATE "MEMBER" SET
-		MEMBER_NICKNAME = #{memberNickname},
-		MEMBER_ADDRESS = #{memberAddress},
-		MEMBER_BACK_IMAGE = #{memberBackImage}
-		WHERE MEMBER_NO = #{memberNo}
-	</update>
-
-
 	<update id="deleteMediaComment">
 		UPDATE MEDIA_COMMENT SET
 		MEDIA_COMMENT_DEL_FL = 'Y'
@@ -148,6 +139,13 @@
 		UPDATE BOARD_COMMENT SET
 		BOARD_COMMENT_DEL_FL = 'Y'
 		WHERE BOARD_COMMENT_NO = #{commentNo}
+	</update>
+
+
+	<update id="info">
+		UPDATE "MEMBER" SET
+		MEMBER_NICKNAME = #{memberNickname},
+		MEMBER_ADDRESS = #{memberAddress},
 	</update>
 
 

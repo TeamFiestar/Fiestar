@@ -273,4 +273,10 @@ if (inputBackImg != null) { // #inputBackImg 존재할 때
 }
 
 
-/* 프로필 유효서 검사 */
+const updateInfo = document.getElementById("updateInfo");
+
+updateInfo.addEventListener("submit", e => {
+
+    
+
+});

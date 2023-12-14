@@ -184,25 +184,42 @@ public class MyPageServiceImpl implements MyPageService {
 		return result;
 	}
 
-	// 프로필 정보 변경
-//	@Override
-//	public int info(Member updateMember, String[] memberAddress, MultipartFile memberBackImage, Member loginMember)
-//			throws IllegalStateException, IOException {
-//		
-//		// 프로필 주소 변경
-//		if (updateMember.getMemberAddress().equals(",,")) {
-//			updateMember.setMemberAddress(null);
-//		} else { // 주소를 입력한 경우
-//			// 배열 -> 문자열로 합쳐서 inputMember에 추가
-//			String address = String.join("^^^", memberAddress);
-//			updateMember.setMemberAddress(address);
-//		}
-//
-//		int result = mapper.info(updateMember);
-//
-//		return result;
+	// 프로필 수정
+	@Override
+	public int info(Member updateMember, String[] memberAddress, MultipartFile memberBackImage, Member loginMember) 
+			throws IllegalStateException, IOException {
 
-//	}
+		// 프로필 배경 이미지
+		String rename = null;
+		
+		String backup = loginMember.getMemberBackImage();
+		
+		if(memberBackImage.getSize() > 0) {
+			rename = Util.fileRename(memberBackImage.getOriginalFilename());
+			loginMember.setMemberBackImage(webpath + rename);
+		}
+		
+		// 프로필 주소
+		if (updateMember.getMemberAddress().equals(",,")) {
+			updateMember.setMemberAddress(null);
+		} else { 
+			String address = String.join("^^^", memberAddress);
+			updateMember.setMemberAddress(address);
+		}
+		
+		int result = mapper.info(updateMember ,loginMember);
+		
+		if (result > 0) {
+			if (memberBackImage.getSize() > 0) {
+				memberBackImage.transferTo(new File(folderPath + rename));
+			} else {
+				loginMember.setMemberProfile(backup);
+			}
+		}
+		
+		return result;
+	}
+	
 
 	@Override
 	public int delComment(int memberNo, int commentNo, String commentType) {
