@@ -255,9 +255,10 @@ header a {
 }
 
 .pagination li{
-  width: 20px;
+  width: 30px;
   margin: 0 5px;
   text-align: center;
+  border: 1px solid black;
 }
 
 .pagination a{
