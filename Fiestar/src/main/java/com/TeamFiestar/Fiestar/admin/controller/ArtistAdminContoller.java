@@ -46,8 +46,7 @@ public class ArtistAdminContoller {
 		Map<String, Object> map = service.ArtistNoticeList(paramMap, cp);
 		
 		model.addAttribute("map", map);
-		model.addAttribute("key", notice.getKey());
-		model.addAttribute("noticeSearch", notice.getNoticeSearch());
+		model.addAttribute("key", notice.getKey()); 
 		
 		return "admin/artistNotice";
 	}
@@ -106,7 +105,7 @@ public class ArtistAdminContoller {
 			@RequestParam(value="cp", required=false , defaultValue="1" ) int cp,
 			@PathVariable("artistGroupTitle") String artistGroupTitle, Model model,
 			Purchase searchPurchase) {
-		Map<String, Object> map = service.selectPurchaseList(artistGroupTitle, cp);
+		Map<String, Object> map = service.selectPurchaseList(artistGroupTitle, searchPurchase, cp);
 		
 		model.addAttribute("map",map);
 		

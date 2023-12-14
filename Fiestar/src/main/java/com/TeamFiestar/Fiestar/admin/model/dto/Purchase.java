@@ -1,5 +1,9 @@
 package com.TeamFiestar.Fiestar.admin.model.dto;
 
+import java.util.List;
+
+import com.TeamFiestar.Fiestar.shop.model.dto.Product;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -21,4 +25,6 @@ public class Purchase {
 	private String memberNickname;
 	private String memberAddress;
 	private String orderSearch;
+	
+	private List<Product> productList;
 }

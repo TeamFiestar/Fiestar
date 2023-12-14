@@ -15,6 +15,6 @@ public interface ArtistAdminService {
 
 	Map<String, Object> selectReportList(String artistGroupTitle, Report report, int cp);
 
-	Map<String, Object> selectPurchaseList(String artistGroupTitle, int cp);
+	Map<String, Object> selectPurchaseList(String artistGroupTitle, Purchase searchPurchase, int cp);
 
 }

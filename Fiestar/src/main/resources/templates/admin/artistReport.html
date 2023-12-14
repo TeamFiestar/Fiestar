@@ -22,7 +22,7 @@
       <!-- th:replace -->
       <th:block th:replace="~{common/adminArtist}"></th:block>
       <div class="report-main">
-        <h4>NewJeans</h4>
+        <h4 th:text="${artistGroupTitle}">NewJeans</h4>
         <h1>신고 조회</h1>
         <br />
         <table class="report-table" border="1" style="border-collapse: collapse">

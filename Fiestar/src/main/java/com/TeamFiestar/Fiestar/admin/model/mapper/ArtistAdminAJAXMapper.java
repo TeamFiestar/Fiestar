@@ -19,5 +19,7 @@ public interface ArtistAdminAJAXMapper {
 
 	int updatePurchase(Purchase purchase);
 
+	Purchase selectPurchaseDetails(int purchaseNo);
+
 
 }

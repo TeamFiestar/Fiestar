@@ -56,5 +56,14 @@ public class ArtistAdminAJAXContoller {
 		return result;
 	}
 	
+	@GetMapping("selectPurchaseDetails")
+	@ResponseBody
+	public Purchase selectPurchaseDetails(@RequestParam("purchaseNo") int purchaseNo) {
+		
+		Purchase purchase = service.selectPurchaseDetails(purchaseNo);
+		
+		return purchase;
+	}
+	
 	
 }

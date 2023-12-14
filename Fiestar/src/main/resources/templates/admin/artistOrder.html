@@ -9,12 +9,49 @@
 </head>
 
 <body>
+
+  <div class="orderModal">
+    <div id="orderModal" class="modal-body">
+      <button class="modalCloseButton">X</button>
+      <div class="modal-orderDetail">
+        <h3>주문 상세 조회</h3>
+        <div class="order-info">
+          <table class="order-info-table">
+            <tr>
+              <th class="order-nickname">이름</th>
+              <td class="order-nickname-info">test</td>
+            </tr>
+            <tr>
+              <th class="order-address">주소</th>
+              <td class="order-address-info">test2</td>
+            </tr>
+            <tr>
+              <th class="order-price">주문 가격</th>
+              <td class="order-price-info">100000</td>
+            </tr>
+            <tr>
+              <th class="order-status">주문 상태</th>
+              <td class="order-status-info">주문 완료</td>
+            </tr>
+            
+          </table>
+        </div>
+        <div class="product-info">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
   <header>헤더+nav</header>
   <main th:with="purchaseList = ${map.purchaseList}, pagination = ${map.pagination}">
     <!-- th:replace -->
     <th:block th:replace="~{common/adminArtist}"></th:block>
     <div class="main">
-      <h4>NewJeans</h4>
+      <h4 th:text="${artistGroupTitle}">NewJeans</h4>
       <h1>배송 조회</h1>
       <br />
       <div class="orderSelect">
@@ -43,7 +80,7 @@
             <td th:text="*{purchaseNo}">1</td>
             <td th:text="*{memberNickname}">닉네임닉네임</td>
             <td th:text="*{memberAddress}">서울특별시 중구 남대문로 120 대일빌딩 2층, 3층 11-123</td>
-            <td th:text="*{purchaseNo}">10주년 앨범</td>
+            <td th:text="*{purchaseNo}" th:onclick="|selectPurchaseDetail(*{purchaseNo})|" class="pointer">10주년 앨범</td>
             <td th:text="*{productSum}">2</td>
             <td th:text="*{purchasePrice}">50,000</td>
             <td th:text="*{purchaseDate}">2023/11/29</td>

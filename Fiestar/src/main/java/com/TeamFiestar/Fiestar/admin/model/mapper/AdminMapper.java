@@ -6,6 +6,10 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
 
+import com.TeamFiestar.Fiestar.admin.model.dto.ArtistNotice;
+import com.TeamFiestar.Fiestar.admin.model.dto.Purchase;
+import com.TeamFiestar.Fiestar.admin.model.dto.Report;
+import com.TeamFiestar.Fiestar.admin.model.dto.SiteNotice;
 import com.TeamFiestar.Fiestar.board.model.dto.Board;
 //import com.TeamFiestar.Fiestar.member.model.dto.ArtistGroup;
 import com.TeamFiestar.Fiestar.member.model.dto.ArtistGroup1;
@@ -57,6 +61,21 @@ public interface AdminMapper {
 	int GroupUpdate(ArtistGroup1 artistGroup);
 
 
+	
+	
+	List<ArtistNotice> selectNoticeList(Map<String, Object> map, RowBounds rowBounds);
+
+	int siteNoticeAdd(SiteNotice notice);
+
+	List<Report> selectReportList(Map<String, Object> map, RowBounds rowBounds);
+
+	int reportListCount(Map<String, Object> map);
+
+	int noticeListCount(SiteNotice notice);
+
+	List<Purchase> selectPurchaseList( RowBounds rowBounds);
+
+	int orderListCount();
 
 	
 
