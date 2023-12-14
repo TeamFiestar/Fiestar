@@ -204,9 +204,20 @@ img{
    font-size: 20px;
 }
 
+.detail{
+   display: flex;
+    font-size: 16px;
+}
+
 .total > span {
    background-color: rgb(255, 254, 237);
    margin-left: 20px;
+}
+
+
+.totalProduct-price{
+   position: absolute;
+    right: 0px;
 }
 
 .sc-e98633bc-7{

@@ -120,7 +120,7 @@
 
 
 <!-- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
-
+            <hr>
 
             <div class="order-list">
 
@@ -129,7 +129,7 @@
                <button class="name-btn" type="button" id="nameChangeBtn">변경</button>
                
 
-               <div style="font-size: 16px;">
+               <div style="font-size: 16px;" class="orderInfo">
 
                   <div style="margin-top: 44px;">주문자 이름</div>
                   
@@ -243,16 +243,24 @@
             <div class="price-detail">
 
                <!-- <div class="detail"> -->
+               
                <span class="detail-price" style="font-weight: bold;">결제 금액</span>
 
                <div class="detail">
-                  <span class="product-price" style="font-size: 16px;">상품 가격 </span>
-                  <span th:text="${totalPrice}" class="totalProduct-price"></span>
 
-                  <div class="shipping-price" style="font-size: 16px;">배송비
+                  <div style="margin-bottom: 20px;">
 
-                     <span style="margin-left: 1014px;">2500</span>
+                     <span class="product-price" style="font-size: 16px;">상품 가격 </span>
+                     <span th:text="${totalPrice}" class="totalProduct-price"></span>
+                     
                   </div>
+                  
+                  <div>
+                     <span>배송비</span>
+                     <span style="margin-left: 984px;">2500</span>
+                  </div>
+
+               </div>
                </div>
 
             </div>
@@ -278,7 +286,7 @@
                
                <div class="total-price" style="letter-spacing: -1.6px;">총 결제 금액</div>
 
-               <p> <span th:text="${purchasePrice}" class="total-price"></span> </p>
+               <p> <span th:text="${purchasePrice}" class="purchasePrice"></span> </p>
 
             </div>
 
@@ -295,6 +303,8 @@
                <!-- </div> -->
 
             </div>
+
+            <hr>
 
             <div class="tou"> 유의사항 및 이용약관
                <li>

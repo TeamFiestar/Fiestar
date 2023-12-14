@@ -102,6 +102,8 @@ public class CartController {
 	// 성공적으로 처리되었다고 가정하고 응답 반환
 //	    return ResponseEntity.ok("장바구니 항목이 업데이트되었습니다.");
 
+	
+	
 	@GetMapping("checkoutResult")
 	public String checkoutResult() {
 

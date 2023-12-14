@@ -1,12 +1,13 @@
 package com.TeamFiestar.Fiestar.cart.controller;
 
-import java.util.LinkedHashSet;
+import java.util.LinkedHashSet; 
 import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -82,7 +83,6 @@ public class CheckOut {
 	        return "cart/checkout"; // 결제 화면 페이지 뷰 이름
 	    }
 	    
-	    
-	    
+	  
 	    
 }
