@@ -46,10 +46,11 @@ img{
   
 }
 
-
-#file {
+.file{
   display: none;
 }
+
+
 
 .mainImg{
   width: 1100px;
@@ -70,9 +71,7 @@ img{
   /* border: 1px solid rgb(77,77,77); */
   font-weight: 500;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-block;
   color: white;
   &:hover {
     /* background: rgb(77,77,77); */
@@ -80,6 +79,18 @@ img{
   }
 }
 
+.btn-upload1 > img{
+  width: 1090px;
+  height: 690px;
+}
+
+.btn-upload1 h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1; /* 이미지 위에 텍스트를 배치하기 위해 z-index 사용 */
+}
 
 
 .artistIntro-name{
@@ -88,6 +99,7 @@ img{
   border: 2px solid white;
   border-radius: 10px;
 }
+
 .artistIntro-name:hover{
   border-color: rgb(119, 67, 219);
 }
@@ -109,6 +121,18 @@ img{
   }
 }
 
+.btn-upload2 >img {
+  width: 398px;
+  height: 78px;
+}
+
+.btn-upload2 h1 {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-40%, -50%);
+  z-index: 1; /* 이미지 위에 텍스트를 배치하기 위해 z-index 사용 */
+}
 
 
 #content{
@@ -116,10 +140,11 @@ img{
   background: transparent;
   border: none;
   color: white;
-  padding: 10px;
+  padding: 30px;
   resize: none;
-  width: 450px;
-  height: 100px;
+  font-size: 20px;
+  width: 1100px;
+  height: 300px;
 }
 
 #content:focus{
@@ -137,8 +162,8 @@ img{
 
 
 .artistIntro-content{
-  width: 450px;
-  height: 100px;
+  width: 1100px;
+  height: 300px;
   margin: 10px auto;
   border: 2px solid white;
   border-radius: 10px;
@@ -190,13 +215,10 @@ img{
 
 .profileName input{
   color: white;
+  text-align: center;
 }
 
 .btn-upload3 {
-  width: 80px;
-  height: 30px;
-  /* background: #fff; */
-  /* border: 1px solid rgb(77,77,77); */
   font-weight: 500;
   cursor: pointer;
   display: flex;
@@ -208,7 +230,19 @@ img{
     color: rgb(119, 67, 219);
   }
   margin: 0 auto;
-  padding-top: 45px;
+}
+
+.btn-upload3 > img{
+  width: 118px;
+  height: 118px;
+}
+
+.btn-upload3 > h1{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
 }
 
 .profileName{

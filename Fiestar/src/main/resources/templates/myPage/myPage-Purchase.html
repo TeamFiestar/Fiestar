@@ -22,7 +22,7 @@
       <img th:unless="${session.loginMember.memberBackImage == null}" th:src="${session.loginMember.memberBackImage}"
         width="100%" height="100%" id="memberBackImage">
       <img th:if="${session.loginMember.memberBackImage == null}" th:src="#{user.default.backImg}" width="100%"
-        height="100%" id="memberBackImage">
+        height="100%" id="memberBackImage" style="object-fit:cover">
     </div>
 
     <div class="main" th:with="purchaseList=${map.purchaseList}, pagination=${map.pagination}">

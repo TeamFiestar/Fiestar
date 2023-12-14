@@ -8,78 +8,6 @@ let chattingRoomNo;
 let nicknameList;
 
 const display = document.getElementsByClassName("chat-ul")[0];
-// 채팅방 입장 = 바로 접속
-function chattingEnter(e) {
-  console.log(e.target);
-  console.log(e.currentTarget);
-
-  const targetNo = e.currentTarget.getAttribute("artistGroupNo");
-
-  // targetNo == 채팅방 번호 == 아티스트 그룹 번호
-  fetch("/chatting/enter?targetNo=" + targetNo)
-    .then((resp) => resp.text())
-    .then((artistGroupNo) => {
-      console.log(artistGroupNo);
-    });
-}
-
-// 채팅 조회(비동기)
-function selectChatting() {
-  fetch("/chatting?artistGroupNo=" + artistGroupNo)
-    .then((resp) => resp.text())
-    .then((messageList) => {
-      console.log(messageList);
-
-      const ul = document.querySelector(".chat-ul");
-
-      ul.innerHTML = "";
-
-      for (let msg of messageList) {
-        const li = document.createElement("li");
-
-        const span = document.createElement("span");
-        span.classList.add("chat-date");
-        span.innerText = msg.messageSendTime;
-
-        const p = document.createElement("p");
-        p.classList.add("chat");
-        p.innerHTML = msg.messageContent;
-
-        // 유저 리스트
-        // const ul2 = document.querySelector(".user-list");
-
-        // const li2 = document.createElement("li");
-        // li2.classList.add("userName");
-        // li2.innerText = loginMember.memberNickname;
-        //
-
-        if (chattingRoomNo == msg.chattingRoomNo) {
-          li.classList.add("mychat-list");
-          li.append(span, p);
-        } else {
-          li.classList.add("chat-list");
-
-          const img = document.createElement("img");
-          img.setAttribute("src", selectTargetProfile);
-
-          const div = document.createElement("div");
-
-          const b = document.createElement("b");
-          b.innerText = selectTargetName;
-
-          const br = document.createElement("br");
-
-          div.append(b, br, p, span);
-          li.append(img, div);
-        }
-
-        ul.append(li);
-        // ul2.append(li2);
-        display.scrollTop = display.scrollHeight;
-      }
-    })
-    .catch((e) => console.log(e));
-}
 
 function selectUserList() {
   fetch("chatting?artistGroupNo=" + artistGroupNo)
@@ -138,7 +66,7 @@ userSock.onmessage = function (e) {
   });
 };
 
-//-------------------------------------------------
+//-------------------------------------------------채팅 입력
 let chattingSock;
 
 if (loginMemberNo != "") {
@@ -162,6 +90,8 @@ const sendMessage = () => {
       // chattingRoomNo: artistGroupNo,
       artistGroupNo: artistGroupNo,
       messageContent: inputChat.value,
+      memberProfile: memberProfile,
+      memberNickname: memberNickname,
     };
     console.log(obj);
     console.log(artistGroupNo);
@@ -204,26 +134,48 @@ chattingSock.onmessage = function (e) {
       li.classList.add("mychat-list");
       li.append(span, p);
     } else {
-      li.classList.add("chat-list");
+      if (authority == 1) {
+        if (msg.sendAuthority == 2) {
+          li.classList.add("chat-list");
 
-      const img = document.createElement("img");
-      img.setAttribute("src", selectTargetProfile);
+          const img = document.createElement("img");
+          if (msg.memberProfile == null)
+            img.setAttribute("src", userDefaultImage);
+          else img.setAttribute("src", msg.memberProfile);
 
-      const div = document.createElement("div");
+          const div = document.createElement("div");
 
-      const b = document.createElement("b");
-      b.innerText = memberNickname;
+          const b = document.createElement("b");
+          b.innerText = msg.memberNickname;
 
-      const br = document.createElement("br");
+          const br = document.createElement("br");
 
-      div.append(b, br, p, span);
-      li.append(img, div);
+          div.append(b, br, p, span);
+          li.append(img, div);
+        }
+      } else if (authority == 2) {
+        li.classList.add("chat-list");
+
+        const img = document.createElement("img");
+        if (msg.memberProfile == null)
+          img.setAttribute("src", userDefaultImage);
+        else img.setAttribute("src", msg.memberProfile);
+
+        const div = document.createElement("div");
+
+        const b = document.createElement("b");
+        b.innerText = msg.memberNickname;
+
+        const br = document.createElement("br");
+
+        div.append(b, br, p, span);
+        li.append(img, div);
+      }
     }
 
     ul.append(li);
 
     display.scrollTop = display.scrollHeight;
-    // }
   }
 };
 

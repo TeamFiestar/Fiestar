@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.TeamFiestar.Fiestar.admin.model.mapper.adminMapper">
+<mapper namespace="com.TeamFiestar.Fiestar.admin.model.mapper.AdminMapper">
 	
 	<!--<select id="selectMember" resultType="Member">
 		SELECT MEMBER_NO , MEMBER_NICKNAME , MEMBER_EMAIL , MEMBER_ADDRESS, MEMBER_AUTHORITY  
@@ -9,12 +9,7 @@
 	</select>-->
 	
 	<!-- 일반회원조회 -->
-	<select id="selectBoard" resultType="Board">
-		SELECT  BOARD_CONTENT,
-		(SELECT ARTIST_GROUP_TITLE FROM ARTIST_GROUP AG WHERE B.ARTIST_GROUP_NO = AG.ARTIST_GROUP_NO) ARTIST_GROUP_TITLE, BOARD_ENROLL_DATE
-		FROM BOARD B
-		WHERE MEMBER_No = #{memberNo}
-	</select>
+	
 	
 	<select id="countList" resultType="_int">
 		SELECT COUNT(*) FROM MEMBER
@@ -23,8 +18,10 @@
 	
 	
 	<select id="selectMember" resultType="Member">
-		SELECT MEMBER_NO , MEMBER_NICKNAME , MEMBER_EMAIL , MEMBER_ADDRESS, MEMBER_AUTHORITY  
-		FROM MEMBER
+		SELECT MEMBER_NO , MEMBER_NICKNAME , MEMBER_EMAIL , MEMBER_ADDRESS, MEMBER_AUTHORITY ,
+		(SELECT COUNT(*) FROM REPORT 
+		WHERE REPORT_TARGET_NO = M.MEMBER_NO) COUNT_REPORT
+		FROM MEMBER M
 		WHERE MEMBER_DEL_FL = 'N'
 		ORDER BY MEMBER_NO DESC
 	</select>
@@ -47,8 +44,10 @@
 	
 	
 	<select id="searchMember" resultType="Member">
-		SELECT MEMBER_NO , MEMBER_NICKNAME , MEMBER_EMAIL , MEMBER_ADDRESS, MEMBER_AUTHORITY  
-		FROM MEMBER
+		SELECT MEMBER_NO , MEMBER_NICKNAME , MEMBER_EMAIL , MEMBER_ADDRESS, MEMBER_AUTHORITY,
+		(SELECT COUNT(*) FROM REPORT 
+		WHERE REPORT_TARGET_NO = M.MEMBER_NO) COUNT_REPORT  
+		FROM MEMBER M
 		WHERE MEMBER_DEL_FL = 'N'
 		<choose>
 			<when test='key == "memberNo"'>
@@ -71,7 +70,7 @@
 	</select>
 	
 	<select id="deleteMember" resultType="Member">
-		SELECT MEMBER_NO , MEMBER_NICKNAME , MEMBER_EMAIL , MEMBER_ADDRESS, MEMBER_AUTHORITY  
+		SELECT MEMBER_NO , MEMBER_NICKNAME , MEMBER_EMAIL , MEMBER_ADDRESS, MEMBER_AUTHORITY, MEMBER_DEL_FL  
 		FROM MEMBER
 		WHERE MEMBER_DEL_FL = 'Y'
 		ORDER BY MEMBER_NO DESC
@@ -113,5 +112,122 @@
 	
 	
 	
+	<update id="restoration">
+		UPDATE "MEMBER" SET
+		MEMBER_DEL_FL ='Y'
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+	
+	
+	
+	<select id="countSubscribe" resultType="_int">		
+		SELECT COUNT(*) FROM MEMBER
+		JOIN ARTIST_SUBSCRIBE
+		USING (MEMBER_NO)
+		WHERE MEMBER_DEL_FL = 'N'
+		AND ARTIST_GROUP_NO = (SELECT ARTIST_GROUP_NO FROM ARTIST_GROUP WHERE ARTIST_GROUP_ADMIN_NO = #{memberNo})
+	</select>
+
+	<select id="subscribeMember" resultType="Member">
+		SELECT MEMBER_NO , MEMBER_NICKNAME , MEMBER_EMAIL , MEMBER_ADDRESS, MEMBER_AUTHORITY, MEMBER_DEL_FL,
+		(SELECT COUNT(*) FROM REPORT 
+		WHERE REPORT_TARGET_NO = MEMBER_NO) COUNT_REPORT,
+		(SELECT ARTIST_GROUP_TITLE FROM ARTIST_GROUP WHERE ARTIST_GROUP_ADMIN_NO = #{memberNo}) ARTIST_GROUP_TITLE 
+		FROM "MEMBER" M
+		JOIN ARTIST_SUBSCRIBE ASU 
+		USING (MEMBER_NO)
+		WHERE MEMBER_DEL_FL = 'N'
+		AND ARTIST_GROUP_NO = (SELECT ARTIST_GROUP_NO FROM ARTIST_GROUP WHERE ARTIST_GROUP_ADMIN_NO = #{memberNo})
+		ORDER BY MEMBER_NO DESC
+	</select>
+	
+	
+	<select id="countSearchSubscribe" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER
+		JOIN ARTIST_SUBSCRIBE
+		USING (MEMBER_NO)
+		WHERE MEMBER_DEL_FL = 'N'
+		AND ARTIST_GROUP_NO = (SELECT ARTIST_GROUP_NO FROM ARTIST_GROUP WHERE ARTIST_GROUP_ADMIN_NO = #{memberNo})
+		<choose>
+			<when test='key == "memberNo"'>
+				AND MEMBER_NO LIKE '%${query}%'
+			</when>
+			<when test='key == "memberEmail"'>
+				AND MEMBER_EMAIL LIKE '%${query}%'
+			</when>
+			<when test='key == "memberNickname"'>
+				AND MEMBER_NICKNAME LIKE '%${query}%'
+			</when>
+		</choose>
+	</select>
+	
+	
+	<select id="searchSubscribe" resultType="Member">
+		SELECT MEMBER_NO , MEMBER_NICKNAME , MEMBER_EMAIL , MEMBER_ADDRESS, MEMBER_AUTHORITY, MEMBER_DEL_FL,
+		(SELECT COUNT(*) FROM REPORT 
+		WHERE REPORT_TARGET_NO = MEMBER_NO) COUNT_REPORT,
+		(SELECT ARTIST_GROUP_TITLE FROM ARTIST_GROUP WHERE ARTIST_GROUP_ADMIN_NO = #{memberNo}) ARTIST_GROUP_TITLE 
+		FROM "MEMBER" M
+		JOIN ARTIST_SUBSCRIBE ASU 
+		USING (MEMBER_NO)
+		WHERE MEMBER_DEL_FL = 'N'
+		AND ARTIST_GROUP_NO = (SELECT ARTIST_GROUP_NO FROM ARTIST_GROUP WHERE ARTIST_GROUP_ADMIN_NO = #{memberNo})
+		
+		<choose>
+			<when test='key == "memberNo"'>
+				AND MEMBER_NO LIKE '%${query}%'
+			</when>
+			<when test='key == "memberEmail"'>
+				AND MEMBER_EMAIL LIKE '%${query}%'
+			</when>
+			<when test='key == "memberNickname"'>
+				AND MEMBER_NICKNAME LIKE '%${query}%'
+			</when>
+		</choose>
+		ORDER BY MEMBER_NO DESC
+	</select>
+	
+	
+	<select id="selectSubscribeBoard" resultType="Board">
+		SELECT  BOARD_CONTENT,
+		(SELECT ARTIST_GROUP_TITLE FROM ARTIST_GROUP AG WHERE B.ARTIST_GROUP_NO = AG.ARTIST_GROUP_NO) ARTIST_GROUP_TITLE, BOARD_ENROLL_DATE
+		FROM BOARD B
+		WHERE MEMBER_No = #{memberNo}
+		AND ARTIST_GROUP_NO = (SELECT ARTIST_GROUP_NO FROM ARTIST_GROUP WHERE ARTIST_GROUP_ADMIN_NO = #{memberNo})
+	</select>
+	
+	
+	<select id="subArtistTitle" resultType="string">
+		SELECT ARTIST_GROUP_TITLE FROM ARTIST_GROUP
+		WHERE ARTIST_GROUP_NO = (SELECT ARTIST_GROUP_NO FROM ARTIST_GROUP WHERE ARTIST_GROUP_ADMIN_NO = #{memberNo})
+	</select>
+	
+	
+	<insert id="artistGroupRegi" parameterType="ArtistGroup">
+		INSERT INTO ARTIST_GROUP
+		VALUES( SEQ_ARTIST_GROUP_NO.NEXTVAL, #{artistGroupAdminNo}, #{artistGroupTitle},
+			#{artistGroupProfile}, 'introduction', #{artistGroupImage}, #{artistGroupBackimg},null)
+	</insert>
+	
+	<select id="test" resultType="_int">
+		SELECT COUNT(*) FROM ARTIST_GROUP
+		WHERE ARTIST_GROUP_ADMIN_NO = #{adminNo}
+	</select>
+	
+	
+	<select id="artistGroupUpdate" resultType="ArtistGroup1">
+		SELECT ARTIST_GROUP_TITLE, ARTIST_GROUP_PROFILE, ARTIST_GROUP_IMAGE, ARTIST_GROUP_BACKIMG
+		FROM ARTIST_GROUP
+		WHERE ARTIST_GROUP_ADMIN_NO = #{memberNo}
+	</select>
+	
+	<update id="GroupUpdate">
+		UPDATE ARTIST_GROUP SET 
+		ARTIST_GROUP_TITLE = #{artistGroupTitle},
+		ARTIST_GROUP_PROFILE = #{artistGroupProfile},
+		ARTIST_GROUP_IMAGE = #{artistGroupImage},
+		ARTIST_GROUP_BACKIMG = #{artistGroupBackimg}
+		WHERE ARTIST_GROUP_ADMIN_NO = #{artistGroupAdminNo}
+	</update>
 	
 </mapper>

@@ -7,14 +7,14 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
 
 import com.TeamFiestar.Fiestar.board.model.dto.Board;
+//import com.TeamFiestar.Fiestar.member.model.dto.ArtistGroup;
+import com.TeamFiestar.Fiestar.member.model.dto.ArtistGroup1;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
 @Mapper
-public interface adminMapper {
+public interface AdminMapper {
 
 //	List<Member> selectMember();
-
-	List<Board> selectBoard(int memberNo);
 
 	int countList(Member member);
 
@@ -31,6 +31,35 @@ public interface adminMapper {
 	int countDeleteList(Map<String, Object> paramMap);
 
 	List<Member> searchDelete(RowBounds rowBounds, Map<String, Object> paramMap);
+
+	
+
+//	int restoration(int memberNo);
+
+	int countSubscribe(int artistGroupNo);
+	List<Member> subscribeMember(RowBounds rowBounds, int artistGroupNo);
+
+	
+	int countSearchSubscribe(Map<String, Object> map1);
+	List<Member> searchSubscribe(Map<String, Object> map1, RowBounds rowBounds);
+
+
+	List<Board> selectSubscribeBoard(Map<String, Object> map);
+
+	String subArtistTitle(int artistGroupNo);
+
+	int artistGroupRegi(ArtistGroup1 artistGroup);
+
+	int test(int adminNo);
+
+	ArtistGroup1 artistGroupUpdate(int memberNo);
+
+	int GroupUpdate(ArtistGroup1 artistGroup);
+
+
+
+	
+
 
 	
 

@@ -22,4 +22,5 @@ public class Message {
 	private int liveChattingRoomNo;
 	private String memberNickname;
 	private String memberProfile;
+
 }

@@ -3,7 +3,7 @@
     <div class="profile-img">
       <a href="/myPage/myPage-Modify">
         <img th:if="${session.loginMember.memberProfile == null}" th:src="#{user.default.image}" width="100%" height="100%">
-        <img th:unless="${session.loginMember.memberProfile == null}" th:src="${session.loginMember.memberProfile}" width="100%" height="100%" >
+        <img th:unless="${session.loginMember.memberProfile == null}" th:src="${session.loginMember.memberProfile}" width="100%" height="100%"  style="width: 80px; height: 80px; border-radius: 100%; object-fit:cover">
       </a>
     </div>
     <div class="profile-info">

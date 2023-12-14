@@ -27,9 +27,7 @@ const options = {
 
 // 데모는 URL 매개변수로 채널에 자동으로 참여할 수 있음
 $(() => {
-  if(authority == 1){
-    tokenGenerator('audience', 2);
-  }
+  tokenGenerator('audience', 2);
 });
 
 
@@ -222,6 +220,7 @@ const createChattingRoom = () => {
   .then(result =>{
     liveChattingRoomNo = result;
     console.log(result);
+    chattingJoin();
   })
   .catch(err => console.log(err));
 }
@@ -233,7 +232,7 @@ const selectLiveChattingRoom = () => {
   .then(result => {
     liveChattingRoomNo = result;
     console.log(result);
-    
+    chattingJoin();
   })
   .catch(err => console.log(err));
 
