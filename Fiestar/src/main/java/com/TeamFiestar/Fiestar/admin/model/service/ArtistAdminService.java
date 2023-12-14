@@ -17,19 +17,14 @@ public interface ArtistAdminService {
 
 	int artistNoticeAdd(String artistGroupTitle, ArtistNotice notice);
 
-<<<<<<< HEAD
-	List<Report> selectReportList(String artistGroupTitle, Report report, int cp);
-	
 	/**상품 등록
 	 * @param artistGroupTitle 
 	 * @param paramMap
 	 * @return
 	 */
 	int insertGoods(Product product,String artistGroupTitle, MultipartFile contentImg, MultipartFile thumbnailImg)throws IllegalStateException, IOException;
-=======
 	Map<String, Object> selectReportList(String artistGroupTitle, Report report, int cp);
 
 	Map<String, Object> selectPurchaseList(String artistGroupTitle, int cp);
->>>>>>> origin/main
 
 }

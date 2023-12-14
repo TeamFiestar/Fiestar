@@ -73,8 +73,6 @@
 		<if test="report.key == 5">AND REPORT_CONTENT LIKE '%${report.reportSearch}%'</if>
 	</select>
 	
-<<<<<<< HEAD
-	
 		<!--상품 등록-->
 	<insert id="insertGoods" parameterType="Product" useGeneratedKeys="true">
 		<selectKey order="BEFORE" resultType="_int" keyProperty="productNo">
@@ -95,7 +93,6 @@
 		#{productImageThumbnailRename})
 	</insert>
 	
-=======
 	<select id="orderListCount">
 		SELECT COUNT(*)
 		FROM PURCHASE P 
@@ -132,7 +129,6 @@
 				WHERE P.ARTIST_GROUP_NO = #{artistGroupNo}))
 		ORDER BY PURCHASE_DATE
 	</select>
->>>>>>> origin/main
 	
 </mapper>
 

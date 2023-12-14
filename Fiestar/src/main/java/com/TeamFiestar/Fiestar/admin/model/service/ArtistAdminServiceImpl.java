@@ -32,7 +32,6 @@ public class ArtistAdminServiceImpl implements ArtistAdminService{
 	
 	private final ArtistAdminMapper mapper;
 	
-<<<<<<< HEAD
 	@Value("${my.shop.location}")
 	private String folderPath;  //서버 저장 폴더 경로
 	
@@ -40,9 +39,7 @@ public class ArtistAdminServiceImpl implements ArtistAdminService{
 	private String webPath;  //웹 이미지 요청 경로
 	
 	
-=======
 	// 아티스트 공지사항 조회
->>>>>>> origin/main
 	@Override
 	public Map<String, Object> ArtistNoticeList(Map<String, Object> map, int cp) {
 	
@@ -96,16 +93,10 @@ public class ArtistAdminServiceImpl implements ArtistAdminService{
 		
 		int limit = pagination.getLimit();
 		
-<<<<<<< HEAD
 		RowBounds rowBounds = new RowBounds(offset, limit);
-		
-		/* Pagination */
-=======
-		RowBounds rowBounds = new RowBounds(offset, limit);   
 		/* Pagination */
 		
 		List<Report> reportList = mapper.selectReportList(map, rowBounds);
->>>>>>> origin/main
 		
 		map.put("reportList", reportList);
 		map.put("pagination", pagination);
