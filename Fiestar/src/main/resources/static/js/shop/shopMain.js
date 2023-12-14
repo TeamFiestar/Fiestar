@@ -22,12 +22,13 @@ function selectHigh(key){
   
   queryString = window.location.search;
   urlParams = new URLSearchParams(queryString);
-  const artistGroupNoValue = urlParams.get("artistGroupNo");
   const shopSearchValue = urlParams.get("shopSearch");
 
   for (let UP of urlParams.keys()) {
 
     if(UP == 'artistGroupNo'){
+
+      const artistGroupNoValue = urlParams.get("artistGroupNo");
 
       url = `/shop/home/groupSortList?artistGroupNo=${artistGroupNoValue}&key=${key}`;
 
@@ -40,38 +41,32 @@ function selectHigh(key){
       .then(productList => {
         for(let product of productList){
 
-          // 각 제품을 위한 div 엘리먼트를 생성
+          const productNo = product.productNo;
+
           const productDiv = document.createElement('div');
           productDiv.className = 'product-list';
 
-          // href 속성과 'product-profile' 클래스를 가진 anchor 엘리먼트를 생성
           const anchorElement = document.createElement('a');
-          anchorElement.href = '/shop/shopDetail';
+          anchorElement.href = '/shop/shopDetail/'+ productNo;
           anchorElement.className = 'product-profile';
 
-          // 제품 이미지 영역을 위한 div를 생성.
           const imageAreaDiv = document.createElement('div');
           imageAreaDiv.className = 'product-image-area';
-          imageAreaDiv.innerHTML = `<img src="${product.productImage}">`;
+          // imageAreaDiv.innerHTML = `<img src="${product.productImageThumbnail}">`;
 
-          // 제품 이름과 가격 영역을 위한 div를 생성
           const nameAreaDiv = document.createElement('div');
           nameAreaDiv.className = 'product-name-area';
 
-          // 제품 이름을 나타내는 div를 생성
           const nameDiv = document.createElement('div');
           nameDiv.className = 'product-name';
           nameDiv.innerText = product.productName;
 
-          // 줄 바꿈 엘리먼트를 생성
           const lineBreak = document.createElement('br');
 
-          // 제품 가격을 나타내는 div를 생성
           const priceDiv = document.createElement('div');
           priceDiv.className = 'product-price';
           priceDiv.innerText = product.productPrice;
 
-          // 생성한 엘리먼트들을 각각의 부모에 추가
           nameAreaDiv.appendChild(nameDiv);
           nameAreaDiv.appendChild(lineBreak);
           nameAreaDiv.appendChild(priceDiv);
@@ -81,7 +76,6 @@ function selectHigh(key){
 
           productDiv.appendChild(anchorElement);
 
-          // 제품 div를 제품 컨테이너에 추가
           productContainer.appendChild(productDiv);
           
         }
@@ -98,6 +92,8 @@ function selectHigh(key){
       .then(response =>  response.json())
       .then(productList => {
         for(let product of productList){
+          
+          const productNo = product.productNo;
 
           // 각 제품을 위한 div 엘리먼트를 생성
           const productDiv = document.createElement('div');
@@ -105,13 +101,13 @@ function selectHigh(key){
 
           // href 속성과 'product-profile' 클래스를 가진 anchor 엘리먼트를 생성
           const anchorElement = document.createElement('a');
-          anchorElement.href = '/shop/shopDetail';
+          anchorElement.href = '/shop/shopDetail/' + productNo ;
           anchorElement.className = 'product-profile';
 
           // 제품 이미지 영역을 위한 div를 생성.
           const imageAreaDiv = document.createElement('div');
           imageAreaDiv.className = 'product-image-area';
-          imageAreaDiv.innerHTML = `<img src="${product.productImage}">`;
+          // imageAreaDiv.innerHTML = `<img src="${product.productImage}">`;
 
           // 제품 이름과 가격 영역을 위한 div를 생성
           const nameAreaDiv = document.createElement('div');
@@ -148,20 +144,6 @@ function selectHigh(key){
     }
   }
 }
-
-
-  
-
-
-
-
-    
-
-
-
-    
-
-  
 
 
 

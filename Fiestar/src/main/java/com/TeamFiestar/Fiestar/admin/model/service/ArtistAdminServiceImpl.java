@@ -32,11 +32,19 @@ public class ArtistAdminServiceImpl implements ArtistAdminService{
 	
 	private final ArtistAdminMapper mapper;
 	
-	@Value("${my.shop.location}")
+	
+	@Value("${my.shopThumbnail.webpath}")
+	private String webPath;  //웹 이미지 요청 경로
+	@Value("${my.shopThumbnail.location}")
 	private String folderPath;  //서버 저장 폴더 경로
 	
-	@Value("${my.shop.webpath}")
-	private String webPath;  //웹 이미지 요청 경로
+	@Value("${my.shopContent.webpath}")
+	private String contentPath;  //웹 이미지 요청 경로
+	@Value("${my.shopContent.location}")
+	private String contentfolderPath;  //서버 저장 폴더 경로
+	
+	
+
 	
 	
 	// 아티스트 공지사항 조회
@@ -146,32 +154,31 @@ public class ArtistAdminServiceImpl implements ArtistAdminService{
 			return 0; 
 		}
 		
-		
-		//조회한 상품번호 시퀀스값 저장
 		int productNo = product.getProductNo();
 		
-		List<ProductImage> imageList = new ArrayList<>();
+	
 		
 		ProductImage img = new ProductImage();
 		
 		img.setProductNo(productNo); 
 		
 		
-		img.setProductImageContent(webPath);
+		img.setProductImageContent(contentPath);
 		img.setProductImageThumbnail(webPath);
 	
-		//변경된 파일명
+
 		img.setProductImageRename(Util.fileRename(contentImg.getOriginalFilename()));
 		img.setProductImageThumbnailRename(Util.fileRename(thumbnailImg.getOriginalFilename()));
 		
-		//실제 업로드된 파일을 img에 세팅
+		
 		img.setUploadFile(contentImg);
 		img.setUploadFile(thumbnailImg);
 		
 		result = mapper.insertImage(img);
 		
-		//업로드된 이미지를 서버(folderPath)에 저장
+		
 		img.getUploadFile().transferTo(new File(folderPath + img.getProductImageRename()));
+		img.getUploadFile().transferTo(new File(contentfolderPath + img.getProductImageThumbnailRename()));
 		
 		return productNo;
 	}

@@ -39,10 +39,10 @@
       </div>
       
 
-      <section class="artist-shop-product" >
+      <section class="artist-shop-product">
         <div class="product-area"> 
           <div class="product-area-detail">
-            <div class="product-list" th:each=" product: ${productList}" th:object="${product}">
+            <div class="product-list" th:each=" product:${productList}" th:object="${product}">
               <a th:href="@{/shop/shopDetail/{productNo}(productNo=*{productNo})}" class="product-profile">
                 <div class="product-image-area" th:text="*{productImage}"> 
                   <img src="/images/product1.jpg">
@@ -77,5 +77,6 @@
     const message = /*[[${message}]]*/ "message";
     if(message != null) alert(message);
    </script>
+
 </body>
-</html>
+</html><select name="" id="" disabled="disabled"></select>

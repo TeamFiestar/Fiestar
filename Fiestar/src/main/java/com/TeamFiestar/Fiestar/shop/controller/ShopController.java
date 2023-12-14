@@ -53,6 +53,7 @@ public class ShopController {
 			model.addAttribute("map",map);
 			int shopCount = service.shopSearchCount(paramMap);
 			model.addAttribute("shopCount", shopCount);
+			model.addAttribute("shopSearch",shopSearch);
 			
 		}
 		return "shop/home";

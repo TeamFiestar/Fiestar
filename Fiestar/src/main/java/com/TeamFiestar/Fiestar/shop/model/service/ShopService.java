@@ -1,10 +1,8 @@
 package com.TeamFiestar.Fiestar.shop.model.service;
 
-import java.io.IOException;
+
 import java.util.List;
 import java.util.Map;
-
-import org.springframework.web.multipart.MultipartFile;
 
 import com.TeamFiestar.Fiestar.shop.model.dto.Product;
 
