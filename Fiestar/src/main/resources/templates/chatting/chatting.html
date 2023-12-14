@@ -24,9 +24,10 @@
     </section> -->
     <th:block th:replace="~{common/artistPageNavi}">nav바</th:block>
     <main>
-      <div class="chatting-area">
-        <ul class="chat-ul">
-          <!-- <li class="chat-list">
+      <div class="main-div">
+        <div class="chatting-area">
+          <ul class="chat-ul">
+            <!-- <li class="chat-list">
             <img src="/images/user.png" class="list-profile" />
             <div>
               <b>연예인</b>
@@ -54,21 +55,22 @@
               안녕하세요 뭐하고 지내셨어요 저는 오늘 맛있는 치킨을 먹었어요!
             </p>
           </li> -->
-        </ul>
-        <div class="input-area">
-          <textarea id="inputChat" row="4"></textarea>
-          <button id="send">전송</button>
-        </div>
-      </div>
-      <div class="chatList">
-        <div class="artirstImg">
-          <img src="/images/newJeans.jpg" id="artistImg" />
-        </div>
-        <div class="userList">
-          <div class="userTitle">유저 닉네임</div>
-          <ul class="user-list">
-            <!-- <li class="userName" th:text="${loginMember.memberNickname}">유저이름</li> -->
           </ul>
+          <div class="input-area">
+            <textarea id="inputChat" row="4"></textarea>
+            <button id="send">전송</button>
+          </div>
+        </div>
+        <div class="chatList">
+          <div class="artirstImg">
+            <img src="/images/newJeans.jpg" id="artistImg" />
+          </div>
+          <div class="userList">
+            <div class="userTitle">유저 닉네임</div>
+            <ul class="user-list">
+              <!-- <li class="userName" th:text="${loginMember.memberNickname}">유저이름</li> -->
+            </ul>
+          </div>
         </div>
       </div>
     </main>
@@ -77,15 +79,12 @@
 
     <script th:inline="javascript">
       const loginMember = /*[[${session.loginMember}]]*/ "로그인 회원";
-      const loginMemberNo =
-        /*[[${session.loginMember?.memberNo}]]*/ "로그인회원번호";
-      const memberNickname =
-        /*[[${session.loginMember?.memberNickname}]]*/ "닉네임";
+      const loginMemberNo = /*[[${session.loginMember?.memberNo}]]*/ "로그인회원번호";
+      const memberNickname = /*[[${session.loginMember?.memberNickname}]]*/ "닉네임";
       const authority = /*[[${session.loginMember?.memberAuthority}]]*/ "권한";
       const userDefaultImage = /*[[#{user.default.image}]]*/ "기본 이미지";
       const artistGroupNo = /*[[${artistGroupNo}]]*/ "그룹번호";
-      const memberProfile =
-        /*[[${session.loginMember?.memberProfile}]]*/ "로그인 회원 프로필";
+      const memberProfile = /*[[${session.loginMember?.memberProfile}]]*/ "로그인 회원 프로필";
     </script>
 
     <script src="/js/chatting/chatting.js"></script>
