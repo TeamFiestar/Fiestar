@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.TeamFiestar.Fiestar.main.model.mapper.MainMapper">
+	
+	<select id="main" resultType="ArtistGroup1">
+		SELECT ARTIST_GROUP_TITLE , ARTIST_GROUP_PROFILE , ARTIST_GROUP_IMAGE , ARTIST_GROUP_BACKIMG
+		FROM ARTIST_GROUP
+		ORDER BY ARTIST_GROUP_TITLE
+	</select>
+	
+	<select id="subscribeMain" resultType="ArtistGroup1">
+		SELECT ARTIST_GROUP_TITLE , ARTIST_GROUP_PROFILE , ARTIST_GROUP_IMAGE , ARTIST_GROUP_BACKIMG
+		FROM ARTIST_GROUP
+		JOIN ARTIST_SUBSCRIBE as2 
+		USING (ARTIST_GROUP_NO)
+		WHERE MEMBER_NO = #{memberNo}
+	</select>
+
+</mapper>

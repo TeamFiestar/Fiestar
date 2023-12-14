@@ -31,13 +31,13 @@ public interface MyPageService {
 	// 프로필 이미지 변경
 	int profile(MultipartFile memberProfile, Member loginMember) throws IllegalStateException, IOException;
 
-	// 프로필 배경 이미지 변경
-	int backImg(MultipartFile memberBackImage, Member loginMember) throws IllegalStateException, IOException;
-
 	// 댓글 삭제
 	int delComment(int memberNo, int commentNo, String commentType);
 
-	int info(Member updateMember, String[] memberAddress);
+
+	int info(Member updateMember, String[] memberAddress, MultipartFile memberBackImage, Member loginMember)
+			throws IllegalStateException, IOException;
+
 
 
 

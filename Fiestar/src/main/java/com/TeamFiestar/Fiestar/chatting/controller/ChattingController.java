@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.TeamFiestar.Fiestar.admin.model.mapper.ArtistAdminMapper;
 import com.TeamFiestar.Fiestar.chatting.model.dto.ChattingRoom;
 import com.TeamFiestar.Fiestar.chatting.model.service.ChatService;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
@@ -28,6 +29,7 @@ import oracle.jdbc.proxy.annotation.Post;
 public class ChattingController {
 	
 	private final ChatService service;
+	private final ArtistAdminMapper artistAdminMapper;
 
 //	@GetMapping("chat")
 //	public String chat(@SessionAttribute("loginMember") Member loginMember, Model model) {
@@ -35,9 +37,11 @@ public class ChattingController {
 //		return "chatting/chatting";
 //	}
 	
-	@GetMapping("chatting/{artistGroupNo:[0-9]+}")
-	public String chatting(@PathVariable("artistGroupNo") int artistGroupNo, 
+	@GetMapping("chatting/{artistGroupTitle}")
+	public String chatting(@PathVariable("artistGroupTitle") String artistGroupTitle, 
 			@SessionAttribute("loginMember") Member loginMember, Model model) {
+		
+		int artistGroupNo = artistAdminMapper.selectArtistGroupNo(artistGroupTitle);
 
 //		List<String> userList = new ArrayList<>();
 //		userList.add(loginMember.getMemberNickname());

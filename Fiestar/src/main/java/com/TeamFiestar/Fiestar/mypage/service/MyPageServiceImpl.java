@@ -156,18 +156,6 @@ public class MyPageServiceImpl implements MyPageService {
 
 	}
 
-	// 댓글 삭제
-	@Override
-	public int delComment(int memberNo, int commentNo, String commentType) {
-
-		Map<String, Object> map = new HashMap<>();
-		map.put("memberNo", memberNo);
-		map.put("commentNo", commentNo);
-		map.put("commentType", commentType);
-
-		return mapper.delComment(map);
-	}
-
 	// 프로필 이미지 변경
 	@Override
 	public int profile(MultipartFile memberProfile, Member loginMember) throws IllegalStateException, IOException {
@@ -196,49 +184,57 @@ public class MyPageServiceImpl implements MyPageService {
 		return result;
 	}
 
-	// 프로필 배경 이미지 변경
+	// 프로필 수정
 	@Override
-	public int backImg(MultipartFile memberBackImage, Member loginMember) throws IllegalStateException, IOException {
+	public int info(Member updateMember, String[] memberAddress, MultipartFile memberBackImage, Member loginMember) 
+			throws IllegalStateException, IOException {
 
-		String backup = loginMember.getMemberBackImage();
-
+		// 프로필 배경 이미지
 		String rename = null;
-
-		if (memberBackImage.getSize() > 0) {
+		
+		String backup = loginMember.getMemberBackImage();
+		
+		if(memberBackImage.getSize() > 0) {
 			rename = Util.fileRename(memberBackImage.getOriginalFilename());
 			loginMember.setMemberBackImage(webpath + rename);
-		} else {
-			loginMember.setMemberBackImage(backup);
 		}
-
-		int result = mapper.backImg(loginMember);
-
+		
+		// 프로필 주소
+		if (updateMember.getMemberAddress().equals(",,")) {
+			updateMember.setMemberAddress(null);
+		} else { 
+			String address = String.join("^^^", memberAddress);
+			updateMember.setMemberAddress(address);
+		}
+		
+		int result = mapper.info(updateMember ,loginMember);
+		
 		if (result > 0) {
 			if (memberBackImage.getSize() > 0) {
 				memberBackImage.transferTo(new File(folderPath + rename));
 			} else {
-				loginMember.setMemberBackImage(backup);
+				loginMember.setMemberProfile(backup);
 			}
 		}
-
+		
 		return result;
 	}
+	
 
-	// 댓글 삭제
 	@Override
-	public int info(Member updateMember, String[] memberAddress) {
+	public int delComment(int memberNo, int commentNo, String commentType) {
 
-		if (updateMember.getMemberAddress().equals(",,")) {
-			updateMember.setMemberAddress(null); // null로 변환
+		Map<String, Object> map = new HashMap<>();
+		map.put("commentNo", commentNo);
+		map.put("memberNo", memberNo);
+		map.put("commentType", commentType);
 
-		} else { // 주소를 입력한 경우
-			// 배열 -> 문자열로 합쳐서 inputMember에 추가
-			String address = String.join("^^^", memberAddress);
-			updateMember.setMemberAddress(address);
+		// 미디어 댓글 삭제
+		if (commentType == "MEDIA") {
+			return mapper.deleteMediaComment(map);
+		} else {
+			return mapper.deleteBoardComment(map);
 		}
-
-		// mapper 호출 후 결과 반환
-		return mapper.info(updateMember);
 
 	}
 

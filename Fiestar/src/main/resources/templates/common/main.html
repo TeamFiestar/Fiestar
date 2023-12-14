@@ -12,19 +12,24 @@
   <body>
     <th:block th:replace="~{common/artistPageHeader}"></th:block>
 
-    <main style="aspect-ratio: auto 531/299">
+    <main style="aspect-ratio: auto 531/299" th:with="artistGroupList=${map.artistGroupList}">
       <div class="wallpaper">
         <img src="/images/wallpaper.png" width="100%" height="300px" />
       </div>
 
       <section class="homeMain">
-        <div class="myArtist-area">
+        <div
+          class="myArtist-area"
+          th:if="${session.loginMember != null}"
+          ,
+          th:with="subscribeGroupList=${mapLogin.subscribeGroupList}"
+        >
           <h1 class="home-title">내가 구독한 아티스트</h1>
           <div class="myArtist-area-detail">
-            <div class="artist-list">
-              <a href="/BTS/feed" class="artist-profile">
+            <div class="artist-list" th:each="artistGroup : ${subscribeGroupList}" th:object="${artistGroup}">
+              <a th:href="@{/{artistGroupTitle}/feed(artistGroupTitle=*{artistGroupTitle})}" class="artist-profile">
                 <div class="artist-image-area">
-                  <img src="/images/newJeans.jpg" />
+                  <img th:src="|*{artistGroupImage}|" />
                 </div>
                 <div class="artist-logo-wrap">
                   <span class="artist-logo-area">
@@ -32,100 +37,10 @@
                   </span>
                 </div>
                 <div class="artist-text-area">
-                  <div class="artist-name">NewJeans</div>
+                  <div class="artist-name" th:text="*{artistGroupTitle}">NewJeans</div>
                   <br />
                   <img class="artist-community" src="/images/community.png" onclick="{location.href='#';}" />
                   <img class="artist-shop" src="/images/shop.png" onclick="{location.href='#';}" />
-                </div>
-              </a>
-            </div>
-            <div class="artist-list">
-              <a href="#" class="artist-profile">
-                <div class="artist-image-area">
-                  <img src="/images/newJeans.jpg" />
-                </div>
-                <div class="artist-logo-wrap">
-                  <span class="artist-logo-area">
-                    <img src="/images/newJeans_logo.jpg" class="artist-main-logo" />
-                  </span>
-                </div>
-                <div class="artist-text-area">
-                  <div class="artist-name">NewJeans</div>
-                  <br />
-                  <img class="artist-community" src="/images/community.png" />
-                  <img class="artist-shop" src="/images/shop.png" />
-                </div>
-              </a>
-            </div>
-            <div class="artist-list">
-              <a href="#" class="artist-profile">
-                <div class="artist-image-area">
-                  <img src="/images/newJeans.jpg" />
-                </div>
-                <div class="artist-logo-wrap">
-                  <span class="artist-logo-area">
-                    <img src="/images/newJeans_logo.jpg" class="artist-main-logo" />
-                  </span>
-                </div>
-                <div class="artist-text-area">
-                  <div class="artist-name">NewJeans</div>
-                  <br />
-                  <img class="artist-community" src="/images/community.png" />
-                  <img class="artist-shop" src="/images/shop.png" />
-                </div>
-              </a>
-            </div>
-            <div class="artist-list">
-              <a href="#" class="artist-profile">
-                <div class="artist-image-area">
-                  <img src="/images/newJeans.jpg" />
-                </div>
-                <div class="artist-logo-wrap">
-                  <span class="artist-logo-area">
-                    <img src="/images/newJeans_logo.jpg" class="artist-main-logo" />
-                  </span>
-                </div>
-                <div class="artist-text-area">
-                  <div class="artist-name">NewJeans</div>
-                  <br />
-                  <img class="artist-community" src="/images/community.png" />
-                  <img class="artist-shop" src="/images/shop.png" />
-                </div>
-              </a>
-            </div>
-            <div class="artist-list">
-              <a href="#" class="artist-profile">
-                <div class="artist-image-area">
-                  <img src="/images/newJeans.jpg" />
-                </div>
-                <div class="artist-logo-wrap">
-                  <span class="artist-logo-area">
-                    <img src="/images/newJeans_logo.jpg" class="artist-main-logo" />
-                  </span>
-                </div>
-                <div class="artist-text-area">
-                  <div class="artist-name">NewJeans</div>
-                  <br />
-                  <img class="artist-community" src="/images/community.png" />
-                  <img class="artist-shop" src="/images/shop.png" />
-                </div>
-              </a>
-            </div>
-            <div class="artist-list">
-              <a href="#" class="artist-profile">
-                <div class="artist-image-area">
-                  <img src="/images/newJeans.jpg" />
-                </div>
-                <div class="artist-logo-wrap">
-                  <span class="artist-logo-area">
-                    <img src="/images/newJeans_logo.jpg" class="artist-main-logo" />
-                  </span>
-                </div>
-                <div class="artist-text-area">
-                  <div class="artist-name">NewJeans</div>
-                  <br />
-                  <img class="artist-community" src="/images/community.png" />
-                  <img class="artist-shop" src="/images/shop.png" />
                 </div>
               </a>
             </div>
@@ -135,18 +50,18 @@
         <div class="myArtist-area">
           <h1 class="home-title">다른 아티스트를 만나보세요!</h1>
           <div class="myArtist-area-detail">
-            <div class="artist-list">
+            <div class="artist-list" th:each="artistGroup : ${artistGroupList}" th:object="${artistGroup}">
               <a href="#" class="artist-profile">
                 <div class="artist-image-area">
-                  <img src="/images/newJeans.jpg" />
+                  <img th:src="|*{artistGroupImage}|" />
                 </div>
                 <div class="artist-logo-wrap">
                   <span class="artist-logo-area">
-                    <img src="/images/newJeans_logo.jpg" class="artist-main-logo" />
+                    <img th:src="|*{artistGroupProfile}|" class="artist-main-logo" />
                   </span>
                 </div>
                 <div class="artist-text-area">
-                  <div class="artist-name">NewJeans</div>
+                  <div class="artist-name" th:text="*{artistGroupTitle}">NewJeans</div>
                   <br />
                   <img class="artist-shop" src="/images/shop.png" />
                 </div>
