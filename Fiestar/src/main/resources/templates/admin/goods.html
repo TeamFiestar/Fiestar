@@ -14,10 +14,14 @@
       <div class="goods-add">
         <h1>굿즈 등록</h1>
         <br />
-        <form action="/admin/goods" method="post" enctype="multipart/form-data">
+        <form th:action="|/artistAdmin/${artistGroupTitle}/goods|" method="post" enctype="multipart/form-data">
           <div class="goods-title">
             상품명
-            <input type="text" id="input-goodsTitle" name="goodsTitle"/>
+            <input type="text" id="input-goodsTitle" name="productName"/>
+          </div>
+          <div class="goods-title">
+            상품가격 <br>
+            <input type="text" id="input-goodsPrice" name="productPrice"/>
           </div>
           <div class="goods-option">
             상품 옵션
@@ -33,24 +37,25 @@
           <div class="goods-content">
             상품 설명
             <br />
-            <textarea class="input-goodsContent" name="shopContent"></textarea>
+            <textarea class="input-goodsContent" name="productProduction"></textarea>
             상품 설명 이미지
+            <br/>
             <div class="goodsImg">
               <label for="img1">
                 <img src="#" class="goods-contentImg" />
               </label>
-              <input type="file" name="shopImg" id="img1" accept="image/*" class="input-goodsImg" />
+              <input type="file" name="contentImg" id="img1" accept="image/*" class="input-goodsImg" />
               <span class="delete-image">&times;</span>
             </div>
           </div>
           <div class="goods-thumnail">
-            굿즈 썸네일
+            상품 썸네일
             <br />
             <div class="goodsImg">
               <label for="img2">
                 <img src="#" class="thumnail" />
               </label>
-              <input type="file" name="shopImg" id="img2" accept="image/*" class="input-goodsImg" />
+              <input type="file" name="thumbnailImg" id="img2" accept="image/*" class="input-goodsImg" />
               <span class="delete-image">&times;</span>
             </div>
           </div>
@@ -63,13 +68,9 @@
     <script src="/js/admin/goods.js"></script>
     
     <script th:inline = "javascript">
-      //const testMember = /*[[${testMember}]]*/"테스트 멤버 입니다.";
-     //console.log(testMember.memberNo);
-  
-     //RedirctAttributes를 통해 전달된 message출력
-     const message = /*[[${message}]]*/ "전달받은 message";
-      //             message가 없다면 null
-      if(message != null) alert(message);
-  </script>
+     const message = /*[[${message}]]*/ "message";
+     if(message != null) alert(message);
+    </script>
+
   </body>
 </html>
