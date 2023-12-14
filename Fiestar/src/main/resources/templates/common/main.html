@@ -27,22 +27,26 @@
           <h1 class="home-title">내가 구독한 아티스트</h1>
           <div class="myArtist-area-detail">
             <div class="artist-list" th:each="artistGroup : ${subscribeGroupList}" th:object="${artistGroup}">
-              <a th:href="@{/{artistGroupTitle}/feed(artistGroupTitle=*{artistGroupTitle})}" class="artist-profile">
+              <div class="artist-profile">
                 <div class="artist-image-area">
-                  <img th:src="|*{artistGroupImage}|" />
+                  <a th:href="@{/{artistGroupTitle}/feed(artistGroupTitle=*{artistGroupTitle})}">
+                    <img th:src="|*{artistGroupImage}|" />
+                  </a>
                 </div>
                 <div class="artist-logo-wrap">
                   <span class="artist-logo-area">
-                    <img src="/images/newJeans_logo.jpg" class="artist-main-logo" />
+                    <img th:src="|*{artistGroupProfile}|" class="artist-main-logo" />
                   </span>
                 </div>
                 <div class="artist-text-area">
                   <div class="artist-name" th:text="*{artistGroupTitle}">NewJeans</div>
                   <br />
                   <img class="artist-community" src="/images/community.png" onclick="{location.href='#';}" />
-                  <img class="artist-shop" src="/images/shop.png" onclick="{location.href='#';}" />
+                  <a th:href="|/shop/home/${artistGroup.artistGroupTitle}?artistGroupNo=${artistGroup.artistGroupNo}|">
+                    <img class="artist-shop" src="/images/shop.png" />
+                  </a>
                 </div>
-              </a>
+              </div>
             </div>
           </div>
         </div>
@@ -63,7 +67,7 @@
                 <div class="artist-text-area">
                   <div class="artist-name" th:text="*{artistGroupTitle}">NewJeans</div>
                   <br />
-                  <img class="artist-shop" src="/images/shop.png" />
+                  <img class="artist-shop" src="/images/shop.png" onclick="{location.href='/shop/home';}" />
                 </div>
               </a>
             </div>
@@ -74,6 +78,11 @@
 
     <th:block th:replace="~{common/footer}"></th:block>
 
+    <!-- <script>
+      function move(){
+        location.href = "/shop/home/" + ${artistGroup.artistGroupTitle} + "?artistGroupNo=" + ${artistGroup.artistGroupNo}
+      }
+    </script> -->
     <script src="https://kit.fontawesome.com/f7459b8054.js" crossorigin="anonymous"></script>
   </body>
 </html>
