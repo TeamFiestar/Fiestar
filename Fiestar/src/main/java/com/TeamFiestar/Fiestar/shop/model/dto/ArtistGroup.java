@@ -14,5 +14,11 @@ public class ArtistGroup {
 	private String artistGroupTitle;
 	private String artistGroupProfile;
 	private String artistGroupIntroduce;
-
+	private String artistGroupImage;
+	private String artistGroupBackimg;
+	private String artistGroupLogo;
+	
+	private String artistName;
+	private String artistProductionProfile;
+	
 }

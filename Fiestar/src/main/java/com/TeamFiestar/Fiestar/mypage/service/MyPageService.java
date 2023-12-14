@@ -35,8 +35,6 @@ public interface MyPageService {
 	int delComment(int memberNo, int commentNo, String commentType);
 
 
-	int info(Member updateMember, String[] memberAddress, MultipartFile memberBackImage, Member loginMember)
-			throws IllegalStateException, IOException;
 
 
 

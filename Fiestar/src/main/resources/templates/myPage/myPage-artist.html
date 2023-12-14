@@ -37,21 +37,19 @@
           <div class="no-content" th:if="${#lists.size(artistList) == 0}">
             <span> 구독한 아티스트가 없습니다. </span>
           </div>
-
+          
 
           <th:block th:unless="${#lists.size(artistList) == 0}">
-            <div class="artist-all" th:each="ArtistSubscribe : ${artistList}" th:object="${ArtistSubscribe}">
-              <div>
-                <ul>
-                  <li>
+            <div class="artist-all">
+              <div th:each="ArtistSubscribe : ${artistList}" th:object="${ArtistSubscribe}">
                     <div class="artist-list">
                       <a href="/artistprofile/profile" class="artist-profile">
                         <div class="artist-image-area">
-                          <img src="./image/에스파.jpeg">
+                          <img th:src="*{artistGroupImage}">
                         </div>
                         <div class="artist-logo-wrap">
                           <span class="artist-logo-area">
-                            <img th:src="*{artistProfile}" class="artist-main-logo">
+                            <img th:src="*{artistGroupProfile}" class="artist-main-logo">
                           </span>
                         </div>
                         <div class="artist-text-area">
@@ -59,8 +57,6 @@
                         </div>
                       </a>
                     </div>
-                  </li>
-                </ul>
               </div>
             </div>
           </th:block>

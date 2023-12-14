@@ -71,25 +71,15 @@ ul, li{
   width: 750px;
   height: 430px;
   margin: 0 auto;
+  flex-direction: row;
 }
 
-
-.artist-top{
-  width: 750px;
-  height: 250px;
-  display: flex;
-}
-
-.artist-bottom{
-  width: 750px;
-  height: 250px;
-  display: flex;
-}
 
 .artist-list {
   width: 155px;
   height: 190px;
   border-radius: 14px;
+  margin-top: 20px;
 }
 
 .artist-all ul{

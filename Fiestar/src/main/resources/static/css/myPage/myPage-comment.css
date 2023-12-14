@@ -149,15 +149,14 @@ li {
   margin-top: 5px;
   display: flex;
   padding-bottom: 30px;
+  width: 750px;
 }
 
-.commentDate {
-  width: 90px;
-  height: 20px;
-}
+
 
 .commentDate h5 {
-  color: rgb(94, 94, 94)
+  color: rgb(94, 94, 94);
+  width: 250px;
 }
 
 .commentDelete {
@@ -172,7 +171,7 @@ li {
   color: white;
   cursor: pointer;
   transition: background-color 0.3s  ease;
-  margin-left: 550px;
+  margin-left: 400px;
 }
 
 .commentDelete button:hover {

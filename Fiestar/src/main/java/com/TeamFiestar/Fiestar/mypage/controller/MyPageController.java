@@ -181,33 +181,7 @@ public class MyPageController {
 		return "redirect:myPage-Modify";
 	}
 
-	// 프로필 정보 수정
-	@PostMapping("info")
-	public String info(@RequestParam("memberAddress") String[] memberAddress,
-			@RequestParam("memberBackImage") MultipartFile memberBackImage,
-			@SessionAttribute("loginMember") Member loginMember, 
-			@ModelAttribute Member updateMember,
-			RedirectAttributes ra) throws IllegalStateException, IOException{
-		
-		updateMember.setMemberNo( loginMember.getMemberNo() );
-		
-		int result = service.info(updateMember, memberAddress, memberBackImage, loginMember);
-		
-		String message = null;
-		
-		if (result > 0) {
-			message = "프로필 정보가 변경되었습니다.";
-			
-		} else {
-			message = "프로필 정보 변경을 실패했습니다.";
-		}
 
-		ra.addFlashAttribute("message", message);
-
-		return "redirect:myPage-Modify";
-		
-	}
-	
 	
 	
 }
