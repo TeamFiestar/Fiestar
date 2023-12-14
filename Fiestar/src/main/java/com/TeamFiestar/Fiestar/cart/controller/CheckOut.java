@@ -83,6 +83,43 @@ public class CheckOut {
 	        return "cart/checkout"; // 결제 화면 페이지 뷰 이름
 	    }
 	    
-	  
+	    
+	    
+	    
+	    // ---------------------------------------------------------------------------------------------
+	    
+
+		@PostMapping("checkoutResult")
+		public String checkoutResult() {
+			
+		// 결제 페이지에서 넘겨주는 정보 받아오기
+			
+//			장바구니 번호로 연결 -> 
+//			구매자 이름, 전화번호, 주소 
+			
+			return "cart/checkout-result";
+		}
+		
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
 	    
 }

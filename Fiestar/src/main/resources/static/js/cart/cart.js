@@ -140,11 +140,11 @@ for(let i=0; i<plusList.length; i++) {
       let itemCount = e.target.previousElementSibling;
       itemCount.innerText = Number(itemCount.innerText) + 1;  // 변경된 값
       
-      if(itemCount.innerText > 5) {
-         itemCount.innerText = 5;
-         alert("1인당 최대 5개까지 구매 가능합니다.")
+      if(itemCount.innerText > 10) {
+         itemCount.innerText = 10;
+         alert("1인당 최대 10개까지 구매 가능합니다.")
       }
-      
+
       clacPrice(e.target);
       checkedPrice();
       let eachPrice = e.target.parentElement.nextElementSibling.innerText;

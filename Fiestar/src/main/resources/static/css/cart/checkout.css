@@ -68,12 +68,9 @@ hr {
 }
 
 .totalQuantityNprice{
-   margin: 10px;
+   /* width: auto; */
+   margin: 10px 0 0 18px;
    display: flex;
-}
-
-.totalProduct-price{
-   margin-left: 900px;
 }
 
 .select-all{
@@ -212,7 +209,7 @@ hr {
 }
 
 .order-list > .order-name{
-   font-size: 22px;
+   font-size: 20px;
    font-weight: 700;
 }
 
@@ -313,7 +310,10 @@ hr {
    margin: 38px 0 0 0; 
 }
 
-
+.detail-price{
+   font-size: 20px;
+   font-weight: bold;
+}
 
 .name-btn{
    margin: 0 0 0 12px;
@@ -374,27 +374,21 @@ hr {
 }
 
 .price-detail{
-   margin: 50px 0 0px 0;
-  
+   
    position: relative;
-   /* margin: 100px 0 0 16px; */
+   margin: 80px 0 0 16px;
 }
 
-
-
 .detail{
-
+   width: auto;
    font-size: 16px;
    top: 70px;
    position: absolute;
 }
 
-
-.price-detail > span{
+/* .price-detail > span{
    right:0;
    /* margin-left: 1016px; */
-}
-
 
 
 .item-list>img{
@@ -404,9 +398,15 @@ hr {
    object-fit: cover;
 }
 
+.total-price1{
+   margin-left: 850px;
+   width: auto;
+}
 
 .total{
-   margin-top: 140px;
+   height: 80px;
+   width: auto;
+   margin-top: 120px;
    background-color: rgb(255, 254, 237);
    padding: 20px;
    display: flex;
@@ -414,12 +414,13 @@ hr {
    /* justify-content: space-between; */
    align-items: center;
    font-weight: 700;
-   font-size: 20px;
+   font-size: 22px;
    border-bottom: solid rgb(217, 217, 217) 1px;
+   letter-spacing: -1.6px;
 }
 
 .purchasePrice {
-   margin-left: 900px;
+   margin-left: 600px;
 }
 
 
@@ -434,7 +435,9 @@ hr {
    letter-spacing: -1.2px;
 }
 
-
+.total-price{
+   font-size: 22px;
+}
 
 .sc-e98633bc-7 {
       background: rgb(255, 254, 237);
@@ -505,7 +508,9 @@ border-radius: 4px;
    margin-top: 10px;
 }
 
-.cash > 
+.cash {
+   margin-top: 20px;
+}
 
 .kakaopay{
    height: 22px;
@@ -553,10 +558,9 @@ border-radius: 4px;
    display: none;
 }
 
-.totalProduct-price{
-   margin-left: 1014px;
-}
+.aass {
 
-.totalItemPrice {
-   margin-left: 1014px;
+   font-weight: bold;
+   font-size: 20px;
+
 }

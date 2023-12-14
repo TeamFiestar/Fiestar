@@ -104,7 +104,7 @@
                
                
                <!-- <span class="check-price">총 상품 가격()</span> -->
-               <div class="totalItemPrice">                     
+               <div class="total-price1">                     
                   총 상품 가격 $ <span th:text="${totalPrice}"> </span>
                </div> 
                
@@ -133,11 +133,12 @@
 
                   <div style="margin-top: 44px;">주문자 이름</div>
                   
-                  <label class="name-input">
+                  <label class="orderer-input">
+
                      <!-- <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;" th:value="${session.loginMember.memberNickname}" name="memberName"> -->
                       <!-- <div th:text="${session.loginMember.memberAddress}" class="default-price"></div> -->
                       <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;"
-                       name="order-name" th:value="${session.loginMember.memberNickname}" id="nameInput">
+                       name="orderer-name" th:value="${session.loginMember.memberNickname}" id="nameInput">
                
                      <!-- <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;"> -->
                   </label>
@@ -149,9 +150,11 @@
 
                      <div>
 
-                        <label class="phonenumber-input">
-                           <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;" maxlength="14" >
+                        <label class="orderer-phoneNumber">
+                           <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;" maxlength="14"
+                           name="orderer-phoneNumber" >
                         </label>
+
                      </div>
                   </div>
 
@@ -159,27 +162,11 @@
 
             </div>
 
-            <!-- <div class="name-input-area">
-                     </div>
-                        
-               </div> -->
-
-            
-
 
             <!-- 주소 API  -->
 
 
             <div class="shipping-list">
-               <!-- <span th:text="${checkoutItem.memberAddress}" class="default-price"></span> -->
-               <!-- <span class="shipping-name" style="font-weight: bold;">배송지</span> -->
-
-
-               <!-- <button class="shipping-btn">변경</button> -->
-
-
-
-
 
 
                <div class="shipping-input">
@@ -192,15 +179,18 @@
                      <div class="address-input">
                         
                            
-                        </div>
-                        <label for="">
+                     </div>
+
+                        <label for="orderer-address">
    
                            <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;" th:value="${session.loginMember.memberAddress}" 
-                           name="memberAddress" id="sample6_address">
+                           name="orderer-address1" id="sample6_address">
 
                         </label>
-                     </div>
+
                   </div>
+                  
+               </div>
 
                   <div class="address-detail">
 
@@ -209,10 +199,10 @@
 
                      <div class="input-detail">
 
-                        <label for="">
+                        <label for="orderer-address2">
 
                            <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" 
-                           style="padding-left: 8px;" name="memberAddress" id="sample6_detailAddress">
+                           style="padding-left: 8px;" name="orderer-address2" id="sample6_detailAddress">
                            
                         </label>
 
@@ -222,10 +212,10 @@
 
                      <div class="input-detail">
 
-                        <label for="">
+                        <label for="orderer-address3">
 
                            <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" 
-                           style="padding-left: 8px;" name="memberAddress" id="sample6_postcode">
+                           style="padding-left: 8px;" name="orderer-address3" id="sample6_postcode">
                            
                         </label>
 
@@ -251,13 +241,13 @@
                   <div style="margin-bottom: 20px;">
 
                      <span class="product-price" style="font-size: 16px;">상품 가격 </span>
-                     <span th:text="${totalPrice}" class="totalProduct-price"></span>
+                     <span th:text="${totalPrice}" class="totalProduct-price" style="margin-left: 927px;"></span>
                      
                   </div>
                   
                   <div>
                      <span>배송비</span>
-                     <span style="margin-left: 984px;">2500</span>
+                     <span style="margin-left: 955px;">2500</span>
                   </div>
 
                </div>
@@ -266,25 +256,11 @@
             </div>
 
 
-
-
-
             <!-- 총 상품 가격 -->
-
-
-
-
-            <!-- 상품 수량 + & -  -->
-
-            <!-- 개별 상품 취소 -->
-
-
-
-
 
             <div class="total">
                
-               <div class="total-price" style="letter-spacing: -1.6px;">총 결제 금액</div>
+               <span class="total-price" style="letter-spacing: -1.6px;">총 결제 금액</span>
 
                <p> <span th:text="${purchasePrice}" class="purchasePrice"></span> </p>
 
@@ -293,7 +269,7 @@
 
             <!-- 결제 수단 -->
             <div class="payment-method">
-               <span class="ass" style="font-weight: bold;">결제 수단</span>
+               <span class="aass">결제 수단</span>
 
                <div class="cash">
                   <input type="radio">
