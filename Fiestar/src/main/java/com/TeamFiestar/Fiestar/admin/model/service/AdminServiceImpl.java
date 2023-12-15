@@ -336,6 +336,7 @@ public class AdminServiceImpl implements AdminService{
 		return mapper.siteNoticeAdd(notice);
 	}
 	
+	// 공자사항 리스트 조회
 	@Override
 	public Map<String, Object> siteNoticeList(SiteNotice notice, int cp) {
 		
@@ -354,7 +355,7 @@ public class AdminServiceImpl implements AdminService{
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		/* Pagination */
 
-		List<ArtistNotice> noticeList = mapper.selectNoticeList(map, rowBounds);
+		List<SiteNotice> noticeList = mapper.selectNoticeList(notice, rowBounds);
 		
 		map.put("noticeList", noticeList);
 		map.put("pagination", pagination);

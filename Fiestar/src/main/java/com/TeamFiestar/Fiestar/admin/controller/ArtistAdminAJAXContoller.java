@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.TeamFiestar.Fiestar.admin.model.dto.ArtistNotice;
 import com.TeamFiestar.Fiestar.admin.model.dto.Purchase;
+import com.TeamFiestar.Fiestar.admin.model.dto.Report;
 import com.TeamFiestar.Fiestar.admin.model.service.ArtistAdminAJAXService;
+import com.TeamFiestar.Fiestar.board.model.dto.Board;
 
 import lombok.RequiredArgsConstructor;
 
@@ -64,6 +66,8 @@ public class ArtistAdminAJAXContoller {
 		
 		return purchase;
 	}
+	
+	
 	
 	
 }

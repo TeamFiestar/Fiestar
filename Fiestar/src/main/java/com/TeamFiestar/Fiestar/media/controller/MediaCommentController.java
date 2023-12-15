@@ -60,7 +60,7 @@ public class MediaCommentController {
 		return service.deleteComment(commentNo);
 	}
 	
-	@PostMapping("insertLike")
+	@PutMapping("insertLike")
 	@ResponseBody
 	public int insertLike(@RequestBody MediaComment comment) {
 		return service.insertLike(comment);

@@ -139,5 +139,25 @@
 		WHERE MEMBER_NO = #{memberNo}
 	</update>
 	
+	
+	<!-- 사이트 공지사항-->
+	<select id="selectSiteNotice">
+		SELECT * FROM SITE_NOTICE
+		WHERE SITE_NOTICE_NO = #{siteNoticeNo} 
+	</select>
+	
+	<update id="deleteNotice">
+		UPDATE SITE_NOTICE 
+		SET SITE_NOTICE_DEL_FL = 'Y'
+		WHERE SITE_NOTICE_NO = #{noticeNo}
+	</update>
+	
+	<update id="updateNotice">
+		UPDATE SITE_NOTICE SET 
+		SITE_NOTICE_TITLE = #{siteNoticeTitle},
+		SITE_NOTICE_CONTENT = #{siteNoticeContent}
+		WHERE SITE_NOTICE_NO = #{siteNoticeNo}
+	</update>
+	
 
 </mapper>

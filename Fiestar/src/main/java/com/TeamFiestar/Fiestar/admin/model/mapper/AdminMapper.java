@@ -63,7 +63,7 @@ public interface AdminMapper {
 
 	
 	
-	List<ArtistNotice> selectNoticeList(Map<String, Object> map, RowBounds rowBounds);
+	List<SiteNotice> selectNoticeList(SiteNotice notice, RowBounds rowBounds);
 
 	int siteNoticeAdd(SiteNotice notice);
 

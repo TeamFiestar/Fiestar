@@ -162,7 +162,7 @@ public class AdminController {
 		
 	}
 	
-	
+	// 공지사항 조회
 	@GetMapping("notice")
 	public String SiteNotice(
 			@RequestParam(value="cp", required=false , defaultValue="1" ) int cp, Model model,
@@ -176,14 +176,14 @@ public class AdminController {
 		return "admin/notice";
 	}
 	
-	// 아티스트 공지사항 등록 조회
+	// 공지사항 등록
 	@GetMapping("noticeAdd")
 	public String SiteNoticeAdd( Model model){
 		
 		return "admin/noticeAdd";
 	}
 	
-	// 아티스트 공지사항 등록
+	// 공지사항 등록
 	@PostMapping("noticeAdd")	
 	public String SiteNoticeAdd( Model model, SiteNotice notice){
 		
@@ -206,7 +206,7 @@ public class AdminController {
 		
 	}
 	
-	// 아티스트 주문 조회
+	// 주문 조회
 	@GetMapping("order")
 	public String artistOrder(
 			@RequestParam(value="cp", required=false , defaultValue="1" ) int cp, Model model,

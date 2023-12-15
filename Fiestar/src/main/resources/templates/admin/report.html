@@ -4,10 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>신고 관리</title>
-    <link rel="stylesheet" href="/css/admin/artist.css" />
+    <link rel="stylesheet" href="/css/admin/artistReport.css" />
+    <link rel="stylesheet" href="/css/common/artistPageHeader.css" />
   </head>
   <body>
-    <header>헤더+nav</header>
+    <th:block th:replace="~{common/artistPageHeader}">헤더</th:block>
     <div class="reportModal">
       <div id="reportModal" class="modal-body">
         <button id="modalCloseButton">X</button>
@@ -20,7 +21,7 @@
     </div>
     <main th:with="reportList = ${map.reportList}, pagination = ${map.pagination}">
       <!-- th:replace -->
-      <th:block th:replace="~{common/adminArtist}"></th:block>
+      <th:block th:replace="~{common/admin}"></th:block>
       <div class="report-main">
         <h4>NewJeans</h4>
         <h1>신고 조회</h1>

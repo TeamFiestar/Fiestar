@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.TeamFiestar.Fiestar.admin.model.dto.ArtistNotice;
+import com.TeamFiestar.Fiestar.admin.model.dto.SiteNotice;
 import com.TeamFiestar.Fiestar.admin.model.service.AdminAjaxService;
 import com.TeamFiestar.Fiestar.board.model.dto.Board;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
@@ -90,6 +92,35 @@ public class AdminAjaxController {
 		int result = service.changeAuthority(paramMap);
 		return result;
 	}
+	
+	
+	
+	
+	
+	@GetMapping("selectNotice")
+	@ResponseBody
+	public SiteNotice selectArtistNotice(@RequestParam("siteNoticeNo") int siteNoticeNo) {
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("siteNoticeNo", siteNoticeNo);
+		
+		return service.selectSiteNotice(map);
+	}
+	
+	@PutMapping("deleteNotice")
+	@ResponseBody
+	public int deleteNotice(@RequestBody int noticeNo) {
+		return service.deleteNotice(noticeNo);
+	}
+
+	
+	@PutMapping("updateNotice")
+	@ResponseBody
+	public int updateNotice(@RequestBody SiteNotice inputNotice) {
+		return service.updateNotice(inputNotice);
+	}
+	
+	
 	
 	
 }
