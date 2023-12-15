@@ -481,17 +481,24 @@ function insertChildComment(boardParentCommentNo, btn) {
     .catch((err) => console.log(err));
 }
 
+
 function likeComment(btn, boardCommentNo) {
  
   let check;
 
+ 
   if (btn.classList.contains("fa-regular")) {
     check = 0;
   } else {
     check = 1;
   }
 
-  const data = { check: check, boardCommentNo: boardCommentNo };
+  const data = { 
+    check: check,
+    boardParentCommentNo : boardCommentNo,
+  };
+
+
 
   fetch("/commentLike", {
     method: "POST",
