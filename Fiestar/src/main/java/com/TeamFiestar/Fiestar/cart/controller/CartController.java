@@ -104,12 +104,12 @@ public class CartController {
 
 	
 	
-	@GetMapping("checkoutResult")
-	public String checkoutResult() {
-
-		return "cart/checkout-result";
-	}
-	
+//	@GetMapping("checkoutResult")
+//	public String checkoutResult() {
+//
+//		return "cart/checkout-result";
+//	}
+//	
 	
 
 }

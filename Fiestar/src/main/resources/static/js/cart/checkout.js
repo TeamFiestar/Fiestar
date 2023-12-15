@@ -31,7 +31,7 @@ nameChangeBtn.addEventListener("click", e => {
 const addressChangeBtn = document.getElementById("addressChange");
 
 addressChangeBtn.addEventListener("click", e => {
-    let address1 = document.getElementById(id="sample6_address");
+    let address1 = document.getElementById("id=sample6_address");
     let address2 = document.getElementById("sample6_detailAddress");
     let address3 = document.getElementById("sample6_postcode");
 
@@ -43,16 +43,30 @@ addressChangeBtn.addEventListener("click", e => {
 });
 
 
-const form = document.getElementById("nameChangeBtn")
+
+
+const form = document.getElementById("purchaseBtn");
+
 
 form.addEventListener("submit", e => {  
 
-    if(nameInput.value.trim().length || address1.value.trim().length || address2.trim().length || address3.trim().length == 0){
+    
+    let address1 = document.getElementById("id=sample6_address");
+    let address2 = document.getElementById("sample6_detailAddress");
+    let address3 = document.getElementById("sample6_postcode");
+    let PhoneNumber = document.getElementById("ordererPhoneNumber");
+
+    if( nameInput.value.trim().length == 0 || address1.value.trim().length == 0 || address2.trim().length == 0 || 
+     address3.trim().length == 0 || PhoneNumber.value.trim().length == 0 ){
+
         alert("주문자 정보를 입력해주세요.")
         e.preventDefault();
         return;
     }
 
+    else {
+        alert("주문이 완료 되었습니다!")
+    }
 
         
  });
