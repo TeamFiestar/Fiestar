@@ -8,6 +8,8 @@
    <script src="https://kit.fontawesome.com/d6c32512de.js" crossorigin="anonymous"></script>
 
    <link rel="stylesheet" href="/css/cart/checkout.css">
+   <link rel="stylesheet" href="/css/common/shopHeader.css">
+
 
    <th:block th:replace="~{common/shopHeader}"></th:block>
 
@@ -59,15 +61,20 @@
 
                         <!-- 장바구니 번호 -->
                         
-                        <input type="hidden" th:text="${checkoutItem.cartNo}" class="cartNo" name="selectEach"></span>
+                        <!-- <input type="hidden" th:text="${checkoutItem.cartNo}" class="cartNo" name="selectEach"></span> -->
                         <!-- <input type="hidden" name="selectEach" value="yourValue"> -->
                      </div>
 
                      <div>
-                       <span class="optionTag"> 옵션: </span> <span th:text="${checkoutItem.productOptionName}" class="option-text"></span>
+                       <div class="optionTag"> 옵션: </div> <span th:text="${checkoutItem.productOptionName}" class="option-text"></span>
                         
                      </div>
 
+                  </div>
+
+                  <div class="cartNo">
+                     
+                     <input type="hidden" th:text="${checkoutItem.cartNo}" class="cartCheckOutNo" name="selectEach"></span>
                   </div>
 
                   <!-- 상품 수량 -->
@@ -88,6 +95,8 @@
 
                <hr>
             </div>
+
+
 
 
             <!-- ----------------------------------------------------------------------- -->

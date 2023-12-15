@@ -70,6 +70,7 @@ h1 {
    /* margin-left: 60px; */
    position: absolute;
    /* left: 200px; */
+
 }
 
 
@@ -250,7 +251,8 @@ img{
 }
 
 .keyring{
-   margin-bottom: 8px;
+   font-size: 16px;
+   margin-bottom: 4px;
 }
 
 
@@ -341,7 +343,7 @@ border-radius: 4px;
 }
 
 .cartNo{
-   
+   display: none;
 }
 
 .item-list1 > .item-list{

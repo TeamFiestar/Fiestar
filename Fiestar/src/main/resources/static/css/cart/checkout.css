@@ -10,12 +10,17 @@
    font-family: 'Pretendard-Regular';
 }
 
+
+.cartNo{
+   display: none;
+}
+
 .order-input {
    width: 400px;
    height: 40px;
    font-size: 16px;
     border: 1px solid rgb(173, 177, 184); 
-   /* outline-color: rgb(69, 106, 227); */
+   
    outline-color:rgba(119, 67, 219, 1);
    border-radius: 4px;
    /* width: 320px !important;
@@ -40,6 +45,7 @@ h1 {
    font-weight: bold;
    
 }
+
 
 
 /* .item-list {
@@ -553,10 +559,6 @@ border-radius: 4px;
     display: inline-flex;
     padding: 0 var(--horizontal-padding);
 } 
-/* 
-.cartNo{
-   display: none;
-} */
 
 .aass {
 
@@ -564,3 +566,8 @@ border-radius: 4px;
    font-size: 20px;
 
 }
+
+#memberNo {
+   display: none;
+}
+
