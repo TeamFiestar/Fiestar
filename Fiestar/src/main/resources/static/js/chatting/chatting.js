@@ -10,7 +10,7 @@ let nicknameList;
 const display = document.getElementsByClassName("chat-ul")[0];
 
 function selectUserList() {
-  fetch("chatting?artistGroupNo=" + artistGroupNo)
+  fetch("chatting?artistGroupTitle=" + artistGroupTitle)
     .then((resp) => resp.text)
     .then((userList) => {
       console.log(userList);
@@ -139,8 +139,7 @@ chattingSock.onmessage = function (e) {
           li.classList.add("chat-list");
 
           const img = document.createElement("img");
-          if (msg.memberProfile == null)
-            img.setAttribute("src", userDefaultImage);
+          if (msg.memberProfile == null) img.setAttribute("src", userDefaultImage);
           else img.setAttribute("src", msg.memberProfile);
 
           const div = document.createElement("div");
@@ -157,8 +156,7 @@ chattingSock.onmessage = function (e) {
         li.classList.add("chat-list");
 
         const img = document.createElement("img");
-        if (msg.memberProfile == null)
-          img.setAttribute("src", userDefaultImage);
+        if (msg.memberProfile == null) img.setAttribute("src", userDefaultImage);
         else img.setAttribute("src", msg.memberProfile);
 
         const div = document.createElement("div");
