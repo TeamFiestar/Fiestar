@@ -164,7 +164,7 @@ if (imageInput != null) { // #imageInput 존재할 때
 
         if (flag) { // flag가 true인 경우 수행
             e.preventDefault(); // form 태그 제출 이벤트 막기(제거)
-            alert("이미지 변경 후 클릭 해주세요");
+            alert("프로필 이미지 변경 후 클릭 해주세요");
         }
 
     });
@@ -270,6 +270,30 @@ if (inputBackImg != null) { // #inputBackImg 존재할 때
     // change 이벤트 : input의 이전 값과 현재 값이 다를 때 발생
     inputBackImg.addEventListener("change", changeImageFn);
 
+    const updateInfo = document.getElementById("updateInfo");
+
+    updateInfo.addEventListener("submit", e => {
+    
+        
+        let flag = true;
+
+        // 1) 로그인한 회원의 프로필이 있음 -> 없음
+        if (loginMembermemberBackImage != null && statusCheck == 0) flag = false;
+
+        // 2) 로그인한 회원의 프로필이 없음 -> 있음
+        if (loginMembermemberBackImage == null && statusCheck == 1) flag = false;
+
+        // 3) 로그인한 회원의 프로필이 있음 -> 변경
+        if (loginMembermemberBackImage != null && statusCheck == 1) flag = false;
+
+        if (flag) { // flag가 true인 경우 수행
+            e.preventDefault(); // form 태그 제출 이벤트 막기(제거)
+            alert("배경 이미지 변경 후 클릭 해주세요");
+        }
+    
+    });
+
+
 }
 
 
@@ -280,19 +304,18 @@ const updateInfo = document.getElementById("updateInfo");
 
 updateInfo.addEventListener("submit", e => {
 
-    const nickname = document.getElementsByName("memberNickname");
-    const memberPw = document.getElementsByName("memberPw");
+    const nickname = document.getElementById("memberNickname");
+    const memberPw = document.getElementById("memberPw");
     const postcode = document.getElementById("postcode");
     const address = document.getElementById("address");
     const detailAddress = document.getElementById("detailAddress");
 
-    console.log(e.target);
 
     if(nickname.value.trim().length == 0){
         alert("닉네임을 입력 해주세요");
         e.preventDefault(); // form 제출 x
-        title.value = "";
-        title.focus();
+        nickname.value = "";
+        nickname.focus();
         return;
     }
     if(memberPw.value.trim().length == 0){

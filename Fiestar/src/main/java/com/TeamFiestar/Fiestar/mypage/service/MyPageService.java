@@ -12,7 +12,6 @@ public interface MyPageService {
 	// 내가 작성한 게시글 조회
 	Map<String, Object> selectMyFeedList(Member loginMember, int cp);
 
-
 	// 내가 작성한 댓글 조회
 	Map<String, Object> MyCommentList(Member loginMember, int cp);
 
@@ -33,6 +32,11 @@ public interface MyPageService {
 
 	// 댓글 삭제
 	int delComment(int memberNo, int commentNo, String commentType);
+
+	int info(Member loginMember, MultipartFile memberBackImage, Member updateMember)
+			throws IllegalStateException, IOException;
+
+
 
 
 

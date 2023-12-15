@@ -62,6 +62,11 @@ public interface MyPageMapper {
 	// 피드 댓글 삭제
 	int deleteBoardComment(Map<String, Object> map);
 
+	int info(Member updateMember);
+
+
+
+
 
 
 	

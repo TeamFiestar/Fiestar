@@ -184,6 +184,7 @@ public class MyPageServiceImpl implements MyPageService {
 		return result;
 	}
 
+	// 댓글 삭제
 	@Override
 	public int delComment(int memberNo, int commentNo, String commentType) {
 
@@ -200,11 +201,45 @@ public class MyPageServiceImpl implements MyPageService {
 		}
 
 	}
-	
-	
-	
-	
-	
-	
 
+	// 프로필 정보 수정
+	@Override
+	public int info(Member loginMember, MultipartFile memberBackImage, Member updateMember) 
+			throws IllegalStateException, IOException {
+		
+		// 비밀번호 확인
+		String encPw = mapper.selectPw(loginMember.getMemberNo());
+
+		if (!bcrypt.matches(updateMember.getMemberPw(), encPw)) {
+			return 0;
+		}
+		
+
+		// 배경이미지 변경
+		String backup = loginMember.getMemberBackImage();
+
+		String rename = null;
+
+		if (memberBackImage.getSize() > 0) {
+			rename = Util.fileRename(memberBackImage.getOriginalFilename());
+			loginMember.setMemberBackImage(webpath + rename);
+		} else {
+			loginMember.setMemberBackImage(null);
+		}
+
+		// mapper 호출 후 결과 반환
+		int result = mapper.info(loginMember);
+
+		if (result > 0) {
+			if (memberBackImage.getSize() > 0) {
+				memberBackImage.transferTo(new File(folderPath + rename));
+			} else {
+				loginMember.setMemberBackImage(backup);
+			}
+		}
+
+		return result;
+	
+	
+	}
 }
