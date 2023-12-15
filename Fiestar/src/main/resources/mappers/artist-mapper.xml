@@ -2,14 +2,37 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.TeamFiestar.Fiestar.artist.model.mapper.ArtistMapper">
 	
-	<select id="artistGroupBackimg" resultType="string">
-		SELECT ARTIST_GROUP_BACKIMG FROM ARTIST_GROUP
+	<select id="artistGroupMainimg" resultType="string">
+		SELECT ARTIST_GROUP_MAINIMG FROM ARTIST_GROUP
 		WHERE ARTIST_GROUP_TITLE = #{artistGroupTitle}
 	</select>
 	
 	<select id="artist" resultType="Artist">
-		SELECT ARTIST_PRODUCTION_PROFILE FROM ARTIST
+		SELECT ARTIST_PROFILE FROM ARTIST
 		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
+	</select>
+	
+	<select id="artistGroupMedia" resultType="Media">
+		SELECT MEDIA_ADDRESS, MEDIA_TITLE, 
+		TO_CHAR(MEDIA_ENROLL_DATE, 'YYYY"."MM"."DD') MEDIA_ENROLL_DATE FROM MEDIA
+		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
+		ORDER BY MEDIA_ENROLL_DATE DESC
+	</select>
+	
+	<select id="artistGroupProduct" resultType="Product">
+		SELECT PRODUCT_NAME , PRODUCT_PRICE , PRODUCT_IMAGE_THUMBNAIL, PRODUCT_IMAGE_THUMBNAIL_RENAME
+		FROM PRODUCT
+		JOIN PRODUCT_IMAGE
+		USING(PRODUCT_NO)
+		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
+		ORDER BY PRODUCT_REGISTRATION_DATE DESC
+	</select>
+	
+	<select id="artistGroupNotice" resultType="ArtistNotice">
+		SELECT ARTIST_GROUP_NOTICE_TITLE FROM ARTIST_GROUP_NOTICE
+		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
+		AND ARTIST_GROUP_NOTICE_DEL_FL = 'N'
+		ORDER BY ARTIST_GROUP_NOTICE_ENROLL_DATE DESC
 	</select>
 </mapper>
 
