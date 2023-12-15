@@ -35,6 +35,7 @@ public class MediaController {
 		return "media/mediaInsert";
 	}
 	
+	// 미디어 리스트 조회
 	@GetMapping("{artistGroupTitle}/media/list")
 	public String mediaList(
 			@PathVariable("artistGroupTitle") String artistGroupTitle,
@@ -46,6 +47,7 @@ public class MediaController {
 		
 		map.put("key", key);
 		map.put("mediaTitle", mediaTitle);
+		map.put("artistGroupTitle", artistGroupTitle);
 
 		List<Media> mediaList = service.selectMediaList(map);
 		
@@ -56,6 +58,7 @@ public class MediaController {
 		return "media/mediaList";
 	}
 	
+	// 미디어 상세 조회
 	@GetMapping("{artistGroupTitle}/media/{mediaNo:[0-9]+}/detail")
 	public String mediaDetail(
 			@PathVariable("artistGroupTitle") String artistGroupTitle,
@@ -69,6 +72,7 @@ public class MediaController {
 		return "media/mediaDetail";
 	}
 	
+	
 	@PostMapping("{artistGroupTitle}/media/insert")
 	public String mediaInsert(
 			@PathVariable("artistGroupTitle") String artistGroupTitle,
@@ -78,6 +82,7 @@ public class MediaController {
 		
 		return "redirect:list";
 	}
+	
 	
 	@GetMapping("{artistGroupTitle}/media/live")
 	public String mediaLive(
