@@ -16,6 +16,10 @@ public class Board {
 	private int boardNo;
 	private String boardContent;
 	private String boardEnrollDate;
+	private String boardEnrollDate2;
+	private String boardEnrollDateDd;
+	private String boardEnrollDateMon;
+	
 	private String BoardDelFl;
 	private int memberNo;
 
@@ -32,6 +36,7 @@ public class Board {
 	private String memberNickname;
 	private String memberProfile;
 	private String memberAuthority;
+	private int likeCheck;
 	
 	private List<BoardImg> imageList;
 	

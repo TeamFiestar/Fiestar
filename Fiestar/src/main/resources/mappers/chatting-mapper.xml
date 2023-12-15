@@ -4,14 +4,33 @@
 	
 	<insert id="insertMessage">
 		INSERT INTO "MESSAGE"
-
 		VALUES(SEQ_MESSAGE_NO.NEXTVAL, #{messageContent}, SYSDATE, #{memberNo}, #{artistGroupNo})
-
 	</insert>
+	
+	<insert id="insertLiveMessage">
+		INSERT INTO LIVE_MESSAGE LM 
+		VALUES(SEQ_LIVE_MESSAGE_NO.NEXTVAL, #{messageContent}, SYSDATE, #{memberNo}, #{liveChattingRoomNo})
+	</insert>
+	
+	<select id="selectLiveChattingRoom">
+		SELECT MAX(LIVE_CHATTING_ROOM_NO) 
+		FROM LIVE_CHATTING_ROOM LCR 
+		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
+	</select>
 
 	<select id="selectMember" resultType="_int">
 		SELECT MEMBER_NICKNAME
 		FROM MEMBER
 		WHERE MEMBER_NO = #{memberNo}
 	</select>
+	
+	<insert id="createLiveChattingRoom" parameterType="map" useGeneratedKeys="true">
+		
+		<selectKey order="BEFORE" resultType="_int" keyProperty="liveChattingRoomNo">
+			SELECT SEQ_LIVE_CHATTING_ROOM_NO.NEXTVAL FROM DUAL
+		</selectKey>
+		
+		INSERT INTO LIVE_CHATTING_ROOM LCR 
+		VALUES(#{liveChattingRoomNo}, SYSDATE, #{artistGroupNo})
+	</insert>
 </mapper>

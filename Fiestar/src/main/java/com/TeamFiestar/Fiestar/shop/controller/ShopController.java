@@ -10,9 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.TeamFiestar.Fiestar.shop.model.dto.Product;
 import com.TeamFiestar.Fiestar.shop.model.service.ShopService;
@@ -35,10 +37,11 @@ public class ShopController {
 	@GetMapping("home")
 	public String shopMain(Model model,
 							@RequestParam Map<String, Object> paramMap,
+							@RequestParam(value ="cp", required = false, defaultValue = "1") int cp,
 							@RequestParam(name="shopSearch", required = false, defaultValue = "") String shopSearch) {
 		
 		if(paramMap.get("shopSearch") == null) {
-			Map<String, Object> map = service.shopMain();
+			Map<String, Object> map = service.shopMain(cp);
 			model.addAttribute("map",map);
 			int shopCount = service.shopCount();
 			model.addAttribute("shopCount", shopCount);
@@ -46,7 +49,7 @@ public class ShopController {
 			
 		}else {
 			paramMap.put("shopSearch", shopSearch);
-			Map<String, Object> map =  service.searchList(paramMap);
+			Map<String, Object> map =  service.searchList(paramMap,cp);
 			model.addAttribute("map",map);
 			int shopCount = service.shopSearchCount(paramMap);
 			model.addAttribute("shopCount", shopCount);
@@ -64,17 +67,18 @@ public class ShopController {
 	@GetMapping("home/{artistGroupTitle}")
 	public String artistGroupShop(Model model,
 									Map<String, Object> paramMap,
-									@RequestParam("artistGroupNo") int artistGroupNo) {
+									@RequestParam("artistGroupNo") int artistGroupNo,
+									@RequestParam(value ="cp", required = false, defaultValue = "1") int cp) {
 		
 		paramMap.put("artistGroupNo", artistGroupNo);
 		int shopCount = service.shopGroupCount(paramMap);
 		model.addAttribute("shopCount", shopCount);
-		Map<String, Object> map = service.artistGroupShop(paramMap);
+		Map<String, Object> map = service.artistGroupShop(paramMap, cp);
 		model.addAttribute("map", map);
 		return "shop/home";
 	}
 	
-	/** 그룹별 상품 조회 후 정렬
+	/** 전체 상품 조회 후 정렬
 	 * @return
 	 */
 	@GetMapping(value = "home/sortList" , produces = "application/json; charset=UTF-8")
@@ -105,6 +109,33 @@ public class ShopController {
 	}
 	
 	
+	/**상품 상세조회
+	 * @param productNo
+	 * @param model
+	 * @param product
+	 * @param ra
+	 * @return
+	 */
+	@GetMapping("shopDetail/{productNo:[0-9]+}")
+	public String shopDetail(@PathVariable("productNo") int productNo,
+								Model model, Product product,
+								RedirectAttributes ra) {
+		
+		Product prod = service.shopDetail(productNo);
+		String path = null;
+		
+		if(prod != null) {
+			model.addAttribute("prod", prod);
+			path = "shop/shopDetail";
+		}else {
+			path = "redirect:/shop/home";
+			ra.addFlashAttribute("message", "해당 게시글이 존재하지않습니다");  //footer.html에서 출력
+		}
+		
+		return path;
+	}
+	
+	
 	
 	
 	
@@ -127,12 +158,7 @@ public class ShopController {
 	
 	
 	
-	@GetMapping("shopDetail")
-	public String shopDetail() {
-		return "shop/shopDetail";
-			
-	}
-	
+
 	
 	
 	

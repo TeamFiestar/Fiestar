@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="/css/common/artistPageHeader.css" />
+    <link rel="stylesheet" href="/css/common/artistPageNavi.css" />
     <link rel="stylesheet" href="/css/chatting/chatting.css" />
   </head>
   <body>
@@ -76,11 +77,15 @@
 
     <script th:inline="javascript">
       const loginMember = /*[[${session.loginMember}]]*/ "로그인 회원";
-      const loginMemberNo = /*[[${session.loginMember?.memberNo}]]*/ "로그인회원번호";
-      const memberNickname = /*[[${session.loginMember?.memberNickname}]]*/ "닉네임";
+      const loginMemberNo =
+        /*[[${session.loginMember?.memberNo}]]*/ "로그인회원번호";
+      const memberNickname =
+        /*[[${session.loginMember?.memberNickname}]]*/ "닉네임";
       const authority = /*[[${session.loginMember?.memberAuthority}]]*/ "권한";
       const userDefaultImage = /*[[#{user.default.image}]]*/ "기본 이미지";
       const artistGroupNo = /*[[${artistGroupNo}]]*/ "그룹번호";
+      const memberProfile =
+        /*[[${session.loginMember?.memberProfile}]]*/ "로그인 회원 프로필";
     </script>
 
     <script src="/js/chatting/chatting.js"></script>

@@ -60,7 +60,7 @@
 
 
 
-    <main>
+    <main th:with="noticeList = ${map.noticeList}, pagination = ${map.pagination}">
       <!-- th:replace -->
       <th:block th:replace="~{common/adminArtist}"></th:block>
       <div class="noticeSelect">
@@ -68,11 +68,14 @@
         <h1>아티스트 공지사항 목록</h1>
         <br />
         <table border="1" style="border-collapse: collapse" class="notice-table">
-          <tr class="notice-tr-th">
-            <th>공지사항 번호</th>
-            <th>제목</th>
-            <th>날짜</th>
-          </tr>
+          <thead>
+            <tr class="notice-tr-th">
+              <th>공지사항 번호</th>
+              <th>제목</th>
+              <th>날짜</th>
+            </tr>
+          </thead>
+
           <tbody id="noticeBody">
             <tr class="notice-tr-td" th:each="notice : ${noticeList}" th:object="${notice}">
               <td th:text="*{artistGroupNoticeNo}">1</td>
@@ -82,19 +85,61 @@
               <td th:text="*{artistGroupNoticeEnrollDate}">2023/11/21</td>
             </tr>
           </tbody>
+
         </table>
         <div class="pagination-area">
-          <div class="pagination"><< < 1 2 3 4 5 6 7 8 9 10 > >></div>
-          <form>
-            <select id="select">
-              <option value="1">공지 제목</option>
-              <option value="2">공지 내용</option>
+
+
+          <div class="pagination-area" th:if="${#lists.size(noticeList) > 0}">
+
+            <ul class="pagination">
+  
+              <!-- 첫 페이지로 이동 -->
+              <li><a th:href="@{/artistAdmin/{artistGroupTitle}/notice(artistGroupTitle=${artistGroupTitle}, cp=1, key=${key}, noticeSearch=${noticeSearch}  ) }">&lt;&lt;</a></li>
+  
+              <!-- 이전 목록 마지막 번호로 이동 -->
+              <li><a th:href="@{/artistAdmin/{artistGroupTitle}/notice(artistGroupTitle=${artistGroupTitle}, cp=${pagination.prevPage }, key=${key}, noticeSearch=${noticeSearch}   )}">&lt;</a>
+              <li><a th:href="@{/artistAdmin/{artistGroupTitle}/notice(artistGroupTitle=${artistGroupTitle}, cp=${pagination.prevPage }, key=${key}, noticeSearch=${noticeSearch}   )}">&lt;</a>
+              </li>
+  
+  
+              <!-- 현재 보고있는 페이지 -->
+              <!-- #numbers.sequence(1,10) 1~10증가하며 차례대로 추가한 리스트 -->
+              <th:block th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}">
+                <li th:if="${i == pagination.currentPage}">
+                  <a class="current active" th:text="${i}">1</a>
+                </li>
+  
+                <!-- 보고있지 않은 페이지 -->
+                <li th:unless="${i == pagination.currentPage}">
+                  <a th:href="@{/artistAdmin/{artistGroupTitle}/notice(artistGroupTitle=${artistGroupTitle}, cp=${i}, key=${key}, noticeSearch=${noticeSearch}   )} " th:text="${i}">2</a>
+                </li>
+              </th:block>
+  
+  
+  
+              <!-- 다음 목록 시작 번호로 이동 -->
+              <li><a th:href="@{/artistAdmin/{artistGroupTitle}/notice(artistGroupTitle=${artistGroupTitle}, cp=${pagination.nextPage }, key=${key}, noticeSearch=${noticeSearch}   )}">&gt;</a>
+              </li>
+  
+              <!-- 끝 페이지로 이동 -->
+              <li><a
+                  th:href="@{/artistAdmin/{artistGroupTitle}/notice(artistGroupTitle=${artistGroupTitle}, cp=${pagination.maxPage }, key=${key}, noticeSearch=${noticeSearch}   )}">&gt;&gt;</a>
+              </li>
+            </ul>
+          </div>
+
+          <form th:action="|/artistAdmin/${artistGroupTitle}/notice|" method="get">
+            <select id="select" name="key">
+              <option value="1" th:selected="${key == 1}">공지 제목</option>
+              <option value="2" th:selected="${key == 2}">공지 내용</option>
             </select>
-            <input type="text" id="inputSearch" />
+            <input type="text" th:value="${noticeSearch}" id="inputSearch" name="noticeSearch" />
             <button id="pagination-button">검색</button>
           </form>
         </div>
       </div>
+      
     </main>
 
     <script src="/js/admin/artistAdminNotice.js"></script>

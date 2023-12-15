@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>탈퇴 회원 조회</title>
     <link rel="stylesheet" href="/css/common/artistPageHeader.css" />
+    <link rel="stylesheet" href="/css/common/admin.css" />
     <link rel="stylesheet" href="/css/admin/deleteMember.css" />
   </head>
   <body>
@@ -15,22 +16,33 @@
         <h1>탈퇴 회원 조회</h1>
         <br />
         <table border="1" style="border-collapse: collapse" class="main-table">
-          <tbody>
-            <tr class="tr-head">
-              <th>회원 번호</th>
-              <th>닉네임</th>
-              <th>아이디(이메일)</th>
-              <th>주소</th>
-              <th>권한</th>
-              <th>탈퇴 복구</th>
-            </tr>
-            <tr class="tr-body" th:each="member : ${deleteList}" th:object="${member}">
+          <tr class="tr-head">
+            <th>회원 번호</th>
+            <th>닉네임</th>
+            <th>아이디(이메일)</th>
+            <th>주소</th>
+            <th>권한</th>
+            <th>탈퇴 복구</th>
+          </tr>
+          <tbody class="tbody" id="memberTableBody">
+            <tr
+              class="tr-body"
+              th:each="member : ${deleteList}"
+              th:object="${member}"
+            >
               <td th:text="*{memberNo}">회원 번호</td>
               <td th:text="*{memberNickname}">회원 닉네임</td>
               <td th:text="*{memberEmail}">회원 아이디(이메일)</td>
               <td th:text="*{memberAddress}">회원 주소</td>
-              <td th:text="*{memberAuthority}">권한</td>
-              <td><button>탈퇴</button></td>
+              <td>
+                <th:block th:if="*{memberAuthority == 1}"> 일반 </th:block>
+                <th:block th:if="*{memberAuthority == 2}"> 아티스트 </th:block>
+              </td>
+              <td>
+                <button class="recoverBtn" onclick="recoverBtn(this)">
+                  복구
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -40,50 +52,70 @@
               <a th:href="@{/admin/deleteMember(cp=1)}">&lt;&lt;</a>
             </li>
             <li>
-              <a th:href="@{/admin/deleteMember(cp=${pagination.prevPage})}">&lt;</a>
-            </li>
-            <th:block th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}">
-              <li th:if="${i == pagination.currentPage}">
-                <a th:text="${i}">currentPage</a>
-              </li>
-              <li th:unless="${i == pagination.currentPage}">
-                <a th:href="@{/admin/deleteMember(cp=${i})}" th:text="${i}">cp</a>
-              </li>
-            </th:block>
-            <li>
-              <a th:href="@{/admin/deleteMember(cp=${pagination.nextPage})}">&gt;</a>
-            </li>
-            <li>
-              <a th:href="@{/admin/deleteMember(cp=${pagination.maxPage})}">&gt;&gt;</a>
-            </li>
-          </ul>
-          <!-- 검색 -->
-          <ul class="pagination" th:unless="${param.key == null}">
-            <li>
-              <a th:href="@{/admin/deleteMember(cp=1, key=${param.key}, query=${param.query})}">&lt;&lt;</a>
-            </li>
-            <li>
-              <a th:href="@{/admin/deleteMember(cp=${pagination.prevPage}, key=${param.key}, query=${param.query})}"
+              <a th:href="@{/admin/deleteMember(cp=${pagination.prevPage})}"
                 >&lt;</a
               >
             </li>
-            <th:block th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}">
+            <th:block
+              th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}"
+            >
               <li th:if="${i == pagination.currentPage}">
                 <a th:text="${i}">currentPage</a>
               </li>
               <li th:unless="${i == pagination.currentPage}">
-                <a th:href="@{/admin/deleteMember(cp=${i}, key=${param.key}, query=${param.query})}" th:text="${i}"
+                <a th:href="@{/admin/deleteMember(cp=${i})}" th:text="${i}"
                   >cp</a
                 >
               </li>
             </th:block>
             <li>
-              <a th:href="@{/admin/deleteMember(cp=${pagination.nextPage}, key=${param.key}, query=${param.query})}"
+              <a th:href="@{/admin/deleteMember(cp=${pagination.nextPage})}"
                 >&gt;</a
               >
             </li>
             <li>
-              <a th:href="@{/admin/deleteMember(cp=${pagination.maxPage}, key=${param.key}, query=${param.query})}"
+              <a th:href="@{/admin/deleteMember(cp=${pagination.maxPage})}"
+                >&gt;&gt;</a
+              >
+            </li>
+          </ul>
+          <!-- 검색 -->
+          <ul class="pagination" th:unless="${param.key == null}">
+            <li>
+              <a
+                th:href="@{/admin/deleteMember(cp=1, key=${param.key}, query=${param.query})}"
+                >&lt;&lt;</a
+              >
+            </li>
+            <li>
+              <a
+                th:href="@{/admin/deleteMember(cp=${pagination.prevPage}, key=${param.key}, query=${param.query})}"
+                >&lt;</a
+              >
+            </li>
+            <th:block
+              th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}"
+            >
+              <li th:if="${i == pagination.currentPage}">
+                <a th:text="${i}">currentPage</a>
+              </li>
+              <li th:unless="${i == pagination.currentPage}">
+                <a
+                  th:href="@{/admin/deleteMember(cp=${i}, key=${param.key}, query=${param.query})}"
+                  th:text="${i}"
+                  >cp</a
+                >
+              </li>
+            </th:block>
+            <li>
+              <a
+                th:href="@{/admin/deleteMember(cp=${pagination.nextPage}, key=${param.key}, query=${param.query})}"
+                >&gt;</a
+              >
+            </li>
+            <li>
+              <a
+                th:href="@{/admin/deleteMember(cp=${pagination.maxPage}, key=${param.key}, query=${param.query})}"
                 >&gt;&gt;</a
               >
             </li>
@@ -100,5 +132,11 @@
         </div>
       </div>
     </main>
+    <script th:inline="javascript">
+      memberDelFl = /*[[${memberDelFl}]]*/ "탈퇴여부";
+      memberNo = /*[[${memberNo}]]*/ "회원번호";
+    </script>
+
+    <script src="/js/admin/deleteMember.js"></script>
   </body>
 </html>

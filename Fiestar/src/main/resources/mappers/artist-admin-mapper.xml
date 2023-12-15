@@ -9,6 +9,14 @@
 	</select>
 	
 	
+	<select id="noticeListCount">
+		SELECT COUNT(*)
+		FROM ARTIST_GROUP_NOTICE AGN 
+		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
+		AND ARTIST_GROUP_NOTICE_DEL_FL = 'N'
+		ORDER BY ARTIST_GROUP_NOTICE_NO 
+	</select>
+	
 	<select id="selectNoticeList">
 		SELECT ARTIST_GROUP_NOTICE_NO ,ARTIST_GROUP_NOTICE_TITLE ,ARTIST_GROUP_NOTICE_CONTENT ,
 		TO_CHAR(ARTIST_GROUP_NOTICE_ENROLL_DATE, 'YYYY/MM/DD') AS ARTIST_GROUP_NOTICE_ENROLL_DATE,
@@ -16,6 +24,8 @@
 		FROM ARTIST_GROUP_NOTICE AGN 
 		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
 		AND ARTIST_GROUP_NOTICE_DEL_FL = 'N'
+		<if test="notice.key == 1">AND ARTIST_GROUP_NOTICE_TITLE LIKE '%${notice.noticeSearch}%'</if>
+		<if test="notice.key == 2">AND ARTIST_GROUP_NOTICE_CONTENT LIKE '%${notice.noticeSearch}%'</if>
 		ORDER BY ARTIST_GROUP_NOTICE_NO 
 	</select>
 	
@@ -28,14 +38,96 @@
 		'N', SYSDATE, #{artistGroupNo})
 	</insert>
 	
-	<select id="selectReportList">
-		SELECT 	REPORT_NO , REPORTER_NO , 
-			REPORT_TARGET_NO , REPORT_PROCEED , 
-			REPORT_URL ,REPORT_CONTENT , 
-			MEMBER_EMAIL ,MEMBER_NICKNAME 
+	
+	<select id="reportListCount">
+		SELECT 	COUNT(*)
 		FROM REPORT r  
 		JOIN "MEMBER" m ON(R.REPORT_TARGET_NO = M.MEMBER_NO)
+		JOIN "MEMBER" m2 ON(R.REPORTER_NO = M2.MEMBER_NO)
 		WHERE R.ARTIST_GROUP_NO = #{artistGroupNo}
+		<if test="report.key == 1">AND M2.MEMBER_NICKNAME LIKE '%${report.reportSearch}%'</if>
+		<if test="report.key == 2">AND M2.MEMBER_EMAIL LIKE '%${report.reportSearch}%'</if>
+		<if test="report.key == 3">AND M.MEMBER_NICKNAME LIKE '%${report.reportSearch}%'</if>
+		<if test="report.key == 4">AND M.MEMBER_EMAIL LIKE '%${report.reportSearch}%'</if>
+		<if test="report.key == 5">AND REPORT_CONTENT LIKE '%${report.reportSearch}%'</if>
+	</select>
+	
+	
+	<select id="selectReportList">
+		SELECT 	REPORT_NO , REPORTER_NO 
+			REPORT_TARGET_NO , REPORT_PROCEED , 
+			REPORT_URL ,REPORT_CONTENT , 
+			M2.MEMBER_EMAIL AS REPORTER_EMAIL,
+			M2.MEMBER_NICKNAME AS REPORTER_NICKNAME,
+			REPORT_TARGET_NO ,
+			M.MEMBER_EMAIL AS REPORT_TARGET_EMAIL ,
+			M.MEMBER_NICKNAME AS REPORT_TARGET_NICKNAME
+		FROM REPORT r  
+		JOIN "MEMBER" m ON(R.REPORT_TARGET_NO = M.MEMBER_NO)
+		JOIN "MEMBER" m2 ON(R.REPORTER_NO = M2.MEMBER_NO)
+		WHERE R.ARTIST_GROUP_NO = #{artistGroupNo}
+		<if test="report.key == 1">AND M2.MEMBER_NICKNAME LIKE '%${report.reportSearch}%'</if>
+		<if test="report.key == 2">AND M2.MEMBER_EMAIL LIKE '%${report.reportSearch}%'</if>
+		<if test="report.key == 3">AND M.MEMBER_NICKNAME LIKE '%${report.reportSearch}%'</if>
+		<if test="report.key == 4">AND M.MEMBER_EMAIL LIKE '%${report.reportSearch}%'</if>
+		<if test="report.key == 5">AND REPORT_CONTENT LIKE '%${report.reportSearch}%'</if>
+	</select>
+	
+		<!--상품 등록-->
+	<insert id="insertGoods" parameterType="Product" useGeneratedKeys="true">
+		<selectKey order="BEFORE" resultType="_int" keyProperty="productNo">
+			SELECT SEQ_PRODUCT_NO.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO "PRODUCT"
+		VALUES(#{productNo},#{artistGroupNo},#{productName},#{productProduction},#{productPrice}, DEFAULT)
+	</insert>
+	
+	
+	<!--이미지 업로드-->
+	<insert id="insertImage" parameterType="ProductImage">
+		<selectKey order="BEFORE" resultType="_int" keyProperty="productImageNo">
+			SELECT SEQ_PRODUCT_IMAGE_NO.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO "PRODUCT_IMAGE"
+		VALUES(#{productImageNo},#{productImageContent},#{productImageRename},#{productImageOriginal},#{productImageOrder}, #{productNo}, #{productImageThumbnail},
+		#{productImageThumbnailRename})
+	</insert>
+	
+	<select id="orderListCount">
+		SELECT COUNT(*)
+		FROM PURCHASE P 
+		JOIN "MEMBER" m USING(MEMBER_NO)
+		WHERE PURCHASE_NO IN (
+			SELECT PRODUCT_NO 
+			FROM PURCHASE_LIST PL 
+			WHERE PL.PRODUCT_NO IN 
+				(SELECT PRODUCT_NO 
+				FROM PRODUCT P 
+				WHERE P.ARTIST_GROUP_NO = #{artistGroupNo}))
+		
+	</select>
+	
+	
+	<select id="selectPurchaseList">
+		SELECT 	PURCHASE_NO ,PURCHASE_PRICE ,
+				PURCHASE_STATUS ,
+				TO_CHAR(PURCHASE_DATE, 'YYYY/MM/DD') AS PURCHASE_DATE,
+				MEMBER_NICKNAME,
+				MEMBER_ADDRESS,
+				(SELECT SUM(PL2.PRODUCT_QUANTITY) 
+					FROM PURCHASE_LIST PL2 
+					WHERE PL2.PURCHASE_NO = P.PURCHASE_NO) 
+				AS PRODUCT_SUM
+		FROM PURCHASE P 
+		JOIN "MEMBER" m USING(MEMBER_NO)
+		WHERE PURCHASE_NO IN (
+			SELECT PL.PURCHASE_NO
+			FROM PURCHASE_LIST PL 
+			WHERE PL.PRODUCT_NO IN 
+				(SELECT PRODUCT_NO 
+				FROM PRODUCT P 
+				WHERE P.ARTIST_GROUP_NO = #{artistGroupNo}))
+		ORDER BY PURCHASE_DATE
 	</select>
 	
 </mapper>

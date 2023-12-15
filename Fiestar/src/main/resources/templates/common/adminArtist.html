@@ -8,7 +8,7 @@
               회원 관리
               <ul>
                 <li>
-                  <a href="subscribeMember.html" id="a">구독 회원 조회</a>
+                  <a th:href="@{/admin/subscribeMember}" id="a">구독 회원 조회</a>
                 </li>
               </ul>
             </li>
@@ -36,6 +36,19 @@
               <ul>
                 <li>
                   <a href="artistReport.html" id="a">게시글 신고</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="sidebar-list artist" id="member-search">
+            <li>
+              아티스트 등록
+              <ul>
+                <li>
+                  <a th:href="@{/admin/regi}" id="a">아티스트 그룹 등록</a>
+                </li>
+                <li>
+                  <a th:href="@{/admin/artistGroupUpdate}" id="a">아티스트 그룹 수정</a>
                 </li>
               </ul>
             </li>

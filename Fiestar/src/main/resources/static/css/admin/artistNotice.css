@@ -134,7 +134,7 @@ main {
   height: 70px;
 }
 .notice-tr-td {
-  height: 60px;
+  height: 50px;
   text-align: center;
 }
 .notice-tr-td > td {
@@ -295,4 +295,34 @@ main {
   height: 36px;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.pagination{
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.pagination li{
+  text-align: center;
+}
+
+.pagination a{
+  text-decoration: none;
+  color: black;
+  display: block;
+  border: 1px solid #ddd; /* Gray */
+  padding: 4px 11px;
+  width: 100%;
+  height: 100%;
+  transition: background-color .2s;
+}
+
+.pagination a.active{
+  background-color: #d3a9ec;
+}
+
+.pagination a:hover{
+  background-color: rgb(189, 189, 189);
 }

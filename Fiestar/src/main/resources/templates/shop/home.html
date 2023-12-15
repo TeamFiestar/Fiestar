@@ -14,42 +14,36 @@
   <th:block th:replace="~{common/shopHeader}"></th:block>
  
   
-  <main style="aspect-ratio: auto 531/299;" th:with="productList = ${map.productList}, artistList = ${map.artistList}">
+  <main style="aspect-ratio: auto 531/299;" th:with="productList = ${map.productList}, artistList = ${map.artistList}, pagination = ${map.pagination}">
 
     <section class="homeMain">
 
-
-      
-        <section class="artist-shop-list-area">
-          <a href="/shop/home" id="artist-shop-lists-all">전체</a>
-          <th:block th:each=" artistGroup : ${artistList}" th:object="${artistGroup}">
-            <a th:href="|/shop/home/*{artistGroupTitle}?artistGroupNo=*{artistGroupNo}|" id="artist-shop-lists">
-              <img class="artist-main-logo" src="/images/newJeans_logo.jpg">
-              <span id="artist-shop-name" th:text="*{artistGroupTitle}"></span>
-            </a>
-         </th:block>
-        </section>
+      <section class="artist-shop-list-area">
+        <a href="/shop/home" id="artist-shop-lists-all">전체</a>
+        <th:block th:each=" artistGroup : ${artistList}" th:object="${artistGroup}">
+          <a th:href="|/shop/home/*{artistGroupTitle}?artistGroupNo=*{artistGroupNo}|" id="artist-shop-lists">
+            <img class="artist-main-logo" src="/images/newJeans_logo.jpg">
+            <span id="artist-shop-name" th:text="*{artistGroupTitle}"></span>
+          </a>
+        </th:block>
+      </section>
      
-
+ 
       <div class="shop-sorting-area">
         <div class="shop-sorting-amount" th:text="${shopCount}">상품의 총 개수</div>
-      
-       
-          <div class="shop-sorting-type" name="sort" id="sort">
-            <button id="dateBtn"><option value="1">신상품 순</option></button>
-            <button id="highPrice"><option value="2">높은가격순</option></button>
-            <button id="lowPrice"><option value="3">낮은가격순</option></button>
-          </div>
-        
+        <div class="shop-sorting-type" name="sort" id="sort">
+          <button id="dateBtn"><option value="1">신상품 순</option></button>
+          <button id="highPrice"><option value="2">높은가격순</option></button>
+          <button id="lowPrice"><option value="3">낮은가격순</option></button>
+        </div>
       </div>
-    </form>
+      
 
       <section class="artist-shop-product" >
         <div class="product-area"> 
           <div class="product-area-detail">
-
             <div class="product-list" th:each=" product: ${productList}" th:object="${product}">
-              <a href="/shop/shopDetail" class="product-profile">
+              <a th:href="@{/shop/shopDetail/{productNo}(productNo=*{productNo})}" class="product-profile">
                 <div class="product-image-area" th:text="*{productImage}"> 
                   <img src="/images/product1.jpg">
                 </div>
@@ -60,17 +54,15 @@
                 </div>
               </a>  
             </div>
-            
           </div>
         </div>
       </section>
 
-      <div class="pagination-box">
-        <ul class="pagination">
-          <li><a href="" class="current">1</a> </li>
-        </ul>
-      </div>
+      <!-- ****************페이지네이션**************** -->
+      <th:block th:replace="~{shop/pagination}"></th:block>
+      <!-- ******************************************* -->
     </section>
+    
   </main>
 
   <th:block th:replace = "~{common/footer}"></th:block> 
@@ -81,5 +73,9 @@
 
   <script src="/js/shop/shopMain.js"></script>
   <script src="https://kit.fontawesome.com/f7459b8054.js" crossorigin="anonymous"></script>
+  <script th:inline = "javascript">
+    const message = /*[[${message}]]*/ "message";
+    if(message != null) alert(message);
+   </script>
 </body>
 </html>

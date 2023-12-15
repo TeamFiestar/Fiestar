@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.TeamFiestar.Fiestar.admin.model.dto.ArtistNotice;
+import com.TeamFiestar.Fiestar.admin.model.dto.Purchase;
 import com.TeamFiestar.Fiestar.admin.model.service.ArtistAdminAJAXService;
 
 import lombok.RequiredArgsConstructor;
@@ -44,6 +45,15 @@ public class ArtistAdminAJAXContoller {
 	@ResponseBody
 	public int updateNotice(@RequestBody ArtistNotice inputNotice) {
 		return service.updateNotice(inputNotice);
+	}
+	
+	@PutMapping("updatePurchaseStatus")
+	@ResponseBody
+	public int updatePurchase(@RequestBody Purchase purchase) {
+		
+		int result = service.updatePurchase(purchase);
+		
+		return result;
 	}
 	
 	

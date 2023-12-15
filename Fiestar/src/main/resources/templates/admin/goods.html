@@ -14,10 +14,14 @@
       <div class="goods-add">
         <h1>굿즈 등록</h1>
         <br />
-        <form action="/admin/goods">
+        <form th:action="|/artistAdmin/${artistGroupTitle}/goods|" method="post" enctype="multipart/form-data">
           <div class="goods-title">
             상품명
-            <input type="text" id="input-goodsTitle" name="goodsTitle"/>
+            <input type="text" id="input-goodsTitle" name="productName"/>
+          </div>
+          <div class="goods-title">
+            상품가격 <br>
+            <input type="text" id="input-goodsPrice" name="productPrice"/>
           </div>
           <div class="goods-option">
             상품 옵션
@@ -33,7 +37,9 @@
           <div class="goods-content">
             상품 설명
             <br />
-            <textarea name="" class="input-goodsContent"></textarea>
+            <textarea class="input-goodsContent" name="productProduction"></textarea>
+            상품 설명 이미지
+            <br/>
             <div class="goodsImg">
               <label for="img1">
                 <img src="#" class="goods-contentImg" />
@@ -43,22 +49,28 @@
             </div>
           </div>
           <div class="goods-thumnail">
-            굿즈 썸네일
+            상품 썸네일
             <br />
             <div class="goodsImg">
               <label for="img2">
                 <img src="#" class="thumnail" />
               </label>
-              <input type="file" name="thumnail" id="img2" accept="image/*" class="input-goodsImg" />
+              <input type="file" name="thumbnailImg" id="img2" accept="image/*" class="input-goodsImg" />
               <span class="delete-image">&times;</span>
             </div>
           </div>
           <div class="goods-btn-area">
-            <button class="goodsBtn">등록</button>
+            <button class="goodsBtn" type="submit">등록</button>
           </div>
         </form>
       </div>
     </main>
     <script src="/js/admin/goods.js"></script>
+    
+    <script th:inline = "javascript">
+     const message = /*[[${message}]]*/ "message";
+     if(message != null) alert(message);
+    </script>
+
   </body>
 </html>
