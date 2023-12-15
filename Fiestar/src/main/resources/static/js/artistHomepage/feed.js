@@ -218,11 +218,24 @@ function generateComment(boardNo3) {
       commentWriter.className = "comment-writer";
       commentWriter.textContent = comment.memberNickname;
 
+      var indicator2 = document.createElement("i");
+      indicator2.className = "indicator";
+
+    if(comment.memberAuthority == 2) {
+      indicator2.classList.add("fa-solid");
+      indicator2.classList.add("fa-circle-check");
+      indicator2.style.color = "#7743DB";
+    }else {
+      indicator2.classList.remove("fa-solid");
+      indicator2.classList.remove("fa-circle-check");
+      indicator2.style.color = ""; 
+    }
+
       var commentDate = document.createElement("div");
       commentDate.className = "comment-date";
       commentDate.textContent = comment.boardCommentEnrollDate;
 
-      commentWriterArea.append(commentWriter, commentDate);
+      commentWriterArea.append(commentWriter, indicator2, commentDate);
 
       div1.append(img, commentWriterArea);
 
@@ -481,17 +494,24 @@ function insertChildComment(boardParentCommentNo, btn) {
     .catch((err) => console.log(err));
 }
 
+
 function likeComment(btn, boardCommentNo) {
  
   let check;
 
+ 
   if (btn.classList.contains("fa-regular")) {
     check = 0;
   } else {
     check = 1;
   }
 
-  const data = { check: check, boardCommentNo: boardCommentNo };
+  const data = { 
+    check: check,
+    boardParentCommentNo : boardCommentNo,
+  };
+
+
 
   fetch("/commentLike", {
     method: "POST",

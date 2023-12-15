@@ -194,7 +194,7 @@ width: 900px;
   display: none;
 }
 
-.comment-container .comment-area , .new-comment-area{
+.comment-container .comment-area{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -245,7 +245,7 @@ width: 900px;
 }
 
 .commentLikeCount {
-  margin-left: 2px;
+  margin-left: 3px;
 }
 
 
@@ -295,6 +295,8 @@ width: 900px;
 .fa-heart {
   color: gray;
 }
+
+
 
 .fa-heart:hover {
   color:#7743DB;
@@ -404,8 +406,9 @@ width: 900px;
   width: 38px;
 }
 
-.up-arrow :hover {
-  transform: translate(-50%, -50%);
+.up-arrow:hover {
+  transform: scale(1.1);
+  filter: brightness(90%);
   transition-duration: 0.3px;
 }
 

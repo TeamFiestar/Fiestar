@@ -18,6 +18,7 @@ public class Comment {
 	
 	private String memberNickname;
 	private String memberProfile;
+	private String memberAuthority;
 	
 	private int boardCommentLike;
 	private int likeCountComment;
