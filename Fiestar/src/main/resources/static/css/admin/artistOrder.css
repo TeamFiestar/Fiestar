@@ -11,10 +11,6 @@
   box-sizing: border-box;
   font-family: "Pretendard-Regular";
 }
-header {
-  background-color: aqua;
-  height: 80px;
-}
 main {
   display: flex;
   font-family: "Pretendard-Regular";

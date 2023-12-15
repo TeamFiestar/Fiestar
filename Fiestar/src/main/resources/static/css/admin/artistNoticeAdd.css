@@ -11,10 +11,6 @@
   margin: 0;
   box-sizing: border-box;
 }
-header {
-  background-color: aqua;
-  height: 80px;
-}
 main {
   display: flex;
   font-family: Pretendard-Regular;
@@ -101,6 +97,7 @@ main {
 }
 
 #input-noticeTitle {
+  border: 1px solid rgb(118, 118, 118) !important;
   width: 800px;
   height: 40px;
   padding-left: 10px;

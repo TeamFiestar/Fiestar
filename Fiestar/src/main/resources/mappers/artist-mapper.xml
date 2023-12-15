@@ -2,13 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.TeamFiestar.Fiestar.artist.model.mapper.ArtistMapper">
 	
-	<select id="artistGroupMainimg" resultType="string">
-		SELECT ARTIST_GROUP_MAINIMG FROM ARTIST_GROUP
+	
+	<select id="artistGroup" resultType="ArtistGroup1">
+		SELECT ARTIST_GROUP_MAINIMG, ARTIST_GROUP_INTRODUCTION, ARTIST_GROUP_TITLE FROM ARTIST_GROUP
 		WHERE ARTIST_GROUP_TITLE = #{artistGroupTitle}
 	</select>
 	
 	<select id="artist" resultType="Artist">
-		SELECT ARTIST_PROFILE FROM ARTIST
+		SELECT ARTIST_PROFILE, ARTIST_NAME FROM ARTIST
 		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
 	</select>
 	

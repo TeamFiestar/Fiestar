@@ -21,7 +21,9 @@
 
       <form action="checkoutResult" method="post" id="purchaseBtn">
 
+
          <div class="content">
+
 
             <div class="cart-area">
                <h1 class="cart">CHECKOUT</h1>
@@ -35,7 +37,7 @@
 
             <!-- 상품 1개 개별 영역 -->
             <hr>
-
+            <input type="text" th:value="${session.loginMember.memberNo}" name="memberNo" id="memberNo">
             <div class="item-list1" th:each="checkoutItem : ${checkout}">
 
                <div class="item-list">
@@ -136,7 +138,7 @@
                   
                   <label class="orderer-input">
 
-                     <input type="hidden" th:value="${session.loginMember.memberNo}">
+                     
                      <!-- <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;" th:value="${session.loginMember.memberNickname}" name="memberName"> -->
                       <!-- <div th:text="${session.loginMember.memberAddress}" class="default-price"></div> -->
                       <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;"
@@ -154,7 +156,7 @@
 
                         <label class="orderer-phoneNumber">
                            <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;" maxlength="14"
-                           name="ordererPhoneNumber" >
+                           name="ordererPhoneNumber" id="ordererPhoneNumber" >
                         </label>
 
                      </div>
@@ -263,8 +265,9 @@
             <div class="total">
                
                <span class="total-price" style="letter-spacing: -1.6px;">총 결제 금액</span>
-               <input type="hidden" th:text="${purchasePrice}" class="purchasePrice" name="purchasePrice" value="${purchasePrice}">
-               <!-- <p> <span th:text="${purchasePrice}" class="purchasePrice" name="purchasePrice"></span> </p> -->
+               
+               <input type="hidden"  class="purchasePrice" name="purchasePrice" th:value="${purchasePrice}">
+               <p> <span th:text="${purchasePrice}" class="purchasePrice" name="purchasePrice"></span> </p>
 
             </div>
 
@@ -302,6 +305,8 @@
             </div>
 
          </div>
+
+
 <!--          
          <div class="myPage-row info-address">
             <input type="text" name="memberAddress" placeholder="우편번호" id="postcode">

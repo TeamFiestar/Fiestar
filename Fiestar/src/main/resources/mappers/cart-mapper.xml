@@ -68,7 +68,7 @@
 		
 	INSERT INTO PURCHASE
 	VALUES
-	(SEQ_PURCHASE_NO.NEXTVAL, #{purchasePrice}, 1, SYSDATE, 3, #{ordererName}, #{ordererAddress}, #{ordererPhoneNumber})
+	(SEQ_PURCHASE_NO.NEXTVAL, #{purchasePrice}, 1, SYSDATE, #{memberNo}, #{ordererName}, #{ordererAddress}, #{ordererPhoneNumber})
 		
 	</insert>	
 	 

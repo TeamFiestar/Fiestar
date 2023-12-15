@@ -6,6 +6,8 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
 
+import com.TeamFiestar.Fiestar.admin.model.dto.ArtistNotice;
+import com.TeamFiestar.Fiestar.admin.model.dto.SiteNotice;
 import com.TeamFiestar.Fiestar.board.model.dto.Board;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
@@ -37,5 +39,7 @@ public interface AdminAjaxMapper {
 	String nickname(int memberNo);
 
 	int changeAuthority(Map<String, Object> paramMap);
+
+	SiteNotice selectSiteNotice(Map<String, Object> map);
 
 }

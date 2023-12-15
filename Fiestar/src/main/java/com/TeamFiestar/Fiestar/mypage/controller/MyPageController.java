@@ -184,19 +184,19 @@ public class MyPageController {
 	@PostMapping("info")
 	public String info( @SessionAttribute("loginMember") Member loginMember, RedirectAttributes ra,
 			@RequestParam("backImage") MultipartFile memberBackImage,
-//			@RequestParam("memberNickname") String memberNickname,
-//			@RequestParam("memberPw") String memberPw,
+			@RequestParam("memberNickname") String memberNickname,
+			@RequestParam("memberPw") String memberPw,
 			Member updateMember,
-			@RequestParam("address") String[] address) throws IllegalStateException, IOException{
+			@RequestParam("address") String[] MemberAddress) throws IllegalStateException, IOException{
 		
-		updateMember.setMemberAddress(String.join("^^^", address));
-	
+		updateMember.setMemberNo(loginMember.getMemberNo());
 		
-		int result = service.info(loginMember, memberBackImage, updateMember);
+		int result = service.info(loginMember, memberBackImage, updateMember, MemberAddress);
 		
 		String message = null;
 		if(result > 0) {
 			message = "회원 정보 수정되었습니다";
+			loginMember.setMemberNickname(updateMember.getMemberNickname());
 		}
 		else {
 			message = "회원 정보 수정 실패했습니다.";

@@ -85,7 +85,7 @@ header>section:nth-of-type(2) {
   background-color: #ffffff;
 }
 
-input {
+header input {
   width: 90%;
   padding: 10px 12px;
   font-size: 14px;
@@ -93,7 +93,7 @@ input {
   border-radius: 8px;
 }
 
-input:focus {
+header input:focus {
   outline: none;
 }
 

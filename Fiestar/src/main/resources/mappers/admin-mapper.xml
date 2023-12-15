@@ -249,13 +249,13 @@
 		TO_CHAR(SITE_NOTICE_ENROLL_DATE, 'YYYY/MM/DD') AS SITE_NOTICE_ENROLL_DATE
 		FROM SITE_NOTICE 
 		WHERE SITE_NOTICE_DEL_FL = 'N'
-		<if test="key == 1">AND SITE_NOTICE_TITLE LIKE '%${notice.noticeSearch}%'</if>
-		<if test="key == 2">AND SITE_NOTICE_CONTENT LIKE '%${notice.noticeSearch}%'</if>
+		<if test="key == 1">AND SITE_NOTICE_TITLE LIKE '%${noticeSearch}%'</if>
+		<if test="key == 2">AND SITE_NOTICE_CONTENT LIKE '%${noticeSearch}%'</if>
 		ORDER BY SITE_NOTICE_NO 
 	</select>
 	
 	
-	<insert id="artistNoticeAdd">
+	<insert id="siteNoticeAdd">
 		INSERT INTO SITE_NOTICE VALUES 
 		(SEQ_SITE_NOTICE_NO.NEXTVAL, 
 		#{siteNoticeTitle}, 
