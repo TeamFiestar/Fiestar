@@ -197,6 +197,11 @@ function generateComment(boardNo3) {
     
 
       // "img" 클래스를 가진 이미지 엘리먼트 생성하고 src 속성 설정
+
+      const div1 = document.createElement("div")
+      div1.className = "div1";
+
+
       const img = document.createElement("img");
       img.className = "profile-img";
       if(comment.memberProfile) {
@@ -217,43 +222,42 @@ function generateComment(boardNo3) {
       commentDate.className = "comment-date";
       commentDate.textContent = comment.boardCommentEnrollDate;
 
-      commentWriterArea.appendChild(commentWriter);
-      commentWriterArea.appendChild(commentDate);
+      commentWriterArea.append(commentWriter, commentDate);
+
+      div1.append(img, commentWriterArea);
 
       var commentProfile = document.createElement("div");
       commentProfile.className = "comment-profile";
 
       var reportImg = document.createElement("img");
       reportImg.className = "report-img";
-      reportImg.src = "/img/report-img.svg";
+      reportImg.src = "/img/report.png";
       // reportImg.onclick = reportOpen;
 
-      if(loginMemberNo == comment.memberNo) {
       const deleteBtn = document.createElement("button");
-      deleteBtn.classname = "delete-cross";
+      deleteBtn.classList.add("delete-cross");
       deleteBtn.innerText = "X";
-
       deleteBtn.setAttribute("onclick", "deleteComment(" + comment.boardCommentNo + ")");
 
-      commentProfile.append(deleteBtn, reportImg)
+      if(loginMemberNo == comment.memberNo) {
+      commentProfile.append(deleteBtn, reportImg);
     } else {
-
       commentProfile.append(reportImg);
     }
 
-      commentAreaIn.appendChild(img);
-      commentAreaIn.appendChild(commentWriterArea);
-      commentAreaIn.appendChild(commentProfile);
-
+      commentAreaIn.append(div1, commentProfile);
+     
+      
       var commentContentArea = document.createElement("div");
       commentContentArea.className = "comment-content-area";
-
+      
       var commentContent = document.createElement("div");
       commentContent.className = "comment-content";
       commentContent.textContent = comment.boardCommentContent;
-
+      
       commentContentArea.appendChild(commentContent);
-
+      
+      
       const commentLikeArea = document.createElement("div");
       commentLikeArea.className = "comment-like-area";
 
@@ -270,23 +274,22 @@ function generateComment(boardNo3) {
       likeCountComment.innerText = comment.likeCountComment;
 
       const childCommentBtn = document.createElement("i");
-      childCommentBtn.className = "fa-regular";
-      childCommentBtn.className = "fa-comment";
-      childCommentBtn.className = "fa-xl";
+      childCommentBtn.className = "fa-regular fa-comment fa-l";
       childCommentBtn.setAttribute("onclick", "showInsertComment(" + comment.boardCommentNo + ", this)");
     
       commentLikeArea.append(heartComment, likeCountComment, childCommentBtn );
-      commentAreaIn.appendChild(commentLikeArea);
+      
+
+      commentArea.append(commentAreaIn, commentContentArea,commentLikeArea );
 
     }
-    commentArea.append(commentAreaIn);
     commentLists.appendChild(commentArea);
   
   }
   updateCommentCount(response.commentList.length);
 
   } else {
-    console.error("Invalid response structure or missing data");
+    console.error(e.error);
   }
 }
   
@@ -413,8 +416,12 @@ function deleteComment(boardCommentNo) {
 /* ----------------------------------------------------------------------------------- */
 function showInsertComment(boardParentCommentNo, btn) {
 
-  const textarea = document.createElement("textarea");
+  const textarea = document.createElement("input");
+  textarea.type = "text";
+  textarea.placeholder = "댓글을 입력하세요";
+  textarea.color = "gray";
   textarea.classList.add("commentInsertContent");
+
 
   btn.parentElement.after(textarea);
 
