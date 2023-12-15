@@ -4,23 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>신고 관리</title>
-    <link rel="stylesheet" href="../../static/css/admin/report.css" />
+    <link rel="stylesheet" href="/css/admin/artist.css" />
   </head>
   <body>
     <header>헤더+nav</header>
     <div class="reportModal">
       <div id="reportModal" class="modal-body">
         <button id="modalCloseButton">X</button>
-        <div class="modal-noticeDetail">
+        <div class="modal-reportDetail">
           <h1>신고내용</h1>
           <br />
-          <div class="modal-noticeContent">ㅅxxxx</div>
+          <div class="modal-reportContent">ㅅxxxx</div>
         </div>
       </div>
     </div>
-    <main>
-      <th:block th:replace="~{common/admin}"></th:block>
+    <main th:with="reportList = ${map.reportList}, pagination = ${map.pagination}">
+      <!-- th:replace -->
+      <th:block th:replace="~{common/adminArtist}"></th:block>
       <div class="report-main">
+        <h4>NewJeans</h4>
         <h1>신고 조회</h1>
         <br />
         <table class="report-table" border="1" style="border-collapse: collapse">
@@ -34,74 +36,87 @@
             <th>처리</th>
             <th>처리 여부</th>
           </tr>
-          <tr class="report-tr-td">
-            <td>1</td>
-            <td>신고신고</td>
-            <td>singo123@gmail.com</td>
-            <td>닉네임11</td>
-            <td>nickname123123@naver.com</td>
-            <td>욕설 사용</td>
-            <td><button class="btn-open-popup">이동</button></td>
-            <td>
-              <button>N</button>
-            </td>
-          </tr>
-          <tr class="report-tr-td">
-            <td>2</td>
-            <td>신고신고</td>
-            <td>singo123@gmail.com</td>
-            <td>닉네임11</td>
-            <td>nickname123123@naver.com</td>
-            <td>불법 광고</td>
-            <td>
-              <form>
-                <button>이동</button>
-              </form>
-            </td>
-          </tr>
+
+          <tbody>
+
+            <tr class="report-tr-td" th:each="report : ${reportList}" th:object="${report}">
+              <td th:text="*{reportNo}">1</td>
+              <td th:text="*{reporterNickname}">신고신고</td>
+              <td th:text="*{reporterEmail}">singo123@gmail.com</td>
+              <td th:text="*{reportTargetNickname}">닉네임11</td>
+              <td th:text="*{reportTargetEmail}">nickname123123@naver.com</td>
+              <td th:text="*{reportContent}"> 욕설 사용</td>
+              <td>
+                <button class="btn-open-popup">이동</button>
+              </td>
+              <td>
+                <button>N</button>
+              </td>
+            </tr>
+
+          </tbody>
+
         </table>
         <div class="pagination-area">
-          <div class="pagination"><< < 1 2 3 4 5 6 7 8 9 10 > >></div>
-          <form>
-            <select id="select">
-              <option value="memberNo">신고자 닉네임</option>
-              <option value="memberNickname">신고자 이메일</option>
-              <option value="memberEmail">대상자 닉네임</option>
-              <option value="memberEmail">대상자 이메일</option>
-              <option value="memberEmail">신고 내용</option>
+
+          <div class="pagination-area" th:if="${#lists.size(reportList) > 0}">
+
+            <ul class="pagination">
+  
+              <!-- 첫 페이지로 이동 -->
+              <li><a th:href="@{/admin/report( cp=1, key=${key}, reportSearch=${reportSearch}  ) }">&lt;&lt;</a></li>
+  
+              <!-- 이전 목록 마지막 번호로 이동 -->
+              <li><a th:href="@{/admin/report( cp=${pagination.prevPage }, key=${key}, reportSearch=${reportSearch}   )}">&lt;</a></li>
+  
+  
+              <!-- 현재 보고있는 페이지 -->
+              <!-- #numbers.sequence(1,10) 1~10증가하며 차례대로 추가한 리스트 -->
+              <th:block th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}">
+                <li th:if="${i == pagination.currentPage}">
+                  <a class="current active" th:text="${i}">1</a>
+                </li>
+  
+                <!-- 보고있지 않은 페이지 -->
+                <li th:unless="${i == pagination.currentPage}">
+                  <a th:href="@{/admin/report( cp=${i}, key=${key}, reportSearch=${reportSearch}   )} " th:text="${i}">2</a>
+                </li>
+              </th:block>
+  
+  
+  
+              <!-- 다음 목록 시작 번호로 이동 -->
+              <li><a th:href="@{/admin/report( cp=${pagination.nextPage }, key=${key}, reportSearch=${reportSearch}   )}">&gt;</a>
+              </li>
+  
+              <!-- 끝 페이지로 이동 -->
+              <li><a
+                  th:href="@{/admin/report( cp=${pagination.maxPage }, key=${key}, reportSearch=${reportSearch}   )}">&gt;&gt;</a>
+              </li>
+            </ul>
+          </div>
+
+          
+          
+          <form th:action="|/artistAdmin/${artistGroupTitle}/report|" method="get">
+            
+            <select id="select" name="key">
+              <option value="1" th:selected="${key == 1}">신고자 닉네임</option>
+              <option value="2" th:selected="${key == 2}">신고자 이메일</option>
+              <option value="3" th:selected="${key == 3}">대상자 닉네임</option>
+              <option value="4" th:selected="${key == 4}">대상자 이메일</option>
+              <option value="5" th:selected="${key == 5}">신고 내용</option>
             </select>
-            <input type="text" id="inputSearch" />
+            <input th:value="${reportSearch}" type="text" id="inputSearch" name="reportSearch"/>
             <button id="pagination-button">검색</button>
+            
           </form>
+          
+        </div>
         </div>
       </div>
     </main>
-    <script>
-      const modal = document.querySelector(".reportModal");
-      const btnOpenPopup = document.querySelector(".btn-open-popup");
-      const modalCloseButton = document.getElementById("modalCloseButton");
-      const modal_background = document.querySelector(".reportModal");
 
-      btnOpenPopup.addEventListener("click", () => {
-        open();
-      });
-
-      //Hide modal
-      modalCloseButton.addEventListener("click", () => {
-        close();
-      });
-
-      window.addEventListener("click", (e) => {
-        e.target === modal_background ? close() : false;
-      });
-      function close() {
-        modal.classList.remove("show");
-        modal_background.classList.remove("show");
-      }
-      function open() {
-        modal.classList.add("show");
-        modal_background.classList.add("show");
-      }
-    </script>
+    <script src="/js/admin/artistReport.js"></script>
   </body>
 </html>

@@ -40,6 +40,10 @@ a {
   font-family: 'Pretendard-Regular' !important;
 }
 
+main{
+  background-color: #1e1e1e;
+}
+
 
 .screen {
   margin: auto;
@@ -260,6 +264,7 @@ a {
   flex: 1;
   flex-grow: 1;
 }
+
 
 .screen .view-img {
   position: relative;

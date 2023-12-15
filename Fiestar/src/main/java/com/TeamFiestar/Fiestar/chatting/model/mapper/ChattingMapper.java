@@ -20,4 +20,6 @@ public interface ChattingMapper {
 
 	int createLiveChattingRoom(Map<String, Integer> map);
 
+	String artistGroupImage(String artistGroupTitle);
+
 }

@@ -27,7 +27,7 @@ public interface ArtistAdminMapper {
 
 	int noticeListCount(Map<String, Object> map);
 
-	List<Purchase> selectPurchaseList(int artistGroupNo, RowBounds rowBounds);
+	List<Purchase> selectPurchaseList(Purchase searchPurchase, RowBounds rowBounds);
 
 	int orderListCount(int artistGroupNo);
 

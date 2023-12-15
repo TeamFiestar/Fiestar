@@ -1,33 +1,8 @@
 
-
-/* 아티스트 별 최신글 */
-const swiper = new swiper('.swiper-container', {
-  //기본 셋팅
-  //방향 셋팅 vertical 수직, horizontal 수평 설정이 없으면 수평
-  direction: 'horizontal',
-  //한번에 보여지는 페이지 숫자
-  slidesPerView: 3,
-  //페이지와 페이지 사이의 간격
-  spaceBetween: 100,
-  //드레그 기능 true 사용가능 false 사용불가
-  debugger: false,
-  //마우스 휠기능 true 사용가능 false 사용불가
-  mousewheel: false,
-  //반복 기능 true 사용가능 false 사용불가
-  loop: false,
-  //선택된 슬라이드를 중심으로 true 사용가능 false 사용불가 djqt
-  centeredSlides: false,
-  // 페이지 전환효과 slidesPerView효과와 같이 사용 불가
-  // effect: 'fade',
-
-  //방향표
-  navigation: {
-    //다음페이지 설정
-    nextEl: '.swiper-button-next',
-    //이전페이지 설정
-    prevEl: '.swiper-button-prev',
-  },
-});
+let likeCheck;
+let likeCount2;
+const dataObj = {};
+const likeImg = document.querySelector('#likeImg');
 
 function openModal(boardNo) {
   // 새로운 URL 생성
@@ -43,24 +18,12 @@ function openModal(boardNo) {
   history.pushState(stateObj, "", newUrl);
 
   // 페이지의 내용을 동적으로 업데이트하는 함수 호출 (예시로 updatePageContent 함수 사용)
-  updatePageContent(artistGroupTitle, boardNo);
+  updatePageContent(boardNo);
 
   const modal = document.getElementById('feedDetail');
   modal.classList.add("show");
   document.body.style.overflow = "hidden";
 
-
-}
-
- // 예시로 {artistGroupTitle}과 {boardNo}에 값을 할당
- 
- // openModal 함수 호출
- openModal(dynamicArtistGroupTitle, dynamicBoardNo);
-
-// 예시로 페이지의 내용을 업데이트하는 함수
-function updatePageContent(artistGroupTitle, boardNo) {
-  // 여기에 페이지 내용을 동적으로 업데이트하는 로직을 추가
-  console.log("Updating content for artistGroupTitle: " + artistGroupTitle + ", boardNo: " + boardNo);
 }
 
 
@@ -75,3 +38,134 @@ function closeModal(stateObj){
   document.body.style.overflow = "";
   
 }
+
+
+function updatePageContent(boardNo) {
+
+
+  // 여기에 페이지 내용을 동적으로 업데이트하는 로직을 추가
+  fetch("/AJAXboardDetail?boardNo="+ boardNo)
+  .then(resp => resp.json())
+  .then(board => {
+    console.log(board);
+    const boardNickname = document.getElementById('boardNickname');
+    boardNickname.innerText = board.memberNickname;
+    const boardDate = document.getElementById('boardDate');
+    boardDate.innerText = board.boardEnrollDate;
+
+    const feedMain = document.querySelector('.feedMain');
+    feedMain.innerText = board.boardContent;
+
+    const profileImage = document.getElementById('profileImage');
+
+    if(board.memberProfile) {
+      profileImage.src = board.memberProfile;
+    } else {
+      profileImage.src = defaultImage;
+    }
+
+    const indicator = document.querySelector('#indicator');
+    
+    if(board.memberAuthority == 2) {
+      indicator.classList.add("fa-solid", "fa-circle-check");
+      indicator.style.color = "#7743DB";
+    }else {
+      indicator.classList.remove("fa-solid", "fa-circle-check");
+      indicator.style.color = ""; 
+    }
+
+    if(board.imageList && board.imageList.length > 0) {
+      const feedImg = document.querySelector('.feedImg');
+      feedImg.innerHTML = '';
+
+      board.imageList.forEach(image => {
+        const imgElement = document.createElement('img');
+        const imagePath = image.boardImagePath + image.boardImageRename;
+
+        imgElement.src = imagePath;
+
+        feedImg.appendChild(imgElement);
+      });
+
+
+    } else {
+      const feedImg = document.querySelector('.feedImg');
+      feedImg.innerHTML ='';
+
+    }
+
+    const feedLikeCount = document.querySelector('#feedLikeCount');
+    feedLikeCount.innerText = board.likeCount;
+
+    console.log(board.likeCheck);
+
+    if(board.likeCheck == 1){
+      likeImg.classList.add("fa-solid");
+      likeImg.classList.remove("fa-regular");
+    }
+    else{
+      likeImg.classList.remove("fa-solid");
+      likeImg.classList.add("fa-regular");
+    }
+
+
+    likeCount2 = board.likeCount;
+
+    const textWrapper = document.querySelector('.text-wrapper');
+    textWrapper.innerText = board.commentCount + "개의 댓글";
+
+    dataObj.boardNo = boardNo;
+    dataObj.likeCheck = board.likeCheck;
+
+
+    
+    
+  });
+}
+
+
+
+likeImg.addEventListener("click", (e) => {
+  if (!loginCheck) {
+    alert("로그인을 먼저 해주세요");
+    return;
+  }
+
+
+  if (e.target.classList.contains("fa-regular")) {
+    likeCheck = 0;
+  } else {
+    likeCheck = 1;
+  }
+
+
+  console.log(dataObj);
+
+  fetch("/AJAXboardDetail/like",{
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(dataObj),
+  })
+    .then((resp) => resp.text())
+    .then((count) => {
+      if (count == -1) {
+        console.log("좋아요 실패");
+        return;
+      }
+      e.target.classList.toggle("fa-regular");
+      e.target.classList.toggle("fa-solid");
+      const feedLikeCount = document.querySelector('#feedLikeCount');
+      if(likeCheck == 1){
+        likeCount2 = likeCount2 - 1;
+        dataObj.likeCheck = 0;
+      }else{
+        likeCount2 = likeCount2 + 1;
+        dataObj.likeCheck = 1;
+      }
+
+      e.target.nextElementSibling.innerText = likeCount2;
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+});

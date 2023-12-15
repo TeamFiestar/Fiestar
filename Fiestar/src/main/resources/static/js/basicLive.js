@@ -74,9 +74,6 @@ async function joinSubmit(role, token) {
   await leave();
   options.role = role;
 
-  if(authority != 1){
-    $("#host-join").attr("disabled", true);
-  }
   $("#audience-join").attr("disabled", true);
   try {
     options.channel = artistGroupTitle;
@@ -86,6 +83,7 @@ async function joinSubmit(role, token) {
     console.log(options);
     await join();
     if (options.role === "host") {
+      $("#host-join").attr("disabled", true);
       $("#success-alert a").attr("href", `index.html?appid=${options.appid}&channel=${options.channel}&token=${options.token}`);
       if (options.token) {
         $("#success-alert-with-token").css("display", "block");
@@ -152,6 +150,10 @@ async function leave() {
       track.close();
       localTracks[trackName] = undefined;
     }
+    if(chattingSock){
+      chattingSock.close();
+      chattingSock = null;
+    }
   }
 
   remoteUsers = {};
@@ -168,7 +170,6 @@ async function leave() {
 
 // 원격 사용자 구독 함수
 async function subscribe(user, mediaType) {
-  selectLiveChattingRoom();
   console.log("시청자 참여 성공");
   const uid = user.uid;
   await client.subscribe(user, mediaType);
@@ -176,10 +177,10 @@ async function subscribe(user, mediaType) {
   
   if (mediaType === 'video') {
     const player = $(`
-      <div id="player-wrapper-${uid}" class="player">
-        <p class="player-name">remoteUser(${uid})</p>
-        <div id="player-${uid}" class="player"></div>
-      </div>
+    <div id="player-wrapper-${uid}" class="player">
+    <p class="player-name">remoteUser(${uid})</p>
+    <div id="player-${uid}" class="player"></div>
+    </div>
     `);
     $("#remote-playerlist").append(player);
     user.videoTrack.play(`player-${uid}`, {
@@ -195,6 +196,9 @@ async function subscribe(user, mediaType) {
 // 원격 사용자가 미디어를 게시할 때 호출되는 이벤트 처리 함수
 function handleUserPublished(user, mediaType) {
   console.log('"user-published" event for remote users is triggered.');
+  if(!chattingSock){
+    selectLiveChattingRoom();
+  }
   const id = user.uid;
   remoteUsers[id] = user;
   subscribe(user, mediaType);
@@ -241,55 +245,64 @@ const selectLiveChattingRoom = () => {
 
 const chattingJoin = () => {
 
+  if(chattingSock){
+    chattingSock.close();
+    console.log("채팅방 참가2");
+  }
+  
+  console.log("채팅방 참가");
   console.log(chattingSock);
   chattingSock = new SockJS("/liveSock");
+  
   
   chattingSock.onmessage = function (e) {
     const msg = JSON.parse(e.data);
     console.log(msg);
-
+  
     const commentArea = document.createElement('div');
     commentArea.className = 'comment-area';
-
+  
     const commentAreaIn = document.createElement('div');
     commentAreaIn.className = 'comment-area-in';
-
+  
     const profileImg = document.createElement('img');
     profileImg.className = 'profile-img';
     profileImg.src = msg.memberProfile;
-
+  
     const commentWriterArea = document.createElement('div');
     commentWriterArea.className = 'comment-writer-area';
-
+  
     const commentWriter = document.createElement('div');
     commentWriter.className = 'comment-writer';
     commentWriter.textContent = msg.memberNickname;
-
+  
     const commentDate = document.createElement('div');
     commentDate.className = 'comment-date';
     commentDate.textContent = msg.messageSendTime;
     
     commentWriterArea.append(commentWriter, commentDate)
-
+  
     commentAreaIn.append(profileImg, commentWriterArea);
-
+  
     const commentContentArea = document.createElement('div');
     commentContentArea.className = 'comment-content-area';
-
+  
     const commentContent = document.createElement('div');
     commentContent.className = 'comment-content';
     commentContent.textContent = msg.messageContent;
-
+  
     commentContentArea.append(commentContent);
-
+  
     commentArea.append(commentAreaIn, commentContentArea);
-
+  
     commentList = document.querySelector('.comment-list');
-
+  
     commentList.append(commentArea);
-
   }
 }
+
+
+
 
 const inputChat = document.getElementById('chatting-input');
 

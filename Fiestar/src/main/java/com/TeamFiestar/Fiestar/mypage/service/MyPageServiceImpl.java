@@ -184,43 +184,7 @@ public class MyPageServiceImpl implements MyPageService {
 		return result;
 	}
 
-	// 프로필 수정
-	@Override
-	public int info(Member updateMember, String[] memberAddress, MultipartFile memberBackImage, Member loginMember) 
-			throws IllegalStateException, IOException {
-
-		// 프로필 배경 이미지
-		String rename = null;
-		
-		String backup = loginMember.getMemberBackImage();
-		
-		if(memberBackImage.getSize() > 0) {
-			rename = Util.fileRename(memberBackImage.getOriginalFilename());
-			loginMember.setMemberBackImage(webpath + rename);
-		}
-		
-		// 프로필 주소
-		if (updateMember.getMemberAddress().equals(",,")) {
-			updateMember.setMemberAddress(null);
-		} else { 
-			String address = String.join("^^^", memberAddress);
-			updateMember.setMemberAddress(address);
-		}
-		
-		int result = mapper.info(updateMember ,loginMember);
-		
-		if (result > 0) {
-			if (memberBackImage.getSize() > 0) {
-				memberBackImage.transferTo(new File(folderPath + rename));
-			} else {
-				loginMember.setMemberProfile(backup);
-			}
-		}
-		
-		return result;
-	}
-	
-
+	// 댓글 삭제
 	@Override
 	public int delComment(int memberNo, int commentNo, String commentType) {
 
@@ -230,7 +194,7 @@ public class MyPageServiceImpl implements MyPageService {
 		map.put("commentType", commentType);
 
 		// 미디어 댓글 삭제
-		if (commentType == "MEDIA") {
+		if (commentType.equals("MEDIA")) {
 			return mapper.deleteMediaComment(map);
 		} else {
 			return mapper.deleteBoardComment(map);
@@ -238,4 +202,44 @@ public class MyPageServiceImpl implements MyPageService {
 
 	}
 
+	// 프로필 정보 수정
+	@Override
+	public int info(Member loginMember, MultipartFile memberBackImage, Member updateMember) 
+			throws IllegalStateException, IOException {
+		
+		// 비밀번호 확인
+		String encPw = mapper.selectPw(loginMember.getMemberNo());
+
+		if (!bcrypt.matches(updateMember.getMemberPw(), encPw)) {
+			return 0;
+		}
+		
+
+		// 배경이미지 변경
+		String backup = loginMember.getMemberBackImage();
+
+		String rename = null;
+
+		if (memberBackImage.getSize() > 0) {
+			rename = Util.fileRename(memberBackImage.getOriginalFilename());
+			loginMember.setMemberBackImage(webpath + rename);
+		} else {
+			loginMember.setMemberBackImage(null);
+		}
+
+		// mapper 호출 후 결과 반환
+		int result = mapper.info(loginMember);
+
+		if (result > 0) {
+			if (memberBackImage.getSize() > 0) {
+				memberBackImage.transferTo(new File(folderPath + rename));
+			} else {
+				loginMember.setMemberBackImage(backup);
+			}
+		}
+
+		return result;
+	
+	
+	}
 }

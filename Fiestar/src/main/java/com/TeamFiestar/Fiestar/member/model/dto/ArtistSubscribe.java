@@ -15,5 +15,6 @@ public class ArtistSubscribe {
 	private int memberNo;
 	
 	private String artistGroupTitle;
-	private String artistProfile;
+	private String artistGroupProfile;
+	private String artistGroupImage;
 }

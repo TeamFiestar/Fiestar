@@ -71,34 +71,25 @@ ul, li{
   width: 750px;
   height: 430px;
   margin: 0 auto;
+  flex-direction: row;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 
-.artist-top{
-  width: 750px;
+.m{
+  margin: 10px;
+  width: 155px;
   height: 250px;
-  display: flex;
-}
-
-.artist-bottom{
-  width: 750px;
-  height: 250px;
-  display: flex;
 }
 
 .artist-list {
   width: 155px;
   height: 190px;
   border-radius: 14px;
+  margin-top: 20px;
 }
 
-.artist-all ul{
-  grid-gap: 30px 20px;
-  display: grid;
-  gap: 40px 60px;
-  grid-template-columns: repeat(4,140px);
-  padding-top: 10px;
-}
 
 
 .artist-profile {

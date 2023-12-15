@@ -1,8 +1,5 @@
-const modal = document.querySelector(".noticeModal");
 const updateModal = document.querySelector(".updateModal");
 
-const btnOpenPopup = document.querySelector(".btn-open-popup");
-const modalCloseButton = document.querySelector(".modalCloseButton");
 
 const modal_background = document.querySelector(".noticeModal");
 const updateCloseBtn = document.getElementById('update-close');
@@ -11,6 +8,10 @@ const inputNoticeTitle = document.getElementById('input-noticeTitle');
 const inputNoticeContent = document.getElementById('input-noticeContent');
 let updateNoticeNo;
 
+
+const btnOpenPopup = document.querySelector(".btn-open-popup");
+const modal = document.querySelector(".noticeModal");
+const modalCloseButton = document.querySelector(".modalCloseButton");
 updateCloseBtn.addEventListener("click", () =>{
   updateClose();
 })

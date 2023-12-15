@@ -1,8 +1,6 @@
 
 package com.TeamFiestar.Fiestar.shop.controller;
 
-
-
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.TeamFiestar.Fiestar.shop.model.dto.Product;
+import com.TeamFiestar.Fiestar.shop.model.dto.ProductImage;
 import com.TeamFiestar.Fiestar.shop.model.service.ShopService;
+
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -41,6 +41,7 @@ public class ShopController {
 							@RequestParam(name="shopSearch", required = false, defaultValue = "") String shopSearch) {
 		
 		if(paramMap.get("shopSearch") == null) {
+			
 			Map<String, Object> map = service.shopMain(cp);
 			model.addAttribute("map",map);
 			int shopCount = service.shopCount();
@@ -48,11 +49,14 @@ public class ShopController {
 		
 			
 		}else {
+			ProductImage productImg = null;
+			model.addAttribute("productImg",productImg);
 			paramMap.put("shopSearch", shopSearch);
 			Map<String, Object> map =  service.searchList(paramMap,cp);
 			model.addAttribute("map",map);
 			int shopCount = service.shopSearchCount(paramMap);
 			model.addAttribute("shopCount", shopCount);
+			model.addAttribute("shopSearch",shopSearch);
 			
 		}
 		return "shop/home";
@@ -129,14 +133,11 @@ public class ShopController {
 			path = "shop/shopDetail";
 		}else {
 			path = "redirect:/shop/home";
-			ra.addFlashAttribute("message", "해당 게시글이 존재하지않습니다");  //footer.html에서 출력
+			ra.addFlashAttribute("message", "해당 상품이 존재하지않습니다");  //footer.html에서 출력
 		}
 		
 		return path;
 	}
-	
-	
-	
 	
 	
 	@GetMapping("noticeDetail")

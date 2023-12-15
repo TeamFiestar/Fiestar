@@ -15,4 +15,6 @@ public interface ChatService {
 	
 	int createLiveChattingRoom(String artistGroupTitle);
 
+	String artistGroupImage(String artistGroupTitle);
+
 }

@@ -31,17 +31,21 @@
 	
 	<!-- 미디어 상세 조회 -->
 	<select id="mediaDetail" resultMap="mediaRM">
-		SELECT *
+		SELECT 	MEDIA_NO ,MEDIA_ADDRESS ,
+				MEDIA_TITLE ,MEDIA_DESCRIPTION ,
+				MEDIA_COUNT ,ARTIST_GROUP_NO  ,
+				TO_CHAR(MEDIA_ENROLL_DATE, 'MM.DD HH24:MI') MEDIA_ENROLL_DATE 
 		FROM MEDIA M
 		WHERE MEDIA_NO = #{mediaNo}
 	</select>
 	
-	
+	<!-- 미디어 리스트 조회 -->
 	<select id="selectMediaList">
 		
 		SELECT *
 		FROM "MEDIA"
 		WHERE MEDIA_TITLE LIKE '%${mediaTitle}%'
+		AND ARTIST_GROUP_NO = #{artistGroupNo}
 		<if test="key == 1">
 			ORDER BY MEDIA_ENROLL_DATE DESC
 		</if>
@@ -51,6 +55,7 @@
 		
 	</select>
 	
+	<!-- 미디어 삽입 -->
 	<insert id="insertMedia">
 		INSERT INTO MEDIA M VALUES
 			(SEQ_MEDIA_NO.NEXTVAL,

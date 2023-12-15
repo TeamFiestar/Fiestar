@@ -119,10 +119,10 @@ if (imageInput != null) { // #imageInput 존재할 때
 }
 
 
-
+// *************************************************************************************************************
 
 /* f로고 미리보기, 제거 */
-const artistLogo = document.getElementById("artistLogo");
+const artistGroupLogo = document.getElementById("artistGroupLogo");
 let logoInput = document.querySelector("#logoInput"); // input 태그
 
 
@@ -198,15 +198,26 @@ if (logoInput != null) { // #imageInput 존재할 때
 
         // ---------- 선택된 이미지 파일을 읽어와 미리 보기 만들기 ----------
 
+        // JS에서 파일을 읽는 객체
+        // -> 파일을 읽고 클라이언트 컴퓨터에 파일을 저장할 수 있음
         const reader = new FileReader();
 
+        // 매개변수에 작성된 파일을 읽어서
+        // 파일을 나타내는 URL 형태로 변경
+        // -> FileReader.result 필드에 저장되어 있음
+        reader.readAsDataURL(uploadFile)
+
+        // 파일을 다 읽었을 때
         reader.onload = e => {
+            //console.log(reader.result); // 읽은 파일의 URL
 
-            artistLogo.setAttribute("src", reader.result);
+            // img태그의 src 속성의 속성 값으로
+            // 읽은 파일의 URL을 대입
+            artistGroupLogo.setAttribute("src", reader.result);
 
-            statusCheck = 1; 
+            statusCheck = 1; // 새 이미지 선택한 경우
 
-            
+            // 파일이 추가된 input을 backup 해두기
             backupInput = logoInput.cloneNode(true);
         }
     }
@@ -215,3 +226,37 @@ if (logoInput != null) { // #imageInput 존재할 때
 
 }
 
+
+// *************************************************************************************************************
+//
+
+
+
+
+//--------------------------------------------------------------------------------------------
+/* 제출 시 유효성 검사 */
+
+const profileFrm = document.getElementById("profileFrm");
+
+profileFrm.addEventListener('submit', e => {
+
+
+    const content = document.getElementsByName("name=[artistGroupIntroduce]");
+    const name = document.querySelectorAll("[name=artistName]");
+
+    if (content.value.trim().length == 0) {
+        alert('아티스트 소개글을 작성해주세요!');
+        e.preventDefault();
+        content.value = "";
+        content.focus();
+        return;
+    }
+
+    if (name.value.trim().length == 0) {
+        alert('아티스트 이름을 작성해주세요!');
+        e.preventDefault();
+        content.value = "";
+        content.focus();
+        return;
+    }
+});

@@ -42,11 +42,12 @@ public class ChattingController {
 			@SessionAttribute("loginMember") Member loginMember, Model model) {
 		
 		int artistGroupNo = artistAdminMapper.selectArtistGroupNo(artistGroupTitle);
-
+		String artistGroupImage = service.artistGroupImage(artistGroupTitle);
 //		List<String> userList = new ArrayList<>();
 //		userList.add(loginMember.getMemberNickname());
 //		
 //		model.addAttribute("userList",userList);
+		model.addAttribute("artistGroupImage", artistGroupImage);
 		model.addAttribute("artistGroupNo",artistGroupNo);
 		model.addAttribute("loginMember", loginMember);
 		model.addAttribute("memberNickname",loginMember.getMemberNickname());

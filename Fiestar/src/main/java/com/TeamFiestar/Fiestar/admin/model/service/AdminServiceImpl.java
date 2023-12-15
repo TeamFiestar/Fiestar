@@ -12,12 +12,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.TeamFiestar.Fiestar.admin.model.dto.AdminPagination;
+import com.TeamFiestar.Fiestar.admin.model.dto.ArtistNotice;
+import com.TeamFiestar.Fiestar.admin.model.dto.Purchase;
+import com.TeamFiestar.Fiestar.admin.model.dto.Report;
+import com.TeamFiestar.Fiestar.admin.model.dto.SiteNotice;
 import com.TeamFiestar.Fiestar.admin.model.mapper.AdminMapper;
 import com.TeamFiestar.Fiestar.board.model.dto.Board;
 import com.TeamFiestar.Fiestar.common.utility.Util;
 //import com.TeamFiestar.Fiestar.member.model.dto.ArtistGroup;
 import com.TeamFiestar.Fiestar.member.model.dto.ArtistGroup1;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
+import com.TeamFiestar.Fiestar.mypage.dto.Pagination;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -275,5 +280,89 @@ public class AdminServiceImpl implements AdminService{
 //	public int restoration(int memberNo) {
 //		return mapper.restoration(memberNo);
 //	}
+	
+	
+	@Override
+	public Map<String, Object> selectPurchaseList(int cp) {
+		int listCount = mapper.orderListCount();
+		
+		/* Pagination */
+		Pagination pagination = new Pagination(cp, listCount, 8, 10);
+		
+		int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
+		
+		int limit = pagination.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);   
+		/* Pagination */
+		
+		List<Purchase> purchaseList = mapper.selectPurchaseList( rowBounds);
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("purchaseList", purchaseList);
+		map.put("pagination", pagination);
+		
+		return map;
+	}
+	
+	@Override
+	public Map<String, Object> selectReportList(Report report, int cp) {
+		Map<String, Object> map = new HashMap<>();   
+		
+		map.put("report",report);
+		int listCount = mapper.reportListCount(map);
+		
+		/* Pagination */
+		Pagination pagination = new Pagination(cp, listCount, 8, 10);
+		
+		int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
+		
+		int limit = pagination.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);   
+		/* Pagination */
+		
+		List<Report> reportList = mapper.selectReportList(map, rowBounds);
+		
+		map.put("reportList", reportList);
+		map.put("pagination", pagination);
+		
+		return map;
+	}
+	
+	@Override
+	public int siteNoticeAdd(SiteNotice notice) {
+		return mapper.siteNoticeAdd(notice);
+	}
+	
+	@Override
+	public Map<String, Object> siteNoticeList(SiteNotice notice, int cp) {
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		
+		int listCount = mapper.noticeListCount(notice);
+		
+		/* Pagination */
+		Pagination pagination = new Pagination(cp, listCount, 10, 10);
+		
+		int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
+		
+		int limit = pagination.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		/* Pagination */
+
+		List<ArtistNotice> noticeList = mapper.selectNoticeList(map, rowBounds);
+		
+		map.put("noticeList", noticeList);
+		map.put("pagination", pagination);
+		
+		
+
+		return map;
+	}
+	
 	
 }

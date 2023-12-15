@@ -35,5 +35,10 @@ public class ArtistAdminAJAXSeviceImpl implements ArtistAdminAJAXService{
 	public int updatePurchase(Purchase purchase) {
 		return mapper.updatePurchase(purchase);
 	}
+	
+	@Override
+	public Purchase selectPurchaseDetails(int purchaseNo) {
+		return mapper.selectPurchaseDetails(purchaseNo);
+	}
 
 }

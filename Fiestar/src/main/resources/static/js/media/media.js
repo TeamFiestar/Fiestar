@@ -179,7 +179,7 @@ function generateComment(){
       // "report-img" 클래스를 가진 이미지 엘리먼트 생성하고 onclick 이벤트 설정
       var reportImg = document.createElement("img");
       reportImg.className = "report-img";
-      reportImg.src = "/img/report-img.svg";
+      reportImg.src = "/img/siren.png";
       reportImg.onclick = modalOpen;
 
       const deleteImg = document.createElement("img");
@@ -248,6 +248,11 @@ function generateComment(){
   
       commentLists.append(commentArea)
     }
+
+    const commentCounter = document.querySelector('.comment-count-wrapper')
+    commentCounter.textContent = `${commentList.length}개의 답글`
+
+
   })
   .catch(err => console.log(err));
 }
