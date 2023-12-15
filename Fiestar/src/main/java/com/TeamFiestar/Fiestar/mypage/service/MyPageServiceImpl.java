@@ -204,16 +204,18 @@ public class MyPageServiceImpl implements MyPageService {
 
 	// 프로필 정보 수정
 	@Override
-	public int info(Member loginMember, MultipartFile memberBackImage, Member updateMember) 
+	public int info(Member loginMember, MultipartFile memberBackImage, Member updateMember, String[] MemberAddress)
 			throws IllegalStateException, IOException {
-		
+
 		// 비밀번호 확인
 		String encPw = mapper.selectPw(loginMember.getMemberNo());
 
 		if (!bcrypt.matches(updateMember.getMemberPw(), encPw)) {
 			return 0;
 		}
-		
+
+		// 주소 가공
+		updateMember.setMemberAddress(String.join("^^^", MemberAddress));
 
 		// 배경이미지 변경
 		String backup = loginMember.getMemberBackImage();
@@ -228,7 +230,7 @@ public class MyPageServiceImpl implements MyPageService {
 		}
 
 		// mapper 호출 후 결과 반환
-		int result = mapper.info(loginMember);
+		int result = mapper.info(updateMember);
 
 		if (result > 0) {
 			if (memberBackImage.getSize() > 0) {
@@ -239,7 +241,6 @@ public class MyPageServiceImpl implements MyPageService {
 		}
 
 		return result;
-	
-	
+
 	}
 }

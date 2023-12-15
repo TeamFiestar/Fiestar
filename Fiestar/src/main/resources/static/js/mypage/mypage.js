@@ -270,28 +270,28 @@ if (inputBackImg != null) { // #inputBackImg 존재할 때
     // change 이벤트 : input의 이전 값과 현재 값이 다를 때 발생
     inputBackImg.addEventListener("change", changeImageFn);
 
-    const updateInfo = document.getElementById("updateInfo");
+    // const updateInfo = document.getElementById("updateInfo");
 
-    updateInfo.addEventListener("submit", e => {
+    // updateInfo.addEventListener("submit", e => {
     
         
-        let flag = true;
+    //     let flag = true;
 
-        // 1) 로그인한 회원의 프로필이 있음 -> 없음
-        if (loginMembermemberBackImage != null && statusCheck == 0) flag = false;
+    //     // 1) 로그인한 회원의 프로필이 있음 -> 없음
+    //     if (loginMembermemberBackImage != null && statusCheck == 0) flag = false;
 
-        // 2) 로그인한 회원의 프로필이 없음 -> 있음
-        if (loginMembermemberBackImage == null && statusCheck == 1) flag = false;
+    //     // 2) 로그인한 회원의 프로필이 없음 -> 있음
+    //     if (loginMembermemberBackImage == null && statusCheck == 1) flag = false;
 
-        // 3) 로그인한 회원의 프로필이 있음 -> 변경
-        if (loginMembermemberBackImage != null && statusCheck == 1) flag = false;
+    //     // 3) 로그인한 회원의 프로필이 있음 -> 변경
+    //     if (loginMembermemberBackImage != null && statusCheck == 1) flag = false;
 
-        if (flag) { // flag가 true인 경우 수행
-            e.preventDefault(); // form 태그 제출 이벤트 막기(제거)
-            alert("배경 이미지 변경 후 클릭 해주세요");
-        }
+    //     if (flag) { // flag가 true인 경우 수행
+    //         e.preventDefault(); // form 태그 제출 이벤트 막기(제거)
+    //         alert("배경 이미지 변경 후 클릭 해주세요");
+    //     }
     
-    });
+    // });
 
 
 }
