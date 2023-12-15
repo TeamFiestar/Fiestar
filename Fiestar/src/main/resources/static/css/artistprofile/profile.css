@@ -365,3 +365,57 @@ main img {
   background-color: rgb(252, 250, 250);
   box-shadow: 2px 2px 2px 2px rgba(189, 83, 255, 0.153);
 }
+.subscribeBtnArea {
+  display: flex;
+  justify-content: right;
+}
+.btn-open-popup {
+  font-size: 16px;
+  background-color: #0d0e12;
+  color: #999;
+  border: none;
+  cursor: pointer;
+}
+.btn-open-popup:hover {
+  color: rgba(119, 67, 219, 1);
+}
+
+.modal {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+  display: none;
+
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal.show {
+  display: block;
+}
+.modal.hidden {
+  display: hidden;
+}
+
+.modal-body {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  padding: 40px;
+
+  /* text-align: center; */
+
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+
+  transform: translateX(-50%) translateY(-50%);
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+  height: 800px;
+}

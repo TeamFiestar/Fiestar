@@ -12,5 +12,5 @@ public class Artist {
 	private int memberNo;
 	private int artistGroupNo;
 	private String artistName;
-	private String artistProductionProfile;
+	private String artistProfile;
 }

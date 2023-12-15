@@ -18,4 +18,5 @@ public class ArtistGroup1 {
 	private String artistGroupProfile;
 	private String artistGroupImage;
 	private String artistGroupBackimg;
+	private String artistGroupMainimg;
 }
