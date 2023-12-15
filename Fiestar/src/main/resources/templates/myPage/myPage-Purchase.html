@@ -39,27 +39,29 @@
           </div>
 
           <div  th:unless="${#lists.size(purchaseList) == 0}">
-            <div class="buyAll" th:each="PurchaseList : ${purchaseList}" th:object="${PurchaseList}">
+            <div class="buyAll" th:each="purchase : ${purchaseList}" th:object="${purchase}">
               <div >
                 <div class="buyDate">
-                  <li th:text="*{PurchaseDate}">[2023.11.23]</li>
+                  <li th:text="*{purchaseDate}">[2023.11.23]</li>
                 </div>
                 <div class="deliver">
-                  <li th:text="*{PurchaseStatus}">[배송중]</li>
+                  <li th:text="*{purchaseStatus}">[배송중]</li>
                 </div>
                 <div class="buyContent">
                   <div class="buy-img">
-                    <img th:src="*{ProductImage}" width="100%" height="100%">
+                    <img  width="100%" height="100%">
                   </div>
                   <div class="item">
                     <div class="itemName">
-                      <h3 th:text="*{ProductName}">LE SSERAFIM 2024 SEASON'S GREETINGS</h3>
+                      <h3 th:text="*{productName}">LE SSERAFIM 2024 SEASON'S GREETINGS</h3>
                     </div>
                     <div class="itemCount">
-                      <li th:text="*{PurcharseQuantity}">상품개수 : 3개</li>
+                      <h1 ></h1>
+                      <li th:value="|상품 개수: *{purcharseQuantity}개|">상품개수 : 3개</li>
+          
                     </div>
                     <div class="itemprice">
-                      <li th:text="*{PurcharsePrice}">총 상품 금액 : 45,000원</li>
+                      <li th:value="|총 상품 금액 : ${purchasePrice}원|">총 상품 금액 : 45,000원</li>
                     </div>
                   </div>
                 </div>

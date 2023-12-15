@@ -26,5 +26,11 @@ public class Purchase {
 	private String memberAddress;
 	private String orderSearch;
 	
+	private String productName;
+	private String productImage;
+	private String productImageThumbnail;
+	private int purcharseQuantity;
+	
+	
 	private List<Product> productList;
 }
