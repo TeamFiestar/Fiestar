@@ -26,7 +26,11 @@
       artistGroupProduct=${map.artistGroupProduct}, artistGroupNotice=${map.artistGroupNotice}"
     >
       <div class="all">
-        <div class="artistprofileMain" th:each="artistGroup : ${artistGroup}" th:object="${artistGroup}">
+        <div
+          class="artistprofileMain"
+          th:each="artistGroup : ${artistGroup}"
+          th:object="${artistGroup}"
+        >
           <div class="artistprofileImg">
             <img th:src="|*{artistGroupMainimg}|" width="100%" height="100%" />
           </div>
@@ -39,16 +43,22 @@
 
               <div class="artistprofileMainIntroText">
                 <p>
-                  <th:block th:text="*{artistGroupTitle}">아티스트 그룹 명</th:block>
+                  <th:block th:text="*{artistGroupTitle}"
+                    >아티스트 그룹 명</th:block
+                  >
                   <br />
-                  <th:block th:text="*{artistGroupIntroduction}">아티스트 그룹 소개</th:block>
+                  <th:block th:text="*{artistGroupIntroduction}"
+                    >아티스트 그룹 소개</th:block
+                  >
                 </p>
               </div>
             </div>
           </div>
           <th:block th:if="${session.loginMember != null}">
             <div class="subscribeBtnArea">
-              <button class="btn-open-popup" onclick="openModal()">구독하기</button>
+              <button class="btn-open-popup" onclick="openModal()">
+                구독하기
+              </button>
             </div>
           </th:block>
         </div>
@@ -61,7 +71,9 @@
                 <div class="soloImg">
                   <img th:src="|*{artistProfile}|" width="100%" height="100%" />
                 </div>
-                <strong class="profileName" th:text="*{artistName}">보은</strong>
+                <strong class="profileName" th:text="*{artistName}"
+                  >보은</strong
+                >
               </a>
             </li>
           </ul>
@@ -81,8 +93,12 @@
                       height="100%"
                     />
                   </div>
-                  <div class="videoDate" th:text="*{mediaEnrollDate}">11.29.16:10</div>
-                  <strong class="videoComment" th:text="*{mediaTitle}">안녀엉</strong>
+                  <div class="videoDate" th:text="*{mediaEnrollDate}">
+                    11.29.16:10
+                  </div>
+                  <strong class="videoComment" th:text="*{mediaTitle}"
+                    >안녀엉</strong
+                  >
                 </a>
                 <!-- </th:block> -->
               </li>
@@ -94,13 +110,24 @@
           <div class="profiletxt"><h3>Artist Shop</h3></div>
           <div class="artistShop">
             <ul>
-              <li th:each="product : ${artistGroupProduct}" th:object="${product}">
+              <li
+                th:each="product : ${artistGroupProduct}"
+                th:object="${product}"
+              >
                 <a href="#">
                   <div class="shopImg">
-                    <img th:src="|*{productImageThumbnail}*{productImageThumbnailRename}|" width="100%" height="100%" />
+                    <img
+                      th:src="|*{productImageThumbnail}*{productImageThumbnailRename}|"
+                      width="100%"
+                      height="100%"
+                    />
                   </div>
-                  <strong class="shopComment" th:text="*{productName}">방탄소년단 앨범</strong>
-                  <div class="shopPrice">가격 : [[${product.productPrice}]]</div>
+                  <strong class="shopComment" th:text="*{productName}"
+                    >방탄소년단 앨범</strong
+                  >
+                  <div class="shopPrice">
+                    가격 : [[${product.productPrice}]]
+                  </div>
                 </a>
               </li>
             </ul>
@@ -111,15 +138,20 @@
             <li th:each="notice : ${artistGroupNotice}" th:object="${notice}">
               <a href="#">
                 <span class="NoticeTitle">공지</span>
-                <span class="NoticeContent" th:text="*{artistGroupNoticeTitle}">공지사항 제목</span>
+                <span class="NoticeContent" th:text="*{artistGroupNoticeTitle}"
+                  >공지사항 제목</span
+                >
                 <span>></span>
               </a>
             </li>
           </ul>
         </div>
-        <th:block th:if="${session.loginMember.memberAutority == 4}">
+        <th:block th:if="${session.loginMember.memberAuthority == 4}">
           <div class="updateDelete">
-            <form th:action="|/artistMember/${artistGroupTitle}/update|" method="get">
+            <form
+              th:action="|/artistMember/${artistGroupTitle}/update|"
+              method="get"
+            >
               <button class="update">수정</button>
             </form>
             <button class="delete">삭제</button>

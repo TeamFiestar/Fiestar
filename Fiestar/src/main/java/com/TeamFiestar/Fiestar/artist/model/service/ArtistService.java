@@ -10,6 +10,8 @@ public interface ArtistService {
 
 	int subscribe(int memberNo, String artistGroupTitle);
 
-	ArtistGroup1 artist(String artistGroupTitle, int memberNo);
+	Map<String, Object> artist(int memberNo);
+
+//	int update(String artistGroupTitle, int memberNo);
 
 }

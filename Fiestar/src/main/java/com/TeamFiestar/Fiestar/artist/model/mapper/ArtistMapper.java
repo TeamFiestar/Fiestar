@@ -29,8 +29,12 @@ public interface ArtistMapper {
 
 	int update(Map<String, Object> map);
 
-	int update(String artistGroupTitle, int memberNo);
+//	int update(String artistGroupTitle, int memberNo);
 
 	ArtistGroup1 artistUpdate(int memberNo);
+
+	List<Artist> artistList(int artistGroupNo);
+
+	int selectArtistGroupNo(int memberNo);
 
 }

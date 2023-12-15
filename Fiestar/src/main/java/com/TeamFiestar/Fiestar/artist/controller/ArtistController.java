@@ -1,5 +1,6 @@
 package com.TeamFiestar.Fiestar.artist.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
@@ -43,10 +44,15 @@ public class ArtistController {
 	
 	@GetMapping("{artistGroupTitle}/update")
 	public String update(@PathVariable("artistGroupTitle") String artistGroupTitle,
-			@SessionAttribute(value="loginMember", required = true) Member loginMember) {
+			@SessionAttribute(value="loginMember", required = true) Member loginMember, Model model) {
+			
+//			int result = service.update(artistGroupTitle, loginMember.getMemberNo());
 		
-			ArtistGroup1 artist = service.artist(artistGroupTitle,loginMember.getMemberNo());
+//			if(result == 1) {
+				Map<String, Object> map = service.artist(loginMember.getMemberNo());
+//			}
+			model.addAttribute("map", map);
 	
-		return null;
+		return "artistProfile/profileModify";
 	}
 }
