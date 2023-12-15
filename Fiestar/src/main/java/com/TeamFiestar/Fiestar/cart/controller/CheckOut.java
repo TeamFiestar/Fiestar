@@ -92,17 +92,17 @@ public class CheckOut {
 	    
 	    @PostMapping("checkoutResult")
 	    
-	    public String order(Orderer inputOrderer, String[] ordererAddress, RedirectAttributes ra,
-	                                  @RequestParam("selectEach") List<String> selectedCartNos,
+	    public String order(@SessionAttribute(value = "loginMember") Member loginMember,
+	    						Orderer inputOrderer, @RequestParam("address") String[] address,
+	    						@RequestParam("purchasePrice") String purchasePrice,
+	    						RedirectAttributes ra,
+	                                  
 	                                  Model model) {
-	    	
-	    	Set<String> set = new LinkedHashSet<>(selectedCartNos);
-	    	String selectNo = String.join(",", set);
-	    	
-	    	 List<Cart> checkout = cartService.checkout(selectNo);
-	    	 
+	    		    	
+	    	    
+	    	// 리스트에서 	   
 			
-	    	int result = cartService.order(inputOrderer, ordererAddress,selectNo);
+	    	int result = cartService.order(inputOrderer, address);
 	    	
 	    	if(result > 0) {
 	    		ra.addFlashAttribute("message", "주문이 완료 되었습니다");

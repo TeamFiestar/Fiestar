@@ -136,6 +136,7 @@
                   
                   <label class="orderer-input">
 
+                     <input type="hidden" th:value="${session.loginMember.memberNo}">
                      <!-- <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;" th:value="${session.loginMember.memberNickname}" name="memberName"> -->
                       <!-- <div th:text="${session.loginMember.memberAddress}" class="default-price"></div> -->
                       <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;"
@@ -185,7 +186,7 @@
                         <label for="orderer-address">
    
                            <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;" th:value="${session.loginMember.memberAddress}" 
-                           name="ordererAddress1" id="sample6_address">
+                           name="address" id="sample6_address">
 
                         </label>
 
@@ -203,7 +204,7 @@
                         <label for="orderer-address2">
 
                            <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" 
-                           style="padding-left: 8px;" name="ordererAddress2" id="sample6_detailAddress">
+                           style="padding-left: 8px;" name="address" id="sample6_detailAddress">
                            
                         </label>
 
@@ -216,7 +217,7 @@
                         <label for="orderer-address3">
 
                            <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" 
-                           style="padding-left: 8px;" name="ordererAddress3" id="sample6_postcode">
+                           style="padding-left: 8px;" name="address" id="sample6_postcode">
                            
                         </label>
 
@@ -262,8 +263,8 @@
             <div class="total">
                
                <span class="total-price" style="letter-spacing: -1.6px;">총 결제 금액</span>
-
-               <p> <span th:text="${purchasePrice}" class="purchasePrice"></span> </p>
+               <input type="hidden" th:text="${purchasePrice}" class="purchasePrice" name="purchasePrice" value="${purchasePrice}">
+               <!-- <p> <span th:text="${purchasePrice}" class="purchasePrice" name="purchasePrice"></span> </p> -->
 
             </div>
 

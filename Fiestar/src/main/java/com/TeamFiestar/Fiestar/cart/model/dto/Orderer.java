@@ -8,11 +8,15 @@ import lombok.Setter;
 
 public class Orderer {
 	
+
+	private String purchaseStatus;
+	private String purchaseDate;
+	private int purchaseNo;
 	private int MemberNo;
 	private String ordererPhoneNumber;
 	private String ordererAddress;
 	private String ordererName;
-	private int CartNo;
-	private int totalPrice;
+	private String purchasePrice;
+	
 	
 }

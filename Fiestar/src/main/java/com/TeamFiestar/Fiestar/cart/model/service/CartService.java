@@ -28,9 +28,9 @@ public interface CartService {
 
 	List<Cart> checkout(String selectNo);
 
-	List<Cart> checkoutResult(String selectNo);
 
-	int order(Orderer inputOrderer, String[] ordererAddress, String selectNo);
+	int order(Orderer inputOrderer, String[] ordererAddress);
+
 
 
 

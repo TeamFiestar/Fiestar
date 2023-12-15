@@ -22,9 +22,11 @@ public interface CartMapper {
 
 	List<Cart> checkout(String selectNo);
 
-	List<Cart> checkoutResult(String selectNo);
-
 	int order(Orderer inputOrderer);
+
+	
+
+	
 
 	
 

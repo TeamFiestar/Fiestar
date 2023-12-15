@@ -44,27 +44,17 @@ public class CartServiceImpl implements CartService{
 		return mapper.checkout(selectNo);
 	}
 	
-	@Override
-	public List<Cart> checkoutResult(String selectNo) {
-		// TODO Auto-generated method stub
-		return mapper.checkoutResult(selectNo);
-	}
 	
 	
 	@Override
-	public int order(Orderer inputOrderer, String[] ordererAddress, String selectNo) {
+	public int order(Orderer inputOrderer, String[] ordererAddress) {
 		// TODO Auto-generated method stub
-		if(inputOrderer.getOrdererAddress().equals(",,")) {
-			inputOrderer.setOrdererAddress(null);
+		String address = String.join("^^^", ordererAddress);
+		inputOrderer.setOrdererAddress(address);
 			
-		} else {
-			String address = String.join("^^^", ordererAddress);
-			inputOrderer.setOrdererAddress(address);
-			
-		}
 		
 		return mapper.order(inputOrderer);
 	}
-	
+
 }
 	

@@ -59,6 +59,10 @@ form.addEventListener("submit", e => {
 
 
 
+
+// const purchasePrice = document.getElementsByClassName(".purchasePrice");
+// purchasePrice.value =  
+
 // 주소 API
 
 function sample6_execDaumPostcode() {
