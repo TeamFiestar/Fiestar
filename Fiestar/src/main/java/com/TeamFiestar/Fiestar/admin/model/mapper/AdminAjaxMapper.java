@@ -42,4 +42,8 @@ public interface AdminAjaxMapper {
 
 	SiteNotice selectSiteNotice(Map<String, Object> map);
 
+	int updateNotice(SiteNotice inputNotice);
+
+	int deleteNotice(int noticeNo);
+
 }

@@ -142,12 +142,12 @@ public class AdminAjaxServiceImpl implements AdminAjaxService{
 	
 	@Override
 	public int updateNotice(SiteNotice inputNotice) {
-		return 0;
+		return mapper.updateNotice(inputNotice);
 	}
 	
 	@Override
 	public int deleteNotice(int noticeNo) {
-		return 0;
+		return mapper.deleteNotice(noticeNo);
 	}
 	
 	
