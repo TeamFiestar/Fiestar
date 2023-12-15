@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.TeamFiestar.Fiestar.cart.model.dto.Cart;
+import com.TeamFiestar.Fiestar.cart.model.dto.Orderer;
 import com.TeamFiestar.Fiestar.cart.model.mapper.CartMapper;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
@@ -42,6 +43,28 @@ public class CartServiceImpl implements CartService{
 	public List<Cart> checkout(String selectNo) {
 		return mapper.checkout(selectNo);
 	}
-
-
+	
+	@Override
+	public List<Cart> checkoutResult(String selectNo) {
+		// TODO Auto-generated method stub
+		return mapper.checkoutResult(selectNo);
+	}
+	
+	
+	@Override
+	public int order(Orderer inputOrderer, String[] ordererAddress, String selectNo) {
+		// TODO Auto-generated method stub
+		if(inputOrderer.getOrdererAddress().equals(",,")) {
+			inputOrderer.setOrdererAddress(null);
+			
+		} else {
+			String address = String.join("^^^", ordererAddress);
+			inputOrderer.setOrdererAddress(address);
+			
+		}
+		
+		return mapper.order(inputOrderer);
+	}
+	
 }
+	

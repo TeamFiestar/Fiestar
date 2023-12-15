@@ -64,6 +64,26 @@
 	</select>
 	
 	
+	<select id="checkoutResult" resultType="Cart">
+		
+	INSERT INTO PURCHASE
+
+	VALUES(
+
+	(6, '15000' , 1, SYSDATE, 3, '뿅망치', '서울시', '010-1111-2222');
+	
+	
+	   INSERT INTO "PURCHASE"
+      VALUES(SEQ_PURCHASE_NO.NEXTVAL, #{totalPrice} #{ordererAddress}, #{memberPw},
+         #{ordererName}, #{ordererPhoneNumber}, 
+         #{memberAddress},
+         NULL, DEFAULT, DEFAULT, DEFAULT
+      )
+		
+	</select>
+	
+	 
+	
 	
 
 	

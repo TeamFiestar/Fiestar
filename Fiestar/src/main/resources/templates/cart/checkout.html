@@ -56,8 +56,9 @@
                         
 
                         <!-- 장바구니 번호 -->
-
-                        <span th:text="${checkoutItem.cartNo}" class="cartNo"></span>
+                        
+                        <input type="hidden" th:text="${checkoutItem.cartNo}" class="cartNo" name="selectEach"></span>
+                        <!-- <input type="hidden" name="selectEach" value="yourValue"> -->
                      </div>
 
                      <div>
@@ -138,7 +139,7 @@
                      <!-- <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;" th:value="${session.loginMember.memberNickname}" name="memberName"> -->
                       <!-- <div th:text="${session.loginMember.memberAddress}" class="default-price"></div> -->
                       <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;"
-                       name="orderer-name" th:value="${session.loginMember.memberNickname}" id="nameInput">
+                       name="ordererName" th:value="${session.loginMember.memberNickname}" id="nameInput">
                
                      <!-- <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;"> -->
                   </label>
@@ -152,7 +153,7 @@
 
                         <label class="orderer-phoneNumber">
                            <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;" maxlength="14"
-                           name="orderer-phoneNumber" >
+                           name="ordererPhoneNumber" >
                         </label>
 
                      </div>
@@ -184,7 +185,7 @@
                         <label for="orderer-address">
    
                            <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;" th:value="${session.loginMember.memberAddress}" 
-                           name="orderer-address1" id="sample6_address">
+                           name="ordererAddress1" id="sample6_address">
 
                         </label>
 
@@ -202,7 +203,7 @@
                         <label for="orderer-address2">
 
                            <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" 
-                           style="padding-left: 8px;" name="orderer-address2" id="sample6_detailAddress">
+                           style="padding-left: 8px;" name="ordererAddress2" id="sample6_detailAddress">
                            
                         </label>
 
@@ -215,7 +216,7 @@
                         <label for="orderer-address3">
 
                            <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" 
-                           style="padding-left: 8px;" name="orderer-address3" id="sample6_postcode">
+                           style="padding-left: 8px;" name="ordererAddress3" id="sample6_postcode">
                            
                         </label>
 

@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.http.ResponseEntity;
 
 import com.TeamFiestar.Fiestar.cart.model.dto.Cart;
+import com.TeamFiestar.Fiestar.cart.model.dto.Orderer;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
 @Mapper
@@ -20,6 +21,10 @@ public interface CartMapper {
 	int deleteCart(int cartNo);
 
 	List<Cart> checkout(String selectNo);
+
+	List<Cart> checkoutResult(String selectNo);
+
+	int order(Orderer inputOrderer);
 
 	
 
