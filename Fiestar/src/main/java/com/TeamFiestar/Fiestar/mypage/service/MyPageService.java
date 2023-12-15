@@ -33,7 +33,7 @@ public interface MyPageService {
 	// 댓글 삭제
 	int delComment(int memberNo, int commentNo, String commentType);
 
-	int info(Member loginMember, MultipartFile memberBackImage, Member updateMember)
+	int info(Member loginMember, MultipartFile memberBackImage, Member updateMember, String[] MemberAddress)
 			throws IllegalStateException, IOException;
 
 

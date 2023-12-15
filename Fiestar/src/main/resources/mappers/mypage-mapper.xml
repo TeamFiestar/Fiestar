@@ -165,8 +165,8 @@
 	<update id="info">
 		UPDATE "MEMBER" SET
 		MEMBER_NICKNAME = #{memberNickname},
-		MEMBER_ADDRESS = #{memberAddress},
-		MEMBER_BACK_IMAGE = #{memberBackImage}
+		MEMBER_ADDRESS = #{address},
+		MEMBER_BACK_IMAGE = #{memberProfile}
 		WHERE MEMBER_NO = #{memberNo}
 	</update>
 
