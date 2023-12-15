@@ -8,6 +8,8 @@ import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 
 import com.TeamFiestar.Fiestar.admin.model.dto.AdminPagination;
+import com.TeamFiestar.Fiestar.admin.model.dto.ArtistNotice;
+import com.TeamFiestar.Fiestar.admin.model.dto.SiteNotice;
 import com.TeamFiestar.Fiestar.admin.model.mapper.AdminAjaxMapper;
 import com.TeamFiestar.Fiestar.board.model.dto.Board;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
@@ -125,6 +127,30 @@ public class AdminAjaxServiceImpl implements AdminAjaxService{
 	public int changeAuthority(Map<String, Object> paramMap) {
 		return mapper.changeAuthority(paramMap);
 	}
+
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	public SiteNotice selectSiteNotice(Map<String, Object> map) {
+		return mapper.selectSiteNotice(map);
+	}
+	
+	@Override
+	public int updateNotice(SiteNotice inputNotice) {
+		return 0;
+	}
+	
+	@Override
+	public int deleteNotice(int noticeNo) {
+		return 0;
+	}
+	
+	
 	
 	
 	

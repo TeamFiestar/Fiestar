@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>아티스트 공지사항 등록</title>
     <link rel="stylesheet" href="/css/admin/artistNoticeAdd.css" />
+    <link rel="stylesheet" href="/css/common/artistPageHeader.css" />
   </head>
   <body>
-    <header>헤더+nav</header>
+    <th:block th:replace="~{common/artistPageHeader}">헤더</th:block>
     <main>
       <!-- th:replace -->
       <th:block th:replace="~{common/adminArtist}"></th:block>
