@@ -9,14 +9,24 @@
   </head>
   <body>
     <th:block th:replace="~{common/artistPageHeader}">헤더</th:block>
+    <div class="modal">
+      <div id="modal" class="modal-body">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>구독하시겠습니까?</h2>
+        <form action="">
+          <button class="subscribe" onclick="openModal()">구독</button>
+          <button class="cancle">취소</button>
+        </form>
+      </div>
+    </div>
     <main
-      th:with="artistGroupMainimg=${map.artistGroupMainimg}, artist=${map.artist}, artistGroupMedia=${map.artistGroupMedia}, 
+      th:with="artistGroup=${map.artistGroup}, artistList=${map.artistList}, artistGroupMedia=${map.artistGroupMedia}, 
       artistGroupProduct=${map.artistGroupProduct}, artistGroupNotice=${map.artistGroupNotice}"
     >
       <div class="all">
-        <div class="artistprofileMain">
+        <div class="artistprofileMain" th:each="artistGroup : ${artistGroup}" th:object="${artistGroup}">
           <div class="artistprofileImg">
-            <img src="/static/image/아티스트 메인배경.jpg" width="100%" height="100%" />
+            <img th:src="|*{artistGroupMainimg}|" width="100%" height="100%" />
           </div>
 
           <div class="artistprofileMainIntro">
@@ -27,24 +37,27 @@
 
               <div class="artistprofileMainIntroText">
                 <p>
-                  THE PLAY CLASS:y <br />
-                  항상 새롭고 즐거운 클라씨만의 놀이공간으로 초대할께
+                  <th:block th:text="*{artistGroupTitle}">아티스트 그룹 명</th:block>
+                  <br />
+                  <th:block th:text="*{artistGroupIntroduction}">아티스트 그룹 소개</th:block>
                 </p>
               </div>
             </div>
           </div>
+          <div class="subscribeBtnArea">
+            <button class="btn-open-popup">구독하기</button>
+          </div>
         </div>
-
         <div class="profiletxt"><h3>프로필</h3></div>
 
         <div class="artistImage">
           <ul>
-            <li>
+            <li th:each="artist : ${artistList}" th:object="${artist}">
               <a href="#">
                 <div class="soloImg">
-                  <img src="../../static/image/보은.jpeg" width="100%" height="100%" />
+                  <img th:src="|*{artistProfile}|" width="100%" height="100%" />
                 </div>
-                <strong class="profileName">보은</strong>
+                <strong class="profileName" th:text="*{artistName}">보은</strong>
               </a>
             </li>
           </ul>
@@ -91,24 +104,10 @@
         </div>
         <div class="Notice">
           <ul>
-            <li>
+            <li th:each="notice : ${artistGroupNotice}" th:object="${notice}">
               <a href="#">
                 <span class="NoticeTitle">공지</span>
-                <span class="NoticeContent">[이벤트]위버스 커뮤니티 오픈 기념 이벤트!</span>
-                <span>></span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span class="NoticeTitle">공지</span>
-                <span class="NoticeContent">[이벤트]위버스 커뮤니티 오픈 기념 이벤트!</span>
-                <span>></span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span class="NoticeTitle">공지</span>
-                <span class="NoticeContent">[이벤트]위버스 커뮤니티 오픈 기념 이벤트!</span>
+                <span class="NoticeContent" th:text="*{artistGroupNoticeTitle}">공지사항 제목</span>
                 <span>></span>
               </a>
             </li>
@@ -116,5 +115,6 @@
         </div>
       </div>
     </main>
+    <script src="/js/artistprofile/profile.js"></script>
   </body>
 </html>
