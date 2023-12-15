@@ -109,6 +109,15 @@ main {
   outline: none;
   margin-top: 10px;
 }
+#input-goodsPrice {
+  width: 150px;
+  height: 40px;
+  padding-left: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  outline: none;
+  margin-top: 10px;
+}
 .goods-option {
   width: 800px;
   margin: 0 auto;

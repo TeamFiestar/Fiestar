@@ -1,25 +1,51 @@
 package com.TeamFiestar.Fiestar.admin.model.service;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.TeamFiestar.Fiestar.admin.model.dto.ArtistNotice;
 import com.TeamFiestar.Fiestar.admin.model.dto.Purchase;
 import com.TeamFiestar.Fiestar.admin.model.dto.Report;
 import com.TeamFiestar.Fiestar.admin.model.mapper.ArtistAdminMapper;
+import com.TeamFiestar.Fiestar.common.utility.Util;
 import com.TeamFiestar.Fiestar.mypage.dto.Pagination;
+import com.TeamFiestar.Fiestar.shop.model.dto.Product;
+import com.TeamFiestar.Fiestar.shop.model.dto.ProductImage;
+import com.TeamFiestar.Fiestar.shop.model.excption.shopException;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+@PropertySource("classpath:/config.properties")
 public class ArtistAdminServiceImpl implements ArtistAdminService{
 	
 	private final ArtistAdminMapper mapper;
+	
+	
+	@Value("${my.shopThumbnail.webpath}")
+	private String webPath;  //웹 이미지 요청 경로
+	@Value("${my.shopThumbnail.location}")
+	private String folderPath;  //서버 저장 폴더 경로
+	
+	@Value("${my.shopContent.webpath}")
+	private String contentPath;  //웹 이미지 요청 경로
+	@Value("${my.shopContent.location}")
+	private String contentfolderPath;  //서버 저장 폴더 경로
+	
+	
+
+	
 	
 	// 아티스트 공지사항 조회
 	@Override
@@ -75,7 +101,7 @@ public class ArtistAdminServiceImpl implements ArtistAdminService{
 		
 		int limit = pagination.getLimit();
 		
-		RowBounds rowBounds = new RowBounds(offset, limit);   
+		RowBounds rowBounds = new RowBounds(offset, limit);
 		/* Pagination */
 		
 		List<Report> reportList = mapper.selectReportList(map, rowBounds);
@@ -116,5 +142,53 @@ public class ArtistAdminServiceImpl implements ArtistAdminService{
 		
 		return map;
 	}
+	
+	
+	//상품 등록
+	@Override
+	public int insertGoods(Product product,String artistGroupTitle, MultipartFile contentImg, MultipartFile thumbnailImg) throws IllegalStateException, IOException {
+
+
+		int artistGroupNo = mapper.selectArtistGroupNo(artistGroupTitle);
+		product.setArtistGroupNo(artistGroupNo);
+		int result = mapper.insertGoods(product);
+		if(result == 0) {
+			return 0; 
+		}
+		
+		int productNo = product.getProductNo();
+		
+	
+		
+		ProductImage img = new ProductImage();
+		
+		img.setProductNo(productNo); 
+		
+		
+		img.setProductImageContent(contentPath);
+		img.setProductImageThumbnail(webPath);
+	
+
+		img.setProductImageRename(Util.fileRename(contentImg.getOriginalFilename()));
+		img.setProductImageThumbnailRename(Util.fileRename(thumbnailImg.getOriginalFilename()));
+		
+		
+		img.setUploadFile(contentImg);
+		img.setUploadFile(thumbnailImg);
+		
+		result = mapper.insertImage(img);
+		
+		
+		img.getUploadFile().transferTo(new File(folderPath + img.getProductImageRename()));
+		img.getUploadFile().transferTo(new File(folderPath + img.getProductImageThumbnailRename()));
+		
+		return productNo;
+	}
+			
+			
+			
+			
+		
+	
 
 }

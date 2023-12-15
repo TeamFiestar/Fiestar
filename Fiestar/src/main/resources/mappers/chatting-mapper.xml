@@ -33,4 +33,9 @@
 		INSERT INTO LIVE_CHATTING_ROOM LCR 
 		VALUES(#{liveChattingRoomNo}, SYSDATE, #{artistGroupNo})
 	</insert>
+	
+	<select id="artistGroupImage" resultType="string">
+		SELECT ARTIST_GROUP_IMAGE FROM ARTIST_GROUP
+		WHERE ARTIST_GROUP_TITLE = #{artistGroupTitle}
+	</select>
 </mapper>

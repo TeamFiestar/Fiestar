@@ -8,18 +8,20 @@ import lombok.ToString;
 @Getter
 @ToString
 public class Comment {
-	private int commentNo;
-	private String commentContent;
-	private String commentEnrollDate;
-	private String parentTitle;
-	private String commentDelFl;
+	private int boardCommentNo;
+	private String boardCommentContent;
+	private String boardCommentEnrollDate;
+	private String boardCommentDelFl;
 	private int boardNo;
 	private int memberNo;
-	private int parentNo;
+	private int boardParentCommentNo;
 	
 	private String memberNickname;
 	private String memberProfile;
-	private String commentType;
+	
+	private int boardCommentLike;
+	private int likeCountComment;
+	private int likeClickComment;
 	
 
 }

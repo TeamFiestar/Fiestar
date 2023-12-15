@@ -25,28 +25,6 @@ public class ShopGoodsController {
 	private final ShopService service;
 	
 	
-	@GetMapping("goods")
-	public String register() {
-		return "admin/goods";
-	}
-	
-	/*상품 등록
-	 *  */
-	@PostMapping("goods")
-	public String insertGoods(RedirectAttributes ra,
-						Product product,
-						@RequestParam("shopImg") List<MultipartFile> images) throws IllegalStateException, IOException{
-		
-		int productNo = service.insertGoods(product,images);
-		
-		if(productNo > 0) {
-			ra.addFlashAttribute("message","상품 등록 성공");
-			return "redirect:shop/shopDetail";
-		}
-		
-		ra.addFlashAttribute("message","상품 등록 실패");
-		return "redirect:admin/goods";
-		
-	}
+
 
 }

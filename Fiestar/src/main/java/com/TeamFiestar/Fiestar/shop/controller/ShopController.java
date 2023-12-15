@@ -1,8 +1,6 @@
 
 package com.TeamFiestar.Fiestar.shop.controller;
 
-
-
 import java.util.List;
 import java.util.Map;
 
@@ -10,12 +8,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.TeamFiestar.Fiestar.shop.model.dto.Product;
+import com.TeamFiestar.Fiestar.shop.model.dto.ProductImage;
 import com.TeamFiestar.Fiestar.shop.model.service.ShopService;
+
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -39,6 +41,7 @@ public class ShopController {
 							@RequestParam(name="shopSearch", required = false, defaultValue = "") String shopSearch) {
 		
 		if(paramMap.get("shopSearch") == null) {
+			
 			Map<String, Object> map = service.shopMain(cp);
 			model.addAttribute("map",map);
 			int shopCount = service.shopCount();
@@ -46,11 +49,14 @@ public class ShopController {
 		
 			
 		}else {
+			ProductImage productImg = null;
+			model.addAttribute("productImg",productImg);
 			paramMap.put("shopSearch", shopSearch);
 			Map<String, Object> map =  service.searchList(paramMap,cp);
 			model.addAttribute("map",map);
 			int shopCount = service.shopSearchCount(paramMap);
 			model.addAttribute("shopCount", shopCount);
+			model.addAttribute("shopSearch",shopSearch);
 			
 		}
 		return "shop/home";
@@ -76,7 +82,7 @@ public class ShopController {
 		return "shop/home";
 	}
 	
-	/** 그룹별 상품 조회 후 정렬
+	/** 전체 상품 조회 후 정렬
 	 * @return
 	 */
 	@GetMapping(value = "home/sortList" , produces = "application/json; charset=UTF-8")
@@ -107,7 +113,31 @@ public class ShopController {
 	}
 	
 	
-	
+	/**상품 상세조회
+	 * @param productNo
+	 * @param model
+	 * @param product
+	 * @param ra
+	 * @return
+	 */
+	@GetMapping("shopDetail/{productNo:[0-9]+}")
+	public String shopDetail(@PathVariable("productNo") int productNo,
+								Model model, Product product,
+								RedirectAttributes ra) {
+		
+		Product prod = service.shopDetail(productNo);
+		String path = null;
+		
+		if(prod != null) {
+			model.addAttribute("prod", prod);
+			path = "shop/shopDetail";
+		}else {
+			path = "redirect:/shop/home";
+			ra.addFlashAttribute("message", "해당 상품이 존재하지않습니다");  //footer.html에서 출력
+		}
+		
+		return path;
+	}
 	
 	
 	@GetMapping("noticeDetail")
@@ -129,12 +159,7 @@ public class ShopController {
 	
 	
 	
-	@GetMapping("shopDetail")
-	public String shopDetail() {
-		return "shop/shopDetail";
-			
-	}
-	
+
 	
 	
 	

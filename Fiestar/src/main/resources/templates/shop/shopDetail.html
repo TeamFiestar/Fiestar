@@ -14,18 +14,17 @@
   <th:block th:replace="~{common/shopHeader}"></th:block>
  
   <main>
-
-    
     <section class="shopDetail-main">
       <div class="shopDetail-upper">
+
         <div class="product-image">
-          <img src="/images/product1.jpg" width='500px' height="600px" >
-        
+          <!-- <img src="im" width='500px' height="600px" > -->
         </div>
-        <div class="product-detail">
+
+        <div class="product-detail" th:object="${prod}">
           <div class="artist-name">아티스트명 &gt;</div>
-          <div class="product-name">[아티스트명] 상품명</div>
-          <div class="product-price" value="110000">₩110,000</div>
+          <section class="product-name" th:text=" *{artistGroupTitle} + *{productName} ">[아티스트명] 상품명</section>
+          <div class="product-price" th:text=" '₩' + *{productPrice}">₩110,000</div>
           <div class="product-delivery-info">
             <img src="/images/package_car.png"> 
             <span>배송 시작 예정일</span>
@@ -59,25 +58,18 @@
                   <span class="selected-price">₩110,000</span>
                   
                 </div> -->
-                
           </div>      
           <div class="product-purchase-totalList" style="width:100%; margin-top: 50px;">
-            <span id="totalProduct">총 상품금액 (0개)</span>
+            <span id="totalProduct" >총 상품금액 (0개)</span>
             <span id="totalPrice">₩ 총 가격</span>
-
           </div>      
-
-
 
           <div class="product-purchase-area">
             <button class="addCartBtn">카트 추가</button>
             <button class="purchaseBtn">바로 구매</button>
           </div>
-
-
         </div>
-
-    </div>
+      </div>
 
     <hr>
 
@@ -123,7 +115,6 @@
             <td id="info-title">품질 보증 기준</td>
             <td >상세페이지 참고</td>
           </tr>
-          
         </table>
       
         <h2>반품/교환 정보</h2>
@@ -180,20 +171,11 @@
             <li>일부 규정은 국내구매자 분들께만 해당되며, 해외구매자 분들을 위한 상세 안내는 FAQ 혹은 1:1 문의를 통해 확인해주세요.</li>
             <li>대금환불 및 환불 지연에 따른 배상금 지급 조건, 절차 등은 전자상거래 등에서의 소비자 보호에 관한 법률에 따라 처리함.</li>
           </ul>
-
         </div>
-      
-      
       </div>
-
-
     </div>
 
-
-
     <div></div>
-
-    
     </section>
   </main>
 

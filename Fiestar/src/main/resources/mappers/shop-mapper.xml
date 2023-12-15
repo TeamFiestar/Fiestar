@@ -5,11 +5,11 @@
 	
 	<!--상품 전체 조회-->
 	<select id="shopMain" resultType="Product">
-		SELECT PRODUCT_IMAGE, PRODUCT_NAME, PRODUCT_PRICE,ARTIST_GROUP_TITLE
-		FROM PRODUCT
+		SELECT DISTINCT PRODUCT_NO, PRODUCT_NAME, PRODUCT_PRICE,ARTIST_GROUP_TITLE,PRODUCT_IMAGE_THUMBNAIL, PRODUCT_IMAGE_THUMBNAIL_RENAME
+		FROM PRODUCT 
 		JOIN ARTIST_GROUP USING (ARTIST_GROUP_NO)
+		LEFT JOIN PRODUCT_IMAGE USING (PRODUCT_NO)
 		ORDER BY PRODUCT_NO DESC
-		
 	</select>
 	
 	<!--전체조회 상품 개수-->
@@ -27,25 +27,28 @@
 	
 	<!--검색 상품 조회-->
 	<select id="searchList" resultType="Product">
-		SELECT PRODUCT_IMAGE, PRODUCT_NAME, PRODUCT_PRICE,ARTIST_GROUP_TITLE
+		SELECT  DISTINCT PRODUCT_NO , PRODUCT_NAME, PRODUCT_PRICE,ARTIST_GROUP_TITLE
 		FROM PRODUCT
 		JOIN ARTIST_GROUP USING (ARTIST_GROUP_NO)
-		WHERE PRODUCT_NAME LIKE '%${shopSearch}%'
+		LEFT JOIN PRODUCT_IMAGE USING (PRODUCT_NO)
+		WHERE PRODUCT_NAME LIKE '%${shopSearch}%' 
 		ORDER BY PRODUCT_NO DESC		
 	</select>
 	
 
 	<!--상품 등록한 아티스트 그룹 조회-->
 	<select id="artistSelect" resultType="ArtistGroup">
-		SELECT * FROM ARTIST_GROUP
+		SELECT * 
+		FROM ARTIST_GROUP
 	</select>
 	
 	
 	<!--상품 등록한 아티스트 그룹 별 상품 조회-->
 	<select id="artistGroupShop" resultType="Product">
-		SELECT PRODUCT_IMAGE, PRODUCT_NAME, PRODUCT_PRICE,ARTIST_GROUP_TITLE
+		SELECT  DISTINCT PRODUCT_NO, PRODUCT_NAME, PRODUCT_PRICE,ARTIST_GROUP_TITLE
 		FROM PRODUCT
 		JOIN ARTIST_GROUP USING (ARTIST_GROUP_NO)
+		LEFT JOIN PRODUCT_IMAGE USING (PRODUCT_NO)
 		WHERE  ARTIST_GROUP_NO = #{artistGroupNo}
 	</select>
 	
@@ -77,8 +80,10 @@
 	
 	<!--그룹별 상품 조회 후 정렬-->
 	<select id="selectGroupSort" resultType="Product">
-		SELECT * 
+		SELECT DISTINCT PRODUCT_NO, PRODUCT_IMAGE_THUMBNAIL, PRODUCT_NAME, PRODUCT_PRICE,ARTIST_GROUP_TITLE, PRODUCT_REGISTRATION_DATE
 		FROM PRODUCT
+		JOIN ARTIST_GROUP USING (ARTIST_GROUP_NO)
+		LEFT JOIN PRODUCT_IMAGE USING (PRODUCT_NO)
 		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
 		ORDER BY 
 		<if test="key == 1">
@@ -110,30 +115,16 @@
 		</if>
 	</select>
 	
-	
-	<!--상품 등록-->
-	<insert id="insertGoods" parameterType="Product" useGeneratedKeys="true">
-		<selectKey order="BEFORE" resultType="_int" keyProperty="productNo">
-			SELECT SEQ_PRODUCT_NO.NEXTVAL FROM DUAL
-		</selectKey>
-		INSERT INTO "PRODUCT"
-		VALUES(#{productNo},#{artistGroupNo},#{productName},#{productProduction},#{productPrice}, DEFAULT)
-	</insert>
+	<!--상품 상세조회-->
+	<select id="shopDetail" resultType="Product">
+		SELECT PRODUCT_PRICE, PRODUCT_NAME, ARTIST_GROUP_TITLE
+		FROM PRODUCT 
+		JOIN ARTIST_GROUP USING(ARTIST_GROUP_NO)
+		WHERE PRODUCT_NO = #{productNo}
+	</select>
 	
 	
-	<!--이미지 업로드-->
-	<insert id="insertImageList" parameterType="list">
-		INSERT INTO "PRODUCT_IMAGE"
-		<foreach collection="list" item="img" separator=" UNION ">
-			 SELECT NEXT_PRODUCT_IMAGE(),
-			 		#{img.productImagePath},
-			 		#{img.productImageRename},
-			 		#{img.productOriginal},
-			 		#{img.productImageOrder},
-			 		#{img.productNo}
-			 FROM DUAL
-		 </foreach>
-	</insert>
+
 	
 	
 	
