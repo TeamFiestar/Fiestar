@@ -1,5 +1,6 @@
 package com.TeamFiestar.Fiestar.media.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -38,9 +39,10 @@ public class MediaServiceImpl implements MediaService{
 	
 	// 미디어 디테일
 	@Override
-	public Media mediaDetail(int mediaNo) {
+	public Media mediaDetail(Map<String, Object> map) {
+
 		
-		return mapper.mediaDetail(mediaNo);
+		return mapper.mediaDetail(map);
 	}
 	
 }

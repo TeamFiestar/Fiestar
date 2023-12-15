@@ -53,7 +53,7 @@ let targetTr;
 
 function selectSiteNotice(noticeNo, thisTr){
   targetTr = thisTr.parentElement;
-  fetch("/admin/selectNotice?siteNoticeNo=" + noticeNo)
+  fetch("/admin/ajax/selectNotice?siteNoticeNo=" + noticeNo)
   .then(resp => resp.json())
   .then(notice =>{
 
@@ -75,13 +75,14 @@ function deleteNotice(noticeNo){
   console.log(noticeNo);
 
 
-  fetch("/admin/deleteNotice",{
+  fetch("/admin/ajax/deleteNotice",{
     method : "PUT",
     headers : {"Content-Type" : "application/json"},
     body : noticeNo
   })
   .then(resp => resp.text())
   .then(result => {
+    console.log(result);
     if(result > 0 ){
       alert("삭제되었습니다");
       close();
@@ -90,6 +91,7 @@ function deleteNotice(noticeNo){
   })
   .catch(err => console.log(err));
 
+  console.log("aaaaa");
 
 }
 
@@ -100,14 +102,14 @@ function updateNotice(noticeNo) {
 
 const updateNoticeBtn = document.getElementById('update-notice-btn');
 
-updateNoticeBtn.addEventListener("click", () =>{
+updateNoticeBtn.addEventListener("click", (e) =>{
   const data = {};
   data.siteNoticeNo = updateNoticeNo;
   data.siteNoticeTitle = inputNoticeTitle.value;
   data. siteNoticeContent = inputNoticeContent.value;
   console.log(data);
    
-  fetch("/admin/updateNotice",{
+  fetch("/admin/ajax/updateNotice",{
     method : "PUT",
     headers : {"Content-Type" : "application/json"},
     body : JSON.stringify(data)
@@ -116,10 +118,18 @@ updateNoticeBtn.addEventListener("click", () =>{
   .then(result => {
 
     if(result > 0){
+      modalNoticeTitle.innerHTML = inputNoticeTitle.value;
+      modalNoticeContent.innerHTML = inputNoticeContent.value;
+        
+      console.log(targetTr.firstElementChild.nextElementSibling);
+      targetTr.firstElementChild.nextElementSibling.innerHTML = inputNoticeTitle.value;
       alert("수정 성공")
+      updateClose();
     }
 
   })
   .catch(err => console.log(err));
   
+  console.log("aaaaaa");
+
 });

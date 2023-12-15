@@ -100,13 +100,12 @@ function updateNotice(noticeNo) {
 
 const updateNoticeBtn = document.getElementById('update-notice-btn');
 
-updateNoticeBtn.addEventListener("click", () =>{
+updateNoticeBtn.addEventListener("click", (e) =>{
   const data = {};
   data.artistGroupNoticeNo = updateNoticeNo;
   data.artistGroupNoticeTitle = inputNoticeTitle.value;
   data. artistGroupNoticeContent = inputNoticeContent.value;
   console.log(data);
-   
   fetch("/artistAdmin/updateNotice",{
     method : "PUT",
     headers : {"Content-Type" : "application/json"},
@@ -114,9 +113,16 @@ updateNoticeBtn.addEventListener("click", () =>{
   })
   .then(resp => resp.text())
   .then(result => {
-
+    
     if(result > 0){
+    
+      modalNoticeTitle.innerHTML = inputNoticeTitle.value;
+      modalNoticeContent.innerHTML = inputNoticeContent.value;
+        
+      console.log(targetTr.firstElementChild.nextElementSibling);
+      targetTr.firstElementChild.nextElementSibling.innerHTML = inputNoticeTitle.value;
       alert("수정 성공")
+      updateClose();
     }
 
   })

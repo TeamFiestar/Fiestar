@@ -5,14 +5,14 @@
 	<resultMap id="mediaRM" type="Media">
 		<collection property="mediaCommentList"
 		select="selectMediaComment"
-		column="MEDIA_NO"
+		column="{mediaNo=MEDIA_NO, memberNo=MEMBER_NO}"
 		javaType="java.util.ArrayList"
 		ofType="MediaComment"/>
 	</resultMap>
 	
 	<!-- 미디어 댓글 조회 -->
 	<select id="selectMediaComment" resultType="MediaComment">
-		SELECT MEDIA_COMMENT_NO ,MEDIA_COMMENT_CONTENT ,
+		SELECT MEDIA_COMMENT_NO ,MEDIA_COMMENT_CONTENT , 
 		TO_CHAR(MEDIA_COMMENT_ENROLL_DATE, 'MM.DD. HH24:MI') AS MEDIA_COMMENT_ENROLL_DATE,
 		MEMBER_NO ,
 		(SELECT MEMBER_NICKNAME  FROM "MEMBER" M WHERE M.MEMBER_NO = MC.MEMBER_NO  ) AS MEMBER_NICKNAME,
@@ -23,7 +23,7 @@
 		AND MEMBER_NO = #{memberNo}) AS MEMBER_COMMENT_LIKE
 		
 		FROM MEDIA_COMMENT MC 
-		WHERE MEDIA_NO = #{medaiNo}
+		WHERE MEDIA_NO = #{mediaNo}
 		AND MEDIA_PARENT_COMMENT_NO IS NULL 
 		AND MEDIA_COMMENT_DEL_FL = 'N'
 		ORDER BY MC.MEDIA_COMMENT_ENROLL_DATE DESC
@@ -34,7 +34,8 @@
 		SELECT 	MEDIA_NO ,MEDIA_ADDRESS ,
 				MEDIA_TITLE ,MEDIA_DESCRIPTION ,
 				MEDIA_COUNT ,ARTIST_GROUP_NO  ,
-				TO_CHAR(MEDIA_ENROLL_DATE, 'MM.DD HH24:MI') MEDIA_ENROLL_DATE 
+				TO_CHAR(MEDIA_ENROLL_DATE, 'MM.DD HH24:MI') MEDIA_ENROLL_DATE ,
+				#{memberNo} AS MEMBER_NO
 		FROM MEDIA M
 		WHERE MEDIA_NO = #{mediaNo}
 	</select>
