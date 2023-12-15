@@ -41,5 +41,7 @@ public interface AdminAjaxMapper {
 	int changeAuthority(Map<String, Object> paramMap);
 
 	SiteNotice selectSiteNotice(Map<String, Object> map);
+	
+	List<Board> selectSubscribeBoard(Map<String, Object> map);
 
 }

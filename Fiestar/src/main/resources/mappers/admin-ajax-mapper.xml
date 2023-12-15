@@ -159,5 +159,12 @@
 		WHERE SITE_NOTICE_NO = #{siteNoticeNo}
 	</update>
 	
+	<select id="selectSubscribeBoard" resultType="Board">
+		SELECT  BOARD_CONTENT,
+		(SELECT ARTIST_GROUP_TITLE FROM ARTIST_GROUP AG WHERE B.ARTIST_GROUP_NO = AG.ARTIST_GROUP_NO) ARTIST_GROUP_TITLE, BOARD_ENROLL_DATE
+		FROM BOARD B
+		WHERE MEMBER_No = #{memberNo}
+		AND ARTIST_GROUP_NO = #{artistGroupNo}
+	</select>
 
 </mapper>

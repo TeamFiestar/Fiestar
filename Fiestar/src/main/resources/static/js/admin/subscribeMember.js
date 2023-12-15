@@ -7,8 +7,13 @@ const h1 = document.querySelector(".h1");
 
 const tr = document.querySelector("tr");
 
-function selectBoard(memberNo) {
-  fetch("/admin/selectSubscribeBoard?memberNo=" + memberNo)
+function selectBoard(memberNo, artistGroupTitle) {
+  fetch(
+    "/admin/selectSubscribeBoard?memberNo=" +
+      memberNo +
+      "&artistGroupTitle=" +
+      artistGroupTitle
+  )
     .then((resp) => resp.json())
     .then((boardList) => {
       console.log(boardList);
@@ -49,7 +54,7 @@ function openModal(memberNo) {
   // Show the modal
   modal.style.display = "block";
   // Call the selectBoard function with the memberNo parameter
-  selectBoard(memberNo);
+  selectBoard(memberNo, artistGroupTitle);
 }
 
 // Close the modal

@@ -188,13 +188,13 @@
 	</select>
 	
 	
-	<select id="selectSubscribeBoard" resultType="Board">
+	<!-- <select id="selectSubscribeBoard" resultType="Board">
 		SELECT  BOARD_CONTENT,
 		(SELECT ARTIST_GROUP_TITLE FROM ARTIST_GROUP AG WHERE B.ARTIST_GROUP_NO = AG.ARTIST_GROUP_NO) ARTIST_GROUP_TITLE, BOARD_ENROLL_DATE
 		FROM BOARD B
 		WHERE MEMBER_No = #{memberNo}
 		AND ARTIST_GROUP_NO = (SELECT ARTIST_GROUP_NO FROM ARTIST_GROUP WHERE ARTIST_GROUP_ADMIN_NO = #{memberNo})
-	</select>
+	</select>-->
 	
 	
 	<select id="subArtistTitle" resultType="string">

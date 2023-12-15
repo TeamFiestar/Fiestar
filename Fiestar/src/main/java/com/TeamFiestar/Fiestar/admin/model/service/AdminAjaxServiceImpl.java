@@ -11,6 +11,7 @@ import com.TeamFiestar.Fiestar.admin.model.dto.AdminPagination;
 import com.TeamFiestar.Fiestar.admin.model.dto.ArtistNotice;
 import com.TeamFiestar.Fiestar.admin.model.dto.SiteNotice;
 import com.TeamFiestar.Fiestar.admin.model.mapper.AdminAjaxMapper;
+import com.TeamFiestar.Fiestar.admin.model.mapper.ArtistAdminMapper;
 import com.TeamFiestar.Fiestar.board.model.dto.Board;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
@@ -21,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 public class AdminAjaxServiceImpl implements AdminAjaxService{
 
 	private final AdminAjaxMapper mapper;
-	
+	private final ArtistAdminMapper artistAdminMapper;
 	@Override
 	public List<Board> selectBoard(int memberNo) {
 		return mapper.selectBoard(memberNo);
@@ -72,6 +73,14 @@ public class AdminAjaxServiceImpl implements AdminAjaxService{
 		return map;
 	}
 	
+	@Override
+	public List<Board> selectSubscribeBoard(String artistGroupTitle, int memberNo) {
+		int artistGroupNo = artistAdminMapper.selectArtistGroupNo(artistGroupTitle);
+		Map<String, Object> map = new HashMap<>();
+		map.put("artistGroupNo", artistGroupNo);
+		map.put("memberNo", memberNo);
+		return mapper.selectSubscribeBoard(map);
+	}
 	
 	@Override
 	public int update(Map<String, Object> paramMap) {

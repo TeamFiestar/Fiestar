@@ -94,6 +94,15 @@ public class AdminAjaxController {
 	}
 	
 	
+	@GetMapping("selectSubscribeBoard")
+	@ResponseBody
+	public List<Board> selectSubscribeBoard(@RequestParam(value="memberNo", required = false) int memberNo,
+									@RequestParam(value="artistGroupTitle", required = false) String artistGroupTitle,
+										@SessionAttribute("loginMember") Member loginMember) {
+		int loginMemberNo = loginMember.getMemberNo();
+		List<Board> boardList = service.selectSubscribeBoard(artistGroupTitle,memberNo); 
+		return boardList;
+	}
 	
 	
 	

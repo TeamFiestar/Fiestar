@@ -88,15 +88,15 @@ public class AdminController {
 		return "admin/subscribeMember";
 	}
 	
-	@GetMapping("selectSubscribeBoard")
-	@ResponseBody
-	public List<Board> selectSubscribeBoard(@RequestParam(value="memberNo", required = false) int memberNo,
+//	@GetMapping("selectSubscribeBoard")
+//	@ResponseBody
+//	public List<Board> selectSubscribeBoard(@RequestParam(value="memberNo", required = false) int memberNo,
 //										@PathVariable("artistGroupNo") int artistGroupNo,
-										@SessionAttribute("loginMember") Member loginMember) {
-		int loginMemberNo = loginMember.getMemberNo();
-		List<Board> boardList = service.selectSubscribeBoard(loginMemberNo); 
-		return boardList;
-	}
+//										@SessionAttribute("loginMember") Member loginMember) {
+//		int loginMemberNo = loginMember.getMemberNo();
+//		List<Board> boardList = service.selectSubscribeBoard(loginMemberNo); 
+//		return boardList;
+//	}
 	
 	@GetMapping("register")
 	public String register() {

@@ -33,7 +33,7 @@ public interface AdminService {
 
 	Map<String, Object> searchSubscribe(Map<String, Object> paramMap, int cp, int memberNo);
 
-	List<Board> selectSubscribeBoard(int loginMemberNo);
+//	List<Board> selectSubscribeBoard(int loginMemberNo);
 
 
 
