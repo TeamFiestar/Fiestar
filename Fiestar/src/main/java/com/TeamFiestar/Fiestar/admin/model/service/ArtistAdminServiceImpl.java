@@ -116,10 +116,12 @@ public class ArtistAdminServiceImpl implements ArtistAdminService{
 	
 	
 	@Override
-	public Map<String, Object> selectPurchaseList(String artistGroupTitle, int cp) {
+	public Map<String, Object> selectPurchaseList(String artistGroupTitle, Purchase searchPurchase, int cp) {
 		int artistGroupNo = mapper.selectArtistGroupNo(artistGroupTitle);
 		
 		int listCount = mapper.orderListCount(artistGroupNo);
+		
+		searchPurchase.setArtistGroupNo(artistGroupNo);
 		
 		/* Pagination */
 		Pagination pagination = new Pagination(cp, listCount, 8, 10);
@@ -131,7 +133,7 @@ public class ArtistAdminServiceImpl implements ArtistAdminService{
 		RowBounds rowBounds = new RowBounds(offset, limit);   
 		/* Pagination */
 		
-		List<Purchase> purchaseList = mapper.selectPurchaseList(artistGroupNo, rowBounds);
+		List<Purchase> purchaseList = mapper.selectPurchaseList(searchPurchase, rowBounds);
 		
 		Map<String, Object> map = new HashMap<>();
 		

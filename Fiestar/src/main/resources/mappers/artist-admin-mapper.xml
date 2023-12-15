@@ -2,13 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.TeamFiestar.Fiestar.admin.model.mapper.ArtistAdminMapper">
 	
+	
+
+	
+	
+	
 	<select id="selectArtistGroupNo">
 		SELECT ARTIST_GROUP_NO 
 		FROM ARTIST_GROUP AG 
 		WHERE ARTIST_GROUP_TITLE = #{artistGroupTitle}
 	</select>
 	
-	
+	<!-- 공지사항 수 조회 -->
 	<select id="noticeListCount">
 		SELECT COUNT(*)
 		FROM ARTIST_GROUP_NOTICE AGN 
@@ -17,6 +22,7 @@
 		ORDER BY ARTIST_GROUP_NOTICE_NO 
 	</select>
 	
+	<!-- 공지사항 조회 -->
 	<select id="selectNoticeList">
 		SELECT ARTIST_GROUP_NOTICE_NO ,ARTIST_GROUP_NOTICE_TITLE ,ARTIST_GROUP_NOTICE_CONTENT ,
 		TO_CHAR(ARTIST_GROUP_NOTICE_ENROLL_DATE, 'YYYY/MM/DD') AS ARTIST_GROUP_NOTICE_ENROLL_DATE,
@@ -38,7 +44,7 @@
 		'N', SYSDATE, #{artistGroupNo})
 	</insert>
 	
-	
+	<!-- 신고 개수 -->
 	<select id="reportListCount">
 		SELECT 	COUNT(*)
 		FROM REPORT r  
@@ -52,7 +58,7 @@
 		<if test="report.key == 5">AND REPORT_CONTENT LIKE '%${report.reportSearch}%'</if>
 	</select>
 	
-	
+	<!-- 신고 조회 -->
 	<select id="selectReportList">
 		SELECT 	REPORT_NO , REPORTER_NO 
 			REPORT_TARGET_NO , REPORT_PROCEED , 
@@ -73,7 +79,10 @@
 		<if test="report.key == 5">AND REPORT_CONTENT LIKE '%${report.reportSearch}%'</if>
 	</select>
 	
-		<!--상품 등록-->
+
+
+
+	<!--상품 등록-->
 	<insert id="insertGoods" parameterType="Product" useGeneratedKeys="true">
 		<selectKey order="BEFORE" resultType="_int" keyProperty="productNo">
 			SELECT SEQ_PRODUCT_NO.NEXTVAL FROM DUAL
@@ -93,6 +102,7 @@
 		#{productImageThumbnailRename})
 	</insert>
 	
+	<!-- 주문 배송 개수 -->
 	<select id="orderListCount">
 		SELECT COUNT(*)
 		FROM PURCHASE P 
@@ -107,7 +117,7 @@
 		
 	</select>
 	
-	
+	<!-- 주문 배송 조회 -->
 	<select id="selectPurchaseList">
 		SELECT 	PURCHASE_NO ,PURCHASE_PRICE ,
 				PURCHASE_STATUS ,
@@ -127,8 +137,14 @@
 				(SELECT PRODUCT_NO 
 				FROM PRODUCT P 
 				WHERE P.ARTIST_GROUP_NO = #{artistGroupNo}))
+		<if test="key == 1">AND MEMBER_NO LIKE '%${orderSearch}%'</if>
+		<if test="key == 2">AND MEMBER_EMAIL LIKE '%${orderSearch}%'</if>
+		<if test="key == 3">AND MEMBER_NICKNAME LIKE '%${orderSearch}%'</if>
 		ORDER BY PURCHASE_DATE
 	</select>
+	
+
+	
 	
 </mapper>
 

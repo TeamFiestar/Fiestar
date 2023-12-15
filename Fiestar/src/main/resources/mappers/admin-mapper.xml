@@ -230,4 +230,102 @@
 		WHERE ARTIST_GROUP_ADMIN_NO = #{artistGroupAdminNo}
 	</update>
 	
+	
+	
+	
+	
+	
+	<!-- 공지사항 수 조회 -->
+	<select id="noticeListCount">
+		SELECT COUNT(*)
+		FROM SITE_NOTICE
+		WHERE SITE_NOTICE_DEL_FL = 'N'
+		ORDER BY SITE_NOTICE_NO 
+	</select>
+	
+	<!-- 공지사항 조회 -->
+	<select id="selectNoticeList">
+		SELECT SITE_NOTICE_NO ,SITE_NOTICE_TITLE ,SITE_NOTICE_CONTENT ,
+		TO_CHAR(SITE_NOTICE_ENROLL_DATE, 'YYYY/MM/DD') AS SITE_NOTICE_ENROLL_DATE
+		FROM SITE_NOTICE 
+		WHERE SITE_NOTICE_DEL_FL = 'N'
+		<if test="key == 1">AND SITE_NOTICE_TITLE LIKE '%${notice.noticeSearch}%'</if>
+		<if test="key == 2">AND SITE_NOTICE_CONTENT LIKE '%${notice.noticeSearch}%'</if>
+		ORDER BY SITE_NOTICE_NO 
+	</select>
+	
+	
+	<insert id="artistNoticeAdd">
+		INSERT INTO SITE_NOTICE VALUES 
+		(SEQ_SITE_NOTICE_NO.NEXTVAL, 
+		#{siteNoticeTitle}, 
+		#{siteNoticeContent},
+		'N', SYSDATE)
+	</insert>
+	
+	<!-- 신고 개수 -->
+	<select id="reportListCount">
+		SELECT 	COUNT(*)
+		FROM REPORT r  
+		JOIN "MEMBER" m ON(R.REPORT_TARGET_NO = M.MEMBER_NO)
+		JOIN "MEMBER" m2 ON(R.REPORTER_NO = M2.MEMBER_NO)
+		<where>
+			<if test="report.key == 1"> M2.MEMBER_NICKNAME LIKE '%${report.reportSearch}%'</if>
+			<if test="report.key == 2"> M2.MEMBER_EMAIL LIKE '%${report.reportSearch}%'</if>
+			<if test="report.key == 3"> M.MEMBER_NICKNAME LIKE '%${report.reportSearch}%'</if>
+			<if test="report.key == 4"> M.MEMBER_EMAIL LIKE '%${report.reportSearch}%'</if>
+			<if test="report.key == 5"> REPORT_CONTENT LIKE '%${report.reportSearch}%'</if>
+		</where>
+	</select>
+	
+	<!-- 신고 조회 -->
+	<select id="selectReportList">
+		SELECT 	REPORT_NO , REPORTER_NO 
+			REPORT_TARGET_NO , REPORT_PROCEED , 
+			REPORT_URL ,REPORT_CONTENT , 
+			M2.MEMBER_EMAIL AS REPORTER_EMAIL,
+			M2.MEMBER_NICKNAME AS REPORTER_NICKNAME,
+			REPORT_TARGET_NO ,
+			M.MEMBER_EMAIL AS REPORT_TARGET_EMAIL ,
+			M.MEMBER_NICKNAME AS REPORT_TARGET_NICKNAME
+		FROM REPORT r  
+		JOIN "MEMBER" m ON(R.REPORT_TARGET_NO = M.MEMBER_NO)
+		JOIN "MEMBER" m2 ON(R.REPORTER_NO = M2.MEMBER_NO)
+		<where>
+			<if test="report.key == 1"> M2.MEMBER_NICKNAME LIKE '%${report.reportSearch}%'</if>
+			<if test="report.key == 2"> M2.MEMBER_EMAIL LIKE '%${report.reportSearch}%'</if>
+			<if test="report.key == 3"> M.MEMBER_NICKNAME LIKE '%${report.reportSearch}%'</if>
+			<if test="report.key == 4"> M.MEMBER_EMAIL LIKE '%${report.reportSearch}%'</if>
+			<if test="report.key == 5"> REPORT_CONTENT LIKE '%${report.reportSearch}%'</if>
+		</where>
+	</select>
+	
+	<!-- 주문 배송 개수 -->
+	<select id="orderListCount">
+		SELECT COUNT(*)
+		FROM PURCHASE P 
+		JOIN "MEMBER" m USING(MEMBER_NO)
+	</select>
+	
+	<!-- 주문 배송 조회 -->
+	<select id="selectPurchaseList">
+		SELECT 	PURCHASE_NO ,PURCHASE_PRICE ,
+				PURCHASE_STATUS ,
+				TO_CHAR(PURCHASE_DATE, 'YYYY/MM/DD') AS PURCHASE_DATE,
+				MEMBER_NICKNAME,
+				MEMBER_ADDRESS,
+				(SELECT SUM(PL2.PRODUCT_QUANTITY) 
+					FROM PURCHASE_LIST PL2 
+					WHERE PL2.PURCHASE_NO = P.PURCHASE_NO) 
+				AS PRODUCT_SUM
+		FROM PURCHASE P 
+		JOIN "MEMBER" m USING(MEMBER_NO)
+		ORDER BY PURCHASE_DATE
+	</select>
+	
+	
+	
+	
+	
+	
 </mapper>

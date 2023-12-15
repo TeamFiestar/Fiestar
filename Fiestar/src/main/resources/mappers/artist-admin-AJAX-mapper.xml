@@ -2,6 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.TeamFiestar.Fiestar.admin.model.mapper.ArtistAdminAJAXMapper">
 	
+	<resultMap id="purchaseProduct" type="Purchase">
+		<collection property="productList"
+		select="selectPurchaseProduct"
+		column="PURCHASE_NO"
+		javaType="java.util.ArrayList"
+		ofType="Product"/>
+	</resultMap>
+	
+	<!-- 구매 목록 상품 조회 -->
+	<select id="selectPurchaseProduct" resultType="Product">
+		SELECT DISTINCT PRODUCT_NO , 
+						(SELECT ARTIST_GROUP_TITLE 
+						FROM ARTIST_GROUP AG 
+						WHERE AG.ARTIST_GROUP_NO = P.ARTIST_GROUP_NO) AS ARTIST_GROUP_TITLE , 
+						PRODUCT_NAME, PL2.PRODUCT_PRICE  
+			FROM PRODUCT P JOIN PURCHASE_LIST PL2 USING(PRODUCT_NO) 
+			WHERE PRODUCT_NO IN 
+				(SELECT PL.PRODUCT_NO 
+				FROM PURCHASE_LIST PL 
+			WHERE PL.PURCHASE_NO = #{purchaseNo})
+	</select>
+	
+	<!-- 구매 목록 상세 조회 -->
+	<select id="selectPurchaseDetails" resultMap="purchaseProduct">
+		SELECT PURCHASE_NO ,PURCHASE_PRICE ,PURCHASE_DATE, 
+			(SELECT MEMBER_NICKNAME FROM "MEMBER" m WHERE M.MEMBER_NO = P2.MEMBER_NO)
+			MEMBER_NICKNAME,
+			(SELECT MEMBER_ADDRESS FROM "MEMBER" m WHERE M.MEMBER_NO = P2.MEMBER_NO)
+			MEMBER_ADDRESS
+		FROM PURCHASE P2 
+		WHERE PURCHASE_NO = #{purchaseNo}
+	</select>
+	
 	<select id="selectArtistNotice">
 		SELECT * FROM ARTIST_GROUP_NOTICE
 		WHERE ARTIST_GROUP_NOTICE_NO = #{artistGroupNoticeNo} 
@@ -24,4 +57,7 @@
 		UPDATE PURCHASE SET PURCHASE_STATUS = #{purchaseStatus}
 		WHERE PURCHASE_NO = #{purchaseNo}
 	</update>
+	
+	
+	
 </mapper>

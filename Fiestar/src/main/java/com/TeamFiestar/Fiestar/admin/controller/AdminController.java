@@ -1,6 +1,7 @@
 package com.TeamFiestar.Fiestar.admin.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +20,9 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.TeamFiestar.Fiestar.admin.model.dto.SiteNotice;
+import com.TeamFiestar.Fiestar.admin.model.dto.Purchase;
+import com.TeamFiestar.Fiestar.admin.model.dto.Report;
 import com.TeamFiestar.Fiestar.admin.model.service.AdminService;
 import com.TeamFiestar.Fiestar.board.model.dto.Board;
 //import com.TeamFiestar.Fiestar.member.model.dto.ArtistGroup;
@@ -94,11 +98,6 @@ public class AdminController {
 		return boardList;
 	}
 	
-	@GetMapping("notice")
-	public String admin() {
-		return "admin/artistNotice";
-	}
-	
 	@GetMapping("register")
 	public String register() {
 		return "admin/goods";
@@ -163,6 +162,62 @@ public class AdminController {
 		
 	}
 	
+	
+	@GetMapping("notice")
+	public String SiteNotice(
+			@RequestParam(value="cp", required=false , defaultValue="1" ) int cp, Model model,
+			SiteNotice notice) {
+		
+		Map<String, Object> map = service.siteNoticeList(notice, cp);
+		
+		model.addAttribute("map", map);
+		model.addAttribute("key", notice.getKey()); 
+		
+		return "admin/notice";
+	}
+	
+	// 아티스트 공지사항 등록 조회
+	@GetMapping("noticeAdd")
+	public String SiteNoticeAdd( Model model){
+		
+		return "admin/noticeAdd";
+	}
+	
+	// 아티스트 공지사항 등록
+	@PostMapping("noticeAdd")	
+	public String SiteNoticeAdd( Model model, SiteNotice notice){
+		
+		int result = service.siteNoticeAdd(notice);
+		
+		return "redirect:/admin/notice";
+	}
+	
+	// 신고 조회
+	@GetMapping("report")
+	public String artistReport(
+			@RequestParam(value="cp", required=false , defaultValue="1" ) int cp, Model model, Report report) {
+		
+		Map<String, Object> map = service.selectReportList( report, cp);
+		model.addAttribute("map",map);
+		model.addAttribute("key",report.getKey());
+		model.addAttribute("reportSearch",report.getReportSearch());
+		
+		return "admin/report";
+		
+	}
+	
+	// 아티스트 주문 조회
+	@GetMapping("order")
+	public String artistOrder(
+			@RequestParam(value="cp", required=false , defaultValue="1" ) int cp, Model model,
+			Purchase searchPurchase) {
+		Map<String, Object> map = service.selectPurchaseList( cp);
+		
+		model.addAttribute("map",map);
+		
+		return "admin/order";
+		
+	}
 	
 	
 }

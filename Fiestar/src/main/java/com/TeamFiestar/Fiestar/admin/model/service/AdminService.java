@@ -6,6 +6,8 @@ import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.TeamFiestar.Fiestar.admin.model.dto.Report;
+import com.TeamFiestar.Fiestar.admin.model.dto.SiteNotice;
 import com.TeamFiestar.Fiestar.board.model.dto.Board;
 //import com.TeamFiestar.Fiestar.member.model.dto.ArtistGroup;
 import com.TeamFiestar.Fiestar.member.model.dto.ArtistGroup1;
@@ -45,8 +47,12 @@ public interface AdminService {
 
 
 
+	Map<String, Object> siteNoticeList(SiteNotice notice, int cp);
 
-	
+	int siteNoticeAdd(SiteNotice notice);
 
+	Map<String, Object> selectReportList(Report report, int cp);
+
+	Map<String, Object> selectPurchaseList(int cp);
 
 }

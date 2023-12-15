@@ -14,7 +14,7 @@
       <div id="noticeModal" class="modal-body">
         <button class="modalCloseButton">X</button>
         <div class="modal-noticeDetail">
-          <h4>NewJeans</h4>
+          <h4 th:text="${artistGroupTitle}">NewJeans</h4>
           <h1>공지사항</h1>
           <br />
           <div class="modal-noticeTitle">[공지] 안드로이드 OS 6.0 이하 버전 업데이트 지원중단 안내</div>
@@ -35,7 +35,7 @@
         <button class="modalCloseButton" id="update-close">X</button>
         <div class="modal-noticeDetail">
           <div class="notice-add">
-            <h4>NewJeans</h4>
+            <h4 th:text="${artistGroupTitle}">NewJeans</h4>
             <h1>아티스트 공지사항 수정</h1>
             <br />
             <!-- <form th:action="|/artistAdmin/${artistGroupTitle}/noticeAdd|" method="post"> -->
@@ -64,7 +64,7 @@
       <!-- th:replace -->
       <th:block th:replace="~{common/adminArtist}"></th:block>
       <div class="noticeSelect">
-        <h4>NewJeans</h4>
+        <h4 th:text="${artistGroupTitle}">NewJeans</h4>
         <h1>아티스트 공지사항 목록</h1>
         <br />
         <table border="1" style="border-collapse: collapse" class="notice-table">

@@ -15,4 +15,6 @@ public interface ArtistAdminAJAXService {
 
 	int updatePurchase(Purchase purchase);
 
+	Purchase selectPurchaseDetails(int purchaseNo);
+
 }
