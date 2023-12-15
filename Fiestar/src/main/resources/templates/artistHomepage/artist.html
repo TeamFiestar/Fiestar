@@ -48,7 +48,7 @@
 
 
     <!-- 날짜별 게시글 목록 -->
-    <section class="published-container" th:each="board : ${map.boardList}" th:object="${board}">
+    <section class="published-container" th:each="board : ${map.boardList}" th:object="${board}"  th:onclick="|openModal(*{boardNo})|">
 
       <!-- 작성자 프로필 -->
       <section class="publishedText-container">
@@ -60,7 +60,7 @@
           </div>
         </section>  
        
-        <section id="publishedImage"  onclick="openModal()">
+        <section id="publishedImage" >
           <section class="profile">
             <div>
               <img th:unless="*{memberProfile}" th:src="#{user.default.image}" style="width:40px;"> 
@@ -73,6 +73,7 @@
               <p th:text="*{boardEnrollDate}" style="font-size: 14px; margin-top:5px; color:rgba(196, 196, 196, 1);">1시간 전</p>
             </div>
           </section>
+          
           <section class="image-container" th:if="${board.imageList != null and board.imageList.size != 0}"  >
             <div class="img-container" data-target="feedDetail">
               <div class="slideshow-container" style="display: flex;">
@@ -92,13 +93,11 @@
                   <img th:src="${path}"  style="border-radius: 10px; ">
                 </div>
                </th:block>
-
               </div>
             </div>
-
           </section>
 
-          <section class="textbox" data-target="feedDetail" style="font-size: 18px; height: 45px; margin-top: 5px;"   th:text="*{boardContent}" onclick="openModal()">
+          <section class="textbox" data-target="feedDetail" style="font-size: 18px; height: 45px; margin-top: 5px;"   th:text="*{boardContent}" >
             LE SSERAFIM (르세라핌)은 대한민국의 걸그룹이다. 
             
           </section>
@@ -106,7 +105,7 @@
           <!-- 댓글 좋아요 -->
           <section class="reaction" style="display: flex; justify-content:end; align-items: center;">
             <i class="fa-solid fa-heart fa-xl" style="color: #7743DB; margin-top: 2px; font-size: 20px;" ></i> <span th:text="*{likeCount}" style="margin-left:7px;" >234</span>
-            <a href="#"  data-target="feedDetail" onclick="openModal()"><i
+            <a href="#"  data-target="feedDetail" ><i
                     class="fa-regular fa-comment fa-xl" style="color: #7743DB; margin-left: 20px; font-size: 20px;"></i> 
                     <span th:text="*{commentCount}" style="margin-left:5px;" >234</span></a>
           </section>
@@ -132,7 +131,7 @@
       const defaultImage = /*[[#{user.default.image}]]*/ "기본 이미지";
       const boardDetail = /*[[${boardDetail}]]*/ "dadasas";
       const artistGroupTitle = /*[[${artistGroupTitle}]]*/ "dadasas";
-    
+      const loginCheck = /*[[${session.loginMember != null ? true : false}]]*/ "로그인 여부";
   </script>
 
 </body>

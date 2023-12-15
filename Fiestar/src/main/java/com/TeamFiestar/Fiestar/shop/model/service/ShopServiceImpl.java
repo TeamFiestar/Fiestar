@@ -1,26 +1,18 @@
 package com.TeamFiestar.Fiestar.shop.model.service;
 
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.apache.ibatis.session.RowBounds;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
-
-import com.TeamFiestar.Fiestar.common.utility.Util;
 import com.TeamFiestar.Fiestar.shop.model.dto.ArtistGroup;
 import com.TeamFiestar.Fiestar.shop.model.dto.Product;
-import com.TeamFiestar.Fiestar.shop.model.dto.ProductImage;
+
 import com.TeamFiestar.Fiestar.shop.model.dto.ShopPagination;
-import com.TeamFiestar.Fiestar.shop.model.excption.shopException;
+
 import com.TeamFiestar.Fiestar.shop.model.mapper.ShopMapper;
 
 import lombok.RequiredArgsConstructor;
