@@ -19,6 +19,8 @@
 
    <section class="frame"> 
 
+      
+
       <form action="checkout" method="post" id="checkoutFrm">
 
          <div class="cart-area">
@@ -66,16 +68,20 @@
    
                <!-- <div class="item-name"> -->
                <!-- <a th:href="@{}" class="keyring">뉴진스 키링</a> -->
-               
-                <div th:text="${cart.productName}" class="keyring"></div>
-                <span th:text="${cart.cartNo}" class="cartNo"></span> 
-               <!-- </div> -->
-   
-               <div>
-                  <span class="option-text"> 옵션 : </span> 
-                  <span th:text="${cart.productOptionName}" class="item-option"></span>
+               <div class="item-nameNop">
+
+                  <div th:text="${cart.productName}" class="keyring"></div>
+                  
+                  
+                  <!-- </div> -->
+                  
+                  <div>
+                     <span th:text="${cart.productOptionName}" class="option-text"> 옵션 : </span> 
+                     <!-- <span  class="option-text"> 옵션 : </span>  -->
+                     <!-- <span th:text="${cart.productOptionName}" class="item-option"></span> -->
+                  </div>
+                  
                </div>
-   
                <!-- 상품 수량 + & -  -->
    
    
@@ -101,7 +107,13 @@
                <div class="amount">
    
                   <!-- 수량 빼기 -->
-                  <label class="minus" th:cartNo="${cart.cartNo}">
+                  <!-- <label class="minus">
+                     <i class="fa-solid fa-minus"></i>
+                  </label> -->
+   
+   
+                  <!-- 수량 빼기 -->
+                  <label class="minus">
                      <i class="fa-solid fa-minus"></i>
                   </label>
    
@@ -109,11 +121,12 @@
                   <span th:text="${cart.productCount}" class="item-count"></span>
                   
                   <!-- 더하기 -->
-                  <label class="plus" th:cartNo="${cart.cartNo}">
+                  <label class="plus">
                      <i class="fa-solid fa-plus"></i>
                   </label>
                   
                   <span th:text="${cart.productPrice}" class="default-price"></span>
+                  <span th:text="${cart.cartNo}" class="cartNo"></span>
 
                </div>
                
@@ -123,7 +136,7 @@
                
    
                <label class="x-btn">
-                  <input type="button" value="">
+                  <!-- <input type="button" value=""> -->
                   <i class="fa-solid fa-xmark" id="xBtn" style="color: rgb(199, 199, 199);"></i>
                </label>
             </div>
@@ -145,8 +158,6 @@
             <!-- 이미지 영역 -->
 <!-- 
             <img src="/images/photobook.png" alt="">
-
-
 
             <a href="#" class="keyring">LE SSERAFIM</a>
 

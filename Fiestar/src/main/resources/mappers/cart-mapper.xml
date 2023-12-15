@@ -4,21 +4,79 @@
 	
 	<select id="cartPage" resultType="Cart">
 		
-		SELECT MEMBER_NO, 
+		SELECT MEMBER_NO, MEMBER_ADDRESS, MEMBER_NICKNAME, 
 		PRODUCT_NAME, 
-		PRODUCT_IMAGE, 
 		PRODUCT_PRICE, 
 		PRODUCT_COUNT,
-		PRODUCT_NO,
+		C.PRODUCT_NO,
 		PRODUCT_OPTION_NAME, 
-		CART_NO
-		FROM "CART"
-		JOIN "PRODUCT" USING(PRODUCT_NO)
-		LEFT JOIN "PRODUCT_OPTION" USING(PRODUCT_NO)
+		CART_NO,
+		(SELECT PRODUCT_IMAGE_THUMBNAIL || PRODUCT_IMAGE_RENAME 
+			FROM "PRODUCT_IMAGE" IMAGE
+			WHERE IMAGE.PRODUCT_NO = C.PRODUCT_NO
+			AND PRODUCT_IMAGE_ORDER=1) PRODUCT_IMAGE_NO
+		
+		FROM "CART" C
+		JOIN "PRODUCT" P ON(C.PRODUCT_NO = P.PRODUCT_NO)
+		JOIN MEMBER USING (MEMBER_NO)
+		LEFT JOIN "PRODUCT_OPTION" O ON(P.PRODUCT_NO = O.PRODUCT_NO)
+		
 		WHERE MEMBER_NO = #{memberNo}
-
+	
 	</select>
 	
+	
+	
+    <update id="updateCart">
+        UPDATE "CART" SET
+        PRODUCT_COUNT = #{productCount},
+       	EACH_PRICE = #{eachPrice}
+        WHERE CART_NO = #{cartNo}
+    </update>
+    
+    
+    <delete id="deleteCart">
+		DELETE FROM CART
+		WHERE CART_NO = #{cartNo}
+	</delete>
+	
+	<select id="checkout" resultType="Cart">
+		
+		SELECT MEMBER_NO, EACH_PRICE,
+		PRODUCT_NAME, 
+		PRODUCT_PRICE, 
+		PRODUCT_COUNT,
+		C.PRODUCT_NO,
+		PRODUCT_OPTION_NAME, 
+		CART_NO,
+		(SELECT PRODUCT_IMAGE_THUMBNAIL || PRODUCT_IMAGE_RENAME 
+			FROM "PRODUCT_IMAGE" IMAGE 
+			WHERE IMAGE.PRODUCT_NO = C.PRODUCT_NO
+			AND PRODUCT_IMAGE_ORDER=1) PRODUCT_IMAGE_NO
+			
+		FROM "CART" C
+		JOIN "PRODUCT" P ON(C.PRODUCT_NO = P.PRODUCT_NO)
+		JOIN MEMBER USING (MEMBER_NO)
+		LEFT JOIN "PRODUCT_OPTION" O ON(P.PRODUCT_NO = O.PRODUCT_NO)
+		WHERE CART_NO IN ( ${selectNo} )
+
+		
+	</select>
+	
+	
+	<insert id="order">
+		
+	INSERT INTO PURCHASE
+	VALUES
+	(SEQ_PURCHASE_NO.NEXTVAL, #{purchasePrice}, 1, SYSDATE, 3, #{ordererName}, #{ordererAddress}, #{ordererPhoneNumber})
+		
+	</insert>	
+	 
+	
+	
+
+	
+
 	
 	
 	

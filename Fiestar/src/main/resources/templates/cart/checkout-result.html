@@ -5,7 +5,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Document</title>
    <script src="https://kit.fontawesome.com/d6c32512de.js" crossorigin="anonymous"></script>
-   <link rel="stylesheet" href="/static/css/cart/checkout-result.css">
+   <link rel="stylesheet" href="/css/cart/checkout-result.css">
    <th:block th:replace="~{common/shopHeader}"></th:block>
 
 </head>
@@ -44,7 +44,8 @@
             <div class="item-text">
 
                <div class="item-name">
-                  <a href="" class="keyring">뉴진스 키링</a>
+                  <div th:text="${checkoutItem.productName}" class="keyring"></div>
+               
                </div> 
 
                <div>

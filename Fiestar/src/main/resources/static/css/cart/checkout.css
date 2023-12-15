@@ -10,10 +10,10 @@
    font-family: 'Pretendard-Regular';
 }
 
-
-
 .order-input {
-   font-size: 14px;
+   width: 400px;
+   height: 40px;
+   font-size: 16px;
     border: 1px solid rgb(173, 177, 184); 
    /* outline-color: rgb(69, 106, 227); */
    outline-color:rgba(119, 67, 219, 1);
@@ -41,19 +41,54 @@ h1 {
    
 }
 
+
+/* .item-list {
+   border-bottom: 1px solid #ccc; /* 회색의 1픽셀 두께의 경계선 */
+   
+   .check-list {
+      display: flex; /* Flexbox 레이아웃 사용 */
+      justify-content: space-between; /* 요소들을 양 끝에 배치 */
+      align-items: center; /* 세로 중앙 정렬 */
+      width: 100%; /* 전체 너비 사용 */
+  }
+  
+  .totalItemPrice {
+      white-space: nowrap; /* 줄 바꿈 방지 */
+      overflow: hidden; /* 내용이 넘칠 경우 숨김 */
+      text-overflow: ellipsis; /* 넘칠 경우 말줄임표 표시 */
+  }
+   
+
+
+
+hr {
+   border: none; /* 기본 테두리 제거 */
+   border-top: 1px solid rgb(217, 217, 217); /* 상단에만 회색 테두리 적용 */
+   margin: 20px 0; /* 위아래 여백 추가 */
+}
+
+.totalQuantityNprice{
+   /* width: auto; */
+   margin: 10px 0 0 18px;
+   display: flex;
+}
+
 .select-all{
-   font-size: 16px;
+   font-weight: bold;
+   font-size: 18px;
    margin-top: 80px;
-   border-bottom: solid rgb(217, 217, 217) 1px;
-   padding: 15px 0px;
+   /* border-bottom: solid rgb(217, 217, 217) 1px;
+   padding: 15px 0px; */
    align-items: center;
 }
 
 .select-all > span{
-   margin-left: 32px;
+   margin-left: 28px;
+   margin-bottom: 20px;
 }
 
 .item-list{
+   
    font-weight: 500;
    font-size: 16px;
    height: 120px;
@@ -61,8 +96,26 @@ h1 {
     -webkit-box-align: center;
     align-items: center;
     position: relative;
-    border-bottom: solid rgb(217, 217, 217) 1px;
+   
 }
+
+
+
+.item-count{
+   
+   position: absolute;
+   top: 45%;
+   right: 20%;
+}
+
+.default-price{
+   
+   position: absolute;
+   top: 45%;
+   right: 1%;
+}
+
+
 
 .item-name > a{
    text-decoration: none;
@@ -70,14 +123,15 @@ h1 {
    color: black;
 }
 .item-name{
-   margin-top: 32px;
-   margin-left: 10px;
+   
+   margin-left: 30px;
    position: absolute;
-   top: 10px;
+   
+   top: 28%;
 }
 
 .item-option{
-   margin-left: 10px;
+   margin-left: 30px;
    margin-top: 32px;
    top: 30px;
    position: absolute;
@@ -85,9 +139,25 @@ h1 {
    color:rgb(217, 217, 217);
 }
 
+.optionTag{
+   position: absolute;
+   top: 52%;
+   left: 152px;
+   font-size: 16;
+   color: rgb(113, 113, 112);
+}
+
+.option-text{
+   position: absolute;
+   top: 52%;
+   left: 15%;
+   font-size: 16;
+   color: rgb(113, 113, 112);
+}
+
 .check-list-line{
 
-   margin-top: 128px;
+   margin-top: 50px;
    height: 1px;
    border: 0;
    background: rgb(217, 217, 217);
@@ -95,18 +165,17 @@ h1 {
    
 }
 
-
 .item-amount{
    top: 44%;
    position: absolute;
    right: 250px;  
 }
-
+/* 
 .item-price{
    top: 44%;
    position: absolute;
    right: 8px;
-}
+} */
 
 .item-list>.item-text {
    display: inline-block;
@@ -114,10 +183,12 @@ h1 {
 }
 
 .check-list{
+
    height: 58px;
    position: relative;
    font-size: 16px;
-   margin: 30px 0 180px 6px;
+   /* margin: 50px 0 120px 12px; */
+   
 }
 
 .check-price{
@@ -133,12 +204,12 @@ h1 {
 
 
 .order-list{
-   margin: 32px 0 32px 16px;
+   margin: 90px 0 32px 16px;
    /* border-bottom: solid rgb(217, 217, 217) 1px; */
 }
 
 .order-list > .order-name{
-   font-size: 22px;
+   font-size: 20px;
    font-weight: 700;
 }
 
@@ -153,21 +224,24 @@ h1 {
 }
 
 .order-input{
-   
    font-size: 16px;
-   margin-top: 44px;
+   margin-top: 12px;
 }
-
-
 
 .name-input > input{
-   width: 320px;
-   height: 34px;
+   width: 400px;
+   height: 40px;
    /* width: 120px;
    height: 40px; */
-   margin-top: 2px;
+   margin-top: 12px;
 }
 
+.orderInfo{
+   
+    font-weight: bold;
+    font-size: 16px;
+   margin-top: 100px;
+}
 
 .name-input{
    margin: 10px 0 0 0;
@@ -175,19 +249,16 @@ h1 {
 
 
 .phonenumber-input > input{
-   width: 320px;
-   height: 34px;
+   width: 400px;
+   height: 40px;
    /* width: 120px;
    height: 40px; */
-   margin-top: 2px;
-}
-.phonenumber-input{
-   margin: 10px 0 0 0;
+   margin-top: 12px;
 }
 
 .shipping-list{
-   
-   margin: 80px 0 32px 16px;
+   font-weight: bold;
+   margin: 4px 0 90px 16px;
 
    /* border-bottom: solid rgb(217, 217, 217) 1px; */
 }
@@ -196,18 +267,18 @@ h1 {
    margin-top: 44px;
 }
 
-.address-input > input{
+/* .address-input > input{
    /* width: 280px;
    height: 24px;
 
    margin: 10px 0 0 0; */
-   width: 320px;
-   height: 34px;
+   /* width: 320px;
+   height: 34px; */
    /* width: 120px;
    height: 40px; */
-   margin-top: 14px;
+   /* margin-top: 14px;
 
-}
+} */ 
 
 .phonenumber-input-area{
    margin-top: 38px;
@@ -221,13 +292,13 @@ h1 {
    /* margin-top: 2px;
 } */
 
-.input-detail > input {
+/* .input-detail > input {
    width: 320px;
    height: 34px;
    /* width: 120px;
    height: 40px; */
-   margin-top: 2px;
-}
+   /* margin-top: 2px;
+} */ 
 
 .input-detail{
    margin-top: 6px;
@@ -239,7 +310,10 @@ h1 {
    margin: 38px 0 0 0; 
 }
 
-
+.detail-price{
+   font-size: 20px;
+   font-weight: bold;
+}
 
 .name-btn{
    margin: 0 0 0 12px;
@@ -257,7 +331,7 @@ h1 {
     border: 1px solid rgb(173, 177, 184);
     color: rgb(135, 142, 150);
 
-    width: 42px;
+    /* width: 42px; */
     display: inline-flex;
 }
 
@@ -272,11 +346,11 @@ h1 {
     justify-content: center;
     -webkit-box-align: center;
     align-items: center;
-    height: 30px;
-    font-size: 18px;
+    height: 32px;
+    font-size: 16px;
     border: 1px solid rgb(173, 177, 184);
     color: rgb(135, 142, 150);
-    width: 42px;
+    /* width: 42px; */
     display: inline-flex;
 }
 
@@ -291,32 +365,30 @@ h1 {
     justify-content: center;
     -webkit-box-align: center;
     align-items: center;
-    height: 28px;
+    height: 32px;
     font-size: 14px;
     border: 1px solid rgb(173, 177, 184);
     color: rgb(135, 142, 150);
-    width:  60px;
+    /* width:  60px; */
     display: inline-flex;
 }
 
 .price-detail{
-   font-size: 22px;
+   
    position: relative;
-   margin: 100px 0 0 16px;
+   margin: 80px 0 0 16px;
 }
 
 .detail{
-
+   width: auto;
    font-size: 16px;
    top: 70px;
    position: absolute;
 }
 
-.price-detail > span{
+/* .price-detail > span{
    right:0;
    /* margin-left: 1016px; */
-}
-
 
 
 .item-list>img{
@@ -326,9 +398,15 @@ h1 {
    object-fit: cover;
 }
 
+.total-price1{
+   margin-left: 850px;
+   width: auto;
+}
 
 .total{
-   margin-top: 140px;
+   height: 80px;
+   width: auto;
+   margin-top: 120px;
    background-color: rgb(255, 254, 237);
    padding: 20px;
    display: flex;
@@ -336,9 +414,15 @@ h1 {
    /* justify-content: space-between; */
    align-items: center;
    font-weight: 700;
-   font-size: 20px;
+   font-size: 22px;
    border-bottom: solid rgb(217, 217, 217) 1px;
+   letter-spacing: -1.6px;
 }
+
+.purchasePrice {
+   margin-left: 600px;
+}
+
 
 .total > .total-price{
    background-color: rgb(255, 254, 237);
@@ -351,7 +435,9 @@ h1 {
    letter-spacing: -1.2px;
 }
 
-
+.total-price{
+   font-size: 22px;
+}
 
 .sc-e98633bc-7 {
       background: rgb(255, 254, 237);
@@ -399,7 +485,7 @@ border-radius: 4px;
    -webkit-box-align: center;
    align-items: center;
    position: relative;
-   border-bottom: solid rgb(217, 217, 217) 1px;
+
 
 }
 
@@ -422,7 +508,9 @@ border-radius: 4px;
    margin-top: 10px;
 }
 
-.cash > 
+.cash {
+   margin-top: 20px;
+}
 
 .kakaopay{
    height: 22px;
@@ -446,7 +534,7 @@ border-radius: 4px;
  .checkOut-btn{
    border-radius: 4px;
     transition: all 300ms ease 0s;
-    margin: 0px;
+    margin: 40px;
     appearance: none;
     /* background: none rgb(227, 69, 224); */
     background: none rgba(119, 67, 219, 1);
@@ -465,4 +553,14 @@ border-radius: 4px;
     display: inline-flex;
     padding: 0 var(--horizontal-padding);
 } 
+/* 
+.cartNo{
+   display: none;
+} */
 
+.aass {
+
+   font-weight: bold;
+   font-size: 20px;
+
+}

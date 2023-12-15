@@ -26,3 +26,5 @@ public class ProductImage {
 
 	private MultipartFile uploadFile;
 }
+
+

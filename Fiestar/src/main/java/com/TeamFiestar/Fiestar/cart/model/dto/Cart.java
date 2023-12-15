@@ -11,11 +11,16 @@ public class Cart {
 	private String memberNo;
 	private String productName;
 	private String productImg;
-	private String productPrice;
-	private String productCount;
+	private int productPrice;
+	private	int productCount;
 	private int productNo;
 	private String productOptionName;
 	private int cartNo;
+	private String eachPrice;
+
+	private String memberAddress;
+	private String memberNickname;
+	private String amountPrice;
 	
 	
 	

@@ -1,0 +1,79 @@
+             <!-- 주소 API  -->
+
+
+            <div class="shipping-list">
+
+
+               <div class="shipping-input">
+
+
+                  <div class="shipping-address">
+                     배송주소
+                     <button type="button" class="address-btn" onclick="sample6_execDaumPostcode()" id="addressChange">주소 찾기</button>
+
+                     <div class="address-input">
+                        
+                           
+                        </div>
+                        <label for="">
+   
+                           <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;" th:value="${session.loginMember.memberAddress}" 
+                           name="memberAddress" id="sample6_address">
+
+                        </label>
+                     </div>
+                  </div>
+
+                  <div class="address-detail">
+
+
+                     상세주소
+
+                     <div class="input-detail">
+
+                        <label for="">
+
+                           <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" 
+                           style="padding-left: 8px;" name="memberAddress" id="sample6_detailAddress">
+                           
+                        </label>
+
+                     </div>
+
+                     우편번호
+
+                     <div class="input-detail">
+
+                        <label for="">
+
+                           <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" 
+                           style="padding-left: 8px;" name="memberAddress" id="sample6_postcode">
+                           
+                        </label>
+
+                     </div>
+
+                  </div>
+
+               </div>
+
+            </div>
+
+
+            <!-- ------------------------------------------------------------------------------------------------------------------------ -->
+         
+            <script src="/js/cart/checkout.js"> </script>
+            <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"> </script>
+         
+         
+            <script th:inline="javascript">
+              
+               let addressString = /*[[${session.loginMember.memberAddress}]]*/ "04540^^^서울 중구 남대문로 120^^^A강의장 2층";
+               let addressParts = addressString.split("^^^");
+           
+               // 각 부분을 해당하는 입력 필드에 채우기
+               document.getElementById("sample6_address").value = addressParts[1] || ""; // 도로명 주소
+               document.getElementById("sample6_detailAddress").value = addressParts[2] || ""; // 상세 주소
+               document.getElementById("sample6_postcode").value = addressParts[0] || ""; // 우편번호
+               /*]]>*/
+           </script>
