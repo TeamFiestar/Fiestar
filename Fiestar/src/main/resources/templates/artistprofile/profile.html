@@ -13,10 +13,12 @@
       <div id="modal" class="modal-body">
         <span class="close" onclick="closeModal()">&times;</span>
         <h2>구독하시겠습니까?</h2>
-        <form action="">
-          <button class="subscribe" onclick="openModal()">구독</button>
-          <button class="cancle">취소</button>
-        </form>
+        <div class="btnFrm">
+          <form th:action="|/artistMember/${artistGroupTitle}|" method="post">
+            <button class="subscribe">구독</button>
+          </form>
+          <button class="cancle" onclick="closeModal()">취소</button>
+        </div>
       </div>
     </div>
     <main
@@ -44,9 +46,11 @@
               </div>
             </div>
           </div>
-          <div class="subscribeBtnArea">
-            <button class="btn-open-popup">구독하기</button>
-          </div>
+          <th:block th:if="${session.loginMember != null}">
+            <div class="subscribeBtnArea">
+              <button class="btn-open-popup" onclick="openModal()">구독하기</button>
+            </div>
+          </th:block>
         </div>
         <div class="profiletxt"><h3>프로필</h3></div>
 
@@ -113,6 +117,14 @@
             </li>
           </ul>
         </div>
+        <th:block th:if="${session.loginMember.memberAutority == 4}">
+          <div class="updateDelete">
+            <form th:action="|/artistMember/${artistGroupTitle}/update|" method="get">
+              <button class="update">수정</button>
+            </form>
+            <button class="delete">삭제</button>
+          </div>
+        </th:block>
       </div>
     </main>
     <script src="/js/artistprofile/profile.js"></script>

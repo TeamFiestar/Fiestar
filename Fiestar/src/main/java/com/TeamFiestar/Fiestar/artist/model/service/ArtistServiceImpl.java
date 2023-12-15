@@ -43,5 +43,29 @@ public class ArtistServiceImpl implements ArtistService{
 		map.put("artistGroupNotice", artistGroupNotice);
 		return map;
 	}
+	
+	@Override
+	public int subscribe(int memberNo, String artistGroupTitle) {
+		int artistGroupNo = artistAdminMapper.selectArtistGroupNo(artistGroupTitle);
+		Map<String, Object> map = new HashMap<>();
+		map.put("memberNo", memberNo);
+		map.put("artistGroupNo", artistGroupNo);
+		return mapper.subscribe(map);
+	}
+	
+	@Override
+	public ArtistGroup1 artist(String artistGroupTitle, int memberNo) {
+		int artistGroupNo = artistAdminMapper.selectArtistGroupNo(artistGroupTitle);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("memberNo", memberNo);
+		map.put("artistGroupNo", artistGroupNo);
+		
+		int result = mapper.update(map);
+		
+		if(result == 1) {
+			ArtistGroup1 artist = mapper.artistUpdate(memberNo);
+		}
+	}
 
 }

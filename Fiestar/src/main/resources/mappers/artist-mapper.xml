@@ -35,5 +35,21 @@
 		AND ARTIST_GROUP_NOTICE_DEL_FL = 'N'
 		ORDER BY ARTIST_GROUP_NOTICE_ENROLL_DATE DESC
 	</select>
+	
+	<insert id="subscribe">
+		INSERT INTO ARTIST_SUBSCRIBE
+		VALUES(#{artistGroupNo},#{memberNo})
+	</insert>
+	
+	<select id="update" resultType="_int">
+		SELECT COUNT(*) FROM ARTIST_GROUP
+		WHERE ARTIST_GROUP_ADMIN_NO = #{memberNo}
+		AND ARTIST_GROUP_NO = #{artistGroupNo}
+	</select>
+	
+	<select id="artistUpdate" resultType="ArtistGroup1">
+		
+	</select>
+	
 </mapper>
 
