@@ -3,12 +3,14 @@ package com.TeamFiestar.Fiestar.shop.model.dto;
 import java.util.List;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 public class Product {
 	private int productNo;
 	private int artistGroupNo;
@@ -18,6 +20,13 @@ public class Product {
 	private int productPrice;
 	private String artistGroupTitle;
 	
+	private String productImageThumbnail;
+	private String productImageThumbnailRename;
+	
 	private List<ProductImage> imageList;
+	
+	
+	
+
 	
 }

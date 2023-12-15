@@ -16,9 +16,11 @@
   <main>
     <section class="shopDetail-main">
       <div class="shopDetail-upper">
+
         <div class="product-image">
-          <img src="/images/product1.jpg" width='500px' height="600px" >
+          <!-- <img src="im" width='500px' height="600px" > -->
         </div>
+
         <div class="product-detail" th:object="${prod}">
           <div class="artist-name">아티스트명 &gt;</div>
           <section class="product-name" th:text=" *{artistGroupTitle} + *{productName} ">[아티스트명] 상품명</section>

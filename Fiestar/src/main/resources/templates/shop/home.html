@@ -22,7 +22,7 @@
         <a href="/shop/home" id="artist-shop-lists-all">전체</a>
         <th:block th:each=" artistGroup : ${artistList}" th:object="${artistGroup}">
           <a th:href="|/shop/home/*{artistGroupTitle}?artistGroupNo=*{artistGroupNo}|" id="artist-shop-lists">
-            <img class="artist-main-logo" src="/images/newJeans_logo.jpg">
+            <img class="artist-main-logo" th:src="*{artistGroupProfile}">
             <span id="artist-shop-name" th:text="*{artistGroupTitle}"></span>
           </a>
         </th:block>
@@ -42,10 +42,10 @@
       <section class="artist-shop-product">
         <div class="product-area"> 
           <div class="product-area-detail">
-            <div class="product-list" th:each=" product:${productList}" th:object="${product}">
+            <div class="product-list" th:each="product:${productList}" th:object="${product}">
               <a th:href="@{/shop/shopDetail/{productNo}(productNo=*{productNo})}" class="product-profile">
                 <div class="product-image-area"> 
-                  <img src="/images">        
+                  <img th:src="|*{productImageThumbnail}*{productImageThumbnailRename}|">       
                 </div>
                 <div class="product-name-area" >
                   <div class="product-name" th:text="*{productName}">상품 이름</div>

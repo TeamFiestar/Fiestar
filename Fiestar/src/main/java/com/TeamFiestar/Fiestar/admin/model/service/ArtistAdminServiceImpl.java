@@ -178,7 +178,7 @@ public class ArtistAdminServiceImpl implements ArtistAdminService{
 		
 		
 		img.getUploadFile().transferTo(new File(folderPath + img.getProductImageRename()));
-		img.getUploadFile().transferTo(new File(contentfolderPath + img.getProductImageThumbnailRename()));
+		img.getUploadFile().transferTo(new File(folderPath + img.getProductImageThumbnailRename()));
 		
 		return productNo;
 	}
