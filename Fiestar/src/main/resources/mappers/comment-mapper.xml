@@ -40,35 +40,56 @@
 	<!-- 댓글 등록 -->
 	<insert id="insert">
 		INSERT INTO "BOARD_COMMENT"
-		(BOARD_COMMENT_NO, BOARD_COMMENT_CONTENT, MEMBER_NO, BOARD_NO, BOARD_PARENT_COMMENT_NO)
-		VALUES (SEQ_BOARD_COMMENT_NO.NEXTVAL, #{commentContent}, ${memberNo}, #{boardNo},
+		(BOARD_COMMENT_NO, BOARD_COMMENT_CONTENT, BOARD_COMMENT_ENROLL_DATE,BOARD_COMMENT_DEL_FL, MEMBER_NO, BOARD_NO, BOARD_PARENT_COMMENT_NO)
+		VALUES (SEQ_BOARD_COMMENT_NO.NEXTVAL, #{boardCommentContent}, SYSDATE,'N', ${memberNo}, #{boardNo},
 		
 		<!-- if문 (동적 SQL) -->
-		<if test="parentNo == 0"> <!-- 일반 댓글 등록 -->
+		<if test="boardParentCommentNo == 0"> <!-- 일반 댓글 등록 -->
 			NULL
 		</if>
 		
-		<if test="parentNo != 0"> <!-- 답글(대댓글) 등록 -->
-			#{parentNo}
+		<if test="boardParentCommentNo != 0"> <!-- 답글(대댓글) 등록 -->
+			#{boardParentCommentNo}
 		</if>
 		
 		 )
 		
 	</insert>
 	
-	<!-- 댓글 수정-->
-	<update id="update">
-		UPDATE "BOARD_COMMENT" SET 
-		BOARD_COMMENT_CONTENT = #{commentContent} 
-		WHERE BOARD_COMMENT_NO = #{commentNo}
-	</update>
-	
 	
 	<!-- 댓글 삭제 -->
 	<update id="delete">
 		UPDATE "BOARD_COMMENT" SET 
 		BOARD_COMMENT_DEL_FL = 'Y' 
-		WHERE BOARD_COMMENT_NO = #{commentNo}
+		WHERE BOARD_COMMENT_NO = #{boardCommentNo}
 	</update>
+	
+	<!-- 댓글 좋아요 -->
+	
+		
+	<delete id="deleteLike">
+		DELETE FROM "BOARD_COMMENT_LIKE"
+		WHERE BOARD_COMMENT_NO = #{boardCommentNo}
+		AND MEMBER_NO = #{memberNo}
+	</delete>
+	
+	<insert id="likeComment">
+		INSERT INTO "BOARD_COMMENT_LIKE"
+		VALUES(#{boardCommentNo}, #{memberNo})
+	</insert>
+	
+	<select id="countCommentLike" resultType="_int">
+		SELECT COUNT(*) FROM "BOARD_COMMENT_LIKE"
+		WHERE BOARD_COMMENT_NO = #{boardCommentNo}
+	</select>
+	
+	<select id="likeClick" resultType="_int">
+		SELECT COUNT(*) FROM "BOARD_COMMENT_LIKE"
+		WHERE BOARD_COMMENT_NO = #{boardCommentNo}
+		AND MEMBER_NO = #{memberNo}
+	</select>
+	
+	
+	
 	
 </mapper>
