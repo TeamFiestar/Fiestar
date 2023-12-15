@@ -119,7 +119,13 @@
 }
 
 
+#memberNickname:focus{
+  border: 1px solid rgb(119, 67, 219);
+}
 
+#memberPw:focus{
+  border: 1px solid rgb(119, 67, 219);
+}
 
 
 .profileTxt{
@@ -260,7 +266,7 @@
   padding : 15px 10px 5px;
   font-size: 16px;
   font-weight: bold;
-
+  margin-bottom: 3px;
   border : none;
   outline: none;
 }
@@ -272,7 +278,7 @@
   border: 1px solid gray;
   cursor: pointer;
   border-radius: 5px;
-  
+  margin-top: 3px;
 }
 
 .signUp-input-area:focus-within{
@@ -283,13 +289,17 @@
 .ModifyBtn{
   width: 720px;
   height: 25px;
-  border-radius: 5px;
 }
 
+
 .ModifyBtn button{
-  width: 60px;
-  height: 25px;
+  background-color: rgb(119, 67, 219);
+  width: 80px;
+  height: 30px;
   float: right;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow:none;
 }
 
 .ModifyBtn button:hover{
@@ -321,6 +331,7 @@
   margin-bottom: 20px;
 }
 
+.WithdrawalBtn p:hover{
+  color: rgb(119, 67, 219);
 
-
-
+}

@@ -55,13 +55,19 @@
 
 .content{
   width: 780px;
-  min-height: 800px;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
   margin: 0 auto;
+  padding-bottom: 30px;
 }
 
+.ment{
+  margin: 30px;
+}
 
+#no{
+  padding-top: 30px
+}
 
 
 .buyAll{

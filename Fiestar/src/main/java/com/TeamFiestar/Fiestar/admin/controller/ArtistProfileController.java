@@ -28,11 +28,7 @@ public class ArtistProfileController {
 
 	private final ArtistProfileService serive;
 
-	
-	@GetMapping("profileModify")
-	public String updateProfile() {
-		return "artistprofile/profileModify";
-	}
+
 	
 	// 아티스트 프로필 수정 화면 전환
 //	@GetMapping("{artistGroupTitle}/profileModify")
@@ -46,14 +42,19 @@ public class ArtistProfileController {
 //	
 //	}
 //	
-//	// 아티스트 프로필 수정
+
+	
+	// 아티스트 프로필 수정
 //	@PostMapping("{artistGroupTitle}/update")
 //	public String updateProfile(@PathVariable("artistGroupTitle") String artistGroupTitle, 
 //			@ModelAttribute ArtistGroup artistGroup, RedirectAttributes ra,
 //			@RequestParam("artistGroupBackImg") MultipartFile artistGroupBackImg,
 //			@RequestParam("artistLogo") MultipartFile artistLogo) {
 //		
-//		return null;
+//		
+//		
+//		
+//		return "redirect:{artistGroupTitle}/profile";
 //	}
 
 }
