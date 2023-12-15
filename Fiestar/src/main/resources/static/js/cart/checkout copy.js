@@ -11,9 +11,9 @@
 //     }
 
 // });
-const nameChangeBtn = document.getElementById("nameChangeBtn");
+const nameChangeBtn = document.getElementById("purchaseBtn");
 
-nameChangeBtn.addEventListener("click", e => {
+purchaseBtn.addEventListener("click", e => {
     
     let nameInput = document.getElementById("nameInput");
     let address1 = document.getElementById("address1");
