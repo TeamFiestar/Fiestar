@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>아티스트 담당 배송조회</title>
   <link rel="stylesheet" href="/css/admin/artistOrder.css" />
+  <link rel="stylesheet" href="/css/common/artistPageHeader.css" />
 </head>
 
 <body>
@@ -46,7 +47,7 @@
 
 
 
-  <header>헤더+nav</header>
+  <th:block th:replace="~{common/artistPageHeader}">헤더</th:block>
   <main th:with="purchaseList = ${map.purchaseList}, pagination = ${map.pagination}">
     <!-- th:replace -->
     <th:block th:replace="~{common/adminArtist}"></th:block>

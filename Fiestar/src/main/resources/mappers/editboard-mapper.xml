@@ -12,7 +12,7 @@
 		
 		INSERT INTO "BOARD" 
 		VALUES( #{boardNo},  #{boardContent}, DEFAULT, DEFAULT, 
-				#{memberNo}, #{artistGroupNo})
+				#{memberNo}, #{artistGroupNo}, SYSDATE )
 	</insert>
 	
 	
@@ -23,10 +23,10 @@
 		<!-- myBatis에서 향상된 for문 사용하기 -->
 	 	<foreach collection="list" item="img" separator=" UNION " >
 			 SELECT NEXT_IMG_NO(), 
-			 		#{img.imgPath},
-			 		#{img.imgRename},
-			 		#{img.imgOriginalName},
-			 		#{img.imgOrder},
+			 		#{img.boardImagePath},
+			 		#{img.boardImageRename},
+			 		#{img.boardImageOriginalName},
+			 		#{img.boardImageOrder},
 			 		#{img.boardNo}
 			 FROM DUAL
 			 
@@ -37,10 +37,7 @@
 	<!-- 게시글 부분만 수정 -->
 	<update id="updateBoard">
 		UPDATE "BOARD" SET
-		BOARD_TITLE = #{boardTitle},
 		BOARD_CONTENT = #{boardContent},
-		BOARD_UPDATE_DATE = SYSDATE
-		WHERE BOARD_CODE = #{boardCode}
 		AND BOARD_NO = #{boardNo}
 	</update>
 	
@@ -49,8 +46,7 @@
 	<update id="deleteBoard">
 		UPDATE "BOARD" SET 
 		BOARD_DEL_FL = 'Y'
-		WHERE BOARD_CODE = #{boardCode}
-		AND BOARD_NO = #{boardNo}
+		WHERE BOARD_NO = #{boardNo}
 		AND MEMBER_NO = #{memberNo}
 		
 	</update>
@@ -60,27 +56,27 @@
 	-->
 	<!-- 이미지 삭제 -->
 	<delete id="imageDelete">
-		DELETE FROM "BOARD_IMG"
+		DELETE FROM "BOARD_IMAGE"
 		WHERE BOARD_NO = #{boardNo}
-		AND IMG_ORDER IN ( ${deleteOrder} )
+		AND BOARD_IMAGE_ORDER IN ( ${deleteOrder} )
 	</delete>
 	
 	
 	<!-- 이미지 하나 수정 -->
 	<update id="updateBoardImg">
-		UPDATE "BOARD_IMG" SET 
-		IMG_PATH = #{imgPath},
-		IMG_RENAME = #{imgRename},
-		IMG_ORIGINAL_NAME = #{imgOriginalName}
+		UPDATE "BOARD_IMAGE" SET 
+		BOARD_IMAGE_PATH = #{boardImagePath},
+		BOARD_IMAGE_RENAME = #{boardImageRename},
+		BOARD_IMAGE_ORIGINAL_NAME = #{boardImageOriginalName}
 		WHERE BOARD_NO = #{boardNo}
-		AND IMG_ORDER = #{imgOrder}
+		AND BOARD_IMAGE_ORDER = #{boardImageOrder}
 	</update>
 	
 	<!-- 이미지 하나 삽입 -->
 	<insert id="boardImgInsert">
-		INSERT INTO "BOARD_IMG"
-    	VALUES(SEQ_IMG_NO.NEXTVAL, #{imgPath}, #{imgRename},
-      			#{imgOriginalName}, #{imgOrder}, #{boardNo})
+		INSERT INTO "BOARD_IMAGE"
+    	VALUES(SEQ_IMG_NO.NEXTVAL, #{boardNo}, #{boardImagePath}, #{boardImageOrder},
+      			#{boardImageRename}, #{boardImageOriginalName} )
 	</insert>
 	
 	

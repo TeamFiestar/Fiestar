@@ -22,7 +22,9 @@
 	<select id="shopSearchCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM PRODUCT
+		JOIN ARTIST_GROUP USING (ARTIST_GROUP_NO)
 		WHERE PRODUCT_NAME LIKE '%${shopSearch}%'
+		OR ARTIST_GROUP_TITLE LIKE '%${shopSearch}%' 
 	</select>
 	
 	<!--검색 상품 조회-->
@@ -32,6 +34,7 @@
 		JOIN ARTIST_GROUP USING (ARTIST_GROUP_NO)
 		LEFT JOIN PRODUCT_IMAGE USING (PRODUCT_NO)
 		WHERE PRODUCT_NAME LIKE '%${shopSearch}%' 
+		OR ARTIST_GROUP_TITLE LIKE '%${shopSearch}%' 
 		ORDER BY PRODUCT_NO DESC		
 	</select>
 	

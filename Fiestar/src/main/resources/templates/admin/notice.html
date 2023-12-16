@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>공지사항 목록</title>
     <link rel="stylesheet" href="/css/admin/artistNotice.css" />
+    <link rel="stylesheet" href="/css/common/artistPageHeader.css" />
   </head>
   <body>
-    <header>헤더+nav</header>
+    <th:block th:replace="~{common/artistPageHeader}">헤더</th:block>
 
 
     <div class="noticeModal">
@@ -40,12 +41,12 @@
               <div class="notice-title">
                 공지사항 제목
                 <br />
-                <input name="artistGroupNoticeTitle" type="text" id="input-noticeTitle" />
+                <input name="siteNoticeTitle" type="text" id="input-noticeTitle" />
               </div>
               <div class="notice-content">
                 공지사항 내용
                 <br />
-                <textarea name="artistGroupNoticeContent" id="input-noticeContent"></textarea>
+                <textarea name="siteNoticeContent" id="input-noticeContent"></textarea>
               </div>
               <div class="notice-btn">
                 <button id="update-notice-btn">수정</button>
@@ -75,11 +76,11 @@
 
           <tbody id="noticeBody">
             <tr class="notice-tr-td" th:each="notice : ${noticeList}" th:object="${notice}">
-              <td th:text="*{artistGroupNoticeNo}">1</td>
-              <td th:onclick="|selectArtistNotice(*{artistGroupNoticeNo}, this)|" class="notice-title">
-                <span class="btn-open-popup" th:text="*{artistGroupNoticeTitle}">[공지] 안드로이드 OS 6.0 이하 버전 업데이트 지원중단 안내</span>
+              <td th:text="*{siteNoticeNo}">1</td>
+              <td th:onclick="|selectSiteNotice(*{siteNoticeNo}, this)|" class="notice-title">
+                <span class="btn-open-popup" th:text="*{siteNoticeTitle}">[공지] 안드로이드 OS 6.0 이하 버전 업데이트 지원중단 안내</span>
               </td>
-              <td th:text="*{artistGroupNoticeEnrollDate}">2023/11/21</td>
+              <td th:text="*{siteNoticeEnrollDate}">2023/11/21</td>
             </tr>
           </tbody>
 
@@ -126,7 +127,7 @@
             </ul>
           </div>
 
-          <form th:action="|/artistAdmin/${artistGroupTitle}/notice|" method="get">
+          <form th:action="|/admin/notice|" method="get">
             <select id="select" name="key">
               <option value="1" th:selected="${key == 1}">공지 제목</option>
               <option value="2" th:selected="${key == 2}">공지 내용</option>
@@ -139,7 +140,7 @@
       
     </main>
 
-    <script src="/js/admin/artistAdminNotice.js"></script>
+    <script src="/js/admin/adminNotice.js"></script>
     <script th:inline="javascript">
       const artistGroupTitle = /*[[${artistGroupTitle}]]*/ "artistGroupTitle";
     </script>

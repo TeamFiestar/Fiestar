@@ -20,3 +20,11 @@
 주소 : 서울특별시 중구 남대문로 120 그레이츠 청계(구 대일빌딩) 2F A강의장  </pre>
     </div>
 </footer>
+
+<script th:inline="javascript">
+    // RedirectAttributes를 통해 전달된 message 출력
+    const message = /*[[${message}]]*/ "전달받은 message";
+                    // message가 없다면 null
+    if(message != null) alert(message);
+
+</script>

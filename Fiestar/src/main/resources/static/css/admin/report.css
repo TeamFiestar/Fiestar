@@ -10,10 +10,6 @@
   margin: 0;
   box-sizing: border-box;
 }
-header {
-  background-color: aqua;
-  height: 80px;
-}
 main {
   display: flex;
   font-family: Pretendard-Regular;

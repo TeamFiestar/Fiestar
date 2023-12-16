@@ -10,10 +10,10 @@ import lombok.ToString;
 @Setter
 @ToString
 public class PurchaseList {
-	private int PurcharseList;
-	private int PurcharseNo;
-	private int PurcharseQuantity;
-	private int PurcharsePrice;
+	private int purcharseList;
+	private int purcharseNo;
+	private int purcharseQuantity;
+	private int purcharsePrice;
 	private int productNo;
 	
 	private String PurchaseStatus;

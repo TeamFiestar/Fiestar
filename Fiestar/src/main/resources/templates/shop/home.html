@@ -19,7 +19,7 @@
     <section class="homeMain">
 
       <section class="artist-shop-list-area">
-        <a href="/shop/home" id="artist-shop-lists-all">전체</a>
+        <a th:href="@{/shop/home(artistGroupNo=${artistGroupNo} , cp=1  ) }" id="artist-shop-lists-all">전체</a>
         <th:block th:each=" artistGroup : ${artistList}" th:object="${artistGroup}">
           <a th:href="|/shop/home/*{artistGroupTitle}?artistGroupNo=*{artistGroupNo}|" id="artist-shop-lists">
             <img class="artist-main-logo" th:src="*{artistGroupProfile}">
@@ -50,7 +50,7 @@
                 <div class="product-name-area" >
                   <div class="product-name" th:text="*{productName}">상품 이름</div>
                   <br>
-                  <div class="product-price" th:text="*{productPrice}">상품 가격</div>
+                  <div class="product-price" th:text=" '₩' + ' ' + *{productPrice}">상품 가격</div>
                 </div>
               </a>  
             </div>
