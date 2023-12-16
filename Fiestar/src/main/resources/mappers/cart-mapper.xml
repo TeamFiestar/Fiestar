@@ -2,6 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.TeamFiestar.Fiestar.cart.model.mapper.CartMapper">
 	
+	
+	
 	<select id="cartPage" resultType="Cart">
 		
 		SELECT MEMBER_NO, MEMBER_ADDRESS, MEMBER_NICKNAME, 
@@ -40,6 +42,7 @@
 		WHERE CART_NO = #{cartNo}
 	</delete>
 	
+	
 	<select id="checkout" resultType="Cart">
 		
 		SELECT MEMBER_NO, EACH_PRICE,
@@ -64,19 +67,48 @@
 	</select>
 	
 	
-	<insert id="order">
+	<insert id="order" useGeneratedKeys="true">
 		
-	INSERT INTO PURCHASE
-	VALUES
-	(SEQ_PURCHASE_NO.NEXTVAL, #{purchasePrice}, 1, SYSDATE, #{memberNo}, #{ordererName}, #{ordererAddress}, #{ordererPhoneNumber})
 		
-	</insert>	
-	
-	
-	 
-	
-	
+			<selectKey order="BEFORE" resultType="_int" keyProperty="purchaseNo" >
+			SELECT SEQ_BOARD_NO.NEXTVAL FROM DUAL
+			</selectKey>
+		
+    INSERT INTO PURCHASE
+    VALUES
+    (#{purchaseNo}, #{purchasePrice}, 1, SYSDATE, #{memberNo}, #{ordererName}, #{ordererAddress}, #{ordererPhoneNumber})
+    
+	</insert>
 
+
+
+	<insert id="purchaseList">
+    INSERT INTO PURCHASE_LIST 
+    
+    VALUES (SEQ_PURCHASE_LIST_NO.NEXTVAL, 3, 2 , #{productQuantity}, #{productPrice})
+	</insert>
+
+	
+		<!-- 
+		<insert id="purchase">
+  		  INSERT INTO PURCHASE_LIST (PURCHASE_LIST_NO, PURCHASE_NO, PRODUCT_NO, PRODUCT_QUANTITY, PRODUCT_PRICE)
+   			 SELECT 
+        purchase_list_seq.NEXTVAL,
+        #{purchaseNo},  
+        C.PRODUCT_NO,
+        C.PRODUCT_COUNT,
+        C.EACH_PRICE
+    		FROM 
+        CART C
+        JOIN PRODUCT P ON C.PRODUCT_NO = P.PRODUCT_NO
+        JOIN MEMBER M ON C.MEMBER_NO = M.MEMBER_NO
+        LEFT JOIN PRODUCT_OPTION O ON P.PRODUCT_NO = O.PRODUCT_NO
+    WHERE 
+        C.CART_NO IN ( ${selectNo} )
+	</insert>
+		-->
+
+	
 	
 
 	

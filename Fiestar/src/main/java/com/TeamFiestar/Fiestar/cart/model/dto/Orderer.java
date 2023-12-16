@@ -1,5 +1,8 @@
 package com.TeamFiestar.Fiestar.cart.model.dto;
 
+import java.util.List; 
+
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,4 +22,15 @@ public class Orderer {
 	private String purchasePrice;
 	
 	
+	
+	private List<Cart> checkout;
+	
+	private String productName;
+	private String productImg;
+	private int productPrice;
+	private	int productCount;
+	private int productNo;
+	private String productOptionName;
+	private int cartNo;
+	 
 }

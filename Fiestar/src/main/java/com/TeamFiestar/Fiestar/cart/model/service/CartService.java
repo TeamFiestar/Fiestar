@@ -1,6 +1,6 @@
 package com.TeamFiestar.Fiestar.cart.model.service;
 
-import java.util.HashMap;
+import java.util.HashMap; 
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.TeamFiestar.Fiestar.cart.model.dto.Cart;
 import com.TeamFiestar.Fiestar.cart.model.dto.Orderer;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
+
 
 @Transactional
 public interface CartService {
@@ -28,12 +29,7 @@ public interface CartService {
 
 	List<Cart> checkout(String selectNo);
 
-
 	int order(Orderer inputOrderer, String[] ordererAddress);
-
-
-
-
 
 	
 }

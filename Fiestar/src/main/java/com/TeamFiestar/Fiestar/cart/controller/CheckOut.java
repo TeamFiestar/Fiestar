@@ -118,3 +118,62 @@
 //	    
 //
 //}
+
+
+//
+//   
+//	    @PostMapping("checkoutResult")
+//	    
+//	    public String order(@SessionAttribute(value = "loginMember") Member loginMember,
+//	    						Orderer inputOrderer, @RequestParam("address") String[] address,
+//	    						@RequestParam("purchasePrice") String purchasePrice, 
+//	    						RedirectAttributes ra,  @RequestParam("selectEach") List<String> cartNoList,
+//	                                  Model model) {
+//	    		    
+//	    	    
+//	    	// 리스트에서 	   
+////			
+////	    	Set<String> set = new LinkedHashSet<>(cartNoList);
+////	    	String selectNo = String.join(",", set);
+////	    	
+////	        // 선택된 장바구니 항목 조회
+////	    	
+////	        List<Cart> purchase = cartService.purchase(selectNo);
+//	    	
+////	        model.addAttribute("purchase", purchase);
+//
+//
+//int result = cartService.order(inputOrderer, address);
+//	    	
+//	    	if(result > 0) {
+//	    		ra.addFlashAttribute("message", "주문이 완료 되었습니다");
+//	    		return "cart/checkout-Result";
+//	    		
+//	    	} else {
+//	    		
+//	    		return "/";
+//	    	}
+//	    		
+//	    	
+//	    	}	
+//	    
+//	    
+//	    @GetMapping("checkoutResult")
+//	    public String checkoutResult() {
+//	    	
+//	    	
+//	    	
+//	    	return "cart/checkout-Result";
+//	    }
+//	    
+//	    
+//	    
+//	    
+//	    
+//	    
+//	    
+//	    
+//	 
+//	    
+//
+//}

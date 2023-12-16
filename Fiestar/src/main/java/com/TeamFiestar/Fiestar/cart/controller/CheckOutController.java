@@ -1,6 +1,6 @@
 package com.TeamFiestar.Fiestar.cart.controller;
 
-import java.util.LinkedHashSet;  
+import java.util.LinkedHashSet;   
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -21,6 +21,7 @@ import com.TeamFiestar.Fiestar.cart.model.dto.Cart;
 import com.TeamFiestar.Fiestar.cart.model.dto.Orderer;
 import com.TeamFiestar.Fiestar.cart.model.service.CartService;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
+
 
 
 @Controller
@@ -90,18 +91,16 @@ public class CheckOutController {
 	    
 	    
 	    
+	    
 	    @PostMapping("checkoutResult")
 	    
 	    public String order(@SessionAttribute(value = "loginMember") Member loginMember,
 	    						Orderer inputOrderer, @RequestParam("address") String[] address,
-	    						@RequestParam("purchasePrice") String purchasePrice,
-	    						RedirectAttributes ra,
-	                                  
+	    						@RequestParam("purchasePrice") String purchasePrice, 
+	    						RedirectAttributes ra,  @RequestParam("selectEach") List<String> cartNoList,
 	                                  Model model) {
-	    		    
-	    	    
-	    	// 리스트에서 	   
-			
+	    
+	        	        
 	    	int result = cartService.order(inputOrderer, address);
 	    	
 	    	if(result > 0) {
