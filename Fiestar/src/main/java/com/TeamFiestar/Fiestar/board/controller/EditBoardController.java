@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +28,12 @@ public class EditBoardController {
 	private final BoardService boardService;
 	
 	private final EditBoardService service;
+	
+	@GetMapping("{artistGroupTitle}/insert")
+	public String insert() {
+		
+		return "artistHomepage/feedWrite";
+	}
 	
 	@PostMapping("{artistGroupTitle}/insert")
 	public String insertBoard(Board board, RedirectAttributes ra, 

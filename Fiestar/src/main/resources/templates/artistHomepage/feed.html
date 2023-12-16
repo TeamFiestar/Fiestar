@@ -36,9 +36,9 @@
 
                 <!-- 게시글 작성 -->
                 <div id="postingSection" data-target="feedWrite" onclick="wopenModal()">
-                    <img th:if="${session.loginMember.memberProfile == null}" th:src="#{user.default.image}" style="width:30px; border-radius: 50%;"></img>
-                    <img th:unless="${session.loginMember.memberProfile == null}" th:src="${session.loginMember.memberProfile}" style="width:30px; border-radius: 50%"></img>
-                    <a href="#" th:text="|${artistGroupTitle}에 포스트를 남겨보세요.|" style="margin-left: 10px;">피에스타에 포스트를 남겨보세요.</a>
+                    <img th:if="${session.loginMember.memberProfile == null}" th:src="#{user.default.image}" style="width:30px; height:30px; border-radius: 50%;"></img>
+                    <img th:unless="${session.loginMember.memberProfile == null}" th:src="${session.loginMember.memberProfile}" style="width:30px ;  height:30px; border-radius: 50%"></img>
+                    <div th:text="|${artistGroupTitle}에 포스트를 남겨보세요.|" style="margin-left: 10px;">피에스타에 포스트를 남겨보세요.</div>
                     <i class="fa-solid fa-image fa-2xl" ></i>
                 </div>
             </div>
@@ -107,6 +107,8 @@
 </main>
     <script src="https://kit.fontawesome.com/2434a52ecc.js" crossorigin="anonymous"></script>
     <script src="/js/artistHomepage/feed.js"></script>
+    <script src="/js/artistHomepage/feedwrite.js"></script>
+
 
     <script th:inline="javascript">
 

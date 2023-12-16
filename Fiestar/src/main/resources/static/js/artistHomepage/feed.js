@@ -222,12 +222,10 @@ function generateComment(boardNo3) {
       indicator2.className = "indicator";
 
     if(comment.memberAuthority == 2) {
-      indicator2.classList.add("fa-solid");
-      indicator2.classList.add("fa-circle-check");
+      indicator2.classList.add("fa-solid", "fa-circle-check");
       indicator2.style.color = "#7743DB";
     }else {
-      indicator2.classList.remove("fa-solid");
-      indicator2.classList.remove("fa-circle-check");
+      indicator2.classList.remove("fa-solid", "fa-circle-check");
       indicator2.style.color = ""; 
     }
 
@@ -310,6 +308,11 @@ function generateComment(boardNo3) {
   .catch((e) => console.log(e));
 
 };
+
+function updateCommentCount(commentCount) {
+  const textWrapper = document.querySelector('.text-wrapper');
+  textWrapper.innerText = commentCount + "개의 댓글";
+}
 
 
 
@@ -429,6 +432,17 @@ function deleteComment(boardCommentNo) {
 /* ----------------------------------------------------------------------------------- */
 function showInsertComment(boardParentCommentNo, btn) {
 
+  const temp = document.getElementsByClassName("commentInsertContent");
+
+  if (temp.length > 0) {
+    if (confirm("다른 답글을 작성 중입니다. 현재 댓글에 답글을 작성 하시겠습니까?")) {
+      temp[0].nextElementSibling.remove();
+      temp[0].remove();
+    } else {
+      return;
+    }
+  }
+
   const textarea = document.createElement("input");
   textarea.type = "text";
   textarea.placeholder = "댓글을 입력하세요";
@@ -508,7 +522,7 @@ function likeComment(btn, boardCommentNo) {
 
   const data = { 
     check: check,
-    boardParentCommentNo : boardCommentNo,
+    boardCommentNo : boardCommentNo,
   };
 
 
@@ -540,6 +554,14 @@ function likeComment(btn, boardCommentNo) {
 
 
 function wopenModal() {
+
+  var newUrl = "/" + artistGroupTitle + "/insert";
+
+  var stateObj = {artistGroupTitle :artistGroupTitle};
+
+  history.pushState(stateObj, "", newUrl);
+
+
   const modal = document.getElementById('feedWrite');
   modal.classList.add("show");
   document.body.style.overflow = "hidden";
@@ -548,7 +570,14 @@ function wopenModal() {
 
 
 
-function wcloseModal() {
+
+
+
+function wcloseModal(stateObj) {
+
+  var newUrl = "/" + artistGroupTitle + "/feed";
+  history.pushState(stateObj, "", newUrl);
+
   const modal = document.getElementById('feedWrite');
   modal.classList.remove("show");
   document.body.style.overflow = "";
