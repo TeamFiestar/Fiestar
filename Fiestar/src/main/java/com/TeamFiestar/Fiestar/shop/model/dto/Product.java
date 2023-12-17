@@ -22,6 +22,9 @@ public class Product {
 	
 	private String productImageThumbnail;
 	private String productImageThumbnailRename;
+	
+	private String productImageContent;
+	private String productImageRename;
 
 	
 	private List<ProductImage> imageList;

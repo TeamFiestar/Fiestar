@@ -47,7 +47,7 @@
 <!--************************* 그룹별로 조회할 때 페이지네이션 ************************-->
 
 
-<div class="pagination-area"  th:if="${#lists.size(productList) > 0 and artistGroupNo != null }" >
+<div class="pagination-area"  th:if="${#lists.size(productList) > 0 and artistGroupNo != null and shopSearch == null }" >
               
   <ul class="pagination">
     <li>
@@ -83,14 +83,14 @@
 
 <!-- ************************검색 조회할 때 페이지네이션************************ -->
 
-<div class="pagination-area"  th:if="${#lists.size(productList) > 0 and shopSearch != null }">
+<div class="pagination-area"  th:if="${#lists.size(productList) > 0 and shopSearch != null and artistGroupNo == null}">
               
   <ul class="pagination">
     <li>
-      <a th:href="@{ /shop/home ( cp=1) }">&lt;&lt;</a>
+      <a th:href="|/shop/home?shopSearch=*{shopSearch}&cp=1|">&lt;&lt;</a>
     </li>
     <li>
-        <a th:href="@{ /shop/home(cp=${pagination.prevPage}) }">&lt;</a>
+        <a th:href="|/shop/home?shopSearch=*{shopSearch}&cp=${pagination.prevPage}|">&lt;</a>
     </li>
   
     <th:block th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1) }">
@@ -100,50 +100,20 @@
       </li>
 
       <li th:unless="${i == pagination.currentPage}">
-        <a th:href="@{ /shop/home(cp=${i}) }" th:text="${i}">2</a>
+        <a th:href="|/shop/home?shopSearch=*{shopSearch}&cp=${i}|" th:text="${i}">2</a>
       </li>
 
     </th:block>
 
     <li>
-      <a th:href="@{ /shop/home(cp=${pagination.nextPage}) }">&gt;</a>
+      <a th:href="|/shop/home?shopSearch=*{shopSearch}&cp=${pagination.nextPage} |">&gt;</a>
     </li>
 
     <li>
-      <a th:href="@{ /shop/home(cp=${pagination.maxPage}) }">&gt;&gt;</a>
+      <a th:href="|/shop/home?shopSearch=*{shopSearch}&cp=${pagination.maxPage}|">&gt;&gt;</a>
     </li>
   </ul>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

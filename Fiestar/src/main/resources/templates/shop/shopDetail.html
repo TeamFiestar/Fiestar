@@ -18,7 +18,8 @@
       <div class="shopDetail-upper">
 
         <div class="product-image">
-          <!-- <img src="im" width='500px' height="600px" > -->
+          <img th:src="|${prod.productImageThumbnail}${prod.productImageThumbnailRename}|" 
+                style="width: 100%; height: 100%;"> 
         </div>
 
         <div class="product-detail" th:object="${prod}">
@@ -76,8 +77,8 @@
     <div class="shopDetail-lower">
       <h2>상품 소개</h2>
       <div class="product-image-area">
-        <img src="/images/productDetail.jpg">
-        <img src="/images/productDetail.jpg">
+        <img th:src="|${prod.productImageContent}${prod.productImageRename}|" 
+        style="width: 100%; height: 100%;">
       </div>
 
       <div class="product-info-detail">
