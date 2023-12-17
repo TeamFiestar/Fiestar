@@ -37,4 +37,8 @@ public interface ArtistMapper {
 
 	int selectArtistGroupNo(int memberNo);
 
+	int artistProfile(int artistGroupNo);
+
+	int artistProfileUpdate(ArtistGroup1 artistGroup);
+
 }

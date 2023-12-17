@@ -180,6 +180,7 @@ main img {
   margin-top: 4px;
   text-overflow: ellipsis;
   white-space: nowrap;
+  overflow: hidden;
 }
 
 .ArtistShop {
@@ -212,6 +213,7 @@ main img {
   margin-top: 4px;
   text-overflow: ellipsis;
   white-space: nowrap;
+  overflow: hidden;
 }
 
 .shopPrice {
@@ -262,6 +264,9 @@ main img {
 
 .NoticeContent {
   padding-left: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 /* 임시헤더 */

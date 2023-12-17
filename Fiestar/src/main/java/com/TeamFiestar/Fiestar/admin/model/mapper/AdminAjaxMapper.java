@@ -44,4 +44,6 @@ public interface AdminAjaxMapper {
 	
 	List<Board> selectSubscribeBoard(Map<String, Object> map);
 
+	String groupDelete(int memberNo);
+
 }

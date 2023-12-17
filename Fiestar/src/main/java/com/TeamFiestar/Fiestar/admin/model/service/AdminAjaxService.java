@@ -36,5 +36,7 @@ public interface AdminAjaxService {
 
 	List<Board> selectSubscribeBoard(String artistGroupTitle, int memberNo);
 
+	String groupDelete(int memberNo);
+
 	
 }

@@ -138,7 +138,10 @@ public class AdminAjaxServiceImpl implements AdminAjaxService{
 	}
 
 	
-	
+	@Override
+	public String groupDelete(int memberNo) {
+		return mapper.groupDelete(memberNo);
+	}
 	
 	
 	

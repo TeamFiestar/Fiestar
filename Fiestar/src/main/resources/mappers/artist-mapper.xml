@@ -63,5 +63,18 @@
 		WHERE ARTIST_GROUP_ADMIN_NO = #{memberNo}
 	</select>
 	
+	<select id="artistProfile" resultType="_int">
+		SELECT COUNT(*) FROM ARTIST
+		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
+	</select>
+	
+	
+	<update id="artistProfileUpdate">
+		UPDATE ARTIST_GROUP SET 
+		ARTIST_GROUP_INTRODUCTION = #{artistGroupIntroduction},
+		ARTIST_GROUP_MAINIMG = #{artistGroupMainimg},
+		ARTIST_GROUP_LOGOIMG = #{artistGroupLogoimg}
+		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
+	</update>
 </mapper>
 

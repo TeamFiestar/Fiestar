@@ -1,5 +1,6 @@
 package com.TeamFiestar.Fiestar.artist.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,8 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.TeamFiestar.Fiestar.artist.model.service.ArtistService;
 import com.TeamFiestar.Fiestar.member.model.dto.ArtistGroup1;
@@ -55,4 +59,27 @@ public class ArtistController {
 	
 		return "artistProfile/profileModify";
 	}
+	
+	@PostMapping("{artistGroupTitle}/update")
+	public String artistUpdate(
+			@PathVariable("artistGroupTitle") String artistGroupTitle,
+			@RequestParam("artistGroupMainimg") MultipartFile artistGroupMainimg,
+			@RequestParam("artistGroupLogoimg") MultipartFile artistGroupLogoimg,
+			@RequestParam("artistGroupIntroduce") String artistGroupIntroduce,
+			@SessionAttribute("loginMember") Member loginMember,
+			ArtistGroup1 artistGroup, RedirectAttributes ra
+			) throws IllegalStateException, IOException {
+		int adminNo = loginMember.getMemberNo();
+		int result = service.artistUpdate(artistGroupTitle, artistGroupMainimg,
+						artistGroupLogoimg, artistGroupIntroduce, artistGroup, adminNo);
+		
+		if(result > 0) {
+			ra.addFlashAttribute("message", "변경 성공!!");
+			return "redirect:/artistMember/{artistGroupTitle}";
+		}else {
+			ra.addFlashAttribute("message", "변경 실패");
+			return "redirect:/artistMember/{artistGroupTitle}/update";
+		}
+	}
+	
 }
