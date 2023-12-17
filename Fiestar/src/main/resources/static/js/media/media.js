@@ -130,7 +130,7 @@ function generateComment(){
   });
   
   
-  fetch("/mediaComment/selectComment?mediaNo=" + mediaNo + "&mediaParentCommentNo=" + parentCommentNo+ "&memberNo=3")
+  fetch("/mediaComment/selectComment?mediaNo=" + mediaNo + "&mediaParentCommentNo=" + parentCommentNo+ "&memberNo=" + loginMemberNo)
   .then(resp => resp.json())
   .then(commentList =>{
     console.log(commentList);

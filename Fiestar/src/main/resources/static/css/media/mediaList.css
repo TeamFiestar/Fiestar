@@ -342,3 +342,13 @@ main{
   transform: rotate(180deg);
 }
 
+.media-insert-wrapper{
+  color: white;
+  background-color: #676767;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 130px;
+  height: 35px;
+  border-radius: 20px;
+}

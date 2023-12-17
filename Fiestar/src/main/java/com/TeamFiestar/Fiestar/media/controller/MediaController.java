@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.context.annotation.ApplicationScope;
 
 import com.TeamFiestar.Fiestar.media.model.dto.Media;
 import com.TeamFiestar.Fiestar.media.model.service.MediaService;
+import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
 import jakarta.servlet.ServletContext;
 import lombok.RequiredArgsConstructor;
@@ -62,9 +64,18 @@ public class MediaController {
 	@GetMapping("{artistGroupTitle}/media/{mediaNo:[0-9]+}/detail")
 	public String mediaDetail(
 			@PathVariable("artistGroupTitle") String artistGroupTitle,
-			@PathVariable("mediaNo") int mediaNo, Model model) {
+			@PathVariable("mediaNo") int mediaNo, Model model,
+			@SessionAttribute(value = "loginMember", required = false) Member loginMember) {
 		
-		Media mediaDetail = service.mediaDetail(mediaNo);
+		Map<String, Object> map = new HashMap<>();
+		if (loginMember != null) {
+			int memberNo = loginMember.getMemberNo();
+			map.put("memberNo", memberNo);
+			
+		}
+		map.put("mediaNo", mediaNo);
+		
+		Media mediaDetail = service.mediaDetail(map);
 		
 		model.addAttribute("mediaDetail",mediaDetail);
 		model.addAttribute("artistGroupTitle",artistGroupTitle);

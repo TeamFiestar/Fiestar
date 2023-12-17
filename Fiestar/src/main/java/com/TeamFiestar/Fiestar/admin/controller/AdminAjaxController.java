@@ -97,8 +97,7 @@ public class AdminAjaxController {
 	
 	
 	
-	@GetMapping("selectNotice")
-	@ResponseBody
+	@GetMapping("ajax/selectNotice")
 	public SiteNotice selectArtistNotice(@RequestParam("siteNoticeNo") int siteNoticeNo) {
 		
 		Map<String, Object> map = new HashMap<>();
@@ -107,15 +106,13 @@ public class AdminAjaxController {
 		return service.selectSiteNotice(map);
 	}
 	
-	@PutMapping("deleteNotice")
-	@ResponseBody
+	@PutMapping("ajax/deleteNotice")
 	public int deleteNotice(@RequestBody int noticeNo) {
 		return service.deleteNotice(noticeNo);
 	}
 
 	
-	@PutMapping("updateNotice")
-	@ResponseBody
+	@PutMapping("ajax/updateNotice")
 	public int updateNotice(@RequestBody SiteNotice inputNotice) {
 		return service.updateNotice(inputNotice);
 	}
