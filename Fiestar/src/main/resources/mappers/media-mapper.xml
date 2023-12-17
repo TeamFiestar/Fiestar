@@ -40,6 +40,16 @@
 		WHERE MEDIA_NO = #{mediaNo}
 	</select>
 	
+		<!-- 미디어 상세 조회 -->
+	<select id="updateMediaDetail">
+		SELECT 	MEDIA_NO ,MEDIA_ADDRESS ,
+				MEDIA_TITLE ,MEDIA_DESCRIPTION ,
+				MEDIA_COUNT ,ARTIST_GROUP_NO  ,
+				TO_CHAR(MEDIA_ENROLL_DATE, 'MM.DD HH24:MI') MEDIA_ENROLL_DATE
+		FROM MEDIA M
+		WHERE MEDIA_NO = #{mediaNo}
+	</select>
+	
 	<!-- 미디어 리스트 조회 -->
 	<select id="selectMediaList">
 		
@@ -47,6 +57,7 @@
 		FROM "MEDIA"
 		WHERE MEDIA_TITLE LIKE '%${mediaTitle}%'
 		AND ARTIST_GROUP_NO = #{artistGroupNo}
+		AND MEDIA_DEL_FL = 'N'
 		<if test="key == 1">
 			ORDER BY MEDIA_ENROLL_DATE DESC
 		</if>
@@ -66,8 +77,25 @@
 			SYSDATE,
 			DEFAULT,
 			#{artistGroupNo},
-			#{mediaTime})
+			#{mediaTime},
+			'N')
 	</insert>
+	
+	<update id="updateMedia">
+		UPDATE MEDIA SET 
+			MEDIA_ADDRESS = #{mediaAddress},
+			MEDIA_TITLE = #{mediaTitle},
+			MEDIA_DESCRIPTION = #{mediaDescription},
+			MEDIA_TIME = #{mediaTime},
+			MEDIA_ENROLL_DATE = SYSDATE
+		WHERE MEDIA_NO = #{mediaNo}
+	</update>
+	
+	<update id="deleteMedia">
+		UPDATE MEDIA SET 
+			MEDIA_DEL_FL = 'Y'
+		WHERE MEDIA_NO = #{mediaNo}
+	</update>
 	
 
 </mapper>

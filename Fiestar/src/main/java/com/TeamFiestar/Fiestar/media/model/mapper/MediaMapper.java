@@ -24,4 +24,10 @@ public interface MediaMapper {
 	 */
 	Media mediaDetail(Map<String, Object> map);
 
+	Media updateMediaDetail(int mediaNo);
+
+	int updateMedia(Media updateMedia);
+
+	int deleteMedia(int mediaNo);
+
 }

@@ -7,6 +7,7 @@ import javax.xml.stream.events.Comment;
 
 import org.springframework.stereotype.Service;
 
+import com.TeamFiestar.Fiestar.admin.model.dto.Report;
 import com.TeamFiestar.Fiestar.media.model.dto.MediaComment;
 import com.TeamFiestar.Fiestar.media.model.mapper.MediaCommentMapper;
 
@@ -44,6 +45,11 @@ public class MediaCommentServiceImpl implements MediaCommentService{
 	@Override
 	public int deleteLike(MediaComment comment) {
 		return mapper.deleteLike(comment);
+	}
+	
+	@Override
+	public int insertReport(Report report) {
+		return mapper.insertReport(report);
 	}
 	
 }
