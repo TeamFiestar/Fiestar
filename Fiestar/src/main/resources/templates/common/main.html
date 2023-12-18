@@ -41,7 +41,9 @@
                 <div class="artist-text-area">
                   <div class="artist-name" th:text="*{artistGroupTitle}">NewJeans</div>
                   <br />
-                  <img class="artist-community" src="/images/community.png" onclick="{location.href='#';}" />
+                  <a th:href="@{/artistMember/{artistGroupTitle}(artistGroupTitle=*{artistGroupTitle})}">
+                    <img class="artist-community" src="/images/community.png" />
+                  </a>
                   <a th:href="|/shop/home/${artistGroup.artistGroupTitle}?artistGroupNo=${artistGroup.artistGroupNo}|">
                     <img class="artist-shop" src="/images/shop.png" />
                   </a>
@@ -55,9 +57,11 @@
           <h1 class="home-title">다른 아티스트를 만나보세요!</h1>
           <div class="myArtist-area-detail">
             <div class="artist-list" th:each="artistGroup : ${artistGroupList}" th:object="${artistGroup}">
-              <a href="#" class="artist-profile">
+              <div class="artist-profile">
                 <div class="artist-image-area">
-                  <img th:src="|*{artistGroupImage}|" />
+                  <a th:href="@{/artistMember/{artistGroupTitle}(artistGroupTitle=*{artistGroupTitle})}">
+                    <img th:src="|*{artistGroupImage}|" />
+                  </a>
                 </div>
                 <div class="artist-logo-wrap">
                   <span class="artist-logo-area">
@@ -67,9 +71,11 @@
                 <div class="artist-text-area">
                   <div class="artist-name" th:text="*{artistGroupTitle}">NewJeans</div>
                   <br />
-                  <img class="artist-shop" src="/images/shop.png" onclick="{location.href='/shop/home';}" />
+                  <a th:href="|/shop/home/${artistGroup.artistGroupTitle}?artistGroupNo=${artistGroup.artistGroupNo}|">
+                    <img class="artist-shop" src="/images/shop.png" onclick="{location.href='/shop/home';}" />
+                  </a>
                 </div>
-              </a>
+              </div>
             </div>
           </div>
         </div>

@@ -180,6 +180,7 @@ main img {
   margin-top: 4px;
   text-overflow: ellipsis;
   white-space: nowrap;
+  overflow: hidden;
 }
 
 .ArtistShop {
@@ -212,6 +213,7 @@ main img {
   margin-top: 4px;
   text-overflow: ellipsis;
   white-space: nowrap;
+  overflow: hidden;
 }
 
 .shopPrice {
@@ -262,6 +264,9 @@ main img {
 
 .NoticeContent {
   padding-left: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 /* 임시헤더 */
@@ -405,7 +410,7 @@ main img {
   top: 50%;
   left: 50%;
 
-  padding: 40px;
+  padding: 20px;
 
   /* text-align: center; */
 
@@ -417,5 +422,47 @@ main img {
   justify-content: center;
   align-items: center;
   overflow: auto;
-  height: 800px;
+  width: 500px;
+  height: 200px;
+}
+.modal-body h2 {
+  margin-top: 20px;
+  text-align: center;
+}
+.btnFrm {
+  text-align: center;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btnFrm button {
+  font-size: 18px;
+  margin: 0 10px;
+  width: 100px;
+  height: 30px;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.btnFrm button:hover {
+  background-color: rgba(119, 67, 219, 1);
+  color: white;
+}
+.updateDelete {
+  padding-bottom: 30px;
+  display: flex;
+  justify-content: end;
+}
+.updateDelete button {
+  margin: 0 10px;
+  width: 80px;
+  font-size: 16px;
+  border: none;
+  background-color: #0d0e12;
+  color: #999;
+  cursor: pointer;
+}
+.updateDelete button:hover {
+  color: rgba(119, 67, 219, 1);
 }

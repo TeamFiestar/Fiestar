@@ -106,5 +106,12 @@ artistGroupFrm.addEventListener("submit", (e) => {
 function groupDelete() {
   fetch("/admin/groupDelete", {
     method: "delete",
-  });
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ memberNo: loginMemberNo }),
+  })
+    .then((resp) => resp.json())
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((e) => console.log(e));
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -94,6 +95,15 @@ public class AdminAjaxController {
 	}
 	
 	
+	@GetMapping("selectSubscribeBoard")
+	@ResponseBody
+	public List<Board> selectSubscribeBoard(@RequestParam(value="memberNo", required = false) int memberNo,
+									@RequestParam(value="artistGroupTitle", required = false) String artistGroupTitle,
+										@SessionAttribute("loginMember") Member loginMember) {
+		int loginMemberNo = loginMember.getMemberNo();
+		List<Board> boardList = service.selectSubscribeBoard(artistGroupTitle,memberNo); 
+		return boardList;
+	}
 	
 	
 	
@@ -117,7 +127,11 @@ public class AdminAjaxController {
 		return service.updateNotice(inputNotice);
 	}
 	
-	
+	@DeleteMapping("groupDelete")
+	@ResponseBody
+	public String groupDelete(@SessionAttribute("loginMember") Member loginMember) {
+		return service.groupDelete(loginMember.getMemberNo());
+	}
 	
 	
 }

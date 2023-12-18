@@ -34,6 +34,9 @@ public interface AdminAjaxService {
 
 	int updateNotice(SiteNotice inputNotice);
 
+	List<Board> selectSubscribeBoard(String artistGroupTitle, int memberNo);
+
+	String groupDelete(int memberNo);
 
 	
 }

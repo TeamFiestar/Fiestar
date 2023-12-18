@@ -1,79 +1,103 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>아티스트 프로필 배경화면</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <link rel="stylesheet" href="/css/artistprofile/profileModify.css" />
+    <link rel="stylesheet" href="/css/common/artistPageHeader.css" />
+    <link rel="stylesheet" href="/css/common/footer.css" />
+  </head>
 
-  <link rel="stylesheet" href="/css/artistprofile/profileModify.css">
-  <link rel="stylesheet" href="/css/common/artistPageHeader.css">
-  <link rel="stylesheet" href="/css/common/footer.css" />
-</head>
+  <body>
+    <th:block th:replace="~{common/artistPageHeader}"></th:block>
 
-<body>
-  <th:block th:replace="~{common/artistPageHeader}"></th:block>
-
-  <div class="all">
-
-    <form action="update" method="POST" id="profileFrm" enctype="multipart/form-data">
-
-      <div class="profiletxt">
-        <h3>아티스트 프로필 배경화면</h3>
-      </div>
-      <div class="Img">
-        <div class="mainImg">
-          <label for="imageInput">
-            <div class="btn-upload1">
-              <img alt="아티스트 배경 이미지" id="artistGroupBackimg" style="object-fit:cover">
-            </div>
-          </label>
-          <input type="file" name="artistGroupBackimg" id="imageInput" accept="image/*" style="display: none;">
+    <div class="all">
+      <form
+        th:action="|/artistMember/${artistGroupTitle}/update|"
+        method="POST"
+        id="profileFrm"
+        enctype="multipart/form-data"
+      >
+        <div class="profiletxt">
+          <h3>아티스트 프로필 배경화면</h3>
         </div>
-
-        <div class="artistIntro">
-          <div class="artistIntro-name">
-            <label for="logoInput">
-              <div class="btn-upload2">
-                <img alt="아티스트 로고 이미지" id="artistGroupLogo" style="object-fit:cover">
+        <div class="Img">
+          <div class="mainImg">
+            <label for="imageInput">
+              <div class="btn-upload1">
+                <img
+                  alt="아티스트 배경 이미지"
+                  id="artistGroupMainimg"
+                  style="object-fit: cover"
+                  class="preview"
+                  src=""
+                />
               </div>
             </label>
-            <input type="file" name="artistGroupLogo" id="logoInput" accept="image/*" style="display: none;">
+            <input
+              type="file"
+              name="artistGroupMainimg"
+              id="imageInput"
+              class="imageInput"
+              accept="image/*"
+              style="display: none"
+            />
+          </div>
+
+          <div class="artistIntro">
+            <div class="artistIntro-name">
+              <label for="logoInput">
+                <div class="btn-upload2">
+                  <img
+                    alt="아티스트 로고 이미지"
+                    id="artistGroupLogoimg"
+                    style="object-fit: cover"
+                    class="preview"
+                    src=""
+                  />
+                </div>
+              </label>
+              <input
+                type="file"
+                name="artistGroupLogoimg"
+                id="logoInput"
+                class="imageInput"
+                accept="image/*"
+                style="display: none"
+              />
+            </div>
+          </div>
+
+          <div class="profiletxt">
+            <h3>아티스트 소개글 작성</h3>
+          </div>
+          <div class="artistIntro-content">
+            <label for="content"></label>
+            <textarea
+              class="form-control"
+              id="content"
+              name="artistGroupIntroduce"
+            ></textarea>
           </div>
         </div>
 
-
-
-
-        <div class="profiletxt">
-          <h3>아티스트 소개글 작성</h3>
+        <div class="ModifyBtn">
+          <button type="submit">수정하기</button>
         </div>
-        <div class="artistIntro-content">
-          <label for="content"></label>
-          <textarea class="form-control" id="content" name="artistGroupIntroduce"></textarea>
-        </div>
-      </div>     
-    </form>
-
-
-    <div class="ModifyBtn">
-      <button>수정하기</button>
+      </form>
     </div>
-  </div>
 
-  </div>
-  <th:block th:replace="~{common/footer}"></th:block>
-  <script src="/js/artistprofile/profileModify.js"></script>
-  <script src="https://kit.fontawesome.com/2434a52ecc.js" crossorigin="anonymous"></script>
+    <th:block th:replace="~{common/footer}"></th:block>
+    <script src="/js/artistprofile/profileModify.js"></script>
+    <script
+      src="https://kit.fontawesome.com/2434a52ecc.js"
+      crossorigin="anonymous"
+    ></script>
 
-  <script>
-    const artistGroupTitle =  /*[[${artistGroupTitle}]]*/"아티스트 그룹 이름";
-
-  </script>
-
-
-
-
-</body>
-
+    <script>
+      const artistGroupTitle = /*[[${artistGroupTitle}]]*/ "아티스트 그룹 이름";
+    </script>
+  </body>
 </html>

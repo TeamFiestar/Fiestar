@@ -15,8 +15,10 @@ public class ArtistGroup1 {
 	private int artistGroupAdminNo;
 	private String artistGroupTitle;
 	private String artistGroupIntroduction;
+	
 	private String artistGroupProfile;
 	private String artistGroupImage;
 	private String artistGroupBackimg;
 	private String artistGroupMainimg;
+	private String artistGroupLogoimg;
 }

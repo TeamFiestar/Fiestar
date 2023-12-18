@@ -139,7 +139,8 @@ chattingSock.onmessage = function (e) {
           li.classList.add("chat-list");
 
           const img = document.createElement("img");
-          if (msg.memberProfile == null) img.setAttribute("src", userDefaultImage);
+          if (msg.memberProfile == null)
+            img.setAttribute("src", userDefaultImage);
           else img.setAttribute("src", msg.memberProfile);
 
           const div = document.createElement("div");
@@ -156,7 +157,8 @@ chattingSock.onmessage = function (e) {
         li.classList.add("chat-list");
 
         const img = document.createElement("img");
-        if (msg.memberProfile == null) img.setAttribute("src", userDefaultImage);
+        if (msg.memberProfile == null)
+          img.setAttribute("src", userDefaultImage);
         else img.setAttribute("src", msg.memberProfile);
 
         const div = document.createElement("div");

@@ -13,9 +13,9 @@ function openModal() {
 function closeModal() {
   modal.style.display = "none";
 }
-btnOpenPopup.addEventListener("click", function () {
-  openModal(memberNo);
-});
+// btnOpenPopup.addEventListener("click", function () {
+//   openModal(memberNo);
+// });
 window.addEventListener("click", (e) => {
   e.target === modal_background ? closeModal() : false;
 });

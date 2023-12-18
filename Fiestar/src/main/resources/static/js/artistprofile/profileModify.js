@@ -1,262 +1,106 @@
-/* 백그라운드 이미지 미리보기, 제거 */
-const artistGroupBackImg = document.querySelector("#artistGroupBackImg"); // img 태그
-let imageInput = document.querySelector("#imageInput"); // input 태그
+const inputImgList = document.getElementsByClassName("imageInput");
+// const deleteImgList = document.getElementsByClassName("delete-image");
 
-// 프로필 이미지가 
-// -1 : 변경되지 않았을 때
-//  0 : 있었는데 없어짐 == x 버튼 클릭 
-//  1 : 새 이미지 선택 (없다 -> 있음,  있음 -> 다른 이미지)
-let statusCheck = -1;
+const previewList = document.getElementsByClassName("preview");
 
-// input type="file" 태그의 값이 변경 되었을 때 변경된 상태를 백업해둘 변수
+const backupList = new Array(inputImgList.length);
 
-// 요소.cloneNode(true/false) : 요소 복제(true이면 하위 요소도 복제)
-let backupInput;
+const deleteOrderSet = new Set();
 
+const changeImage = (imgInput, order) => {
+  const maxSize = 1024 * 1024 * 10;
 
-if (imageInput != null) { // #imageInput 존재할 때
+  const uploadFIle = imgInput.files[0];
 
-    /* 프로필 이미지 변경(선택) 시 수행할 함수 */
-    const changeImageFn = e => {
+  if (uploadFIle == undefined) {
+    console.log("파일 취소");
+    const temp = backupList[order].cloneNode(true);
 
-        console.log(e.target); // input 태그
-        console.log(e.target.value); // 업로드 파일 경로(fakepath 형태로 출력)
+    imgInput.after(temp);
+    imgInput.remove();
+    imgInput = temp;
 
-        /* 이게 중요!!! */
-        console.log(e.target.files); // 업로드된 파일의 정보가 담긴 배열 반환
-        // * 실제 파일 *
-        console.log(e.target.files[0]); // 업로드된 파일 중 첫 번째 파일
+    imgInput.addEventListener("change", () => {
+      changeImage(imgInput, order);
+    });
+    return;
+  }
 
-        const uploadFile = e.target.files[0];
+  if (uploadFIle.size > maxSize) {
+    alert("10MB 이하로 선택해주세요.");
 
-        // ---------- 파일을 한 번 선택한 후 취소했을 때 ----------
-        if (uploadFile == undefined) { // 취소를 눌러서 files[0]에 파일이 없을 때
-            console.log("파일 선택이 취소됨");
+    if (backupList[order] == undefined) {
+      imgInput.value = "";
+    } else {
+      const temp = backupList[order].cloneNode(true);
 
-            // 1) backup한 요소를 복제
-            const temp = backupInput.cloneNode(true);
+      imgInput.after(temp);
+      imgInput.remove();
+      imgInput = temp;
 
-            // 2) 화면에 원본 input을 temp로 바꾸기
-            imageInput.after(temp); // 원본 다음에 temp 추가
-            imageInput.remove(); // 원본을 화면에서 제거
-            imageInput = temp; // temp를 imageInput 변수에 대입
-
-            // 복제본은 이벤트가 복제 안되니까 다시 이벤트를 추가
-            imageInput.addEventListener("change", changeImageFn);
-
-            return;
-        }
-
-
-        // ---------- 선택된 파일의 크기가 지정된 크기를 초과하는 경우 ----------
-        const maxSize = 1024 * 1024; // 1MB (byte 단위)
-
-        if (uploadFile.size > maxSize) {
-            alert("1MB 이하의 이미지만 업로드 가능합니다");
-
-            if (statusCheck == -1) { // 이미지 변경이 없었을 때
-
-                // 최대 크기를 초과해도 input에 value가 남기 때문에
-                // 이를 제거하는 코드가 필요하다!
-                imageInput.value = ''; // value 삭제
-                // 동시에 files도 삭제됨
-                statusCheck = -1; // 선택 없음 상태
-
-
-            } else { // 기존 이미지가 있었을 때
-
-                // 1) backup한 요소를 복제
-                const temp = backupInput.cloneNode(true);
-
-                // 2) 화면에 원본 input을 temp로 바꾸기
-                imageInput.after(temp); // 원본 다음에 temp 추가
-                imageInput.remove(); // 원본을 화면에서 제거
-                imageInput = temp; // temp를 imageInput 변수에 대입
-
-                // 복제본은 이벤트가 복제 안되니까 다시 이벤트를 추가
-                imageInput.addEventListener("change", changeImageFn);
-
-                statusCheck = 1;
-            }
-
-
-            return;
-        }
-
-
-        // ---------- 선택된 이미지 파일을 읽어와 미리 보기 만들기 ----------
-
-        // JS에서 파일을 읽는 객체
-        // -> 파일을 읽고 클라이언트 컴퓨터에 파일을 저장할 수 있음
-        const reader = new FileReader();
-
-        // 매개변수에 작성된 파일을 읽어서
-        // 파일을 나타내는 URL 형태로 변경
-        // -> FileReader.result 필드에 저장되어 있음
-        reader.readAsDataURL(uploadFile)
-
-        // 파일을 다 읽었을 때
-        reader.onload = e => {
-            //console.log(reader.result); // 읽은 파일의 URL
-
-            // img태그의 src 속성의 속성 값으로
-            // 읽은 파일의 URL을 대입
-            artistGroupBackImg.setAttribute("src", reader.result);
-
-            statusCheck = 1; // 새 이미지 선택한 경우
-
-            // 파일이 추가된 input을 backup 해두기
-            backupInput = imageInput.cloneNode(true);
-        }
+      imgInput.addEventListener("change", () => {
+        changeImage(imgInput, order);
+      });
     }
+    return;
+  }
 
+  const reader = new FileReader();
 
-    /* 이미지 선택 버튼을 클릭하여 선택된 파일이 변했을 때 함수 수행 */
+  reader.readAsDataURL(uploadFIle);
 
-    // change 이벤트 : input의 이전 값과 현재 값이 다를 때 발생
-    imageInput.addEventListener("change", changeImageFn);
+  reader.onload = (e) => {
+    const url = e.target.result;
 
+    previewList[order].src = url;
+
+    backupList[order] = imgInput.cloneNode(true);
+
+    deleteOrderSet.delete(order);
+  };
+};
+
+for (let i = 0; i < inputImgList.length; i++) {
+  inputImgList[i].addEventListener("change", (e) => {
+    changeImage(e.target, i);
+  });
+
+  // deleteImgList[i].addEventListener("click", () => {
+  //   previewList[i].removeAttribute("src"); // "src" 속성 삭제
+
+  //   // input 태그 파일 제거
+  //   inputImgList[i].value = "";
+
+  //   // 같은 위치 backup 요소 제거
+  //   backupList[i] = undefined;
+
+  //   deleteOrderSet.add(i);
+  // });
 }
 
+const profileFrm = document.querySelector("#profileFrm");
 
-// *************************************************************************************************************
+profileFrm.addEventListener("submit", (e) => {
+  const introduce = document.querySelector("[name=artistGroupIntroduce]");
+  const img = document.querySelector(".imageInput");
 
-/* f로고 미리보기, 제거 */
-const artistGroupLogo = document.getElementById("artistGroupLogo");
-let logoInput = document.querySelector("#logoInput"); // input 태그
-
-
-if (logoInput != null) { // #imageInput 존재할 때
-
-    /* 프로필 이미지 변경(선택) 시 수행할 함수 */
-    const changeImageFn = e => {
-
-        console.log(e.target); // input 태그
-        console.log(e.target.value); // 업로드 파일 경로(fakepath 형태로 출력)
-
-        /* 이게 중요!!! */
-        console.log(e.target.files); // 업로드된 파일의 정보가 담긴 배열 반환
-        // * 실제 파일 *
-        console.log(e.target.files[0]); // 업로드된 파일 중 첫 번째 파일
-
-        const uploadFile = e.target.files[0];
-
-        // ---------- 파일을 한 번 선택한 후 취소했을 때 ----------
-        if (uploadFile == undefined) { // 취소를 눌러서 files[0]에 파일이 없을 때
-            console.log("파일 선택이 취소됨");
-
-            // 1) backup한 요소를 복제
-            const temp = backupInput.cloneNode(true);
-
-            // 2) 화면에 원본 input을 temp로 바꾸기
-            logoInput.after(temp); // 원본 다음에 temp 추가
-            logoInput.remove(); // 원본을 화면에서 제거
-            logoInput = temp; // temp를 imageInput 변수에 대입
-
-            // 복제본은 이벤트가 복제 안되니까 다시 이벤트를 추가
-            logoInput.addEventListener("change", changeImageFn);
-
-            return;
-        }
-
-
-        // ---------- 선택된 파일의 크기가 지정된 크기를 초과하는 경우 ----------
-        const maxSize = 1024 * 1024; // 1MB (byte 단위)
-
-        if (uploadFile.size > maxSize) {
-            alert("1MB 이하의 이미지만 업로드 가능합니다");
-
-            if (statusCheck == -1) { // 이미지 변경이 없었을 때
-
-                // 최대 크기를 초과해도 input에 value가 남기 때문에
-                // 이를 제거하는 코드가 필요하다!
-                logoInput.value = ''; // value 삭제
-                // 동시에 files도 삭제됨
-                statusCheck = -1; // 선택 없음 상태
-
-
-            } else { // 기존 이미지가 있었을 때
-
-                // 1) backup한 요소를 복제
-                const temp = backupInput.cloneNode(true);
-
-                // 2) 화면에 원본 input을 temp로 바꾸기
-                logoInput.after(temp); // 원본 다음에 temp 추가
-                logoInput.remove(); // 원본을 화면에서 제거
-                logoInput = temp; // temp를 imageInput 변수에 대입
-
-                // 복제본은 이벤트가 복제 안되니까 다시 이벤트를 추가
-                logoInput.addEventListener("change", changeImageFn);
-
-                statusCheck = 1;
-            }
-
-
-            return;
-        }
-
-
-        // ---------- 선택된 이미지 파일을 읽어와 미리 보기 만들기 ----------
-
-        // JS에서 파일을 읽는 객체
-        // -> 파일을 읽고 클라이언트 컴퓨터에 파일을 저장할 수 있음
-        const reader = new FileReader();
-
-        // 매개변수에 작성된 파일을 읽어서
-        // 파일을 나타내는 URL 형태로 변경
-        // -> FileReader.result 필드에 저장되어 있음
-        reader.readAsDataURL(uploadFile)
-
-        // 파일을 다 읽었을 때
-        reader.onload = e => {
-            //console.log(reader.result); // 읽은 파일의 URL
-
-            // img태그의 src 속성의 속성 값으로
-            // 읽은 파일의 URL을 대입
-            artistGroupLogo.setAttribute("src", reader.result);
-
-            statusCheck = 1; // 새 이미지 선택한 경우
-
-            // 파일이 추가된 input을 backup 해두기
-            backupInput = logoInput.cloneNode(true);
-        }
-    }
-
-    logoInput.addEventListener("change", changeImageFn);
-
-}
-
-
-// *************************************************************************************************************
-//
-
-
-
-
-//--------------------------------------------------------------------------------------------
-/* 제출 시 유효성 검사 */
-
-const profileFrm = document.getElementById("profileFrm");
-
-profileFrm.addEventListener('submit', e => {
-
-
-    const content = document.getElementsByName("name=[artistGroupIntroduce]");
-    const name = document.querySelectorAll("[name=artistName]");
-
-    if (content.value.trim().length == 0) {
-        alert('아티스트 소개글을 작성해주세요!');
-        e.preventDefault();
-        content.value = "";
-        content.focus();
-        return;
-    }
-
-    if (name.value.trim().length == 0) {
-        alert('아티스트 이름을 작성해주세요!');
-        e.preventDefault();
-        content.value = "";
-        content.focus();
-        return;
-    }
+  if (introduce.value.trim().length == 0) {
+    alert("그룹명을 입력해주세요.");
+    e.preventDefault();
+    introduce.value = "";
+    introduce.focus();
+    return;
+  }
+  var imgCheck = img.value;
+  if (!imgCheck) {
+    alert("파일을 확인 해주세요");
+    e.preventDefault();
+    return;
+  }
 });
+
+// function groupDelete() {
+//   fetch("/admin/groupDelete", {
+//     method: "delete",
+//   });
+// }
