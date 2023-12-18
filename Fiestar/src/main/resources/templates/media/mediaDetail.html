@@ -41,7 +41,7 @@
       <div class="div-wrapper">
         <div class="frame">
           <div class="div">
-            <div class="frame-2">
+            <div class="frame-2" th:object="${mediaDetail}">
 
               <div class="video-wrapper">
 
@@ -52,25 +52,35 @@
 
               </div>
 
+              <div th:if="${session.loginMember != null and session.loginMember.memberAuthority != 1}" class="update-btn-wrapper">
+                <a class="update-btn" th:href="@{update}">수정하기</a>
+                <form action="delete" method="post">
+                  <button class="update-btn">삭제하기</button>
+                </form>
+              </div>
+
               <div class="frame-4">
 
-                <div class="media-title" th:text="${mediaDetail.mediaTitle}">미디어/라이브 제목</div>
+                <div class="media-title" th:text="*{mediaTitle}">미디어/라이브 제목</div>
                 <div class="frame-6">
                   <img class="view-img" src="/img/view.svg" />
-                  <div class="media-view-count" th:text="${mediaDetail.mediaCount}">4k(조회수)</div>
+                  <div class="media-view-count" th:text="*{mediaCount}">4k(조회수)</div>
                 </div>
 
               </div>
               <div class="comment-area-in">
                 <img class="profile-img" src="/img/male-user.png" />
                 <div class="comment-writer-area"><div class="media-title-wrapper" th:text="${artistGroupTitle}">게시글 작성자</div></div>
-                <div class="media-enroll-date-wrapper" th:text="${mediaDetail.mediaEnrollDate}">11.21. 02:43</div>
-                <img class="comment-profile" src="/img/frame-11979-9.svg" />
+                <div class="media-enroll-date-wrapper" th:text="*{mediaEnrollDate}">11.21. 02:43</div>
+                <!-- <img class="media-siren" src="/img/siren.png" /> -->
               </div>
               <div class="frame-10"><div class="text-wrapper-6" th:text="${mediaDetail.mediaDescription}">작성자 설명</div></div>
+
             </div>
             <div class="frame-wrapper">
               <div class="comment-list-area">
+                
+                <!-- 댓글 개수 -->
                 <div class="comment-count">
                   <img src="/img/vector-9.svg" class="back-button" onclick="goBack()">
                   <div class="comment-count-wrapper" >[[${mediaDetail.mediaCommentList.size}]]개의 댓글</div>
@@ -91,7 +101,7 @@
   
                       <div class="comment-profile">
                         <img class="delete-cross" src="/img/close_ring.png" th:onclick="|deleteModalOpen(*{mediaCommentNo})|"/>
-                        <img class="report-img" src="/img/siren.png" onclick="modalOpen()"/>
+                        <img class="report-img" src="/img/siren.png" onclick="reportSubmit()"/>
                       </div>
   
                     </div>
@@ -106,6 +116,7 @@
                       <img class="speech-bubble" src="/img/speech-bubble.png" th:onclick="|loadReplies(this, *{mediaCommentNo})|"/>
                       <img th:if="*{memberCommentLike != 0}"  class="like-heart red" src="/img/like_heart_r.svg" th:onclick="|changeLike(this, *{mediaCommentNo})|">
                       <img th:if="*{memberCommentLike == 0}"  class="like-heart gray" src="/img/like_heart_w.svg" th:onclick="|changeLike(this, *{mediaCommentNo})|">
+                      <span th:text="*{memberCommentLike}" style="color: white;">2</span>
                     </div>
   
                   </div>
@@ -161,6 +172,7 @@
       const mediaDetail = /*[[${mediaDetail}]]*/ "미디어 댓글 리스트";
       const mediaCommentList = /*[[${mediaDetail.mediaCommentList}]]*/ "미디어 댓글 리스트";
       const loginMemberNo = /*[[${session.loginMember?.memberNo}]]*/ "회원번호";
+      const loginMember = /*[[${session.loginMember}]]*/ "회원번호";
       const loginMemberNickname = /*[[${session.loginMember?.memberNickname}]]*/ "회원닉네임";
       const mediaNo = /*[[${mediaNo}]]*/ "미디어 번호";
 

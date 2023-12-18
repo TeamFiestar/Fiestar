@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/media/mediaInsert.css">
+  <link rel="stylesheet" href="/css/common/artistPageHeader.css">
+  <link rel="stylesheet" href="/css/common/artistPageNavi.css">
+</head>
+<body>
+
+  <th:block th:replace="~{common/artistPageHeader}"></th:block>
+  <th:block th:replace="~{common/artistPageNavi}"></th:block>
+
+  <div class="frame">
+    
+    <div class="media-frame">
+      <form action="update" method="post" style="margin: auto;" th:object="${media}">
+      <div class="media-edit">미디어 작성</div>
+      
+      <div class="media-insert">
+        <div class="media-title-content">
+            <div class="text-laber">제목(필수 항목)</div>
+            <textarea class="media-title" name="mediaTitle" placeholder="제목(필수 항목)" th:text="*{mediaTitle}"></textarea>
+            
+            <div class="video-area">
+              <textarea class="video-url" id="input-url" placeholder="동영상 URL을 입력하십시오" th:text="*{mediaAddress}"></textarea>
+            </div>
+            
+            
+            <div class="video-thumnail-box">
+              <div class="video-thumnail">
+                
+                <!-- <img id="youtube-url" src="https://img.youtube.com/vi/D8VEhcPeSlc/0.jpg" alt=""> -->
+                <iframe  id="youtube-url"
+                th:src="|https://www.youtube.com/embed/*{mediaAddress}|" 
+                title="YouTube video player" frameborder="0"></iframe>
+                
+              </div>
+            </div>
+            
+            
+            <div class="text-laber">설명(선택 항목)</div>
+            <textarea class="media-content" name="mediaDescription" placeholder="설명(선택 항목)" th:text="*{mediaDescription}"></textarea>
+            
+          </div>
+          
+        </div>
+        
+        <div class="media-btn-area">
+          <input type="hidden" th:value="*{mediaAddress}" id="mediaAddress" name="mediaAddress">
+          <input type="hidden" value="" id="mediaTime" name="mediaTime">
+          <input type="hidden" th:value="*{mediaNo}" name="mediaNo">
+          <input type="hidden" value="1" name="artistGroupNo" id="artistGroupNo">
+          <input type="hidden" value="*{mediaNo}">
+          <button class="media-btn" type="submit">수정하기</button>
+        </div>
+      </form>
+        
+      </div>
+  </div>
+
+  <script src="/js/media/mediaInsert.js"></script>
+</body>
+</html>

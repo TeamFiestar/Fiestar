@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.TeamFiestar.Fiestar.admin.model.dto.Report;
 import com.TeamFiestar.Fiestar.media.model.dto.MediaComment;
 import com.TeamFiestar.Fiestar.media.model.service.MediaCommentService;
 
@@ -70,6 +71,11 @@ public class MediaCommentController {
 	@ResponseBody
 	public int deleteLike(@RequestBody MediaComment comment) {
 		return service.deleteLike(comment);
+	}
+	
+	@PostMapping("insertReport")
+	public int insertReport(@RequestBody Report report) {
+		return service.insertReport(report);
 	}
 	
 }

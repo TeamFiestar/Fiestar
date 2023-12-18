@@ -19,9 +19,15 @@ public interface MediaMapper {
 	int insertMedia(Media inserMedia);
 
 	/** 미디어 상세 조회
-	 * @param mediaNo
+	 * @param map
 	 * @return
 	 */
-	Media mediaDetail(int mediaNo);
+	Media mediaDetail(Map<String, Object> map);
+
+	Media updateMediaDetail(int mediaNo);
+
+	int updateMedia(Media updateMedia);
+
+	int deleteMedia(int mediaNo);
 
 }

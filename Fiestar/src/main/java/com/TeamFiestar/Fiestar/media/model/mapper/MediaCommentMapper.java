@@ -7,6 +7,7 @@ import javax.xml.stream.events.Comment;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.TeamFiestar.Fiestar.admin.model.dto.Report;
 import com.TeamFiestar.Fiestar.media.model.dto.MediaComment;
 
 @Mapper
@@ -21,5 +22,7 @@ public interface MediaCommentMapper {
 	int insertLike(MediaComment comment);
 
 	int deleteLike(MediaComment comment);
+
+	int insertReport(Report report);
 
 }
