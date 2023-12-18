@@ -206,19 +206,21 @@
 	<insert id="artistGroupRegi" parameterType="ArtistGroup">
 		INSERT INTO ARTIST_GROUP
 		VALUES( SEQ_ARTIST_GROUP_NO.NEXTVAL, #{artistGroupAdminNo}, #{artistGroupTitle},
-			#{artistGroupProfile}, 'introduction', #{artistGroupImage}, #{artistGroupBackimg},null)
+			#{artistGroupProfile}, 'introduction', #{artistGroupImage}, #{artistGroupBackimg}, NULL, NULL, DEFAULT)
 	</insert>
 	
 	<select id="test" resultType="_int">
 		SELECT COUNT(*) FROM ARTIST_GROUP
 		WHERE ARTIST_GROUP_ADMIN_NO = #{adminNo}
+		AND ARTIST_GROUP_DEL_FL = 'N'
 	</select>
 	
 	
 	<select id="artistGroupUpdate" resultType="ArtistGroup1">
-		SELECT ARTIST_GROUP_TITLE, ARTIST_GROUP_PROFILE, ARTIST_GROUP_IMAGE, ARTIST_GROUP_BACKIMG
+		SELECT ARTIST_GROUP_TITLE, ARTIST_GROUP_PROFILE, ARTIST_GROUP_IMAGE, ARTIST_GROUP_BACKIMG, ARTIST_GROUP_NO
 		FROM ARTIST_GROUP
 		WHERE ARTIST_GROUP_ADMIN_NO = #{memberNo}
+		AND ARTIST_GROUP_DEL_FL = 'N'
 	</select>
 	
 	<update id="GroupUpdate">
@@ -229,7 +231,9 @@
 		WHERE ARTIST_GROUP_ADMIN_NO = #{artistGroupAdminNo}
 	</update>
 	
-	
+	<select id="checkGroupUpdate" resultType="_int">
+		SELECT COUNT(*) FROM ARTIST_GROUP
+	</select>
 	
 	
 	
