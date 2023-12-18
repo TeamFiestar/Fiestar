@@ -24,7 +24,7 @@ public interface CartMapper {
 
 	int order(Orderer inputOrderer);
 
-	
+	void insertPurchaseList(Orderer orderer);
 
 
 	

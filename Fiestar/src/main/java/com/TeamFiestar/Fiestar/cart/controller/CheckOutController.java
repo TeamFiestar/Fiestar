@@ -99,21 +99,31 @@ public class CheckOutController {
 	    						@RequestParam("purchasePrice") String purchasePrice, 
 	    						RedirectAttributes ra,  @RequestParam("selectEach") List<String> cartNoList,
 	                                  Model model) {
-	    
+	    	
+	        
 	        	        
-	    	int result = cartService.order(inputOrderer, address);
+	    	int purchaseNo = cartService.order(inputOrderer, address);
 	    	
-	    	if(result > 0) {
-	    		ra.addFlashAttribute("message", "주문이 완료 되었습니다");
-	    		return "cart/checkout-Result";
-	    		
-	    	} else {
-	    		
-	    		return "/";
-	    	}
-	    		
+	    	Set<String> set = new LinkedHashSet<>(cartNoList);
+	    	String selectNo = String.join(",", set);
+	    	List<Cart> selectedCarts = cartService.checkout(selectNo);
+
+	   
+	    	// Orderer 객체에 장바구니 항목 저장
+	    	inputOrderer.setCheckout(selectedCarts);
+
+	    	// PURCHASE_LIST 테이블에 데이터 삽입
+	    	cartService.insertPurchaseListItems(inputOrderer);
+
+	    	  if (purchaseNo > 0) {
+	              ra.addFlashAttribute("message", "주문이 완료 되었습니다.");
+	              return "redirect:/checkoutResult"; // 주문 결과 페이지로 리다이렉트
+	          } else {
+	              ra.addFlashAttribute("message", "주문 처리 중 오류가 발생했습니다.");
+	              return "redirect:/checkout"; // 주문 페이지로 리다이렉트
+	          }
+	    }
 	    	
-	    	}	
 	    
 	    
 	    @GetMapping("checkoutResult")

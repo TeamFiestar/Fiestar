@@ -31,5 +31,8 @@ public interface CartService {
 
 	int order(Orderer inputOrderer, String[] ordererAddress);
 
+	void insertPurchaseListItems(Orderer inputOrderer);
+
+
 	
 }

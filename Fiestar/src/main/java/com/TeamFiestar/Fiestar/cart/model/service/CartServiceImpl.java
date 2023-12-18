@@ -1,6 +1,6 @@
 package com.TeamFiestar.Fiestar.cart.model.service;
 
-import java.util.HashMap;  
+import java.util.HashMap;   
 import java.util.List;
 import java.util.Map;
 
@@ -53,10 +53,27 @@ public class CartServiceImpl implements CartService{
 		// TODO Auto-generated method stub
 		String address = String.join("^^^", ordererAddress);
 		inputOrderer.setOrdererAddress(address);
-			
 		
 		return mapper.order(inputOrderer);
 	}
+	
+	 @Override
+	    @Transactional
+	    public void insertPurchaseListItems(Orderer orderer) {
+	        int purchaseNo = orderer.getPurchaseNo();
+	        List<Cart> selectedCarts = orderer.getCheckout();
 
+	        for (Cart cartItem : selectedCarts) {
+	            // PURCHASE_LIST에 삽입할 데이터 설정
+	            orderer.setProductNo(cartItem.getProductNo());
+	            orderer.setProductCount(cartItem.getProductCount());
+	            orderer.setProductPrice(cartItem.getProductPrice());
+
+	            // PURCHASE_LIST 테이블에 데이터 삽입
+	            mapper.insertPurchaseList(orderer);
+	        }
+	    }
 }
+
+
 	

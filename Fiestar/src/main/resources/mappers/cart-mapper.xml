@@ -68,26 +68,32 @@
 	
 	
 	<insert id="order" useGeneratedKeys="true">
-		
-		
+				
 			<selectKey order="BEFORE" resultType="_int" keyProperty="purchaseNo" >
-			SELECT SEQ_BOARD_NO.NEXTVAL FROM DUAL
+			SELECT SEQ_PURCHASE_NO.NEXTVAL FROM DUAL
 			</selectKey>
 		
     INSERT INTO PURCHASE
     VALUES
-    (#{purchaseNo}, #{purchasePrice}, 1, SYSDATE, #{memberNo}, #{ordererName}, #{ordererAddress}, #{ordererPhoneNumber})
+    (SEQ_PURCHASE_NO.NEXTVAL, #{purchasePrice}, 1, SYSDATE, #{memberNo}, #{ordererName}, #{ordererAddress}, #{ordererPhoneNumber})
     
+	</insert>
+	
+	
+	<insert id="insertPurchaseList" parameterType="Orderer">
+    INSERT INTO PURCHASE_LIST
+    VALUES (SEQ_PURCHASE_LIST_NO.NEXTVAL,, #{productNo}, #{productCount}, #{productPrice})
 	</insert>
 
 
 
+<!-- 
 	<insert id="purchaseList">
     INSERT INTO PURCHASE_LIST 
     
     VALUES (SEQ_PURCHASE_LIST_NO.NEXTVAL, 3, 2 , #{productQuantity}, #{productPrice})
 	</insert>
-
+-->
 	
 		<!-- 
 		<insert id="purchase">
