@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -77,10 +79,25 @@ public class MemberController {
 	
 	}
 	
-	
+	// 로그아웃
 	@GetMapping("logout")
 	public String logout(SessionStatus status) {
 		status.setComplete();
 		return "redirect:/";
+	}
+	
+	// 이메일 중복 체크
+	@GetMapping("checkEmail")
+	@ResponseBody
+	public int checkEmail(@RequestParam("email") String email) {
+		
+		return service.checkEamil(email);
+	}
+	
+	// 닉네임 중복 체크
+	@GetMapping("checkNickname")
+	@ResponseBody
+	public int checkNickname(@RequestParam("nickname") String nickname) {
+		return service.checkNickname(nickname);
 	}
 }

@@ -48,4 +48,18 @@ public class MemberServiceImpl implements MemberService{
 		return mapper.login(memberEmail);
 	}
 	
+	
+	
+	// 이메일 중복 체크
+	@Override
+	public int checkEamil(String email) {
+		return mapper.checkEmail(email);
+	}
+	
+	// 닉네임 중복체크
+	@Override
+	public int checkNickname(String nickname) {
+		return mapper.checkNickname(nickname);
+	}
+	
 }
