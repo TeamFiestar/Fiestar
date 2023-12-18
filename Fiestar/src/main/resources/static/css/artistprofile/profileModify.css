@@ -1,67 +1,63 @@
-*{
+* {
   margin: 0;
   padding: 0;
-  font-family: 'Pretendard-Regular';
+  font-family: "Pretendard-Regular";
 }
 
-@font-face { 
-  font-family: 'Pretendard-Regular'; src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') 
-  format('woff'); font-weight: 400; font-style: normal; 
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
 }
 
-
-body{
+body {
   background-color: rgb(13, 14, 18);
 }
 
-
-
-ul , li{
+ul,
+li {
   list-style: none;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
-.all{
+.all {
   width: 1100px;
   min-height: 1250px;
   /* background-color: aqua; */
   margin: 0 auto;
 }
 
-
-.Img{
+.Img {
   width: 1100px;
   min-height: 800px;
   border-radius: 10px;
   padding-top: 20px;
 }
 
-img{
+img {
   border-radius: 10px;
   background-image: linear-gradient();
-  background: linear-gradient(#0d0e12,#0d0e1200);
-  
+  background: linear-gradient(#0d0e12, #0d0e1200);
 }
 
-.inputProfile{
+.inputProfile {
   display: none;
 }
 
-
-.mainImg{
+.mainImg {
   width: 1100px;
   height: 700px;
   border: 2px solid white;
   border-radius: 10px;
 }
 
-.mainImg:hover{
-  border-color:rgb(119, 67, 219);
+.mainImg:hover {
+  border-color: rgb(119, 67, 219);
 }
-
 
 .btn-upload1 {
   width: 1100px;
@@ -78,21 +74,19 @@ img{
   }
 }
 
-.btn-upload1 > img{
+.btn-upload1 > img {
   width: 1100px;
   height: 700px;
 }
 
-
-
-.artistIntro-name{
+.artistIntro-name {
   width: 400px;
   height: 80px;
   border: 2px solid white;
   border-radius: 10px;
 }
 
-.artistIntro-name:hover{
+.artistIntro-name:hover {
   border-color: rgb(119, 67, 219);
 }
 
@@ -113,15 +107,12 @@ img{
   }
 }
 
-.btn-upload2 >img {
+.btn-upload2 > img {
   width: 400px;
   height: 80px;
 }
 
-
-
-
-#content{
+#content {
   border-radius: 10px;
   background: transparent;
   border: none;
@@ -133,21 +124,18 @@ img{
   height: 300px;
 }
 
-#content:focus{
+#content:focus {
   outline: none;
 }
 
-
-.artistIntro{
+.artistIntro {
   margin: -100px auto 0;
   position: relative;
   width: 400px;
   min-height: 100px;
 }
 
-
-
-.artistIntro-content{
+.artistIntro-content {
   width: 1100px;
   height: 300px;
   margin: 10px auto;
@@ -155,7 +143,7 @@ img{
   border-radius: 10px;
 }
 
-.artistIntro-content p{
+.artistIntro-content p {
   color: #fff;
   font-size: 15px;
   line-height: 21px;
@@ -163,11 +151,11 @@ img{
   width: 450px;
 }
 
-.profiletxt{
+.profiletxt {
   margin-top: 20px;
 }
 
-.profiletxt h3{
+.profiletxt h3 {
   color: #fff;
   font-size: 24px;
   font-weight: 800;
@@ -175,44 +163,42 @@ img{
   margin-bottom: 30px;
 }
 
-.profile-area{
+.profile-area {
   width: 1100px;
-
 }
 
-
-.profileALl{
+.profileALl {
   width: 1100px;
-  height: 200px;
+  /* height: 200px; */
   /* border: 1px solid wheat; */
   display: flex;
   align-content: flex-start;
+  flex-wrap: wrap;
 }
 
-.profileImg{
+.profileImg {
   width: 120px;
   height: 147px;
   border-radius: 10px;
   /* border: 2px solid rgb(188, 135, 135); */
-  margin: 0 10px;
+  margin: 0 10px 10px;
 }
 
-.profileImage{
+.profileImage {
   width: 120px;
   height: 120px;
   border-radius: 10px;
-  border: 1px solid rgb(119, 67, 219); 
+  border: 1px solid rgb(119, 67, 219);
 }
 
-.profileImg span{
+.profileImg span {
   font-size: large;
   color: #fff;
   margin-left: 120px;
   cursor: pointer;
 }
 
-
-.profileName input{
+.profileName input {
   color: white;
   text-align: center;
   margin-top: 5px;
@@ -232,12 +218,12 @@ img{
   margin: 0 auto;
 }
 
-.btn-upload3 > img{
+.btn-upload3 > img {
   width: 120px;
   height: 120px;
 }
 
-.btn-upload3 > h1{
+.btn-upload3 > h1 {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -245,32 +231,32 @@ img{
   z-index: 1;
 }
 
-.profileName{
+.profileName {
   width: 120px;
   height: 24px;
   /* border: 1px solid rgb(254, 62, 62); */
 }
 
-.profileName input{
+.profileName input {
   width: 115px;
   height: 20px;
   border-radius: 5px;
   background: transparent;
 }
 
-.profileName li{
+.profileName li {
   color: white;
   text-align: center;
 }
 
-.plus{
+.plus {
   width: 120px;
   height: 120px;
   border-radius: 10px;
-  border: 1px solid rgb(255, 255, 255); 
+  border: 1px solid rgb(255, 255, 255);
 }
 
-.plusBtn-area{
+.plusBtn-area {
   width: 120px;
   height: 120px;
   font-weight: 500;
@@ -285,18 +271,16 @@ img{
   }
 }
 
-
-.plusBtn-area:hover{
+.plusBtn-area:hover {
   cursor: pointer;
   color: rgb(119, 67, 219);
 }
 
-.profileImage:hover{
+.profileImage:hover {
   border-color: white;
 }
 
-
-.ModifyBtn{
+.ModifyBtn {
   width: 80px;
   height: 30px;
   border: 1px solid rgb(0, 0, 0);
@@ -304,12 +288,19 @@ img{
   border-radius: 5px;
 }
 
-.ModifyBtn button{
+.ModifyBtn button {
   width: 100%;
   height: 100%;
 }
 
-.ModifyBtn button:hover{
+.ModifyBtn button:hover {
   cursor: pointer;
 }
 
+.imageInput {
+  display: none;
+}
+
+.plusBtn {
+  cursor: pointer;
+}
