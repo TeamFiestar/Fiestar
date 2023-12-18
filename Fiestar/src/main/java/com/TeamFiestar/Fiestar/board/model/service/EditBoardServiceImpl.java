@@ -93,4 +93,22 @@ public class EditBoardServiceImpl implements EditBoardService{
 		
 	}
 	
+	@Override
+	public int deleteBoard(int boardNo) {
+		return mapper.deleteBoard(boardNo);
+	}
+	
+	@Override
+	public Board updateBoardDetail(int boardNo) {
+		return mapper.updateBoardDetail(boardNo);
+	}
+	
+	@Override
+	public int updateBoard(Board updateBoard) {
+		
+		return mapper.updateBoard(updateBoard);
+	}
+	
+	
+	
 }

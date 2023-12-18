@@ -7,10 +7,10 @@
             <form th:action="|/${artistGroupTitle}/insert|" method="POST" enctype="multipart/form-data">
             <div class="modal-write">
                 <h1>게시글 작성</h1>
-                <p>LE SSERAFIM</p>
+                <p th:text="${artistGroupTitle}">LE SSERAFIM</p>
 
                 <div class="modal-feedWrite">
-                    <textarea name="feedWrite2" id="feedWrite2" placeholder="피에스타에 게시글을 작성해보세요!!"></textarea>
+                    <textarea name="feedWrite2" id="feedWrite2" th:placeholder="|${artistGroupTitle}에게 게시글을 작성해보세요!!|"></textarea>
                 </div>
 
                 <div class="boardImg-container">

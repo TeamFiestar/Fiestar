@@ -23,11 +23,12 @@
 		<!-- myBatis에서 향상된 for문 사용하기 -->
 	 	<foreach collection="list" item="img" separator=" UNION " >
 			 SELECT NEXT_IMG_NO(), 
+			 #{img.boardNo},
 			 		#{img.boardImagePath},
-			 		#{img.boardImageRename},
-			 		#{img.boardImageOriginalName},
 			 		#{img.boardImageOrder},
-			 		#{img.boardNo}
+			 		#{img.boardImageRename},
+			 		#{img.boardImageOriginalName}
+			 		
 			 FROM DUAL
 			 
 		 </foreach>
@@ -47,7 +48,6 @@
 		UPDATE "BOARD" SET 
 		BOARD_DEL_FL = 'Y'
 		WHERE BOARD_NO = #{boardNo}
-		AND MEMBER_NO = #{memberNo}
 		
 	</update>
 	

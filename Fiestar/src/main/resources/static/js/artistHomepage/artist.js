@@ -160,7 +160,6 @@ function generateComment(boardNo3) {
     console.log("Invalid boardNo3:", boardNo3);
     return;
   }
-
   const commentLists = document.querySelector(".comment-list");
   commentLists.innerHTML = "";
 
@@ -212,6 +211,9 @@ function generateComment(boardNo3) {
 
       var commentWriterArea = document.createElement("div");
       commentWriterArea.className = "comment-writer-area";
+
+      var division = document.createElement("div");
+      division.className = "division";
     
       // "comment-writer" 클래스를 가진 div 생성하고 텍스트 내용 설정
       var commentWriter = document.createElement("div");
@@ -229,11 +231,14 @@ function generateComment(boardNo3) {
       indicator2.style.color = ""; 
     }
 
+      division.append(commentWriter, indicator2);
+
       var commentDate = document.createElement("div");
       commentDate.className = "comment-date";
+      console.log(comment.boardCommentEnrollDate);
       commentDate.textContent = comment.boardCommentEnrollDate;
 
-      commentWriterArea.append(commentWriter, indicator2, commentDate);
+      commentWriterArea.append(division, commentDate);
 
       div1.append(img, commentWriterArea);
 

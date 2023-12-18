@@ -5,6 +5,7 @@ const dataObj = {};
 const likeImg = document.querySelector('#likeImg');
 let boardNo2;
 
+
 function openModal(boardNo) {
   // 새로운 URL 생성
   var newUrl = "/" + artistGroupTitle + "/feed/" + boardNo;
@@ -38,9 +39,9 @@ function closeModal(stateObj){
   const modal = document.getElementById('feedDetail');
   modal.classList.remove("show");
   document.body.style.overflow = "";
-  
-}
 
+}
+const modalForm = document.getElementById('modal-form');
 
 function updatePageContent(boardNo) {
 
@@ -50,6 +51,8 @@ function updatePageContent(boardNo) {
   .then(resp => resp.json())
   .then(board => {
     console.log(board);
+
+    modalForm.setAttribute('action', `${boardNo}/delete`)
 
     /* ----------------- 아이디 등 인적사항 및 피드 내용 -------------------------- */
     const boardNickname = document.getElementById('boardNickname');
@@ -102,6 +105,25 @@ function updatePageContent(boardNo) {
 
      /* ------------------------------------------------------------ */
 
+ 
+
+// const checkBtn = document.querySelector("#check-btn");
+// const updateBtn = document.querySelector("#updateBtn");
+// const feedDeleteBtn2 = document.querySelector("#feedDeleteBtn");
+
+// checkBtn.addEventListener("check", () => {
+//  if(loginMemberNo != board.memberNo) {
+//   updateBtn.style.display = "none";
+//   feedDeleteBtn2.style.display= "none";
+// } else {
+//   updateBtn.style.display = "relative";
+//   feedDeleteBtn2.style.display= "relative";
+// }
+
+// })
+
+
+
     /* ----------------- 피드 좋아요 표시 -------------------------- */
     const feedLikeCount = document.querySelector('#feedLikeCount');
     feedLikeCount.innerText = board.likeCount;
@@ -140,17 +162,17 @@ function updatePageContent(boardNo) {
     boardNo2 = board.boardNo;
     /* ------------------------------------------------------------ */
 
-    /* ----------------- 댓글 표시 -------------------------- */
-    
+    const feedDeleteBtn = document.getElementById("feedDeleteBtn");
+
+  if(feedDeleteBtn != null){
+
+//   feedDeleteBtn.addEventListener("click", ()=>{
+//   location.href = `/${artistGroupTitle}/feed/${boardNo}/delete`;
+// });
+
+} 
 
 
-    
-
-    /* ------------------------------------------------------------ */
-
-
-    
-    
   });
 }
 
@@ -212,6 +234,9 @@ function generateComment(boardNo3) {
 
       var commentWriterArea = document.createElement("div");
       commentWriterArea.className = "comment-writer-area";
+
+      var division = document.createElement("div");
+      division.className = "division";
     
       // "comment-writer" 클래스를 가진 div 생성하고 텍스트 내용 설정
       var commentWriter = document.createElement("div");
@@ -229,11 +254,14 @@ function generateComment(boardNo3) {
       indicator2.style.color = ""; 
     }
 
+      division.append(commentWriter, indicator2);
+
       var commentDate = document.createElement("div");
       commentDate.className = "comment-date";
+      console.log(comment.boardCommentEnrollDate);
       commentDate.textContent = comment.boardCommentEnrollDate;
 
-      commentWriterArea.append(commentWriter, indicator2, commentDate);
+      commentWriterArea.append(division, commentDate);
 
       div1.append(img, commentWriterArea);
 
@@ -525,7 +553,7 @@ function likeComment(btn, boardCommentNo) {
     boardCommentNo : boardCommentNo,
   };
 
-
+if(check == 0 ) { 
 
   fetch("/commentLike", {
     method: "POST",
@@ -538,15 +566,69 @@ function likeComment(btn, boardCommentNo) {
         console.log("좋아요 실패");
         return;
       }
-      btn.classList.toggle("fa-regular");
       btn.classList.toggle("fa-solid");
+      btn.style.color = "#7743DB";
 
+      
       btn.nextElementSibling.innerText = count;
     })
     .catch((e) => {
       console.log(e);
     });
+
+  } else { 
+
+    fetch("/deleteLike", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then((resp) => resp.text())
+      .then((count) => {
+        if (count == -1) {
+          console.log("좋아요 실패");
+          return;
+        }
+        btn.classList.toggle("fa-regular");
+  
+        btn.nextElementSibling.innerText = count-1;
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+
+  }
 }
+
+
+/* ==================게시글 삭제 버튼 클릭======================= */
+
+
+
+
+
+
+/* ==================게시글 수정 버튼 클릭======================= */
+
+
+// const updateBtn = document.getElementById("updateBtn");
+
+// if(loginMemberNo == board.memberNo) {
+//   commentProfile.append(deleteBtn, reportImg);
+// } else {
+//   commentProfile.append(reportImg);
+// }
+
+// if(updateBtn != null){
+// updateBtn.addEventListener("click", ()=>{
+//   location.href = `/editBoard/${boardCode}/${boardNo}/update`;
+// });
+// }
+
+
+
+
+
 
 
 
@@ -583,4 +665,5 @@ function wcloseModal(stateObj) {
   document.body.style.overflow = "";
 
 }
+
 

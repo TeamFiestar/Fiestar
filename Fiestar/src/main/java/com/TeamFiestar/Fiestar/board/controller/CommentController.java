@@ -75,14 +75,20 @@ public class CommentController {
 	
 	@PostMapping("commentLike")
 	@ResponseBody
-	public int likeComment(@RequestBody Comment comment) {
+	public int likeComment(@RequestBody Comment comment, 
+			@SessionAttribute("loginMember") Member loginMember) {
+		
+		comment.setMemberNo(loginMember.getMemberNo() );
 		
 		return service.likeComment(comment);
 	}
 	
 	@DeleteMapping("deleteLike")
 	@ResponseBody
-	public int deleteLike(@RequestBody Comment comment) {
+	public int deleteLike(@RequestBody Comment comment, @SessionAttribute("loginMember") Member loginMember) {
+		
+		comment.setMemberNo(loginMember.getMemberNo() );
+		
 		return service.deleteLike(comment);
 	}
 	

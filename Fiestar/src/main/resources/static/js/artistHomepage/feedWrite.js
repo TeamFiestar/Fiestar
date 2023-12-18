@@ -1,5 +1,26 @@
 
 
+const modalBtn = document.querySelector(".modal-btn");
+
+modalBtn.addEventListener('submit', e =>{
+
+  const content = document.querySelector("#feedWrite2");
+
+  // 제목 미입력 상태
+ 
+  // 내용 미입력
+  if(content.value.trim().length == 0 ) {
+    alert("내용을 입력 해주세요.");
+
+    e.preventDefault(); // form 제출 X
+    content.value = "";
+    content.focus();
+
+    return;
+
+  }
+});
+
 const previewList = document.getElementsByClassName("preview");
 
 const inputImageList = document.getElementsByClassName("inputImage");
@@ -117,24 +138,3 @@ for (let i = 0; i < inputImageList.length; i++) {
   });
 
 } 
-
-const modalBtn = document.querySelector(".modal-btn");
-
-modalBtn.addEventListener('submit', e =>{
-
-  const content = document.querySelector("[name='feedWrite2']");
-
-  // 제목 미입력 상태
- 
-  // 내용 미입력
-  if(content.value.trim().length == 0 ) {
-    alert("내용을 입력 해주세요.");
-
-    e.preventDefault(); // form 제출 X
-    content.value = "";
-    content.focus();
-
-    return;
-
-  }
-});
