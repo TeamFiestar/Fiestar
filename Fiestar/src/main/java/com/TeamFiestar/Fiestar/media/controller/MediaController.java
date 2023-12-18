@@ -37,6 +37,19 @@ public class MediaController {
 		return "media/mediaInsert";
 	}
 	
+	
+	@GetMapping("{artistGroupTitle}/media/{mediaNo:[0-9]+}/update")
+	public String updateMediaDetail(
+			@PathVariable("artistGroupTitle") String artistGroupTitle,
+			@PathVariable("mediaNo") int mediaNo, Model model) {
+		model.addAttribute("artistGroupTitle",artistGroupTitle);
+		
+		Media media = service.updateMediaDetail(mediaNo);
+		model.addAttribute("media",media);
+		
+		return "media/mediaUpdate";
+	}
+	
 	// 미디어 리스트 조회
 	@GetMapping("{artistGroupTitle}/media/list")
 	public String mediaList(
@@ -83,7 +96,23 @@ public class MediaController {
 		return "media/mediaDetail";
 	}
 	
+	// 라이브 이동 
+	@GetMapping("{artistGroupTitle}/media/live")
+	public String mediaLive(
+			@PathVariable("artistGroupTitle") String artistGroupTitle, Model model) {
+		model.addAttribute("artistGroupTitle",artistGroupTitle);
+		
+		return "media/mediaLive";
+	}
 	
+	
+	
+	
+	
+	
+	
+	
+	// 미디어 삽입
 	@PostMapping("{artistGroupTitle}/media/insert")
 	public String mediaInsert(
 			@PathVariable("artistGroupTitle") String artistGroupTitle,
@@ -94,14 +123,27 @@ public class MediaController {
 		return "redirect:list";
 	}
 	
+	// 미디어 삭제
+	@PostMapping("{artistGroupTitle}/media/{mediaNo:[0-9]+}/delete")
+	public String mediaDelete(
+			@PathVariable("artistGroupTitle") String artistGroupTitle,
+			@PathVariable("mediaNo") int mediaNo, Model model) {
+		
+		int result = service.deleteMedia(mediaNo);
+		
+		return "redirect:../list";
+	}
 	
-	@GetMapping("{artistGroupTitle}/media/live")
-	public String mediaLive(
-			@PathVariable("artistGroupTitle") String artistGroupTitle, Model model) {
-		model.addAttribute("artistGroupTitle",artistGroupTitle);
+	// 미디어 업데이트
+	@PostMapping("{artistGroupTitle}/media/{mediaNo:[0-9]+}/update")
+	public String mediaUpdate(
+			@PathVariable("artistGroupTitle") String artistGroupTitle,
+			@PathVariable("mediaNo") int mediaNo, Model model,
+			Media updateMedia) {
 		
+		int result = service.updateMedia(updateMedia);
 		
-		return "media/mediaLive";
+		return "redirect:detail";
 	}
 	
 	

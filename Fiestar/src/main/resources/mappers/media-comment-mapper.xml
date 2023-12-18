@@ -55,5 +55,18 @@
 		WHERE MEDIA_COMMENT_NO = #{mediaCommentNo}
 		AND MEMBER_NO = #{memberNo}
 	</delete>
+	
+	
+	<insert id="insertReport">
+		INSERT INTO REPORT r VALUES
+			(SEQ_REPORT_NO.NEXTVAL, 
+			#{reporterNo}, 
+			#{reportTargetNo}, 
+			#{artistGroupNo},
+			'N',
+			#{reportContentNo},
+			#{reportContent},
+			#{reportType})
+	</insert>
 
 </mapper>

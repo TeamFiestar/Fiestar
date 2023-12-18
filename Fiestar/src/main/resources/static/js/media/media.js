@@ -329,3 +329,29 @@ function changeLike(likeBtn, commentNo){
 
 
 }
+
+
+let reportType;
+
+function reportSubmit(reportTargetNo, reportContentNo, reportType){
+  if(loginMemberNo == null){
+    alert("로그인 후 이용해주세요")
+    return;
+  }
+  modalOpen();
+
+  const data = {};
+  data.reporterNo = loginMemberNo;
+  data.reportTargetNo = reportTargetNo;
+  data.reportContentNo = reportContentNo;
+  data.reportType = reportType;
+
+  fetch("/mediaComment/inserReport",{
+    method : "POST",
+    headers : {"Content-Type" : "application/json"},
+    body : JSON.stringify(data)
+  })
+  .then()
+  .catch(err => console.log(err));
+
+}

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.xml.stream.events.Comment;
 
+import com.TeamFiestar.Fiestar.admin.model.dto.Report;
 import com.TeamFiestar.Fiestar.media.model.dto.MediaComment;
 
 public interface MediaCommentService {
@@ -22,5 +23,7 @@ public interface MediaCommentService {
 	int insertLike(MediaComment comment);
 
 	int deleteLike(MediaComment comment);
+
+	int insertReport(Report report);
 
 }
