@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.TeamFiestar.Fiestar.cart.model.dto.Cart;
 import com.TeamFiestar.Fiestar.cart.model.dto.Orderer;
+import com.TeamFiestar.Fiestar.cart.model.dto.PurchaseInfo;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
 
@@ -29,9 +30,13 @@ public interface CartService {
 
 	List<Cart> checkout(String selectNo);
 
-	int order(Orderer inputOrderer, String[] ordererAddress);
+	int order(Orderer inputOrderer, String[] ordererAddress, String selectNo);
 
-	void insertPurchaseListItems(Orderer inputOrderer);
+	Map<String, Object> checkoutResult(int purchaseNo);
+
+
+
+
 
 
 	

@@ -11,9 +11,9 @@
 }
 
 
-.cartNo{
+/* .cartNo{
    display: none;
-}
+} */
 
 .order-input {
    width: 400px;
@@ -571,3 +571,6 @@ border-radius: 4px;
    display: none;
 } */
 
+/* .cartNo{
+   display: none;
+} */

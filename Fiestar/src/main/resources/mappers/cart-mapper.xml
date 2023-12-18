@@ -62,29 +62,88 @@
 		JOIN MEMBER USING (MEMBER_NO)
 		LEFT JOIN "PRODUCT_OPTION" O ON(P.PRODUCT_NO = O.PRODUCT_NO)
 		WHERE CART_NO IN ( ${selectNo} )
+		
+	</select>
+	
+	<!-- 주문 정보 삽입 -->
+	<insert id="order" useGeneratedKeys="true">
+				
+		<selectKey order="BEFORE" resultType="_int" keyProperty="purchaseNo" >
+			SELECT SEQ_PURCHASE_NO.NEXTVAL FROM DUAL
+		</selectKey>
+			
+	    INSERT INTO PURCHASE
+	    VALUES
+	    (#{purchaseNo}, #{purchasePrice}, 1, SYSDATE, #{memberNo}, #{ordererName}, #{ordererAddress}, #{ordererPhoneNumber})
+    
+	</insert>
+	
+	<!-- 주문한 상품 리스트 삽입 -->
+	<insert id="insertPurchaseList" parameterType="map">
+		INSERT INTO PURCHASE_LIST
+		SELECT NEXT_PURCHASE_LIST_NO(), ${purchaseNo},  C.PRODUCT_NO, C.PRODUCT_COUNT, PRODUCT_PRICE, PRODUCT_OPTION_NO
+		FROM "CART" C
+		JOIN "PRODUCT" P ON(C.PRODUCT_NO = P.PRODUCT_NO)
+		JOIN MEMBER USING (MEMBER_NO)
+		LEFT JOIN "PRODUCT_OPTION" O ON(P.PRODUCT_NO = O.PRODUCT_NO)
+		WHERE CART_NO IN ( ${selectNo} )
+	</insert>
 
+
+	<!-- 주문 완료된 카트 번호 삭제 -->
+	<delete id="deleteOrderCart">
+		DELETE FROM CART WHERE CART_NO IN (${selectNo})
+	</delete>
+
+	<select id="selectPurchaseInfo" resultType="_int">
+		
+	SELECT PURCHASE_NO, PURCHASE_PRICE, MEMBER_NO, PURCHASE_NAME, PURCHASE_ADDRESS, PUCHASE_PHONE_NUMBER, 
+		TO_CHAR(PURCHASE_DATE, 'YYYY/MM/DD HH24:MI:SS') PURCHASE_DATE
+		FROM PURCHASE
+	WHERE PURCHASE_NO = ${purchaseNo}
+
+	</select>
+	
+	
+	<select id="selectPurchaseList" resultType="PurchaseList">
+		SELECT PL.PRODUCT_NO, PRODUCT_NAME , ARTIST_GROUP_NO, PL.PRODUCT_PRICE, PRODUCT_QUANTITY, PL.PRODUCT_OPTION_NO,PRODUCT_OPTION_NAME,
+			(SELECT PRODUCT_IMAGE_THUMBNAIL || PRODUCT_IMAGE_RENAME 
+			FROM "PRODUCT_IMAGE" IMAGE 
+			WHERE IMAGE.PRODUCT_NO = P.PRODUCT_NO
+			AND PRODUCT_IMAGE_ORDER=1) PRODUCT_IMAGE_NO
+			FROM PURCHASE_LIST PL
+			JOIN PRODUCT P ON (PL.PRODUCT_NO = P.PRODUCT_NO)
+			LEFT JOIN PRODUCT_OPTION O ON (PL.PRODUCT_NO = O.PRODUCT_NO)
+		WHERE PURCHASE_NO = ${purchaseNo}
+		
+	</select>
+	<!-- 
+	
+	<select id="selectPurchaseNo" parameterMap="map">
+		SELECT PURCHASE_NO, PURCHASE_PRICE, MEMBER_NO, PURCHASE_NAME, PURCHASE_ADDRESS, PUCHASE_PHONE_NUMBER, 
+			TO_CHAR(PURCHASE_DATE, 'YYYY/MM/DD HH24:MI:SS') PURCHASE_DATE
+			FROM PURCHASE
+		WHERE PURCHASE_NO = ${purchaseNo}
 		
 	</select>
 	
 	
-	<insert id="order" useGeneratedKeys="true">
-				
-			<selectKey order="BEFORE" resultType="_int" keyProperty="purchaseNo" >
-			SELECT SEQ_PURCHASE_NO.NEXTVAL FROM DUAL
-			</selectKey>
+	
+	<select id="checkoutResult" parameterMap="map">	
 		
-    INSERT INTO PURCHASE
-    VALUES
-    (SEQ_PURCHASE_NO.NEXTVAL, #{purchasePrice}, 1, SYSDATE, #{memberNo}, #{ordererName}, #{ordererAddress}, #{ordererPhoneNumber})
-    
-	</insert>
-	
-	
-	<insert id="insertPurchaseList" parameterType="Orderer">
-    INSERT INTO PURCHASE_LIST
-    VALUES (SEQ_PURCHASE_LIST_NO.NEXTVAL,, #{productNo}, #{productCount}, #{productPrice})
-	</insert>
+		SELECT PL.PRODUCT_NO, PRODUCT_NAME , ARTIST_GROUP_NO, PL.PRODUCT_PRICE, PRODUCT_QUANTITY, PL.PRODUCT_OPTION_NO,PRODUCT_OPTION_NAME,
+					(SELECT PRODUCT_IMAGE_THUMBNAIL || PRODUCT_IMAGE_RENAME 
+							FROM "PRODUCT_IMAGE" IMAGE 
+							WHERE IMAGE.PRODUCT_NO = P.PRODUCT_NO
+							AND PRODUCT_IMAGE_ORDER=1) PRODUCT_IMAGE_NO
+				FROM PURCHASE_LIST PL
+				JOIN PRODUCT P ON (PL.PRODUCT_NO = P.PRODUCT_NO)
+				LEFT JOIN PRODUCT_OPTION O ON (PL.PRODUCT_NO = O.PRODUCT_NO)
+		WHERE PURCHASE_NO = ${purchaseNo}
+	</select>
 
+
+-->
 
 
 <!-- 

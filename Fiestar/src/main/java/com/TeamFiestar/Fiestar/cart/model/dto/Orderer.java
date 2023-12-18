@@ -16,7 +16,7 @@ public class Orderer {
 	private String purchaseStatus;
 	private String purchaseDate;
 	private int purchaseNo;
-	private int MemberNo;
+	private int memberNo;
 	private String ordererPhoneNumber;
 	private String ordererAddress;
 	private String ordererName;
@@ -24,7 +24,7 @@ public class Orderer {
 	
 	
 	
-	private List<Cart> checkout;
+//	private List<Cart> checkout;
 	
 	private String productName;
 	private String productImg;

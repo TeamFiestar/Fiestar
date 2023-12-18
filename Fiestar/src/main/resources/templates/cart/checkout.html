@@ -39,7 +39,6 @@
 
             <!-- 상품 1개 개별 영역 -->
             <hr>
-            <input type="text" th:value="${session.loginMember.memberNo}" name="memberNo" id="memberNo">
             <div class="item-list1" th:each="checkoutItem : ${checkout}">
 
                <div class="item-list">
@@ -74,7 +73,7 @@
 
                   <div class="cartNo">
                      
-                     <input type="hidden" th:text="${checkoutItem.cartNo}" class="cartCheckOutNo" name="selectEach"></span>
+                     <input type="hidden" th:value="${checkoutItem.cartNo}" class="cartCheckOutNo" name="selectEach"></span>
                   </div>
 
                   <!-- 상품 수량 -->

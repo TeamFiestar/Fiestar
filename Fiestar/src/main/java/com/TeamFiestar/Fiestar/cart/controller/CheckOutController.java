@@ -1,5 +1,7 @@
 package com.TeamFiestar.Fiestar.cart.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashSet;   
 import java.util.List;
 import java.util.Map;
@@ -11,10 +13,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.TeamFiestar.Fiestar.cart.model.dto.Cart;
@@ -23,7 +27,7 @@ import com.TeamFiestar.Fiestar.cart.model.service.CartService;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
 
-
+@SessionAttributes({"purchaseNo"})
 @Controller
 public class CheckOutController {
 	
@@ -97,40 +101,39 @@ public class CheckOutController {
 	    public String order(@SessionAttribute(value = "loginMember") Member loginMember,
 	    						Orderer inputOrderer, @RequestParam("address") String[] address,
 	    						@RequestParam("purchasePrice") String purchasePrice, 
-	    						RedirectAttributes ra,  @RequestParam("selectEach") List<String> cartNoList,
-	                                  Model model) {
+	    						RedirectAttributes ra,  @RequestParam("selectEach") List<String> cartNoList,  Model model ) {
 	    	
 	        
-	        	        
-	    	int purchaseNo = cartService.order(inputOrderer, address);
+	    	int memberNo = loginMember.getMemberNo();
+	    	
+	    	inputOrderer.setMemberNo(memberNo);
 	    	
 	    	Set<String> set = new LinkedHashSet<>(cartNoList);
 	    	String selectNo = String.join(",", set);
-	    	List<Cart> selectedCarts = cartService.checkout(selectNo);
-
-	   
-	    	// Orderer 객체에 장바구니 항목 저장
-	    	inputOrderer.setCheckout(selectedCarts);
-
-	    	// PURCHASE_LIST 테이블에 데이터 삽입
-	    	cartService.insertPurchaseListItems(inputOrderer);
-
-	    	  if (purchaseNo > 0) {
-	              ra.addFlashAttribute("message", "주문이 완료 되었습니다.");
-	              return "redirect:/checkoutResult"; // 주문 결과 페이지로 리다이렉트
-	          } else {
-	              ra.addFlashAttribute("message", "주문 처리 중 오류가 발생했습니다.");
-	              return "redirect:/checkout"; // 주문 페이지로 리다이렉트
-	          }
+	    	
+	        	        
+	    	int purchaseNo = cartService.order(inputOrderer, address, selectNo);
+	    	
+//	    	맵에 회원 번호, 주문 번호 담아서 서비스로 넘긴다 -> 서비스에서 PURCHASE select 해주는 서비스, Purchase_List SELECT 하는 서비스 하나 
+    	
+    	  if (purchaseNo > 0) {
+    		  model.addAttribute("purchaseNo", purchaseNo);
+              return "redirect:/checkoutResult"; // 주문 결과 페이지로 리다이렉트
+          } else {
+              ra.addFlashAttribute("message", "주문 처리 중 오류가 발생했습니다.");
+              return "redirect:/checkout"; // 주문 페이지로 리다이렉트
+          }
 	    }
 	    	
 	    
 	    
 	    @GetMapping("checkoutResult")
-	    public String checkoutResult() {
+	    public String checkoutResult(Model model, Map<String, Object> HashMap, @SessionAttribute("purchaseNo") int purchaseNo) {
 	    	
+	    	Map<String, Object> map = cartService.checkoutResult(purchaseNo);
 	    	
-	    	
+	    	model.addAttribute("map",map);
+
 	    	return "cart/checkout-Result";
 	    }
 	    
