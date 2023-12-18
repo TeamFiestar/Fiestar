@@ -52,7 +52,7 @@ function selectHigh(key){
         // 제품 이미지 영역을 위한 div를 생성.
         const imageAreaDiv = document.createElement('div');
         imageAreaDiv.className = 'product-image-area';
-        // imageAreaDiv.innerHTML = `<img src="${product.productImage}">`;
+        imageAreaDiv.innerHTML = `<img src="${product.productImageThumbnail}${product.productImageThumbnailRename}">`;
 
         // 제품 이름과 가격 영역을 위한 div를 생성
         const nameAreaDiv = document.createElement('div');
@@ -115,7 +115,7 @@ function selectHigh(key){
   
             const imageAreaDiv = document.createElement('div');
             imageAreaDiv.className = 'product-image-area';
-            // imageAreaDiv.innerHTML = `<img src="${product.productImageThumbnail}">`;
+            imageAreaDiv.innerHTML = `<img src="${product.productImageThumbnail}${product.productImageThumbnailRename}">`;
   
             const nameAreaDiv = document.createElement('div');
             nameAreaDiv.className = 'product-name-area';
@@ -170,7 +170,7 @@ function selectHigh(key){
             // 제품 이미지 영역을 위한 div를 생성.
             const imageAreaDiv = document.createElement('div');
             imageAreaDiv.className = 'product-image-area';
-            // imageAreaDiv.innerHTML = `<img src="${product.productImage}">`;
+            imageAreaDiv.innerHTML = `<img src="${product.productImageThumbnail}${product.productImageThumbnailRename}">`;
   
             // 제품 이름과 가격 영역을 위한 div를 생성
             const nameAreaDiv = document.createElement('div');
@@ -212,6 +212,7 @@ function selectHigh(key){
   }
  
 }
+
 
 
 

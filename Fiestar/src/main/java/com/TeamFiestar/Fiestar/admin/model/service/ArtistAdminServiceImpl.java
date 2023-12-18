@@ -34,9 +34,9 @@ public class ArtistAdminServiceImpl implements ArtistAdminService{
 	
 	
 	@Value("${my.shopThumbnail.webpath}")
-	private String webPath;  //웹 이미지 요청 경로
+	private String thumbnailPath;  //웹 이미지 요청 경로
 	@Value("${my.shopThumbnail.location}")
-	private String folderPath;  //서버 저장 폴더 경로
+	private String thumbnailfolderPath;  //서버 저장 폴더 경로
 	
 	@Value("${my.shopContent.webpath}")
 	private String contentPath;  //웹 이미지 요청 경로
@@ -162,11 +162,12 @@ public class ArtistAdminServiceImpl implements ArtistAdminService{
 		
 		ProductImage img = new ProductImage();
 		
+		
 		img.setProductNo(productNo); 
 		
 		
 		img.setProductImageContent(contentPath);
-		img.setProductImageThumbnail(webPath);
+		img.setProductImageThumbnail(thumbnailPath);
 	
 
 		img.setProductImageRename(Util.fileRename(contentImg.getOriginalFilename()));
@@ -179,8 +180,8 @@ public class ArtistAdminServiceImpl implements ArtistAdminService{
 		result = mapper.insertImage(img);
 		
 		
-		img.getUploadFile().transferTo(new File(folderPath + img.getProductImageRename()));
-		img.getUploadFile().transferTo(new File(folderPath + img.getProductImageThumbnailRename()));
+		img.getUploadFile().transferTo(new File(contentfolderPath + img.getProductImageRename()));
+		img.getUploadFile().transferTo(new File(thumbnailfolderPath + img.getProductImageThumbnailRename()));
 		
 		return productNo;
 	}

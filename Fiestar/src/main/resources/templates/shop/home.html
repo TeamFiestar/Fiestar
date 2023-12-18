@@ -19,7 +19,7 @@
     <section class="homeMain">
 
       <section class="artist-shop-list-area">
-        <a th:href="@{/shop/home(artistGroupNo=${artistGroupNo} , cp=1  ) }" id="artist-shop-lists-all">전체</a>
+        <a th:href="@{/shop/home}" id="artist-shop-lists-all">전체</a>
         <th:block th:each=" artistGroup : ${artistList}" th:object="${artistGroup}">
           <a th:href="|/shop/home/*{artistGroupTitle}?artistGroupNo=*{artistGroupNo}|" id="artist-shop-lists">
             <img class="artist-main-logo" th:src="*{artistGroupProfile}">
@@ -73,6 +73,7 @@
 
   <script src="/js/shop/shopMain.js"></script>
   <script src="https://kit.fontawesome.com/f7459b8054.js" crossorigin="anonymous"></script>
+
   <script th:inline = "javascript">
     const message = /*[[${message}]]*/ "message";
     if(message != null) alert(message);

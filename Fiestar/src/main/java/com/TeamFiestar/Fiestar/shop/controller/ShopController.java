@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.TeamFiestar.Fiestar.member.model.dto.Member;
 import com.TeamFiestar.Fiestar.shop.model.dto.Product;
 import com.TeamFiestar.Fiestar.shop.model.dto.ProductImage;
 import com.TeamFiestar.Fiestar.shop.model.service.ShopService;
@@ -38,7 +40,8 @@ public class ShopController {
 	public String shopMain(Model model,
 							@RequestParam Map<String, Object> paramMap,
 							@RequestParam(value ="cp", required = false, defaultValue = "1") int cp,
-							@RequestParam(name="shopSearch", required = false, defaultValue = "") String shopSearch) {
+							@RequestParam(name="shopSearch", required = false, defaultValue = "") String shopSearch,
+							@SessionAttribute(value="loginMember", required = false) Member loginMember) {
 		
 		if(paramMap.get("shopSearch") == null) {
 			
@@ -72,7 +75,8 @@ public class ShopController {
 	public String artistGroupShop(Model model,
 									Map<String, Object> paramMap,
 									@RequestParam("artistGroupNo") int artistGroupNo,
-									@RequestParam(value ="cp", required = false, defaultValue = "1") int cp) {
+									@RequestParam(value ="cp", required = false, defaultValue = "1") int cp,
+									@SessionAttribute(value="loginMember", required = false) Member loginMember) {
 		
 		paramMap.put("artistGroupNo", artistGroupNo);
 		int shopCount = service.shopGroupCount(paramMap);
@@ -133,7 +137,7 @@ public class ShopController {
 			path = "shop/shopDetail";
 		}else {
 			path = "redirect:/shop/home";
-			ra.addFlashAttribute("message", "해당 상품이 존재하지않습니다");  //footer.html에서 출력
+			ra.addFlashAttribute("message", "해당 상품이 존재하지않습니다"); 
 		}
 		
 		return path;
