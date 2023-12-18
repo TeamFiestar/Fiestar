@@ -95,7 +95,7 @@
 		DELETE FROM CART WHERE CART_NO IN (${selectNo})
 	</delete>
 
-	<select id="selectPurchaseInfo" resultType="_int">
+	<select id="selectPurchaseInfo" parameterType="map">
 		
 	SELECT PURCHASE_NO, PURCHASE_PRICE, MEMBER_NO, PURCHASE_NAME, PURCHASE_ADDRESS, PUCHASE_PHONE_NUMBER, 
 		TO_CHAR(PURCHASE_DATE, 'YYYY/MM/DD HH24:MI:SS') PURCHASE_DATE

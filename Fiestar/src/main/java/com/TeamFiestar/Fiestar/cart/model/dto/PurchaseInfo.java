@@ -13,7 +13,7 @@ public class PurchaseInfo {
 	private int memberNo;
 	private String purchaseName;
 	private String purchaseAddress;
-	private int purchasePhoneNumber;
+	private String puchasePhoneNumber;
 	private String purchaseDate;
 	
 	
