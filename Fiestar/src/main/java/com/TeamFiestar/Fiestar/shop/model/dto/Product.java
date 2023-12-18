@@ -28,5 +28,7 @@ public class Product {
 
 	
 	private List<ProductImage> imageList;
+	
+	private List<ProductOption> productOptionList;
 
 }

@@ -21,6 +21,7 @@ import com.TeamFiestar.Fiestar.common.utility.Util;
 import com.TeamFiestar.Fiestar.mypage.dto.Pagination;
 import com.TeamFiestar.Fiestar.shop.model.dto.Product;
 import com.TeamFiestar.Fiestar.shop.model.dto.ProductImage;
+import com.TeamFiestar.Fiestar.shop.model.dto.ProductOption;
 import com.TeamFiestar.Fiestar.shop.model.excption.shopException;
 
 import lombok.RequiredArgsConstructor;
@@ -146,20 +147,33 @@ public class ArtistAdminServiceImpl implements ArtistAdminService{
 	
 	//상품 등록
 	@Override
-	public int insertGoods(Product product,String artistGroupTitle, MultipartFile contentImg, MultipartFile thumbnailImg) throws IllegalStateException, IOException {
+	public int insertGoods(Product product, MultipartFile contentImg, MultipartFile thumbnailImg) throws IllegalStateException, IOException {
 
 
-		int artistGroupNo = mapper.selectArtistGroupNo(artistGroupTitle);
+		int artistGroupNo = mapper.selectArtistGroupNo(product.getArtistGroupTitle());
 		product.setArtistGroupNo(artistGroupNo);
+		
 		int result = mapper.insertGoods(product);
+		
 		if(result == 0) {
 			return 0; 
 		}
 		
 		int productNo = product.getProductNo();
 		
-	
+		for (ProductOption productOption2 : product.getProductOptionList()) {
+			productOption2.setProductNo(productNo);
+		}
 		
+
+		int result2 = mapper.insertOption(product.getProductOptionList());
+		
+		if(result2 == 0) {
+			return 0; 
+		}
+		
+		
+	
 		ProductImage img = new ProductImage();
 		
 		

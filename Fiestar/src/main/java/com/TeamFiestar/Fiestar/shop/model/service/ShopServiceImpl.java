@@ -25,10 +25,6 @@ public class ShopServiceImpl implements ShopService{
 	private final ShopMapper mapper;
 	
 	
-
-	
-	
-	
 	//쇼피몰 메인페이지 전체 조회
 	@Override
 	public Map<String, Object> shopMain(int cp) {
@@ -48,20 +44,16 @@ public class ShopServiceImpl implements ShopService{
 		map.put("productList", productList);
 		map.put("artistList", artistList);
 		map.put("pagination", pagination);
+		map.put("shopCount", shopCount);
 		return map;
 	}
 	
-	//쇼핑몰 상품 전체 개수
-	@Override
-	public int shopCount() {
-		return mapper.shopCount();
-	}
 	
 	//쇼핑몰 검색 상품 조회
 	@Override
 	public Map<String, Object> searchList(Map<String, Object> paramMap, int cp) {
 		
-		int shopCount = mapper.shopCount();
+		int shopCount = mapper.shopSearchCount(paramMap);
 		
 		ShopPagination pagination = new ShopPagination(cp, shopCount);
 
@@ -77,20 +69,17 @@ public class ShopServiceImpl implements ShopService{
 		map.put("productList", productList);
 		map.put("artistList", artistList);
 		map.put("pagination", pagination);
+		map.put("shopCount", shopCount);
 		return map;
 	}
 	
-	//쇼핑몰 검색 상품 개수
-	@Override
-	public int shopSearchCount(Map<String, Object> paramMap) {
-		return mapper.shopSearchCount(paramMap);
-	}
+
 	
 	//아티스트 그룹별 상품 조회
 	@Override
 	public Map<String, Object> artistGroupShop(Map<String, Object> paramMap, int cp) {
 		
-		int shopCount = mapper.shopCount();
+		int shopCount = mapper.shopGroupCount(paramMap);
 		
 		ShopPagination pagination = new ShopPagination(cp, shopCount);
 
@@ -104,36 +93,58 @@ public class ShopServiceImpl implements ShopService{
 		map.put("productList", productList);
 		map.put("artistList", artistList);
 		map.put("pagination", pagination);
+		map.put("shopCount", shopCount);
 		return map;
 	}
 	
-	//아티스트 그룹별 상품 개수
-	@Override
-	public int shopGroupCount(Map<String, Object> paramMap) {
-		
-		return mapper.shopGroupCount(paramMap);
-	}
+	
 	
 	//상품 전체 조회 후 정렬
 	@Override
-	public List<Product> selectAllSort(Map<String, Object> paramMap) {
+	public List<Product> selectAllSort(Map<String, Object> paramMap, int cp) {
 		
-		return mapper.selectAllSort(paramMap);
+		int shopCount = mapper.shopCount();
+		
+		ShopPagination pagination = new ShopPagination(cp, shopCount);
+
+		int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
+		int limit = pagination.getLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		
+		return mapper.selectAllSort(paramMap, rowBounds);
 	}
 
 	
 	//그룹별 상품 조회 후 정렬
 	@Override
-	public List<Product> selectGroupSort(Map<String, Object> paramMap) {
+	public List<Product> selectGroupSort(Map<String, Object> paramMap, int cp) {
 		
-		return mapper.selectGroupSort(paramMap);
+		int shopCount = mapper.shopGroupCount(paramMap);
+		
+		ShopPagination pagination = new ShopPagination(cp, shopCount);
+
+		int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
+		int limit = pagination.getLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return mapper.selectGroupSort(paramMap,rowBounds);
 	}
 	
 	//상품 검색 조회 후 정렬
 	@Override
-	public List<Product> selectSearchSort(Map<String, Object> paramMap) {
+	public List<Product> selectSearchSort(Map<String, Object> paramMap, int cp) {
 		
-		return mapper.selectSearchSort(paramMap);
+		int shopCount = mapper.shopSearchCount(paramMap);
+		
+		ShopPagination pagination = new ShopPagination(cp, shopCount);
+
+		int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
+		int limit = pagination.getLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		
+		return mapper.selectSearchSort(paramMap, rowBounds);
 	}
 	
 	//상품 상세 조회
@@ -143,6 +154,9 @@ public class ShopServiceImpl implements ShopService{
 		
 		return mapper.shopDetail(productNo);
 	}
+	
+	
+
 	
 
 		

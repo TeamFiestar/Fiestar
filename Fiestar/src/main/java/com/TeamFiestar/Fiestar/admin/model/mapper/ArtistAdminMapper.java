@@ -11,6 +11,7 @@ import com.TeamFiestar.Fiestar.admin.model.dto.Purchase;
 import com.TeamFiestar.Fiestar.admin.model.dto.Report;
 import com.TeamFiestar.Fiestar.shop.model.dto.Product;
 import com.TeamFiestar.Fiestar.shop.model.dto.ProductImage;
+import com.TeamFiestar.Fiestar.shop.model.dto.ProductOption;
 
 @Mapper
 public interface ArtistAdminMapper {
@@ -36,5 +37,9 @@ public interface ArtistAdminMapper {
 	int insertGoods(Product product);
 
 	int insertImage(ProductImage img);
+
+	int insertOption(List<ProductOption> productOptionList);
+
+	
 
 }

@@ -9,7 +9,7 @@
 	
 	<select id="selectArtistGroupNo">
 		SELECT ARTIST_GROUP_NO 
-		FROM ARTIST_GROUP AG 
+		FROM ARTIST_GROUP
 		WHERE ARTIST_GROUP_TITLE = #{artistGroupTitle}
 	</select>
 	
@@ -91,6 +91,18 @@
 		VALUES(#{productNo},#{artistGroupNo},#{productName},#{productProduction},#{productPrice}, DEFAULT)
 	</insert>
 	
+	<!--옵션 등록-->
+	<insert id="insertOption">
+		INSERT INTO "PRODUCT_OPTION"
+		<foreach collection="list" item="p" separator="UNION">
+			SELECT NEXT_PRODUCT_OPTION_NO(),
+			#{p.productOptionName},
+			#{p.productOptionOrder}, 
+			#{p.productNo}
+		 FROM DUAL
+		</foreach>
+		
+	</insert>
 	
 	<!--이미지 업로드-->
 	<insert id="insertImage" parameterType="ProductImage">
@@ -101,6 +113,9 @@
 		VALUES(#{productImageNo},#{productImageContent},#{productImageRename},#{productImageOriginal},#{productImageOrder}, #{productNo}, #{productImageThumbnail},
 		#{productImageThumbnailRename})
 	</insert>
+	
+	
+	
 	
 	<!-- 주문 배송 개수 -->
 	<select id="orderListCount">
