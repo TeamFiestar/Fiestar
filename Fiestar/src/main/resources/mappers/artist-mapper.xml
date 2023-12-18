@@ -83,5 +83,23 @@
 		WHERE MEMBER_NO = #{memberNo}
 		AND ARTIST_GROUP_NO = #{artistGroupNo}
 	</select>
+	
+	<select id="profileMemberNo" resultType="_int">
+		SELECT MEMBER_NO FROM MEMBER
+		WHERE MEMBER_EMAIL = #{memberEmail}
+	</select>
+	
+	<insert id="ProfileUpdate">
+		INSERT INTO ARTIST
+		
+		<foreach collection="list" item="artist1" separator=" UNION ">
+			SELECT #{artist1.memberNo},
+					#{artist1.artistGroupNo}, 
+					#{artist1.artistName}, 
+					#{artist1.artistProfile}, 
+					#{artist1.memberEmail}
+			FROM DUAL
+		</foreach>
+	</insert>
 </mapper>
 

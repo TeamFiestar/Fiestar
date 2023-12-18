@@ -75,15 +75,16 @@ public class ArtistController {
 			@RequestParam("artistGroupLogo") MultipartFile artistGroupLogo,
 			@RequestParam("artistGroupIntroduce") String artistGroupIntroduce,
 			@RequestParam("artistProfileImg") List<MultipartFile> artistProfileImg,
-			@RequestParam("Name") String Name,
+			@RequestParam("Name") List<String> Name,
+			@RequestParam("email") List<String> email, 
 			@SessionAttribute("loginMember") Member loginMember,
-			ArtistGroup1 artistGroup, Artist artist,
+			ArtistGroup1 artistGroup, 
 			RedirectAttributes ra
 			) throws IllegalStateException, IOException {
 		int adminNo = loginMember.getMemberNo();
 		int result = service.artistUpdate(artistGroupTitle, artistGroupMain,
-				artistGroupLogo, artistGroupIntroduce, artistProfileImg, Name,
-				artist, artistGroup, adminNo);
+				artistGroupLogo, artistGroupIntroduce, artistProfileImg, Name, email,
+				 artistGroup, adminNo);
 		
 		if(result > 0) {
 			ra.addFlashAttribute("message", "변경 성공!!");

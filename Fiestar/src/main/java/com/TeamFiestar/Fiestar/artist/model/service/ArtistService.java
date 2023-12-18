@@ -19,7 +19,7 @@ public interface ArtistService {
 
 	int artistUpdate(String artistGroupTitle, MultipartFile artistGroupMain, MultipartFile artistGroupLogo,
 			String artistGroupIntroduce, List<MultipartFile> artistProfileImg, 
-			String name, Artist artist, ArtistGroup1 artistGroup, int adminNo) throws IllegalStateException, IOException;
+			List<String> name, List<String> email, ArtistGroup1 artistGroup, int adminNo) throws IllegalStateException, IOException;
 
 //	int update(String artistGroupTitle, int memberNo);
 

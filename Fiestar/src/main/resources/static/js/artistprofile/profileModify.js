@@ -135,15 +135,25 @@ function profilePlus() {
   const profileNameDiv = document.createElement("div");
   profileNameDiv.classList.add("profileName");
 
+  const profileNameDiv2 = document.createElement("div");
+  profileNameDiv2.classList.add("profileName");
+
   const artistNameInput = document.createElement("input");
   artistNameInput.setAttribute("type", "text");
   artistNameInput.setAttribute("placeholder", "이름을 작성해주세요");
   artistNameInput.setAttribute("name", "artistName");
 
+  const artistNameInput2 = document.createElement("input");
+  artistNameInput2.setAttribute("type", "text");
+  artistNameInput2.setAttribute("placeholder", "이메일을 작성해주세요");
+  artistNameInput2.setAttribute("name", "email");
+
   profileNameDiv.appendChild(artistNameInput);
+  profileNameDiv2.appendChild(artistNameInput2);
 
   profileContainer.appendChild(profileImageDiv);
   profileContainer.appendChild(profileNameDiv);
+  profileContainer.appendChild(profileNameDiv2);
 
   profileALl.appendChild(profileContainer);
 }
