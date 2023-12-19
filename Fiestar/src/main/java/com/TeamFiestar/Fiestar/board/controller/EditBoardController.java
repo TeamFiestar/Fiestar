@@ -84,7 +84,7 @@ public class EditBoardController {
 	}
 	
 	
-	@PostMapping("{artistGroupTitle}/feed/{boardNo:[0-9]+/update")
+	@PostMapping("{artistGroupTitle}/feed/{boardNo:[0-9]+}/update")
 	public String boardUpdate (
 			@PathVariable("artistGroupTitle") String artistGroupTitle,
 			@PathVariable("boardNo") int boardNo, Model model,
