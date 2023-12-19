@@ -71,28 +71,39 @@ public class EditBoardController {
 		return "redirect:/{artistGroupTitle}/feed";
 	}
 	
-	@GetMapping("{artistGroupTitle}/feed/{boardNo:[0-9]+}/update")
+	@GetMapping("{artistGroupTitle}/{boardNo:[0-9]+}/update")
 	public String updateBoardDetail(
 			@PathVariable("artistGroupTitle") String artistGroupTitle,
-			@PathVariable("boardNo") int boardNo, Model model) {
+			@PathVariable("boardNo") int boardNo, Model model,
+			RedirectAttributes ra) {
 		model.addAttribute("artistGroupTitle",artistGroupTitle);
 		
 		Board board = service.updateBoardDetail(boardNo);
 		model.addAttribute("board",board);
 		
-		return "board/boardUpdate";
+		return "artistHomepage/feedUpdate";
 	}
 	
 	
-	@PostMapping("{artistGroupTitle}/feed/{boardNo:[0-9]+}/update")
+	@PostMapping("{artistGroupTitle}/{boardNo:[0-9]+}/update")
 	public String boardUpdate (
 			@PathVariable("artistGroupTitle") String artistGroupTitle,
 			@PathVariable("boardNo") int boardNo, Model model,
-			Board updateBoard) {
+			Board board,
+			@RequestParam("images") List<MultipartFile> images,
+			RedirectAttributes ra) throws IllegalStateException, IOException {
 		
-		int result = service.updateBoard(updateBoard);
+		int result = service.updateBoard(board, images);
 		
-		return "redirect:/{artistGroupTitle}/feed/detail";
+		if(result > 0 ) {
+			 ra.addFlashAttribute("message","게시글 수정 성공");
+			 return "redirect:/{artistGroupTitle}/feed";
+		} else {
+			ra.addFlashAttribute("message", "게시글 수정 실패");
+			return "redirect:/";
+		}
+		
+		
 	}
 	
 	

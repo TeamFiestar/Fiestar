@@ -31,12 +31,11 @@ public class CommentController {
 	@GetMapping(value="comment", produces = "application/json")
 	public List<Comment> select(int boardNo, Model model, 
 			@RequestParam("boardParentCommentNo") int boardParentCommentNo,
-			@RequestParam("memberNo") int memberNo,
 			@SessionAttribute(value="loginMember", required = false) Member loginMember
 			){
 		
 		Map<String, Integer> map = new HashMap<>();
-		map.put("memberNo", memberNo);
+		map.put("memberNo", loginMember.getMemberNo());
 		map.put("boardNo", boardNo);
 		map.put("boardParentCommentNo", boardParentCommentNo);
 		
@@ -50,6 +49,8 @@ public class CommentController {
 				for(Comment vc : comment) {
 					map.put("commentNo", vc.getBoardCommentNo());
 					vc.setLikeClickComment(service.likeClick(map));
+					int likeClick = 0;
+					if(likeClick ==1) model.addAttribute("likeClick", "on");
 				}
 			}
 		}

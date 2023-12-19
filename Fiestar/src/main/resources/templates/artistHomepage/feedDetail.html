@@ -26,8 +26,8 @@
                                 </a>
                                 <!-- <th:block th:if="${session.loginMember != null and session.loginMember.memberNo == Board.memberNo}"> -->
                                   <!-- <th:block th:if="${session.loginMember != null and session.loginMember.memberNo == board.memberNo}"> -->
-                                  <a href="#">
-                                      <button id="updateBtn">수정하기</button>
+                                  <a >
+                                      <button id="updateBtn" data-target="feedUpdate" onclick="uOpenModal()">수정하기</button>
                                   </a>
                                   <a>
                                     <form action="" id="modal-form" method="post">
@@ -96,7 +96,7 @@
   
                     <div class="comment-like-area">
 
-                      <i class="fa-heart" th:classappend="${likeComment} ? fa-solid : fa-regular" id="likeImg" style="color: #7743DB; margin-top: 10px; font-size: 20px;" ></i> <span id="commentLikeCount" style="margin-left:3px; font-size: 17px;" >234</span>
+                      <i class="fa-heart" th:classappend="${likeClick} ? fa-solid : fa-regular" id="likeImg2" style="color: #7743DB; margin-top: 10px; font-size: 20px;" ></i> <span id="commentLikeCount" style="margin-left:3px; font-size: 17px;" >234</span>
                       <i class="fa-regular fa-comment fa-xl" style="color: #7743DB; margin-left: 20px; font-size: 20px;"></i>
                     </div>
   

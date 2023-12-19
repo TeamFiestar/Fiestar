@@ -12,13 +12,13 @@
                javaType="java.util.ArrayList"
                ofType="BoardImg" />	
                
-               
+     <!--          
        <collection property="commentList"
 			select="selectCommentList"
-			column="BOARD_NO"
+			column="boardNo=BOARD_NO, memberNo=MEMBER_NO"
 			javaType="java.util.ArrayList"
 			ofType="Comment"
-			/>
+			/>-->
            
 	</resultMap>
 	
@@ -199,6 +199,14 @@
 			         ELSE TO_CHAR(BOARD_COMMENT_ENROLL_DATE, 'YYYY-MM-DD')
 		      	END BOARD_COMMENT_ENROLL_DATE	
 	      	]]>
+	      	, (SELECT COUNT(*) 
+	      		FROM BOARD_COMMENT_LIKE A
+			 	WHERE A.BOARD_COMMENT_NO = "BOARD_COMMENT".BOARD_COMMENT_NO
+			 	AND MEMBER_NO = #{memberNo}) LIKE_CLICK_COMMENT
+			 	
+			,(SELECT COUNT(*) FROM "BOARD_COMMENT_LIKE" B
+				WHERE B.BOARD_COMMENT_NO = "BOARD_COMMENT".BOARD_COMMENT_NO) LIKE_COUNT_COMMENT
+			 
 			FROM "BOARD_COMMENT"
 			JOIN MEMBER USING(MEMBER_NO)
 			WHERE BOARD_NO = #{boardNo}) C

@@ -90,6 +90,11 @@
 	</select>
 	
 	
+	<select id="selectCommentLikeCount" resultType="_int">
+		SELECT COUNT(*) FROM "BOARD_COMMENT_LIKE"
+		WHERE BOARD_COMMENT_NO = #{boardCommentNo}
+	</select>
+	
 	
 	
 </mapper>

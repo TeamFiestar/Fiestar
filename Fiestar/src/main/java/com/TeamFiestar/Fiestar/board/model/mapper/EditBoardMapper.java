@@ -20,4 +20,9 @@ public interface EditBoardMapper {
 
 	int updateBoard(Board updateBoard);
 
+	void boardImgInsert(BoardImg img);
+
+	int updateBoardImg(BoardImg img);
+
+
 }
