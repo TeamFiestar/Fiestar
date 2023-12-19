@@ -8,9 +8,11 @@ import java.util.Map;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.w3c.dom.stylesheets.LinkStyle;
+
 import com.TeamFiestar.Fiestar.shop.model.dto.ArtistGroup;
 import com.TeamFiestar.Fiestar.shop.model.dto.Product;
-
+import com.TeamFiestar.Fiestar.shop.model.dto.ProductOption;
 import com.TeamFiestar.Fiestar.shop.model.dto.ShopPagination;
 
 import com.TeamFiestar.Fiestar.shop.model.mapper.ShopMapper;
@@ -147,13 +149,22 @@ public class ShopServiceImpl implements ShopService{
 		return mapper.selectSearchSort(paramMap, rowBounds);
 	}
 	
+	
 	//상품 상세 조회
 	@Override
-	public Product shopDetail(int productNo) {
+	public Map<String, Object> shopDetail(int productNo) {
 		
+		List<ProductOption> optionList = mapper.selectOption(productNo); //옵션을 리스트 형태로 조회
 		
-		return mapper.shopDetail(productNo);
+		Product detail = mapper.shopDetail(productNo); //디테일에 필요한 요소 조회
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("optionList", optionList);
+		map.put("detail", detail);
+		
+		return map;
 	}
+	
 	
 	
 

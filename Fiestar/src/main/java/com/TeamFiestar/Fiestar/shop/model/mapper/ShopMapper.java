@@ -9,6 +9,7 @@ import org.apache.ibatis.session.RowBounds;
 import com.TeamFiestar.Fiestar.shop.model.dto.ArtistGroup;
 import com.TeamFiestar.Fiestar.shop.model.dto.Product;
 import com.TeamFiestar.Fiestar.shop.model.dto.ProductImage;
+import com.TeamFiestar.Fiestar.shop.model.dto.ProductOption;
 
 
 
@@ -51,6 +52,10 @@ public interface ShopMapper {
 
 	//상품 상세 조회
 	Product shopDetail(int productNo);
+
+	List<ProductOption> selectOption(int productNo);
+
+	
 
 
 

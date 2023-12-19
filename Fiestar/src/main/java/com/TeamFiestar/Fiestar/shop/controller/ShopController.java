@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,6 +23,7 @@ import com.TeamFiestar.Fiestar.shop.model.service.ShopService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @RequestMapping("shop")
@@ -125,7 +127,9 @@ public class ShopController {
 								Model model, Product product,
 								RedirectAttributes ra) {
 		
-		Product prod = service.shopDetail(productNo);
+		
+		Map<String, Object> prod = service.shopDetail(productNo);
+		
 		String path = null;
 		
 		if(prod != null) {
@@ -138,6 +142,24 @@ public class ShopController {
 		
 		return path;
 	}
+	
+	
+	/**장바구니에 담기
+	 * @return
+	 */
+	@PostMapping("{productNo}/cart")
+	public String cart(RedirectAttributes ra,
+						@SessionAttribute(value="loginMember", required = false) Member loginMember,
+						Product product) {
+		
+		return null;
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	@GetMapping("noticeDetail")

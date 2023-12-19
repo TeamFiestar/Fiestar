@@ -126,7 +126,7 @@ public class ArtistAdminContoller {
 	 *  */
 	@PostMapping("{artistGroupTitle}/goods")
 	public String insertGoods(RedirectAttributes ra,
-								@ModelAttribute Product product ,
+								@ModelAttribute Product product,
 								@RequestParam("contentImg") MultipartFile contentImg,
 								@RequestParam ("thumbnailImg") MultipartFile thumbnailImg) throws IllegalStateException, IOException{
 		

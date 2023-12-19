@@ -187,7 +187,7 @@ public class ArtistAdminServiceImpl implements ArtistAdminService{
 		img.setProductImageRename(Util.fileRename(contentImg.getOriginalFilename()));
 		img.setProductImageThumbnailRename(Util.fileRename(thumbnailImg.getOriginalFilename()));
 		
-		
+		 
 		img.setUploadFile(contentImg);
 		img.setUploadFile(thumbnailImg);
 		
