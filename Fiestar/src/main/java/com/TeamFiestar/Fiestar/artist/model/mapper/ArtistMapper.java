@@ -47,4 +47,6 @@ public interface ArtistMapper {
 
 	int profileMemberNo(String string);
 
+	List<ArtistNotice> artistNotice(int artistGroupNo);
+
 }

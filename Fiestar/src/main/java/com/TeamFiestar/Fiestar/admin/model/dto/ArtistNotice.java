@@ -20,5 +20,7 @@ public class ArtistNotice {
 	
 	private int key;
 	private String noticeSearch;
+	
+	private String artistGroupTitle;
 
 }
