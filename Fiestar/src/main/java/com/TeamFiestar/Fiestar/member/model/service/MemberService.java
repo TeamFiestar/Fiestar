@@ -17,5 +17,18 @@ public interface MemberService {
 	int signup(Member inputMember);
 
 	Member quickLogin(String memberEmail);
+	
+	
+	/** 이메일 중복 체크
+	 * @param email
+	 * @return
+	 */
+	int checkEamil(String email);
+
+	/** 닉네임 중복 체크
+	 * @param nickname
+	 * @return
+	 */
+	int checkNickname(String nickname);
 
 }

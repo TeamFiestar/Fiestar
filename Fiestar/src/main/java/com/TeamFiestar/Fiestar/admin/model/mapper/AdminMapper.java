@@ -77,6 +77,8 @@ public interface AdminMapper {
 
 	int orderListCount();
 
+	int checkGroupUpdate(int memberNo);
+
 	
 
 

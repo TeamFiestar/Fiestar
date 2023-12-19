@@ -41,4 +41,10 @@ public interface ArtistMapper {
 
 	int artistProfileUpdate(ArtistGroup1 artistGroup);
 
+	int checkSubscribe(Map<String, Object> checkMap);
+
+	int ProfileUpdate(List<Artist> artistList);
+
+	int profileMemberNo(String string);
+
 }
