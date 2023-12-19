@@ -279,8 +279,13 @@ function generateComment(boardNo3) {
 
       const heartComment = document.createElement("i");
       heartComment.className = "fa-heart";
-      if(comment.likeClickComment == 0 ) heartComment.classList.add("fa-regular");
-      else heartComment.classList.add("fa-solid");
+      if (comment.likeClickComment == 1){
+        heartComment.classList.add("fa-solid");
+        heartComment.style.color="#7743DB";
+      }
+      else{
+        heartComment.classList.add("fa-regular");
+      } 
 
       heartComment.setAttribute("onclick", "likeComment(this, " +comment.boardCommentNo + ")" );
       heartComment.setAttribute("comment-no", comment.boardCommentNo);
@@ -498,45 +503,73 @@ function insertChildComment(boardParentCommentNo, btn) {
 }
 
 
-function likeComment(btn, boardCommentNo) {
- 
-  let check;
 
- 
+function likeComment(btn, boardCommentNo) {
+
+  let likeClick;
+
+
   if (btn.classList.contains("fa-regular")) {
-    check = 0;
+    likeClick = 0;
   } else {
-    check = 1;
+    likeClick = 1;
   }
 
-  const data = { 
-    check: check,
-    boardParentCommentNo : boardCommentNo,
+  const data = {
+    likeClick: likeClick,
+    boardCommentNo: boardCommentNo,
   };
 
+  console.log(data);
 
+  if (likeClick == 0) {
 
-  fetch("/commentLike", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  })
-    .then((resp) => resp.text())
-    .then((count) => {
-      if (count == -1) {
-        console.log("좋아요 실패");
-        return;
-      }
-      btn.classList.toggle("fa-regular");
-      btn.classList.toggle("fa-solid");
-
-      btn.nextElementSibling.innerText = count;
+    fetch("/commentLike", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
     })
-    .catch((e) => {
-      console.log(e);
-    });
-}
+      .then((resp) => resp.text())
+      .then((count) => {
+        if (count == -1) {
+          console.log("좋아요 실패");
+          return;
+        }
+        btn.classList.toggle("fa-solid");
+        btn.classList.toggle("fa-regular");
+        btn.style.color = "#7743DB";
 
+
+        btn.nextElementSibling.innerText = count;
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+
+  } else {
+
+    fetch("/deleteLike", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then((resp) => resp.text())
+      .then((count) => {
+        if (count == -1) {
+          console.log("좋아요 실패");
+          return;
+        }
+        btn.classList.toggle("fa-solid");
+        btn.classList.toggle("fa-regular");
+
+        btn.nextElementSibling.innerText = count;
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+
+  }
+}
 
 
 

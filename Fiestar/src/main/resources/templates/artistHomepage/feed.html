@@ -41,8 +41,8 @@
                 <div id="postingSection" data-target="feedWrite" onclick="wopenModal()">
                     <img th:if="${session.loginMember.memberProfile == null}" th:src="#{user.default.image}" style="width:30px; height:30px; border-radius: 50%;"></img>
                     <img th:unless="${session.loginMember.memberProfile == null}" th:src="${session.loginMember.memberProfile}" style="width:30px ;  height:30px; border-radius: 50%"></img>
-                    <div th:text="|${artistGroupTitle}에 포스트를 남겨보세요.|" style="margin-left: 10px;">피에스타에 포스트를 남겨보세요.</div>
-                    <i class="fa-solid fa-image fa-2xl" ></i>
+                    <div th:text="|${artistGroupTitle}에 포스트를 남겨보세요.|" style="margin-left: 10px; color: gray;">피에스타에 포스트를 남겨보세요.</div>
+                    <i class="fa-solid fa-image fa-2xl" style="color: black;" ></i>
                 </div>
             </div>
 
