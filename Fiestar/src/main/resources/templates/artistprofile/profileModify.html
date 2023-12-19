@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <!DOCTYPE html>
+  <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,12 +15,8 @@
     <th:block th:replace="~{common/artistPageHeader}"></th:block>
 
     <div class="all">
-      <form
-        th:action="|/artistMember/${artistGroupTitle}/update|"
-        method="POST"
-        id="profileFrm"
-        enctype="multipart/form-data"
-      >
+      <form th:action="|/artistMember/${artistGroupTitle}/update|" method="POST" id="profileFrm"
+        enctype="multipart/form-data">
         <div class="profiletxt">
           <h3>아티스트 프로필 배경화면</h3>
         </div>
@@ -27,46 +24,22 @@
           <div class="mainImg">
             <label for="imageInput">
               <div class="btn-upload1">
-                <img
-                  alt="아티스트 배경 이미지"
-                  id="artistGroupMainimg"
-                  style="object-fit: cover"
-                  class="preview"
-                  src=""
-                />
+                <img alt="아티스트 배경 이미지" id="artistGroupMainimg" style="object-fit: cover" class="preview" src="" />
               </div>
             </label>
-            <input
-              type="file"
-              name="artistGroupMainimg"
-              id="imageInput"
-              class="imageInput"
-              accept="image/*"
-              style="display: none"
-            />
+            <input type="file" name="artistGroupMainimg" id="imageInput" class="imageInput" accept="image/*"
+              style="display: none" />
           </div>
 
           <div class="artistIntro">
             <div class="artistIntro-name">
               <label for="logoInput">
                 <div class="btn-upload2">
-                  <img
-                    alt="아티스트 로고 이미지"
-                    id="artistGroupLogoimg"
-                    style="object-fit: cover"
-                    class="preview"
-                    src=""
-                  />
+                  <img alt="아티스트 로고 이미지" id="artistGroupLogoimg" style="object-fit: cover" class="preview" src="" />
                 </div>
               </label>
-              <input
-                type="file"
-                name="artistGroupLogoimg"
-                id="logoInput"
-                class="imageInput"
-                accept="image/*"
-                style="display: none"
-              />
+              <input type="file" name="artistGroupLogoimg" id="logoInput" class="imageInput" accept="image/*"
+                style="display: none" />
             </div>
           </div>
 
@@ -75,11 +48,92 @@
           </div>
           <div class="artistIntro-content">
             <label for="content"></label>
-            <textarea
-              class="form-control"
-              id="content"
-              name="artistGroupIntroduce"
-            ></textarea>
+            <textarea class="form-control" id="content" name="artistGroupIntroduce"></textarea>
+          </div>
+        </div>
+
+        <div class="profiletxt">
+          <h3>프로필 사진</h3>
+        </div>
+
+        <div class="profileALl">
+          <div class="profileImg">
+            <div class="profileImage">
+              <label for="file">
+                <div class="btn-upload3">
+                  <h2>+</h2>
+                </div>
+              </label>
+              <input type="file" name="file" id="file">
+            </div>
+            <div class="profileName">
+              <input type="text" placeholder="이름을 작성해주세요">
+            </div>
+          </div>
+          <div class="profileImg">
+            <div class="profileImage">
+              <label for="file">
+                <div class="btn-upload3">
+                  <h2>+</h2>
+                </div>
+              </label>
+              <input type="file" name="file" id="file">
+            </div>
+            <div class="profileName">
+              <input type="text" placeholder="이름을 작성해주세요">
+            </div>
+          </div>
+
+          <div class="profileImg">
+            <div class="profileImage">
+              <label for="file">
+                <div class="btn-upload3">
+                  <h2>+</h2>
+                </div>
+              </label>
+              <input type="file" name="file" id="file">
+            </div>
+            <div class="profileName">
+              <input type="text" placeholder="이름을 작성해주세요">
+            </div>
+          </div>
+
+          <div class="profileImg">
+            <div class="profileImage">
+              <label for="file">
+                <div class="btn-upload3">
+                  <h2>+</h2>
+                </div>
+              </label>
+              <input type="file" name="file" id="file">
+            </div>
+            <div class="profileName">
+              <input type="text" placeholder="이름을 작성해주세요">
+            </div>
+          </div>
+
+          <div class="profileImg">
+            <div class="profileImage">
+              <label for="file">
+                <div class="btn-upload3">
+                  <h2>+</h2>
+                </div>
+              </label>
+              <input type="file" name="file" id="file">
+            </div>
+            <div class="profileName">
+              <input type="text" placeholder="이름을 작성해주세요">
+            </div>
+          </div>
+
+          <div class="plus">
+            <h1>+</h1>
+          </div>
+
+          <div class="profileImg">
+            <div class="profileImage">
+              <button class="plusBtn"></button>
+            </div>
           </div>
         </div>
 
@@ -91,13 +145,11 @@
 
     <th:block th:replace="~{common/footer}"></th:block>
     <script src="/js/artistprofile/profileModify.js"></script>
-    <script
-      src="https://kit.fontawesome.com/2434a52ecc.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/2434a52ecc.js" crossorigin="anonymous"></script>
 
     <script>
       const artistGroupTitle = /*[[${artistGroupTitle}]]*/ "아티스트 그룹 이름";
     </script>
   </body>
-</html>
+
+  </html>

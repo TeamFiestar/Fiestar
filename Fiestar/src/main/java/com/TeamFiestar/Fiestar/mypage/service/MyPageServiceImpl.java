@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.TeamFiestar.Fiestar.admin.model.dto.SiteNotice;
 import com.TeamFiestar.Fiestar.board.model.dto.Board;
 import com.TeamFiestar.Fiestar.board.model.dto.Comment;
 import com.TeamFiestar.Fiestar.common.utility.Util;
@@ -108,28 +109,7 @@ public class MyPageServiceImpl implements MyPageService {
 		return map;
 	}
 
-	// 구매목록
-	@Override
-	public Map<String, Object> myPurchaseList(Member loginMember, int cp) {
 
-		int listCount = mapper.purchaseCount(loginMember);
-
-		Pagination pagination = new Pagination(cp, listCount);
-
-		int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
-		int limit = pagination.getLimit();
-
-		RowBounds rowBounds = new RowBounds(offset, limit);
-
-		List<PurchaseList> purchaseList = mapper.myPurchaseList(loginMember, rowBounds);
-
-		Map<String, Object> map = new HashMap<>();
-		map.put("pagination", pagination);
-		map.put("purchaseList", purchaseList);
-
-		return map;
-
-	}
 
 	// 회원 탈퇴
 	@Override
@@ -215,7 +195,14 @@ public class MyPageServiceImpl implements MyPageService {
 		}
 
 		// 주소 가공
-		updateMember.setMemberAddress(String.join("^^^", MemberAddress));
+		if(updateMember.getMemberAddress().equals(",,")) {
+			updateMember.setMemberAddress(null); // null로 변환
+		
+		} else { // 주소를 입력한 경우 
+			// 배열 -> 문자열로 합쳐서 inputMember에 추가
+			String address = String.join("^^^", MemberAddress);
+			updateMember.setMemberAddress(address);
+		}
 
 		// 배경이미지 변경
 		String backup = loginMember.getMemberBackImage();
@@ -243,4 +230,35 @@ public class MyPageServiceImpl implements MyPageService {
 		return result;
 
 	}
+	
+	// 공지사항 조회
+	@Override
+	public Map<String, Object> siteNotice(int cp) {
+		
+		int listCount = mapper.nocticeCount();
+
+		Pagination pagination = new Pagination(cp, listCount);
+
+		int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
+		int limit = pagination.getLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, limit);
+
+		List<SiteNotice> siteNoticeList = mapper.siteNoticeList(rowBounds);
+
+		Map<String, Object> map = new HashMap<>();
+		map.put("pagination", pagination);
+		map.put("siteNoticeList", siteNoticeList);
+
+		return map;
+	
+	}
+	
+	
+	// 공지사항 상세 조회
+	@Override
+	public String selectSiteNotice(Map<String, Object> map) {
+		return mapper.selectSiteNotice(map);
+	}
+	
 }

@@ -30,13 +30,12 @@ public class ArtistProfileController {
 
 
 	
-	// 아티스트 프로필 수정 화면 전환
+//	 아티스트 프로필 수정 화면 전환
 //	@GetMapping("{artistGroupTitle}/profileModify")
 //	public String updateProfile(@PathVariable("artistGroupTitle") String artistGroupTitle, Model model) {
 //		
 //		Map<String, Object> map = new HashMap<>();
 //		map.put("artistGroupTitle", artistGroupTitle);
-//		
 //
 //		return "artistprofile/profileModify";
 //	
