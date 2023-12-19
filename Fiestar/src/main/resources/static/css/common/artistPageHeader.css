@@ -105,3 +105,8 @@ header article {
   justify-content: center;
   align-items: center;
 } 
+
+header .login{
+  font-size: 20px;
+
+}

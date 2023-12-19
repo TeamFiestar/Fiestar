@@ -8,7 +8,7 @@
 /* 모든 입력이 유효성 검사가 진행 되었는지 체크할 객체를 생성 */
 const checkObj = {
     "memberEmail" : false,
-    "authKey" : false,
+    "authKey" : true,
     "memberPw" : false,
     "memberPwConfirm" : false,
     "memberNickname" : false,
@@ -49,7 +49,7 @@ memberEmail.addEventListener("input", () => {
 
     // 입력 받은 이메일이 정규식과 일치하는 경우
     if(regEx.test(memberEmail.value) ){
-        fetch("/member/checkNickname?nickname="+memberEmail.value)
+        fetch("/member/checkEmail?email="+memberEmail.value)
         .then( response => response.text() )
         .then( result => {
     
@@ -174,6 +174,9 @@ checkAuthKeyBtn.addEventListener("click", function(){
         /* fetch API */
         const obj = {"inputKey":authKey.value, "email":tempEmail}
 
+        console.log(authKey.value);
+        console.log(tempEmail);
+
         fetch("/email/checkAuthKey",  {
             method : "POST",
             headers : {"Content-Type" : "application/json"},
@@ -249,6 +252,9 @@ memberPw.addEventListener("input", () => {
         // 비밀번호가 유효하게 작성된 상태에서
         // 비밀번호 확인이 입력되어 있을 때
         else{
+            pwMessage.innerText = "유효한 비밀번호 형식입니다";
+            pwMessage.classList.add("confirm");
+            pwMessage.classList.remove("error");
             // 비밀번호 == 비밀번호 확인  (같을 경우)
             if(memberPw.value == memberPwConfirm.value){
               pwConfirmMessage.innerText = "비밀번호가 일치합니다";
@@ -359,10 +365,21 @@ memberNickname.addEventListener("input", () => {
 
 
 
-/* 전화번호 유효성 검사 */
-const memberAddress =document.getElementById("memberAddress");
-const memberAddressDetail =document.getElementById("memberAddressDetail");
+/* 주소 유효성 검사 */
+const memberAddress = document.getElementById("memberAddress");
+const memberAddressDetail = document.getElementById("memberAddressDetail");
 const addrMessage = document.getElementById("addrMessage");
+
+memberAddress.addEventListener('input', () => {
+
+    if(memberAddress.value.length == 0 && memberAddressDetail.value.length == 0){
+        checkObj.memberAddress = false;
+    }
+    else{
+        checkObj.memberAddress = true;
+    }
+
+});
 
 
 
@@ -389,7 +406,7 @@ document.getElementById("signUpFrm").addEventListener("submit", e => {
 
                 case "memberNickname" : str = "닉네임이 유효하지 않습니다"; break;
 
-                case "memberAddress" : str = "전화번호가 유효하지 않습니다"; break;
+                case "memberAddress" : str = "주소가 입력되지 않았습니다"; break;
 
                 case "authKey" : str = "인증번호가 유효하지 않습니다"; break;
             }
