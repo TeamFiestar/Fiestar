@@ -306,6 +306,16 @@ const chattingJoin = () => {
 
 const inputChat = document.getElementById('chatting-input');
 
+// 엔터 처리
+const chattingInput = document.getElementById('chatting-input');
+chattingInput.addEventListener('keyup', (e) => {
+  if(e.key === 'Enter') {
+    e.preventDefault();
+    sendMessage();
+  }
+})
+
+
 const sendMessage = () => {
   if (!chattingSock){
     alert("방송이 시작되지 않았습니다");

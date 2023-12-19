@@ -8,6 +8,7 @@ import javax.xml.stream.events.Comment;
 import org.springframework.stereotype.Service;
 
 import com.TeamFiestar.Fiestar.admin.model.dto.Report;
+import com.TeamFiestar.Fiestar.admin.model.mapper.ArtistAdminMapper;
 import com.TeamFiestar.Fiestar.media.model.dto.MediaComment;
 import com.TeamFiestar.Fiestar.media.model.mapper.MediaCommentMapper;
 
@@ -19,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 public class MediaCommentServiceImpl implements MediaCommentService{
 
 	private final MediaCommentMapper mapper;
+	private final ArtistAdminMapper artistAdminMapper;
 	
 	@Override
 	public int inputComment(MediaComment inputComment) {

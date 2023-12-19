@@ -29,8 +29,8 @@
       <div class="modalContent">
         <div class="modal-sub">모달 창 입니다.</div>
         <div class="modal-btn-area">
-          <button class="modal-btn modal-btn-close" onclick="modalClose()">닫기</button>
-          <button class="modal-btn modal-btn-confirm" onclick="modalClose()">신고하기</button>
+          <button class="modal-btn modal-btn-close" id="" onclick="modalClose()">닫기</button>
+          <button class="modal-btn modal-btn-confirm" id="reportBtn" onclick="modalClose()">신고하기</button>
         </div>
       </div>
     </div>
@@ -101,7 +101,7 @@
   
                       <div class="comment-profile">
                         <img class="delete-cross" src="/img/close_ring.png" th:onclick="|deleteModalOpen(*{mediaCommentNo})|"/>
-                        <img class="report-img" src="/img/siren.png" onclick="reportSubmit()"/>
+                        <img class="report-img" src="/img/siren.png" th:onclick="|reportOpen(*{memberNo},*{mediaCommentNo}, 'mediaComment')|"/>
                       </div>
   
                     </div>
