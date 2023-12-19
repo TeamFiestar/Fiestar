@@ -458,8 +458,7 @@ main{
 }
 
 .div-wrapper .comment-input {
-  height: 40px;
-  max-height: 100px;
+  max-height: 40px;
   width: 220px;
   background-color: #414141;
   border: 0;
@@ -467,10 +466,15 @@ main{
   justify-content: center;
   font-size: 15px;
   padding: 10px;
-  display: inline-block;
+  display: flex;
   border-radius: 25px;
   resize: none;
-  overflow: hidden;
+
+
+  overflow: hidden; /* 스크롤바 숨기기 */
+  resize: none; /* textarea 크기 조절 비활성화 */
+  height: auto; /* 높이 자동 조절 */
+  word-wrap: break-word; /* 단어가 textarea의 가로 너비를 초과하면 줄바꿈 */
 }
 
 .div-wrapper .comment-input-btn {

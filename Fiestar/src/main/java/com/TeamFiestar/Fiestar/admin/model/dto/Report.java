@@ -24,6 +24,7 @@ public class Report {
 	private String reportTargetEmail;
 	private String reportTargetNickname;
 	private int artistGroupNo;
+	private String artistGroupTitle;
 	
 	private int key;
 	private String reportSearch;

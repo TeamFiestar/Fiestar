@@ -74,6 +74,7 @@ public class MediaCommentController {
 	}
 	
 	@PostMapping("insertReport")
+	@ResponseBody
 	public int insertReport(@RequestBody Report report) {
 		return service.insertReport(report);
 	}
