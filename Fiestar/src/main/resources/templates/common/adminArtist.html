@@ -1,3 +1,6 @@
+<script th:inline="javascript">
+  const message = /*[[${message}]]*/ "아티스트 그룹 이름";
+</script>
 <div>
   <div class="sidebar">
     <aside>
@@ -18,7 +21,11 @@
             <li>
               주문 배송 관리
               <ul>
-                <li><a th:href="@{/artistAdmin/{artistGroupTitle}/order(artistGroupTitle=${artistGroupTitle})}" id="a">배송 조회</a></li>
+                <li>
+                  <a th:href="@{/artistAdmin/{artistGroupTitle}/order(artistGroupTitle=${artistGroupTitle})}" id="a"
+                    >배송 조회</a
+                  >
+                </li>
               </ul>
             </li>
           </ul>
@@ -35,7 +42,9 @@
               신고 관리
               <ul>
                 <li>
-                  <a th:href="@{/artistAdmin/{artistGroupTitle}/report(artistGroupTitle=${artistGroupTitle})}"id="a">게시글 신고</a>
+                  <a th:href="@{/artistAdmin/{artistGroupTitle}/report(artistGroupTitle=${artistGroupTitle})}" id="a"
+                    >게시글 신고</a
+                  >
                 </li>
               </ul>
             </li>
@@ -58,10 +67,14 @@
               아티스트 공지사항
               <ul id="sidebar-sublist">
                 <li>
-                  <a th:href="@{/artistAdmin/{artistGroupTitle}/notice(artistGroupTitle=${artistGroupTitle})}" id="a">아티스트 공지사항 목록</a>
+                  <a th:href="@{/artistAdmin/{artistGroupTitle}/notice(artistGroupTitle=${artistGroupTitle})}" id="a"
+                    >아티스트 공지사항 목록</a
+                  >
                 </li>
                 <li>
-                  <a th:href="@{/artistAdmin/{artistGroupTitle}/noticeAdd(artistGroupTitle=${artistGroupTitle})}" id="a">아티스트 공지사항 등록</a>
+                  <a th:href="@{/artistAdmin/{artistGroupTitle}/noticeAdd(artistGroupTitle=${artistGroupTitle})}" id="a"
+                    >아티스트 공지사항 등록</a
+                  >
                 </li>
               </ul>
             </li>

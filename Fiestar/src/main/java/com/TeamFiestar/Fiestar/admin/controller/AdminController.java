@@ -128,15 +128,21 @@ public class AdminController {
 		if(result>0) {
 			ra.addFlashAttribute("message", "등록 성공");
 			return "redirect:/";
-		}else { ra.addFlashAttribute("message", "등록 실패");
+		}else { 
+			ra.addFlashAttribute("message", "등록 실패");
 			return "redirect:regi";
 		}
 	}
 	
 	@GetMapping("artistGroupUpdate")
-	public String artistGroupUpdate(Model model, @SessionAttribute("loginMember") Member loginMember) {
+	public String artistGroupUpdate(Model model, @SessionAttribute("loginMember") Member loginMember, RedirectAttributes ra) {
 		ArtistGroup1 artistGroup = service.artistGroupUpdate(loginMember.getMemberNo());
 		model.addAttribute("artistGroup", artistGroup);
+		
+		if(artistGroup == null) {
+			ra.addFlashAttribute("message", "등록된 아티스트 그룹이 없습니다.");
+			return "redirect:regi";
+		}else
 		return "admin/artistGroupUpdate";
 	}
 	
