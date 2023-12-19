@@ -60,10 +60,11 @@
         </form>
       </div>
     </main>
+    <script th:inline="javascript">
+      const memberNo = /*[[${session.loginMember?.memberNo}]]*/ "회원 번호";
+      // const message = /*[[${message}]]*/ "아티스트 그룹 이름";
+      const previewList = document.querySelectorAll("img.preview");
+    </script>
     <script src="/js/admin/artistRegi.js"></script>
   </body>
 </html>
-
-<script th:inline="javascript">
-  const memberNo = /*[[${session.loginMember?.memberNo}]]*/ "회원 번호";
-</script>

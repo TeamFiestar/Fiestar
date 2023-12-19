@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.TeamFiestar.Fiestar.admin.model.dto.ArtistNotice;
 import com.TeamFiestar.Fiestar.admin.model.dto.SiteNotice;
 import com.TeamFiestar.Fiestar.admin.model.service.AdminAjaxService;
+import com.TeamFiestar.Fiestar.admin.model.service.AdminService;
 import com.TeamFiestar.Fiestar.board.model.dto.Board;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
@@ -32,7 +33,7 @@ import lombok.RequiredArgsConstructor;
 public class AdminAjaxController {
 
 	private final AdminAjaxService service;
-	
+	private final AdminService adminService;
 	
 	@GetMapping("selectBoard")
 	@ResponseBody
@@ -86,6 +87,21 @@ public class AdminAjaxController {
 		}
 	}
 	
+	@GetMapping("selectSubscribeMemberAjax")
+	@ResponseBody
+	public Map<String, Object> selectSubscribeMemberAjax(Model model,Member member,
+			@RequestParam(value="cp", required = false, defaultValue = "1") int cp,
+			@RequestParam Map<String, Object> paramMap,
+			@SessionAttribute("loginMember") Member loginMember){
+		int memberNo = loginMember.getMemberNo();
+		if(paramMap.get("key") == null && paramMap.get("query") == null) {
+			Map<String, Object> map = adminService.subscribeMember(member,cp, memberNo);
+			return map;
+		}else {
+			Map<String, Object> map = adminService.searchSubscribe(paramMap,cp,memberNo);
+			return map;
+		}
+	}
 	
 	@PutMapping("changeAuthority")
 	@ResponseBody
@@ -129,8 +145,9 @@ public class AdminAjaxController {
 	
 	@DeleteMapping("groupDelete")
 	@ResponseBody
-	public String groupDelete(@SessionAttribute("loginMember") Member loginMember) {
-		return service.groupDelete(loginMember.getMemberNo());
+	public int groupDelete(@RequestBody Map<String, Object> paramMap) {
+		int result = service.groupDelete(paramMap); 
+		return result;
 	}
 	
 	

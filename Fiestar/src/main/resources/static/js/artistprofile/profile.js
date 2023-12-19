@@ -16,6 +16,19 @@ function closeModal() {
 // btnOpenPopup.addEventListener("click", function () {
 //   openModal(memberNo);
 // });
+
+// function subscribe(){
+//   fetch("/artistMember/" + {artistGroupTitle})
+//   .then(resp => resp.json())
+//   .then(result => {
+
+//   })
+// }
+
 window.addEventListener("click", (e) => {
   e.target === modal_background ? closeModal() : false;
 });
+
+if (message != null) {
+  alert(message);
+}

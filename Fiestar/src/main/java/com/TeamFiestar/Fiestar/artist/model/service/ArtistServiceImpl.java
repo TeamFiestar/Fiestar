@@ -2,6 +2,7 @@ package com.TeamFiestar.Fiestar.artist.model.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,6 +41,11 @@ public class ArtistServiceImpl implements ArtistService{
 	@Value("${artist.logoimg.location}")
 	private String logoimgfolder;
 	
+	@Value("${artist.profileimg.webpath}")
+	private String profileimgpath;
+	@Value("${artist.profileimg.location}")
+	private String profileimgfolder;
+	
 	@Override
 	public Map<String, Object> artistMember(String artistGroupTitle) {
 		
@@ -64,10 +70,19 @@ public class ArtistServiceImpl implements ArtistService{
 	@Override
 	public int subscribe(int memberNo, String artistGroupTitle) {
 		int artistGroupNo = artistAdminMapper.selectArtistGroupNo(artistGroupTitle);
-		Map<String, Object> map = new HashMap<>();
-		map.put("memberNo", memberNo);
-		map.put("artistGroupNo", artistGroupNo);
-		return mapper.subscribe(map);
+		
+		Map<String, Object> checkMap = new HashMap<>();
+		checkMap.put("artistGroupNo", artistGroupNo);
+		checkMap.put("memberNo", memberNo);
+		int result = mapper.checkSubscribe(checkMap);
+		
+		if(result > 0) return 0;
+		else {
+			Map<String, Object> map = new HashMap<>();
+			map.put("memberNo", memberNo);
+			map.put("artistGroupNo", artistGroupNo);
+			return mapper.subscribe(map);
+		}
 	}
 	
 	@Override
@@ -101,9 +116,9 @@ public class ArtistServiceImpl implements ArtistService{
 
 
 	@Override
-	public int artistUpdate(String artistGroupTitle, MultipartFile artistGroupMainimg, MultipartFile artistGroupLogoimg,
-			String artistGroupIntroduce, ArtistGroup1 artistGroup,  
-			int adminNo) throws IllegalStateException, IOException {
+	public int artistUpdate(String artistGroupTitle, MultipartFile artistGroupMain, MultipartFile artistGroupLogo,
+			String artistGroupIntroduce, List<MultipartFile> artistProfileImg, 
+			List<String> name, List<String> email, ArtistGroup1 artistGroup, int adminNo) throws IllegalStateException, IOException {
 		int artistGroupNo = artistAdminMapper.selectArtistGroupNo(artistGroupTitle);
 		int test = adminMapper.test(adminNo);
 		if(test != 1) return 0;
@@ -118,26 +133,57 @@ public class ArtistServiceImpl implements ArtistService{
 			
 			String mainRename = null;
 			String logoRename = null;
-			if(artistGroupMainimg.getSize()>0 && artistGroupLogoimg.getSize()>0) {
-				mainRename = Util.fileRename(artistGroupMainimg.getOriginalFilename());
-				logoRename = Util.fileRename(artistGroupLogoimg.getOriginalFilename());
+			if(artistGroupMain.getSize()>0 && artistGroupLogo.getSize()>0) {
+				mainRename = Util.fileRename(artistGroupMain.getOriginalFilename());
+				logoRename = Util.fileRename(artistGroupLogo.getOriginalFilename());
 				
 				artistGroup.setArtistGroupLogoimg(logoimgpath + logoRename);
 				artistGroup.setArtistGroupMainimg(mainimgpath + mainRename);
 			}
+			List<Artist> artistList = new ArrayList<>();
+			
+			for(int i = 0; i<artistProfileImg.size(); i++) {
+				if(artistProfileImg.get(i).getSize() > 0) {
+					Artist artist1 = new Artist();
+					artist1.setArtistName(name.get(i));
+					artist1.setArtistEmail(email.get(i));
+					artist1.setArtistGroupNo(artistGroupNo);
+					
+					String profileRename = Util.fileRename(artistProfileImg.get(i).getOriginalFilename());
+					artist1.setArtistRename(profileRename);
+					artist1.setArtistProfile(profileimgpath + profileRename);
+					
+					int memberNo = mapper.profileMemberNo(email.get(i));
+					artist1.setMemberNo(memberNo);
+					artistList.add(artist1);
+					
+					
+				}
+			}
+			int result2 = mapper.ProfileUpdate(artistList);
 			int result = mapper.artistProfileUpdate(artistGroup);
 			
-			if(result > 0) {
-				if(artistGroupMainimg.getSize()>0 && artistGroupLogoimg.getSize()>0) {
-					artistGroupMainimg.transferTo(new File(mainimgfolder + mainRename));
-					artistGroupLogoimg.transferTo(new File(logoimgfolder + logoRename));
+			
+				if(result > 0) {
+					if(result2 > 0) {
+						for(int i = 0; i<artistProfileImg.size(); i++) {
+							if(artistProfileImg.get(i).getSize()>0) {
+								artistProfileImg.get(i).transferTo(new File(profileimgfolder + artistList.get(i).getArtistRename()));
+							}
+						}
+					}
+					if(artistGroupMain.getSize()>0 && artistGroupLogo.getSize()>0) {
+						
+						artistGroupMain.transferTo(new File(mainimgfolder + mainRename));
+						artistGroupLogo.transferTo(new File(logoimgfolder + logoRename));
+					}
+				}else {				
+					artistGroup.setArtistGroupMainimg(backupMainimg);
+					artistGroup.setArtistGroupLogoimg(backupLogo);
 				}
-			}else {
-				artistGroup.setArtistGroupMainimg(backupMainimg);
-				artistGroup.setArtistGroupLogoimg(backupLogo);
-			}
 			return result;
 		}
+		
 	}
 	
 	
