@@ -1,16 +1,19 @@
 const inputImgList = document.getElementsByClassName("imageInput");
 // const deleteImgList = document.getElementsByClassName("delete-image");
 
-const previewList = document.getElementsByClassName("preview");
+const previewList = document.querySelectorAll(".preview");
 
 const backupList = new Array(inputImgList.length);
 
 const deleteOrderSet = new Set();
 
+let i = 0;
+
 const changeImage = (imgInput, order) => {
   const maxSize = 1024 * 1024 * 10;
 
   const uploadFIle = imgInput.files[0];
+  console.log(order);
 
   if (uploadFIle == undefined) {
     console.log("파일 취소");
@@ -79,27 +82,6 @@ for (let i = 0; i < inputImgList.length; i++) {
 }
 
 function profilePlus() {
-  // const div = document.createElement("div");
-  // div.classList.add("profileImg");
-  // const div2 = document.createElement("div");
-  // div2.classList.add("profileImage");
-  // const label1 = document.createElement("label");
-  // label1.setAttribute("for","profileInput");
-  // const div3 = document.createElement("div");
-  // div3.classList.add("btn-upload3");
-  // const img = document.createElement("img");
-  // img.setAttribute("src","")
-  // img.classList.add("preview");
-
-  // div3.append(img);
-  // label1.append(div3);
-  // const input = document.createElement("input");
-  // input.setAttribute("type","file");
-  // input.setAttribute("name","artistProfile");
-  // input.setAttribute("id","profileInput");
-  // input.classList.add("imageInput");
-
-  // div2.append(label1, input);
   const profileALl = document.querySelector(".profileALl");
 
   const profileContainer = document.createElement("div");
@@ -109,14 +91,14 @@ function profilePlus() {
   profileImageDiv.classList.add("profileImage");
 
   const fileInputLabel = document.createElement("label");
-  fileInputLabel.setAttribute("for", "profileInput");
+  fileInputLabel.setAttribute("for", "profileInput" + i);
 
   const btnUploadDiv = document.createElement("div");
   btnUploadDiv.classList.add("btn-upload3");
 
   const imgPreview = document.createElement("img");
   imgPreview.setAttribute("src", "");
-  imgPreview.classList.add("preview");
+  imgPreview.classList.add("artistPreview");
 
   btnUploadDiv.appendChild(imgPreview);
 
@@ -124,10 +106,32 @@ function profilePlus() {
 
   const fileInput = document.createElement("input");
   fileInput.setAttribute("type", "file");
-  fileInput.setAttribute("name", "artistProfile");
-  fileInput.setAttribute("id", "profileInput");
+  fileInput.setAttribute("name", "artistProfileImg");
+  fileInput.setAttribute("id", "profileInput" + i);
+  fileInput.setAttribute("accept", "image/*");
+  fileInput.setAttribute("order", "i");
   fileInput.classList.add("imageInput");
   fileInput.style.display = "none";
+
+  i++;
+
+  fileInput.addEventListener("change", (event) => {
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+      console.log(event.target);
+      const reader = new FileReader();
+      const targetFileInput = event.target;
+
+      const targetPreview = targetFileInput.previousElementSibling.children[0].children[0];
+      // console.log(targetPreview);
+
+      reader.onload = (e) => {
+        targetPreview.setAttribute("src", e.target.result);
+      };
+
+      reader.readAsDataURL(selectedFile);
+    }
+  });
 
   profileImageDiv.appendChild(fileInputLabel);
   profileImageDiv.appendChild(fileInput);
@@ -141,7 +145,7 @@ function profilePlus() {
   const artistNameInput = document.createElement("input");
   artistNameInput.setAttribute("type", "text");
   artistNameInput.setAttribute("placeholder", "이름을 작성해주세요");
-  artistNameInput.setAttribute("name", "artistName");
+  artistNameInput.setAttribute("name", "Name");
 
   const artistNameInput2 = document.createElement("input");
   artistNameInput2.setAttribute("type", "text");
@@ -156,6 +160,7 @@ function profilePlus() {
   profileContainer.appendChild(profileNameDiv2);
 
   profileALl.appendChild(profileContainer);
+  const imgPreviews = document.querySelectorAll(".artistPreview");
 }
 
 const profileFrm = document.querySelector("#profileFrm");

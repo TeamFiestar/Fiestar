@@ -143,15 +143,15 @@ public class ArtistServiceImpl implements ArtistService{
 			List<Artist> artistList = new ArrayList<>();
 			
 			for(int i = 0; i<artistProfileImg.size(); i++) {
-				if(artistProfileImg.get(i).getSize() > 0 && name.get(i).length() > 0 && email.get(i).length()>0) {
+				if(artistProfileImg.get(i).getSize() > 0) {
 					Artist artist1 = new Artist();
 					artist1.setArtistName(name.get(i));
 					artist1.setArtistEmail(email.get(i));
 					artist1.setArtistGroupNo(artistGroupNo);
 					
 					String profileRename = Util.fileRename(artistProfileImg.get(i).getOriginalFilename());
-					
-					artist1.setArtistProfile(profileRename);
+					artist1.setArtistRename(profileRename);
+					artist1.setArtistProfile(profileimgpath + profileRename);
 					
 					int memberNo = mapper.profileMemberNo(email.get(i));
 					artist1.setMemberNo(memberNo);
@@ -163,22 +163,24 @@ public class ArtistServiceImpl implements ArtistService{
 			int result2 = mapper.ProfileUpdate(artistList);
 			int result = mapper.artistProfileUpdate(artistGroup);
 			
-			if(result2 > 0) {
+			
 				if(result > 0) {
-					if(artistGroupMain.getSize()>0 && artistGroupLogo.getSize()>0) {
-						if(result == artistList.size()) {
-							for(Artist artist1 : artistList) {
-								artist1.getArtistProfile()
+					if(result2 > 0) {
+						for(int i = 0; i<artistProfileImg.size(); i++) {
+							if(artistProfileImg.get(i).getSize()>0) {
+								artistProfileImg.get(i).transferTo(new File(profileimgfolder + artistList.get(i).getArtistRename()));
 							}
 						}
+					}
+					if(artistGroupMain.getSize()>0 && artistGroupLogo.getSize()>0) {
+						
 						artistGroupMain.transferTo(new File(mainimgfolder + mainRename));
 						artistGroupLogo.transferTo(new File(logoimgfolder + logoRename));
 					}
-				}else {
+				}else {				
 					artistGroup.setArtistGroupMainimg(backupMainimg);
 					artistGroup.setArtistGroupLogoimg(backupLogo);
 				}
-			}
 			return result;
 		}
 		
