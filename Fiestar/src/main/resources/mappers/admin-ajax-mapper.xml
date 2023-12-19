@@ -167,4 +167,11 @@
 		AND ARTIST_GROUP_NO = #{artistGroupNo}
 	</select>
 
+
+	<delete id="groupDelete">
+		UPDATE ARTIST_GROUP SET
+		ARTIST_GROUP_DEL_FL = 'Y'
+		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
+		AND ARTIST_GROUP_ADMIN_NO = #{memberNo}
+	</delete>
 </mapper>

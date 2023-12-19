@@ -25,12 +25,7 @@
         >
           <div class="artistGroup-title">
             <h4>아티스트 그룹 명</h4>
-            <input
-              type="text"
-              id="input-artistGroupTitle"
-              name="artistGroupTitle"
-              th:value="*{artistGroupTitle}"
-            />
+            <input type="text" id="input-artistGroupTitle" name="artistGroupTitle" th:value="*{artistGroupTitle}" />
           </div>
           <div class="artistGroup-backImg">
             <h4>아티스트 그룹 배경이미지</h4>
@@ -39,13 +34,7 @@
               <label for="img1">
                 <img src="" class="backImg preview" />
               </label>
-              <input
-                type="file"
-                name="backImg"
-                id="img1"
-                accept="image/*"
-                class="input-artistGroupImg"
-              />
+              <input type="file" name="backImg" id="img1" accept="image/*" class="input-artistGroupImg" />
               <span class="delete-image">&times;</span>
             </div>
           </div>
@@ -56,13 +45,7 @@
               <label for="img2">
                 <img src="" class="profile preview" />
               </label>
-              <input
-                type="file"
-                name="profile"
-                id="img2"
-                accept="image/*"
-                class="input-artistGroupImg"
-              />
+              <input type="file" name="profile" id="img2" accept="image/*" class="input-artistGroupImg" />
               <span class="delete-image">&times;</span>
             </div>
           </div>
@@ -73,39 +56,30 @@
               <label for="img3">
                 <img src="" class="image preview" />
               </label>
-              <input
-                type="file"
-                name="image"
-                id="img3"
-                accept="image/*"
-                class="input-artistGroupImg"
-              />
+              <input type="file" name="image" id="img3" accept="image/*" class="input-artistGroupImg" />
               <span class="delete-image">&times;</span>
             </div>
           </div>
           <div class="artistGroup-btn-area">
             <button class="artistGroupBtn" type="submit">수정</button>
-            <button
-              class="artistGroupBtn"
-              type="submit"
-              onclick="groupDelete()"
+            <div
+              class="artistGroupDiv artistGroupBtn"
+              id="artistGroupDiv"
+              th:onClick="|groupDelete(${session.loginMember?.memberNo},${artistGroup.artistGroupNo})|"
             >
               삭제
-            </button>
+            </div>
           </div>
         </form>
       </div>
     </main>
     <script th:inline="javascript">
-      const profile =
-        /*[[${artistGroup.artistGroupProfile}]]*/ "아티스트 그룹 프로필 사진";
-      const backImg =
-        /*[[${artistGroup.artistGroupBackimg}]]*/ "아티스트 그룹 배경 사진";
-      const image =
-        /*[[${artistGroup.artistGroupImage}]]*/ "아티스트 그룹 이미지";
-      const loginMemberNo =
-        /*[[${session.loginMember?.memberNo}]]*/ "로그인회원번호";
-
+      const profile = /*[[${artistGroup.artistGroupProfile}]]*/ "아티스트 그룹 프로필 사진";
+      const backImg = /*[[${artistGroup.artistGroupBackimg}]]*/ "아티스트 그룹 배경 사진";
+      const image = /*[[${artistGroup.artistGroupImage}]]*/ "아티스트 그룹 이미지";
+      const loginMemberNo = /*[[${session.loginMember?.memberNo}]]*/ "로그인회원번호";
+      const GroupNo = /*[[${artistGroup.artistGroupNo}]]*/ "그룹번호";
+      // const message = /*[[${message}]]*/ "아티스트 그룹 이름";
       const previewList = document.querySelectorAll("img.preview");
 
       previewList[0].src = backImg;
