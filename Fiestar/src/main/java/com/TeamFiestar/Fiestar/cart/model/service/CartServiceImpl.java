@@ -92,7 +92,7 @@ public class CartServiceImpl implements CartService{
 	
 	
 	@Override
-	public Map<String, Object> checkoutResult(int purchaseNo ) {
+	public Map<String, Object> checkoutResult(int purchaseNo) {
 		
 		
 //		purchaseNo = inputOrderer.getPurchaseNo();
@@ -115,6 +115,9 @@ public class CartServiceImpl implements CartService{
 		
 		return map;
 	}
+	
+	
+	
 	
 
 }

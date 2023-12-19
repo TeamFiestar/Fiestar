@@ -42,15 +42,66 @@ addressChangeBtn.addEventListener("click", e => {
     }
 });
 
+// let payMethods = document.getElementsByClassName("payMethod");
+//     let method;
+    
+//     for (let i = 0; i < payMethods.length; i++) {
+//         if (payMethods[i].checked) {
+//             method = payMethods[i].value;
+//             console.log(method);
+//         }
+//     }
+
+
+//     let payMethods = document.getElementsByClassName("payMethod");
+
+// for (let i = 0; i < payMethods.length; i++) {
+//     payMethods[i].addEventListener("change", function(getMethod) {
+//         if (this.checked) {
+//             let method = this.value;
+//             console.log(method);
+//         }
+//     });
+// }
+
+let payMethods = document.getElementsByClassName("payMethod");
+
+const updateCheckedMethod = () => {
+    for (let i = 0; i < payMethods.length; i++) {
+        if (payMethods[i].checked) {
+            let checkedMethod = payMethods[i].value;
+            methods = checkedMethod.value;
+            console.log(checkedMethod);
+           
+        
+        }
+    }
+};
+
+
+for (let i = 0; i < payMethods.length; i++) {
+    payMethods[i].addEventListener("change", updateCheckedMethod);
+}
 
 
 
 const form = document.getElementById("purchaseBtn");
 
+// const payMethod = document.getElementsByClassName("paymethod");
 
 form.addEventListener("submit", e => {  
 
+    for (let i = 0; i < payMethods.length; i++) {
+        if (payMethods[i].checked) {
+            let checkedMethod = payMethods[i].value;
+            methods = checkedMethod.value;
+            console.log(checkedMethod);
+           
+        }
+    }
+
     
+
     let address1 = document.getElementById("id=sample6_address");
     let address2 = document.getElementById("sample6_detailAddress");
     let address3 = document.getElementById("sample6_postcode");
@@ -64,11 +115,17 @@ form.addEventListener("submit", e => {
         return;
     }
 
+   
+    if (!selectedMethod) {
+        alert("결제 방법을 선택해주세요.");
+        return;
+    }
+
     else {
         alert("주문이 완료 되었습니다!")
     }
 
-        
+
  });
 
 
@@ -126,3 +183,15 @@ function sample6_execDaumPostcode() {
         }
     }).open();
 }
+
+
+
+
+// var IMP = window.IMP;
+// var today = new Date();
+// var hours = today.getHours(); // 시
+// var minutes = today.getMinutes();  // 분
+// var seconds = today.getSeconds();  // 초
+// var milliseconds = today.getMilliseconds();
+// var makeMerchantUid = `${hours}` + `${minutes}` + `${seconds}` + `${milliseconds}`;
+
