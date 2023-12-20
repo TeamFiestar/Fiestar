@@ -209,7 +209,15 @@ document.getElementById('in-cart').addEventListener('submit', (e) =>{
 const updateBtn = document.getElementById("updateBtn");
 if(updateBtn != null){
 updateBtn.addEventListener("click", ()=>{
-  location.href = `/artistAdmin/${productNo}/${artistGroupTitle}/goodsModify`;
+  location.href = `/artistAdmin/${artistGroupTitle}/${productNo}/goodsModify`;
+});
+}
+
+
+const deleteBtn = document.getElementById("deleteBtn");
+if(deleteBtn != null){
+  deleteBtn.addEventListener("click", ()=>{
+  location.href = `/artistAdmin/${productNo}/goodsDelete`;
 });
 }
 

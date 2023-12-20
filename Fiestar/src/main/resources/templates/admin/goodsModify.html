@@ -14,7 +14,7 @@
       <div class="goods-add">
         <h1>굿즈 수정</h1>
         <br />
-        <form th:action="|/artistAdmin/${artistGroupTitle}/goodsModify|" method="post" enctype="multipart/form-data" id="goodsFrm">
+        <form th:action="|/artistAdmin/${artistGroupTitle}/${productNo}/goodsModify|" method="post" enctype="multipart/form-data" id="goodsFrm">
           <div class="goods-title">
             상품명
             <input type="text" id="input-goodsTitle" name="productName"/>
@@ -72,6 +72,10 @@
      const message = /*[[${message}]]*/ "message";
      if(message != null) alert(message);
     </script>
+  
+
+
+
 
   </body>
 </html>

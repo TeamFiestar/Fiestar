@@ -199,10 +199,8 @@ public class ArtistAdminServiceImpl implements ArtistAdminService{
 	
 	
 	
-	
-	//상품 수정
 	@Override
-	public int GoodsModify(Product product, MultipartFile contentImg, MultipartFile thumbnailImg)throws IllegalStateException, IOException {
+	public int updateGoods(Product product, MultipartFile contentImg, MultipartFile thumbnailImg)throws IllegalStateException, IOException {
 		
 		int artistGroupNo = mapper.selectArtistGroupNo(product.getArtistGroupTitle());
 		product.setArtistGroupNo(artistGroupNo);
@@ -213,43 +211,52 @@ public class ArtistAdminServiceImpl implements ArtistAdminService{
 			return 0; 
 		}
 		
+		int productNo = product.getProductNo();
+		
+		for (ProductOption productOption2 : product.getProductOptionList()) {
+			productOption2.setProductNo(productNo);
+		}
+		
+		int result2 = mapper.updateOption(product.getProductOptionList());
+		
+		if(result2 == 0) {
+			return 0; 
+		}
+		
+		ProductImage img = new ProductImage();
 		
 		
-//		for (ProductOption productOption2 : product.getProductOptionList()) {
-//			productOption2.setProductNo(productNo);
-//		}
+		img.setProductNo(productNo); 
 		
-//		int result2 = mapper.updateOption(product.getProductOptionList());
 		
-//		if(result2 == 0) {
-//			return 0; 
-//		}
+		img.setProductImageContent(contentPath);
+		img.setProductImageThumbnail(thumbnailPath);
+	
+
+		img.setProductImageRename(Util.fileRename(contentImg.getOriginalFilename()));
+		img.setProductImageThumbnailRename(Util.fileRename(thumbnailImg.getOriginalFilename()));
 		
-//		ProductImage img = new ProductImage();
-//		
-//		
-//		img.setProductNo(productNo); 
-//		
-//		
-//		img.setProductImageContent(contentPath);
-//		img.setProductImageThumbnail(thumbnailPath);
-//	
-//
-//		img.setProductImageRename(Util.fileRename(contentImg.getOriginalFilename()));
-//		img.setProductImageThumbnailRename(Util.fileRename(thumbnailImg.getOriginalFilename()));
-//		
-//		 
-//		img.setUploadFile(contentImg);
-//		img.setUploadFile(thumbnailImg);
-//		
-//		result = mapper.updateImage(img);
-//		
-//		
-//		img.getUploadFile().transferTo(new File(contentfolderPath + img.getProductImageRename()));
-//		img.getUploadFile().transferTo(new File(thumbnailfolderPath + img.getProductImageThumbnailRename()));
+		 
+		img.setUploadFile(contentImg);
+		img.setUploadFile(thumbnailImg);
+		
+		result = mapper.updateImage(img);
+		
+		
+		img.getUploadFile().transferTo(new File(contentfolderPath + img.getProductImageRename()));
+		img.getUploadFile().transferTo(new File(thumbnailfolderPath + img.getProductImageThumbnailRename()));
 		
 		return result;
 	}
+	
+	@Override
+	public int deleteGoods(int productNo) {
+		
+		return mapper.deleteGoods(productNo);
+	}
+	
+	
+
 	
 	
 	

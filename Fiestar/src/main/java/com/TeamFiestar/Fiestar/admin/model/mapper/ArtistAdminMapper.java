@@ -42,9 +42,14 @@ public interface ArtistAdminMapper {
 
 	int updateGoods(Product product);
 
-//	int updateOption(List<ProductOption> productOptionList);
-//
-//	int updateImage(ProductImage img);
+	int updateOption(List<ProductOption> productOptionList);
+
+	int updateImage(ProductImage img);
+
+	int deleteGoods(int productNo);
+
+
+
 
 	
 
