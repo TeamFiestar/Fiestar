@@ -6,13 +6,13 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>회원가입</title>
    <link rel="stylesheet" href="/css/login/sign-up.css">
-      <link rel="stylesheet" href="/css/common/shopHeader.css">
+      <link rel="stylesheet" href="/css/common/artistPageHeader.css">
 </head>
 
 
 <body>
 
-   <th:block th:replace="~{common/shopHeader}"></th:block>
+   <th:block th:replace="~{common/artistPageHeader}"></th:block>
 
    <section class="frame">
 
@@ -21,7 +21,7 @@
       </div>
       <div class="signup-page">
 
-         <form action="/member/signup" method="post">
+         <form action="/member/signup" method="post" id="signUpFrm">
 
             <!-- 이메일 -->
             <div class="email-form">
@@ -77,7 +77,7 @@
 
             <div class="address-form">
                <div class="input-address">
-                  <input type="text" name="memberAddress" class="member-address" placeholder="주소 입력">
+                  <input type="text" name="memberAddress" id="memberAddress" class="member-address" placeholder="주소 입력">
                   <button class="address">주소 찾기</button>
                </div>
                <div class="not-null" id="addrMessage"> * 필수 항목입니다. </div>
@@ -85,7 +85,7 @@
 
             <div class="address-detail-form">
                <div class="input-address-detail">
-                  <input type="text" name="memberAddressDetail" class="member-address-detail" placeholder="상세 주소">
+                  <input type="text" name="memberAddressDetail" id="memberAddressDetail" class="member-address-detail" placeholder="상세 주소">
 
                </div>
                
@@ -101,7 +101,7 @@
             </div>
 
             <div class="signUp-btn-wrapper">
-               <button type="submit" class="checkOut-btn" id="signUpFrm">신청하기</button>
+               <button type="submit" class="checkOut-btn" >신청하기</button>
             </div>
 
          </form>

@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController // @Controller + @ResponseBody
 @RequestMapping("email")
-@RequiredArgsConstructor // 초기화 되지 않은 final 필드에 bean DI 주입
+@RequiredArgsConstructor 
 public class EmailController {
 	
 	private final EmailService service;

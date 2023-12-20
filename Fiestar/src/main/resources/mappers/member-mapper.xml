@@ -23,7 +23,8 @@
 		DEFAULT,
 		NULL,
 		DEFAULT,
-		DEFAULT
+		DEFAULT,
+		NULL
 		)
 	</insert>
 	

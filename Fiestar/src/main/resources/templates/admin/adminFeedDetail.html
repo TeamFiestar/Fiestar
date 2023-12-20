@@ -1,0 +1,64 @@
+   <!-- 게시글 상세보기 modal -->
+   <div class="feedDetailModal" id="feedDetail" style="display:relative; z-index:3;">
+
+    
+    <div id="dmodal-body">
+        <div>
+            <button class="closeModal" data-target="feedDetail" onclick="closeModal()">X</button>
+        </div>
+        <div class="feedContent">
+            <div class="profileDetail" style="display:flex;">
+                <span>
+                    <img id="profileImage" style="width:40px; height:40px; border-radius:50%;">
+                </span>        
+                <span class="profile-upper">
+                    <span>
+                        <Strong id="boardNickname">카즈하</Strong>
+                        <!-- 아티스트인 경우에만 보임 -->
+                        <i id="indicator"></i>
+                        <p id="boardDate">1시간 전</p>
+                    </span>
+                    <span class="element">
+                        
+                            <input id="check-btn" type="checkbox" />
+                            <label for="check-btn"><i class="fa-solid fa-ellipsis-vertical fa-2x" style="color:gray; font-size:26px;"></i></label>
+                            <div class="menubars">
+                                <a href="#">
+                                    <li>신고하기</li>
+                                </a>
+                                <!-- <th:block th:if="${session.loginMember != null and session.loginMember.memberNo == Board.memberNo}"> -->
+                                  <a href="#">
+                                      <li>수정하기</li>
+                                  </a>
+                                  <a href="#">
+                                      <li>삭제하기</li>
+                                  </a>
+                                <!-- </th:block> -->
+                            </div>
+                        
+                    </span>
+                </span>
+               
+            </div>
+
+            <!-- 이미지 없음 -->
+            <div class="contentArea">
+                <div class="feedMain">
+                    비동기로 내용
+                </div>
+                <!-- 이미지가 있을 경우 -->
+                <div class="feedImg" style="padding-top: 15px;">
+                    <!-- <img src="/artistHomepageImg/lesserafim.jpg" alt="아티스트프로필이미지" id="artistImg"> --> 
+                </div>
+            </div>
+
+            <div class="likeArea">
+              <i class="fa-heart" th:classappend="${likeCheck} ? fa-solid : fa-regular" id="likeImg" style="color: #7743DB; margin-top: 10px; font-size: 20px;" ></i> <span id="feedLikeCount" style="margin-left:3px; font-size: 17px;" >234</span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
