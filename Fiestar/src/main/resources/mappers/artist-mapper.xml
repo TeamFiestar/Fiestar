@@ -49,7 +49,7 @@
 	</select>
 	
 	<select id="artistUpdate" resultType="ArtistGroup1">
-		SELECT ARTIST_GROUP_LOGOIMG, ARTIST_GROUP_MAINIMG, ARTIST_PROFILE, ARTIST_GROUP_INTRODUCTION
+		SELECT ARTIST_GROUP_LOGOIMG, ARTIST_GROUP_MAINIMG, ARTIST_GROUP_PROFILE, ARTIST_GROUP_INTRODUCTION
 		FROM ARTIST_GROUP
 		WHERE ARTIST_GROUP_NO = #{memberNo}
 	</select>
@@ -90,18 +90,18 @@
 		WHERE MEMBER_EMAIL = #{memberEmail}
 	</select>
 	
-	<insert id="ProfileUpdate">
-		INSERT INTO ARTIST
-		
-		<foreach collection="list" item="artist1" separator=" UNION ">
-			SELECT #{artist1.memberNo},
-					#{artist1.artistGroupNo}, 
-					#{artist1.artistName}, 
-					#{artist1.artistProfile}, 
-					#{artist1.memberEmail}
-			FROM DUAL
-		</foreach>
-	</insert>
+	<update id="ProfileUpdate">
+    <foreach collection="list" item="artist1" separator=";">
+        UPDATE ARTIST
+        SET 
+            MEMBER_NO = #{artist1.memberNo},
+            ARTIST_GROUP_NO = #{artist1.artistGroupNo}, 
+            ARTIST_NAME = #{artist1.artistName}, 
+            ARTIST_PROFILE = #{artist1.artistProfile}, 
+            MEMBER_EMAIL = #{artist1.memberEmail}
+        WHERE MEMBER_NO = #{artist1.memberNo}
+    </foreach>
+</update>
 	
 	
 	<select id="artistNotice" resultType="ArtistNotice">

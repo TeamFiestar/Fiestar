@@ -39,8 +39,8 @@ public class ImageDeleteScheduling {
 	private String shopContentLocation;
 	@Value("{my.shopThumbnail.location}")
 	private String shopThumnailLocation;
-	@Value("{my.shop.location}")
-	private String shopLocation;
+//	@Value("{my.shop.location}")
+//	private String shopLocation;
 	@Value("{my.member.location}")
 	private String memberLocation;
 	@Value("{my.board.location}")
@@ -59,7 +59,7 @@ public class ImageDeleteScheduling {
 		File profileimgFolder = new File(profileimgLocation);
 		File shopContentFolder = new File(shopContentLocation);
 		File shopThumnailFolder = new File(shopThumnailLocation);
-		File shopFolder = new File(shopLocation);
+//		File shopFolder = new File(shopLocation);
 		File memberFolder = new File(memberLocation);
 		File boardFolder = new File(boardLocation);
 		
@@ -71,13 +71,14 @@ public class ImageDeleteScheduling {
 		File[] profileimgArr = profileimgFolder.listFiles();
 		File[] shopContentArr = shopContentFolder.listFiles();
 		File[] shopThumnailArr = shopThumnailFolder.listFiles();
-		File[] shopArr = shopFolder.listFiles();
+//		File[] shopArr = shopFolder.listFiles();
 		File[] memberArr = memberFolder.listFiles();
 		File[] boardArr = boardFolder.listFiles();
 		
 		File[] imgArr = new File[imageArr.length + profileArr.length + backImgArr.length + 
 		                           mainimgArr.length + logoimgArr.length + profileimgArr.length + 
-		                           shopContentArr.length + shopThumnailArr.length + shopArr.length
+		                           shopContentArr.length + shopThumnailArr.length 
+//		                           + shopArr.length
 		                           + memberArr.length + boardArr.length];
 		
 		System.arraycopy(imageArr, 0, imgArr, 0, imageArr.length);
@@ -88,14 +89,24 @@ public class ImageDeleteScheduling {
 		System.arraycopy(profileimgArr, 0, imgArr, logoimgArr.length, profileimgArr.length);
 		System.arraycopy(shopContentArr, 0, imgArr, profileimgArr.length, shopContentArr.length);
 		System.arraycopy(shopThumnailArr, 0, imgArr, shopContentArr.length, shopThumnailArr.length);
-		System.arraycopy(shopArr, 0, imgArr, shopThumnailArr.length, shopArr.length);
-		System.arraycopy(memberArr, 0, imgArr, shopArr.length, memberArr.length);
+//		System.arraycopy(shopArr, 0, imgArr, shopThumnailArr.length, shopArr.length);
+		System.arraycopy(memberArr, 0, imgArr, shopThumnailArr.length, memberArr.length);
 		System.arraycopy(boardArr, 0, imgArr, memberArr.length, boardArr.length);
 		
 		
 		List<File> serverImageList = Arrays.asList(imgArr);
 		
-		Map<String, Object> map = service.selectDbImageList();
+		List<String> artistList = service.selectDbImageList();
+		
+		if(!serverImageList.isEmpty()) {
+			for(File serverImage : serverImageList) {
+				
+				if(artistList.indexOf(serverImage.getName()) == -1) {
+					log.info(serverImage.getName() + " 삭제");
+					serverImage.delete();
+				}
+			}
+		}
 	}
 	
 }

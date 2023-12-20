@@ -16,7 +16,7 @@ public class SchedulingServiceImpl implements SchedulingService{
 	private SchedulingMapper mapper;
 	
 	@Override
-	public Map<String, Object> selectDbImageList() {
-		List<String> artistList = mapper.artistList();
+	public List<String> selectDbImageList() {
+		return mapper.artistList();
 	}
 }
