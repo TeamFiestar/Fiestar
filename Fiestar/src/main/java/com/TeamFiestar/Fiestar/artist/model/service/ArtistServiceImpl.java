@@ -64,6 +64,7 @@ public class ArtistServiceImpl implements ArtistService{
 		map.put("artistGroupMedia", artistGroupMedia);
 		map.put("artistGroupProduct", artistGroupProduct);
 		map.put("artistGroupNotice", artistGroupNotice);
+		
 		return map;
 	}
 	
@@ -184,6 +185,18 @@ public class ArtistServiceImpl implements ArtistService{
 			return result;
 		}
 		
+	}
+	
+	
+	@Override
+	public Map<String, Object> artistNotice(String artistGroupTitle) {
+		int artistGroupNo = artistAdminMapper.selectArtistGroupNo(artistGroupTitle);
+		List<ArtistNotice> artistNoticeList = mapper.artistNotice(artistGroupNo);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("artistNoticeList", artistNoticeList);
+		
+		return map;
 	}
 	
 	

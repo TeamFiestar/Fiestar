@@ -466,3 +466,11 @@ main img {
 .updateDelete button:hover {
   color: rgba(119, 67, 219, 1);
 }
+
+.notice-more {
+  margin-top: 10px;
+  text-align: end;
+}
+.notice-more > a {
+  cursor: pointer;
+}

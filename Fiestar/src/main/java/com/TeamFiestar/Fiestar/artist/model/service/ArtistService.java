@@ -21,6 +21,8 @@ public interface ArtistService {
 			String artistGroupIntroduce, List<MultipartFile> artistProfileImg, 
 			List<String> name, List<String> email, ArtistGroup1 artistGroup, int adminNo) throws IllegalStateException, IOException;
 
+	Map<String, Object> artistNotice(String artistGroupTitle);
+
 //	int update(String artistGroupTitle, int memberNo);
 
 }

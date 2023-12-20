@@ -58,12 +58,10 @@
         <div class="artistImage">
           <ul>
             <li th:each="artist : ${artistList}" th:object="${artist}">
-              <a href="#">
-                <div class="soloImg">
-                  <img th:src="|*{artistProfile}|" width="100%" height="100%" />
-                </div>
-                <strong class="profileName" th:text="*{artistName}">보은</strong>
-              </a>
+              <div class="soloImg">
+                <img th:src="|*{artistProfile}|" width="100%" height="100%" />
+              </div>
+              <strong class="profileName" th:text="*{artistName}">아티스트 이름</strong>
             </li>
           </ul>
         </div>
@@ -74,7 +72,7 @@
             <ul>
               <li th:each="media : ${artistGroupMedia}" th:object="${media}">
                 <!-- <th:block th:each="i : ${#numbers.sequence(0, 5)}" th:unless="${#lists.size(artistGroupMedia) == 0}"> -->
-                <a href="#">
+                <a th:href="|/${artistGroupTitle}/media/${media.mediaNo}/detail|">
                   <div class="videoImg">
                     <img
                       th:src="|https://img.youtube.com/vi/*{mediaAddress}/mqdefault.jpg|"
@@ -96,7 +94,7 @@
           <div class="artistShop">
             <ul>
               <li th:each="product : ${artistGroupProduct}" th:object="${product}">
-                <a href="#">
+                <a th:href="@{/shop/shopDetail/{productNo}(productNo=${product.productNo})}">
                   <div class="shopImg">
                     <img th:src="|*{productImageThumbnail}*{productImageThumbnailRename}|" width="100%" height="100%" />
                   </div>
@@ -117,8 +115,13 @@
               </a>
             </li>
           </ul>
+          <div class="notice-more">
+            <a th:href="@{/artistMember/{artistGroupTitle}(artistGroupTitle=${artistGroupTitle})/notice}"
+              ><span style="color: white">더보기</span></a
+            >
+          </div>
         </div>
-        <th:block th:if="${session.loginMember.memberAuthority == 4}">
+        <th:block th:if="${session.loginMember?.memberAuthority == 4}">
           <div class="updateDelete">
             <form th:action="|/artistMember/${artistGroupTitle}/update|" method="get">
               <button class="update">수정</button>

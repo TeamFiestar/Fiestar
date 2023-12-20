@@ -1,57 +1,59 @@
-
 <header th:if="${session.loginMember == null}">
   <div class="header">
-    
     <div class="header-left-side">
       <a href="/shop/home" id="header-logo">
-        <img src="/images/logo.png" style="width:165px;"  />
+        <img src="/img/picture/logo.png" style="width: 165px" />
       </a>
     </div>
-    
+
     <div class="header-right-side">
-       
-      <form action="/shop/home" method="GET" style="display: inline-flex; border:none;">
+      <form action="/shop/home" method="GET" style="display: inline-flex; border: none">
         <span class="search-area">
-          <input type="search" name="shopSearch" id="search-input" placeholder="상품명 혹은 아티스트 검색" autocomplete="off" > 
+          <input
+            type="search"
+            name="shopSearch"
+            id="search-input"
+            placeholder="상품명 혹은 아티스트 검색"
+            autocomplete="off"
+          />
           <button id="searchBtn" class="fa-solid fa-magnifying-glass">검색</button>
         </span>
       </form>
-      
-      <a href="#"> 공지사항 </a>
+
+      <a href="/shop/noticeList"> 공지사항 </a>
       <span>|</span>
-      <a href="/shop/home">샵 고객센터</a>
+      <a href="/shop/shopNotice">샵 고객센터</a>
       <span>|</span>
       <a href="/">메인으로</a>
-      
 
-      <a href="/member/login"><button id="loginPage"> 로그인</button></a>
-      <a href="/member/signup"><button  id="signUp">회원가입</button></a>
-  
-    </div>    
-        
-  </div>
-
+      <a href="/member/login"><button id="loginPage">로그인</button></a>
+      <a href="/member/signup"><button id="signUp">회원가입</button></a>
+    </div>
   </div>
 </header>
 
 <header th:if="${session.loginMember != null}">
   <div class="header">
-    
     <div class="header-left-side">
       <a href="/shop/home" id="header-logo">
-        <img src="/images/logo.png" style="width:165px;"  />
+        <img src="/images/logo.png" style="width: 165px" />
       </a>
     </div>
-    
+
     <div class="header-right-side">
-       
-      <form action="/shop/home" method="GET" style="display: inline-flex; border:none;">
+      <form action="/shop/home" method="GET" style="display: inline-flex; border: none">
         <span class="search-area">
-          <input type="search" name="shopSearch" id="search-input" placeholder="상품명 혹은 아티스트 검색" autocomplete="off" > 
+          <input
+            type="search"
+            name="shopSearch"
+            id="search-input"
+            placeholder="상품명 혹은 아티스트 검색"
+            autocomplete="off"
+          />
           <button id="searchBtn" class="fa-solid fa-magnifying-glass">검색</button>
         </span>
       </form>
-      
+
       <a href="#"> 공지사항 </a>
       <span>|</span>
       <a href="/shop/home">샵 고객센터</a>
@@ -88,14 +90,6 @@
           </div>
         </div>
       </article>
-
-
-
-  
-    </div>    
-        
-  </div>
-
+    </div>
   </div>
 </header>
-
