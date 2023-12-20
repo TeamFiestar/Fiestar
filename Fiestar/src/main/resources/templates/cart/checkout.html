@@ -360,7 +360,7 @@
    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
    <!-- iamport.payment.js -->
    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-   <script>
+   <!-- <script>
 
       var IMP = window.IMP;
       IMP.init("imp66683387");
@@ -413,7 +413,62 @@
             }
          });
       }
-   </script>
+   </script> -->
+
+
+<!-- 방법 2 -->
+
+<script>
+
+
+function requestPay() {
+   var IMP = window.IMP;
+   IMP.init("imp66683387"); // 여기에는 실제 가맹점 식별코드를 입력해야 합니다.
+
+   let selectedMethod = document.querySelector('input[name="payMethod"]:checked').value;
+   let pgValue, methodValue;
+
+   if(selectedMethod == "1") { // 토스페이 선택 시
+       pgValue = 'tosspay.tosstest';
+       methodValue = 'trans';
+
+   } else if(selectedMethod == "2") { // 카카오 페이 선택 시
+       pgValue = 'kakaopay.TC0ONETIME';
+       methodValue = 'card';
+   }
+
+   IMP.request_pay({
+       pg: pgValue,
+       pay_method: methodValue,
+       merchant_uid: 'merchant_' + new Date().getTime(),
+       name: '주문명:결제테스트',
+       amount: 1,
+       // 추가적인 구매자 정보는 여기에 입력합니다.
+   }, function (rsp) {
+       if (rsp.success) {
+           // 결제 성공 시 로직
+           console.log(rsp); // 여기에 실제 결과 페이지 URL을 입력합니다.
+           window.location.href = "/checkoutResult";
+       } else {
+           // 결제 실패 시 로직
+           console.log(rsp);
+           alert("결제에 실패했습니다.");
+       }
+   });
+}
+
+document.getElementById("purchaseBtn").addEventListener("submit", function(e) {
+   e.preventDefault(); // 폼 기본 제출 막기
+   requestPay(); // 결제 요청 함수 호출
+
+
+});
+
+</script>
+
+
+
+
 
 
 

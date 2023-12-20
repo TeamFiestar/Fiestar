@@ -49,13 +49,12 @@ public class CartServiceImpl implements CartService{
 	}
 	
 	
-	
+	@Transactional
 	@Override
 	public int order(Orderer inputOrderer, String[] ordererAddress, String selectNo) {
 		// TODO Auto-generated method stub
 		String address = String.join("^^^", ordererAddress);
 		inputOrderer.setOrdererAddress(address);
-		
 		
 		// 주문(PURCHASE 테이블 INSERT)
 		int purchaseNo = 0;

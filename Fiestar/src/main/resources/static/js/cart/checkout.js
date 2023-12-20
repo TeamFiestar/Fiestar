@@ -31,6 +31,8 @@ nameChangeBtn.addEventListener("click", e => {
 const addressChangeBtn = document.getElementById("addressChange");
 
 addressChangeBtn.addEventListener("click", e => {
+
+    
     let address1 = document.getElementById("id=sample6_address");
     let address2 = document.getElementById("sample6_detailAddress");
     let address3 = document.getElementById("sample6_postcode");
@@ -87,23 +89,25 @@ for (let i = 0; i < payMethods.length; i++) {
 
 const form = document.getElementById("purchaseBtn");
 
-// const payMethod = document.getElementsByClassName("paymethod");
+ const payMethod = document.getElementsByClassName("paymethod");
 
-form.addEventListener("submit", e => {  
+ form.addEventListener("submit", e => {  
 
-    for (let i = 0; i < payMethods.length; i++) {
-        if (payMethods[i].checked) {
-            let checkedMethod = payMethods[i].value;
-            methods = checkedMethod.value;
-            console.log(checkedMethod);
+  
+
+//     for (let i = 0; i < payMethods.length; i++) {
+//         if (payMethods[i].checked) {
+//             let checkedMethod = payMethods[i].value;
+//             methods = checkedMethod.value;
+//             console.log(checkedMethod);
            
-        }
-    }
+//         }
+//     }
+requestPay();
 
-    
 
     let address1 = document.getElementById("id=sample6_address");
-    let address2 = document.getElementById("sample6_detailAddress");
+     let address2 = document.getElementById("sample6_detailAddress");
     let address3 = document.getElementById("sample6_postcode");
     let PhoneNumber = document.getElementById("ordererPhoneNumber");
 
@@ -116,17 +120,17 @@ form.addEventListener("submit", e => {
     }
 
    
-    if (!selectedMethod) {
-        alert("결제 방법을 선택해주세요.");
-        return;
-    }
+    // if (!selectedMethod) {
+    //     alert("결제 방법을 선택해주세요.");
+    //     return;
+    // }
 
-    else {
-        alert("주문이 완료 되었습니다!")
-    }
+    // else {
+    //     alert("주문이 완료 되었습니다!")
+    // }
 
 
- });
+  });
 
 
 
