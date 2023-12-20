@@ -1,4 +1,3 @@
-
 package com.TeamFiestar.Fiestar.shop.controller;
 
 import java.util.List;
@@ -8,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -147,17 +147,23 @@ public class ShopController {
 	/**장바구니에 담기
 	 * @return
 	 */
-	@PostMapping("{productNo}/cart")
-	public String cart(RedirectAttributes ra,
+	@PostMapping("shopDetail/{productNo:[0-9]+}")
+	public String insertCart(RedirectAttributes ra,
 						@SessionAttribute(value="loginMember", required = false) Member loginMember,
-						Product product) {
+						@PathVariable("productNo") int productNo,
+						@RequestParam("productCount") int productCount,
+						@RequestParam("totalPrice") int totalPrice) {
+		int memberNo = loginMember.getMemberNo();
+		int result = service.insertCart(productNo, productCount, totalPrice, memberNo);
 		
-		return null;
+		if(result > 0) {
+			ra.addFlashAttribute("message","장바구니에 담았습니다.");
+			return "redirect:" + productNo;
+		}else {
+			ra.addFlashAttribute("message","상품이 품절되었습니다.");
+			return "redirect:" + productNo;
+		}
 	}
-	
-	
-	
-	
 	
 	
 	

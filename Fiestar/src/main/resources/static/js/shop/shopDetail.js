@@ -25,6 +25,7 @@ const container = document.querySelector(".product-purchase-list");
 const optionValue2 = document.querySelector("select[name=key]");
 const optionValue = document.querySelector("select[name=key] option:checked").selected;
 
+
 optionSelect.addEventListener("change", () => {
 
   
@@ -63,6 +64,7 @@ optionSelect.addEventListener("change", () => {
 
   button1.classList.add("minus");
   button1.setAttribute('onclick', 'minusBtn(this)');
+  button1.setAttribute('type', 'button');
 
   button1.innerHTML = "-";
 
@@ -75,6 +77,7 @@ optionSelect.addEventListener("change", () => {
   const button2 = document.createElement("button");
   button2.classList.add("plus");
   button2.setAttribute('onclick', 'plusBtn(this)');
+  button2.setAttribute('type', 'button');
   button2.innerHTML ="+";
 
 
@@ -111,6 +114,8 @@ const selectedPrice = document.querySelector(".selected-price");
 
 const totalProduct = document.querySelector("#totalProduct");
 const totalPrice = document.querySelector("#totalPrice");
+const count = document.getElementById("productCount");
+const totalP = document.getElementById("total");
 
 
 
@@ -148,21 +153,32 @@ function totalNoProduct( ) {
 
   let sum = 0;
 
+
   for(i of results) {
     console.log(i);
     sum += (Number)(i.innerText);
+    
   }
   totalProduct.textContent = "총 상품금액 (" + sum +")";
   totalProduct.setAttribute('value',sum);
   console.log(totalProduct.getAttribute('value'));
+
+  const productValue = totalProduct.getAttribute('value');
+  count.value = productValue;
+  console.log(count.getAttribute('value'));
 }
 
 
+
+
 function totalCost() {
-   
+  
   let total = 0;
   total = price * totalProduct.getAttribute('value');
   totalPrice.textContent = total;
+  const totalPriceValue = total;
+  totalP.value = totalPriceValue;
+  console.log(totalP.getAttribute('value'));
   console.log(total);
 }
 
@@ -170,5 +186,10 @@ totalCost();
 
 
 
-
+document.getElementById('in-cart').addEventListener('submit', (e) =>{
+  if(!loginMember){
+    e.preventDefault();
+    alert("로그인 후 이용해 주십시오");
+  }
+})
 

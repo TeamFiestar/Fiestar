@@ -55,6 +55,10 @@ public interface ShopMapper {
 
 	List<ProductOption> selectOption(int productNo);
 
+	int insertCart(Map<String, Object> map);
+
+	
+
 	
 
 
