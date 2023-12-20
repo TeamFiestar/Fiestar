@@ -66,5 +66,36 @@ public class ArtistAdminAJAXSeviceImpl implements ArtistAdminAJAXService{
 	public MediaComment selectMediaCommentReport(int mediaCommentNo) {
 		return mapper.selectMediaCommentReport(mediaCommentNo);
 	}
+	
+	// 신고 삭제 처리
+	@Override
+	public int deleteReport(Map<String, Object> map) {
+		
+		String reportType = (String) map.get("reportType");
+		
+		int result = 0;
+		
+		if (reportType.equals("board")) {
+			result = mapper.deleteBoard(map);
+		}
+		
+		if (reportType.equals("boardComment")) {
+			result = mapper.deleteBoardComment(map);
+		}
+		
+		if (reportType.equals("mediaComment")) {
+			result = mapper.deleteMediaComment(map);
+		}
+		
+		// 신고 완료 처리
+		
+		int reportResult = 0;
+		reportResult = mapper.proceedReport(map);
+		
+		return result;
+	}
+	
+	
+	
 
 }
