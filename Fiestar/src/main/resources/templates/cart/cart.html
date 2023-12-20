@@ -30,12 +30,19 @@
 
          <!-- <div class="cart-list"> -->
 
+
+      
+
+         </div>
+         
          <div class="select-all">
 
 
             <!-- selectAll 버튼 클릭하면 모든 fa-regular circle check 색상 -> black으로 변경
                                                             -->
-
+            
+                              
+                                             
             <label class="cart-check">
                <input type='checkbox' id="selectAll" name="selectAll" checked>
                <i class="fa-regular fa-circle-check"></i>
@@ -61,9 +68,10 @@
                <!-- 이미지 영역 -->
                
    
-               <img src="/images/keyring.png" alt="">
-   
-   
+               <!-- <img th:src="|${cart.productImageThumbnail}${cart.productImageThumbnailRename}|" alt=""> -->
+               <img th:src="|${cart.productImageThumbnail}${cart.productImageThumbnailRename}|" alt="" class="productImg">
+               
+              
    
                <!-- <div class="item-name"> -->
                <!-- <a th:href="@{}" class="keyring">뉴진스 키링</a> -->

@@ -17,11 +17,21 @@
               <div class="cart-area">
                   <h1 class="cart">주문이 완료 되었습니다!</h1>
 
-                  구매일자
-                  <span th:text="${map.purchaseInfo.purchaseDate}"></span>
+                <div class="purchaseInfo">
 
-                  구매 번호
-                  <span th:text="${map.purchaseInfo.purchaseDate}"></span>
+                  <span class="purchaseDate">
+                      구매일자:
+                      <span th:text="${map.purchaseInfo.purchaseDate}"></span>
+                    </span>
+
+                    <span class="purchaseNo">
+                    구매 번호:
+                    <span th:text="${map.purchaseInfo.purchaseNo}"></span>
+
+                    </span>
+
+
+                </div>
 
                 <!-- 세션에 있는 purchaseNo 가지고 올 때 결제 테이블과 결제 목록 테이블에는 데이터 insert O
                      -->
@@ -31,11 +41,15 @@
               </div>
   
               <div class="select-all">
-                  <span>주문 내역</span>
+                  <span style="font-weight: bold;">주문 내역</span>
               </div>
               
-              <hr class="orderedi">
+              
               <div th:each="product : ${map.purchaseList}" class="item-list">
+              
+
+
+                <hr>
 
                <div class="item-list">
 
@@ -62,13 +76,13 @@
 
                      <div>
                         <span class="item-option" th:text="${productOptionName}">Option Name</span>
-                           class="option-text"></span>
+                           
 
                      </div>
 
                   </div>
 
-                  <hr>
+                
                  
 
                   <!-- 상품 수량 -->
@@ -77,23 +91,23 @@
 
                   <span class="countNPrice">
                      
-                    <span class="item-amount" th:text="${productCount}">Quantity</span>
+                    <span class="item-amount" th:text="${session.productCount}">Quantity</span>
 
                      <!-- 개별 상품 가격 -->
 
-                     <span class="item-price" th:text="${productPrice}" style="font-weight: bold;">Price</span>
+                     <span class="item-price" th:text="${map.purchaseInfo.purchasePrice}" style="font-weight: bold;">Price</span>
 
                   </span>
 
-                  <hr>
+               
                 
                </div>
 
-               <hr>
+            
 
             </div>
 
-            <hr>
+            
 
 
 
@@ -141,6 +155,9 @@
               <hr class=""> -->
 
               <!-- Orderer Information -->
+
+              <hr>
+
               <div class="order-list">
                   
                   <span class="order-name" style="font-weight: bold;">주문자</span>
