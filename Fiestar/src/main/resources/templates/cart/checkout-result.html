@@ -35,17 +35,15 @@
 
                 <!-- 세션에 있는 purchaseNo 가지고 올 때 결제 테이블과 결제 목록 테이블에는 데이터 insert O
                      -->
-
-
-
               </div>
   
               <div class="select-all">
                   <span style="font-weight: bold;">주문 내역</span>
               </div>
-              
-              
-              <div th:each="product : ${map.purchaseList}" class="item-list">
+            
+              <div th:each="purchaseItem : ${map.purchaseList}" class="item-list">
+            
+              <!-- <div th:each="product : ${map.purchaseList}" class="item-list"> -->
               
 
 
@@ -56,8 +54,8 @@
                   <!-- 1번 -->
 
                   <!-- 이미지 영역 -->
-s
-                  <img th:src="${product.productImageThumbnail}" alt="" class="productImg">
+                  <img th:src="${session.productImageThumbnail}" alt="Product Image" class="productImg">
+                
                   
 
 
@@ -67,7 +65,7 @@ s
                   <div class="item-text">
 
                      <div class="item-name">
-                        <span th:text="${orderedList.productName}">Product Name</span>
+                        <span th:text="${purchaseItem.productName}">Product Name</span>
 
 
                         <!-- 장바구니 번호 -->
@@ -77,7 +75,7 @@ s
                      </div>
 
                      <div>
-                        <span class="item-option" th:text="${productOptionName}">Option Name</span>
+                        <span class="item-option" th:text="${session.productOptionName}">Option Name</span>
                            
 
                      </div>
@@ -93,7 +91,7 @@ s
 
                   <span class="countNPrice">
                      
-                    <span class="item-amount" th:text="${session.productCount}">Quantity</span>
+                    <span class="item-amount" th:text="${session.productQuantity}">Quantity</span>
 
                      <!-- 개별 상품 가격 -->
 
@@ -172,7 +170,9 @@ s
               <div class="order-list">
                   <span class="order-name" style="font-weight: bold;">배송지</span>
                   <div class="order-input">
-                      <div class="name-input-area" th:text="${map.purchaseInfo.purchaseAddress}">Address</div>
+                      <!-- <div class="name-input-area" th:text="${map.purchaseInfo.purchaseAddress}">Address</div> -->
+                      <div class="name-input-area" th:text="${map.purchaseInfo.purchaseAddress.replace('^^^', '  ')}">Address</div>
+
                   </div>
               </div>
   

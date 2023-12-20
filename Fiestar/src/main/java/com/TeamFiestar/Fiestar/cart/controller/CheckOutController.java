@@ -135,38 +135,38 @@ public class CheckOutController {
 	    }
 	    
 	   
-	    
-	    @GetMapping("checkoutResult")
-	    public String checkoutResult(Model model, HttpSession session) {
-	        Integer purchaseNo = (Integer) session.getAttribute("purchaseNo");
-
-	        if (purchaseNo != null) {
-	            // 세션 속성이 존재하는 경우의 처리
-	            Map<String, Object> map = cartService.checkoutResult(purchaseNo);
-	            model.addAttribute("map", map);
-	        } else {
-	            // 세션 속성이 없는 경우의 처리
-	            // 예: 에러 메시지 설정 또는 기본 페이지로 리다이렉트
-	        }
-
-	        return "cart/checkout-Result";
-	    }
+//	    
+//	    @GetMapping("checkoutResult")
+//	    public String checkoutResult(Model model, HttpSession session) {
+//	        Integer purchaseNo = (Integer) session.getAttribute("purchaseNo");
+//
+//	        if (purchaseNo != null) {
+//	            // 세션 속성이 존재하는 경우의 처리
+//	            Map<String, Object> map = cartService.checkoutResult(purchaseNo);
+//	            model.addAttribute("map", map);
+//	        } else {
+//	            // 세션 속성이 없는 경우의 처리
+//	            // 예: 에러 메시지 설정 또는 기본 페이지로 리다이렉트
+//	        }
+//
+//	        return "cart/checkout-Result";
+//	    }
 
 	    
 	    
 	    
 	    
 //	
-//	    @GetMapping("checkoutResult")
-//	    public String checkoutResult(Model model, Map<String, Object> HashMap, @SessionAttribute("purchaseNo") int purchaseNo) {
-//	    	
-//	    	Map<String, Object> map = cartService.checkoutResult(purchaseNo);
-//	    	
-//	    	model.addAttribute("map",map);
-//
-//	    	return "cart/checkout-Result";
-//	    }
-//	    
+	    @GetMapping("checkoutResult")
+	    public String checkoutResult(Model model, Map<String, Object> HashMap, @SessionAttribute("purchaseNo") int purchaseNo) {
+	    	
+	    	Map<String, Object> map = cartService.checkoutResult(purchaseNo);
+	    	
+	    	model.addAttribute("map",map);
+
+	    	return "cart/checkout-Result";
+	    }
+	    
 	    
 	    
 	    

@@ -29,11 +29,15 @@
          </div>
 
          <!-- <div class="cart-list"> -->
+         
+            <div th:if="${cartList == null or cartList.empty}" class="empty-cart-message">
+               <h2>장바구니가 비었습니다.</h2> 
+             </div>   
 
-
-      
 
          </div>
+
+         <div th:unless="${cartList == null or cartList.empty}">
          
          <div class="select-all">
 
@@ -51,7 +55,15 @@
             <span>해당 상품 전체 선택</span>
          </div>
 
-         <div class="item-list1" th:each="cart : ${cartList}"> 
+        
+   
+         <!-- 장바구니 목록이 있을 때만 목록 표시 -->
+         <!-- <div th:unless="${cartList == null or cartList.empty}"> -->
+            <!-- 장바구니 목록을 표시하는 코드 -->
+            <div th:each="cart : ${cartList}" class="item-list1">
+
+
+         <!-- <div class="item-list1" th:each="cart : ${cartList}">  -->
          
             <div class="item-list">
    
