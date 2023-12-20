@@ -4,21 +4,66 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>신고 관리</title>
+    <link rel="stylesheet" href="/css/artistHomepage/feedDetail.css">
     <link rel="stylesheet" href="/css/admin/artistReport.css" />
     <link rel="stylesheet" href="/css/common/artistPageHeader.css" />
   </head>
   <body>
+
     <th:block th:replace="~{common/artistPageHeader}">헤더</th:block>
+
+
     <div class="reportModal">
       <div id="reportModal" class="modal-body">
-        <button id="modalCloseButton">X</button>
+        
+        
         <div class="modal-reportDetail">
-          <h1>신고내용</h1>
-          <br />
-          <div class="modal-reportContent">ㅅxxxx</div>
+          <button id="modalCloseButton">X</button>
+          <h2>신고내용</h2>
+          <div class="modal-reportContent">
+            
+
+            <div class="comment-area">
+              <!-- th:classappend="${comment.boardParentCommentNo} != 0 ? child-comment" -->
+              <div class="comment-area-in">
+
+                <img class="profile-img" src="/img/male-user.png" />
+
+                <div class="comment-writer-area">
+                  <div class="comment-writer" >댓글 작성자</div>
+                  <div class="comment-date" >11.21. 02:43</div>
+                </div>
+
+
+              </div>
+
+              <div class="comment-content-area">
+                <div class="comment-content" >
+                  와 재밌다!sdjksljlkdfdfdfadfanjf l;kdaj fldksjfasdjflkd ajsjlfkaaaaaa aaaaaaaaaaaaaaaaaa aajkj
+                </div>
+              </div>
+
+            </div>
+
+
+          </div>
+          
+          <div class="delete-report-wrapper">
+            <button class="delete-report" id="delete-report-btn">삭제처리</button>
+            <button class="delete-report" id="proceed-report-btn">완료처리</button>
+          </div>
         </div>
+
+
       </div>
     </div>
+
+
+    <th:block th:replace="~{admin/adminFeedDetail}"></th:block>
+
+
+
+
     <main th:with="reportList = ${map.reportList}, pagination = ${map.pagination}">
       <!-- th:replace -->
       <th:block th:replace="~{common/admin}"></th:block>
@@ -48,7 +93,7 @@
               <td th:text="*{reportTargetEmail}">nickname123123@naver.com</td>
               <td th:text="*{reportContent}"> 욕설 사용</td>
               <td>
-                <button class="btn-open-popup">이동</button>
+                <button class="btn-open-popup" th:value="*{reportType}" th:onclick="|selectReport( *{reportNo}, *{reportContentNo}, this )|">이동</button>
               </td>
               <td>
                 <button>N</button>
@@ -118,6 +163,7 @@
       </div>
     </main>
 
+    <script src="/js/artistHomepage/feed.js"></script>
     <script src="/js/admin/artistReport.js"></script>
   </body>
 </html>

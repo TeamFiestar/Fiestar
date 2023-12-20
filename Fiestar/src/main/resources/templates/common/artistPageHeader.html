@@ -1,76 +1,83 @@
 <header th:if="${session.loginMember == null}">
-  <section>
-    <a href="/" src="artistHomepageImg/logo.png" alt="로고이미지">
-      <img src="/artistHomepageImg/logo.png" id="logoImg" />
-    </a>
-  </section>
+  <div class="header-wrapper">
 
-  <section>
-    <div><a href="/member/login/hello@kh.com">test01</a></div>
-    <article>
-
-      <a href="/member/login" id="loginPage">로그인</a>
-    </article>
-
-    <article>
-      <a href="/member/signup" id="signUp">회원가입</a>
-
-    </article>
-
-    <article>
-      <a href="/shop/home"></a>
-    </article>
-  </section>
+    <section>
+      <a href="/" src="artistHomepageImg/logo.png" alt="로고이미지">
+        <img src="/artistHomepageImg/logo.png" id="logoImg" />
+      </a>
+    </section>
+    
+    <section>
+      <div><a href="/member/login/hello@kh.com">test01</a></div>
+      <article>
+        
+        <a href="/member/login" id="loginPage">로그인</a>
+      </article>
+      
+      <article>
+        <a href="/member/signup" id="signUp">회원가입</a>
+        
+      </article>
+      
+      <article>
+        <a href="/shop/home"></a>
+      </article>
+    </section>
+  </div>
 </header>
 
 <!-- 로그인 후 -->
 
 <header th:if="${session.loginMember != null}">
-  <section>
-    <a href="/">
-      <img src="/artistHomepageImg/logo.png" id="logoImg" />
-    </a>
-  </section>
+  <div class="header-wrapper">
 
-  <section>
-    <article>
-      <div class="search">
-        <input type="text" />
-        <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #7743db"></i>
-      </div>
-    </article>
-    <article>
-      <div class="dropdown">
-        <span class="dropbtn">
-          <img
+    <section>
+      <a href="/">
+        <img src="/artistHomepageImg/logo.png" id="logoImg" />
+      </a>
+    </section>
+    
+    <section>
+      <article>
+        <div class="search">
+          <input type="text" />
+          <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #7743db"></i>
+        </div>
+      </article>
+      <article>
+        <div class="dropdown">
+          <span class="dropbtn">
+            <img
             th:if="${session.loginMember.memberProfile == null}"
             th:src="#{user.default.image}"
             width="100%"
             height="100%"
-          />
-          <img
+            />
+            <img
             th:unless="${session.loginMember.memberProfile == null}"
             th:src="${session.loginMember.memberProfile}"
             width="100%"
             height="100%"
             style="width: 50px; height: 50px; border-radius: 100%; object-fit: cover"
-          />
-        </span>
-        <div class="dropdown-content">
-          <a href="/myPage/myPage">마이 페이지</a>
-          <a href="/member/logout">로그아웃</a>
-          <th:block th:if="${session.loginMember.memberAuthority == 3}">
-            <a th:href="@{/admin/selectMember}">관리자 페이지</a>
-          </th:block>
-          <th:block th:if="${session.loginMember.memberAuthority == 4}">
-            <a th:href="@{/admin/subscribeMember}">관리자 페이지</a>
-          </th:block>
-          <!-- <a th:href="@{/admin/selectMember}">관리자 페이지</a> -->
+            />
+          </span>
+          <div class="dropdown-content">
+            <a href="/myPage/myPage">마이 페이지</a>
+            <a href="/member/logout">로그아웃</a>
+            <th:block th:if="${session.loginMember.memberAuthority == 3}">
+              <a th:href="@{/admin/selectMember}">관리자 페이지</a>
+            </th:block>
+            <th:block th:if="${session.loginMember.memberAuthority == 4}">
+              <a th:href="@{/admin/subscribeMember}">관리자 페이지</a>
+            </th:block>
+            <!-- <a th:href="@{/admin/selectMember}">관리자 페이지</a> -->
+          </div>
         </div>
-      </div>
-    </article>
-    <article>
-      <a href="/shop/home"><i class="fa-solid fa-store fa-xl" style="color: #7743db"></i></a>
-    </article>
-  </section>
-</header>
+      </article>
+      <article>
+        <a href="/shop/home"><i class="fa-solid fa-store fa-xl" style="color: #7743db"></i></a>
+      </article>
+    </section>
+  </div>
+  </header>
+  

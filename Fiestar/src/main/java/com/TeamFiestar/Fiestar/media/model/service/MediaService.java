@@ -9,9 +9,10 @@ public interface MediaService {
 
 	/** 미디어 리스트 조회
 	 * @param map
+	 * @param cp 
 	 * @return
 	 */
-	List<Media> selectMediaList(Map<String, Object> map);
+	Map<String, Object> selectMediaList(Map<String, Object> map, int cp);
 
 	/** 미디어 삽입
 	 * @param inserMedia
@@ -31,5 +32,7 @@ public interface MediaService {
 	int updateMedia(Media updateMedia);
 
 	int deleteMedia(int mediaNo);
+
+	int updateReadCount(int mediaNo);
 
 }
