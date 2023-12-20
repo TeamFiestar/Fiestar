@@ -211,6 +211,7 @@ public class MyPageController {
 		return "myPage/myPage-Noctice";
 	}
 	
+	// 공지사항 상세 조회
 	@GetMapping(value="selectNoctice", produces="application/json; charset=UTF-8")
 	public String selectNoctice(@RequestParam("siteNoticeNo") int siteNoticeNo) {
 		
