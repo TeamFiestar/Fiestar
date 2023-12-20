@@ -21,18 +21,109 @@
                   <span th:text="${map.purchaseInfo.purchaseDate}"></span>
 
                   구매 번호
-                  <span th:text="${session.purchaseNo}"></span>
+                  <span th:text="${map.purchaseInfo.purchaseDate}"></span>
+
+                <!-- 세션에 있는 purchaseNo 가지고 올 때 결제 테이블과 결제 목록 테이블에는 데이터 insert O
+                     -->
+
+
 
               </div>
   
               <div class="select-all">
                   <span>주문 내역</span>
               </div>
-  
               
+              <hr class="orderedi">
               <div th:each="product : ${map.purchaseList}" class="item-list">
+
+               <div class="item-list">
+
+                  <!-- 1번 -->
+
+                  <!-- 이미지 영역 -->
+
+                  <img src="/images/keyring.png" alt="">
+
+
+                  <!-- 제품 상세 -->
+
+                  <div class="item-text">
+
+                     <div class="item-name">
+                        <span th:text="${product.productName}">Product Name</span>
+
+
+                        <!-- 장바구니 번호 -->
+
+                        <!-- <input type="hidden" th:text="${checkoutItem.cartNo}" class="cartNo" name="selectEach"></span> -->
+                        <!-- <input type="hidden" name="selectEach" value="yourValue"> -->
+                     </div>
+
+                     <div>
+                        <span class="item-option" th:text="${productOptionName}">Option Name</span>
+                           class="option-text"></span>
+
+                     </div>
+
+                  </div>
+
+                  <hr>
+                 
+
+                  <!-- 상품 수량 -->
+
+                  <!-- <span class="item-amount">수량: 3</span> -->
+
+                  <span class="countNPrice">
+                     
+                    <span class="item-amount" th:text="${productCount}">Quantity</span>
+
+                     <!-- 개별 상품 가격 -->
+
+                     <span class="item-price" th:text="${productPrice}" style="font-weight: bold;">Price</span>
+
+                  </span>
+
+                  <hr>
+                
+               </div>
+
+               <hr>
+
+            </div>
+
+            <hr>
+
+
+
+
+
+
+
+
+
+
+
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+
+
+
+
+
+
                   <!-- <img th:src="@{/static/images/{productImg}(productImg=${map.productImg})}" alt=""> -->
                   <!-- <img th:src="@{/static/images/{productImageNo}(productImageNo=${product.productImageNo})}" alt=""> -->
+
+
+
+
+<!-- 
+              <hr class="">
+              
+              <div th:each="product : ${map.purchaseList}" class="item-list">
+
                   <img src="/images/keyring.png" alt="">
                   <div class="item-text">
                       <div class="item-name">
@@ -46,7 +137,9 @@
                   <span class="item-amount" th:text="${productCount}">Quantity</span>
                   <span class="item-price" th:text="${productPrice}" style="font-weight: bold;">Price</span>
               </div>
-  
+              
+              <hr class=""> -->
+
               <!-- Orderer Information -->
               <div class="order-list">
                   

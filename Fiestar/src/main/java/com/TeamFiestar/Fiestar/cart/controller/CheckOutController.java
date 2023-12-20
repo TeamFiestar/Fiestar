@@ -120,29 +120,21 @@ public class CheckOutController {
 	    	
 	    	
 //	    	맵에 회원 번호, 주문 번호 담아서 서비스로 넘긴다 -> 서비스에서 PURCHASE select 해주는 서비스, Purchase_List SELECT 하는 서비스 하나 
-//    	
-//    	  if (purchaseNo > 0) {
-//    		
-//    		  model.addAttribute("purchaseNo", purchaseNo);
-//   		  return "cart/checkoutResult"; // 주문 결과 페이지로 리다이렉트
-//   		//  return "redirect:/checkoutResult"; // 주문 결과 페이지로 리다이렉트
-//
-//          } else {
-//              ra.addFlashAttribute("message", "주문 처리 중 오류가 발생했습니다.");
-//              return "redirect:/checkout"; // 주문 페이지로 리다이렉트
-//          }
-//    	  
-//	    }
+    	
+   	  if (purchaseNo > 0) {
+    		
+    		  model.addAttribute("purchaseNo", purchaseNo);
+   		 // return "cart/checkoutResult"; // 주문 결과 페이지로 리다이렉트
+  		  return "redirect:/checkoutResult"; // 주문 결과 페이지로 리다이렉트
+
+          } else {
+              ra.addFlashAttribute("message", "주문 처리 중 오류가 발생했습니다.");
+             return "redirect:/checkout"; // 주문 페이지로 리다이렉트
+          }
+    	  
+	    }
 	    
-	    if (purchaseNo > 0) {
-	        ra.addFlashAttribute("purchaseNo", purchaseNo);
-	        return "redirect:/checkoutResult";
-	    } else {
-            ra.addFlashAttribute("message", "주문 처리 중 오류가 발생했습니다.");
-            return "redirect:/checkout"; // 주문 페이지로 리다이렉트
-        }
-  	  
-	   }
+	   
 	    
 	    @GetMapping("checkoutResult")
 	    public String checkoutResult(Model model, HttpSession session) {

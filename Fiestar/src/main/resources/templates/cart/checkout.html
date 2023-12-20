@@ -21,7 +21,7 @@
 
    <section class="frame">
 
-      <form action="checkoutResult" method="post" id="purchaseBtn">
+      <form action="checkoutResult" method="post" id="purchaseForm">
 
 
          <div class="content">
@@ -38,7 +38,7 @@
             </div>
 
             <!-- 상품 1개 개별 영역 -->
-            <hr>
+            <hr class="orderedi">
             <div class="item-list1" th:each="checkoutItem : ${checkout}">
 
                <div class="item-list">
@@ -73,7 +73,7 @@
                   </div>
 
                   <div class="cartNo">
-
+                     
                      <input type="hidden" th:value="${checkoutItem.cartNo}" class="cartCheckOutNo"
                         name="selectEach"></span>
                   </div>
@@ -83,8 +83,8 @@
                   <!-- <span class="item-amount">수량: 3</span> -->
 
                   <span class="countNPrice">
-
-                     <span th:text="${checkoutItem.productCount}" class="item-count"></span>
+                     
+                  <span th:text="${checkoutItem.productCount}" class="item-count"></span>
 
                      <!-- 개별 상품 가격 -->
 
@@ -278,7 +278,7 @@
             <span class="total-price" style="letter-spacing: -1.6px;">총 결제 금액</span>
 
             <input type="hidden" class="purchasePrice" name="purchasePrice" th:value="${purchasePrice}">
-            <p> <span th:text="${purchasePrice}" class="purchasePrice" name="purchasePrice"></span> </p>
+            <p style="background: rgb(255, 254, 237);"> <span th:text="${purchasePrice}" class="purchasePrice" name="purchasePrice" style="background: rgb(255, 254, 237);"></span> </p>
 
          </div>
 
@@ -290,22 +290,24 @@
 
 
             <div class="cash">
-               <img src="/image/toss.png" alt="" id="toss">
+               
                <!-- <button type="button" onclick="requestPay()">결제하기 -->
-                  <label for="payMethod">
+                  <label for="payMethod" class="pm">
 
-                     <input type="radio" name="payMethod" value="1" class="payMethod" checked>토스페이</input> <!-- 결제하기 버튼 생성 --> 
-                     
+                   <img src="/image/토스페이.png" alt="" id="toss" class="pimage"> 
+                     <input type="radio" name="payMethod" value="1" class="payMethod" checked></input> <span class="ptext">토스페이</span> <!-- 결제하기 버튼 생성 --> 
                   </label>
                  
 
             </div>
 
-            <div>
-               <label for="payMethod">
+            <hr>
 
-                  <input type="radio" name="payMethod" value="2" class="payMethod">카카오 페이</input> <!-- 결제하기 버튼 생성 -->
-                  
+            <div>
+               <label for="payMethod" class="pm">
+
+                  <img src="/image/카카오페이.png" alt="" class="pimage">
+                  <input type="radio" name="payMethod" value="2" class="payMethod"></input> <span class="ptext">카카오 페이</span><!-- 결제하기 버튼 생성 -->
                </label>
             </div>
 
@@ -327,7 +329,7 @@
 
          <div class="checkout-area">
 
-            <button type="submit" class="checkOut-btn" id="purchaseBtn" onclick="requestPay()">결제하기</button>
+            <button type="button" class="checkOut-btn" id="purchaseBtn" onclick="requestPay()">결제하기</button>
             <!-- <button onclick="requestPay()">결제하기</button> 결제하기 버튼 생성 -->
 
          </div>
@@ -337,10 +339,6 @@
       </form>
 
    </section>
-
-
-   <script src="/js/cart/checkout.js"> </script>
-   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"> </script>
 
 
    <script th:inline="javascript">
@@ -355,11 +353,13 @@
       document.getElementById("sample6_postcode").value = addressParts[0] || ""; // 우편번호
       /*]]>*/
    </script>
-
-
+   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"> </script>
+   
    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
    <!-- iamport.payment.js -->
    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+
+   <script src="/js/cart/checkout.js"> </script>
    <!-- <script>
 
       var IMP = window.IMP;
@@ -417,122 +417,6 @@
 
 
 <!-- 방법 2 -->
-
-<script>
-
-
-function requestPay() {
-   var IMP = window.IMP;
-   IMP.init("imp66683387"); // 여기에는 실제 가맹점 식별코드를 입력해야 합니다.
-
-   let selectedMethod = document.querySelector('input[name="payMethod"]:checked').value;
-   let pgValue, methodValue;
-
-   if(selectedMethod == "1") { // 토스페이 선택 시
-       pgValue = 'tosspay.tosstest';
-       methodValue = 'trans';
-
-   } else if(selectedMethod == "2") { // 카카오 페이 선택 시
-       pgValue = 'kakaopay.TC0ONETIME';
-       methodValue = 'card';
-   }
-
-   IMP.request_pay({
-       pg: pgValue,
-       pay_method: methodValue,
-       merchant_uid: 'merchant_' + new Date().getTime(),
-       name: '주문명:결제테스트',
-       amount: 1,
-       // 추가적인 구매자 정보는 여기에 입력합니다.
-   }, function (rsp) {
-       if (rsp.success) {
-           // 결제 성공 시 로직
-           console.log(rsp); // 여기에 실제 결과 페이지 URL을 입력합니다.
-           window.location.href = "/checkoutResult";
-       } else {
-           // 결제 실패 시 로직
-           console.log(rsp);
-           alert("결제에 실패했습니다.");
-       }
-   });
-}
-
-document.getElementById("purchaseBtn").addEventListener("submit", function(e) {
-   e.preventDefault(); // 폼 기본 제출 막기
-   requestPay(); // 결제 요청 함수 호출
-
-
-});
-
-</script>
-
-
-
-
-
-
-
-
-   <!-- <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
-
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-<script>
-    var IMP = window.IMP; 
-    IMP.init("imp67011510"); 
-  
-    var today = new Date();   
-    var hours = today.getHours(); // 시
-    var minutes = today.getMinutes();  // 분
-    var seconds = today.getSeconds();  // 초
-    var milliseconds = today.getMilliseconds();
-    var makeMerchantUid = hours +  minutes + seconds + milliseconds;
-    
-
-   //  function requestPay() {
-   //      IMP.request_pay({
-   //          pg : 'kakaopay',
-   //          merchant_uid: "IMP"+makeMerchantUid, 
-   //          name : '당근 10kg',
-   //          amount : 1004,
-   //          buyer_email : 'Iamport@chai.finance',
-   //          buyer_name : '아임포트 기술지원팀',
-   //          buyer_tel : '010-1234-5678',
-   //          buyer_addr : '서울특별시 강남구 삼성동',
-   //          buyer_postcode : '123-456'
-   //      }, function (rsp) { // callback
-   //          if (rsp.success) {
-   //              console.log(rsp);
-   //          } else {
-   //              console.log(rsp);
-   //          }
-   //      });
-   //  }
-</script>
-
-   <script>
-      var IMP = window.IMP;
-      IMP.init("impFiestar11111");
- 
-      function requestPay() {
-         IMP.request_pay({
-            pg: "kakaopay.{TC0ONETIME}",
-            pay_method: "card", // 생략가
-            merchant_uid: "order_no_0001", // 상점에서 생성한 고유 주문번호
-            name: "주문명:결제테스트",
-            amount: 1004,
-            buyer_email: "test@portone.io",
-            buyer_name: "",
-            buyer_tel: "",
-            buyer_addr: "",
-            buyer_postcode: "",
-
-            }, function (rsp) { // callback 로직
-            /* ...중략... */
-            });
-      }
-    
-</script> -->
-
 
 </body>
 

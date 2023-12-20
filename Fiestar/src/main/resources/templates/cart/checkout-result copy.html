@@ -6,58 +6,72 @@
    <title>Document</title>
    <script src="https://kit.fontawesome.com/d6c32512de.js" crossorigin="anonymous"></script>
    <link rel="stylesheet" href="/css/cart/checkout-result.css">
-   <link rel="stylesheet" href="/static/css/common/shopHeader.css">
+   <link rel="stylesheet" href="/css/common/shopHeader.css">
+   <th:block th:replace="~{common/shopHeader}"></th:block>
 
 </head>
-
 <body>
    <section class="frame">
       <form action="checkoutResult" method="get">
           <div class="content">
               <div class="cart-area">
                   <h1 class="cart">주문이 완료 되었습니다!</h1>
+
+                  구매일자
+                  <span th:text="${map.purchaseInfo.purchaseDate}"></span>
+
+                  구매 번호
+                  <span th:text="${map.purchaseInfo.purchaseDate}"></span>
+
+                <!-- 세션에 있는 purchaseNo 가지고 올 때 결제 테이블과 결제 목록 테이블에는 데이터 insert O
+                     -->
+
+
+
               </div>
   
               <div class="select-all">
                   <span>주문 내역</span>
               </div>
   
-              <!-- Iterate over ordered products -->
-              <div th:each="product : ${map.orderedList}" class="item-list">
-                  <img th:src="@{/static/images/{productImg}(productImg=${product.productImg})}" alt="">
-  
+              
+              <div th:each="product : ${map.purchaseList}" class="item-list">
+                  <!-- <img th:src="@{/static/images/{productImg}(productImg=${map.productImg})}" alt=""> -->
+                  <!-- <img th:src="@{/static/images/{productImageNo}(productImageNo=${product.productImageNo})}" alt=""> -->
+                  <img src="/images/keyring.png" alt="">
                   <div class="item-text">
                       <div class="item-name">
                           <span th:text="${product.productName}">Product Name</span>
                       </div>
                       <div>
-                          <span class="item-option" th:text="'옵션 : ' + ${product.productOptionName}">Option</span>
+                        <span class="item-option" th:text="${productOptionName}">Option Name</span>
                       </div>
                   </div>
   
-                  <span class="item-amount" th:text="'수량: ' + ${product.productCount}">Quantity</span>
-                  <span class="item-price" th:text="'$' + ${product.productPrice}" style="font-weight: bold;">Price</span>
+                  <span class="item-amount" th:text="${productCount}">Quantity</span>
+                  <span class="item-price" th:text="${productPrice}" style="font-weight: bold;">Price</span>
               </div>
   
               <!-- Orderer Information -->
               <div class="order-list">
+                  
                   <span class="order-name" style="font-weight: bold;">주문자</span>
                   <div class="order-input">
-                      <div class="name-input-area" th:text="${map.orderer.ordererName}">Orderer Name</div>
-                      <div class="phonenumber-input-area" th:text="${map.orderer.ordererPhoneNumber}">Phone Number</div>
+                      <div class="name-input-area" th:text="${map.purchaseInfo.purchaseName}">Orderer Name</div>
+                      <div class="phonenumber-area" th:text="${map.purchaseInfo.puchasePhoneNumber}">PhoneNumber</div>
                   </div>
               </div>
   
               <div class="order-list">
                   <span class="order-name" style="font-weight: bold;">배송지</span>
                   <div class="order-input">
-                      <div class="name-input-area" th:text="${map.orderer.ordererAddress}">Address</div>
+                      <div class="name-input-area" th:text="${map.purchaseInfo.purchaseAddress}">Address</div>
                   </div>
               </div>
   
               <div class="total">
                   <span style="background-color: rgb(255, 254, 237);">총 결제 금액</span>
-                  <div class="sc-e98633bc-7 iUJKwp" th:text="'$' + ${map.orderer.purchasePrice}" style="background-color: rgb(255, 254, 237);">Total Price</div>
+                  <div class="sc-e98633bc-7 iUJKwp" th:text="'$' + ${map.purchaseInfo.purchasePrice}" style="background-color: rgb(255, 254, 237);">Total Price</div>
               </div>
   
               <div class="checkout-area">
