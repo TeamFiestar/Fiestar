@@ -165,15 +165,12 @@ public class ArtistAdminServiceImpl implements ArtistAdminService{
 			productOption2.setProductNo(productNo);
 		}
 		
-
 		int result2 = mapper.insertOption(product.getProductOptionList());
 		
 		if(result2 == 0) {
 			return 0; 
 		}
 		
-		
-	
 		ProductImage img = new ProductImage();
 		
 		
@@ -199,6 +196,63 @@ public class ArtistAdminServiceImpl implements ArtistAdminService{
 		
 		return productNo;
 	}
+	
+	
+	
+	
+	//상품 수정
+	@Override
+	public int GoodsModify(Product product, MultipartFile contentImg, MultipartFile thumbnailImg)throws IllegalStateException, IOException {
+		
+		int artistGroupNo = mapper.selectArtistGroupNo(product.getArtistGroupTitle());
+		product.setArtistGroupNo(artistGroupNo);
+		
+		int result = mapper.updateGoods(product);
+		
+		if(result == 0) {
+			return 0; 
+		}
+		
+		
+		
+//		for (ProductOption productOption2 : product.getProductOptionList()) {
+//			productOption2.setProductNo(productNo);
+//		}
+		
+//		int result2 = mapper.updateOption(product.getProductOptionList());
+		
+//		if(result2 == 0) {
+//			return 0; 
+//		}
+		
+//		ProductImage img = new ProductImage();
+//		
+//		
+//		img.setProductNo(productNo); 
+//		
+//		
+//		img.setProductImageContent(contentPath);
+//		img.setProductImageThumbnail(thumbnailPath);
+//	
+//
+//		img.setProductImageRename(Util.fileRename(contentImg.getOriginalFilename()));
+//		img.setProductImageThumbnailRename(Util.fileRename(thumbnailImg.getOriginalFilename()));
+//		
+//		 
+//		img.setUploadFile(contentImg);
+//		img.setUploadFile(thumbnailImg);
+//		
+//		result = mapper.updateImage(img);
+//		
+//		
+//		img.getUploadFile().transferTo(new File(contentfolderPath + img.getProductImageRename()));
+//		img.getUploadFile().transferTo(new File(thumbnailfolderPath + img.getProductImageThumbnailRename()));
+		
+		return result;
+	}
+	
+	
+	
 			
 			
 			

@@ -1,76 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
 
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Document</title>
+    <link rel="stylesheet" href="/css/login/login.css" />
 
-   <link rel="stylesheet" href="/css/login/login.css">
+    <!-- <link rel="stylesheet" href="../../static/css/login/login.css"> -->
+  </head>
 
-   <!-- <link rel="stylesheet" href="../../static/css/login/login.css"> -->
-</head>
-
-<body>
-   <section class="frame">
-
+  <body>
+    <section class="frame">
       <div class="signup-area">
+        <a href="">
+          <img src="/img/picture/shop-logo.jpeg" alt="" class="logo" />
+        </a>
 
-         <a href="">
+        <!-- 아이디 -->
+        <form class="login" style="margin-left: 48px" method="post">
+          <div class="input-id">
+            <input type="text" placeholder="ID" style="padding-left: 8px" name="memberEmail" />
+          </div>
 
-            <img src="/images/shop-logo.jpeg" alt="" class="logo">
+          <!-- 비밀번호 -->
+          <div class="loing-pw">
+            <div class="input-pw">
+              <input type="password" placeholder="PW" style="padding-left: 8px" name="memberPw" />
+            </div>
+          </div>
 
-         </a>
-
-         
-
-         <!-- 아이디 -->
-         <form class="login" style="margin-left: 48px;" method="post">
-            <div class="input-id">
-               <input type="text" placeholder="ID" style="padding-left: 8px;" name="memberEmail">
+          <div class="loginNpw">
+            <div class="checkout-area">
+              <button type="submit" class="checkOut-btn">로그인</button>
             </div>
 
-
-
-            <!-- 비밀번호 -->
-            <div class="loing-pw">
-               <div class="input-pw">
-                  <input type="password" placeholder="PW" style="padding-left: 8px;" name="memberPw">
-               </div>
+            <div class="find-pw" id="" style="margin-left: 36px">
+              <a th:href="@{/member/signup}" style="margin-right: 6px">회원가입</a>
+              <span style="color: rgb(217, 217, 217)"> | </span>
+              <a href="" style="margin-left: 6px">비밀번호 찾기</a>
             </div>
-
-            <div class="loginNpw">
-               <div class="checkout-area">
-
-                  <button type="submit" class="checkOut-btn">로그인</button>
-
-
-               </div>
-
-               <div class="find-pw" id="" style="margin-left: 36px;">
-                  <a href="" style="margin-right: 6px;">회원가입</a>
-                  <span style=" color: rgb(217, 217, 217);"> | </span>
-                  <a href="" style="margin-left: 6px;">비밀번호 찾기</a>
-               </div>
-
-            </div>
-
-         </form>
-
+          </div>
+        </form>
       </div>
+    </section>
 
-   </section>
-
-
-   <script th:inline="javascript">
+    <script th:inline="javascript">
       const message = /*[[${message}]]*/ "메시지";
 
-      if(message != null){
-         alert(message);
+      if (message != null) {
+        alert(message);
       }
-
-   </script>
-
-</body>
-
+    </script>
+  </body>
 </html>

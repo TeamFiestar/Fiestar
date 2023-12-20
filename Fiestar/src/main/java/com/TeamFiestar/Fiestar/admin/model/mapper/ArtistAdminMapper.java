@@ -40,6 +40,12 @@ public interface ArtistAdminMapper {
 
 	int insertOption(List<ProductOption> productOptionList);
 
+	int updateGoods(Product product);
+
+//	int updateOption(List<ProductOption> productOptionList);
+//
+//	int updateImage(ProductImage img);
+
 	
 
 }

@@ -2,10 +2,14 @@ package com.TeamFiestar.Fiestar.admin.model.mapper;
 
 import java.util.Map;
 
+import javax.xml.stream.events.Comment;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.TeamFiestar.Fiestar.admin.model.dto.ArtistNotice;
 import com.TeamFiestar.Fiestar.admin.model.dto.Purchase;
+import com.TeamFiestar.Fiestar.board.model.dto.Board;
+import com.TeamFiestar.Fiestar.media.model.dto.MediaComment;
 
 
 @Mapper
@@ -20,6 +24,20 @@ public interface ArtistAdminAJAXMapper {
 	int updatePurchase(Purchase purchase);
 
 	Purchase selectPurchaseDetails(int purchaseNo);
+
+	Board selectBoardReport(int boardNo);
+
+	Comment selectBoardCommentReport(int boardCommentNo);
+
+	MediaComment selectMediaCommentReport(int mediaCommentNo);
+
+	int deleteBoard(Map<String, Object> map);
+
+	int deleteBoardComment(Map<String, Object> map);
+
+	int deleteMediaComment(Map<String, Object> map);
+
+	int proceedReport(Map<String, Object> map);
 
 
 }

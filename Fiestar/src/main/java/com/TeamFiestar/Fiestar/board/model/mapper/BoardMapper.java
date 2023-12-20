@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.TeamFiestar.Fiestar.board.model.dto.Board;
+import com.TeamFiestar.Fiestar.board.model.dto.Comment;
 
 @Mapper
 public interface BoardMapper {
@@ -26,5 +27,8 @@ public interface BoardMapper {
 	List<Board> selectArtistBoard(Map<String, Object> paramMap);
 
 	Board boardDetail(Map<String, Object> map);
+
+
+	List<Comment> selectCommentList(Map<String, Object> map);
 
 }

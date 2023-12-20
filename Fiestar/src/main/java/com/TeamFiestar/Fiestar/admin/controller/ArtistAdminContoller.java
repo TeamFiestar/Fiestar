@@ -141,5 +141,42 @@ public class ArtistAdminContoller {
 		return "redirect:goods";	
 		
 	}
+	
+	/**상품 수정화면 이동
+	 * @param artistGroupTitle
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("{artistGroupTitle}/{productNo}/goodsModify")
+	public String registe() {
+	
+		return "admin/goodsModify";
+	}
+	
+	
+	/*상품 수정
+	 *  */
+	@PostMapping("{artistGroupTitle}/{productNo}/goodsModify")
+	public String updateGoods(RedirectAttributes ra,
+								@PathVariable("productNo") int productNo,
+								@ModelAttribute Product product,
+								@RequestParam("contentImg") MultipartFile contentImg,
+								@RequestParam ("thumbnailImg") MultipartFile thumbnailImg) throws IllegalStateException, IOException{
+		
+		
+		product.setProductNo(productNo);
+		
+		int result = service.GoodsModify(product, contentImg, thumbnailImg);
+		
+		if(result > 0) {
+			ra.addFlashAttribute("message","상품 수정 성공");
+			return "redirect:/shop/shopDetail/" + productNo;
+		}
+		
+		ra.addFlashAttribute("message","상품 수정 실패");
+		return "redirect:goods";	
+		
+	}
+	
 
 }

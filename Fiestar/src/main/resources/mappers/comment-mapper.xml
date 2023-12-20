@@ -4,11 +4,11 @@
 <!-- 연결할 인터페이스의 패키지명.인터페이스명을 작성 -->
 <mapper namespace="com.TeamFiestar.Fiestar.board.model.mapper.CommentMapper"> 
 	
-	<!-- 댓글 목록 조회 -->
+<!--	 댓글 목록 조회 
 	<select id="select" resultType="Comment">
 		SELECT LEVEL, C.* FROM
     		(SELECT BOARD_COMMENT_NO, BOARD_COMMENT_CONTENT, BOARD_NO, MEMBER_NO, MEMBER_NICKNAME, MEMBER_PROFILE, BOARD_PARENT_COMMENT_NO, 
-    		BOARD_COMMENT_DEL_FL, MEMBER_AUTHORITY,
+    		BOARD_COMMENT_DEL_FL, MEMBER_AUTHORITY, BOARD_COMMENT_ENROLL_DATE
     		
     		<![CDATA[	
 			
@@ -34,7 +34,7 @@
       	 START WITH BOARD_PARENT_COMMENT_NO IS NULL
       	 CONNECT BY PRIOR BOARD_COMMENT_NO = BOARD_PARENT_COMMENT_NO
       	 ORDER SIBLINGS BY BOARD_COMMENT_NO
-	</select>
+	</select>-->
 	
 	
 	<!-- 댓글 등록 -->
@@ -89,6 +89,11 @@
 		AND MEMBER_NO = #{memberNo}
 	</select>
 	
+	
+	<select id="selectCommentLikeCount" resultType="_int">
+		SELECT COUNT(*) FROM "BOARD_COMMENT_LIKE"
+		WHERE BOARD_COMMENT_NO = #{boardCommentNo}
+	</select>
 	
 	
 	

@@ -60,16 +60,16 @@ public class ChattingLiveHandler extends TextWebSocketHandler{
             log.info("세션 : " + sessions.size());
             
             for(WebSocketSession s : sessions) {
-            	HttpSession temp = (HttpSession)s.getAttributes().get("session");
+            	HttpSession temp = (HttpSession)s.getAttributes().get("liveChattingRoomNo");
             	
-            	int liveChattingRoomNo = msg.getLiveChattingRoomNo();
+            	int liveChattingRoomNo = (int) temp.getAttribute("liveChattingRoomNo");
             	log.debug("채팅방 번호 : " + liveChattingRoomNo);
             	
             	
-//            	if(artistGroupNo == msg.getArtistGroupNo()) {
+            	if(liveChattingRoomNo == msg.getLiveChattingRoomNo()) {
             		s.sendMessage(new TextMessage(new Gson().toJson(msg)));
             		log.debug("채팅 보내짐");
-//            	}
+            	}
             }
 
 		}

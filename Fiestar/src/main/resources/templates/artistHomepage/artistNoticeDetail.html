@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>noticeDetail</title>
+
+    <link rel="stylesheet" href="/css/shop/noticeDetail.css" />
+    <link rel="stylesheet" href="/css/common/artistPageHeader.css" />
+  </head>
+  <body>
+    <th:block th:replace="~{common/artistPageHeader}"></th:block>
+
+    <div class="screen" th:each="artistGroupNotice : ${artistGroupNoticeList}" th:object="${artistGroupNotice}">
+      <div class="frame">
+        <div class="div-wrapper"><div class="text-wrapper">공지사항</div></div>
+        <div class="div">
+          <div class="notice-head">
+            <div class="notice-artist" th:text="*{artistGroupTitle}">NewJeans</div>
+            <div class="notice-head-wrapper">
+              <span class="notice-title" th:text="*{artistGroupNoticeTitle}">아티스트 그룹 공지사항 제목<br /></span>
+              <span class="notice-enroll-date" th:text="*{artistGroupNoticeEnrollDate}"
+                >아티스트 그룹 공지사항 날짜</span
+              >
+            </div>
+          </div>
+          <img class="line" src="/img/line-347.svg" />
+        </div>
+        <div class="content-wrapper">
+          <p class="notice-content" th:text="*{artistGroupNoticeContent}">아티스트 공지사항 내용</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

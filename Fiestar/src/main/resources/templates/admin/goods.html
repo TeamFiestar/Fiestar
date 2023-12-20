@@ -14,7 +14,7 @@
       <div class="goods-add">
         <h1>굿즈 등록</h1>
         <br />
-        <form th:action="|/artistAdmin/${artistGroupTitle}/goods|" method="post" enctype="multipart/form-data">
+        <form th:action="|/artistAdmin/${artistGroupTitle}/goods|" method="post" enctype="multipart/form-data" id="goodsFrm">
           <div class="goods-title">
             상품명
             <input type="text" id="input-goodsTitle" name="productName"/>

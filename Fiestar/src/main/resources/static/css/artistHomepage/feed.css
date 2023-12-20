@@ -59,6 +59,10 @@ a {
   box-shadow: 0 1px 12px #3e3f4e05, 0 5px 24px #3e3f4e1a;
 }
 
+#postingSection:hover {
+  border:1px solid #7743DB;
+}
+
 
 #postingSection>img:first-child {
   margin-left: 30px;
@@ -309,7 +313,7 @@ a {
   color: #7743DB;
 }
 
-.modal-btn button {
+.feedWriteBtn {
   padding: 10px 20px;
   background-color: #7743DB;
   color: #fff;

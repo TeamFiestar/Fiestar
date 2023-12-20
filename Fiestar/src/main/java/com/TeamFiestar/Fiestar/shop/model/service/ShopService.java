@@ -1,9 +1,9 @@
 package com.TeamFiestar.Fiestar.shop.model.service;
 
-
 import java.util.List;
 import java.util.Map;
 
+import com.TeamFiestar.Fiestar.member.model.dto.Member;
 import com.TeamFiestar.Fiestar.shop.model.dto.Product;
 
 public interface ShopService {
@@ -61,6 +61,16 @@ public interface ShopService {
 	 * @return
 	 */
 	Map<String, Object> shopDetail(int productNo);
+
+
+	/**장바구니에 담기
+	 * @param productNo
+	 * @param productCount
+	 * @param memberNo 
+	 * @param memberNo2 
+	 * @return
+	 */
+	int insertCart(int productNo, int productCount, int totalPrice, int memberNo);
 
 
 

@@ -10,6 +10,7 @@ import com.TeamFiestar.Fiestar.admin.model.dto.ArtistNotice;
 import com.TeamFiestar.Fiestar.artist.model.dto.Artist;
 import com.TeamFiestar.Fiestar.media.model.dto.Media;
 import com.TeamFiestar.Fiestar.member.model.dto.ArtistGroup1;
+import com.TeamFiestar.Fiestar.notice.dto.ArtistGroupNotice;
 import com.TeamFiestar.Fiestar.shop.model.dto.Product;
 
 @Mapper
@@ -46,5 +47,9 @@ public interface ArtistMapper {
 	int ProfileUpdate(List<Artist> artistList);
 
 	int profileMemberNo(String string);
+
+	List<ArtistNotice> artistNotice(int artistGroupNo);
+
+	List<ArtistGroupNotice> artistNoticeDetail(Map<String, Object> map);
 
 }
