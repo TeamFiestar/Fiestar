@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.TeamFiestar.Fiestar.notice.mapper.ArtistGroupNoticeMapper">
+	
+	<select id="notice" resultType="ArtistGroupNotice">
+		SELECT ARTIST_GROUP_NOTICE_NO , ARTIST_GROUP_NOTICE_TITLE , ARTIST_GROUP_NOTICE_ENROLL_DATE ,
+		(SELECT ARTIST_GROUP_TITLE FROM ARTIST_GROUP WHERE ARTIST_GROUP_NO = #{artistGroupNo}) ARTIST_GROUP_TITLE
+		FROM ARTIST_GROUP_NOTICE
+		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
+		AND ARTIST_GROUP_NOTICE_DEL_FL = 'N'
+	</select>
+	
+	
+	<select id="countNoticeList" resultType="_int">
+		SELECT COUNT(*) FROM ARTIST_GROUP_NOTICE
+		WHERE ARTIST_GROUP_NOTICE_DEL_FL = 'N'
+		AND ARTIST_GROUP_NO = #{artistGroupNo}
+	</select>
+	
+	
+	<select id="noticeDetail" resultType="ArtistGroupNotice">
+		SELECT ARTIST_GROUP_NOTICE_TITLE , ARTIST_GROUP_NOTICE_CONTENT , ARTIST_GROUP_NOTICE_ENROLL_DATE ,
+		(SELECT ARTIST_GROUP_TITLE FROM ARTIST_GROUP WHERE ARTIST_GROUP_NO = #{artistGroupNo}) ARTIST_GROUP_TITLE
+		FROM ARTIST_GROUP_NOTICE
+		WHERE ARTIST_GROUP_NOTICE_NO = #{artistGroupNoticeNo}
+	</select>
+</mapper>

@@ -27,4 +27,6 @@ public interface ArtistAdminAJAXService {
 
 	MediaComment selectMediaCommentReport(int mediaCommentNo);
 
+	int deleteReport(Map<String, Object> map);
+
 }

@@ -288,7 +288,7 @@ main {
   flex-grow: 1;
 }
 
-.deleteReport{
+#delete-report-btn, #proceed-report-btn{
   border: none;
   width: 100px;
   height: 30px;
@@ -296,6 +296,8 @@ main {
   background-color: #e57eff;
   cursor: pointer;
   border-radius: 20px;
+
+  margin-left: 10px;
 }
 
 .delete-report-wrapper{
