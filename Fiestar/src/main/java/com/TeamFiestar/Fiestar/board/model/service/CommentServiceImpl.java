@@ -37,12 +37,20 @@ public class CommentServiceImpl implements CommentService {
 	
 	@Override
 	public int likeComment(Comment comment) {
-		return mapper.likeComment(comment);
+		int result = mapper.likeComment(comment);
+
+		if(result > 0) return mapper.selectCommentLikeCount(comment.getBoardCommentNo());
+		
+		return 0; 
 	}
 	
 	@Override
 	public int deleteLike(Comment comment) {
-		return mapper.deleteLike(comment);
+		int result =  mapper.deleteLike(comment);
+		
+		if(result > 0) return mapper.selectCommentLikeCount(comment.getBoardCommentNo());
+		
+		return 0; 
 	}
 	
 	@Override

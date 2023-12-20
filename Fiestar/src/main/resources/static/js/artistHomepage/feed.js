@@ -1,9 +1,14 @@
 
 let likeCheck;
 let likeCount2;
+let likeClick;
+let likeCount3;
 const dataObj = {};
 const likeImg = document.querySelector('#likeImg');
+const likeImg2 = document.querySelector('#likeImg2');
+
 let boardNo2;
+
 
 function openModal(boardNo) {
   // 새로운 URL 생성
@@ -22,6 +27,7 @@ function openModal(boardNo) {
   updatePageContent(boardNo);
   generateComment(boardNo);
 
+
   const modal = document.getElementById('feedDetail');
   modal.classList.add("show");
   document.body.style.overflow = "hidden";
@@ -29,7 +35,7 @@ function openModal(boardNo) {
 }
 
 
-function closeModal(stateObj){
+function closeModal(stateObj) {
 
   var newUrl = "/" + artistGroupTitle + "/feed";
   history.pushState(stateObj, "", newUrl);
@@ -38,125 +44,151 @@ function closeModal(stateObj){
   const modal = document.getElementById('feedDetail');
   modal.classList.remove("show");
   document.body.style.overflow = "";
-  
-}
 
+}
+const modalForm = document.getElementById('modal-form');
 
 function updatePageContent(boardNo) {
 
 
   // 여기에 페이지 내용을 동적으로 업데이트하는 로직을 추가
-  fetch("/AJAXboardDetail?boardNo="+ boardNo)
-  .then(resp => resp.json())
-  .then(board => {
-    console.log(board);
+  fetch("/AJAXboardDetail?boardNo=" + boardNo)
+    .then(resp => resp.json())
+    .then(board => {
+      console.log(board);
 
-    /* ----------------- 아이디 등 인적사항 및 피드 내용 -------------------------- */
-    const boardNickname = document.getElementById('boardNickname');
-    boardNickname.innerText = board.memberNickname;
-    const boardDate = document.getElementById('boardDate');
-    boardDate.innerText = board.boardEnrollDate;
+      modalForm.setAttribute('action', `${boardNo}/delete`)
 
-    const feedMain = document.querySelector('.feedMain');
-    feedMain.innerText = board.boardContent;
+      /* ----------------- 아이디 등 인적사항 및 피드 내용 -------------------------- */
+      const boardNickname = document.getElementById('boardNickname');
+      boardNickname.innerText = board.memberNickname;
+      const boardDate = document.getElementById('boardDate');
+      boardDate.innerText = board.boardEnrollDate;
 
-    const profileImage = document.getElementById('profileImage');
+      const feedMain = document.querySelector('.feedMain');
+      feedMain.innerText = board.boardContent;
 
-    if(board.memberProfile) {
-      profileImage.src = board.memberProfile;
-    } else {
-      profileImage.src = defaultImage;
-    }
+      const profileImage = document.getElementById('profileImage');
 
-    const indicator = document.querySelector('#indicator');
-    
-    if(board.memberAuthority == 2) {
-      indicator.classList.add("fa-solid", "fa-circle-check");
-      indicator.style.color = "#7743DB";
-    }else {
-      indicator.classList.remove("fa-solid", "fa-circle-check");
-      indicator.style.color = ""; 
-    }
-     /* ------------------------------------------------------------ */
+      if (board.memberProfile) {
+        profileImage.src = board.memberProfile;
+      } else {
+        profileImage.src = defaultImage;
+      }
 
-    /* ----------------- 업로드된 이미지 표시 -------------------------- */
-    if(board.imageList && board.imageList.length > 0) {
-      const feedImg = document.querySelector('.feedImg');
-      feedImg.innerHTML = '';
+      const indicator = document.querySelector('#indicator');
 
-      board.imageList.forEach(image => {
-        const imgElement = document.createElement('img');
-        const imagePath = image.boardImagePath + image.boardImageRename;
+      if (board.memberAuthority == 2) {
+        indicator.classList.add("fa-solid", "fa-circle-check");
+        indicator.style.color = "#7743DB";
+      } else {
+        indicator.classList.remove("fa-solid", "fa-circle-check");
+        indicator.style.color = "";
+      }
+      /* ------------------------------------------------------------ */
 
-        imgElement.src = imagePath;
+      /* ----------------- 업로드된 이미지 표시 -------------------------- */
+      if (board.imageList && board.imageList.length > 0) {
+        const feedImg = document.querySelector('.feedImg');
+        feedImg.innerHTML = '';
 
-        feedImg.appendChild(imgElement);
-      });
+        board.imageList.forEach(image => {
+          const imgElement = document.createElement('img');
+          const imagePath = image.boardImagePath + image.boardImageRename;
 
+          imgElement.src = imagePath;
 
-    } else {
-      const feedImg = document.querySelector('.feedImg');
-      feedImg.innerHTML ='';
-
-    }
-
-     /* ------------------------------------------------------------ */
-
-    /* ----------------- 피드 좋아요 표시 -------------------------- */
-    const feedLikeCount = document.querySelector('#feedLikeCount');
-    feedLikeCount.innerText = board.likeCount;
-
-    console.log(board.likeCheck);
-
-    if(board.likeCheck == 1){
-      likeImg.classList.add("fa-solid");
-      likeImg.classList.remove("fa-regular");
-    }
-    else{
-      likeImg.classList.remove("fa-solid");
-      likeImg.classList.add("fa-regular");
-    }
+          feedImg.appendChild(imgElement);
+        });
 
 
-    likeCount2 = board.likeCount;
+      } else {
+        const feedImg = document.querySelector('.feedImg');
+        feedImg.innerHTML = '';
 
-    
-    
-    const commentList = board.commentList;
+      }
 
-    // 'boardCommentDelFl'이 'N'인 댓글만 필터링
-    const validComments = commentList.filter(comment => comment.boardCommentDelFl === 'N');
-
-    const commentCount = validComments.length;
-
-    const textWrapper = document.querySelector('.text-wrapper');
-
-    textWrapper.innerText = commentCount + "개의 댓글";
+      /* ------------------------------------------------------------ */
 
 
-    dataObj.boardNo = boardNo;
-    dataObj.likeCheck = board.likeCheck;
 
-    boardNo2 = board.boardNo;
-    /* ------------------------------------------------------------ */
+      const checkBtn = document.querySelector("#check-btn");
+      const updateBtn = document.querySelector("#updateBtn");
+      const feedDeleteBtn2 = document.querySelector("#feedDeleteBtn");
 
-    /* ----------------- 댓글 표시 -------------------------- */
-    
+      checkBtn.addEventListener("click", () => {
+        if (loginMemberNo != board.memberNo) {
+          updateBtn.style.display = "none";
+          feedDeleteBtn2.style.display = "none";
+        } else {
+          updateBtn.style.display = "relative";
+          feedDeleteBtn2.style.display = "relative";
+        }
+
+      })
 
 
-    
 
-    /* ------------------------------------------------------------ */
+      /* ----------------- 피드 좋아요 표시 -------------------------- */
+      const feedLikeCount = document.querySelector('#feedLikeCount');
+      feedLikeCount.innerText = board.likeCount;
+
+      console.log(board.likeCheck);
+
+      if (board.likeCheck == 1) {
+        likeImg.classList.add("fa-solid");
+        likeImg.classList.remove("fa-regular");
+      }
+      else {
+        likeImg.classList.remove("fa-solid");
+        likeImg.classList.add("fa-regular");
+      }
 
 
-    
-    
-  });
+      likeCount2 = board.likeCount;
+
+      //---------------------------------------------------------------
+
+
+      // ---------------- 커맨트 좋아요 표시 ---------------------------
+
+
+
+      const commentList = board.commentList;
+
+      // 'boardCommentDelFl'이 'N'인 댓글만 필터링
+      const validComments = commentList.filter(comment => comment.boardCommentDelFl === 'N');
+
+      const commentCount = validComments.length;
+
+      const textWrapper = document.querySelector('.text-wrapper');
+
+      textWrapper.innerText = commentCount + "개의 댓글";
+
+
+      dataObj.boardNo = boardNo;
+      dataObj.likeCheck = board.likeCheck;
+
+      boardNo2 = board.boardNo;
+      /* ------------------------------------------------------------ */
+
+      const feedDeleteBtn = document.getElementById("feedDeleteBtn");
+
+      if (feedDeleteBtn != null) {
+
+        //   feedDeleteBtn.addEventListener("click", ()=>{
+        //   location.href = `/${artistGroupTitle}/feed/${boardNo}/delete`;
+        // });
+
+      }
+
+
+    });
 }
 
 function generateComment(boardNo3) {
 
-  if(!boardNo3) {
+  if (!boardNo3) {
     console.log("Invalid boardNo3:", boardNo3);
     return;
   }
@@ -164,148 +196,160 @@ function generateComment(boardNo3) {
   const commentLists = document.querySelector(".comment-list");
   commentLists.innerHTML = "";
 
-  fetch("/AJAXboardDetail?boardNo="+ boardNo3)
-  .then(resp => resp.json())
-  .then(response => {
-    console.log("response", response);
-    
+  fetch("/AJAXboardDetail?boardNo=" + boardNo3)
+    .then(resp => resp.json())
+    .then(response => {
+      console.log("response", response);
 
-    // console.log("commentList" + commentList.board.boardCommentList);
+      console.log(response.commentList);
+      // console.log("commentList" + commentList.board.boardCommentList);
 
-    if (response.commentList && response.commentList.length > 0) {
-      const commentList = response.commentList;
-
-
-    for (let comment of commentList) {
-
-      console.log("Comment content:", comment.boardCommentContent);
-
-      if (comment.boardCommentDelFl === "Y") {
-        // 삭제된 댓글인 경우 목록에 추가하지 않음
-        continue;
-      }
-    
-      const  commentArea = document.createElement("div");
-      commentArea.className = "comment-area";
-
-      const  commentAreaIn = document.createElement("div");
-      commentAreaIn.className = "comment-area-in";
-
-      if(comment.boardParentCommentNo !=0) commentArea.classList.add("child-comment");
-      if(comment.boardCommentDelFl == "Y") commentArea.innerText = "삭제된 댓글 입니다.";
-      else {
-    
-
-      // "img" 클래스를 가진 이미지 엘리먼트 생성하고 src 속성 설정
-
-      const div1 = document.createElement("div")
-      div1.className = "div1";
+      if (response.commentList && response.commentList.length > 0) {
+        const commentList = response.commentList;
 
 
-      const img = document.createElement("img");
-      img.className = "profile-img";
-      if(comment.memberProfile) {
-        img.src = comment.memberProfile;
+        for (let comment of commentList) {
+
+          console.log("Comment content:", comment.boardCommentContent);
+
+          if (comment.boardCommentDelFl === "Y") {
+            // 삭제된 댓글인 경우 목록에 추가하지 않음
+            continue;
+          }
+
+          const commentArea = document.createElement("div");
+          commentArea.className = "comment-area";
+
+          const commentAreaIn = document.createElement("div");
+          commentAreaIn.className = "comment-area-in";
+
+          if (comment.boardParentCommentNo != 0) commentArea.classList.add("child-comment");
+          if (comment.boardCommentDelFl == "Y") commentArea.innerText = "삭제된 댓글 입니다.";
+          else {
+
+
+            // "img" 클래스를 가진 이미지 엘리먼트 생성하고 src 속성 설정
+
+            const div1 = document.createElement("div")
+            div1.className = "div1";
+
+
+            const img = document.createElement("img");
+            img.className = "profile-img";
+            if (comment.memberProfile) {
+              img.src = comment.memberProfile;
+            } else {
+              img.src = defaultImage;
+            }
+
+            var commentWriterArea = document.createElement("div");
+            commentWriterArea.className = "comment-writer-area";
+
+            var division = document.createElement("div");
+            division.className = "division";
+
+            // "comment-writer" 클래스를 가진 div 생성하고 텍스트 내용 설정
+            var commentWriter = document.createElement("div");
+            commentWriter.className = "comment-writer";
+            commentWriter.textContent = comment.memberNickname;
+
+            var indicator2 = document.createElement("i");
+            indicator2.className = "indicator";
+
+            if (comment.memberAuthority == 2) {
+              indicator2.classList.add("fa-solid", "fa-circle-check");
+              indicator2.style.color = "#7743DB";
+            } else {
+              indicator2.classList.remove("fa-solid", "fa-circle-check");
+              indicator2.style.color = "";
+            }
+
+            division.append(commentWriter, indicator2);
+
+            var commentDate = document.createElement("div");
+            commentDate.className = "comment-date";
+            console.log(comment.boardCommentEnrollDate);
+            commentDate.textContent = comment.boardCommentEnrollDate;
+
+            commentWriterArea.append(division, commentDate);
+
+            div1.append(img, commentWriterArea);
+
+            var commentProfile = document.createElement("div");
+            commentProfile.className = "comment-profile";
+
+            var reportImg = document.createElement("img");
+            reportImg.className = "report-img";
+            reportImg.src = "/img/report.png";
+            // reportImg.onclick = reportOpen;
+
+            const deleteBtn = document.createElement("button");
+            deleteBtn.classList.add("delete-cross");
+            deleteBtn.innerText = "X";
+            deleteBtn.setAttribute("onclick", "deleteComment(" + comment.boardCommentNo + ")");
+
+            if (loginMemberNo == comment.memberNo) {
+              commentProfile.append(deleteBtn, reportImg);
+            } else {
+              commentProfile.append(reportImg);
+            }
+
+            commentAreaIn.append(div1, commentProfile);
+
+
+            var commentContentArea = document.createElement("div");
+            commentContentArea.className = "comment-content-area";
+
+            var commentContent = document.createElement("div");
+            commentContent.className = "comment-content";
+            commentContent.textContent = comment.boardCommentContent;
+
+            commentContentArea.appendChild(commentContent);
+
+
+            const commentLikeArea = document.createElement("div");
+            commentLikeArea.className = "comment-like-area";
+
+            //-----------------------------------------------------------------------------
+            const heartComment = document.createElement("i");
+            heartComment.className = "fa-heart";
+            if (comment.likeClickComment == 1){
+              heartComment.classList.add("fa-solid");
+              heartComment.style.color="#7743DB";
+            }
+            else{
+              heartComment.classList.add("fa-regular");
+            } 
+
+            heartComment.setAttribute("onclick", "likeComment(this, " + comment.boardCommentNo + ")");
+            heartComment.setAttribute("comment-no", comment.boardCommentNo);
+
+            const likeCountComment = document.createElement("span");
+            likeCountComment.className = "commentLikeCount";
+            likeCountComment.innerText = comment.likeCountComment;
+
+            const childCommentBtn = document.createElement("i");
+            childCommentBtn.className = "fa-regular fa-comment fa-l";
+            childCommentBtn.setAttribute("onclick", "showInsertComment(" + comment.boardCommentNo + ", this)");
+
+            commentLikeArea.append(heartComment, likeCountComment, childCommentBtn);
+
+
+            commentArea.append(commentAreaIn, commentContentArea, commentLikeArea);
+
+          }
+          commentLists.appendChild(commentArea);
+
+        }
+        updateCommentCount(response.commentList.length);
+
       } else {
-        img.src = defaultImage;
+        console.error(e.error);
       }
-
-      var commentWriterArea = document.createElement("div");
-      commentWriterArea.className = "comment-writer-area";
-    
-      // "comment-writer" 클래스를 가진 div 생성하고 텍스트 내용 설정
-      var commentWriter = document.createElement("div");
-      commentWriter.className = "comment-writer";
-      commentWriter.textContent = comment.memberNickname;
-
-      var indicator2 = document.createElement("i");
-      indicator2.className = "indicator";
-
-    if(comment.memberAuthority == 2) {
-      indicator2.classList.add("fa-solid", "fa-circle-check");
-      indicator2.style.color = "#7743DB";
-    }else {
-      indicator2.classList.remove("fa-solid", "fa-circle-check");
-      indicator2.style.color = ""; 
     }
 
-      var commentDate = document.createElement("div");
-      commentDate.className = "comment-date";
-      commentDate.textContent = comment.boardCommentEnrollDate;
-
-      commentWriterArea.append(commentWriter, indicator2, commentDate);
-
-      div1.append(img, commentWriterArea);
-
-      var commentProfile = document.createElement("div");
-      commentProfile.className = "comment-profile";
-
-      var reportImg = document.createElement("img");
-      reportImg.className = "report-img";
-      reportImg.src = "/img/report.png";
-      // reportImg.onclick = reportOpen;
-
-      const deleteBtn = document.createElement("button");
-      deleteBtn.classList.add("delete-cross");
-      deleteBtn.innerText = "X";
-      deleteBtn.setAttribute("onclick", "deleteComment(" + comment.boardCommentNo + ")");
-
-      if(loginMemberNo == comment.memberNo) {
-      commentProfile.append(deleteBtn, reportImg);
-    } else {
-      commentProfile.append(reportImg);
-    }
-
-      commentAreaIn.append(div1, commentProfile);
-     
-      
-      var commentContentArea = document.createElement("div");
-      commentContentArea.className = "comment-content-area";
-      
-      var commentContent = document.createElement("div");
-      commentContent.className = "comment-content";
-      commentContent.textContent = comment.boardCommentContent;
-      
-      commentContentArea.appendChild(commentContent);
-      
-      
-      const commentLikeArea = document.createElement("div");
-      commentLikeArea.className = "comment-like-area";
-
-      const heartComment = document.createElement("i");
-      heartComment.className = "fa-heart";
-      if(comment.likeClickComment == 0 ) heartComment.classList.add("fa-regular");
-      else heartComment.classList.add("fa-solid");
-
-      heartComment.setAttribute("onclick", "likeComment(this, " +comment.boardCommentNo + ")" );
-      heartComment.setAttribute("comment-no", comment.boardCommentNo);
-
-      const likeCountComment = document.createElement("span");
-      likeCountComment.className = "commentLikeCount";
-      likeCountComment.innerText = comment.likeCountComment;
-
-      const childCommentBtn = document.createElement("i");
-      childCommentBtn.className = "fa-regular fa-comment fa-l";
-      childCommentBtn.setAttribute("onclick", "showInsertComment(" + comment.boardCommentNo + ", this)");
-    
-      commentLikeArea.append(heartComment, likeCountComment, childCommentBtn );
-      
-
-      commentArea.append(commentAreaIn, commentContentArea,commentLikeArea );
-
-    }
-    commentLists.appendChild(commentArea);
-  
-  }
-  updateCommentCount(response.commentList.length);
-
-  } else {
-    console.error(e.error);
-  }
-}
-  
-  )
-  .catch((e) => console.log(e));
+    )
+    .catch((e) => console.log(e));
 
 };
 
@@ -332,7 +376,7 @@ likeImg.addEventListener("click", (e) => {
 
   console.log(dataObj);
 
-  fetch("/AJAXboardDetail/like",{
+  fetch("/AJAXboardDetail/like", {
     method: "post",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(dataObj),
@@ -346,10 +390,10 @@ likeImg.addEventListener("click", (e) => {
       e.target.classList.toggle("fa-regular");
       e.target.classList.toggle("fa-solid");
       const feedLikeCount = document.querySelector('#feedLikeCount');
-      if(likeCheck == 1){
+      if (likeCheck == 1) {
         likeCount2 = likeCount2 - 1;
         dataObj.likeCheck = 0;
-      }else{
+      } else {
         likeCount2 = likeCount2 + 1;
         dataObj.likeCheck = 1;
       }
@@ -385,26 +429,26 @@ function submitComment() {
   console.log(boardNo2);
   console.log(dataObj);
 
-  fetch("/comment",{
-    method : "POST",
-    headers : {"Content-Type" : "application/json"},
-    body : JSON.stringify(dataObj)
+  fetch("/comment", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(dataObj)
   })
-  .then(resp => resp.text())
-  .then(result => {
+    .then(resp => resp.text())
+    .then(result => {
 
-    if(result > 0){
-      alert("댓글 등록 성공");
+      if (result > 0) {
+        alert("댓글 등록 성공");
 
-      commentInput.value = "";
-      generateComment(boardNo2);
+        commentInput.value = "";
+        generateComment(boardNo2);
 
-    } else {
-      alert("댓글을 등록하지 못했습니다.");
-    }
+      } else {
+        alert("댓글을 등록하지 못했습니다.");
+      }
 
-  })
-  .catch(err => console.log(err));
+    })
+    .catch(err => console.log(err));
 
 }
 
@@ -509,44 +553,108 @@ function insertChildComment(boardParentCommentNo, btn) {
 }
 
 
-function likeComment(btn, boardCommentNo) {
- 
-  let check;
 
- 
+
+
+
+
+
+function likeComment(btn, boardCommentNo) {
+
+  let likeClick;
+
+
   if (btn.classList.contains("fa-regular")) {
-    check = 0;
+    likeClick = 0;
   } else {
-    check = 1;
+    likeClick = 1;
   }
 
-  const data = { 
-    check: check,
-    boardCommentNo : boardCommentNo,
+  const data = {
+    likeClick: likeClick,
+    boardCommentNo: boardCommentNo,
   };
 
+  console.log(data);
 
+  if (likeClick == 0) {
 
-  fetch("/commentLike", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  })
-    .then((resp) => resp.text())
-    .then((count) => {
-      if (count == -1) {
-        console.log("좋아요 실패");
-        return;
-      }
-      btn.classList.toggle("fa-regular");
-      btn.classList.toggle("fa-solid");
-
-      btn.nextElementSibling.innerText = count;
+    fetch("/commentLike", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
     })
-    .catch((e) => {
-      console.log(e);
-    });
+      .then((resp) => resp.text())
+      .then((count) => {
+        if (count == -1) {
+          console.log("좋아요 실패");
+          return;
+        }
+        btn.classList.toggle("fa-solid");
+        btn.classList.toggle("fa-regular");
+        btn.style.color = "#7743DB";
+
+
+        btn.nextElementSibling.innerText = count;
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+
+  } else {
+
+    fetch("/deleteLike", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then((resp) => resp.text())
+      .then((count) => {
+        if (count == -1) {
+          console.log("좋아요 실패");
+          return;
+        }
+        btn.classList.toggle("fa-solid");
+        btn.classList.toggle("fa-regular");
+
+        btn.nextElementSibling.innerText = count;
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+
+  }
 }
+
+
+/* ==================게시글 삭제 버튼 클릭======================= */
+
+
+
+
+
+
+/* ==================게시글 수정 버튼 클릭======================= */
+
+
+// const updateBtn = document.getElementById("updateBtn");
+
+// if(loginMemberNo == board.memberNo) {
+//   commentProfile.append(deleteBtn, reportImg);
+// } else {
+//   commentProfile.append(reportImg);
+// }
+
+// if(updateBtn != null){
+// updateBtn.addEventListener("click", ()=>{
+//   location.href = `/editBoard/${boardCode}/${boardNo}/update`;
+// });
+// }
+
+
+
+
+
 
 
 
@@ -557,7 +665,7 @@ function wopenModal() {
 
   var newUrl = "/" + artistGroupTitle + "/insert";
 
-  var stateObj = {artistGroupTitle :artistGroupTitle};
+  var stateObj = { artistGroupTitle: artistGroupTitle };
 
   history.pushState(stateObj, "", newUrl);
 
@@ -584,3 +692,34 @@ function wcloseModal(stateObj) {
 
 }
 
+
+function uOpenModal() {
+
+  const modal2 = document.getElementById('feedDetail');
+  modal2.classList.remove("show");
+  document.body.style.overflow = "";
+
+  var newUrl = "/" + artistGroupTitle + "/" + boardNo2 + "/update";
+
+  var stateObj = { artistGroupTitle: artistGroupTitle, boardNo: boardNo2 };
+
+  history.pushState(stateObj, "", newUrl);
+
+  const modal = document.getElementById('feedUpdate');
+  modal.classList.add("show");
+  document.body.style.overflow = "hidden";
+
+
+
+}
+
+function ucloseModal(stateObj) {
+
+  var newUrl = "/" + artistGroupTitle + "/feed";
+  history.pushState(stateObj, "", newUrl);
+
+  const modal = document.getElementById('feedUpdate');
+  modal.classList.remove("show");
+  document.body.style.overflow = "";
+
+}

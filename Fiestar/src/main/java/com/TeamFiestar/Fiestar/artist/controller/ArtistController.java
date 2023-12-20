@@ -56,7 +56,7 @@ public class ArtistController {
 	
 	@GetMapping("{artistGroupTitle}/update")
 	public String update(@PathVariable("artistGroupTitle") String artistGroupTitle,
-			@SessionAttribute(value="loginMember", required = true) Member loginMember, Model model) {
+			@SessionAttribute(value="loginMember", required = true) Member loginMember, Model model, RedirectAttributes ra) {
 			
 //			int result = service.update(artistGroupTitle, loginMember.getMemberNo());
 		
@@ -93,6 +93,17 @@ public class ArtistController {
 			ra.addFlashAttribute("message", "변경 실패");
 			return "redirect:/artistMember/{artistGroupTitle}/update";
 		}
+	}
+	
+	
+	
+	@GetMapping("{artistGroupTitle}/notice")
+	public String artistNotice(@PathVariable("artistGroupTitle") String artistGroupTitle, Model model) {
+		Map<String, Object> map = service.artistNotice(artistGroupTitle);
+		
+		model.addAttribute("map", map);
+		model.addAttribute("artistGroupTitle", artistGroupTitle);
+		return "artist/artistNotice";
 	}
 	
 }
