@@ -176,7 +176,7 @@ h1 {
    object-fit: cover;
 } */
 
-img{
+.productImg{
    margin-right: 40px;
    margin-left: 16px;
    width: 100px;
@@ -185,6 +185,7 @@ img{
 }
 
 .img-area > img {
+   
    display: inline-block;
    flex-shrink: 0;
    margin-right: 20px;

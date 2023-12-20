@@ -17,7 +17,10 @@ public class Cart {
 	private String productOptionName;
 	private int cartNo;
 	private String eachPrice;
-
+	
+	private String productImageThumbnail;
+	private String productImageThumbnailRename;
+	
 	private String memberAddress;
 	private String memberNickname;
 	private String amountPrice;
