@@ -16,6 +16,25 @@ public class OrderedList {
 	private int productOptionNo;
 	private String productOptionName;
 	private String productImageNo;
+	private String productImageThumbnail;
+	
+	
+	
+	private String memberNo;
+	
+	private String productImg;
+
+	private	int productCount;
+	
+	
+	private int cartNo;
+	private String eachPrice;
+	
+
+	
+	private String memberAddress;
+	private String memberNickname;
+	private String amountPrice;
 	
 
 }

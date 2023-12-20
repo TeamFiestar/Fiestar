@@ -136,7 +136,7 @@ function requestPay() {
         pay_method: methodValue,
         merchant_uid: 'merchant_' + new Date().getTime(),
         name: '주문명:FiestarShop',
-        amount: 1,
+        amount: 50000,
 
     }, function (rsp) {
         if (rsp.success) {

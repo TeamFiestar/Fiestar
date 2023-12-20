@@ -56,8 +56,10 @@
                   <!-- 1번 -->
 
                   <!-- 이미지 영역 -->
+s
+                  <img th:src="${product.productImageThumbnail}" alt="" class="productImg">
+                  
 
-                  <img src="/images/keyring.png" alt="">
 
 
                   <!-- 제품 상세 -->
@@ -65,7 +67,7 @@
                   <div class="item-text">
 
                      <div class="item-name">
-                        <span th:text="${product.productName}">Product Name</span>
+                        <span th:text="${orderedList.productName}">Product Name</span>
 
 
                         <!-- 장바구니 번호 -->
