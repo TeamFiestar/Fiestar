@@ -21,8 +21,15 @@ public interface MediaService {
 
 	/** 미디어 디테일 조회
 	 * @param mediaNo
+	 * @param memberNo 
 	 * @return
 	 */
-	Media mediaDetail(int mediaNo);
+	Media mediaDetail(Map<String, Object> map);
+
+	Media updateMediaDetail(int mediaNo);
+
+	int updateMedia(Media updateMedia);
+
+	int deleteMedia(int mediaNo);
 
 }

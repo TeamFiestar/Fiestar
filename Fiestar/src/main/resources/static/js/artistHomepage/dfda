@@ -1,0 +1,71 @@
+
+
+likeImg2.addEventListener("click", (e) => {
+  if (!loginCheck) {
+    alert("로그인을 먼저 해주세요");
+    return;
+  }
+
+
+  if (e.target.classList.contains("fa-regular")) {
+    likeClick = 0;
+  } else {
+    likeClick = 1;
+  }
+
+  const data = { 
+    likeClick: likeClick,
+    boardCommentNo : boardCommentNo,
+  };
+
+  console.log(data);
+
+  if(likeClick == 0) {
+  fetch("/commentLike",{
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  })
+    .then((resp) => resp.text())
+    .then((count) => {
+      if (count == -1) {
+        console.log("좋아요 실패");
+        return;
+      }
+      
+      e.target.classList.toggle("fa-solid");
+
+        likeCount3 = likeCount3 + 1;
+        data.likeClick = 1;
+      
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+
+  } else {
+    fetch("/deleteLike", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then((resp) => resp.text())
+      .then((count) => {
+        if (count == -1) {
+          console.log("좋아요 실패");
+          return;
+        }
+        e.target.classList.toggle("fa-regular");
+  
+        likeCount3 = likeCount3 - 1;
+        data.likeClick = 0;
+        // btn.nextElementSibling.innerText = count-1;
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+
+  }
+
+  e.target.nextElementSibling.innerText = likeCount3;
+});

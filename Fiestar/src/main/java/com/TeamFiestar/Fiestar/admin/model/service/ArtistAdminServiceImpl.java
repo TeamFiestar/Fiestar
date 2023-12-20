@@ -21,6 +21,7 @@ import com.TeamFiestar.Fiestar.common.utility.Util;
 import com.TeamFiestar.Fiestar.mypage.dto.Pagination;
 import com.TeamFiestar.Fiestar.shop.model.dto.Product;
 import com.TeamFiestar.Fiestar.shop.model.dto.ProductImage;
+import com.TeamFiestar.Fiestar.shop.model.dto.ProductOption;
 import com.TeamFiestar.Fiestar.shop.model.excption.shopException;
 
 import lombok.RequiredArgsConstructor;
@@ -34,9 +35,9 @@ public class ArtistAdminServiceImpl implements ArtistAdminService{
 	
 	
 	@Value("${my.shopThumbnail.webpath}")
-	private String webPath;  //웹 이미지 요청 경로
+	private String thumbnailPath;  //웹 이미지 요청 경로
 	@Value("${my.shopThumbnail.location}")
-	private String folderPath;  //서버 저장 폴더 경로
+	private String thumbnailfolderPath;  //서버 저장 폴더 경로
 	
 	@Value("${my.shopContent.webpath}")
 	private String contentPath;  //웹 이미지 요청 경로
@@ -146,41 +147,55 @@ public class ArtistAdminServiceImpl implements ArtistAdminService{
 	
 	//상품 등록
 	@Override
-	public int insertGoods(Product product,String artistGroupTitle, MultipartFile contentImg, MultipartFile thumbnailImg) throws IllegalStateException, IOException {
+	public int insertGoods(Product product, MultipartFile contentImg, MultipartFile thumbnailImg) throws IllegalStateException, IOException {
 
 
-		int artistGroupNo = mapper.selectArtistGroupNo(artistGroupTitle);
+		int artistGroupNo = mapper.selectArtistGroupNo(product.getArtistGroupTitle());
 		product.setArtistGroupNo(artistGroupNo);
+		
 		int result = mapper.insertGoods(product);
+		
 		if(result == 0) {
 			return 0; 
 		}
 		
 		int productNo = product.getProductNo();
 		
-	
+		for (ProductOption productOption2 : product.getProductOptionList()) {
+			productOption2.setProductNo(productNo);
+		}
 		
+
+		int result2 = mapper.insertOption(product.getProductOptionList());
+		
+		if(result2 == 0) {
+			return 0; 
+		}
+		
+		
+	
 		ProductImage img = new ProductImage();
+		
 		
 		img.setProductNo(productNo); 
 		
 		
 		img.setProductImageContent(contentPath);
-		img.setProductImageThumbnail(webPath);
+		img.setProductImageThumbnail(thumbnailPath);
 	
 
 		img.setProductImageRename(Util.fileRename(contentImg.getOriginalFilename()));
 		img.setProductImageThumbnailRename(Util.fileRename(thumbnailImg.getOriginalFilename()));
 		
-		
+		 
 		img.setUploadFile(contentImg);
 		img.setUploadFile(thumbnailImg);
 		
 		result = mapper.insertImage(img);
 		
 		
-		img.getUploadFile().transferTo(new File(folderPath + img.getProductImageRename()));
-		img.getUploadFile().transferTo(new File(folderPath + img.getProductImageThumbnailRename()));
+		img.getUploadFile().transferTo(new File(contentfolderPath + img.getProductImageRename()));
+		img.getUploadFile().transferTo(new File(thumbnailfolderPath + img.getProductImageThumbnailRename()));
 		
 		return productNo;
 	}

@@ -48,7 +48,7 @@ public interface AdminMapper {
 	List<Member> searchSubscribe(Map<String, Object> map1, RowBounds rowBounds);
 
 
-	List<Board> selectSubscribeBoard(Map<String, Object> map);
+//	List<Board> selectSubscribeBoard(Map<String, Object> map);
 
 	String subArtistTitle(int artistGroupNo);
 
@@ -76,6 +76,8 @@ public interface AdminMapper {
 	List<Purchase> selectPurchaseList( RowBounds rowBounds);
 
 	int orderListCount();
+
+	int checkGroupUpdate(int memberNo);
 
 	
 

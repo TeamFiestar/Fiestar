@@ -174,14 +174,14 @@ public class AdminServiceImpl implements AdminService{
 		return map;
 	}
 	
-	@Override
-	public List<Board> selectSubscribeBoard(int loginMemberNo) {
-		
-		Map<String, Object> map = new HashMap<>();
-		map.put("memberNo", loginMemberNo);
+//	@Override
+//	public List<Board> selectSubscribeBoard(int loginMemberNo) {
+//		
+//		Map<String, Object> map = new HashMap<>();
+//		map.put("memberNo", loginMemberNo);
 //		map.put("artistGroupNo", artistGroupNo);
-		return mapper.selectSubscribeBoard(map);
-	}
+//		return mapper.selectSubscribeBoard(map);
+//	}
 	
 	
 	@Override
@@ -231,7 +231,10 @@ public class AdminServiceImpl implements AdminService{
 	
 	@Override
 	public ArtistGroup1 artistGroupUpdate(int memberNo) {
-		return mapper.artistGroupUpdate(memberNo);
+		int adminNo = memberNo;
+		int result = mapper.test(adminNo);
+		if(result == 0) return null;
+		else return mapper.artistGroupUpdate(memberNo);
 	}
 	
 	@Override

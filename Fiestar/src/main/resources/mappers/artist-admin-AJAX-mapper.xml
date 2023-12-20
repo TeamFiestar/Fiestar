@@ -58,6 +58,51 @@
 		WHERE PURCHASE_NO = #{purchaseNo}
 	</update>
 	
+	<!-- 게시판 조회 -->
+	<select id="selectBoardReport">
+		SELECT * FROM BOARD B 
+		JOIN "MEMBER" m USING(MEMBER_NO)  
+		WHERE BOARD_NO = #{boardNo}
+	</select>
+	
+	<!-- 게시판 댓글 조회 -->
+	<select id="selectBoardCommentReport">
+		SELECT * FROM BOARD_COMMENT BC 
+		JOIN "MEMBER" m USING(MEMBER_NO) 
+		WHERE BOARD_COMMENT_NO = #{boardCommentNo}
+	</select>
+	
+	<!-- 미디어 댓글 조회 -->
+	<select id="selectMediaCommentReport">
+		SELECT * FROM MEDIA_COMMENT MC 
+		JOIN "MEMBER" m USING(MEMBER_NO) 
+		WHERE MEDIA_COMMENT_NO = #{mediaCommentNo}
+	</select>
+	
+	<!-- 게시판 삭제 -->
+	<update id="deleteBoard">
+		UPDATE BOARD SET BOARD_DEL_FL = 'Y' 
+		WHERE BOARD_NO = #{reportContentNo}
+	</update>
+
+	<!-- 게시판 댓글 삭제 -->	
+	<update id="deleteBoardComment">
+		UPDATE BOARD_COMMENT SET BOARD_COMMENT_DEL_FL = 'Y' 
+		WHERE BOARD_COMMENT_NO = #{reportContentNo}
+	</update>
+	
+	<!-- 미디어 댓글 삭제 -->
+	<update id="deleteMediaComment">
+		UPDATE MEDIA_COMMENT SET MEDIA_COMMENT_DEL_FL = 'Y'
+		WHERE MEDIA_COMMENT_NO = #{reportContentNo}
+	</update>
+	
+	<!-- 신고 완료 처리 -->
+	<update id="proceedReport">
+		UPDATE REPORT SET REPORT_PROCEED = 'Y'
+		WHERE REPORT_NO = #{reportNo}
+	</update>
+	
 	
 	
 </mapper>

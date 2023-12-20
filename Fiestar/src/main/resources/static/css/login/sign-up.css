@@ -11,22 +11,11 @@
    font-family: 'Pretendard-Regular';
 }
 
-.frame {
-   width: 1400px;
-   min-height: 600px;
-   margin:auto;
-   /* padding: 70px; */
-   position: relative;
-} 
 
-/* 로그인 */
 h1 {
-   /* margin-left: 38px; */
-   /* margin-right: 62px; */
    margin-top: 100px;
+   font-size: 30px;
    display: flex;
-   font-size: 26px;
-   font-weight: bold;
    justify-content: center;
    flex-wrap: wrap;
 }
@@ -39,16 +28,27 @@ h1 {
 
 .not-null{
    color: rgb(87, 87, 87);
-   margin-top: 6px;
+   margin-top: 5px;
+   margin-bottom: 20px;
    font-size: 14px;
 }
 
-* input{
+body input{
    border: 1px solid rgb(173, 177, 184);
-   /* outline-color: rgb(69, 106, 227); */
    outline-color: rgb(104, 55, 194);
    font-size: 18px;
-   margin-top: 12px;
+   border-radius: 4px;
+   width: 100%;
+   height: 42px;
+
+   padding-left: 10px;
+}
+
+.error{
+   color: red;
+}
+.confirm{
+   color: green;
 }
 
 
@@ -57,198 +57,114 @@ h1 {
 
 .signup-page{
    display: flex;
-   margin-top: 84px;
-   margin-left: 30%;
+   width: 600px;
+   margin: auto;
+   margin-top: 40px;
    justify-content: center;
    align-content: center;
    flex-direction: column;
-   /* padding-left: 154px; */
-   /* padding-left: 50px; */
 
 }
 
-.input-email > form{
-
-   border-radius: 4px;
-   width: 450px;
-   height: 42px;
-   transition-delay: 0ms;
-}
-
-.input-email > input{
-      margin-top: 18px;
+#memberEmail{
       border-radius: 4px;
       width: 450px;
       height: 42px;
-      margin-bottom: 10px;
-
 }
 
-.input-authen > input{
-   margin-top: 12px;
+.input-auth-area{
+   width: 150px;
 }
 
-/* .input-email > .email{
-   
-   margin-bottom: 12px;
-} */
-
-/* .input-pw > input {
-   margin-top: 44px;
-   border-radius: 4px;
-   width: 450px;
-   height: 42px;
-
-} */
-
-.input-pw-check > input{
-   border-radius: 4px;
-   width: 450px;
-   height: 42px;
-}
-
-.input-nickname > input {
-   border-radius: 4px;
-   width: 450px;
-   height: 42px;
-}
-
-.input-address > input{
-   border-radius: 4px;
-      width: 450px;
-      height: 42px;
-}
-
-.input-address-detail > input{
-   border-radius: 4px;
-   width: 450px;
-   height: 42px;
-}
 
 /* 인증번호 전송 버튼 */
-.authentification{
-   margin: 0 0 0 6px;
+.auth-key-btn{
    border-radius: 4px;
-    transition: all 300ms ease 0s;
-    appearance: none;
-    background: none;
-    cursor: pointer;
-    -webkit-box-pack: center;
-    -webkit-box-align: center;
-    height: 24px;
-    font-size: 14px;
-    border: 1px solid rgb(173, 177, 184);
-    color: rgb(135, 142, 150);
-    width: auto;
-    /* display: inline-flex;  */
-    /* align-items: center;  */
+    height: 42px;
+    width: 130px;
+    font-size: 16px;
     justify-content: center; 
+    background-color: rgba(119, 67, 219, 1);
+    border-radius: 20px;
+    float: right;
+    color: white;
+    border: none;
+
+    cursor: pointer;
 
 }
 
 .address {
-   margin: 0 0 0 6px;
    border-radius: 4px;
-    transition: all 300ms ease 0s;
-    appearance: none;
-    background: none;
+    height: 42px;
+    width: 130px;
+    font-size: 16px;
+    justify-content: center; 
+    background-color: rgba(119, 67, 219, 1);
+    border-radius: 20px;
+    float: right;
+    color: white;
+    border: none;
+
     cursor: pointer;
-    -webkit-box-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    align-items: center;
-    height: 24px;
-    font-size: 14px;
-    border: 1px solid rgb(173, 177, 184);
-    color: rgb(135, 142, 150);
-    width: auto;
-    display: inline-flex;
 }
 
+.member-address{
+   width: 450px;
+}
 
 .gender{
-   font-size: 18px;
-   margin-top: 20px;
-   margin-bottom: 54px;
+   font-size: 20px;
+   font-weight: bold;
+   font-size: 20px;
+   display: flex;
+   align-items: center;
+   
 }
 
 #gender-option{
-   /* margin-left: 4px;
-   width: 50px;
-   height: 30px;
-    */
    height: 30px;
    margin: 0 0 0 10px;
    border-radius: 4px;
     transition: all 300ms ease 0s;
-    background: none;
     cursor: pointer;
-    -webkit-box-pack: center;
     justify-content: center;
-    -webkit-box-align: center;
     align-items: center;
     font-size: 18px;
-    /* border: 1px solid rgb(0, 0, 0); */
     color: rgb(0, 0, 0);
-    width: auto;
-    display: inline-flex;
+}
+
+.signUp-btn-wrapper{
+   margin: 20px 0;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 
 .checkOut-btn{
-   margin: 80px 0 80px 170px;
-}
-
-.checkOut-btn{
-   border-radius: 4px;
-    transition: all 300ms ease 0s;
-    /* margin: 100px 0 0 148px; */
-    margin: 80px 0 0 0 100px;
-    /* margin: 0 0 0 188px; */
-    appearance: none;
-    /* background: none rgb(227, 69, 224); */
+   border-radius: 30px;
     background: none rgb(104, 55, 194);
     border: none;
     cursor: pointer;
-    -webkit-box-pack: center;
     justify-content: center;
-    -webkit-box-align: center;
     align-items: center;
-    height: 40px;
-    font-size: 20px;
-    font-weight: 500;
-    --horizontal-padding: 1.8rem;
+    height: 50px;
+    width: 120px;
+    font-size: 24px;
+    font-weight: bold;
     color: rgb(255, 255, 255);
-    width: auto;
-    display: inline-flex;
-    padding: 0 var(--horizontal-padding);
 }
 
+#checkAuthKeyBtn{
+   border-radius: 4px;
+    height: 42px;
+    width: 100px;
+    font-size: 14px;
+    justify-content: center; 
+    background-color: rgba(119, 67, 219, 1);
+    border-radius: 20px;
+    color: white;
+    border: none;
 
-
-
-.input-email{
-   margin-bottom: 20px;
-}
-
-.input-authen{
-   margin-bottom: 44px;
-}
-
-.input-pw{
-   margin-bottom: 44px;
-}
-.input-pw-check{
-   margin-bottom: 44px;
-}
-
-.input-nickname{
-   margin-bottom: 44px;
-}
-
-.input-address{
-   margin-bottom: 44px;
-}
-
-.input-address-detail{
-   margin-bottom: 44px;
+    cursor: pointer;
 }

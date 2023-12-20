@@ -54,6 +54,16 @@ function loadReplies(element, commentNo) {
 }
 
 
+// 엔터 처리
+const commentInput = document.getElementById('comment-input');
+commentInput.addEventListener('keyup', (e) => {
+  if(e.key === 'Enter') {
+    e.preventDefault();
+    submitComment();
+  }
+})
+
+
 
 // 댓글창으로 돌아가기
 function goBack() {
@@ -83,7 +93,13 @@ function goBack() {
 // 댓글 등록
 function submitComment() {
   const parentCommentNo = document.getElementById('parent-comment-no').value;
+  const commentContentInput = document.getElementById('comment-input');
   const commentContent = document.getElementById('comment-input').value;
+
+  if(commentContent.length == 0 ){
+    alert('댓글을 입력해주십시오');
+    return;
+  }
   
   let data = {
     'mediaCommentContent' : commentContent,
@@ -104,6 +120,7 @@ function submitComment() {
 
     if(result > 0){
       alert("댓글 등록 성공");
+      commentContentInput.value = '';
       generateComment();
 
     }
@@ -130,10 +147,9 @@ function generateComment(){
   });
   
   
-  fetch("/mediaComment/selectComment?mediaNo=" + mediaNo + "&mediaParentCommentNo=" + parentCommentNo+ "&memberNo=3")
+  fetch("/mediaComment/selectComment?mediaNo=" + mediaNo + "&mediaParentCommentNo=" + parentCommentNo+ "&memberNo=" + loginMemberNo)
   .then(resp => resp.json())
   .then(commentList =>{
-    console.log(commentList);
     for(let comment of commentList){
 
       // "comment-area" 클래스를 가진 새로운 div 엘리먼트 생성
@@ -329,3 +345,42 @@ function changeLike(likeBtn, commentNo){
 
 
 }
+
+
+let reportType;
+const reportBtn = document.getElementById('reportBtn');
+const data = {};
+
+function reportOpen(reportTargetNo, reportContentNo, reportType){
+  if(loginMemberNo == null){
+    alert("로그인 후 이용해주세요")
+    return;
+  }
+  modalOpen();
+
+  data.artistGroupNo = mediaDetail.artistGroupNo;
+  data.reporterNo = loginMemberNo;
+  data.reportTargetNo = reportTargetNo;
+  data.reportContentNo = reportContentNo;
+  data.reportType = reportType;
+
+  
+}
+
+reportBtn.addEventListener('click', () =>{
+
+  fetch("/mediaComment/insertReport",{
+    method : "POST",
+    headers : {"Content-Type" : "application/json"},
+    body : JSON.stringify(data)
+  })
+  .then(resp => resp.text())
+  .then(result =>{
+    if(result > 0){
+      alert("신고되었습니다");
+    }
+  })
+  .catch(err => console.log(err));
+
+
+})

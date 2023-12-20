@@ -88,15 +88,15 @@ public class AdminController {
 		return "admin/subscribeMember";
 	}
 	
-	@GetMapping("selectSubscribeBoard")
-	@ResponseBody
-	public List<Board> selectSubscribeBoard(@RequestParam(value="memberNo", required = false) int memberNo,
+//	@GetMapping("selectSubscribeBoard")
+//	@ResponseBody
+//	public List<Board> selectSubscribeBoard(@RequestParam(value="memberNo", required = false) int memberNo,
 //										@PathVariable("artistGroupNo") int artistGroupNo,
-										@SessionAttribute("loginMember") Member loginMember) {
-		int loginMemberNo = loginMember.getMemberNo();
-		List<Board> boardList = service.selectSubscribeBoard(loginMemberNo); 
-		return boardList;
-	}
+//										@SessionAttribute("loginMember") Member loginMember) {
+//		int loginMemberNo = loginMember.getMemberNo();
+//		List<Board> boardList = service.selectSubscribeBoard(loginMemberNo); 
+//		return boardList;
+//	}
 	
 	@GetMapping("register")
 	public String register() {
@@ -128,15 +128,21 @@ public class AdminController {
 		if(result>0) {
 			ra.addFlashAttribute("message", "등록 성공");
 			return "redirect:/";
-		}else { ra.addFlashAttribute("message", "등록 실패");
+		}else { 
+			ra.addFlashAttribute("message", "등록 실패");
 			return "redirect:regi";
 		}
 	}
 	
 	@GetMapping("artistGroupUpdate")
-	public String artistGroupUpdate(Model model, @SessionAttribute("loginMember") Member loginMember) {
+	public String artistGroupUpdate(Model model, @SessionAttribute("loginMember") Member loginMember, RedirectAttributes ra) {
 		ArtistGroup1 artistGroup = service.artistGroupUpdate(loginMember.getMemberNo());
 		model.addAttribute("artistGroup", artistGroup);
+		
+		if(artistGroup == null) {
+			ra.addFlashAttribute("message", "등록된 아티스트 그룹이 없습니다.");
+			return "redirect:regi";
+		}else
 		return "admin/artistGroupUpdate";
 	}
 	

@@ -1,6 +1,7 @@
 package com.TeamFiestar.Fiestar.artist.model.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
@@ -23,5 +24,29 @@ public interface ArtistMapper {
 	List<ArtistNotice> artistGroupNotice(RowBounds rowBounds3, int artistGroupNo);
 
 	List<ArtistGroup1> artistGroup(String artistGroupTitle);
+
+	int subscribe(Map<String, Object> map);
+
+	int update(Map<String, Object> map);
+
+//	int update(String artistGroupTitle, int memberNo);
+
+	ArtistGroup1 artistUpdate(int memberNo);
+
+	List<Artist> artistList(int artistGroupNo);
+
+	int selectArtistGroupNo(int memberNo);
+
+	int artistProfile(int artistGroupNo);
+
+	int artistProfileUpdate(ArtistGroup1 artistGroup);
+
+	int checkSubscribe(Map<String, Object> checkMap);
+
+	int ProfileUpdate(List<Artist> artistList);
+
+	int profileMemberNo(String string);
+
+	List<ArtistNotice> artistNotice(int artistGroupNo);
 
 }

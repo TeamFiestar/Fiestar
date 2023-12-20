@@ -15,13 +15,16 @@ public class Report {
 	private String reporterEmail;
 	private int reportTargetNo;
 	private String reportProceed;
-	private String reportUrl;
 	private String reportContent;
+	private int reportContentNo;
 	private String memberEmail;
+	private String reportType;
 	private String memberNickname;
 	
 	private String reportTargetEmail;
 	private String reportTargetNickname;
+	private int artistGroupNo;
+	private String artistGroupTitle;
 	
 	private int key;
 	private String reportSearch;

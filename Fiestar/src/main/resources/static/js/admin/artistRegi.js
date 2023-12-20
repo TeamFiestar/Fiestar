@@ -2,8 +2,6 @@
 // const profile = document.querySelector(".profile");
 // const image = document.querySelector(".image");
 
-// const previewList = document.getElementsByClassName("preview");
-
 const inputImgList = document.getElementsByClassName("input-artistGroupImg");
 const deleteImgList = document.getElementsByClassName("delete-image");
 
@@ -103,8 +101,26 @@ artistGroupFrm.addEventListener("submit", (e) => {
   }
 });
 
-function groupDelete() {
+function groupDelete(loginMemberNo, artistGroupNo) {
   fetch("/admin/groupDelete", {
     method: "delete",
-  });
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ memberNo: loginMemberNo, artistGroupNo: artistGroupNo }),
+  })
+    .then((resp) => resp.json())
+    .then((result) => {
+      console.log(result);
+
+      if (result > 0) {
+        alert("아티스트 그룹이 삭제되었습니다.");
+        location.href = "/admin/regi";
+      } else {
+        alert("삭제를 실패하였습니다.");
+      }
+    })
+    .catch((e) => console.log(e));
+}
+
+if (message != null) {
+  alert(message);
 }

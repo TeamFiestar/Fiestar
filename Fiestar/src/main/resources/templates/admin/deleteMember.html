@@ -37,6 +37,9 @@
               <td>
                 <th:block th:if="*{memberAuthority == 1}"> 일반 </th:block>
                 <th:block th:if="*{memberAuthority == 2}"> 아티스트 </th:block>
+                <th:block th:if="*{memberAuthority == 3}"> 일반 관리자 </th:block>
+                <th:block th:if="*{memberAuthority == 4}"> 아티스트 관리자 </th:block>
+                
               </td>
               <td>
                 <button class="recoverBtn" onclick="recoverBtn(this)">

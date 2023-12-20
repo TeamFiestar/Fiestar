@@ -110,7 +110,8 @@ public class BoardController {
 	
 	@PostMapping("AJAXboardDetail/like")
 	@ResponseBody
-	public int like(@RequestBody Map<String, Object> paramMap, @SessionAttribute("loginMember") Member loginMember) {
+	public int like(@RequestBody Map<String, Object> paramMap, 
+			@SessionAttribute("loginMember") Member loginMember) {
 		
 		paramMap.put("memberNo", loginMember.getMemberNo());
 		

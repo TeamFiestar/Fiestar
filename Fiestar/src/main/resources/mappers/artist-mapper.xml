@@ -4,7 +4,7 @@
 	
 	
 	<select id="artistGroup" resultType="ArtistGroup1">
-		SELECT ARTIST_GROUP_MAINIMG, ARTIST_GROUP_INTRODUCTION, ARTIST_GROUP_TITLE FROM ARTIST_GROUP
+		SELECT ARTIST_GROUP_MAINIMG, ARTIST_GROUP_LOGOIMG, ARTIST_GROUP_INTRODUCTION, ARTIST_GROUP_TITLE FROM ARTIST_GROUP
 		WHERE ARTIST_GROUP_TITLE = #{artistGroupTitle}
 	</select>
 	
@@ -14,14 +14,14 @@
 	</select>
 	
 	<select id="artistGroupMedia" resultType="Media">
-		SELECT MEDIA_ADDRESS, MEDIA_TITLE, 
+		SELECT MEDIA_ADDRESS, MEDIA_TITLE, MEDIA_NO,
 		TO_CHAR(MEDIA_ENROLL_DATE, 'YYYY"."MM"."DD') MEDIA_ENROLL_DATE FROM MEDIA
 		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
 		ORDER BY MEDIA_ENROLL_DATE DESC
 	</select>
 	
 	<select id="artistGroupProduct" resultType="Product">
-		SELECT PRODUCT_NAME , PRODUCT_PRICE , PRODUCT_IMAGE_THUMBNAIL, PRODUCT_IMAGE_THUMBNAIL_RENAME
+		SELECT PRODUCT_NAME , PRODUCT_PRICE , PRODUCT_IMAGE_THUMBNAIL, PRODUCT_IMAGE_THUMBNAIL_RENAME, PRODUCT_NO
 		FROM PRODUCT
 		JOIN PRODUCT_IMAGE
 		USING(PRODUCT_NO)
@@ -30,10 +30,89 @@
 	</select>
 	
 	<select id="artistGroupNotice" resultType="ArtistNotice">
-		SELECT ARTIST_GROUP_NOTICE_TITLE FROM ARTIST_GROUP_NOTICE
+		SELECT ARTIST_GROUP_NOTICE_TITLE
+		FROM ARTIST_GROUP_NOTICE
 		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
 		AND ARTIST_GROUP_NOTICE_DEL_FL = 'N'
 		ORDER BY ARTIST_GROUP_NOTICE_ENROLL_DATE DESC
 	</select>
+	
+	<insert id="subscribe">
+		INSERT INTO ARTIST_SUBSCRIBE
+		VALUES(#{artistGroupNo},#{memberNo})
+	</insert>
+	
+	<select id="update" resultType="_int">
+		SELECT COUNT(*) FROM ARTIST_GROUP
+		WHERE ARTIST_GROUP_ADMIN_NO = #{memberNo}
+		AND ARTIST_GROUP_NO = #{artistGroupNo}
+	</select>
+	
+	<select id="artistUpdate" resultType="ArtistGroup1">
+		SELECT ARTIST_GROUP_LOGOIMG, ARTIST_GROUP_MAINIMG, ARTIST_PROFILE, ARTIST_GROUP_INTRODUCTION
+		FROM ARTIST_GROUP
+		WHERE ARTIST_GROUP_NO = #{memberNo}
+	</select>
+	
+	<select id="artistList" resultType="Artist">
+		SELECT ARTIST_PROFILE FROM ARTIST
+		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
+	</select>
+	
+	<select id="selectArtistGroupNo" resultType="_int">
+		SELECT ARTIST_GROUP_NO FROM ARTIST_GROUP
+		WHERE ARTIST_GROUP_ADMIN_NO = #{memberNo}
+	</select>
+	
+	<select id="artistProfile" resultType="_int">
+		SELECT COUNT(*) FROM ARTIST
+		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
+	</select>
+	
+	
+	<update id="artistProfileUpdate">
+		UPDATE ARTIST_GROUP SET 
+		ARTIST_GROUP_INTRODUCTION = #{artistGroupIntroduction},
+		ARTIST_GROUP_MAINIMG = #{artistGroupMainimg},
+		ARTIST_GROUP_LOGOIMG = #{artistGroupLogoimg}
+		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
+	</update>
+	
+	
+	<select id="checkSubscribe" resultType="_int">
+		SELECT COUNT(*) FROM ARTIST_SUBSCRIBE
+		WHERE MEMBER_NO = #{memberNo}
+		AND ARTIST_GROUP_NO = #{artistGroupNo}
+	</select>
+	
+	<select id="profileMemberNo" resultType="_int">
+		SELECT MEMBER_NO FROM MEMBER
+		WHERE MEMBER_EMAIL = #{memberEmail}
+	</select>
+	
+	<insert id="ProfileUpdate">
+		INSERT INTO ARTIST
+		
+		<foreach collection="list" item="artist1" separator=" UNION ">
+			SELECT #{artist1.memberNo},
+					#{artist1.artistGroupNo}, 
+					#{artist1.artistName}, 
+					#{artist1.artistProfile}, 
+					#{artist1.memberEmail}
+			FROM DUAL
+		</foreach>
+	</insert>
+	
+	
+	<select id="artistNotice" resultType="ArtistNotice">
+		SELECT ARTIST_GROUP_NOTICE_NO , ARTIST_GROUP_NOTICE_TITLE , ARTIST_GROUP_NOTICE_CONTENT , ARTIST_GROUP_NOTICE_ENROLL_DATE ,
+		(SELECT ARTIST_GROUP_TITLE FROM ARTIST_GROUP WHERE ARTIST_GROUP_NO = #{artistGroupNo}) ARTIST_GROUP_TITLE
+		FROM ARTIST_GROUP_NOTICE
+		WHERE ARTIST_GROUP_NOTICE_DEL_FL = 'N'
+		AND ARTIST_GROUP_NO = #{artistGroupNo}
+		ORDER BY ARTIST_GROUP_NOTICE_ENROLL_DATE DESC
+	</select>
+	
+	
 </mapper>
 

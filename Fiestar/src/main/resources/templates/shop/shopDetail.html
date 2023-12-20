@@ -13,62 +13,65 @@
 <body>
   <th:block th:replace="~{common/shopHeader}"></th:block>
  
-  <main>
+  <main th:with="optionList = ${prod.optionList}, detail=${prod.detail}">
     <section class="shopDetail-main">
       <div class="shopDetail-upper">
 
         <div class="product-image">
-          <!-- <img src="im" width='500px' height="600px" > -->
+          <img th:src="|${detail.productImageThumbnail}${detail.productImageThumbnailRename}|" 
+                style="width: 100%; height: 100%;"> 
         </div>
 
-        <div class="product-detail" th:object="${prod}">
-          <div class="artist-name">아티스트명 &gt;</div>
-          <section class="product-name" th:text=" *{artistGroupTitle} + *{productName} ">[아티스트명] 상품명</section>
-          <div class="product-price" th:text=" '₩' + ' ' + *{productPrice}">₩110,000</div>
-          <div class="product-delivery-info">
-            <img src="/images/package_car.png"> 
-            <span>배송 시작 예정일</span>
-            <span style="color:black; margin-left: 5px; font-size:14px; word-spacing: 2px;" id="delivery-date">2023.xx.xx ~ 2023.xx.xx</span>
-          </div>
+        <form th:action="|/shop/${productNo}/cart|" method="post">
+          <div class="product-detail" th:object="${detail}">
+            <div class="artist-name">아티스트명 &gt;</div>
+            <section class="product-name" th:text=" '[' + *{artistGroupTitle} + ']' + ' ' + *{productName} ">[아티스트명] 상품명</section>
+            <div class="product-price" th:text=" '₩' + ' ' + *{productPrice}"></div>
+            <div class="product-delivery-info">
+              <img src="/images/package_car.png"> 
+              <span>배송 시작 예정일</span>
+              <span style="color:black; margin-left: 5px; font-size:14px; word-spacing: 2px;" id="delivery-date">2023.xx.xx ~ 2023.xx.xx</span>
+            </div>
 
-          <div class="package-info" >
-            <div>[주의]</div> 
-            배송 예정일은 상품 및 물류 상황에 따라 지연될 수 있습니다. 일정이 변경될 경우 개별 안내될 예정입니다.
-          </div>
+            <div class="package-info" >
+              <div>[주의]</div> 
+              배송 예정일은 상품 및 물류 상황에 따라 지연될 수 있습니다. 일정이 변경될 경우 개별 안내될 예정입니다.
+            </div>
 
-          <div class="product-option">
-            옵션 선택
-            <select name="key" id="optionSelect">
-              <option value="S">S(90~95)</option>
-              <option value="M">M(100~105)</option>
-              <option value="L">L(105~110)</option>
-            </select>
-          </div>
+            <div class="product-option">
+              옵션 선택
+              <select name="key" id="optionSelect">
+                <option  th:each="option: ${optionList}" th:object="${option}" th:value="*{productOptionName}" th:text="*{productOptionName}">S(90~95)</option>
+              </select>
+            </div>
 
-          <div class="product-purchase-list">
-                <!-- <span class="product-purchase-name">[아티스트명] 상품명 <span class="remove-row">&times</span></span>
-                
-                <div class="option-area" > 
-                  <span>
-                  <button class="minus">-</button>  
-                  <h4 class="result">1</h4>
-                  <button class="plus">+</button>
-                  <h4 class="optionName"> [옵션] M</h4>
-                  </span>
-                  <span class="selected-price">₩110,000</span>
+            <div class="product-purchase-list">
+                  <!-- <span class="product-purchase-name">[아티스트명] 상품명 <span class="remove-row">&times</span></span>
                   
-                </div> -->
-          </div>      
-          <div class="product-purchase-totalList" style="width:100%; margin-top: 50px;">
-            <span id="totalProduct" >총 상품금액 (0개)</span>
-            <span id="totalPrice">₩ 총 가격</span>
-          </div>      
+                  <div class="option-area" > 
+                    <span>
+                    <button class="minus">-</button>  
+                    <h4 class="result">1</h4>
+                    <button class="plus">+</button>
+                    <h4 class="optionName"> [옵션] M</h4>
+                    </span>
+                    <span class="selected-price">₩110,000</span>
+                    
+                  </div> -->
+            </div>      
+            <div class="product-purchase-totalList" style="width:100%; margin-top: 50px;">
+              <span id="totalProduct" value="" >총 상품금액 (0개)</span>
+              <span id="totalPrice">₩ 총 가격</span>
+            </div>      
 
-          <div class="product-purchase-area">
-            <button class="addCartBtn">카트 추가</button>
-            <button class="purchaseBtn">바로 구매</button>
+            <div class="product-purchase-area">
+              <button class="addCartBtn" type="submit">카트 추가</button>
+              <button class="purchaseBtn">바로 구매</button>
+            </div>
           </div>
-        </div>
+        </form>
+
+
       </div>
 
     <hr>
@@ -76,8 +79,8 @@
     <div class="shopDetail-lower">
       <h2>상품 소개</h2>
       <div class="product-image-area">
-        <img src="/images/productDetail.jpg">
-        <img src="/images/productDetail.jpg">
+        <img th:src="|${detail.productImageContent}${detail.productImageRename}|" 
+        style="width: 100%; height: 100%;">
       </div>
 
       <div class="product-info-detail">
@@ -179,7 +182,14 @@
     </section>
   </main>
 
+
   <th:block th:replace = "~{common/footer}"></th:block> 
+
+  <script th:inline ="javascript">
+    let price = /*[[${prod.detail.productPrice}]]*/ "상품가격";
+  </script>
+
+  
 
   <script src="/js/shop/shopDetail.js"></script>
   <script src="https://kit.fontawesome.com/f7459b8054.js" crossorigin="anonymous"></script>

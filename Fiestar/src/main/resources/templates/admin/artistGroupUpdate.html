@@ -61,8 +61,14 @@
             </div>
           </div>
           <div class="artistGroup-btn-area">
-            <button class="artistGroupBtn" type="submit" onclick="groupDelete()">수정</button>
-            <button class="artistGroupBtn" type="submit">삭제</button>
+            <button class="artistGroupBtn" type="submit">수정</button>
+            <div
+              class="artistGroupDiv artistGroupBtn"
+              id="artistGroupDiv"
+              th:onClick="|groupDelete(${session.loginMember?.memberNo},${artistGroup.artistGroupNo})|"
+            >
+              삭제
+            </div>
           </div>
         </form>
       </div>
@@ -71,6 +77,9 @@
       const profile = /*[[${artistGroup.artistGroupProfile}]]*/ "아티스트 그룹 프로필 사진";
       const backImg = /*[[${artistGroup.artistGroupBackimg}]]*/ "아티스트 그룹 배경 사진";
       const image = /*[[${artistGroup.artistGroupImage}]]*/ "아티스트 그룹 이미지";
+      const loginMemberNo = /*[[${session.loginMember?.memberNo}]]*/ "로그인회원번호";
+      const GroupNo = /*[[${artistGroup.artistGroupNo}]]*/ "그룹번호";
+      // const message = /*[[${message}]]*/ "아티스트 그룹 이름";
       const previewList = document.querySelectorAll("img.preview");
 
       previewList[0].src = backImg;

@@ -13,4 +13,8 @@ public class Artist {
 	private int artistGroupNo;
 	private String artistName;
 	private String artistProfile;
+	private String artistEmail;
+	
+	private String memberEmail;
+	private String artistRename;
 }

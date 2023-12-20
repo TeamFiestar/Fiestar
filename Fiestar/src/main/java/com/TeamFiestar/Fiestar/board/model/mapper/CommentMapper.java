@@ -23,4 +23,6 @@ public interface CommentMapper {
 
 	int likeClick(Map<String, Integer> map);
 
+	int selectCommentLikeCount(int boardCommentNo);
+
 }

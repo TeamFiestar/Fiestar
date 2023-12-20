@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.TeamFiestar.Fiestar.admin.model.dto.ArtistNotice;
 import com.TeamFiestar.Fiestar.admin.model.dto.SiteNotice;
 import com.TeamFiestar.Fiestar.admin.model.service.AdminAjaxService;
+import com.TeamFiestar.Fiestar.admin.model.service.AdminService;
 import com.TeamFiestar.Fiestar.board.model.dto.Board;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
@@ -31,7 +33,7 @@ import lombok.RequiredArgsConstructor;
 public class AdminAjaxController {
 
 	private final AdminAjaxService service;
-	
+	private final AdminService adminService;
 	
 	@GetMapping("selectBoard")
 	@ResponseBody
@@ -85,6 +87,21 @@ public class AdminAjaxController {
 		}
 	}
 	
+	@GetMapping("selectSubscribeMemberAjax")
+	@ResponseBody
+	public Map<String, Object> selectSubscribeMemberAjax(Model model,Member member,
+			@RequestParam(value="cp", required = false, defaultValue = "1") int cp,
+			@RequestParam Map<String, Object> paramMap,
+			@SessionAttribute("loginMember") Member loginMember){
+		int memberNo = loginMember.getMemberNo();
+		if(paramMap.get("key") == null && paramMap.get("query") == null) {
+			Map<String, Object> map = adminService.subscribeMember(member,cp, memberNo);
+			return map;
+		}else {
+			Map<String, Object> map = adminService.searchSubscribe(paramMap,cp,memberNo);
+			return map;
+		}
+	}
 	
 	@PutMapping("changeAuthority")
 	@ResponseBody
@@ -94,11 +111,19 @@ public class AdminAjaxController {
 	}
 	
 	
-	
-	
-	
-	@GetMapping("selectNotice")
+	@GetMapping("selectSubscribeBoard")
 	@ResponseBody
+	public List<Board> selectSubscribeBoard(@RequestParam(value="memberNo", required = false) int memberNo,
+									@RequestParam(value="artistGroupTitle", required = false) String artistGroupTitle,
+										@SessionAttribute("loginMember") Member loginMember) {
+		int loginMemberNo = loginMember.getMemberNo();
+		List<Board> boardList = service.selectSubscribeBoard(artistGroupTitle,memberNo); 
+		return boardList;
+	}
+	
+	
+	
+	@GetMapping("ajax/selectNotice")
 	public SiteNotice selectArtistNotice(@RequestParam("siteNoticeNo") int siteNoticeNo) {
 		
 		Map<String, Object> map = new HashMap<>();
@@ -107,20 +132,23 @@ public class AdminAjaxController {
 		return service.selectSiteNotice(map);
 	}
 	
-	@PutMapping("deleteNotice")
-	@ResponseBody
+	@PutMapping("ajax/deleteNotice")
 	public int deleteNotice(@RequestBody int noticeNo) {
 		return service.deleteNotice(noticeNo);
 	}
 
 	
-	@PutMapping("updateNotice")
-	@ResponseBody
+	@PutMapping("ajax/updateNotice")
 	public int updateNotice(@RequestBody SiteNotice inputNotice) {
 		return service.updateNotice(inputNotice);
 	}
 	
-	
+	@DeleteMapping("groupDelete")
+	@ResponseBody
+	public int groupDelete(@RequestBody Map<String, Object> paramMap) {
+		int result = service.groupDelete(paramMap); 
+		return result;
+	}
 	
 	
 }

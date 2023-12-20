@@ -13,10 +13,12 @@
       <div id="modal" class="modal-body">
         <span class="close" onclick="closeModal()">&times;</span>
         <h2>구독하시겠습니까?</h2>
-        <form action="">
-          <button class="subscribe" onclick="openModal()">구독</button>
-          <button class="cancle">취소</button>
-        </form>
+        <div class="btnFrm">
+          <form th:action="|/artistMember/${artistGroupTitle}|" method="post">
+            <button class="subscribe" onclick="subscribe()">구독</button>
+          </form>
+          <button class="cancle" onclick="closeModal()">취소</button>
+        </div>
       </div>
     </div>
     <main
@@ -33,6 +35,7 @@
             <div class="artistprofileMainIntroAll">
               <div class="artistprofileMainIntroImg">
                 <!-- 이름 로고 -->
+                <img th:src="|*{artistGroupLogoimg}|" width="100%" height="100%" />
               </div>
 
               <div class="artistprofileMainIntroText">
@@ -44,21 +47,21 @@
               </div>
             </div>
           </div>
-          <div class="subscribeBtnArea">
-            <button class="btn-open-popup">구독하기</button>
-          </div>
+          <th:block th:if="${session.loginMember != null}">
+            <div class="subscribeBtnArea">
+              <button class="btn-open-popup" onclick="openModal()">구독하기</button>
+            </div>
+          </th:block>
         </div>
         <div class="profiletxt"><h3>프로필</h3></div>
 
         <div class="artistImage">
           <ul>
             <li th:each="artist : ${artistList}" th:object="${artist}">
-              <a href="#">
-                <div class="soloImg">
-                  <img th:src="|*{artistProfile}|" width="100%" height="100%" />
-                </div>
-                <strong class="profileName" th:text="*{artistName}">보은</strong>
-              </a>
+              <div class="soloImg">
+                <img th:src="|*{artistProfile}|" width="100%" height="100%" />
+              </div>
+              <strong class="profileName" th:text="*{artistName}">아티스트 이름</strong>
             </li>
           </ul>
         </div>
@@ -69,7 +72,7 @@
             <ul>
               <li th:each="media : ${artistGroupMedia}" th:object="${media}">
                 <!-- <th:block th:each="i : ${#numbers.sequence(0, 5)}" th:unless="${#lists.size(artistGroupMedia) == 0}"> -->
-                <a href="#">
+                <a th:href="|/${artistGroupTitle}/media/${media.mediaNo}/detail|">
                   <div class="videoImg">
                     <img
                       th:src="|https://img.youtube.com/vi/*{mediaAddress}/mqdefault.jpg|"
@@ -78,7 +81,7 @@
                     />
                   </div>
                   <div class="videoDate" th:text="*{mediaEnrollDate}">11.29.16:10</div>
-                  <strong class="videoComment" th:text="*{mediaTitle}">안녀엉</strong>
+                  <strong class="videoComment" th:text="*{mediaTitle}">미디어 제목</strong>
                 </a>
                 <!-- </th:block> -->
               </li>
@@ -91,7 +94,7 @@
           <div class="artistShop">
             <ul>
               <li th:each="product : ${artistGroupProduct}" th:object="${product}">
-                <a href="#">
+                <a th:href="@{/shop/shopDetail/{productNo}(productNo=${product.productNo})}">
                   <div class="shopImg">
                     <img th:src="|*{productImageThumbnail}*{productImageThumbnailRename}|" width="100%" height="100%" />
                   </div>
@@ -112,9 +115,25 @@
               </a>
             </li>
           </ul>
+          <div class="notice-more">
+            <a th:href="@{/artistMember/{artistGroupTitle}(artistGroupTitle=${artistGroupTitle})/notice}"
+              ><span style="color: white">더보기</span></a
+            >
+          </div>
         </div>
+        <th:block th:if="${session.loginMember?.memberAuthority == 4}">
+          <div class="updateDelete">
+            <form th:action="|/artistMember/${artistGroupTitle}/update|" method="get">
+              <button class="update">수정</button>
+            </form>
+          </div>
+        </th:block>
       </div>
     </main>
+    <script th:inline="javascript">
+      const artistGroupTitle = /*[[${artistGroupTitle}]]*/ "아티스트 그룹 이름";
+      const message = /*[[${message}]]*/ "아티스트 그룹 이름";
+    </script>
     <script src="/js/artistprofile/profile.js"></script>
   </body>
 </html>
