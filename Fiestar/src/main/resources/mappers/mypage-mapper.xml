@@ -170,7 +170,7 @@
 	</select>
 	
 	<!--공지사항 상세 조회-->
-		<select id="selectNotice" resultType="SiteNotice">
+		<select id="selectNotice" >
 		SELECT * FROM SITE_NOTICE
 		WHERE SITE_NOTICE_NO = #{siteNoticeNo} 
 		AND SITE_NOTICE_DEL_FL = 'N'

@@ -254,11 +254,10 @@ public class MyPageServiceImpl implements MyPageService {
 	
 	}
 	
-	
 	// 공지사항 상세 조회
 	@Override
-	public String selectSiteNotice(Map<String, Object> map) {
-		return mapper.selectSiteNotice(map);
+	public SiteNotice selectNotice(Map<String, Object> map) {
+		return mapper.selectNotice(map);
 	}
 	
 }

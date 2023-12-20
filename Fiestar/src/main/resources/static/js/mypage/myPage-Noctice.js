@@ -26,14 +26,14 @@ function selectNoctice(siteNoticeNo, thisTr) {
     targetTr = thisTr.parentElement;
 
     console.log(siteNoticeNo);
-    fetch("/myPage/myPage-Noctice/selectNotice?siteNoticeNo=" + siteNoticeNo)
+    fetch('/myPage/ajaxNotice?siteNoticeNo=' + siteNoticeNo)
         .then(resp => resp.json())
         .then(SiteNotice => {
 
             modalNoticeTitle.innerHTML = SiteNotice.siteNoticeTitle;
             modalNoticeContent.innerHTML = SiteNotice.siteNoticeContent;
 
-            open();
+            openModal();
 
         })
         .catch(err => console.log(err));

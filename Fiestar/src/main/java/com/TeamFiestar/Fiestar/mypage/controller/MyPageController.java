@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -17,6 +18,10 @@ import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.TeamFiestar.Fiestar.admin.controller.AdminAjaxController;
+import com.TeamFiestar.Fiestar.admin.model.dto.SiteNotice;
+import com.TeamFiestar.Fiestar.admin.model.service.AdminAjaxService;
+import com.TeamFiestar.Fiestar.board.model.dto.Board;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 import com.TeamFiestar.Fiestar.mypage.service.MyPageService;
 
@@ -25,7 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-@SessionAttributes({ "loginMember" })
+@SessionAttributes({ "loginMember", "artistGroupTitle", "artistGroupNo"})
 @RequestMapping("myPage")
 @RequiredArgsConstructor
 public class MyPageController {
@@ -211,16 +216,17 @@ public class MyPageController {
 		return "myPage/myPage-Noctice";
 	}
 	
-	// 공지사항 상세 조회
-	@GetMapping(value="selectNoctice", produces="application/json; charset=UTF-8")
-	public String selectNoctice(@RequestParam("siteNoticeNo") int siteNoticeNo) {
+	@GetMapping("ajaxNotice")
+	@ResponseBody
+	public SiteNotice selectNotice(@RequestParam("siteNoticeNo") int siteNoticeNo) {
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("siteNoticeNo", siteNoticeNo);
 		
-		return service.selectSiteNotice(map);
-		
+		return service.selectNotice(map);
 	}
+	
+	
 	
 	
 	

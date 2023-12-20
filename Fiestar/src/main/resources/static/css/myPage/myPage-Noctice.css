@@ -25,11 +25,6 @@
     background-color: #f5f7fa;
 }
 
-ul,
-li {
-    list-style: none;
-}
-
 
 /***********************************************배경화면 이미지*******************************************/
 .BgImage {
@@ -50,14 +45,8 @@ li {
 /************************************메인 오른쪽 화면*********************************/
 .main-2 {
     width: 780px;
+    margin: 0 30px;
 }
-
-.contentTitle h2 {
-    padding-top: 15px;
-    color: rgba(119, 67, 219, 1);
-}
-
-
 
 .contentTitle {
     width: 780px;
@@ -65,30 +54,38 @@ li {
     margin: 15px auto;
 }
 
-
-.contentTitle h1 {
+.contentTitle h2 {
     padding-top: 15px;
+    color: #7743db;
 }
 
 .content {
     width: 780px;
-    min-height: 200px;
+    background-color: #F3F3F3;
     border-radius: 10px;
     margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
+    padding: 20px;
 }
 
 .noctice-container {
-    width: 750px;
-    min-height: 120px;
-    margin: 10px auto;
-    padding: 20px;
-    border-radius: 5px;
-    background-color: rgb(241, 241, 241);
+    width: 730px;
+    margin: 0 auto;
+    padding: 10px 0;
 }
 
 
+.noctice-enrollDate{
+    margin-bottom: 15px;
+    color: #868686;
+}
+
+.noctice-container h3{
+    margin-bottom: 10px;
+}
+
+.noctice-title{
+    margin-bottom: 10px;
+}
 
 
 
@@ -166,6 +163,9 @@ li {
     line-height: 1.5;
 }
 
+
+
+/*************************************** 페이지 네이션 **********************************/
 .pagination-area {
     text-align: center;
     margin-top: 20px;
@@ -187,22 +187,4 @@ li {
     text-decoration: none;
     padding: 8px 12px;
     margin: 2px;
-}
-
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-th,
-td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-}
-
-th {
-    background-color: #f2f2f2;
 }

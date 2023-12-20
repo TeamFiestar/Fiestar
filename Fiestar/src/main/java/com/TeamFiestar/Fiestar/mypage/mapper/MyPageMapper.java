@@ -66,7 +66,8 @@ public interface MyPageMapper {
 	List<SiteNotice> siteNoticeList(RowBounds rowBounds);
 
 	// 공지사항 상세 조회
-	String selectSiteNotice(Map<String, Object> map);
+	SiteNotice selectNotice(Map<String, Object> map);
+
 
 
 

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.TeamFiestar.Fiestar.admin.model.dto.SiteNotice;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
 public interface MyPageService {
@@ -38,7 +39,7 @@ public interface MyPageService {
 	Map<String, Object> siteNotice(int cp);
 
 	// 공지사항 상세 조회
-	String selectSiteNotice(Map<String, Object> map);
+	SiteNotice selectNotice(Map<String, Object> map);
 
 
 
