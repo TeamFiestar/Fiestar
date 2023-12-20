@@ -28,6 +28,18 @@ const optionValue = document.querySelector("select[name=key] option:checked").se
 
 optionSelect.addEventListener("change", () => {
 
+  optionSelect.selectedIndex = 0; //처음 옵션으로 되돌리기
+
+
+
+  /* 같은 옵션 선택 시 밑으로 내려가지 않고 누적 작성 예정 */
+
+
+
+
+
+  /* ************************************************** */
+
   
 
   const productName = document.createElement("span");
@@ -192,4 +204,12 @@ document.getElementById('in-cart').addEventListener('submit', (e) =>{
     alert("로그인 후 이용해 주십시오");
   }
 })
+
+
+const updateBtn = document.getElementById("updateBtn");
+if(updateBtn != null){
+updateBtn.addEventListener("click", ()=>{
+  location.href = `/artistAdmin/${productNo}/${artistGroupTitle}/goodsModify`;
+});
+}
 

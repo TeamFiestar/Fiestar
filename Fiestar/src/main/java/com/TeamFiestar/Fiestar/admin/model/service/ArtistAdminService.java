@@ -28,5 +28,7 @@ public interface ArtistAdminService {
 	Map<String, Object> selectReportList(String artistGroupTitle, Report report, int cp);
 
 	Map<String, Object> selectPurchaseList(String artistGroupTitle, Purchase searchPurchase, int cp);
+	
+	int GoodsModify(Product product,MultipartFile contentImg, MultipartFile thumbnailImg)throws IllegalStateException, IOException;
 
 }
