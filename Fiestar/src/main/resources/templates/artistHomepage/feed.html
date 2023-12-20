@@ -24,15 +24,14 @@
 
 
     <main>
-            <div id="board">
+            <div id="board" th:with="artistGroup=${map2.artistGroup}">
 
                 <!-- 아티스트 프로필  페이지로 이동-->
-                <div id="teamProfile">
+                <div id="teamProfile" th:object="${artistGroup}" >
                     <a >
-                        
-                        <img src="/artistHomepageImg/lesserafim.jpg" alt="아티스트프로필이미지" id="artistImg"></a>
+                        <img th:src="|*{artistGroupMainimg}|" alt="아티스트프로필이미지" id="artistImg"></a>
                     <a >
-                        <img src="/artistHomepageImg/bts.jpg" style="border-radius: 50%; margin-left: 20px;" >
+                        <img th:src="|*{artistGroupProfile}|" style="border-radius: 50%; height:90px; width:90px; margin-left: 20px;" >
                         <p id="artistName" th:text="${artistGroupTitle}" style="margin-left: 20px; font-size: 70px;">LE SSERAFIM</p>
                     </a>
                 </div>
@@ -41,7 +40,7 @@
                 <div id="postingSection" data-target="feedWrite" onclick="wopenModal()">
                     <img th:if="${session.loginMember.memberProfile == null}" th:src="#{user.default.image}" style="width:30px; height:30px; border-radius: 50%;"></img>
                     <img th:unless="${session.loginMember.memberProfile == null}" th:src="${session.loginMember.memberProfile}" style="width:30px ;  height:30px; border-radius: 50%"></img>
-                    <div th:text="|${artistGroupTitle}에 포스트를 남겨보세요.|" style="margin-left: 10px; color: gray;">피에스타에 포스트를 남겨보세요.</div>
+                    <div th:text="|${artistGroupTitle}에 포스트를 남겨보세요.|" style="margin-left: 10px; width:87%; color: gray;">피에스타에 포스트를 남겨보세요.</div>
                     <i class="fa-solid fa-image fa-2xl" style="color: black;" ></i>
                 </div>
             </div>
@@ -73,7 +72,7 @@
                                         <div class="slide" style="padding: 15px;" 
                                         th:each="i : ${#numbers.sequence(0, #lists.size(board.imageList)-1, 1)}" 
                                         th:with="path=|${board.imageList[i].boardImagePath}${board.imageList[i].boardImageRename}|">
-                                            <img th:src="${path}"  style="border-radius: 10px; ">
+                                            <img th:src="${path}"  style="border-radius: 10px; width: 600px; height: 560px; ">
                                         </div>
     
                                    </th:block>
@@ -92,7 +91,7 @@
                         </div>
                     </section>
                     
-                    <section class="textarea" th:text="*{boardContent}" style="margin-top: 10px; margin-left: 5px;">
+                    <section class="textarea" th:text="*{boardContent}" style="margin-top: 10px; margin-left: 5px; font-size:17px;">
                        
                     </section>
 
@@ -109,27 +108,33 @@
 
 </main>
     <script src="https://kit.fontawesome.com/2434a52ecc.js" crossorigin="anonymous"></script>
-    <script src="/js/artistHomepage/feed.js"></script>
     <script src="/js/artistHomepage/feedWrite.js"></script>
-    <!-- <script src="/js/artistHomepage/feedUpdate.js"></script> -->
-
-
-    <script th:inline="javascript">
-
+    <script src="/js/artistHomepage/feedUpdate.js"></script>
     
+    <script src="/js/artistHomepage/feed.js"></script>
+    <script th:inline="javascript">
+        
+        
         // messages.properties의 값을 얻어와 전역 변수로 선언
         const defaultImage = /*[[#{user.default.image}]]*/ "기본 이미지";
         const boardDetail = /*[[${boardDetail}]]*/ "dadasas";
         const artistGroupTitle = /*[[${artistGroupTitle}]]*/ "dadasas";
         const loginCheck = /*[[${session.loginMember != null ? true : false}]]*/ "로그인 여부";
         const loginMemberNo = /*[[${session.loginMember.memberNo}]]*/ "멤버넘버";  
-        let boardNo = /*[[${boardNo}]]*/ "보드 넘버";
+        const boardD = /*[[${board}]]*/ "보드";
+        const boardNo = /*[[${boardNo}]]*/ "보드 넘버";
         const message = /*[[${message}]]*/ "전달 받은 message";
-                  // message가 없다면 null
-
+        // message가 없다면 null
+        
         if(message != null) alert(message);
-      
-    </script>
+        
+        if(boardNo != null && boardD != null){
+            openModal(boardD.boardNo);
+        }
+        
+        
+        </script>
+       
 
 
 </body>

@@ -23,11 +23,17 @@
 	</resultMap>
 	
 	<select id="artistGroupNo">
-		SELECT ARTIST_GROUP_NO, ARTIST_GROUP_MAINIMG, ARTIST_GROUP_LOGOIMG, ARTIST_GROUP_INTRODUCTION, ARTIST_GROUP_TITLE
+		SELECT ARTIST_GROUP_NO
 		FROM ARTIST_GROUP ag 
 		WHERE ARTIST_GROUP_TITLE = #{artistGroupTitle}
 	</select>
   
+	<select id="artistGroup" resultType="ArtistGroup1">
+		SELECT ARTIST_GROUP_MAINIMG, ARTIST_GROUP_LOGOIMG, ARTIST_GROUP_INTRODUCTION, ARTIST_GROUP_TITLE, ARTIST_GROUP_PROFILE
+		FROM ARTIST_GROUP 
+		WHERE ARTIST_GROUP_TITLE = #{artistGroupTitle}
+	</select>
+	
 	
 	<!-- ===========================일반 게시글 조회==================================-->
  

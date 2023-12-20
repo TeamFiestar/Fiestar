@@ -71,28 +71,32 @@ public class EditBoardController {
 		return "redirect:/{artistGroupTitle}/feed";
 	}
 	
-	@GetMapping("{artistGroupTitle}/{boardNo:[0-9]+}/update")
+	@GetMapping("{artistGroupTitle}/feed/{boardNo:[0-9]+}/update")
 	public String updateBoardDetail(
 			@PathVariable("artistGroupTitle") String artistGroupTitle,
 			@PathVariable("boardNo") int boardNo, Model model,
-			RedirectAttributes ra) {
+			@SessionAttribute(value="loginMember", required = true) Member loginMember
+			
+			) {
 		model.addAttribute("artistGroupTitle",artistGroupTitle);
 		
-		Board board = service.updateBoardDetail(boardNo);
+		Board board = service.updateBoardDetail(boardNo, loginMember.getMemberNo());
 		model.addAttribute("board",board);
 		
 		return "artistHomepage/feedUpdate";
 	}
 	
 	
-	@PostMapping("{artistGroupTitle}/{boardNo:[0-9]+}/update")
+	@PostMapping("{artistGroupTitle}/feed/{boardNo:[0-9]+}/update")
 	public String boardUpdate (
 			@PathVariable("artistGroupTitle") String artistGroupTitle,
 			@PathVariable("boardNo") int boardNo, Model model,
 			Board board,
-			@RequestParam("images") List<MultipartFile> images,
+			@RequestParam("images2") List<MultipartFile> images,
 			RedirectAttributes ra) throws IllegalStateException, IOException {
 		
+		board.setBoardNo(boardNo);
+		board.setArtistGroupTitle(artistGroupTitle);
 		int result = service.updateBoard(board, images);
 		
 		if(result > 0 ) {

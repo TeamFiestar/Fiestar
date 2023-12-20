@@ -48,6 +48,8 @@ function closeModal(stateObj) {
 }
 const modalForm = document.getElementById('modal-form');
 
+const modalUpdate = document.getElementById('modal-update2');
+
 function updatePageContent(boardNo) {
 
 
@@ -58,6 +60,7 @@ function updatePageContent(boardNo) {
       console.log(board);
 
       modalForm.setAttribute('action', `${boardNo}/delete`)
+      modalUpdate.setAttribute('action', `${boardNo}/update`)
 
       /* ----------------- 아이디 등 인적사항 및 피드 내용 -------------------------- */
       const boardNickname = document.getElementById('boardNickname');
@@ -67,6 +70,17 @@ function updatePageContent(boardNo) {
 
       const feedMain = document.querySelector('.feedMain');
       feedMain.innerText = board.boardContent;
+
+      const feedUpdate2 = document.querySelector('#feedUpdate2');
+      feedUpdate2.innerText = board.boardContent;
+
+      // if (board.imageList && board.imageList.length > 0) {
+      // const inputImage2 = document.getElementsByClassName("preview2");
+      // inputImage2.innerHTML = '';
+
+      //   board.image
+
+      // }
 
       const profileImage = document.getElementById('profileImage');
 
@@ -97,9 +111,12 @@ function updatePageContent(boardNo) {
           const imagePath = image.boardImagePath + image.boardImageRename;
 
           imgElement.src = imagePath;
+          imgElement.classList = "feed-image";
 
           feedImg.appendChild(imgElement);
         });
+
+
 
 
       } else {
@@ -699,16 +716,19 @@ function uOpenModal() {
   modal2.classList.remove("show");
   document.body.style.overflow = "";
 
-  var newUrl = "/" + artistGroupTitle + "/" + boardNo2 + "/update";
-
-  var stateObj = { artistGroupTitle: artistGroupTitle, boardNo: boardNo2 };
-
-  history.pushState(stateObj, "", newUrl);
-
   const modal = document.getElementById('feedUpdate');
   modal.classList.add("show");
   document.body.style.overflow = "hidden";
 
+  const feedImage = document.querySelectorAll('.feed-image');
+  const updatePreviewImage = document.querySelectorAll('.preview2');
+  console.log(feedImage.length);
+
+  let index = 0;
+  for ( let feedImg of feedImage) {
+    updatePreviewImage[index].src = feedImg.src;
+    index++;
+  }
 
 
 }
@@ -723,3 +743,4 @@ function ucloseModal(stateObj) {
   document.body.style.overflow = "";
 
 }
+

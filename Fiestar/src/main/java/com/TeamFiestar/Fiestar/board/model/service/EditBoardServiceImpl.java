@@ -99,8 +99,8 @@ public class EditBoardServiceImpl implements EditBoardService{
 	}
 	
 	@Override
-	public Board updateBoardDetail(int boardNo) {
-		return mapper.updateBoardDetail(boardNo);
+	public Board updateBoardDetail(int boardNo, int memberNo) {
+		return mapper.updateBoardDetail(boardNo ,memberNo);
 	}
 	
 	@Override
@@ -126,20 +126,10 @@ public class EditBoardServiceImpl implements EditBoardService{
 						
 						img.setBoardNo(board.getBoardNo()); 
 						img.setBoardImageOrder(i); 	 
-						
-						
 						img.setBoardImageOriginalName(images.get(i).getOriginalFilename()); 
-						
-						//웹 접근 경로
 						img.setBoardImagePath(webPath);
-					
-						//변경된 파일명
 						img.setBoardImageRename(Util.fileRename(images.get(i).getOriginalFilename())); 
-						
-						//실제 업로드된 파일을 img에 세팅
 						img.setUploadFile(images.get(i));
-						
-						//uploadList에 추가
 						uploadList.add(img);
 						
 						result = mapper.updateBoardImg(img);
