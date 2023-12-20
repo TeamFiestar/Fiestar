@@ -26,6 +26,18 @@ public class Board {
 	private int artistGroupNo;
 	private int artistGroupAdminNo;
 	private String artistGroupTitle;
+	private String artistName;
+	private String artistProfile;
+	private String artistGroupProfile;
+	private String artistGroupImage;
+	private String artistGroupBackimg;
+	private String artistGroupMainimg;
+	private String artistGroupLogoimg;
+	private String artistEmail;
+	
+	private String memberEmail;
+	private String artistRename;
+	
 	
 	// 상세 조회 시 
 	private int readCount;

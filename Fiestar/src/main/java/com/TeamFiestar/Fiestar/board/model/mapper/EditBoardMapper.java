@@ -14,4 +14,15 @@ public interface EditBoardMapper {
 
 	int insertBoard(Board board);
 
+	int deleteBoard(int boardNo);
+
+	Board updateBoardDetail(int boardNo);
+
+	int updateBoard(Board updateBoard);
+
+	void boardImgInsert(BoardImg img);
+
+	int updateBoardImg(BoardImg img);
+
+
 }

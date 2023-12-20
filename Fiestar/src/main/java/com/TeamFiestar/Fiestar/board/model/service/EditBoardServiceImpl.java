@@ -93,4 +93,74 @@ public class EditBoardServiceImpl implements EditBoardService{
 		
 	}
 	
+	@Override
+	public int deleteBoard(int boardNo) {
+		return mapper.deleteBoard(boardNo);
+	}
+	
+	@Override
+	public Board updateBoardDetail(int boardNo) {
+		return mapper.updateBoardDetail(boardNo);
+	}
+	
+	@Override
+	public int updateBoard(Board board, List<MultipartFile> images)  throws IllegalStateException, IOException{
+		
+		int result = mapper.updateBoard(board);
+		
+		//수정 실패 시
+				if(result == 0) {
+					
+					return 0;
+				}
+				
+				
+				List<BoardImg> uploadList = new ArrayList<>();
+				
+			
+				for(int i = 0; i<images.size(); i++) {
+				
+					if(images.get(i).getSize() > 0) {
+						
+						BoardImg img = new BoardImg();
+						
+						img.setBoardNo(board.getBoardNo()); 
+						img.setBoardImageOrder(i); 	 
+						
+						
+						img.setBoardImageOriginalName(images.get(i).getOriginalFilename()); 
+						
+						//웹 접근 경로
+						img.setBoardImagePath(webPath);
+					
+						//변경된 파일명
+						img.setBoardImageRename(Util.fileRename(images.get(i).getOriginalFilename())); 
+						
+						//실제 업로드된 파일을 img에 세팅
+						img.setUploadFile(images.get(i));
+						
+						//uploadList에 추가
+						uploadList.add(img);
+						
+						result = mapper.updateBoardImg(img);
+						
+						if(result == 0) {
+							mapper.boardImgInsert(img);
+						}
+					}
+				}
+				
+				if(!uploadList.isEmpty()) {
+					result = 1;
+					
+					for(BoardImg img : uploadList) {
+						img.getUploadFile().transferTo(new File(folderPath + img.getBoardImageRename() ) );
+					}
+				}
+				
+				return result;
+	}
+	
+	
+	
 }
