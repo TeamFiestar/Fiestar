@@ -20,6 +20,7 @@ import com.TeamFiestar.Fiestar.artist.model.mapper.ArtistMapper;
 import com.TeamFiestar.Fiestar.common.utility.Util;
 import com.TeamFiestar.Fiestar.media.model.dto.Media;
 import com.TeamFiestar.Fiestar.member.model.dto.ArtistGroup1;
+import com.TeamFiestar.Fiestar.notice.dto.ArtistGroupNotice;
 import com.TeamFiestar.Fiestar.shop.model.dto.Product;
 
 import lombok.RequiredArgsConstructor;
@@ -48,10 +49,10 @@ public class ArtistServiceImpl implements ArtistService{
 	
 	@Override
 	public Map<String, Object> artistMember(String artistGroupTitle) {
+		int artistGroupNo = artistAdminMapper.selectArtistGroupNo(artistGroupTitle);
 		
 		Map<String, Object> map = new HashMap<>();
 		List<ArtistGroup1> artistGroup = mapper.artistGroup(artistGroupTitle);
-		int artistGroupNo = artistAdminMapper.selectArtistGroupNo(artistGroupTitle);
 		List<Artist> artistList = mapper.artist(artistGroupNo);
 		RowBounds rowBounds = new RowBounds(0,6);
 		List<Media> artistGroupMedia = mapper.artistGroupMedia(rowBounds, artistGroupNo);
@@ -67,6 +68,35 @@ public class ArtistServiceImpl implements ArtistService{
 		
 		return map;
 	}
+	
+	@Override
+	public Map<String, Object> loginArtistMember(int memberNo, String artistGroupTitle) {
+		int artistGroupNo = artistAdminMapper.selectArtistGroupNo(artistGroupTitle);
+		
+		Map<String, Object> checkMap = new HashMap<>();
+		checkMap.put("artistGroupNo", artistGroupNo);
+		checkMap.put("memberNo", memberNo);
+		int result = mapper.checkSubscribe(checkMap);
+		
+		Map<String, Object> map = new HashMap<>();
+		List<ArtistGroup1> artistGroup = mapper.artistGroup(artistGroupTitle);
+		List<Artist> artistList = mapper.artist(artistGroupNo);
+		RowBounds rowBounds = new RowBounds(0,6);
+		List<Media> artistGroupMedia = mapper.artistGroupMedia(rowBounds, artistGroupNo);
+		RowBounds rowBounds2 = new RowBounds(0,8);
+		List<Product> artistGroupProduct = mapper.artistGroupProduct(rowBounds2,artistGroupNo);
+		RowBounds rowBounds3 = new RowBounds(0,3);
+		List<ArtistNotice> artistGroupNotice = mapper.artistGroupNotice(rowBounds3, artistGroupNo);
+		map.put("artistGroup", artistGroup);
+		map.put("artistList", artistList);
+		map.put("artistGroupMedia", artistGroupMedia);
+		map.put("artistGroupProduct", artistGroupProduct);
+		map.put("artistGroupNotice", artistGroupNotice);
+		map.put("result", result);
+		
+		return map;
+	}
+	
 	
 	@Override
 	public int subscribe(int memberNo, String artistGroupTitle) {
@@ -197,6 +227,17 @@ public class ArtistServiceImpl implements ArtistService{
 		map.put("artistNoticeList", artistNoticeList);
 		
 		return map;
+	}
+	
+	@Override
+	public List<ArtistGroupNotice> artistNoticeDetail(String artistGroupTitle, int artistGroupNoticeNo) {
+		int artistGroupNo = artistAdminMapper.selectArtistGroupNo(artistGroupTitle);
+		Map<String, Object> map = new HashMap<>();
+		map.put("artistGroupNo", artistGroupNo);
+		map.put("artistGroupNoticeNo", artistGroupNoticeNo);
+		List<ArtistGroupNotice> artistGroupNoticeList = mapper.artistNoticeDetail(map);
+		
+		return artistGroupNoticeList;
 	}
 	
 	

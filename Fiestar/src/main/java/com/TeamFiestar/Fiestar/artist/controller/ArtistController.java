@@ -21,6 +21,7 @@ import com.TeamFiestar.Fiestar.artist.model.dto.Artist;
 import com.TeamFiestar.Fiestar.artist.model.service.ArtistService;
 import com.TeamFiestar.Fiestar.member.model.dto.ArtistGroup1;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
+import com.TeamFiestar.Fiestar.notice.dto.ArtistGroupNotice;
 
 import lombok.RequiredArgsConstructor;
 
@@ -33,22 +34,28 @@ public class ArtistController {
 	@GetMapping("{artistGroupTitle}")
 	public String artistMember(@PathVariable("artistGroupTitle") String artistGroupTitle,
 			@SessionAttribute(value="loginMember", required = false) Member loginMember, Model model) {
-		Map<String, Object> map = service.artistMember(artistGroupTitle);
-		model.addAttribute("map", map);
-		return "artistProfile/profile";
+		if(loginMember == null) {
+			Map<String, Object> map = service.artistMember(artistGroupTitle);
+			model.addAttribute("map", map);
+			return "artistProfile/profile";
+		}else {
+			Map<String, Object> map = service.loginArtistMember(loginMember.getMemberNo(), artistGroupTitle);
+			model.addAttribute("map", map);
+			return "artistProfile/profile";			
+		}
 	}
 	
 	
 	@PostMapping("{artistGroupTitle}")
 	public String subscribe(@PathVariable("artistGroupTitle") String artistGroupTitle,
-			@SessionAttribute(value="loginMember", required = true) Member loginMember, RedirectAttributes ra) {
+			@SessionAttribute(value="loginMember", required = true) Member loginMember, RedirectAttributes ra, Model model) {
 		int result = service.subscribe(loginMember.getMemberNo(),artistGroupTitle);
 		
 		if(result > 0) {
 			ra.addFlashAttribute("message", "구독 성공!!");
 			return "redirect:/{artistGroupTitle}/feed";
 		}else {
-			ra.addFlashAttribute("message", "구독 실패");
+			ra.addFlashAttribute("message", "이미 구독중입니다.");
 			return "redirect:/artistMember/{artistGroupTitle}";
 		}
  
@@ -104,6 +111,20 @@ public class ArtistController {
 		model.addAttribute("map", map);
 		model.addAttribute("artistGroupTitle", artistGroupTitle);
 		return "artist/artistNotice";
+	}
+	
+	
+	@GetMapping("{artistGroupTitle}/notice/{artistGroupNoticeNo}")
+	public String artistNoticeDetail(
+			@PathVariable("artistGroupTitle") String artistGroupTitle, Model model,
+			@SessionAttribute(value="loginMember", required = true) Member loginMember,
+			@PathVariable("artistGroupNoticeNo") int artistGroupNoticeNo) {
+		List<ArtistGroupNotice> artistGroupNoticeList = service.artistNoticeDetail(artistGroupTitle, artistGroupNoticeNo);
+		
+		model.addAttribute("artistGroupNoticeList", artistGroupNoticeList);
+		
+		return "artistHomePage/artistNoticeDetail";
+	
 	}
 	
 }
