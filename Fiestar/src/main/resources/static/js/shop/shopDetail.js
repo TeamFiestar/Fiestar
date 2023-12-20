@@ -50,10 +50,7 @@ optionSelect.addEventListener("change", () => {
   });
 
 
-
-
   // -------------------------------------------------
-
 
 
   const optionArea = document.createElement("div");
@@ -92,7 +89,7 @@ optionSelect.addEventListener("change", () => {
 
   let productPrice2 = productPrice.getAttribute("value");
 
-  selectedPrice.innerText = "₩" + productPrice2.toLocaleString();
+  // selectedPrice.innerText = "₩" + productPrice2.toLocaleString();
 
   
   productName.append(deleteList);
@@ -120,13 +117,12 @@ const totalPrice = document.querySelector("#totalPrice");
 function plusBtn(e){
   let i = e.previousSibling.innerText;
   i++;
-  console.log(e.previousSibling);
+  // console.log(e.previousSibling);
   e.previousSibling.textContent = i;
-  let totalcostNum = i*productPrice.getAttribute("value");
-  e.parentElement.nextElementSibling.textContent = "₩" + totalcostNum.toLocaleString();
+  // let totalcostNum = i*productPrice.getAttribute("value");
+  // e.parentElement.nextElementSibling.textContent = "₩" + totalcostNum.toLocaleString();
   totalNoProduct( );
   totalCost();
-
 };
 
 
@@ -137,8 +133,8 @@ function minusBtn(e) {
   
   i--;
   e.nextSibling.textContent = i;
-  let totalcostNum = i*productPrice.getAttribute("value");
-  e.parentElement.nextElementSibling.textContent = "₩" + totalcostNum.toLocaleString();
+  // let totalcostNum = i*productPrice.getAttribute("value");
+  // e.parentElement.nextElementSibling.textContent = "₩" + totalcostNum.toLocaleString();
   totalNoProduct( );
   totalCost();
   } 
@@ -155,28 +151,22 @@ function totalNoProduct( ) {
   for(i of results) {
     console.log(i);
     sum += (Number)(i.innerText);
-
   }
-
-  totalProduct.textContent = "총 상품금액 (" + sum +")개";
+  totalProduct.textContent = "총 상품금액 (" + sum +")";
   totalProduct.setAttribute('value',sum);
   console.log(totalProduct.getAttribute('value'));
 }
 
 
 function totalCost() {
-
-  let selectedPrice = 110000;
-
+   
   let total = 0;
-
-  total = selectedPrice * totalProduct.getAttribute('value');
-
-
-  totalPrice.textContent = "₩" + total.toLocaleString();
-
-
+  total = price * totalProduct.getAttribute('value');
+  totalPrice.textContent = total;
+  console.log(total);
 }
+
+totalCost();
 
 
 

@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,6 +22,8 @@ import com.TeamFiestar.Fiestar.shop.model.dto.ProductImage;
 import com.TeamFiestar.Fiestar.shop.model.service.ShopService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @RequestMapping("shop")
@@ -47,20 +50,13 @@ public class ShopController {
 			
 			Map<String, Object> map = service.shopMain(cp);
 			model.addAttribute("map",map);
-			int shopCount = service.shopCount();
-			model.addAttribute("shopCount", shopCount);
-		
-			
 		}else {
 			ProductImage productImg = null;
 			model.addAttribute("productImg",productImg);
 			paramMap.put("shopSearch", shopSearch);
 			Map<String, Object> map =  service.searchList(paramMap,cp);
 			model.addAttribute("map",map);
-			int shopCount = service.shopSearchCount(paramMap);
-			model.addAttribute("shopCount", shopCount);
 			model.addAttribute("shopSearch",shopSearch);
-			
 		}
 		return "shop/home";
 	}	
@@ -79,10 +75,9 @@ public class ShopController {
 									@SessionAttribute(value="loginMember", required = false) Member loginMember) {
 		
 		paramMap.put("artistGroupNo", artistGroupNo);
-		int shopCount = service.shopGroupCount(paramMap);
-		model.addAttribute("shopCount", shopCount);
 		Map<String, Object> map = service.artistGroupShop(paramMap, cp);
 		model.addAttribute("map", map);
+	
 		return "shop/home";
 	}
 	
@@ -91,9 +86,10 @@ public class ShopController {
 	 */
 	@GetMapping(value = "home/sortList" , produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public List<Product> AllsortList(@RequestParam Map<String, Object> paramMap){
+	public List<Product> AllsortList(@RequestParam Map<String, Object> paramMap,
+									@RequestParam(value ="cp", required = false, defaultValue = "1") int cp){
 		
-		return service.selectAllSort(paramMap);
+		return service.selectAllSort(paramMap,cp);
 	}
 	
 	/** 그룹별 상품 조회 후 정렬
@@ -101,9 +97,10 @@ public class ShopController {
 	 */
 	@GetMapping(value = "home/groupSortList" , produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public List<Product> sortList(@RequestParam Map<String, Object> paramMap){
+	public List<Product> sortList(@RequestParam Map<String, Object> paramMap, 
+									@RequestParam(value ="cp", required = false, defaultValue = "1") int cp){
 		
-		return service.selectGroupSort(paramMap);
+		return service.selectGroupSort(paramMap, cp);
 	}
 	
 	/** 상품 검색 조회 후 정렬
@@ -111,9 +108,10 @@ public class ShopController {
 	 */
 	@GetMapping(value = "home/searchSortList" , produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public List<Product> searchSortList(@RequestParam Map<String, Object> paramMap){
+	public List<Product> searchSortList(@RequestParam Map<String, Object> paramMap,
+										@RequestParam(value ="cp", required = false, defaultValue = "1") int cp){
 		
-		return service.selectSearchSort(paramMap);
+		return service.selectSearchSort(paramMap, cp);
 	}
 	
 	
@@ -129,7 +127,9 @@ public class ShopController {
 								Model model, Product product,
 								RedirectAttributes ra) {
 		
-		Product prod = service.shopDetail(productNo);
+		
+		Map<String, Object> prod = service.shopDetail(productNo);
+		
 		String path = null;
 		
 		if(prod != null) {
@@ -142,6 +142,24 @@ public class ShopController {
 		
 		return path;
 	}
+	
+	
+	/**장바구니에 담기
+	 * @return
+	 */
+	@PostMapping("{productNo}/cart")
+	public String cart(RedirectAttributes ra,
+						@SessionAttribute(value="loginMember", required = false) Member loginMember,
+						Product product) {
+		
+		return null;
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	@GetMapping("noticeDetail")

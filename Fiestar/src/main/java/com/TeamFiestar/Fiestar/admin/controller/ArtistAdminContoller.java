@@ -2,12 +2,12 @@ package com.TeamFiestar.Fiestar.admin.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +19,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.TeamFiestar.Fiestar.admin.model.dto.ArtistNotice;
 import com.TeamFiestar.Fiestar.admin.model.dto.Purchase;
 import com.TeamFiestar.Fiestar.admin.model.dto.Report;
-import com.TeamFiestar.Fiestar.admin.model.service.ArtistAdminAJAXService;
 import com.TeamFiestar.Fiestar.admin.model.service.ArtistAdminService;
 import com.TeamFiestar.Fiestar.shop.model.dto.Product;
 
@@ -127,12 +126,11 @@ public class ArtistAdminContoller {
 	 *  */
 	@PostMapping("{artistGroupTitle}/goods")
 	public String insertGoods(RedirectAttributes ra,
-								Product product,
-								@PathVariable("artistGroupTitle") String artistGroupTitle,
+								@ModelAttribute Product product,
 								@RequestParam("contentImg") MultipartFile contentImg,
 								@RequestParam ("thumbnailImg") MultipartFile thumbnailImg) throws IllegalStateException, IOException{
 		
-		int productNo = service.insertGoods(product,artistGroupTitle, contentImg, thumbnailImg);
+		int productNo = service.insertGoods(product, contentImg, thumbnailImg);
 		
 		if(productNo > 0) {
 			ra.addFlashAttribute("message","상품 등록 성공");
@@ -140,7 +138,7 @@ public class ArtistAdminContoller {
 		}
 		
 		ra.addFlashAttribute("message","상품 등록 실패");
-		return "redirect:goods";
+		return "redirect:goods";	
 		
 	}
 

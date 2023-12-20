@@ -10,6 +10,7 @@ import com.TeamFiestar.Fiestar.admin.model.dto.ArtistNotice;
 import com.TeamFiestar.Fiestar.admin.model.dto.Purchase;
 import com.TeamFiestar.Fiestar.admin.model.dto.Report;
 import com.TeamFiestar.Fiestar.shop.model.dto.Product;
+import com.TeamFiestar.Fiestar.shop.model.dto.ProductOption;
 
 public interface ArtistAdminService {
 
@@ -18,11 +19,12 @@ public interface ArtistAdminService {
 	int artistNoticeAdd(String artistGroupTitle, ArtistNotice notice);
 
 	/**상품 등록
-	 * @param artistGroupTitle 
+	 * @param inputName 
 	 * @param paramMap
 	 * @return
 	 */
-	int insertGoods(Product product,String artistGroupTitle, MultipartFile contentImg, MultipartFile thumbnailImg)throws IllegalStateException, IOException;
+	int insertGoods(Product product,MultipartFile contentImg, MultipartFile thumbnailImg)throws IllegalStateException, IOException;
+	
 	Map<String, Object> selectReportList(String artistGroupTitle, Report report, int cp);
 
 	Map<String, Object> selectPurchaseList(String artistGroupTitle, Purchase searchPurchase, int cp);
