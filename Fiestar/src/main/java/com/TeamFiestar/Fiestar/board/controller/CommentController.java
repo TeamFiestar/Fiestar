@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.TeamFiestar.Fiestar.admin.model.dto.Report;
 import com.TeamFiestar.Fiestar.board.model.dto.Comment;
 import com.TeamFiestar.Fiestar.board.model.service.CommentService;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
@@ -92,6 +93,13 @@ public class CommentController {
 		
 		return service.deleteLike(comment);
 	}
+	
+	@PostMapping("insertReport")
+	@ResponseBody
+	public int insertReport(@RequestBody Report report) {
+		return service.insertReport(report);
+	}
+	
 	
 	
 }

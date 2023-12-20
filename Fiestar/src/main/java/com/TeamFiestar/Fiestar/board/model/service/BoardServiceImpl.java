@@ -8,6 +8,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.TeamFiestar.Fiestar.admin.model.dto.Report;
 import com.TeamFiestar.Fiestar.board.model.dto.Board;
 import com.TeamFiestar.Fiestar.board.model.mapper.BoardMapper;
 import com.TeamFiestar.Fiestar.member.model.dto.ArtistGroup1;
@@ -111,6 +112,11 @@ public class BoardServiceImpl implements BoardService {
 		map2.put("artistGroup", artistGroup1);
 		
 		return map2;
+	}
+	
+	@Override
+	public int insertReport(Report report) {
+		return mapper.insertReport(report);
 	}
 
 

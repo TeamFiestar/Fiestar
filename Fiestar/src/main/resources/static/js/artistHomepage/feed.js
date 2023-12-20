@@ -299,6 +299,8 @@ function generateComment(boardNo3) {
             reportImg.className = "report-img";
             reportImg.src = "/img/report.png";
             // reportImg.onclick = reportOpen;
+            reportImg.onclick = modalOpen;
+            
 
             const deleteBtn = document.createElement("button");
             deleteBtn.classList.add("delete-cross");
@@ -573,9 +575,6 @@ function insertChildComment(boardParentCommentNo, btn) {
 
 
 
-
-
-
 function likeComment(btn, boardCommentNo) {
 
   let likeClick;
@@ -644,36 +643,59 @@ function likeComment(btn, boardCommentNo) {
 }
 
 
-/* ==================게시글 삭제 버튼 클릭======================= */
 
 
+const modal = document.getElementById('modalContainer');
+
+function modalOpen() {
+
+  modal.classList.remove('hidden');
+
+}
+function modalClose() {
+  modal.classList.add('hidden');
+}
 
 
+let reportType;
+const reportBtn = document.getElementById('reportBtn');
+const data = {};
 
 
-/* ==================게시글 수정 버튼 클릭======================= */
+function reportOpen(reportTargetNo, reportContentNo, reportType){
+  if(loginMemberNo == null){
+    alert("로그인 후 이용해주세요")
+    return;
+  }
+  modalOpen();
+
+  data.artistGroupNo = boardDetail.artistGroupNo;
+  data.reporterNo = loginMemberNo;
+  data.reportTargetNo = reportTargetNo;
+  data.reportContentNo = reportContentNo;
+  data.reportType = reportType;
+
+  
+}
 
 
-// const updateBtn = document.getElementById("updateBtn");
+reportBtn.addEventListener('click', () =>{
 
-// if(loginMemberNo == board.memberNo) {
-//   commentProfile.append(deleteBtn, reportImg);
-// } else {
-//   commentProfile.append(reportImg);
-// }
-
-// if(updateBtn != null){
-// updateBtn.addEventListener("click", ()=>{
-//   location.href = `/editBoard/${boardCode}/${boardNo}/update`;
-// });
-// }
-
-
-
+  fetch("/insertReport",{
+    method : "POST",
+    headers : {"Content-Type" : "application/json"},
+    body : JSON.stringify(data)
+  })
+  .then(resp => resp.text())
+  .then(result =>{
+    if(result > 0){
+      alert("신고되었습니다");
+    }
+  })
+  .catch(err => console.log(err));
 
 
-
-
+})
 
 
 

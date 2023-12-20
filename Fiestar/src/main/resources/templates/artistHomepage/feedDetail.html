@@ -21,8 +21,8 @@
                             <input id="check-btn" type="checkbox" />
                             <label for="check-btn"><i class="fa-solid fa-ellipsis-vertical fa-2x" style="color:gray; font-size:26px;"></i></label>
                             <div class="menubars">
-                                <a href="#">
-                                    <button>신고하기</button>
+                                <a>
+                                    <button id="reportFeed" th:onclick="|reportOpen(*{memberNo},*{boardCommentNo}, 'boardComment')|" >신고하기</button>
                                 </a>
                                 <!-- <th:block th:if="${session.loginMember != null and session.loginMember.memberNo == Board.memberNo}"> -->
                                   <!-- <th:block th:if="${session.loginMember != null and session.loginMember.memberNo == board.memberNo}"> -->
@@ -83,7 +83,7 @@
   
                       <div class="comment-profile">
                         <button class="delete-cross">X</button>
-                        <img class="report-img" src="/img/report-img.svg" onclick="reportOpen()"/>
+                        <img class="report-img" src="/img/report-img.svg"/>
                       </div>
   
                     </div>

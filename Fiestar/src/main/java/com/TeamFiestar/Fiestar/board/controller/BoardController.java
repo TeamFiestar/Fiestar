@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.TeamFiestar.Fiestar.admin.model.dto.Report;
 import com.TeamFiestar.Fiestar.board.model.dto.Board;
 import com.TeamFiestar.Fiestar.board.model.dto.BoardImg;
 import com.TeamFiestar.Fiestar.board.model.service.BoardService;
@@ -150,7 +151,11 @@ public class BoardController {
 		return "artistHomepage/artist";
 	}
 	
-	
+//	@PostMapping("insertReport")
+//	@ResponseBody
+//	public int insertReport (@RequestBody Report report) {
+//		return service.insertReport(report);
+//	}
 	
 	
 	

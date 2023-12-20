@@ -225,6 +225,18 @@
 		ORDER SIBLINGS BY BOARD_COMMENT_NO DESC
 	</select>
 	
+	<insert id="insertReport">
+		INSERT INTO REPORT r VALUES
+			(SEQ_REPORT_NO.NEXTVAL, 
+			#{reporterNo}, 
+			#{reportTargetNo}, 
+			#{artistGroupNo},
+			'N',
+			#{reportContentNo},
+			#{reportContent},
+			#{reportType})
+	</insert>
+	
 	
 	
 	
