@@ -23,23 +23,54 @@
 		<!-- myBatis에서 향상된 for문 사용하기 -->
 	 	<foreach collection="list" item="img" separator=" UNION " >
 			 SELECT NEXT_IMG_NO(), 
+			 #{img.boardNo},
 			 		#{img.boardImagePath},
-			 		#{img.boardImageRename},
-			 		#{img.boardImageOriginalName},
 			 		#{img.boardImageOrder},
-			 		#{img.boardNo}
+			 		#{img.boardImageRename},
+			 		#{img.boardImageOriginalName}
+			 		
 			 FROM DUAL
 			 
 		 </foreach>
 		
 	</insert>
 	
-	<!-- 게시글 부분만 수정 -->
-	<update id="updateBoard">
-		UPDATE "BOARD" SET
-		BOARD_CONTENT = #{boardContent},
+
+	
+	<select id="updateBoardDetail">
+		SELECT BOARD_NO, BOARD_CONTENT, MEMBER_AUTHORITY,MEMBER_NICKNAME, MEMBER_PROFILE, MEMBER_NO,
+		
+		<![CDATA[	
+			
+			  	CASE  
+			         WHEN SYSDATE - BOARD_ENROLL_DATE < 1/24/60
+			         THEN FLOOR( (SYSDATE - BOARD_ENROLL_DATE) * 24 * 60 * 60 ) || '초 전'
+			         WHEN SYSDATE - BOARD_ENROLL_DATE < 1/24
+			         THEN FLOOR( (SYSDATE - BOARD_ENROLL_DATE) * 24 * 60) || '분 전'
+			         WHEN SYSDATE - BOARD_ENROLL_DATE < 1
+			         THEN FLOOR( (SYSDATE - BOARD_ENROLL_DATE) * 24) || '시간 전'
+			         ELSE TO_CHAR(BOARD_ENROLL_DATE, 'YYYY-MM-DD')
+		      	END BOARD_ENROLL_DATE,	
+	      	]]>
+			
+
+			(SELECT COUNT(*) FROM "BOARD_LIKE" L 
+			WHERE L.BOARD_NO = B.BOARD_NO) LIKE_COUNT,
+			
+			(SELECT COUNT(*) FROM "BOARD_COMMENT" C
+	      	WHERE C.BOARD_NO = B.BOARD_NO) COMMENT_COUNT,
+	      	
+	      	(SELECT COUNT(*) FROM BOARD_LIKE
+			 WHERE BOARD_NO = #{boardNo}
+			 AND MEMBER_NO = #{memberNo}) likeCheck
+
+		FROM "BOARD" B
+		JOIN "MEMBER" USING(MEMBER_NO)
+		WHERE BOARD_DEL_FL = 'N'
 		AND BOARD_NO = #{boardNo}
-	</update>
+		
+		
+	</select>
 	
 	
 		<!-- 게시글 삭제 -->
@@ -47,8 +78,18 @@
 		UPDATE "BOARD" SET 
 		BOARD_DEL_FL = 'Y'
 		WHERE BOARD_NO = #{boardNo}
-		AND MEMBER_NO = #{memberNo}
 		
+	</update>
+	
+	
+	
+	<!-- 게시글 부분만 수정 -->
+	<update id="updateBoard">
+		UPDATE "BOARD" SET
+		BOARD_CONTENT = #{boardContent},
+		BOARD_ENROLL_DATE = SYSDATE,
+		BOARD_ENROLL_DATE2 = SYSDATE
+		WHERE BOARD_NO = #{boardNo}
 	</update>
 	
 	<!-- # , $의 차이점 : ' ' 작성이 있는지

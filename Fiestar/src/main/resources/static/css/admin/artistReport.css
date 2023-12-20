@@ -131,7 +131,7 @@ main {
   height: 30px;
   border-radius: 5px;
   border: none;
-  background-color: beige;
+  background-color: rgb(224, 156, 255);
   cursor: pointer;
 }
 .report-tr-td button:hover {
@@ -185,7 +185,7 @@ main {
   top: 50%;
   left: 50%;
 
-  padding: 40px;
+  padding: 30px;
 
   /* text-align: center; */
 
@@ -197,10 +197,12 @@ main {
   justify-content: center;
   align-items: center;
   overflow: auto;
-  height: 800px;
+  height: 300px;
+  width: 600px;
 }
+
 #modalCloseButton {
-  display: flex;
+  width: 20px;
   background-color: white;
   border: none;
   cursor: pointer;
@@ -208,6 +210,7 @@ main {
 .modal-noticeDetail {
   width: 800px;
   margin-top: 30px;
+  height: 100%;
 }
 .btn-open-popup {
   text-decoration: none;
@@ -251,4 +254,59 @@ main {
 
 .pagination a:hover{
   background-color: rgb(189, 189, 189);
+}
+
+.comment-writer-area{
+  margin-left: 10px;
+}
+
+
+.comment-area-in{
+  justify-content: start;
+  margin: 5px 0;
+}
+
+.comment-writer{
+  font-size: 20px;
+}
+
+.comment-date{
+  font-size: 12px;
+}
+
+.comment-container{
+  display: none;
+}
+
+.comment-area{
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-content-area{
+  height: 100%;
+  flex-grow: 1;
+}
+
+.deleteReport{
+  border: none;
+  width: 100px;
+  height: 30px;
+  font-size: 16px;
+  background-color: #e57eff;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.delete-report-wrapper{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: auto;
+}
+
+
+.modal-reportDetail{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }

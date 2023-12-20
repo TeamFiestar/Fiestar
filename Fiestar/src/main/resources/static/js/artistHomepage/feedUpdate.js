@@ -1,33 +1,33 @@
 
 
-const modalBtn = document.querySelector(".feedWriteBtn");
+const modalBtn2 = document.querySelector(".feedUpdateBtn");
 
-modalBtn.addEventListener('click', e =>{
+modalBtn2.addEventListener('click', e =>{
 
-  const content = document.querySelector("#feedWrite2");
+  const content2 = document.querySelector("#feedUpdate2");
 
   // 제목 미입력 상태
  
   // 내용 미입력
-  if(content.value.trim().length == 0 ) {
+  if(content2.value.trim().length == 0 ) {
     alert("내용을 입력 해주세요.");
 
     e.preventDefault(); // form 제출 X
-    content.value = "";
-    content.focus();
+    content2.value = "";
+    content2.focus();
 
     return;
 
   }
 });
 
-const previewList = document.getElementsByClassName("preview");
+const previewList2 = document.getElementsByClassName("preview2");
 
-const inputImageList = document.getElementsByClassName("inputImage");
+const inputImageList2 = document.getElementsByClassName("inputImage2");
 
-const deleteImageList = document.getElementsByClassName("delete-image");
+const deleteImageList2 = document.getElementsByClassName("delete-image2");
 
-const changeImageFn = (imageInput, order) => {
+const changeImageFn2 = (imageInput, order) => {
 
   // imageInput : 파일이 선택/취소된 input 태그
   // order : input 태그 순서(썸네일 0, 나머지 1~4)
@@ -53,7 +53,7 @@ const changeImageFn = (imageInput, order) => {
 
     // 복제본은 이벤트가 복제 안되니까 다시 이벤트를 추가
     imageInput.addEventListener("change", () => {
-      changeImageFn(imageInput, order);
+      changeImageFn2(imageInput, order);
     });
 
     return;
@@ -66,7 +66,7 @@ const changeImageFn = (imageInput, order) => {
     alert("10MB 이하의 이미지를 선택 해주세요");
 
     // 없다 -> 추가한 경우
-    if (backupInputList[order] == undefined) {
+    if (backupInputList2[order] == undefined) {
       imageInput.value = ''; // file 타입 input 태그 value를 빈칸으로 만듦
       // == 선택된 파일을 제거
     }
@@ -75,16 +75,16 @@ const changeImageFn = (imageInput, order) => {
     else {
 
       // 1) backup한 order번째 요소를 복제
-      const temp = backupInputList[order].cloneNode(true);
+      const temp2 = backupInputList[order].cloneNode(true);
 
       // 2) 화면에 원본 input을 temp로 바꾸기
-      imageInput.after(temp); // 원본 다음에 temp 추가
+      imageInput.after(temp2); // 원본 다음에 temp 추가
       imageInput.remove(); // 원본을 화면에서 제거
-      imageInput = temp; // temp를 imageInput 변수에 대입
+      imageInput = temp2; // temp를 imageInput 변수에 대입
 
       // 복제본은 이벤트가 복제 안되니까 다시 이벤트를 추가
       imageInput.addEventListener("change", () => {
-        changeImageFn(imageInput, order);
+        changeImageFn2(imageInput, order);
       });
     }
 
@@ -93,20 +93,20 @@ const changeImageFn = (imageInput, order) => {
 
   // ---------- 선택된 이미지 파일을 읽어와 미리 보기 만들기 ----------
   // JS에서 파일을 읽는 객체
-  const reader = new FileReader();
+  const reader2 = new FileReader();
 
   // 매개변수에 작성된 파일을 읽어서 파일을 나타내는 URL 형태로 변경
-  reader.readAsDataURL(uploadFile);
+  reader2.readAsDataURL(uploadFile);
 
   // 파일을 다 읽은 경우
-  reader.onload = e => {
-    const url = e.target.result; // 이미지가 변환된 DataUrl
+  reader2.onload = e => {
+    const url2 = e.target.result; // 이미지가 변환된 DataUrl
 
     // order 번째 .preview에 이미지 추가
-    previewList[order].src = url;
+    previewList2[order].src = url2;
 
     // 파일이 업로드된 input 태그를 복제해서 backupInputList에 추가
-    backupInputList[order] = imageInput.cloneNode(true);
+    backupInputList2[order] = imageInput.cloneNode(true);
   };
 }
 
@@ -114,23 +114,23 @@ const changeImageFn = (imageInput, order) => {
 
 
 
-for (let i = 0; i < inputImageList.length; i++) {
+for (let i = 0; i < inputImageList2.length; i++) {
 
   /* 이미지 선택 또는 취소 시 */
-  inputImageList[i].addEventListener("change", e => {
-    changeImageFn(e.target, i);
+  inputImageList2[i].addEventListener("change", e => {
+    changeImageFn2(e.target, i);
     //   inputImage,  order
   });
 
 
   /* x버튼 클릭 시 */
-  deleteImageList[i].addEventListener('click', () => {
+  deleteImageList2[i].addEventListener('click', () => {
 
     // 미리보기 삭제
-    previewList[i].removeAttribute("src"); // src 속성 제거
+    previewList2[i].removeAttribute("src"); // src 속성 제거
 
     // input 태그 파일 제거
-    inputImageList[i].value = '';
+    inputImageList2[i].value = '';
 
     // 같은 위치 backup 요소 제거
     backupInputList[i] = undefined;

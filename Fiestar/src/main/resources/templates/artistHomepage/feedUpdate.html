@@ -1,12 +1,12 @@
 <!-- 게시글 작성 modal -->
 
-  <div class="feedWriteModal" id="feedWrite">
+  <div class="feedWriteModal" id="feedUpdate">
     
         <div id="feedWriteModal" class="modal-body">
-            <button class="modalCloseButton" data-target="feedWrite" onclick="wcloseModal()">X</button>
-            <form th:action="|/${artistGroupTitle}/insert|" method="POST" enctype="multipart/form-data">
+            <button class="modalCloseButton" data-target="feedWrite" onclick="ucloseModal()">X</button>
+            <form action="update" method="POST" enctype="multipart/form-data">
             <div class="modal-write">
-                <h1>게시글 작성</h1>
+                <h1>게시글 수정</h1>
                 <p th:text="${artistGroupTitle}">LE SSERAFIM</p>
 
                 <div class="modal-feedWrite">
