@@ -97,6 +97,13 @@ public class ArtistAdminAJAXContoller {
 		
 	}
 	
+	// 신고 삭제 처리
+	@PutMapping("deleteReport")
+	public int deleteReport(@RequestBody Map<String, Object> map) {
+		
+		return service.deleteReport(map);
+	}
+	
 	
 	
 	
