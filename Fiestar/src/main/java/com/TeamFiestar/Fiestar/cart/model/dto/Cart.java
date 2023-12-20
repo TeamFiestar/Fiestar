@@ -21,6 +21,11 @@ public class Cart {
 	private String memberAddress;
 	private String memberNickname;
 	private String amountPrice;
+	public void setPurchaseNo(int purchaseNo) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	
 	
 	

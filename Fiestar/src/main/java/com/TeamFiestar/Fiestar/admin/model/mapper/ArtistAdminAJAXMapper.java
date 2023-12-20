@@ -31,5 +31,13 @@ public interface ArtistAdminAJAXMapper {
 
 	MediaComment selectMediaCommentReport(int mediaCommentNo);
 
+	int deleteBoard(Map<String, Object> map);
+
+	int deleteBoardComment(Map<String, Object> map);
+
+	int deleteMediaComment(Map<String, Object> map);
+
+	int proceedReport(Map<String, Object> map);
+
 
 }

@@ -8,10 +8,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.TeamFiestar.Fiestar.artist.model.dto.Artist;
 import com.TeamFiestar.Fiestar.member.model.dto.ArtistGroup1;
+import com.TeamFiestar.Fiestar.notice.dto.ArtistGroupNotice;
 
 public interface ArtistService {
 
 	Map<String, Object> artistMember(String artistGroupTitle);
+	Map<String, Object> loginArtistMember(int memberNo, String artistGroupTitle);
 
 	int subscribe(int memberNo, String artistGroupTitle);
 
@@ -22,6 +24,9 @@ public interface ArtistService {
 			List<String> name, List<String> email, ArtistGroup1 artistGroup, int adminNo) throws IllegalStateException, IOException;
 
 	Map<String, Object> artistNotice(String artistGroupTitle);
+
+	List<ArtistGroupNotice> artistNoticeDetail(String artistGroupTitle, int artistGroupNoticeNo);
+
 
 //	int update(String artistGroupTitle, int memberNo);
 

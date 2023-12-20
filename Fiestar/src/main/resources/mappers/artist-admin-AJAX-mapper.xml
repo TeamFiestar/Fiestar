@@ -79,6 +79,30 @@
 		WHERE MEDIA_COMMENT_NO = #{mediaCommentNo}
 	</select>
 	
+	<!-- 게시판 삭제 -->
+	<update id="deleteBoard">
+		UPDATE BOARD SET BOARD_DEL_FL = 'Y' 
+		WHERE BOARD_NO = #{reportContentNo}
+	</update>
+
+	<!-- 게시판 댓글 삭제 -->	
+	<update id="deleteBoardComment">
+		UPDATE BOARD_COMMENT SET BOARD_COMMENT_DEL_FL = 'Y' 
+		WHERE BOARD_COMMENT_NO = #{reportContentNo}
+	</update>
+	
+	<!-- 미디어 댓글 삭제 -->
+	<update id="deleteMediaComment">
+		UPDATE MEDIA_COMMENT SET MEDIA_COMMENT_DEL_FL = 'Y'
+		WHERE MEDIA_COMMENT_NO = #{reportContentNo}
+	</update>
+	
+	<!-- 신고 완료 처리 -->
+	<update id="proceedReport">
+		UPDATE REPORT SET REPORT_PROCEED = 'Y'
+		WHERE REPORT_NO = #{reportNo}
+	</update>
+	
 	
 	
 </mapper>
