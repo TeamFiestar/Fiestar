@@ -19,9 +19,11 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.TeamFiestar.Fiestar.admin.model.dto.Report;
 import com.TeamFiestar.Fiestar.board.model.dto.Board;
 import com.TeamFiestar.Fiestar.board.model.dto.BoardImg;
 import com.TeamFiestar.Fiestar.board.model.service.BoardService;
+import com.TeamFiestar.Fiestar.member.model.dto.ArtistGroup1;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
 import jakarta.servlet.http.Cookie;
@@ -41,18 +43,21 @@ public class BoardController {
 	
 	@GetMapping("{artistGroupTitle}/feed")
 	public String selectBoard(Model model, @RequestParam Map<String, Object> paramMap, 
-			@PathVariable("artistGroupTitle" ) String artistGroupTitle) {
+			@PathVariable("artistGroupTitle") String artistGroupTitle
+			, ArtistGroup1 artistGroup) {
 		
 			int artistGroupNo = service.artistGroupNo(artistGroupTitle);
+			
 			paramMap.put("artistGroupNo", artistGroupNo);
+			
 			Map<String, Object> map = service.selectBoard(paramMap);
+			Map<String, Object> map2 = service.artistGroup(artistGroup);
+			model.addAttribute("map2",map2);
 			model.addAttribute("artistGroupNo",artistGroupNo);
 			model.addAttribute("map", map);
 			model.addAttribute("artistGroupTitle", artistGroupTitle);
 			
 			
-		
-		
 		return "artistHomepage/feed";
 	}
 	
@@ -60,22 +65,31 @@ public class BoardController {
 	public String boardDetail(Model model, 
 			@PathVariable("artistGroupTitle" ) String artistGroupTitle, 
 			@SessionAttribute(value = "loginMember", required = false) Member loginMember,
-			@PathVariable("boardNo" ) int boardNo
+			@PathVariable("boardNo" ) int boardNo,
+			ArtistGroup1 artistGroup
 			) {
+		
 			int artistGroupNo = service.artistGroupNo(artistGroupTitle);
-			Map<String, Object> map = new HashMap<>();
-			map.put("boardNo", boardNo);
-			map.put("artistGroupTitle", artistGroupTitle);
 			
+			Map<String, Object> paramMap = new HashMap<>();
+			paramMap.put("artistGroupNo", artistGroupNo);
 			
-			Board board = service.boardDetail(map);
+			Map<String, Object> map = service.selectBoard(paramMap);
+			Map<String, Object> map2 = service.artistGroup(artistGroup);
+			model.addAttribute("map2",map2);
+			model.addAttribute("artistGroupNo",artistGroupNo);
+			model.addAttribute("map", map);
+			model.addAttribute("artistGroupTitle", artistGroupTitle);
+		
+		
+			Map<String, Object> boardDetailMap = new HashMap<>();
+			boardDetailMap.put("boardNo", boardNo);
+			boardDetailMap.put("artistGroupTitle", artistGroupTitle);
 			
-			
-			String path = null;
+			Board board = service.boardDetail(boardDetailMap);
 			
 			if(board != null) {
 				model.addAttribute("board", board);
-				path = "artistHomepage/feedDetail";
 				
 			if(loginMember != null) {
 					map.put("memberNo", loginMember.getMemberNo());
@@ -84,13 +98,9 @@ public class BoardController {
 					if(likeCheck ==1) model.addAttribute("likeCheck", "on");
 					
 				}
-				
-					
-			} else {
-				path = "redirect:/artistHomepage/feed";
 			}
 		
-		return path;
+		return "artistHomepage/feed";
 	}
 	
 	@GetMapping("AJAXboardDetail")
@@ -141,7 +151,11 @@ public class BoardController {
 		return "artistHomepage/artist";
 	}
 	
-	
+//	@PostMapping("insertReport")
+//	@ResponseBody
+//	public int insertReport (@RequestBody Report report) {
+//		return service.insertReport(report);
+//	}
 	
 	
 	

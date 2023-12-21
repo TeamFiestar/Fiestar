@@ -4,17 +4,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.TeamFiestar.Fiestar.admin.model.dto.Report;
 import com.TeamFiestar.Fiestar.board.model.dto.Board;
 import com.TeamFiestar.Fiestar.board.model.mapper.BoardMapper;
+import com.TeamFiestar.Fiestar.member.model.dto.ArtistGroup1;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 @Transactional
+@PropertySource("classpath:/config.properties")
 public class BoardServiceImpl implements BoardService {
 
 	private final BoardMapper mapper;
@@ -84,6 +88,7 @@ public class BoardServiceImpl implements BoardService {
 	public Map<String, Object> selectArtistBoard(Map<String, Object> paramMap) {
 
 		List<Board> boardList = mapper.selectArtistBoard(paramMap);
+		
 
 		Map<String, Object> map = new HashMap<>();
 
@@ -93,7 +98,26 @@ public class BoardServiceImpl implements BoardService {
 		}
 
 		map.put("boardList", boardList);
+		
+		
 		return map;
 	}
+	
+	@Override
+	public Map<String, Object> artistGroup(ArtistGroup1 artistGroup) {
+		
+		ArtistGroup1 artistGroup1 = mapper.artistGroup(artistGroup);
+		
+		Map<String, Object> map2 = new HashMap<>();
+		map2.put("artistGroup", artistGroup1);
+		
+		return map2;
+	}
+	
+	@Override
+	public int insertReport(Report report) {
+		return mapper.insertReport(report);
+	}
+
 
 }
