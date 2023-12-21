@@ -24,5 +24,11 @@ public class Comment {
 	private int likeCountComment;
 	private int likeClickComment;
 	
+	private int commentNo;
+	private String commentContent;
+	private String commentEnrollDate;
+	private String commentType;
+	private String parentTitle;
+	
 
 }

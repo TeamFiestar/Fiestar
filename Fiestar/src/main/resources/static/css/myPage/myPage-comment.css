@@ -116,6 +116,9 @@ li {
 
 .section1Title h4 {
   color: rgb(94, 94, 94);
+  text-overflow: ellipsis;
+  white-space : nowrap;
+  overflow : hidden;
 }
 
 .section2 {

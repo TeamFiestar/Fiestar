@@ -1,352 +1,550 @@
-function sample6_execDaumPostcode() {
-    new daum.Postcode({
-        oncomplete: function (data) {
-            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-            var addr = ''; // 주소 변수
+let likeCheck;
+let likeCount2;
+const dataObj = {};
+const likeImg = document.querySelector('#likeImg');
+let boardNo2;
 
-            //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                addr = data.roadAddress;
-            } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                addr = data.jibunAddress;
-            }
+function openModal(boardNo) {
+    // 새로운 URL 생성
+    var newUrl = "/" + artistGroupTitle + "/feed/" + boardNo;
+    console.log(artistGroupTitle);
+    console.log(boardNo);
+    console.log(newUrl);
 
-            // 우편번호와 주소 정보를 해당 필드에 넣는다.
-            document.getElementById('postcode').value = data.zonecode;
-            document.getElementById("address").value = addr;
-            // 커서를 상세주소 필드로 이동한다.
-            document.getElementById("detailAddress").focus();
-        }
-    }).open();
-}
+    // 상태 객체 (필요에 따라 사용)
+    var stateObj = { artistGroupTitle: artistGroupTitle, boardNo: boardNo };
 
+    // 새로운 URL로 이동 (페이지의 내용을 로드하지 않음)
+    history.pushState(stateObj, "", newUrl);
 
-// -----------------------------------------------------------------------------
+    // 페이지의 내용을 동적으로 업데이트하는 함수 호출 (예시로 updatePageContent 함수 사용)
+    updatePageContent(boardNo);
+    generateComment(boardNo);
 
-/* 프로필 이미지 미리보기, 제거 */
-const profileImg = document.querySelector("#memberProfile"); // img 태그
-let imageInput = document.querySelector("#imageInput"); // input 태그
-
-// 프로필 이미지가 
-// -1 : 변경되지 않았을 때
-//  0 : 있었는데 없어짐 == x 버튼 클릭 
-//  1 : 새 이미지 선택 (없다 -> 있음,  있음 -> 다른 이미지)
-let statusCheck = -1;
-
-// input type="file" 태그의 값이 변경 되었을 때 변경된 상태를 백업해둘 변수
-
-// 요소.cloneNode(true/false) : 요소 복제(true이면 하위 요소도 복제)
-let backupInput;
-
-
-if (imageInput != null) { // #imageInput 존재할 때
-
-    /* 프로필 이미지 변경(선택) 시 수행할 함수 */
-    const changeImageFn = e => {
-
-        console.log(e.target); // input 태그
-        console.log(e.target.value); // 업로드 파일 경로(fakepath 형태로 출력)
-
-        /* 이게 중요!!! */
-        console.log(e.target.files); // 업로드된 파일의 정보가 담긴 배열 반환
-        // * 실제 파일 *
-        console.log(e.target.files[0]); // 업로드된 파일 중 첫 번째 파일
-
-        const uploadFile = e.target.files[0];
-
-        // ---------- 파일을 한 번 선택한 후 취소했을 때 ----------
-        if (uploadFile == undefined) { // 취소를 눌러서 files[0]에 파일이 없을 때
-            console.log("파일 선택이 취소됨");
-
-            // 1) backup한 요소를 복제
-            const temp = backupInput.cloneNode(true);
-
-            // 2) 화면에 원본 input을 temp로 바꾸기
-            imageInput.after(temp); // 원본 다음에 temp 추가
-            imageInput.remove(); // 원본을 화면에서 제거
-            imageInput = temp; // temp를 imageInput 변수에 대입
-
-            // 복제본은 이벤트가 복제 안되니까 다시 이벤트를 추가
-            imageInput.addEventListener("change", changeImageFn);
-
-            return;
-        }
-
-
-        // ---------- 선택된 파일의 크기가 지정된 크기를 초과하는 경우 ----------
-        const maxSize = 1024 * 1024; // 1MB (byte 단위)
-
-        if (uploadFile.size > maxSize) {
-            alert("1MB 이하의 이미지만 업로드 가능합니다");
-
-            if (statusCheck == -1) { // 이미지 변경이 없었을 때
-
-                // 최대 크기를 초과해도 input에 value가 남기 때문에
-                // 이를 제거하는 코드가 필요하다!
-                imageInput.value = ''; // value 삭제
-                // 동시에 files도 삭제됨
-                statusCheck = -1; // 선택 없음 상태
-
-
-            } else { // 기존 이미지가 있었을 때
-
-                // 1) backup한 요소를 복제
-                const temp = backupInput.cloneNode(true);
-
-                // 2) 화면에 원본 input을 temp로 바꾸기
-                imageInput.after(temp); // 원본 다음에 temp 추가
-                imageInput.remove(); // 원본을 화면에서 제거
-                imageInput = temp; // temp를 imageInput 변수에 대입
-
-                // 복제본은 이벤트가 복제 안되니까 다시 이벤트를 추가
-                imageInput.addEventListener("change", changeImageFn);
-
-                statusCheck = 1;
-            }
-
-
-            return;
-        }
-
-
-        // ---------- 선택된 이미지 파일을 읽어와 미리 보기 만들기 ----------
-
-        // JS에서 파일을 읽는 객체
-        // -> 파일을 읽고 클라이언트 컴퓨터에 파일을 저장할 수 있음
-        const reader = new FileReader();
-
-        // 매개변수에 작성된 파일을 읽어서
-        // 파일을 나타내는 URL 형태로 변경
-        // -> FileReader.result 필드에 저장되어 있음
-        reader.readAsDataURL(uploadFile)
-
-        // 파일을 다 읽었을 때
-        reader.onload = e => {
-            //console.log(reader.result); // 읽은 파일의 URL
-
-            // img태그의 src 속성의 속성 값으로
-            // 읽은 파일의 URL을 대입
-            profileImg.setAttribute("src", reader.result);
-
-            statusCheck = 1; // 새 이미지 선택한 경우
-
-            // 파일이 추가된 input을 backup 해두기
-            backupInput = imageInput.cloneNode(true);
-        }
-    }
-
-
-    /* 이미지 선택 버튼을 클릭하여 선택된 파일이 변했을 때 함수 수행 */
-
-    // change 이벤트 : input의 이전 값과 현재 값이 다를 때 발생
-    imageInput.addEventListener("change", changeImageFn);
-
-
-    // ---------- 프로필 이미지 변경 form태그 제출 시 동작 ----------
-
-    const profileFrm = document.getElementById("profileFrm");
-
-    profileFrm.addEventListener("submit", e => {
-
-        let flag = true;
-
-        // 1) 로그인한 회원의 프로필이 있음 -> 없음
-        if (loginMembermemberProfile != null && statusCheck == 0) flag = false;
-
-        // 2) 로그인한 회원의 프로필이 없음 -> 있음
-        if (loginMembermemberProfile == null && statusCheck == 1) flag = false;
-
-        // 3) 로그인한 회원의 프로필이 있음 -> 변경
-        if (loginMembermemberProfile != null && statusCheck == 1) flag = false;
-
-        if (flag) { // flag가 true인 경우 수행
-            e.preventDefault(); // form 태그 제출 이벤트 막기(제거)
-            alert("프로필 이미지 변경 후 클릭 해주세요");
-        }
-
-    });
+    const modal = document.getElementById('feedDetail');
+    modal.classList.add("show");
+    document.body.style.overflow = "hidden";
 
 }
 
-//--------------------------------------------------------------------------------------------
-/* 프로필 배경 이미지 변경  */
 
-const memberBackImage = document.getElementById("memberBackImage");
-const inputBackImg = document.getElementById("inputBackImg");
-
-if (inputBackImg != null) { // #inputBackImg 존재할 때
-
-    const changeImageFn = e => {
-
-        const uploadFile = e.target.files[0];
-
-        // ---------- 파일을 한 번 선택한 후 취소했을 때 ----------
-        if (uploadFile == undefined) { // 취소를 눌러서 files[0]에 파일이 없을 때
-            console.log("파일 선택이 취소됨");
-
-            // 1) backup한 요소를 복제
-            const temp = backupInput.cloneNode(true);
-
-            // 2) 화면에 원본 input을 temp로 바꾸기
-            inputBackImg.after(temp); // 원본 다음에 temp 추가
-            inputBackImg.remove(); // 원본을 화면에서 제거
-            inputBackImg = temp; // temp를 inputBackImg 변수에 대입
-
-            // 복제본은 이벤트가 복제 안되니까 다시 이벤트를 추가
-            inputBackImg.addEventListener("change", changeImageFn);
-
-            return;
-        }
-
-
-        // ---------- 선택된 파일의 크기가 지정된 크기를 초과하는 경우 ----------
-        const maxSize = 1024 * 1024; // 1MB (byte 단위)
-
-        if (uploadFile.size > maxSize) {
-            alert("1MB 이하의 이미지만 업로드 가능합니다");
-
-            if (statusCheck == -1) { // 이미지 변경이 없었을 때
-
-                // 최대 크기를 초과해도 input에 value가 남기 때문에
-                // 이를 제거하는 코드가 필요하다!
-                inputBackImg.value = ''; // value 삭제
-                // 동시에 files도 삭제됨
-                statusCheck = -1; // 선택 없음 상태
-
-
-            } else { // 기존 이미지가 있었을 때
-
-                // 1) backup한 요소를 복제
-                const temp = backupInput.cloneNode(true);
-
-                // 2) 화면에 원본 input을 temp로 바꾸기
-                inputBackImg.after(temp); // 원본 다음에 temp 추가
-                inputBackImg.remove(); // 원본을 화면에서 제거
-                inputBackImg = temp; // temp를 inputBackImg 변수에 대입
-
-                // 복제본은 이벤트가 복제 안되니까 다시 이벤트를 추가
-                inputBackImg.addEventListener("change", changeImageFn);
-
-                statusCheck = 1;
-            }
-
-
-            return;
-        }
-
-
-        // ---------- 선택된 이미지 파일을 읽어와 미리 보기 만들기 ----------
-
-        // JS에서 파일을 읽는 객체
-        // -> 파일을 읽고 클라이언트 컴퓨터에 파일을 저장할 수 있음
-        const reader = new FileReader();
-
-        // 매개변수에 작성된 파일을 읽어서
-        // 파일을 나타내는 URL 형태로 변경
-        // -> FileReader.result 필드에 저장되어 있음
-        reader.readAsDataURL(uploadFile);
-
-        // 파일을 다 읽었을 때
-        reader.onload = e => {
-            //console.log(reader.result); // 읽은 파일의 URL
-
-            // img태그의 src 속성의 속성 값으로
-            // 읽은 파일의 URL을 대입
-            memberBackImage.setAttribute("src", reader.result);
-
-            statusCheck = 1; // 새 이미지 선택한 경우
-
-            // 파일이 추가된 input을 backup 해두기
-            backupInput = inputBackImg.cloneNode(true);
-        }
-    }
-
-
-    /* 이미지 선택 버튼을 클릭하여 선택된 파일이 변했을 때 함수 수행 */
-
-    // change 이벤트 : input의 이전 값과 현재 값이 다를 때 발생
-    inputBackImg.addEventListener("change", changeImageFn);
-
-    // const updateInfo = document.getElementById("updateInfo");
-
-    // updateInfo.addEventListener("submit", e => {
+function closeModal(stateObj) {
     
-        
-    //     let flag = true;
+    var newUrl = "/myPage/myPage";
+    history.pushState(stateObj, "", newUrl);
 
-    //     // 1) 로그인한 회원의 프로필이 있음 -> 없음
-    //     if (loginMembermemberBackImage != null && statusCheck == 0) flag = false;
 
-    //     // 2) 로그인한 회원의 프로필이 없음 -> 있음
-    //     if (loginMembermemberBackImage == null && statusCheck == 1) flag = false;
-
-    //     // 3) 로그인한 회원의 프로필이 있음 -> 변경
-    //     if (loginMembermemberBackImage != null && statusCheck == 1) flag = false;
-
-    //     if (flag) { // flag가 true인 경우 수행
-    //         e.preventDefault(); // form 태그 제출 이벤트 막기(제거)
-    //         alert("배경 이미지 변경 후 클릭 해주세요");
-    //     }
-    
-    // });
-
+    updatePageContent();
+    const modal = document.getElementById('feedDetail');
+    modal.classList.remove("show");
+    document.body.style.overflow = "";
 
 }
 
 
-// -------------------------------------------------------------------------------------------
-/* 제출 전 유효성 검사 */
-
-const updateInfo = document.getElementById("updateInfo");
-
-updateInfo.addEventListener("submit", e => {
-
-    const nickname = document.getElementById("memberNickname");
-    const memberPw = document.getElementById("memberPw");
-    const postcode = document.getElementById("postcode");
-    const address = document.getElementById("address");
-    const detailAddress = document.getElementById("detailAddress");
+function updatePageContent(boardNo) {
 
 
-    if(nickname.value.trim().length == 0){
-        alert("닉네임을 입력 해주세요");
-        e.preventDefault(); // form 제출 x
-        nickname.value = "";
-        nickname.focus();
+    // 여기에 페이지 내용을 동적으로 업데이트하는 로직을 추가
+    fetch("/AJAXboardDetail?boardNo=" + boardNo)
+        .then(resp => resp.json())
+        .then(board => {
+            console.log(board);
+
+            /* ----------------- 아이디 등 인적사항 및 피드 내용 -------------------------- */
+            const boardNickname = document.getElementById('boardNickname');
+            boardNickname.innerText = board.memberNickname;
+            const boardDate = document.getElementById('boardDate');
+            boardDate.innerText = board.boardEnrollDate;
+
+            const feedMain = document.querySelector('.feedMain');
+            feedMain.innerText = board.boardContent;
+
+            const profileImage = document.getElementById('profileImage');
+
+            if (board.memberProfile) {
+                profileImage.src = board.memberProfile;
+            } else {
+                profileImage.src = defaultImage;
+            }
+
+            const indicator = document.querySelector('#indicator');
+
+            if (board.memberAuthority == 2) {
+                indicator.classList.add("fa-solid", "fa-circle-check");
+                indicator.style.color = "#7743DB";
+            } else {
+                indicator.classList.remove("fa-solid", "fa-circle-check");
+                indicator.style.color = "";
+            }
+            /* ------------------------------------------------------------ */
+
+            /* ----------------- 업로드된 이미지 표시 -------------------------- */
+            if (board.imageList && board.imageList.length > 0) {
+                const feedImg = document.querySelector('.feedImg');
+                feedImg.innerHTML = '';
+
+                board.imageList.forEach(image => {
+                    const imgElement = document.createElement('img');
+                    const imagePath = image.boardImagePath + image.boardImageRename;
+
+                    imgElement.src = imagePath;
+
+                    feedImg.appendChild(imgElement);
+                });
+
+
+            } else {
+                const feedImg = document.querySelector('.feedImg');
+                feedImg.innerHTML = '';
+
+            }
+
+            /* ------------------------------------------------------------ */
+
+            /* ----------------- 피드 좋아요 표시 -------------------------- */
+            const feedLikeCount = document.querySelector('#feedLikeCount');
+            feedLikeCount.innerText = board.likeCount;
+
+            console.log(board.likeCheck);
+
+            if (board.likeCheck == 1) {
+                likeImg.classList.add("fa-solid");
+                likeImg.classList.remove("fa-regular");
+            }
+            else {
+                likeImg.classList.remove("fa-solid");
+                likeImg.classList.add("fa-regular");
+            }
+
+
+            likeCount2 = board.likeCount;
+
+
+
+            const commentList = board.commentList;
+
+            // 'boardCommentDelFl'이 'N'인 댓글만 필터링
+            const validComments = commentList.filter(comment => comment.boardCommentDelFl === 'N');
+
+            const commentCount = validComments.length;
+
+            const textWrapper = document.querySelector('.text-wrapper');
+
+            textWrapper.innerText = commentCount + "개의 댓글";
+
+
+            dataObj.boardNo = boardNo;
+            dataObj.likeCheck = board.likeCheck;
+
+            boardNo2 = board.boardNo;
+            /* ------------------------------------------------------------ */
+
+            /* ----------------- 댓글 표시 -------------------------- */
+
+
+
+
+
+            /* ------------------------------------------------------------ */
+
+
+
+
+        });
+}
+
+function generateComment(boardNo3) {
+
+    if (!boardNo3) {
+        console.log("Invalid boardNo3:", boardNo3);
         return;
     }
-    if(memberPw.value.trim().length == 0){
-        alert("비밀번호를 입력 해주세요");
-        e.preventDefault(); // form 제출 x
-        memberPw.value = "";
-        memberPw.focus();
-        return;
-    }
-    if(postcode.value.trim().length == 0){
-        alert("우편번호를 입력 해주세요");
-        e.preventDefault(); // form 제출 x
-        postcode.value = "";
-        postcode.focus();
-        return;
-    }
-    if(address.value.trim().length == 0){
-        alert("주소를 입력 해주세요");
-        e.preventDefault(); // form 제출 x
-        address.value = "";
-        address.focus();
-        return;
-    }
-    if(detailAddress.value.trim().length == 0){
-        alert("상세주소를 입력 해주세요");
-        e.preventDefault(); // form 제출 x
-        detailAddress.value = "";
-        detailAddress.focus();
+
+    const commentLists = document.querySelector(".comment-list");
+    commentLists.innerHTML = "";
+
+    fetch("/AJAXboardDetail?boardNo=" + boardNo3)
+        .then(resp => resp.json())
+        .then(response => {
+            console.log("response", response);
+
+
+            // console.log("commentList" + commentList.board.boardCommentList);
+
+            if (response.commentList && response.commentList.length > 0) {
+                const commentList = response.commentList;
+
+
+                for (let comment of commentList) {
+
+                    console.log("Comment content:", comment.boardCommentContent);
+
+                    if (comment.boardCommentDelFl === "Y") {
+                        // 삭제된 댓글인 경우 목록에 추가하지 않음
+                        continue;
+                    }
+
+                    const commentArea = document.createElement("div");
+                    commentArea.className = "comment-area";
+
+                    const commentAreaIn = document.createElement("div");
+                    commentAreaIn.className = "comment-area-in";
+
+                    if (comment.boardParentCommentNo != 0) commentArea.classList.add("child-comment");
+                    if (comment.boardCommentDelFl == "Y") commentArea.innerText = "삭제된 댓글 입니다.";
+                    else {
+
+
+                        // "img" 클래스를 가진 이미지 엘리먼트 생성하고 src 속성 설정
+
+                        const div1 = document.createElement("div")
+                        div1.className = "div1";
+
+
+                        const img = document.createElement("img");
+                        img.className = "profile-img";
+                        if (comment.memberProfile) {
+                            img.src = comment.memberProfile;
+                        } else {
+                            img.src = defaultImage;
+                        }
+
+                        var commentWriterArea = document.createElement("div");
+                        commentWriterArea.className = "comment-writer-area";
+
+                        // "comment-writer" 클래스를 가진 div 생성하고 텍스트 내용 설정
+                        var commentWriter = document.createElement("div");
+                        commentWriter.className = "comment-writer";
+                        commentWriter.textContent = comment.memberNickname;
+
+                        var indicator2 = document.createElement("i");
+                        indicator2.className = "indicator";
+
+                        if (comment.memberAuthority == 2) {
+                            indicator2.classList.add("fa-solid", "fa-circle-check");
+                            indicator2.style.color = "#7743DB";
+                        } else {
+                            indicator2.classList.remove("fa-solid", "fa-circle-check");
+                            indicator2.style.color = "";
+                        }
+
+                        var commentDate = document.createElement("div");
+                        commentDate.className = "comment-date";
+                        commentDate.textContent = comment.boardCommentEnrollDate;
+
+                        commentWriterArea.append(commentWriter, indicator2, commentDate);
+
+                        div1.append(img, commentWriterArea);
+
+                        var commentProfile = document.createElement("div");
+                        commentProfile.className = "comment-profile";
+
+                        var reportImg = document.createElement("img");
+                        reportImg.className = "report-img";
+                        reportImg.src = "/img/report.png";
+                        // reportImg.onclick = reportOpen;
+
+                        const deleteBtn = document.createElement("button");
+                        deleteBtn.classList.add("delete-cross");
+                        deleteBtn.innerText = "X";
+                        deleteBtn.setAttribute("onclick", "deleteComment(" + comment.boardCommentNo + ")");
+
+                        if (loginMemberNo == comment.memberNo) {
+                            commentProfile.append(deleteBtn, reportImg);
+                        } else {
+                            commentProfile.append(reportImg);
+                        }
+
+                        commentAreaIn.append(div1, commentProfile);
+
+
+                        var commentContentArea = document.createElement("div");
+                        commentContentArea.className = "comment-content-area";
+
+                        var commentContent = document.createElement("div");
+                        commentContent.className = "comment-content";
+                        commentContent.textContent = comment.boardCommentContent;
+
+                        commentContentArea.appendChild(commentContent);
+
+
+                        const commentLikeArea = document.createElement("div");
+                        commentLikeArea.className = "comment-like-area";
+
+                        const heartComment = document.createElement("i");
+                        heartComment.className = "fa-heart";
+                        if (comment.likeClickComment == 0) heartComment.classList.add("fa-regular");
+                        else heartComment.classList.add("fa-solid");
+
+                        heartComment.setAttribute("onclick", "likeComment(this, " + comment.boardCommentNo + ")");
+                        heartComment.setAttribute("comment-no", comment.boardCommentNo);
+
+                        const likeCountComment = document.createElement("span");
+                        likeCountComment.className = "commentLikeCount";
+                        likeCountComment.innerText = comment.likeCountComment;
+
+                        const childCommentBtn = document.createElement("i");
+                        childCommentBtn.className = "fa-regular fa-comment fa-l";
+                        childCommentBtn.setAttribute("onclick", "showInsertComment(" + comment.boardCommentNo + ", this)");
+
+                        commentLikeArea.append(heartComment, likeCountComment, childCommentBtn);
+
+
+                        commentArea.append(commentAreaIn, commentContentArea, commentLikeArea);
+
+                    }
+                    commentLists.appendChild(commentArea);
+
+                }
+                updateCommentCount(response.commentList.length);
+
+            } else {
+                console.error(e.error);
+            }
+        }
+
+        )
+        .catch((e) => console.log(e));
+
+};
+
+function updateCommentCount(commentCount) {
+    const textWrapper = document.querySelector('.text-wrapper');
+    textWrapper.innerText = commentCount + "개의 댓글";
+}
+
+
+
+likeImg.addEventListener("click", (e) => {
+    if (!loginCheck) {
+        alert("로그인을 먼저 해주세요");
         return;
     }
 
+
+    if (e.target.classList.contains("fa-regular")) {
+        likeCheck = 0;
+    } else {
+        likeCheck = 1;
+    }
+
+
+    console.log(dataObj);
+
+    fetch("/AJAXboardDetail/like", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dataObj),
+    })
+        .then((resp) => resp.text())
+        .then((count) => {
+            if (count == -1) {
+                console.log("좋아요 실패");
+                return;
+            }
+            e.target.classList.toggle("fa-regular");
+            e.target.classList.toggle("fa-solid");
+            const feedLikeCount = document.querySelector('#feedLikeCount');
+            if (likeCheck == 1) {
+                likeCount2 = likeCount2 - 1;
+                dataObj.likeCheck = 0;
+            } else {
+                likeCount2 = likeCount2 + 1;
+                dataObj.likeCheck = 1;
+            }
+
+            e.target.nextElementSibling.innerText = likeCount2;
+        })
+        .catch((e) => {
+            console.log(e);
+        });
 });
 
 
+function submitComment() {
+    console.log(boardNo2);
+    const commentInput = document.getElementById('comment-input');
+    const commentContent = commentInput.value.trim();
+
+    if (commentContent.trim().length == 0) {
+        alert("댓글을 먼저 작성해주세요");
+
+        commentInput.value = "";
+        commentInput.focus();
+        return;
+    }
+
+
+    const dataObj = {
+        boardCommentContent: commentContent,
+        memberNo: loginMemberNo,
+        boardNo: boardNo2
+
+    };
+    console.log(boardNo2);
+    console.log(dataObj);
+
+    fetch("/comment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dataObj)
+    })
+        .then(resp => resp.text())
+        .then(result => {
+
+            if (result > 0) {
+                alert("댓글 등록 성공");
+
+                commentInput.value = "";
+                generateComment(boardNo2);
+
+            } else {
+                alert("댓글을 등록하지 못했습니다.");
+            }
+
+        })
+        .catch(err => console.log(err));
+
+}
+
+function deleteComment(boardCommentNo) {
+    if (confirm("정말로 삭제 하시겠습니까?")) {
+        fetch("/comment", {
+            method: "DELETE",
+            headers: { "Content-type": "application/json" },
+            body: boardCommentNo,
+        })
+            .then((resp) => resp.text())
+            .then((result) => {
+                if (result > 0) {
+                    alert("삭제되었습니다.");
+                    generateComment(boardNo2);
+                } else {
+                    alert("삭제를 실패하였습니다.");
+                }
+            })
+            .catch((e) => console.log(e));
+    }
+}
+
+
+/* ----------------------------------------------------------------------------------- */
+function showInsertComment(boardParentCommentNo, btn) {
+
+    const temp = document.getElementsByClassName("commentInsertContent");
+
+    if (temp.length > 0) {
+        if (confirm("다른 답글을 작성 중입니다. 현재 댓글에 답글을 작성 하시겠습니까?")) {
+            temp[0].nextElementSibling.remove();
+            temp[0].remove();
+        } else {
+            return;
+        }
+    }
+
+    const textarea = document.createElement("input");
+    textarea.type = "text";
+    textarea.placeholder = "댓글을 입력하세요";
+    textarea.color = "gray";
+    textarea.classList.add("commentInsertContent");
+
+
+    btn.parentElement.after(textarea);
+
+    const commentBtnArea = document.createElement("div");
+    commentBtnArea.classList.add("comment-btn-area");
+
+    const insertBtn = document.createElement("button");
+    insertBtn.innerText = "등록";
+    insertBtn.setAttribute("onclick", "insertChildComment(" + boardParentCommentNo + ", this)");
+
+    const cancelBtn = document.createElement("button");
+    cancelBtn.innerText = "취소";
+    cancelBtn.setAttribute("onclick", "insertCancel(this)");
+
+    commentBtnArea.append(insertBtn, cancelBtn);
+
+    textarea.after(commentBtnArea);
+}
+
+function insertCancel(btn) {
+    btn.parentElement.previousElementSibling.remove();
+    btn.parentElement.remove();
+}
+
+
+function insertChildComment(boardParentCommentNo, btn) {
+    const boardCommentContent = btn.parentElement.previousElementSibling.value;
+
+    if (boardCommentContent.trim().length == 0) {
+        alert("답글 작성 후 등록 버튼을 클릭해주세요.");
+        btn.parentElement.previousElementSibling.value = "";
+        btn.parentElement.previousElementSibling.focus();
+        return;
+    }
+
+    const dataObj = {
+        boardCommentContent: boardCommentContent,
+        memberNo: loginMemberNo,
+        boardNo: boardNo2,
+        boardParentCommentNo: boardParentCommentNo,
+    };
+
+    fetch("/comment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dataObj),
+    })
+        .then((resp) => resp.text())
+        .then((result) => {
+            if (result > 0) {
+                alert("답글이 등록되었습니다.");
+                generateComment(boardNo2);
+            } else {
+                alert("답글 등록에 실패했습니다...");
+            }
+        })
+        .catch((err) => console.log(err));
+}
+
+
+function likeComment(btn, boardCommentNo) {
+
+    let check;
+
+
+    if (btn.classList.contains("fa-regular")) {
+        check = 0;
+    } else {
+        check = 1;
+    }
+
+    const data = {
+        check: check,
+        boardCommentNo: boardCommentNo,
+    };
+
+
+
+    fetch("/commentLike", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+    })
+        .then((resp) => resp.text())
+        .then((count) => {
+            if (count == -1) {
+                console.log("좋아요 실패");
+                return;
+            }
+            btn.classList.toggle("fa-regular");
+            btn.classList.toggle("fa-solid");
+
+            btn.nextElementSibling.innerText = count;
+        })
+        .catch((e) => {
+            console.log(e);
+        });
+}

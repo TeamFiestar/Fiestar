@@ -95,6 +95,10 @@
   border-color: rgb(119, 67, 219);
 }
 
+#memberNickname, #memberPw{
+  padding-left: 10px ;
+}
+
 
 .btn-upload1{
   width: 650px;
