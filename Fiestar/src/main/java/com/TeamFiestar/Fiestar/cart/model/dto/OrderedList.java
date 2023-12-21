@@ -58,8 +58,9 @@ public class OrderedList {
 	private int productQuantity;
 	private int productOptionNo;
 	private String productOptionName;
-	private String prodictImageThumbnail;
+	private String productImageThumbnail;
 	private int purchaseNo;
+	private int eachPrice;
 	
 	
 	

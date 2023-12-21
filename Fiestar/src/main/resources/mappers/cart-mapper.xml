@@ -133,7 +133,7 @@
 	</select>
 	
 	
-	<select id="selectPurchaseList" resultType="PurchaseList">
+	<select id="selectOrderedList" resultType="OrderedList">
 		SELECT PL.PRODUCT_NO, PRODUCT_NAME , ARTIST_GROUP_NO, PL.PRODUCT_PRICE, PRODUCT_QUANTITY, PL.PRODUCT_OPTION_NO,PRODUCT_OPTION_NAME,
 		
 			(SELECT PRODUCT_IMAGE_THUMBNAIL || PRODUCT_IMAGE_RENAME 

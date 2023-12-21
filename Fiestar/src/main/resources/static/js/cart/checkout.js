@@ -101,15 +101,16 @@ const payMethod = document.getElementsByClassName("paymethod");
 purchaseBtn.addEventListener("click", (e) => {
 
     let inputFields = [
+
         document.getElementById("nameInput"),
+        document.getElementById("ordererPhoneNumber"),
         document.getElementById("sample6_address"),
         document.getElementById("sample6_detailAddress"),
-        document.getElementById("sample6_postcode"),
-        document.getElementById("ordererPhoneNumber")
+        document.getElementById("sample6_postcode")
     ];
 
     // 필수 입력 필드의 라벨
-    let fieldLabels = ["주문자 이름", "주소", "상세 주소", "우편번호", "전화번호"];
+    let fieldLabels = ["주문자 이름", "전화번호", "주소", "상세 주소", "우편번호"];
 
     // 입력 필드 검사
     for (let i = 0; i < inputFields.length; i++) {

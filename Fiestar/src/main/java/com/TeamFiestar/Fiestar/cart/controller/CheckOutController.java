@@ -1,6 +1,6 @@
 package com.TeamFiestar.Fiestar.cart.controller;
 
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.util.HashMap;
 import java.util.LinkedHashSet;   
 import java.util.List;
@@ -135,8 +135,8 @@ public class CheckOutController {
 	    }
 	    
 	   
-//	    
-//	    @GetMapping("checkoutResult")
+	    
+//        @GetMapping("checkoutResult")
 //	    public String checkoutResult(Model model, HttpSession session) {
 //	        Integer purchaseNo = (Integer) session.getAttribute("purchaseNo");
 //
@@ -156,9 +156,9 @@ public class CheckOutController {
 	    
 	    
 	    
-//	
+	
 	    @GetMapping("checkoutResult")
-	    public String checkoutResult(Model model, Map<String, Object> HashMap, @SessionAttribute("purchaseNo") int purchaseNo) {
+	    public String checkoutResult(Model model, @SessionAttribute("purchaseNo") int purchaseNo) {
 	    	
 	    	Map<String, Object> map = cartService.checkoutResult(purchaseNo);
 	    	

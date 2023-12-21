@@ -83,11 +83,12 @@
                   <!-- <span class="item-amount">수량: 3</span> -->
 
                   <span class="countNPrice">
-                     
+                     <span class="i-count">수량 : </span>
                   <span th:text="${checkoutItem.productCount}" class="item-count"></span>
 
-                     <!-- 개별 상품 가격 -->
 
+                     <!-- 개별 상품 가격 -->
+                     <span class="d-price">상품 가격 : </span>
                      <span th:text="${checkoutItem.productPrice}" class="default-price"></span>
 
                   </span>
@@ -262,7 +263,7 @@
 
                <div>
                   <span>배송비</span>
-                  <span style="margin-left: 955px;">2500</span>
+                  <span style="margin-left: 946px;">2500</span>
                </div>
 
             </div>
@@ -329,7 +330,7 @@
 
          <div class="checkout-area">
 
-            <button type="button" class="checkOut-btn" id="purchaseBtn" onclick="requestPay()">결제하기</button>
+            <button type="button" class="checkOut-btn" id="purchaseBtn" >결제하기</button>
             <!-- <button onclick="requestPay()">결제하기</button> 결제하기 버튼 생성 -->
 
          </div>
