@@ -60,7 +60,7 @@ public class ChattingLiveHandler extends TextWebSocketHandler{
             log.info("세션 : " + sessions.size());
             
             for(WebSocketSession s : sessions) {
-            	HttpSession temp = (HttpSession)s.getAttributes().get("liveChattingRoomNo");
+            	HttpSession temp = (HttpSession)s.getAttributes().get("session");
             	
             	int liveChattingRoomNo = (int) temp.getAttribute("liveChattingRoomNo");
             	log.debug("채팅방 번호 : " + liveChattingRoomNo);
