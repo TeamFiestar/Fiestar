@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.TeamFiestar.Fiestar.admin.model.dto.Report;
 import com.TeamFiestar.Fiestar.board.model.dto.Comment;
 import com.TeamFiestar.Fiestar.board.model.mapper.CommentMapper;
 
@@ -56,5 +57,10 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	public int likeClick(Map<String, Integer> map) {
 		return mapper.likeClick(map);
+	}
+	
+	@Override
+	public int insertReport(Report report) {
+		return mapper.insertReport(report);
 	}
 }

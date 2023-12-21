@@ -2,7 +2,9 @@ package com.TeamFiestar.Fiestar.board.model.service;
 
 import java.util.Map;
 
+import com.TeamFiestar.Fiestar.admin.model.dto.Report;
 import com.TeamFiestar.Fiestar.board.model.dto.Board;
+import com.TeamFiestar.Fiestar.member.model.dto.ArtistGroup1;
 
 public interface BoardService {
 
@@ -24,6 +26,12 @@ public interface BoardService {
 	int artistGroupNo(String artistGroupTitle);
 
 	Map<String, Object> selectArtistBoard(Map<String, Object> paramMap);
+
+	Map<String, Object> artistGroup(ArtistGroup1 artistGroup);
+
+	int insertReport(Report report);
+
+
 
 
 

@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <link rel="stylesheet" href="/css/artistHomepage/artist.css">
   <link rel="stylesheet" href="/css/artistHomepage/feedDetail.css">
+  <link rel="stylesheet" href="/css/artistHomepage/feedUpdate.css">
   <link rel="stylesheet" href="/css/common/artistPageHeader.css">
   <link rel="stylesheet" href="/css/common/artistPageNavi.css">
   <title>artist</title>
@@ -17,8 +18,16 @@
   <th:block th:replace="~{common/artistPageHeader}"></th:block>
   <th:block th:replace="~{common/artistPageNavi}"></th:block>
   <th:block th:replace="~{artistHomepage/feedDetail}"></th:block>
+  <th:block th:replace="~{artistHomepage/feedUpdate}"></th:block>
+  <th:block th:replace="~{artistHomepage/report}"></th:block>
   
     
+<div th:with="boardList=${map.boardList}">
+  <div th:if="${#lists.size(boardList)==0}" style="display: flex; margin-top: 100px; justify-content: center; color:#7743DB; font-size: 28px;">
+    현재 아티스트가 게시한 글이 존재하지 않습니다. 
+  </div>
+
+  <th:block th:unless="${#lists.size(boardList)==0}">
   <!-- 아티스트 별 최신 글 -->
   <section class="board"  style="display: relative; z-index:1">
     <div class="swiper-container" >
@@ -40,11 +49,14 @@
       </div>
 
       <!-- 방향 버튼 상황에 따라 추가 삭제가능 -->
-      <div class="swiper-button-prev" ></div>
-      <div class="swiper-button-next"></div>
+
     </div>
 
-
+    
+      <div th:if="${#lists.size(boardList)==0}" style="display: flex; margin-top: 100px; justify-content: center; color:#7743DB; font-size: 28px;">
+             현재 게시글이 존재하지 않습니다. 
+          아티스트에게 해주고 싶은 말을 작성해주세요.
+      </div>
 
 
     <!-- 날짜별 게시글 목록 -->
@@ -118,8 +130,9 @@
     </section>
 
 
-  </section>
-
+    </section>
+  </th:block> 
+</div>
 
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/2434a52ecc.js" crossorigin="anonymous"></script>
@@ -133,7 +146,16 @@
       const artistGroupTitle = /*[[${artistGroupTitle}]]*/ "dadasas";
       const loginCheck = /*[[${session.loginMember != null ? true : false}]]*/ "로그인 여부";
       const loginMemberNo = /*[[${session.loginMember.memberNo}]]*/ "멤버넘버";  
-      let boardNo = /*[[${boardNo}]]*/ "보드 넘버";
+      const boardD = /*[[${board}]]*/ "보드";
+        const boardNo = /*[[${boardNo}]]*/ "보드 넘버";
+        const message = /*[[${message}]]*/ "전달 받은 message";
+        // message가 없다면 null
+        
+        if(message != null) alert(message);
+        
+        if(boardNo != null && boardD != null){
+            openModal(boardD.boardNo);
+        }
  </script>
 
 </body>

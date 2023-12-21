@@ -86,9 +86,7 @@
 	<!-- 게시글 부분만 수정 -->
 	<update id="updateBoard">
 		UPDATE "BOARD" SET
-		BOARD_CONTENT = #{boardContent},
-		BOARD_ENROLL_DATE = SYSDATE,
-		BOARD_ENROLL_DATE2 = SYSDATE
+		BOARD_CONTENT = #{boardContent}
 		WHERE BOARD_NO = #{boardNo}
 	</update>
 	

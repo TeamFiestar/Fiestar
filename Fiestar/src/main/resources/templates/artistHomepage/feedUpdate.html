@@ -1,16 +1,16 @@
 <!-- 게시글 작성 modal -->
 
-  <div class="feedWriteModal" id="feedUpdate">
+  <div class="feedUpdateModal" id="feedUpdate" th:object = "${board}">
     
-        <div id="feedWriteModal" class="modal-body">
-            <button class="modalCloseButton" data-target="feedWrite" onclick="ucloseModal()">X</button>
-            <form action="update" method="POST" enctype="multipart/form-data">
-            <div class="modal-write">
+        <div id="feedUpdateModal" class="modal-body">
+            <button class="modalCloseButton" data-target="feedUpdate" onclick="ucloseModal()">X</button>
+            <form action="" method="POST" id="modal-update2" enctype="multipart/form-data">
+            <div class="modal-update">
                 <h1>게시글 수정</h1>
                 <p th:text="${artistGroupTitle}">LE SSERAFIM</p>
 
-                <div class="modal-feedWrite">
-                    <textarea name="boardContent" id="feedWrite2" th:placeholder="|${artistGroupTitle}에게 게시글을 작성해보세요!!|"></textarea>
+                <div class="modal-feedUpdate">
+                    <textarea name="boardContent" id="feedUpdate2" th:placeholder="|${artistGroupTitle}에게 게시글을 작성해보세요!!|"></textarea>
                 </div>
 
                 <div class="boardImg-container">
@@ -18,69 +18,69 @@
                     <div class="img-box">
 
                         <div class="boardImg">
-                            <label for="img1">
-                                <img class="preview" src="">
+                            <label for="img9">
+                                <img class="preview2" src="">
                             </label>
-                            <input type="file" name="images" class="inputImage" id="img1" accept="image/*">
-                            <span class="delete-image">&times;</span>
+                            <input type="file" name="images2" class="inputImage2" id="img9" accept="image/*">
+                            <span class="delete-image2">&times;</span>
                         </div>
 
                         <div class="boardImg">
-                            <label for="img2">
-                                <img class="preview" src="">
+                            <label for="img10">
+                                <img class="preview2" src="">
                             </label>
-                            <input type="file" name="images" class="inputImage" id="img2" accept="image/*">
-                            <span class="delete-image">&times;</span>
+                            <input type="file" name="images2" class="inputImage2" id="img10" accept="image/*">
+                            <span class="delete-image2">&times;</span>
                         </div>
 
                         <div class="boardImg">
-                            <label for="img3">
-                                <img class="preview" src="">
+                            <label for="img11">
+                                <img class="preview2" src="">
                             </label>
-                            <input type="file" name="images" class="inputImage" id="img3" accept="image/*">
-                            <span class="delete-image">&times;</span>
+                            <input type="file" name="images2" class="inputImage2" id="img11" accept="image/*">
+                            <span class="delete-image2">&times;</span>
                         </div>
 
                         <div class="boardImg">
-                            <label for="img4">
-                                <img class="preview" src="">
+                            <label for="img12">
+                                <img class="preview2" src="">
                             </label>
-                            <input type="file" name="images" class="inputImage" id="img4" accept="image/*">
-                            <span class="delete-image">&times;</span>
+                            <input type="file" name="images2" class="inputImage2" id="img12" accept="image/*">
+                            <span class="delete-image2">&times;</span>
                         </div>
                         <div class="boardImg">
-                            <label for="img5">
-                                <img class="preview" src="">
+                            <label for="img13">
+                                <img class="preview2" src="">
                             </label>
-                            <input type="file" name="images" class="inputImage" id="img5" accept="image/*">
-                            <span class="delete-image">&times;</span>
+                            <input type="file" name="images2" class="inputImage2" id="img13" accept="image/*">
+                            <span class="delete-image2">&times;</span>
                         </div>
                         <div class="boardImg">
-                            <label for="img6">
-                                <img class="preview" src="">
+                            <label for="img14">
+                                <img class="preview2" src="">
                             </label>
-                            <input type="file" name="images" class="inputImage" id="img6" accept="image/*">
-                            <span class="delete-image">&times;</span>
+                            <input type="file" name="images2" class="inputImage2" id="img14" accept="image/*">
+                            <span class="delete-image2">&times;</span>
                         </div>
                         <div class="boardImg">
-                            <label for="img7">
-                                <img class="preview" src="">
+                            <label for="img15">
+                                <img class="preview2" src="">
                             </label>
-                            <input type="file" name="images" class="inputImage" id="img7" accept="image/*">
-                            <span class="delete-image">&times;</span>
+                            <input type="file" name="images2" class="inputImage2" id="img15" accept="image/*">
+                            <span class="delete-image2">&times;</span>
                         </div>
                         <div class="boardImg">
-                            <label for="img8">
-                                <img class="preview" src="">
+                            <label for="img16">
+                                <img class="preview2" src="">
                             </label>
-                            <input type="file" name="images" class="inputImage" id="img8" accept="image/*">
-                            <span class="delete-image">&times;</span>
+                            <input type="file" name="images2" class="inputImage2" id="img16" accept="image/*">
+                            <span class="delete-image2">&times;</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="feedWriteArea">
-                    <button class="feedWriteBtn">등록하기</button>
+                <div class="feedUpdateArea">
+                    <button class="feedUpdateBtn">등록하기</button>
                 </div>
 
             </div>

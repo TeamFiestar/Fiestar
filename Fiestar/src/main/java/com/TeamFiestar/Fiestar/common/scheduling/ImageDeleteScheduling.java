@@ -23,27 +23,27 @@ public class ImageDeleteScheduling {
 	@Autowired
 	private SchedulingService service;
 	
-	@Value("{artist.image.location}")
+	@Value("${artist.image.location}")
 	private String imageLocation;
-	@Value("{artist.profile.location}")
+	@Value("${artist.profile.location}")
 	private String profileLocation;
-	@Value("{artist.backImg.location}")
+	@Value("${artist.backImg.location}")
 	private String backImgLocation;
-	@Value("{artist.mainimg.location}")
+	@Value("${artist.mainimg.location}")
 	private String mainimgLocation;
-	@Value("{artist.logoimg.location}")
+	@Value("${artist.logoimg.location}")
 	private String logoimgLocation;
-	@Value("{artist.profileimg.location}")
+	@Value("${artist.profileimg.location}")
 	private String profileimgLocation;
-	@Value("{my.shopContent.location}")
+	@Value("${my.shopContent.location}")
 	private String shopContentLocation;
-	@Value("{my.shopThumbnail.location}")
+	@Value("${my.shopThumbnail.location}")
 	private String shopThumnailLocation;
 //	@Value("{my.shop.location}")
 //	private String shopLocation;
-	@Value("{my.member.location}")
+	@Value("${my.member.location}")
 	private String memberLocation;
-	@Value("{my.board.location}")
+	@Value("${my.board.location}")
 	private String boardLocation;
 	
 	@Scheduled(cron = "0 * * * * *")
@@ -83,15 +83,14 @@ public class ImageDeleteScheduling {
 		
 		System.arraycopy(imageArr, 0, imgArr, 0, imageArr.length);
 		System.arraycopy(profileArr, 0, imgArr, imageArr.length, profileArr.length);
-		System.arraycopy(backImgArr, 0, imgArr, profileArr.length, backImgArr.length);
-		System.arraycopy(mainimgArr, 0, imgArr, backImgArr.length, mainimgArr.length);
-		System.arraycopy(logoimgArr, 0, imgArr, mainimgArr.length, logoimgArr.length);
-		System.arraycopy(profileimgArr, 0, imgArr, logoimgArr.length, profileimgArr.length);
-		System.arraycopy(shopContentArr, 0, imgArr, profileimgArr.length, shopContentArr.length);
-		System.arraycopy(shopThumnailArr, 0, imgArr, shopContentArr.length, shopThumnailArr.length);
-//		System.arraycopy(shopArr, 0, imgArr, shopThumnailArr.length, shopArr.length);
-		System.arraycopy(memberArr, 0, imgArr, shopThumnailArr.length, memberArr.length);
-		System.arraycopy(boardArr, 0, imgArr, memberArr.length, boardArr.length);
+		System.arraycopy(backImgArr, 0, imgArr, profileArr.length + imageArr.length, backImgArr.length);
+		System.arraycopy(mainimgArr, 0, imgArr, backImgArr.length + profileArr.length + imageArr.length, mainimgArr.length);
+		System.arraycopy(logoimgArr, 0, imgArr, mainimgArr.length + backImgArr.length + profileArr.length + imageArr.length, logoimgArr.length);
+		System.arraycopy(profileimgArr, 0, imgArr, logoimgArr.length + mainimgArr.length + backImgArr.length + profileArr.length + imageArr.length, profileimgArr.length);
+		System.arraycopy(shopContentArr, 0, imgArr, profileimgArr.length + logoimgArr.length + mainimgArr.length + backImgArr.length + profileArr.length + imageArr.length, shopContentArr.length);
+		System.arraycopy(shopThumnailArr, 0, imgArr, shopContentArr.length + profileimgArr.length + logoimgArr.length + mainimgArr.length + backImgArr.length + profileArr.length + imageArr.length, shopThumnailArr.length);
+		System.arraycopy(memberArr, 0, imgArr, shopThumnailArr.length + shopContentArr.length + profileimgArr.length + logoimgArr.length + mainimgArr.length + backImgArr.length + profileArr.length + imageArr.length, memberArr.length);
+		System.arraycopy(boardArr, 0, imgArr, memberArr.length + shopThumnailArr.length + shopContentArr.length + profileimgArr.length + logoimgArr.length + mainimgArr.length + backImgArr.length + profileArr.length + imageArr.length, boardArr.length);
 		
 		
 		List<File> serverImageList = Arrays.asList(imgArr);
