@@ -1,6 +1,7 @@
 package com.TeamFiestar.Fiestar.cart.model.service;
 
-import java.util.HashMap;    
+  
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,11 +11,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.TeamFiestar.Fiestar.cart.model.dto.Cart;
+import com.TeamFiestar.Fiestar.cart.model.dto.OrderedList;
 import com.TeamFiestar.Fiestar.cart.model.dto.Orderer;
 import com.TeamFiestar.Fiestar.cart.model.dto.PurchaseInfo;
 import com.TeamFiestar.Fiestar.cart.model.mapper.CartMapper;
-import com.TeamFiestar.Fiestar.member.model.dto.Member;
-import com.TeamFiestar.Fiestar.member.model.dto.PurchaseList;
+
 
 
 
@@ -104,13 +105,15 @@ public class CartServiceImpl implements CartService{
 //			purchaseNo = orderedInfo.get
 //			return mapper.checkoutResult(map);
 	
-		PurchaseInfo purchaseInfo = mapper.selectPurchaseInfo(purchaseNo);
+		PurchaseInfo purchaseInfo = mapper.selectPurchaseInfo(purchaseNo); 
 		
-		List<PurchaseList> purchaseList = mapper.selectPurchaseList(purchaseNo);
+		List<OrderedList> orderedList = mapper.selectOrderedList(purchaseNo);
+		
+//		List<OrderedList> purchaseList = mapper.selectPurchaseList(purchaseNo);
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("purchaseInfo", purchaseInfo);
-		map.put("purchaseList", purchaseList);
+		map.put("orderedList", orderedList);
 		
 		return map;
 	}

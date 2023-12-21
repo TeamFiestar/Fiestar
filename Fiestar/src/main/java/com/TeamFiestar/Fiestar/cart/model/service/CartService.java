@@ -1,6 +1,6 @@
 package com.TeamFiestar.Fiestar.cart.model.service;
 
-import java.util.HashMap; 
+import java.util.HashMap;  
 import java.util.List;
 import java.util.Map;
 
@@ -9,8 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.TeamFiestar.Fiestar.cart.model.dto.Cart;
 import com.TeamFiestar.Fiestar.cart.model.dto.Orderer;
-import com.TeamFiestar.Fiestar.cart.model.dto.PurchaseInfo;
-import com.TeamFiestar.Fiestar.member.model.dto.Member;
+//import com.TeamFiestar.Fiestar.cart.model.dto.PurchaseInfo;
+
 
 
 @Transactional

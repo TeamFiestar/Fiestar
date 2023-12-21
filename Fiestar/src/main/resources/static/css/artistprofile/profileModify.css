@@ -38,7 +38,7 @@ a {
   padding-top: 20px;
 }
 
-img {
+.all img {
   border-radius: 10px;
   background-image: linear-gradient();
   background: linear-gradient(#0d0e12, #0d0e1200);

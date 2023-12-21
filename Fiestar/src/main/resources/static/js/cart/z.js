@@ -102,12 +102,10 @@ const clacPrice = (btn) => {
 
    const itemCount = btn.parentElement.children[1];
    const defaultPrice = btn.parentElement.children[3];
-   const amountPrice = btn.parentElement.nextElementSibling
+   const amountPrice = btn.parentElement.nextElementSibling;
 
-
-
-    amountPrice.innerText = Number(itemCount.innerText) * Number(defaultPrice.innerText)
-   // amountPrice.innerText ='₩' + (Number(itemCount.innerText) * Number(defaultPrice.innerText)).toLocaleString();
+   // amountPrice.innerText = Number(itemCount.innerText) * Number(defaultPrice.innerText)
+   amountPrice.innerText ='₩' + (Number(itemCount.innerText) * Number(defaultPrice.innerText)).toLocaleString();
    
    // amountPrice = Number(itemCount.innerText) * Number(defaultPrice.innerText);
    // amountPrice.textContent = amountPrice.innerText.toLocaleString();
@@ -130,7 +128,7 @@ const checkedPrice = () => {
       sum += Number(amountPrice);
    }
       
-      totalPrice.innerText = sum;
+      totalPrice.innerText = '₩' + sum.toLocaleString();
 
    // totalPrice.textContent = "$" + sum.toLocaleString();
 }
@@ -151,9 +149,9 @@ for(let i=0; i<plusList.length; i++) {
       clacPrice(e.target);
       checkedPrice();
       let eachPrice = e.target.parentElement.nextElementSibling.innerText;
-
-      // eachPrice.innerText = Number(eachPrice.innerText);
-      // defaultPrice.innerText = Number(defaultPrice.innerText);
+      
+      eachPrice.innerText = '₩' + Number(eachPrice.innerText).toLocaleString();
+      defaultPrice.innerText = '₩' + Number(defaultPrice.innerText).toLocaleString();
 
 
       // eachPrice.textContent = 
@@ -181,8 +179,6 @@ for(let i=0; i<minusList.length; i++) {
          checkedPrice();
 
       let eachPrice = e.target.parentElement.nextElementSibling.innerText;
-
-     
 
       console.log(eachPrice);
 
