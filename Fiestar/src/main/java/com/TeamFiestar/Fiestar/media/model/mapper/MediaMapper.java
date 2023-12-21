@@ -4,13 +4,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.session.RowBounds;
 
 import com.TeamFiestar.Fiestar.media.model.dto.Media;
 
 @Mapper
 public interface MediaMapper {
 
-	List<Media> selectMediaList(Map<String, Object> map);
+	List<Media> selectMediaList(Map<String, Object> map, RowBounds rowBounds);
 
 	/** 미디어 삽입
 	 * @param inserMedia
@@ -29,5 +30,9 @@ public interface MediaMapper {
 	int updateMedia(Media updateMedia);
 
 	int deleteMedia(int mediaNo);
+
+	int updateReadCount(int mediaNo);
+
+	int mediaListCount(Map<String, Object> map);
 
 }

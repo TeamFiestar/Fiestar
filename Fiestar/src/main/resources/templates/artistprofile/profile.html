@@ -22,8 +22,11 @@
       </div>
     </div>
     <main
-      th:with="artistGroup=${map.artistGroup}, artistList=${map.artistList}, artistGroupMedia=${map.artistGroupMedia}, 
-      artistGroupProduct=${map.artistGroupProduct}, artistGroupNotice=${map.artistGroupNotice}"
+      th:with="artistGroup = ${map.artistGroup}, 
+        artistList = ${map.artistList}, 
+        artistGroupMedia = ${map.artistGroupMedia}, 
+        artistGroupProduct = ${map.artistGroupProduct}, 
+        artistGroupNotice = ${map.artistGroupNotice}"
     >
       <div class="all">
         <div class="artistprofileMain" th:each="artistGroup : ${artistGroup}" th:object="${artistGroup}">
@@ -47,7 +50,7 @@
               </div>
             </div>
           </div>
-          <th:block th:if="${session.loginMember != null}">
+          <th:block th:if="${session.loginMember != null and map.result == 0}">
             <div class="subscribeBtnArea">
               <button class="btn-open-popup" onclick="openModal()">구독하기</button>
             </div>
@@ -108,7 +111,7 @@
         <div class="Notice">
           <ul>
             <li th:each="notice : ${artistGroupNotice}" th:object="${notice}">
-              <a href="#">
+              <a th:href="|/${artistGroupTitle}/notice/*{artistGroupNoticeNo}|">
                 <span class="NoticeTitle">공지</span>
                 <span class="NoticeContent" th:text="*{artistGroupNoticeTitle}">공지사항 제목</span>
                 <span>></span>
@@ -116,12 +119,10 @@
             </li>
           </ul>
           <div class="notice-more">
-            <a th:href="@{/artistMember/{artistGroupTitle}(artistGroupTitle=${artistGroupTitle})/notice}"
-              ><span style="color: white">더보기</span></a
-            >
+            <a th:href="|/${artistGroupTitle}/notice|"><span style="color: white">더보기</span></a>
           </div>
         </div>
-        <th:block th:if="${session.loginMember?.memberAuthority == 4}">
+        <th:block th:if="${session.loginMember?.memberAuthority == 4 and map.artistAdminNo == 1}">
           <div class="updateDelete">
             <form th:action="|/artistMember/${artistGroupTitle}/update|" method="get">
               <button class="update">수정</button>
@@ -132,7 +133,9 @@
     </main>
     <script th:inline="javascript">
       const artistGroupTitle = /*[[${artistGroupTitle}]]*/ "아티스트 그룹 이름";
+      const map = /*[[${map}]]*/ "아티스트 그룹 이름";
       const message = /*[[${message}]]*/ "아티스트 그룹 이름";
+      const loginMember = /*[[${session.loginMember}]]*/ "아티스트 그룹 이름";
     </script>
     <script src="/js/artistprofile/profile.js"></script>
   </body>

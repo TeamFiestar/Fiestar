@@ -87,7 +87,7 @@
 			SELECT SEQ_PRODUCT_NO.NEXTVAL FROM DUAL
 		</selectKey>
 		INSERT INTO "PRODUCT"
-		VALUES(#{productNo},#{artistGroupNo},#{productName},#{productProduction},#{productPrice}, DEFAULT)
+		VALUES(#{productNo},#{artistGroupNo},#{productName},#{productProduction},#{productPrice}, DEFAULT, DEFAULT)
 	</insert>
 	
 	<!--옵션 등록-->
@@ -112,6 +112,50 @@
 		VALUES(#{productImageNo},#{productImageContent},#{productImageRename},#{productImageOriginal},#{productImageOrder}, #{productNo}, #{productImageThumbnail},
 		#{productImageThumbnailRename})
 	</insert>
+	
+	
+	<!--상품 수정-->
+	<update id="updateGoods">
+		UPDATE "PRODUCT" SET
+		PRODUCT_NAME = #{productName},
+		PRODUCT_PRICE = #{productPrice},
+		<if test="productProduction != null">
+			PRODUCT_PRODUCTION = #{productProduction}
+		</if>
+		WHERE PRODUCT_NO = #{productNo}
+	</update>
+	
+	
+	<!--상품 옵션 수정-->
+	<update id="updateOption">
+		UPDATE "PRODUCT_OPTION" SET
+		<foreach collection="list" item="p" separator="UNION">
+			PRODUCT_OPTION_NAME = #{p.productOptionName}
+			WHERE PRODUCT_NO = #{p.productNo}
+		</foreach>
+	</update>
+	
+	
+	
+	<!-- 이미지 수정-->
+	 <update id="updateImage">
+		UPDATE "PRODUCT_IMAGE" SET
+      	PRODUCT_IMAGE_THUMBNAIL = #{productImageThumbnail},
+      	PRODUCT_IMAGE_THUMBNAIL_RENAME = #{productImageThumbnailRename},
+      	PRODUCT_IMAGE_CONTENT = #{productImageContent},
+      	PRODUCT_IMAGE_RENAME = #{productImageRename}
+      	WHERE PRODUCT_NO = #{productNo}
+	 </update>
+	 
+	 
+	 <!--상품 삭제-->
+	<update id="deleteGoods">
+		UPDATE "PRODUCT" SET
+	  	PRODUCT_DEL_FL = 'Y'
+	  	WHERE PRODUCT_NO = #{productNo}
+	</update>
+	
+	
 	
 	
 	
@@ -156,6 +200,10 @@
 		<if test="key == 3">AND MEMBER_NICKNAME LIKE '%${orderSearch}%'</if>
 		ORDER BY PURCHASE_DATE
 	</select>
+	
+	
+	
+	
 	
 
 	

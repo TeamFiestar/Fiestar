@@ -24,7 +24,4 @@ public class ShopGoodsController {
 	
 	private final ShopService service;
 	
-	
-
-
 }

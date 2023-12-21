@@ -4,11 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 
 import com.TeamFiestar.Fiestar.admin.model.mapper.ArtistAdminMapper;
 import com.TeamFiestar.Fiestar.media.model.dto.Media;
 import com.TeamFiestar.Fiestar.media.model.mapper.MediaMapper;
+import com.TeamFiestar.Fiestar.mypage.dto.Pagination;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,12 +23,28 @@ public class MediaServiceImpl implements MediaService{
 	
 	// 미디어 리스트 조회
 	@Override
-	public List<Media> selectMediaList(Map<String, Object> map) {
+	public Map<String, Object> selectMediaList(Map<String, Object> map, int cp) {
 		int artistGroupNo = artistAdminMapper.selectArtistGroupNo( map.get("artistGroupTitle") );
 		map.put("artistGroupNo", artistGroupNo);
 		
-		List<Media> mediaList = mapper.selectMediaList(map);
-		return mediaList;
+		int listCount = mapper.mediaListCount(map);
+		
+		/* Pagination */
+		Pagination pagination = new Pagination(cp, listCount, 12, 10);
+		
+		int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
+		
+		int limit = pagination.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		/* Pagination */
+		
+		List<Media> mediaList = mapper.selectMediaList(map, rowBounds);
+		
+		map.put("mediaList", mediaList);
+		map.put("pagination", pagination);
+		
+		return map;
 	}
 	
 	@Override
@@ -35,6 +53,11 @@ public class MediaServiceImpl implements MediaService{
 		int result = mapper.insertMedia(inserMedia);
 		
 		return result;
+	}
+	
+	@Override
+	public int updateReadCount(int mediaNo) {
+		return mapper.updateReadCount(mediaNo);
 	}
 	
 	// 미디어 디테일

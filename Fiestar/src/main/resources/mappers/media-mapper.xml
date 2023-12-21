@@ -50,6 +50,28 @@
 		WHERE MEDIA_NO = #{mediaNo}
 	</select>
 	
+	<update id="updateReadCount">
+		UPDATE MEDIA SET MEDIA_COUNT = MEDIA_COUNT + 1
+		WHERE MEDIA_NO = #{mediaNo}
+	</update>
+	
+	<!-- 미디어 리스트 개수 조회 -->
+	<select id="mediaListCount">
+		
+		SELECT COUNT(*)
+		FROM "MEDIA"
+		WHERE MEDIA_TITLE LIKE '%${mediaTitle}%'
+		AND ARTIST_GROUP_NO = #{artistGroupNo}
+		AND MEDIA_DEL_FL = 'N'
+		<if test="key == 1">
+			ORDER BY MEDIA_ENROLL_DATE DESC
+		</if>
+		<if test="key == 2">
+			ORDER BY MEDIA_COUNT DESC
+		</if>
+		
+	</select>
+	
 	<!-- 미디어 리스트 조회 -->
 	<select id="selectMediaList">
 		

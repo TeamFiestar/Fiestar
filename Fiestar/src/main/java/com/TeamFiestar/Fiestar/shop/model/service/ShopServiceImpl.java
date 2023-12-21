@@ -1,7 +1,5 @@
 package com.TeamFiestar.Fiestar.shop.model.service;
 
-
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.w3c.dom.stylesheets.LinkStyle;
 
+import com.TeamFiestar.Fiestar.cart.model.dto.Cart;
+import com.TeamFiestar.Fiestar.member.model.dto.Member;
 import com.TeamFiestar.Fiestar.shop.model.dto.ArtistGroup;
 import com.TeamFiestar.Fiestar.shop.model.dto.Product;
 import com.TeamFiestar.Fiestar.shop.model.dto.ProductOption;
@@ -74,8 +74,6 @@ public class ShopServiceImpl implements ShopService{
 		map.put("shopCount", shopCount);
 		return map;
 	}
-	
-
 	
 	//아티스트 그룹별 상품 조회
 	@Override
@@ -165,6 +163,25 @@ public class ShopServiceImpl implements ShopService{
 		return map;
 	}
 	
+	//장바구니에 담기
+	@Override
+	public int insertCart(int productNo, int productCount, int totalPrice, int memberNo) {
+		
+		Map<String, Integer> map = new HashMap<>();
+		map.put("productNo", productNo);
+		map.put("productCount", productCount);
+		map.put("memberNo", memberNo);
+		map.put("totalPrice", totalPrice);
+		
+		int result = mapper.insertCart(map);
+		
+		if(result > 0)	return map.get("cartNo");
+		
+		return 0;
+	}
+	
+	
+
 	
 	
 

@@ -25,7 +25,20 @@ const container = document.querySelector(".product-purchase-list");
 const optionValue2 = document.querySelector("select[name=key]");
 const optionValue = document.querySelector("select[name=key] option:checked").selected;
 
+
 optionSelect.addEventListener("change", () => {
+
+  optionSelect.selectedIndex = 0; //처음 옵션으로 되돌리기
+
+
+
+  /* 같은 옵션 선택 시 밑으로 내려가지 않고 누적 작성 예정 */
+
+
+
+
+
+  /* ************************************************** */
 
   
 
@@ -63,6 +76,7 @@ optionSelect.addEventListener("change", () => {
 
   button1.classList.add("minus");
   button1.setAttribute('onclick', 'minusBtn(this)');
+  button1.setAttribute('type', 'button');
 
   button1.innerHTML = "-";
 
@@ -75,6 +89,7 @@ optionSelect.addEventListener("change", () => {
   const button2 = document.createElement("button");
   button2.classList.add("plus");
   button2.setAttribute('onclick', 'plusBtn(this)');
+  button2.setAttribute('type', 'button');
   button2.innerHTML ="+";
 
 
@@ -111,6 +126,8 @@ const selectedPrice = document.querySelector(".selected-price");
 
 const totalProduct = document.querySelector("#totalProduct");
 const totalPrice = document.querySelector("#totalPrice");
+const count = document.getElementById("productCount");
+const totalP = document.getElementById("total");
 
 
 
@@ -148,26 +165,122 @@ function totalNoProduct( ) {
 
   let sum = 0;
 
+
   for(i of results) {
     console.log(i);
     sum += (Number)(i.innerText);
+    
   }
   totalProduct.textContent = "총 상품금액 (" + sum +")";
   totalProduct.setAttribute('value',sum);
   console.log(totalProduct.getAttribute('value'));
+
+  const productValue = totalProduct.getAttribute('value');
+  count.value = productValue;
+  console.log(count.getAttribute('value'));
 }
 
 
 function totalCost() {
-   
+  
   let total = 0;
   total = price * totalProduct.getAttribute('value');
   totalPrice.textContent = total;
+  const totalPriceValue = total;
+  totalP.value = totalPriceValue;
+  console.log(totalP.getAttribute('value'));
   console.log(total);
 }
 
 totalCost();
 
+
+
+
+
+
+const updateBtn = document.getElementById("updateBtn");
+if(updateBtn != null){
+updateBtn.addEventListener("click", ()=>{
+  location.href = `/artistAdmin/${artistGroupTitle}/${productNo}/goodsModify`;
+});
+}
+
+
+const deleteBtn = document.getElementById("deleteBtn");
+if(deleteBtn != null){
+  deleteBtn.addEventListener("click", ()=>{
+  location.href = `/artistAdmin/${productNo}/goodsDelete`;
+});
+
+}
+
+
+
+const form = document.getElementById("in-cart");
+
+function send(action){
+
+  if(!loginMember || totalProduct.getAttribute('value') == 0){
+    
+    if(totalProduct.getAttribute('value') == 0){
+      alert("옵션을 선택해주세요");
+    }else{
+    alert("로그인 후 이용해 주십시오");
+    }
+  return;
+}
+
+
+  let url = null;
+
+  if(action == 'addCart'){
+    url = `/shop/shopDetail/${productNo}`;
+    form.action = url;
+    form.submit();
+
+
+  }else if(action == 'purchase'){
+    console.log({"productCount" : count.value, "totalPrice" : totalP.value});
+
+    url = `/shop/shopDetail/directBuy/${productNo}`;
+    fetch(url,{
+      method : "POST",
+      headers : {"Content-Type" : "application/json"},
+      body : JSON.stringify({"productCount" : count.value, "totalPrice" : totalP.value})
+    })
+    .then(resp => resp.text())
+    .then(cartNo => {
+  
+      if(cartNo > 0){
+        document.getElementById("selectEach").value = cartNo;
+        form.action = "/checkout";
+        form.submit();
+      }
+    })
+  }
+
+
+  
+};
+
+
+
+document.getElementById('in-cart').addEventListener('submit', (e) =>{
+  if(!loginMember){
+    e.preventDefault();
+    alert("로그인 후 이용해 주십시오");
+  }else if(totalProduct.getAttribute('value')){
+    e.preventDefault();
+    alert("옵션을 선택해주세요");
+  }
+})
+
+
+
+form.addEventListener("submit", e=>{
+    e.preventDefault();
+});
 
 
 

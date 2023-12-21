@@ -13,6 +13,13 @@
 		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
 	</select>
 	
+	
+	<select id="artistAdminNo" resultType="_int">
+		SELECT COUNT(*) FROM ARTIST_GROUP
+		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
+		AND ARTIST_GROUP_ADMIN_NO = #{memberNo}
+	</select>
+	
 	<select id="artistGroupMedia" resultType="Media">
 		SELECT MEDIA_ADDRESS, MEDIA_TITLE, MEDIA_NO,
 		TO_CHAR(MEDIA_ENROLL_DATE, 'YYYY"."MM"."DD') MEDIA_ENROLL_DATE FROM MEDIA
@@ -30,7 +37,7 @@
 	</select>
 	
 	<select id="artistGroupNotice" resultType="ArtistNotice">
-		SELECT ARTIST_GROUP_NOTICE_TITLE
+		SELECT ARTIST_GROUP_NOTICE_TITLE, ARTIST_GROUP_NOTICE_NO
 		FROM ARTIST_GROUP_NOTICE
 		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
 		AND ARTIST_GROUP_NOTICE_DEL_FL = 'N'
@@ -49,7 +56,7 @@
 	</select>
 	
 	<select id="artistUpdate" resultType="ArtistGroup1">
-		SELECT ARTIST_GROUP_LOGOIMG, ARTIST_GROUP_MAINIMG, ARTIST_PROFILE, ARTIST_GROUP_INTRODUCTION
+		SELECT ARTIST_GROUP_LOGOIMG, ARTIST_GROUP_MAINIMG, ARTIST_GROUP_PROFILE, ARTIST_GROUP_INTRODUCTION
 		FROM ARTIST_GROUP
 		WHERE ARTIST_GROUP_NO = #{memberNo}
 	</select>
@@ -90,18 +97,26 @@
 		WHERE MEMBER_EMAIL = #{memberEmail}
 	</select>
 	
-	<insert id="ProfileUpdate">
+	<update id="ProfileUpdate">
+        UPDATE ARTIST SET 
+            ARTIST_NAME = #{artistName}, 
+            ARTIST_PROFILE = #{artistProfile}, 
+            MEMBER_EMAIL = #{artistEmail}
+        WHERE ARTIST_GROUP_NO = #{artistGroupNo}
+        AND MEMBER_NO = #{memberNo}
+	</update>
+	
+	<select id="checkUpdate" resultType="_int">
+		SELECT COUNT(*) FROM ARTIST
+		WHERE MEMBER_NO = #{memberNo}
+		AND ARTIST_GROUP_NO = #{artistGroupNo}
+	</select>
+	
+	<insert id="insertArtist">
 		INSERT INTO ARTIST
-		
-		<foreach collection="list" item="artist1" separator=" UNION ">
-			SELECT #{artist1.memberNo},
-					#{artist1.artistGroupNo}, 
-					#{artist1.artistName}, 
-					#{artist1.artistProfile}, 
-					#{artist1.memberEmail}
-			FROM DUAL
-		</foreach>
+		VALUES(#{memberNo},#{artistGroupNo},#{artistName},#{artistProfile}, #{artistEmail})
 	</insert>
+	
 	
 	
 	<select id="artistNotice" resultType="ArtistNotice">
@@ -113,6 +128,13 @@
 		ORDER BY ARTIST_GROUP_NOTICE_ENROLL_DATE DESC
 	</select>
 	
+	
+	<select id="artistNoticeDetail" resultType="ArtistGroupNotice">
+		SELECT ARTIST_GROUP_NOTICE_TITLE , ARTIST_GROUP_NOTICE_CONTENT , ARTIST_GROUP_NOTICE_ENROLL_DATE ,
+		(SELECT ARTIST_GROUP_TITLE FROM ARTIST_GROUP WHERE ARTIST_GROUP_NO = #{artistGroupNo}) ARTIST_GROUP_TITLE
+		FROM ARTIST_GROUP_NOTICE
+		WHERE ARTIST_GROUP_NOTICE_NO = #{artistGroupNoticeNo}
+	</select>
 	
 </mapper>
 
