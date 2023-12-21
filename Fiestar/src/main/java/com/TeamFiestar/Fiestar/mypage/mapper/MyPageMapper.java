@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
 
+import com.TeamFiestar.Fiestar.admin.model.dto.SiteNotice;
 import com.TeamFiestar.Fiestar.board.model.dto.Board;
 import com.TeamFiestar.Fiestar.board.model.dto.Comment;
 import com.TeamFiestar.Fiestar.member.model.dto.ArtistSubscribe;
@@ -38,12 +39,6 @@ public interface MyPageMapper {
 	// 내가 구독한 아티스트 페이지 조회
 	List<ArtistSubscribe> myArtistList(int memberNo, RowBounds rowBounds);
 
-	// 구매한 상품 개수 
-	int purchaseCount(Member loginMember);
-	
-
-	// 내가 구매한 상품 목록 조회
-	List<PurchaseList> myPurchaseList(Member loginMember, RowBounds rowBounds);
 
 	// 암호화된 비밀번호 조회
 	String selectPw(int memberNo);
@@ -64,6 +59,16 @@ public interface MyPageMapper {
 	int deleteBoardComment(Map<String, Object> map);
 
 	int info(Member updateMember);
+
+	// 공지사항 개수 조회
+	int nocticeCount();
+
+	// 공지사항 조회
+	List<SiteNotice> siteNoticeList(RowBounds rowBounds);
+
+	// 공지사항 상세 조회
+	SiteNotice selectNotice(Map<String, Object> map);
+
 
 
 

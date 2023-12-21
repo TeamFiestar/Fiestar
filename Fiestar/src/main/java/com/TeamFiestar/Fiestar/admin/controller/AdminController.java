@@ -208,6 +208,7 @@ public class AdminController {
 		model.addAttribute("key",report.getKey());
 		model.addAttribute("reportSearch",report.getReportSearch());
 		
+		
 		return "admin/report";
 		
 	}

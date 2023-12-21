@@ -43,7 +43,7 @@
             <div class="artist-all">
               <div class="m" th:each="ArtistSubscribe : ${artistList}" th:object="${ArtistSubscribe}">
                 <div class="artist-list">
-                  <a href="/artistprofile/profile" class="artist-profile">
+                  <a th:href="@{/artistMember/{artistGroupTitle}(artistGroupTitle=*{artistGroupTitle})}" class="artist-profile">
                     <div class="artist-image-area">
                       <img th:src="*{artistGroupImage}">
                     </div>
@@ -62,7 +62,7 @@
           </th:block>
         </div>
 
-        <div class="pagination-area">
+        <div class="pagination-area" th:if="${#lists.size(artistList) > 0}">
           <ul class="pagination">
 
             <!-- 첫 페이지로 이동 -->

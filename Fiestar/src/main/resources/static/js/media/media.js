@@ -21,13 +21,20 @@ function deleteModalOpen(commentNo) {
 function deleteModalClose() {
   deleteModal.classList.add('hidden');
 }
-
+let commentCount;
+let speechBubble;
 
 // 클릭한 댓글을 제외한 모든 댓글을 사라지게 함
 function loadReplies(element, commentNo) {
   const parentCommentNo = document.getElementById('parent-comment-no');
+  commentCount = document.querySelector('.comment-count-wrapper').textContent;
+
+  console.log(element);
+  speechBubble = element;
 
   parentCommentNo.value = commentNo;
+
+  speechBubble.classList.add('hidden');
 
 
   var allComments = document.querySelectorAll('.comment-area');
@@ -81,6 +88,11 @@ function goBack() {
   hideComment.forEach(function (c) {
     c.remove();
   });
+
+
+  document.querySelector('.comment-count-wrapper').textContent = commentCount;
+
+  speechBubble.classList.remove('hidden');
 
   // 뒤로가기 버튼을 숨김
   var backButton = document.querySelector('.back-button');
@@ -194,9 +206,11 @@ function generateComment(){
     
       // "report-img" 클래스를 가진 이미지 엘리먼트 생성하고 onclick 이벤트 설정
       var reportImg = document.createElement("img");
-      reportImg.className = "report-img";
-      reportImg.src = "/img/siren.png";
-      reportImg.onclick = modalOpen;
+      if(loginMember.memberAuthority != 1 || loginMember.memberNo == comment.memberNo){
+        reportImg.className = "report-img";
+        reportImg.src = "/img/siren.png";
+        reportImg.onclick = modalOpen;
+      }
 
       const deleteImg = document.createElement("img");
       deleteImg.className = "delete-cross";
@@ -266,7 +280,13 @@ function generateComment(){
     }
 
     const commentCounter = document.querySelector('.comment-count-wrapper')
-    commentCounter.textContent = `${commentList.length}개의 답글`
+    if(parentCommentNo == 0){
+      commentCounter.textContent = `${commentList.length}개의 댓글`
+      
+    }else{
+      commentCounter.textContent = `${commentList.length}개의 답글`
+
+    }
 
 
   })
