@@ -169,6 +169,7 @@ profileFrm.addEventListener("submit", (e) => {
   const introduce = document.querySelector("[name=artistGroupIntroduce]");
   const img = document.querySelector(".imageInput");
   const artistName = document.querySelector("[name=artistName]");
+  const email = document.querySelector("[name=email]");
 
   if (introduce.value.trim().length == 0) {
     alert("그룹명을 입력해주세요.");
@@ -188,6 +189,13 @@ profileFrm.addEventListener("submit", (e) => {
   if (!imgCheck) {
     alert("파일을 확인 해주세요");
     e.preventDefault();
+    return;
+  }
+  if (email.value.trim().length == 0) {
+    alert("이메일을 입력해주세요.");
+    e.preventDefault();
+    email.value = "";
+    email.focus();
     return;
   }
 });
