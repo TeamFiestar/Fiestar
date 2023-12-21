@@ -164,16 +164,12 @@ public class ArtistAdminServiceImpl implements ArtistAdminService{
 		for (ProductOption productOption2 : product.getProductOptionList()) {
 			productOption2.setProductNo(productNo);
 		}
-		
-
 		int result2 = mapper.insertOption(product.getProductOptionList());
 		
 		if(result2 == 0) {
 			return 0; 
 		}
 		
-		
-	
 		ProductImage img = new ProductImage();
 		
 		

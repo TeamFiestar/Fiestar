@@ -1,17 +1,21 @@
 package com.TeamFiestar.Fiestar.cart.model.service;
 
-import java.util.HashMap; 
+import java.util.HashMap;    
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.TeamFiestar.Fiestar.cart.model.dto.Cart;
 import com.TeamFiestar.Fiestar.cart.model.dto.Orderer;
+import com.TeamFiestar.Fiestar.cart.model.dto.PurchaseInfo;
 import com.TeamFiestar.Fiestar.cart.model.mapper.CartMapper;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
+import com.TeamFiestar.Fiestar.member.model.dto.PurchaseList;
+
 
 
 @Service
@@ -45,16 +49,77 @@ public class CartServiceImpl implements CartService{
 	}
 	
 	
-	
+	@Transactional
 	@Override
-	public int order(Orderer inputOrderer, String[] ordererAddress) {
+	public int order(Orderer inputOrderer, String[] ordererAddress, String selectNo) {
 		// TODO Auto-generated method stub
 		String address = String.join("^^^", ordererAddress);
 		inputOrderer.setOrdererAddress(address);
-			
 		
-		return mapper.order(inputOrderer);
+		// 주문(PURCHASE 테이블 INSERT)
+		int purchaseNo = 0;
+		
+		int result = mapper.order(inputOrderer);
+		if(result == 0) return 0;
+		
+		
+		purchaseNo = inputOrderer.getPurchaseNo();
+		
+		// 주문한 상품(PURCHASE_LIST 테이블 INSERT)
+		
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("selectNo", selectNo);
+		map.put("purchaseNo", purchaseNo);
+		
+		result = mapper.insertPurchaseList(map);
+		
+		if(result > 0) {
+			// CART 삭제
+			result = mapper.deleteOrderCart(selectNo);
+			
+			if(result > 0) {
+				return purchaseNo;
+			}
+		}
+		
+		return 0;
 	}
+	
+	
+	
+	
+	@Override
+	public Map<String, Object> checkoutResult(int purchaseNo) {
+		
+		
+//		purchaseNo = inputOrderer.getPurchaseNo();
+//		// 주문(PURCHASE 테이블 INSERT)
+////			int purchaseNo = map.purchaseNo(
+//
+////			int result = mapper.selectPurchaseNo(purchaseNo);
+////			맵으로 전달한 purchaseNo, purchase
+//			
+//			purchaseNo = orderedInfo.get
+//			return mapper.checkoutResult(map);
+	
+		PurchaseInfo purchaseInfo = mapper.selectPurchaseInfo(purchaseNo);
+		
+		List<PurchaseList> purchaseList = mapper.selectPurchaseList(purchaseNo);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("purchaseInfo", purchaseInfo);
+		map.put("purchaseList", purchaseList);
+		
+		return map;
+	}
+	
+	
+	
+	
 
 }
+
+
 	

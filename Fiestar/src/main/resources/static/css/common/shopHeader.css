@@ -1,20 +1,21 @@
 :root {
   font-size: 62.5%;
-  
 }
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: 'Pretendard-Regular';
+  font-family: "Pretendard-Regular";
   background-color: white;
 }
 
-@font-face { font-family: 'Pretendard-Regular'; 
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') 
-  format('woff'); font-weight: 100; font-style: normal; }
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+}
 
-  
 header {
   position: sticky;
   top: 0;
@@ -33,7 +34,11 @@ header {
   -webkit-box-pack: justify;
   justify-content: space-between;
 }
-
+.header-right-side {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .header-right-side > a {
   margin-left: 12px;
   text-decoration: none;
@@ -49,37 +54,34 @@ header {
   width: 280px;
   height: 48px;
   border-radius: 40px;
-  border:none;
-  background-color:  rgba(244, 246, 248, 0.922);
+  border: none;
+  background-color: rgba(244, 246, 248, 0.922);
   padding-left: 20px;
   /* border: 1px solid black; */
-
 }
 
 #searchBtn {
   border: none;
   padding-top: 14px;
-  background-color: rgba(244,246,248,0.922);
+  background-color: rgba(244, 246, 248, 0.922);
   color: rgba(196, 196, 196, 1);
   /* border: 1px solid black; */
   padding-top: 20px;
-  
-  
 }
 
 #search-input {
   padding-left: 10px;
   border: none;
-  background-color: rgba(244,246,248,0.922);
+  background-color: rgba(244, 246, 248, 0.922);
   font-size: 14px;
   color: rgb(118, 118, 118);
   width: 210px;
   border-radius: 50px;
 }
 
-#search-input:focus{
+#search-input:focus {
   border-color: none;
-  outline:0;
+  outline: 0;
   color: black;
 }
 
@@ -103,9 +105,7 @@ header {
   text-decoration: none;
   background-color: rgba(119, 67, 219, 1);
   color: white;
-  
 }
-
 
 #signUp {
   width: 80px;
@@ -123,8 +123,6 @@ header {
   box-shadow: 2px 2px 2px 2px rgba(189, 83, 255, 0.153);
 }
 
-
-
 /* 마이페이지/ 관리자 페이지 드롭다운 */
 .dropdown {
   position: relative;
@@ -132,6 +130,7 @@ header {
   display: relative;
   z-index: 2;
   height: 50px;
+  margin-left: 12px;
 }
 
 .dropdown-content {
@@ -177,15 +176,14 @@ header input:focus {
   outline: none;
 }
 
-
 /* 메뉴들 */
 header article {
   padding: 15px;
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
-} 
+  align-items: center; */
+}
 
-header >div{
+header > div {
   display: flex;
 }
