@@ -47,13 +47,14 @@
 
                   <!-- 이미지 영역 -->
 
-                  <img src="/images/keyring.png" alt="">
+                  <img th:src="${checkoutItem.productImageThumbnail}" alt="" class="productImg">
 
 
                   <!-- 제품 상세 -->
 
                   <div class="item-text">
 
+                 
                      <div class="item-name">
                         <div th:text="${checkoutItem.productName}" class="keyring"></div>
 
@@ -83,11 +84,12 @@
                   <!-- <span class="item-amount">수량: 3</span> -->
 
                   <span class="countNPrice">
-                     
+                     <span class="i-count">수량 : </span>
                   <span th:text="${checkoutItem.productCount}" class="item-count"></span>
 
-                     <!-- 개별 상품 가격 -->
 
+                     <!-- 개별 상품 가격 -->
+                 
                      <span th:text="${checkoutItem.productPrice}" class="default-price"></span>
 
                   </span>
@@ -118,7 +120,7 @@
 
                   <!-- <span class="check-price">총 상품 가격()</span> -->
                   <div class="total-price1">
-                     총 상품 가격 $ <span th:text="${totalPrice}"> </span>
+                     총 상품 가격 ₩ <span th:text="${totalPrice}" style="font-weight: bold;"> </span>
                   </div>
 
 
@@ -262,7 +264,7 @@
 
                <div>
                   <span>배송비</span>
-                  <span style="margin-left: 955px;">2500</span>
+                  <span style="margin-left: 946px;">₩2500</span>
                </div>
 
             </div>
@@ -295,7 +297,7 @@
                   <label for="payMethod" class="pm">
 
                    <img src="/image/토스페이.png" alt="" id="toss" class="pimage"> 
-                     <input type="radio" name="payMethod" value="1" class="payMethod" checked></input> <span class="ptext">토스페이</span> <!-- 결제하기 버튼 생성 --> 
+                     <input type="radio" name="payMethod" value="1" class="payMethod"></input> <span class="ptext">토스페이</span> <!-- 결제하기 버튼 생성 --> 
                   </label>
                  
 
@@ -329,7 +331,7 @@
 
          <div class="checkout-area">
 
-            <button type="button" class="checkOut-btn" id="purchaseBtn" onclick="requestPay()">결제하기</button>
+            <button type="button" class="checkOut-btn" id="purchaseBtn" >결제하기</button>
             <!-- <button onclick="requestPay()">결제하기</button> 결제하기 버튼 생성 -->
 
          </div>

@@ -16,12 +16,16 @@ const nameChangeBtn = document.getElementById("nameChangeBtn");
 nameChangeBtn.addEventListener("click", e => {
 
     let nameInput = document.getElementById("nameInput");
+    let PhoneNumber = document.getElementById("ordererPhoneNumber");
     let address1 = document.getElementById(id = "sample6_address");
     let address2 = document.getElementById("sample6_detailAddress");
     let address3 = document.getElementById("sample6_postcode");
 
-    if (nameInput.value.trim().length || address1.value.trim().length || address2.trim().length || address3.trim().length !== 0) {
+    if (nameInput.value.trim().length || address1.value.trim().length || address2.trim().length || address3.trim().length
+        || PhoneNumber.trim().length !== 0) {
+ 
         nameInput.value = ("");
+        PhoneNumber.value = ("");
         address1.value = ("");
         address2.value = ("");
         address3.value = ("");
@@ -37,6 +41,7 @@ addressChangeBtn.addEventListener("click", e => {
     let address2 = document.getElementById("sample6_detailAddress");
     let address3 = document.getElementById("sample6_postcode");
 
+    
     if (address1.value.trim().length || address2.trim().length || address3.trim().length !== 0) {
         address1.value = ("");
         address2.value = ("");
@@ -92,27 +97,55 @@ const purchaseBtn = document.getElementById("purchaseBtn");
 
 const payMethod = document.getElementsByClassName("paymethod");
 
-purchaseBtn.addEventListener("click", e => {
 
-    /* 유효성 검사 */
+purchaseBtn.addEventListener("click", (e) => {
 
-    let address1 = document.getElementById("id=sample6_address");
-    let address2 = document.getElementById("sample6_detailAddress");
-    let address3 = document.getElementById("sample6_postcode");
-    let PhoneNumber = document.getElementById("ordererPhoneNumber");
+    let inputFields = [
 
-    if (nameInput.value.trim().length == 0 || address1.value.trim().length == 0 || address2.trim().length == 0 ||
-        address3.trim().length == 0 || PhoneNumber.value.trim().length == 0) {
+        document.getElementById("nameInput"),
+        document.getElementById("ordererPhoneNumber"),
+        document.getElementById("sample6_address"),
+        document.getElementById("sample6_detailAddress"),
+        document.getElementById("sample6_postcode")
+    ];
 
-        alert("주문자 정보를 입력해주세요.")
-        e.preventDefault();
-        return;
+    // 필수 입력 필드의 라벨
+    let fieldLabels = ["주문자 이름", "전화번호", "주소", "상세 주소", "우편번호"];
+
+    // 입력 필드 검사
+    for (let i = 0; i < inputFields.length; i++) {
+        if (inputFields[i].value.trim().length === 0) {
+            alert(fieldLabels[i] + "은(는) 필수 항목입니다.");
+            inputFields[i].focus();
+            e.preventDefault(); 
+            return; 
+        }
     }
 
+   
     requestPay();
-
-
 });
+
+    // if (nameInput.value.trim().length == 0 || address1.value.trim().length == 0 || address2.trim().length == 0 ||
+    //     address3.trim().length == 0 || PhoneNumber.value.trim().length == 0) {
+
+    //     alert("주문자 정보를 입력해주세요.")
+    //     e.preventDefault();
+    //     return;
+    // }
+
+    // else {
+    //     requestPay();
+
+    // }
+    //     // 모든 검사를 통과한 경우에만 requestPay 함수 호출
+    // });
+
+
+//     requestPay();
+
+
+// });
 
 
 function requestPay() {
@@ -136,7 +169,7 @@ function requestPay() {
         pay_method: methodValue,
         merchant_uid: 'merchant_' + new Date().getTime(),
         name: '주문명:FiestarShop',
-        amount: 1,
+        amount: 50000,
 
     }, function (rsp) {
         if (rsp.success) {
@@ -153,6 +186,7 @@ function requestPay() {
         }
     });
 }
+
 
 // 주소 API
 

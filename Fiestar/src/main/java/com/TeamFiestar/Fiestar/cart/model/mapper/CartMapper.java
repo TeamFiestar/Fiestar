@@ -1,17 +1,15 @@
 package com.TeamFiestar.Fiestar.cart.model.mapper;
 
-import java.util.HashMap; 
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.http.ResponseEntity;
 
 import com.TeamFiestar.Fiestar.cart.model.dto.Cart;
+import com.TeamFiestar.Fiestar.cart.model.dto.OrderedList;
 import com.TeamFiestar.Fiestar.cart.model.dto.Orderer;
 import com.TeamFiestar.Fiestar.cart.model.dto.PurchaseInfo;
-import com.TeamFiestar.Fiestar.member.model.dto.Member;
-import com.TeamFiestar.Fiestar.member.model.dto.PurchaseList;
+
 
 @Mapper
 public interface CartMapper {
@@ -40,7 +38,9 @@ public interface CartMapper {
 
 	PurchaseInfo selectPurchaseInfo(int purchaseNo);
 
-	List<PurchaseList> selectPurchaseList(int purchaseNo);
+//	List<OrderedList> selectPurchaseList(int purchaseNo);
+
+	List<OrderedList> selectOrderedList(int purchaseNo);
 
 
 	
