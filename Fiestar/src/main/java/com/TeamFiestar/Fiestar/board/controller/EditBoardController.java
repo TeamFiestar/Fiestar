@@ -39,7 +39,8 @@ public class EditBoardController {
 	@PostMapping("{artistGroupTitle}/insert")
 	public String insertBoard(Board board, RedirectAttributes ra, 
 			@PathVariable("artistGroupTitle") String artistGroupTitle, @SessionAttribute("loginMember") Member loginMember,
-			@RequestParam("images") List<MultipartFile> images) throws IllegalStateException, IOException {
+			@RequestParam("images") List<MultipartFile> images
+			) throws IllegalStateException, IOException {
 			
 		board.setMemberNo(loginMember.getMemberNo());
 		int artistGroupNo = boardService.artistGroupNo(artistGroupTitle);
@@ -64,11 +65,26 @@ public class EditBoardController {
 	@PostMapping("{artistGroupTitle}/feed/{boardNo:[0-9]+}/delete")
 	public String boardDelete(
 			@PathVariable("artistGroupTitle") String artistGroupTitle,
-			@PathVariable("boardNo") int boardNo, Model model) {
+			@PathVariable("boardNo") int boardNo, Model model,
+			RedirectAttributes ra) {
 		
 		int result = service.deleteBoard(boardNo);
+		String message = null;
+		String path = null;
 		
-		return "redirect:/{artistGroupTitle}/feed";
+		if(result > 0) {
+			message = "삭제되었습니다.";
+			path = "redirect:/{artistGroupTitle}/feed";
+		}else { 
+				message= "삭제 실패";
+				path = "redirect:/";
+				
+			}
+			
+		ra.addFlashAttribute("message", message);
+		
+		
+		return path;
 	}
 	
 	@GetMapping("{artistGroupTitle}/feed/{boardNo:[0-9]+}/update")

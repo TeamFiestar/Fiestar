@@ -46,7 +46,17 @@
                 </div>
             </div>
 
-            <div id="boardListArea" th:each="board : ${map.boardList}" th:object="${board}" th:onclick="|openModal(*{boardNo})|">
+
+
+            <div th:with="boardList=${map.boardList}">
+                <div th:if="${#lists.size(boardList)==0}" style="display: flex; margin-top: 100px; justify-content: center; color:#7743DB; font-size: 28px;">
+                       현재 게시글이 존재하지 않습니다. 
+                    아티스트에게 해주고 싶은 말을 작성해주세요.
+                </div>
+            
+
+                <th:block th:unless="${#lists.size(boardList)==0}">
+             <div id="boardListArea" th:each="board : ${map.boardList}" th:object="${board}" th:onclick="|openModal(*{boardNo})|">
                 <div class="list-area">
                 <!-- 게시글 목록(사진 + 글) -->
 
@@ -102,8 +112,9 @@
                         <a href="#"  data-target="feedDetail" th:onclick="|openModal(*{artistGroupTitle}, *{boardNo})|"><i
                                 class="fa-regular fa-comment fa-xl" style="color: #7743DB; margin-left: 20px; font-size: 20px;"></i> <span th:text="*{commentCount}" style="margin-left:5px;" >234</span></a>
                     </section>
+                    </div>
                 </div>
-                </div>
+             </th:block>
             </div>
 
 

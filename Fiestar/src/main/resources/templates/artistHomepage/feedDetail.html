@@ -19,10 +19,10 @@
                     <span class="element">
                         
                             <input id="check-btn" type="checkbox" />
-                            <label for="check-btn"><i class="fa-solid fa-ellipsis-vertical fa-2x" style="color:gray; font-size:26px;"></i></label>
+                            <label for="check-btn"><i class="fa-solid fa-ellipsis-vertical fa-2x" style="color:gray; font-size:26px; padding: 5px 15px; cursor: pointer;"></i></label>
                             <div class="menubars">
                                 <a>
-                                    <button id="reportFeed" th:onclick="|reportOpen(*{memberNo},*{boardCommentNo}, 'boardComment')|" >신고하기</button>
+                                    <button id="reportFeed" th:onclick="|reportOpen(*{memberNo},*{boardNo}, 'board')|" >신고하기</button>
                                 </a>
                                 <!-- <th:block th:if="${session.loginMember != null and session.loginMember.memberNo == Board.memberNo}"> -->
                                   <!-- <th:block th:if="${session.loginMember != null and session.loginMember.memberNo == board.memberNo}"> -->

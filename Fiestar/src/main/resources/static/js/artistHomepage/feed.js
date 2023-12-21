@@ -45,6 +45,11 @@ function closeModal(stateObj) {
   modal.classList.remove("show");
   document.body.style.overflow = "";
 
+  const menubars = document.querySelector(".menubars");
+  menubars.style.display = 'none';
+
+
+
 }
 const modalForm = document.getElementById('modal-form');
 
@@ -74,13 +79,9 @@ function updatePageContent(boardNo) {
       const feedUpdate2 = document.querySelector('#feedUpdate2');
       feedUpdate2.innerText = board.boardContent;
 
-      // if (board.imageList && board.imageList.length > 0) {
-      // const inputImage2 = document.getElementsByClassName("preview2");
-      // inputImage2.innerHTML = '';
+     const reportFeed = document.querySelector('#reportFeed');
+     reportFeed.setAttribute("onclick", "reportOpen(" + board.memberNo + "," + board.boardNo + ", " + "'board'" + ")");
 
-      //   board.image
-
-      // }
 
       const profileImage = document.getElementById('profileImage');
 
@@ -117,8 +118,6 @@ function updatePageContent(boardNo) {
         });
 
 
-
-
       } else {
         const feedImg = document.querySelector('.feedImg');
         feedImg.innerHTML = '';
@@ -129,17 +128,28 @@ function updatePageContent(boardNo) {
 
 
 
+      /* 신고하기, 수정, 삭제 버튼  */
       const checkBtn = document.querySelector("#check-btn");
       const updateBtn = document.querySelector("#updateBtn");
       const feedDeleteBtn2 = document.querySelector("#feedDeleteBtn");
 
       checkBtn.addEventListener("click", () => {
+        const menubars = document.querySelector(".menubars");
+
+        
+        if (menubars.style.display !== 'block') {
+          menubars.style.display = 'block';
+        } else {
+            menubars.style.display = 'none';
+        }
+
+
         if (loginMemberNo != board.memberNo) {
           updateBtn.style.display = "none";
           feedDeleteBtn2.style.display = "none";
         } else {
-          updateBtn.style.display = "relative";
-          feedDeleteBtn2.style.display = "relative";
+          updateBtn.style.display = "block";
+          feedDeleteBtn2.style.display = "block";
         }
 
       })
@@ -174,9 +184,13 @@ function updatePageContent(boardNo) {
       const commentList = board.commentList;
 
       // 'boardCommentDelFl'이 'N'인 댓글만 필터링
-      const validComments = commentList.filter(comment => comment.boardCommentDelFl === 'N');
+      const validComments = commentList;
 
-      const commentCount = validComments.length;
+      let commentCount = 0;
+      console.log(validComments);
+      if(validComments){
+        commentCount = validComments.length;
+      }
 
       const textWrapper = document.querySelector('.text-wrapper');
 
@@ -190,14 +204,6 @@ function updatePageContent(boardNo) {
       /* ------------------------------------------------------------ */
 
       const feedDeleteBtn = document.getElementById("feedDeleteBtn");
-
-      if (feedDeleteBtn != null) {
-
-        //   feedDeleteBtn.addEventListener("click", ()=>{
-        //   location.href = `/${artistGroupTitle}/feed/${boardNo}/delete`;
-        // });
-
-      }
 
 
     });
@@ -300,8 +306,8 @@ function generateComment(boardNo3) {
             reportImg.src = "/img/report.png";
             // reportImg.onclick = reportOpen;
             reportImg.onclick = modalOpen;
+            reportImg.setAttribute("onclick", "reportOpen(" + comment.memberNo + "," + comment.boardCommentNo + ", " + "'boardComment'" + ")");
             
-
             const deleteBtn = document.createElement("button");
             deleteBtn.classList.add("delete-cross");
             deleteBtn.innerText = "X";
@@ -408,7 +414,6 @@ likeImg.addEventListener("click", (e) => {
       }
       e.target.classList.toggle("fa-regular");
       e.target.classList.toggle("fa-solid");
-      const feedLikeCount = document.querySelector('#feedLikeCount');
       if (likeCheck == 1) {
         likeCount2 = likeCount2 - 1;
         dataObj.likeCheck = 0;
@@ -572,9 +577,6 @@ function insertChildComment(boardParentCommentNo, btn) {
 }
 
 
-
-
-
 function likeComment(btn, boardCommentNo) {
 
   let likeClick;
@@ -644,7 +646,6 @@ function likeComment(btn, boardCommentNo) {
 
 
 
-
 const modal = document.getElementById('modalContainer');
 
 function modalOpen() {
@@ -659,7 +660,7 @@ function modalClose() {
 
 let reportType;
 const reportBtn = document.getElementById('reportBtn');
-const data = {};
+const reportData = {};
 
 
 function reportOpen(reportTargetNo, reportContentNo, reportType){
@@ -669,22 +670,23 @@ function reportOpen(reportTargetNo, reportContentNo, reportType){
   }
   modalOpen();
 
-  data.artistGroupNo = boardDetail.artistGroupNo;
-  data.reporterNo = loginMemberNo;
-  data.reportTargetNo = reportTargetNo;
-  data.reportContentNo = reportContentNo;
-  data.reportType = reportType;
-
   
+  reportData.artistGroupNo = board.artistGroupNo;
+  reportData.reporterNo = loginMemberNo;
+  reportData.reportTargetNo = reportTargetNo;
+  reportData.reportContentNo = reportContentNo;
+  reportData.reportType = reportType;
 }
+  
+
 
 
 reportBtn.addEventListener('click', () =>{
 
-  fetch("/insertReport",{
+  fetch(`/${artistGroupTitle}/report`,{
     method : "POST",
     headers : {"Content-Type" : "application/json"},
-    body : JSON.stringify(data)
+    body : JSON.stringify(reportData)
   })
   .then(resp => resp.text())
   .then(result =>{
