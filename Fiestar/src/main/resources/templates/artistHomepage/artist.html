@@ -20,7 +20,7 @@
   <th:block th:replace="~{artistHomepage/feedDetail}"></th:block>
   <th:block th:replace="~{artistHomepage/feedUpdate}"></th:block>
   <th:block th:replace="~{artistHomepage/report}"></th:block>
-  
+  <main>
     
 <div th:with="boardList=${map.boardList}">
   <div th:if="${#lists.size(boardList)==0}" style="display: flex; margin-top: 100px; justify-content: center; color:#7743DB; font-size: 28px;">
@@ -133,6 +133,7 @@
     </section>
   </th:block> 
 </div>
+</main>
 
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/2434a52ecc.js" crossorigin="anonymous"></script>
@@ -157,6 +158,7 @@
             openModal(boardD.boardNo);
         }
  </script>
+ 
 
 </body>
 
