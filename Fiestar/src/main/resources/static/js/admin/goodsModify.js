@@ -58,34 +58,13 @@ function content(input) {
 }
 
 
-
 //---------------------------------------------------------------------
 /* 제출 시 유효성 검사 */
 const goodsFrm = document.getElementById("goodsFrm");
 goodsFrm.addEventListener("submit", e=>{
-  const title = document.querySelector("[name='productName']");
-  const price = document.querySelector("[name='productPrice']");
+  
   const option = document.querySelector("[className='inputOption']");
- 
 
-  //제목 미입력
-  if(title.value.trim().length == 0){
-    alert("제목을 입력해주세요");
-    
-    e.preventDefault(); 
-    title.value = "";
-    title.focus();
-  }
-
-  //가격 미입력
-  if(price.value.trim().length == 0){
-    alert("가격을 입력해주세요");
-    
-    e.preventDefault(); 
-    price.value = "";
-    price.focus();
-
-  }
   //옵션 미입력
   if(option.value.trim().length == 0){
     alert("옵션을 입력해주세요");

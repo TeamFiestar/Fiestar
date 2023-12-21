@@ -165,19 +165,16 @@ function totalNoProduct( ) {
 
   let sum = 0;
 
-
   for(i of results) {
     console.log(i);
     sum += (Number)(i.innerText);
-    
   }
+  
   totalProduct.textContent = "총 상품금액 (" + sum +")";
   totalProduct.setAttribute('value',sum);
-  console.log(totalProduct.getAttribute('value'));
 
   const productValue = totalProduct.getAttribute('value');
   count.value = productValue;
-  console.log(count.getAttribute('value'));
 }
 
 
@@ -259,9 +256,6 @@ function send(action){
       }
     })
   }
-
-
-  
 };
 
 

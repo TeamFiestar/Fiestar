@@ -38,14 +38,16 @@
               <div>[주의]</div> 
               배송 예정일은 상품 및 물류 상황에 따라 지연될 수 있습니다. 일정이 변경될 경우 개별 안내될 예정입니다.
             </div>
-
-            <div class="product-option">
-              옵션 선택
-              <select name="key" id="optionSelect">
-                <option value="" selected disabled hidden>옵션을 선택해주세요</option>
-                <option  th:each="option: ${optionList}" th:object="${option}" th:value="*{productOptionName}" th:text="*{productOptionName}">S(90~95)</option>
-              </select>
-            </div>
+            
+          
+                <div class="product-option">
+                  옵션 선택
+                  <select name="key" id="optionSelect">
+                    <option value="" selected disabled hidden>옵션을 선택해주세요</option>
+                    <option  th:each="option: ${optionList}" th:object="${option}" th:value="*{productOptionName}" th:text="*{productOptionName}">S(90~95)</option>
+                  </select>
+                </div>
+            </th:block>
 
             <div class="product-purchase-list">
                   <!-- <span class="product-purchase-name">[아티스트명] 상품명 <span class="remove-row">&times</span></span>
@@ -78,8 +80,8 @@
           <input type="hidden" name="selectEach" id="selectEach">
         </form>
       </div>
-     <!--  and session.loginMember.memberAuthority == 3 -->
-      <th:block th:if="${session.loginMember != null }"> 
+     
+      <th:block th:if="${session.loginMember != null and session.loginMember.memberAuthority == 3}"> 
         <button id="updateBtn" class="updateBtn">수정</button>
         <button id="deleteBtn" class="deleteBtn">삭제</button>
       </th:block>
