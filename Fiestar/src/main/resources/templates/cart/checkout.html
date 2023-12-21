@@ -54,6 +54,7 @@
 
                   <div class="item-text">
 
+                 
                      <div class="item-name">
                         <div th:text="${checkoutItem.productName}" class="keyring"></div>
 
@@ -88,7 +89,7 @@
 
 
                      <!-- 개별 상품 가격 -->
-                     <span class="d-price">상품 가격 : </span>
+                 
                      <span th:text="${checkoutItem.productPrice}" class="default-price"></span>
 
                   </span>
@@ -119,7 +120,7 @@
 
                   <!-- <span class="check-price">총 상품 가격()</span> -->
                   <div class="total-price1">
-                     총 상품 가격 $ <span th:text="${totalPrice}"> </span>
+                     총 상품 가격 ₩ <span th:text="${totalPrice}" style="font-weight: bold;"> </span>
                   </div>
 
 
@@ -263,7 +264,7 @@
 
                <div>
                   <span>배송비</span>
-                  <span style="margin-left: 946px;">2500</span>
+                  <span style="margin-left: 946px;">₩2500</span>
                </div>
 
             </div>
@@ -296,7 +297,7 @@
                   <label for="payMethod" class="pm">
 
                    <img src="/image/토스페이.png" alt="" id="toss" class="pimage"> 
-                     <input type="radio" name="payMethod" value="1" class="payMethod" checked></input> <span class="ptext">토스페이</span> <!-- 결제하기 버튼 생성 --> 
+                     <input type="radio" name="payMethod" value="1" class="payMethod"></input> <span class="ptext">토스페이</span> <!-- 결제하기 버튼 생성 --> 
                   </label>
                  
 

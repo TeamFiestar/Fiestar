@@ -55,6 +55,7 @@ public class OrderedList {
 	private int productNo;
 	private String productName; 
 	private int artistGroupNo;
+	
 	private int productQuantity;
 	private int productOptionNo;
 	private String productOptionName;

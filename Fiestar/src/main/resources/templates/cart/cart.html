@@ -88,8 +88,14 @@
                <!-- <div class="item-name"> -->
                <!-- <a th:href="@{}" class="keyring">뉴진스 키링</a> -->
                <div class="item-nameNop">
-
+                  
+                  <!-- <a th:href="@{/shop/shopDetail/' + ${cart.productNo}}" class="keyring" th:text="${cart.productName}"></a>
                   <div th:text="${cart.productName}" class="keyring"></div>
+                  <div th:text="${cart.productNo}" class="keyring"></div>
+                   -->
+
+               <a th:href="@{/shop/shopDetail/{productNo}(productNo=${cart.productNo})}" class="keyring" th:text="${cart.productName}"></a>
+               
                   
                   
                   <!-- </div> -->
@@ -147,6 +153,7 @@
                      <i class="fa-solid fa-plus"></i>
                   </label>
                   
+                  
                   <span th:text="${cart.productPrice}" class="default-price"></span>
                   <span th:text="${cart.cartNo}" class="cartNo"></span>
 
@@ -154,7 +161,7 @@
                
                <!-- <th:block th:text="${cart.productPrice}" class="default-price"></th:block> -->
    
-               <span th:text="${cart.productPrice} * ${cart.productCount} " class="amount-price" style="font-weight: bold;"></span>
+               <span th:text="'₩' + ${cart.productPrice} * ${cart.productCount} " class="amount-price" style="font-weight: bold;"></span>
                
    
                <label class="x-btn">

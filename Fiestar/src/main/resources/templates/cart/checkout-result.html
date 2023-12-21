@@ -96,7 +96,8 @@
 
                      <!-- 개별 상품 가격 -->
 
-                     <span class="item-price" th:text="${item.eachPrice}" style="font-weight: bold;">Price</span>
+                     <span class="item-price" th:text= "'₩' + ${item.eachPrice}" style="font-weight: bold;">Price</span>
+                     <!-- <span class="item-price" th:text="${item.eachPrice}" style="font-weight: bold;">Price</span> -->
 
                   </span>
 
