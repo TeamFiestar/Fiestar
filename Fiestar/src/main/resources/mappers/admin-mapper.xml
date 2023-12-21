@@ -272,35 +272,30 @@
 		FROM REPORT r  
 		JOIN "MEMBER" m ON(R.REPORT_TARGET_NO = M.MEMBER_NO)
 		JOIN "MEMBER" m2 ON(R.REPORTER_NO = M2.MEMBER_NO)
-		<where>
-			<if test="report.key == 1"> M2.MEMBER_NICKNAME LIKE '%${report.reportSearch}%'</if>
-			<if test="report.key == 2"> M2.MEMBER_EMAIL LIKE '%${report.reportSearch}%'</if>
-			<if test="report.key == 3"> M.MEMBER_NICKNAME LIKE '%${report.reportSearch}%'</if>
-			<if test="report.key == 4"> M.MEMBER_EMAIL LIKE '%${report.reportSearch}%'</if>
-			<if test="report.key == 5"> REPORT_CONTENT LIKE '%${report.reportSearch}%'</if>
-		</where>
+		<if test="report.key == 1">WHERE M2.MEMBER_NICKNAME LIKE '%${report.reportSearch}%'</if>
+		<if test="report.key == 2">WHERE M2.MEMBER_EMAIL LIKE '%${report.reportSearch}%'</if>
+		<if test="report.key == 3">WHERE M.MEMBER_NICKNAME LIKE '%${report.reportSearch}%'</if>
+		<if test="report.key == 4">WHERE M.MEMBER_EMAIL LIKE '%${report.reportSearch}%'</if>
+		<if test="report.key == 5">WHERE REPORT_CONTENT LIKE '%${report.reportSearch}%'</if>
 	</select>
 	
 	<!-- 신고 조회 -->
 	<select id="selectReportList">
 		SELECT 	REPORT_NO , REPORTER_NO 
-			REPORT_TARGET_NO , REPORT_PROCEED , 
-			REPORT_URL ,REPORT_CONTENT , 
+			REPORT_TARGET_NO , REPORT_PROCEED , REPORT_TYPE ,
 			M2.MEMBER_EMAIL AS REPORTER_EMAIL,
 			M2.MEMBER_NICKNAME AS REPORTER_NICKNAME,
-			REPORT_TARGET_NO ,
+			REPORT_CONTENT_NO ,
 			M.MEMBER_EMAIL AS REPORT_TARGET_EMAIL ,
 			M.MEMBER_NICKNAME AS REPORT_TARGET_NICKNAME
 		FROM REPORT r  
 		JOIN "MEMBER" m ON(R.REPORT_TARGET_NO = M.MEMBER_NO)
 		JOIN "MEMBER" m2 ON(R.REPORTER_NO = M2.MEMBER_NO)
-		<where>
-			<if test="report.key == 1"> M2.MEMBER_NICKNAME LIKE '%${report.reportSearch}%'</if>
-			<if test="report.key == 2"> M2.MEMBER_EMAIL LIKE '%${report.reportSearch}%'</if>
-			<if test="report.key == 3"> M.MEMBER_NICKNAME LIKE '%${report.reportSearch}%'</if>
-			<if test="report.key == 4"> M.MEMBER_EMAIL LIKE '%${report.reportSearch}%'</if>
-			<if test="report.key == 5"> REPORT_CONTENT LIKE '%${report.reportSearch}%'</if>
-		</where>
+		<if test="report.key == 1">WHERE M2.MEMBER_NICKNAME LIKE '%${report.reportSearch}%'</if>
+		<if test="report.key == 2">WHERE M2.MEMBER_EMAIL LIKE '%${report.reportSearch}%'</if>
+		<if test="report.key == 3">WHERE M.MEMBER_NICKNAME LIKE '%${report.reportSearch}%'</if>
+		<if test="report.key == 4">WHERE M.MEMBER_EMAIL LIKE '%${report.reportSearch}%'</if>
+		<if test="report.key == 5">WHERE REPORT_CONTENT LIKE '%${report.reportSearch}%'</if>
 	</select>
 	
 	<!-- 주문 배송 개수 -->

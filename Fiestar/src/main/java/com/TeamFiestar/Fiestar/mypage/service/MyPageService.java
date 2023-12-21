@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.TeamFiestar.Fiestar.admin.model.dto.SiteNotice;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
 public interface MyPageService {
@@ -18,8 +19,6 @@ public interface MyPageService {
 	// 내가 구독한 아티스트
 	Map<String, Object> myArtistList(Member loginMember, int cp);
 
-	// 구매목록
-	Map<String, Object> myPurchaseList(Member loginMember, int cp);
 
 	// 회원 탈퇴
 	int withDrawal(String memberPw, int memberNo);
@@ -35,6 +34,12 @@ public interface MyPageService {
 
 	int info(Member loginMember, MultipartFile memberBackImage, Member updateMember, String[] MemberAddress)
 			throws IllegalStateException, IOException;
+
+	// 공지사항 조회
+	Map<String, Object> siteNotice(int cp);
+
+	// 공지사항 상세 조회
+	SiteNotice selectNotice(Map<String, Object> map);
 
 
 

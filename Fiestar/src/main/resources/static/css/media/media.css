@@ -571,7 +571,7 @@ main{
 
 
 
-#modalContainer.hidden, #deleteModalContainer.hidden {
+#modalContainer.hidden, #deleteModalContainer.hidden, .speech-bubble-wrapper .hidden  {
   display: none;
 }
 
