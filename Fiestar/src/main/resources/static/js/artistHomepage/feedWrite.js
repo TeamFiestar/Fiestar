@@ -27,6 +27,8 @@ const inputImageList = document.getElementsByClassName("inputImage");
 
 const deleteImageList = document.getElementsByClassName("delete-image");
 
+const backupInputList = new Array(inputImageList.length);
+
 const changeImageFn = (imageInput, order) => {
 
   // imageInput : 파일이 선택/취소된 input 태그

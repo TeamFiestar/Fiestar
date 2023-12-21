@@ -16,7 +16,7 @@ public interface EditBoardMapper {
 
 	int deleteBoard(int boardNo);
 
-	Board updateBoardDetail(int boardNo);
+	Board updateBoardDetail(int boardNo, int memberNo);
 
 	int updateBoard(Board updateBoard);
 

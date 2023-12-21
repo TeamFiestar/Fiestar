@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.TeamFiestar.Fiestar.admin.model.dto.Report;
 import com.TeamFiestar.Fiestar.board.model.dto.Comment;
+import com.TeamFiestar.Fiestar.board.model.service.BoardService;
 import com.TeamFiestar.Fiestar.board.model.service.CommentService;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
@@ -27,6 +29,7 @@ import lombok.RequiredArgsConstructor;
 public class CommentController {
 
 	private final CommentService service;
+	private final BoardService boardService;
 	
 	@GetMapping(value="comment", produces = "application/json")
 	public List<Comment> select(int boardNo, Model model, 
@@ -92,6 +95,18 @@ public class CommentController {
 		
 		return service.deleteLike(comment);
 	}
+	
+	@PostMapping("{artistGroupTitle}/report")
+	@ResponseBody
+	public int insertReport(@RequestBody Report report, 
+			@SessionAttribute("loginMember") Member loginMember,
+			@PathVariable("artistGroupTitle") String artistGroupTitle) {
+		
+		report.setReporterNo(loginMember.getMemberNo());
+		report.setArtistGroupNo(boardService.artistGroupNo(artistGroupTitle) );
+		return service.insertReport(report);
+	}
+	
 	
 	
 }

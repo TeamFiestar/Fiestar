@@ -1,13 +1,17 @@
 
 let likeCheck;
 let likeCount2;
+let likeClick;
+let likeCount3;
 const dataObj = {};
 const likeImg = document.querySelector('#likeImg');
+const likeImg2 = document.querySelector('#likeImg2');
+
 let boardNo2;
 
 function openModal(boardNo) {
   // 새로운 URL 생성
-  var newUrl = "/" + artistGroupTitle + "/artist/" + boardNo;
+  var newUrl = "/" + artistGroupTitle + "/feed/" + boardNo;
   console.log(artistGroupTitle);
   console.log(boardNo);
   console.log(newUrl);
@@ -38,9 +42,12 @@ function closeModal(stateObj){
   const modal = document.getElementById('feedDetail');
   modal.classList.remove("show");
   document.body.style.overflow = "";
-  
+  const menubars = document.querySelector(".menubars");
+  menubars.style.display = 'none';
 }
+const modalForm = document.getElementById('modal-form');
 
+const modalUpdate = document.getElementById('modal-update2');
 
 function updatePageContent(boardNo) {
 
@@ -51,6 +58,8 @@ function updatePageContent(boardNo) {
   .then(board => {
     console.log(board);
 
+    modalForm.setAttribute('action', `${boardNo}/delete`)
+    modalUpdate.setAttribute('action', `${boardNo}/update`)
     /* ----------------- 아이디 등 인적사항 및 피드 내용 -------------------------- */
     const boardNickname = document.getElementById('boardNickname');
     boardNickname.innerText = board.memberNickname;
@@ -59,6 +68,14 @@ function updatePageContent(boardNo) {
 
     const feedMain = document.querySelector('.feedMain');
     feedMain.innerText = board.boardContent;
+
+    
+    const feedUpdate2 = document.querySelector('#feedUpdate2');
+    feedUpdate2.innerText = board.boardContent;
+
+   const reportFeed = document.querySelector('#reportFeed');
+   reportFeed.setAttribute("onclick", "reportOpen(" + board.memberNo + "," + board.boardNo + ", " + "'board'" + ")");
+
 
     const profileImage = document.getElementById('profileImage');
 
@@ -102,6 +119,35 @@ function updatePageContent(boardNo) {
 
      /* ------------------------------------------------------------ */
 
+     
+      /* 신고하기, 수정, 삭제 버튼  */
+      const checkBtn = document.querySelector("#check-btn");
+      const updateBtn = document.querySelector("#updateBtn");
+      const feedDeleteBtn2 = document.querySelector("#feedDeleteBtn");
+
+      checkBtn.addEventListener("click", () => {
+        const menubars = document.querySelector(".menubars");
+
+        
+        if (menubars.style.display !== 'block') {
+          menubars.style.display = 'block';
+        } else {
+            menubars.style.display = 'none';
+        }
+
+
+        if (loginMemberNo != board.memberNo) {
+          updateBtn.style.display = "none";
+          feedDeleteBtn2.style.display = "none";
+        } else {
+          updateBtn.style.display = "block";
+          feedDeleteBtn2.style.display = "block";
+        }
+
+      })
+
+
+
     /* ----------------- 피드 좋아요 표시 -------------------------- */
     const feedLikeCount = document.querySelector('#feedLikeCount');
     feedLikeCount.innerText = board.likeCount;
@@ -117,17 +163,18 @@ function updatePageContent(boardNo) {
       likeImg.classList.add("fa-regular");
     }
 
-
     likeCount2 = board.likeCount;
-
-    
     
     const commentList = board.commentList;
 
     // 'boardCommentDelFl'이 'N'인 댓글만 필터링
-    const validComments = commentList.filter(comment => comment.boardCommentDelFl === 'N');
+    const validComments = commentList;
 
-    const commentCount = validComments.length;
+    let commentCount = 0;
+    console.log(validComments);
+    if(validComments){
+      commentCount = validComments.length;
+    }
 
     const textWrapper = document.querySelector('.text-wrapper');
 
@@ -141,9 +188,6 @@ function updatePageContent(boardNo) {
     /* ------------------------------------------------------------ */
 
     /* ----------------- 댓글 표시 -------------------------- */
-    
-
-
     
 
     /* ------------------------------------------------------------ */
@@ -249,6 +293,8 @@ function generateComment(boardNo3) {
       reportImg.className = "report-img";
       reportImg.src = "/img/report.png";
       // reportImg.onclick = reportOpen;
+      reportImg.onclick = modalOpen;
+      reportImg.setAttribute("onclick", "reportOpen(" + comment.memberNo + "," + comment.boardCommentNo + ", " + "'boardComment'" + ")");
 
       const deleteBtn = document.createElement("button");
       deleteBtn.classList.add("delete-cross");
@@ -320,6 +366,11 @@ function generateComment(boardNo3) {
 };
 
 
+function updateCommentCount(commentCount) {
+  const textWrapper = document.querySelector('.text-wrapper');
+  textWrapper.innerText = commentCount + "개의 댓글";
+}
+
 
 likeImg.addEventListener("click", (e) => {
   if (!loginCheck) {
@@ -350,7 +401,6 @@ likeImg.addEventListener("click", (e) => {
       }
       e.target.classList.toggle("fa-regular");
       e.target.classList.toggle("fa-solid");
-      const feedLikeCount = document.querySelector('#feedLikeCount');
       if(likeCheck == 1){
         likeCount2 = likeCount2 - 1;
         dataObj.likeCheck = 0;
@@ -436,6 +486,18 @@ function deleteComment(boardCommentNo) {
 
 /* ----------------------------------------------------------------------------------- */
 function showInsertComment(boardParentCommentNo, btn) {
+
+  
+  const temp = document.getElementsByClassName("commentInsertContent");
+
+  if (temp.length > 0) {
+    if (confirm("다른 답글을 작성 중입니다. 현재 댓글에 답글을 작성 하시겠습니까?")) {
+      temp[0].nextElementSibling.remove();
+      temp[0].remove();
+    } else {
+      return;
+    }
+  }
 
   const textarea = document.createElement("input");
   textarea.type = "text";
@@ -572,22 +634,93 @@ function likeComment(btn, boardCommentNo) {
 }
 
 
+const modal = document.getElementById('modalContainer');
 
+function modalOpen() {
 
+  modal.classList.remove('hidden');
 
-function wopenModal() {
-  const modal = document.getElementById('feedWrite');
-  modal.classList.add("show");
-  document.body.style.overflow = "hidden";
-
+}
+function modalClose() {
+  modal.classList.add('hidden');
 }
 
 
+let reportType;
+const reportBtn = document.getElementById('reportBtn');
+const reportData = {};
 
-function wcloseModal() {
-  const modal = document.getElementById('feedWrite');
+
+function reportOpen(reportTargetNo, reportContentNo, reportType){
+  if(loginMemberNo == null){
+    alert("로그인 후 이용해주세요")
+    return;
+  }
+  modalOpen();
+
+  
+  reportData.artistGroupNo = board.artistGroupNo;
+  reportData.reporterNo = loginMemberNo;
+  reportData.reportTargetNo = reportTargetNo;
+  reportData.reportContentNo = reportContentNo;
+  reportData.reportType = reportType;
+}
+  
+
+
+
+reportBtn.addEventListener('click', () =>{
+
+  fetch(`/${artistGroupTitle}/report`,{
+    method : "POST",
+    headers : {"Content-Type" : "application/json"},
+    body : JSON.stringify(reportData)
+  })
+  .then(resp => resp.text())
+  .then(result =>{
+    if(result > 0){
+      alert("신고되었습니다");
+    }
+  })
+  .catch(err => console.log(err));
+
+
+})
+
+
+function uOpenModal() {
+
+  const modal2 = document.getElementById('feedDetail');
+  modal2.classList.remove("show");
+  document.body.style.overflow = "";
+
+  const modal = document.getElementById('feedUpdate');
+  modal.classList.add("show");
+  document.body.style.overflow = "hidden";
+
+  const feedImage = document.querySelectorAll('.feed-image');
+  const updatePreviewImage = document.querySelectorAll('.preview2');
+  console.log(feedImage.length);
+
+  let index = 0;
+  for ( let feedImg of feedImage) {
+    updatePreviewImage[index].src = feedImg.src;
+    index++;
+  }
+
+
+}
+
+function ucloseModal(stateObj) {
+
+  var newUrl = "/" + artistGroupTitle + "/feed";
+  history.pushState(stateObj, "", newUrl);
+
+  const modal = document.getElementById('feedUpdate');
   modal.classList.remove("show");
   document.body.style.overflow = "";
 
 }
+
+
 

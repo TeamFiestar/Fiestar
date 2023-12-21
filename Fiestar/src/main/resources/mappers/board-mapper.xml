@@ -23,11 +23,17 @@
 	</resultMap>
 	
 	<select id="artistGroupNo">
-		SELECT ARTIST_GROUP_NO, ARTIST_GROUP_MAINIMG, ARTIST_GROUP_LOGOIMG, ARTIST_GROUP_INTRODUCTION, ARTIST_GROUP_TITLE
+		SELECT ARTIST_GROUP_NO
 		FROM ARTIST_GROUP ag 
 		WHERE ARTIST_GROUP_TITLE = #{artistGroupTitle}
 	</select>
   
+	<select id="artistGroup" resultType="ArtistGroup1">
+		SELECT ARTIST_GROUP_MAINIMG, ARTIST_GROUP_LOGOIMG, ARTIST_GROUP_INTRODUCTION, ARTIST_GROUP_TITLE, ARTIST_GROUP_PROFILE
+		FROM ARTIST_GROUP 
+		WHERE ARTIST_GROUP_TITLE = #{artistGroupTitle}
+	</select>
+	
 	
 	<!-- ===========================일반 게시글 조회==================================-->
  
@@ -218,6 +224,18 @@
 		CONNECT BY PRIOR BOARD_COMMENT_NO = BOARD_PARENT_COMMENT_NO
 		ORDER SIBLINGS BY BOARD_COMMENT_NO DESC
 	</select>
+	
+	<insert id="insertReport">
+		INSERT INTO REPORT r VALUES
+			(SEQ_REPORT_NO.NEXTVAL, 
+			#{reporterNo}, 
+			#{reportTargetNo}, 
+			#{artistGroupNo},
+			'N',
+			#{reportContentNo},
+			#{reportContent},
+			#{reportType})
+	</insert>
 	
 	
 	
