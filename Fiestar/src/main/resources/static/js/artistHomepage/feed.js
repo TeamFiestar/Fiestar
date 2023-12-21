@@ -45,8 +45,15 @@ function closeModal(stateObj) {
   modal.classList.remove("show");
   document.body.style.overflow = "";
 
+  const menubars = document.querySelector(".menubars");
+  menubars.style.display = 'none';
+
+
+
 }
 const modalForm = document.getElementById('modal-form');
+
+const modalUpdate = document.getElementById('modal-update2');
 
 function updatePageContent(boardNo) {
 
@@ -58,6 +65,7 @@ function updatePageContent(boardNo) {
       console.log(board);
 
       modalForm.setAttribute('action', `${boardNo}/delete`)
+      modalUpdate.setAttribute('action', `${boardNo}/update`)
 
       /* ----------------- 아이디 등 인적사항 및 피드 내용 -------------------------- */
       const boardNickname = document.getElementById('boardNickname');
@@ -67,6 +75,13 @@ function updatePageContent(boardNo) {
 
       const feedMain = document.querySelector('.feedMain');
       feedMain.innerText = board.boardContent;
+
+      const feedUpdate2 = document.querySelector('#feedUpdate2');
+      feedUpdate2.innerText = board.boardContent;
+
+     const reportFeed = document.querySelector('#reportFeed');
+     reportFeed.setAttribute("onclick", "reportOpen(" + board.memberNo + "," + board.boardNo + ", " + "'board'" + ")");
+
 
       const profileImage = document.getElementById('profileImage');
 
@@ -97,6 +112,7 @@ function updatePageContent(boardNo) {
           const imagePath = image.boardImagePath + image.boardImageRename;
 
           imgElement.src = imagePath;
+          imgElement.classList = "feed-image";
 
           feedImg.appendChild(imgElement);
         });
@@ -112,17 +128,28 @@ function updatePageContent(boardNo) {
 
 
 
+      /* 신고하기, 수정, 삭제 버튼  */
       const checkBtn = document.querySelector("#check-btn");
       const updateBtn = document.querySelector("#updateBtn");
       const feedDeleteBtn2 = document.querySelector("#feedDeleteBtn");
 
       checkBtn.addEventListener("click", () => {
+        const menubars = document.querySelector(".menubars");
+
+        
+        if (menubars.style.display !== 'block') {
+          menubars.style.display = 'block';
+        } else {
+            menubars.style.display = 'none';
+        }
+
+
         if (loginMemberNo != board.memberNo) {
           updateBtn.style.display = "none";
           feedDeleteBtn2.style.display = "none";
         } else {
-          updateBtn.style.display = "relative";
-          feedDeleteBtn2.style.display = "relative";
+          updateBtn.style.display = "block";
+          feedDeleteBtn2.style.display = "block";
         }
 
       })
@@ -157,9 +184,13 @@ function updatePageContent(boardNo) {
       const commentList = board.commentList;
 
       // 'boardCommentDelFl'이 'N'인 댓글만 필터링
-      const validComments = commentList.filter(comment => comment.boardCommentDelFl === 'N');
+      const validComments = commentList;
 
-      const commentCount = validComments.length;
+      let commentCount = 0;
+      console.log(validComments);
+      if(validComments){
+        commentCount = validComments.length;
+      }
 
       const textWrapper = document.querySelector('.text-wrapper');
 
@@ -173,14 +204,6 @@ function updatePageContent(boardNo) {
       /* ------------------------------------------------------------ */
 
       const feedDeleteBtn = document.getElementById("feedDeleteBtn");
-
-      if (feedDeleteBtn != null) {
-
-        //   feedDeleteBtn.addEventListener("click", ()=>{
-        //   location.href = `/${artistGroupTitle}/feed/${boardNo}/delete`;
-        // });
-
-      }
 
 
     });
@@ -282,7 +305,9 @@ function generateComment(boardNo3) {
             reportImg.className = "report-img";
             reportImg.src = "/img/report.png";
             // reportImg.onclick = reportOpen;
-
+            reportImg.onclick = modalOpen;
+            reportImg.setAttribute("onclick", "reportOpen(" + comment.memberNo + "," + comment.boardCommentNo + ", " + "'boardComment'" + ")");
+            
             const deleteBtn = document.createElement("button");
             deleteBtn.classList.add("delete-cross");
             deleteBtn.innerText = "X";
@@ -389,7 +414,6 @@ likeImg.addEventListener("click", (e) => {
       }
       e.target.classList.toggle("fa-regular");
       e.target.classList.toggle("fa-solid");
-      const feedLikeCount = document.querySelector('#feedLikeCount');
       if (likeCheck == 1) {
         likeCount2 = likeCount2 - 1;
         dataObj.likeCheck = 0;
@@ -553,12 +577,6 @@ function insertChildComment(boardParentCommentNo, btn) {
 }
 
 
-
-
-
-
-
-
 function likeComment(btn, boardCommentNo) {
 
   let likeClick;
@@ -627,36 +645,59 @@ function likeComment(btn, boardCommentNo) {
 }
 
 
-/* ==================게시글 삭제 버튼 클릭======================= */
+
+const modal = document.getElementById('modalContainer');
+
+function modalOpen() {
+
+  modal.classList.remove('hidden');
+
+}
+function modalClose() {
+  modal.classList.add('hidden');
+}
+
+
+let reportType;
+const reportBtn = document.getElementById('reportBtn');
+const reportData = {};
+
+
+function reportOpen(reportTargetNo, reportContentNo, reportType){
+  if(loginMemberNo == null){
+    alert("로그인 후 이용해주세요")
+    return;
+  }
+  modalOpen();
+
+  
+  reportData.artistGroupNo = board.artistGroupNo;
+  reportData.reporterNo = loginMemberNo;
+  reportData.reportTargetNo = reportTargetNo;
+  reportData.reportContentNo = reportContentNo;
+  reportData.reportType = reportType;
+}
+  
 
 
 
+reportBtn.addEventListener('click', () =>{
+
+  fetch(`/${artistGroupTitle}/report`,{
+    method : "POST",
+    headers : {"Content-Type" : "application/json"},
+    body : JSON.stringify(reportData)
+  })
+  .then(resp => resp.text())
+  .then(result =>{
+    if(result > 0){
+      alert("신고되었습니다");
+    }
+  })
+  .catch(err => console.log(err));
 
 
-
-/* ==================게시글 수정 버튼 클릭======================= */
-
-
-// const updateBtn = document.getElementById("updateBtn");
-
-// if(loginMemberNo == board.memberNo) {
-//   commentProfile.append(deleteBtn, reportImg);
-// } else {
-//   commentProfile.append(reportImg);
-// }
-
-// if(updateBtn != null){
-// updateBtn.addEventListener("click", ()=>{
-//   location.href = `/editBoard/${boardCode}/${boardNo}/update`;
-// });
-// }
-
-
-
-
-
-
-
+})
 
 
 
@@ -699,16 +740,19 @@ function uOpenModal() {
   modal2.classList.remove("show");
   document.body.style.overflow = "";
 
-  var newUrl = "/" + artistGroupTitle + "/" + boardNo2 + "/update";
-
-  var stateObj = { artistGroupTitle: artistGroupTitle, boardNo: boardNo2 };
-
-  history.pushState(stateObj, "", newUrl);
-
   const modal = document.getElementById('feedUpdate');
   modal.classList.add("show");
   document.body.style.overflow = "hidden";
 
+  const feedImage = document.querySelectorAll('.feed-image');
+  const updatePreviewImage = document.querySelectorAll('.preview2');
+  console.log(feedImage.length);
+
+  let index = 0;
+  for ( let feedImg of feedImage) {
+    updatePreviewImage[index].src = feedImg.src;
+    index++;
+  }
 
 
 }
@@ -723,3 +767,4 @@ function ucloseModal(stateObj) {
   document.body.style.overflow = "";
 
 }
+

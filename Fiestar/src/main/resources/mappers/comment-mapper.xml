@@ -95,6 +95,21 @@
 		WHERE BOARD_COMMENT_NO = #{boardCommentNo}
 	</select>
 	
+	<insert id="insertReport">
+		INSERT INTO REPORT r VALUES
+			(SEQ_REPORT_NO.NEXTVAL, 
+			#{reporterNo}, 
+			#{reportTargetNo}, 
+			#{artistGroupNo},
+			'N',
+			#{reportContentNo},
+			#{reportContent},
+			#{reportType})
+	</insert>
+
+	
+	
+	
 	
 	
 </mapper>

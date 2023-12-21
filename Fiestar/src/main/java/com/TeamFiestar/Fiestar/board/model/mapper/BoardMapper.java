@@ -5,8 +5,10 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.TeamFiestar.Fiestar.admin.model.dto.Report;
 import com.TeamFiestar.Fiestar.board.model.dto.Board;
 import com.TeamFiestar.Fiestar.board.model.dto.Comment;
+import com.TeamFiestar.Fiestar.member.model.dto.ArtistGroup1;
 
 @Mapper
 public interface BoardMapper {
@@ -30,5 +32,11 @@ public interface BoardMapper {
 
 
 	List<Comment> selectCommentList(Map<String, Object> map);
+
+
+	ArtistGroup1 artistGroup(ArtistGroup1 artistGroup);
+
+
+	int insertReport(Report report);
 
 }

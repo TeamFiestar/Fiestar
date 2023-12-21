@@ -27,33 +27,36 @@ const inputImageList2 = document.getElementsByClassName("inputImage2");
 
 const deleteImageList2 = document.getElementsByClassName("delete-image2");
 
-const changeImageFn2 = (imageInput, order) => {
+const backupInputList2 = new Array(inputImageList2.length);
 
-  // imageInput : 파일이 선택/취소된 input 태그
-  // order : input 태그 순서(썸네일 0, 나머지 1~4)
+const changeImageFn2 = (imageInput2, order2) => {
+
+  // imageInput2 : 파일이 선택/취소된 input 태그
+  // order2 : input 태그 순서(썸네일 0, 나머지 1~4)
 
   // 업로드 파일 최대 크기(10MB)
   const maxSize = 1024 * 1024 * 10;
 
   // 업로드한 파일 정보가 담긴 객체
-  const uploadFile = imageInput.files[0];
+  const uploadFile2 = imageInput2.files[0];
 
+  console.log(uploadFile2);
 
   // ---------- 파일을 한 번 선택한 후 취소했을 때 ----------
-  if (uploadFile == undefined) {
+  if (uploadFile2 == undefined) {
     console.log("파일 선택이 취소됨");
 
-    // 1) backup한 order번째 요소를 복제
-    const temp = backupInputList[order].cloneNode(true);
+    // 1) backup한 order2번째 요소를 복제
+    const temp2 = backupInputList2[order2].cloneNode(true);
 
     // 2) 화면에 원본 input을 temp로 바꾸기
-    imageInput.after(temp); // 원본 다음에 temp 추가
-    imageInput.remove(); // 원본을 화면에서 제거
-    imageInput = temp; // temp를 imageInput 변수에 대입
+    imageInput2.after(temp2); // 원본 다음에 temp 추가
+    imageInput2.remove(); // 원본을 화면에서 제거
+    imageInput2 = temp2; // temp를 imageInput2 변수에 대입
 
     // 복제본은 이벤트가 복제 안되니까 다시 이벤트를 추가
-    imageInput.addEventListener("change", () => {
-      changeImageFn2(imageInput, order);
+    imageInput2.addEventListener("change", () => {
+      changeImageFn2(imageInput2, order2);
     });
 
     return;
@@ -62,29 +65,29 @@ const changeImageFn2 = (imageInput, order) => {
 
   // ---------- 선택된 파일의 크기가 지정된 크기를 초과하는 경우 ----------
 
-  if (uploadFile.size > maxSize) {
+  if (uploadFile2.size > maxSize) {
     alert("10MB 이하의 이미지를 선택 해주세요");
 
     // 없다 -> 추가한 경우
-    if (backupInputList2[order] == undefined) {
-      imageInput.value = ''; // file 타입 input 태그 value를 빈칸으로 만듦
+    if (backupInputList2[order2] == undefined) {
+      imageInput2.value = ''; // file 타입 input 태그 value를 빈칸으로 만듦
       // == 선택된 파일을 제거
     }
 
     // 기존에 이미지 선택 -> 다시 새 이미지 선택
     else {
 
-      // 1) backup한 order번째 요소를 복제
-      const temp2 = backupInputList[order].cloneNode(true);
+      // 1) backup한 order2번째 요소를 복제
+      const temp2 = backupInputList2[order2].cloneNode(true);
 
       // 2) 화면에 원본 input을 temp로 바꾸기
-      imageInput.after(temp2); // 원본 다음에 temp 추가
-      imageInput.remove(); // 원본을 화면에서 제거
-      imageInput = temp2; // temp를 imageInput 변수에 대입
+      imageInput2.after(temp2); // 원본 다음에 temp 추가
+      imageInput2.remove(); // 원본을 화면에서 제거
+      imageInput2 = temp2; // temp를 imageInput2 변수에 대입
 
       // 복제본은 이벤트가 복제 안되니까 다시 이벤트를 추가
-      imageInput.addEventListener("change", () => {
-        changeImageFn2(imageInput, order);
+      imageInput2.addEventListener("change", () => {
+        changeImageFn2(imageInput2, order2);
       });
     }
 
@@ -96,17 +99,17 @@ const changeImageFn2 = (imageInput, order) => {
   const reader2 = new FileReader();
 
   // 매개변수에 작성된 파일을 읽어서 파일을 나타내는 URL 형태로 변경
-  reader2.readAsDataURL(uploadFile);
+  reader2.readAsDataURL(uploadFile2);
 
   // 파일을 다 읽은 경우
   reader2.onload = e => {
-    const url2 = e.target.result; // 이미지가 변환된 DataUrl
+    const url = e.target.result; // 이미지가 변환된 DataUrl
 
-    // order 번째 .preview에 이미지 추가
-    previewList2[order].src = url2;
+    // order2 번째 .preview에 이미지 추가
+    previewList2[order2].src = url;
 
     // 파일이 업로드된 input 태그를 복제해서 backupInputList에 추가
-    backupInputList2[order] = imageInput.cloneNode(true);
+    backupInputList2[order2] = imageInput2.cloneNode(true);
   };
 }
 
@@ -119,7 +122,7 @@ for (let i = 0; i < inputImageList2.length; i++) {
   /* 이미지 선택 또는 취소 시 */
   inputImageList2[i].addEventListener("change", e => {
     changeImageFn2(e.target, i);
-    //   inputImage,  order
+    //   inputImage,  order2
   });
 
 
@@ -133,7 +136,7 @@ for (let i = 0; i < inputImageList2.length; i++) {
     inputImageList2[i].value = '';
 
     // 같은 위치 backup 요소 제거
-    backupInputList[i] = undefined;
+    backupInputList2[i] = undefined;
 
   });
 
