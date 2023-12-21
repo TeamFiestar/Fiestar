@@ -13,6 +13,13 @@
 		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
 	</select>
 	
+	
+	<select id="artistAdminNo" resultType="_int">
+		SELECT COUNT(*) FROM ARTIST_GROUP
+		WHERE ARTIST_GROUP_NO = #{artistGroupNo}
+		AND ARTIST_GROUP_ADMIN_NO = #{memberNo}
+	</select>
+	
 	<select id="artistGroupMedia" resultType="Media">
 		SELECT MEDIA_ADDRESS, MEDIA_TITLE, MEDIA_NO,
 		TO_CHAR(MEDIA_ENROLL_DATE, 'YYYY"."MM"."DD') MEDIA_ENROLL_DATE FROM MEDIA
@@ -91,17 +98,25 @@
 	</select>
 	
 	<update id="ProfileUpdate">
-    <foreach collection="list" item="artist1" separator=";">
-        UPDATE ARTIST
-        SET 
-            MEMBER_NO = #{artist1.memberNo},
-            ARTIST_GROUP_NO = #{artist1.artistGroupNo}, 
-            ARTIST_NAME = #{artist1.artistName}, 
-            ARTIST_PROFILE = #{artist1.artistProfile}, 
-            MEMBER_EMAIL = #{artist1.memberEmail}
-        WHERE MEMBER_NO = #{artist1.memberNo}
-    </foreach>
-</update>
+        UPDATE ARTIST SET 
+            ARTIST_NAME = #{artistName}, 
+            ARTIST_PROFILE = #{artistProfile}, 
+            MEMBER_EMAIL = #{artistEmail}
+        WHERE ARTIST_GROUP_NO = #{artistGroupNo}
+        AND MEMBER_NO = #{memberNo}
+	</update>
+	
+	<select id="checkUpdate" resultType="_int">
+		SELECT COUNT(*) FROM ARTIST
+		WHERE MEMBER_NO = #{memberNo}
+		AND ARTIST_GROUP_NO = #{artistGroupNo}
+	</select>
+	
+	<insert id="insertArtist">
+		INSERT INTO ARTIST
+		VALUES(#{memberNo},#{artistGroupNo},#{artistName},#{artistProfile}, #{artistEmail})
+	</insert>
+	
 	
 	
 	<select id="artistNotice" resultType="ArtistNotice">
