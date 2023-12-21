@@ -154,6 +154,7 @@ function requestPay() {
 
     let selectedMethod = document.querySelector('input[name="payMethod"]:checked').value;
     let pgValue, methodValue;
+    // let amountPrice = document.getElementById("alll").value;
 
     if (selectedMethod == "1") { // 토스페이 선택 
         pgValue = 'tosspay.tosstest';
@@ -169,7 +170,7 @@ function requestPay() {
         pay_method: methodValue,
         merchant_uid: 'merchant_' + new Date().getTime(),
         name: '주문명:FiestarShop',
-        amount: 50000,
+        amount: 1,
 
     }, function (rsp) {
         if (rsp.success) {
