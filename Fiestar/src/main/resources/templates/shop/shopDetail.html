@@ -77,9 +77,8 @@
           </div>
         </form>
       </div>
-
-      <th:block th:if="${session.loginMember != null 
-                          and session.loginMember.memberAuthority == 3}"> 
+     <!--  and session.loginMember.memberAuthority == 3 -->
+      <th:block th:if="${session.loginMember != null }"> 
         <button id="updateBtn" class="updateBtn">수정</button>
         <button id="deleteBtn" class="deleteBtn">삭제</button>
       </th:block>

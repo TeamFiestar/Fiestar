@@ -87,7 +87,7 @@
 			SELECT SEQ_PRODUCT_NO.NEXTVAL FROM DUAL
 		</selectKey>
 		INSERT INTO "PRODUCT"
-		VALUES(#{productNo},#{artistGroupNo},#{productName},#{productProduction},#{productPrice}, DEFAULT)
+		VALUES(#{productNo},#{artistGroupNo},#{productName},#{productProduction},#{productPrice}, DEFAULT, DEFAULT)
 	</insert>
 	
 	<!--옵션 등록-->
@@ -115,12 +115,14 @@
 	
 	
 	<!--상품 수정-->
-	<update id="GoodsModify">
+	<update id="updateGoods">
 		UPDATE "PRODUCT" SET
 		PRODUCT_NAME = #{productName},
-		PRODUCT_PRICE = #{productPrice}
+		PRODUCT_PRICE = #{productPrice},
+		<if test="productProduction != null">
+			PRODUCT_PRODUCTION = #{productProduction}
+		</if>
 		WHERE PRODUCT_NO = #{productNo}
-	
 	</update>
 	
 	
@@ -128,8 +130,8 @@
 	<update id="updateOption">
 		UPDATE "PRODUCT_OPTION" SET
 		<foreach collection="list" item="p" separator="UNION">
-			PRODUCT_OPTION_NAME = #{productOptionName}
-			WHERE PRODUCT_NO = #{productNo}
+			PRODUCT_OPTION_NAME = #{p.productOptionName}
+			WHERE PRODUCT_NO = #{p.productNo}
 		</foreach>
 	</update>
 	
@@ -139,7 +141,7 @@
 	 <update id="updateImage">
 		UPDATE "PRODUCT_IMAGE" SET
       	PRODUCT_IMAGE_THUMBNAIL = #{productImageThumbnail},
-      	PRODUCT_IMAGE_THUMBNAIL_RENAME = #{productImageThumbnailRename}
+      	PRODUCT_IMAGE_THUMBNAIL_RENAME = #{productImageThumbnailRename},
       	PRODUCT_IMAGE_CONTENT = #{productImageContent},
       	PRODUCT_IMAGE_RENAME = #{productImageRename}
       	WHERE PRODUCT_NO = #{productNo}

@@ -23,6 +23,7 @@ import com.TeamFiestar.Fiestar.admin.model.dto.Report;
 import com.TeamFiestar.Fiestar.admin.model.service.ArtistAdminService;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 import com.TeamFiestar.Fiestar.shop.model.dto.Product;
+import com.TeamFiestar.Fiestar.shop.model.service.ShopService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,6 +35,8 @@ import lombok.extern.slf4j.Slf4j;
 public class ArtistAdminContoller {
 	
 	private final ArtistAdminService service;
+	
+	private final ShopService shopService;
 	
 	// 아티스트 공지사항 목록 조회
 	@GetMapping("{artistGroupTitle}/notice")
@@ -118,6 +121,11 @@ public class ArtistAdminContoller {
 	}
 	
 	
+	/**상품 등록 화면
+	 * @param artistGroupTitle
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("{artistGroupTitle}/goods")
 	public String register(
 			@PathVariable("artistGroupTitle") String artistGroupTitle, Model model) {
@@ -151,14 +159,36 @@ public class ArtistAdminContoller {
 	 * @return
 	 */
 	@GetMapping("{artistGroupTitle}/{productNo}/goodsModify")
-	public String registe() {
-	
+	public String registe(@PathVariable("artistGroupTitle") String artistGroupTitle,
+							@PathVariable("productNo") int productNo,
+							Model model) {
+		
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("artistGroupTitle", artistGroupTitle);
+		map.put("productNo", productNo);
+		
+		Map<String, Object> prod = shopService.shopDetail(productNo);
+		
+		model.addAttribute("map", map);
+		model.addAttribute("prod", prod);
+		
 		return "admin/goodsModify";
 	}
 	
 	
-	/*상품 수정
-	 *  */
+	
+	/**상품 수정
+	 * @param ra
+	 * @param artistGroupTitle
+	 * @param productNo
+	 * @param product
+	 * @param contentImg
+	 * @param thumbnailImg
+	 * @return
+	 * @throws IllegalStateException
+	 * @throws IOException
+	 */
 	@PostMapping("{artistGroupTitle}/{productNo}/goodsModify")
 	public String updateGoods(RedirectAttributes ra,
 								@PathVariable("artistGroupTitle") String artistGroupTitle,
@@ -167,8 +197,6 @@ public class ArtistAdminContoller {
 								@RequestParam("contentImg") MultipartFile contentImg,
 								@RequestParam ("thumbnailImg") MultipartFile thumbnailImg) throws IllegalStateException, IOException{
 		
-		
-		
 		product.setArtistGroupTitle(artistGroupTitle);
 		product.setProductNo(productNo);
 		
@@ -176,21 +204,24 @@ public class ArtistAdminContoller {
 		
 		if(result > 0) {
 			ra.addFlashAttribute("message","상품 수정 성공");
-			return "redirect:/shop/home";
+			return "redirect:/shop/shopDetail/" + productNo;
 		}
-		
 		ra.addFlashAttribute("message","상품 등록 실패");
 		return "redirect:goods";	
-		
 	}
 	
 	
 	
+	/**상품 삭제
+	 * @param productNo
+	 * @param loginMember
+	 * @param ra
+	 * @return
+	 */
 	@GetMapping("{productNo}/goodsDelete")
 	public String deleteGoods(@PathVariable("productNo") int productNo,
 								@SessionAttribute(value="loginMember", required = false) Member loginMember,
 								RedirectAttributes ra) {
-		
 		
 		if(loginMember == null) {
 			ra.addFlashAttribute("message" , "로그인 후 이용해주세요");
@@ -198,7 +229,6 @@ public class ArtistAdminContoller {
 		}
 		
 		int result = service.deleteGoods(productNo);
-		
 		
 		if(result >0) {
 			ra.addFlashAttribute("message","상품이 삭제되었습니다.");

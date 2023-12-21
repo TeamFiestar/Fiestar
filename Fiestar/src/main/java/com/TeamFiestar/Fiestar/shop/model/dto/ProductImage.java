@@ -24,7 +24,8 @@ public class ProductImage {
 	private String productImageThumbnailRename; //변경된 이미지 파일 이름
 	
 
-	private MultipartFile uploadFile;
+	private MultipartFile thumbnailUploadFile;
+	private MultipartFile contentUploadFile;
 }
 
 

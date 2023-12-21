@@ -35,22 +35,25 @@ public interface ArtistAdminMapper {
 	
 	//상품 등록
 	int insertGoods(Product product);
-
+	
+	//이미지 업로드
 	int insertImage(ProductImage img);
 
+	//옵션 등록
 	int insertOption(List<ProductOption> productOptionList);
-
+	
+	//상품 수정
 	int updateGoods(Product product);
-
+	
+	//옵션 수정
 	int updateOption(List<ProductOption> productOptionList);
 
+	//이미지 수정
 	int updateImage(ProductImage img);
 
+	//상품 삭제
 	int deleteGoods(int productNo);
 
 
-
-
-	
 
 }
