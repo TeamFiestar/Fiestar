@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.w3c.dom.stylesheets.LinkStyle;
 
+import com.TeamFiestar.Fiestar.cart.model.dto.Cart;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 import com.TeamFiestar.Fiestar.shop.model.dto.ArtistGroup;
 import com.TeamFiestar.Fiestar.shop.model.dto.Product;
@@ -162,10 +163,11 @@ public class ShopServiceImpl implements ShopService{
 		return map;
 	}
 	
+	//장바구니에 담기
 	@Override
 	public int insertCart(int productNo, int productCount, int totalPrice, int memberNo) {
 		
-		Map<String, Object> map = new HashMap<>();
+		Map<String, Integer> map = new HashMap<>();
 		map.put("productNo", productNo);
 		map.put("productCount", productCount);
 		map.put("memberNo", memberNo);
@@ -173,9 +175,13 @@ public class ShopServiceImpl implements ShopService{
 		
 		int result = mapper.insertCart(map);
 		
-		return result;
+		if(result > 0)	return map.get("cartNo");
+		
+		return 0;
 	}
 	
+	
+
 	
 	
 

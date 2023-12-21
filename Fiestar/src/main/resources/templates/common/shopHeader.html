@@ -23,6 +23,8 @@
       <a href="#"> 공지사항 </a>
       <span>|</span>
       <a href="/shop/home">샵 고객센터</a>
+      <span>|</span>
+      <a href="/">메인으로</a>
 
       <a href="/member/login"><button id="loginPage">로그인</button></a>
       <a href="/member/signup"><button id="signUp">회원가입</button></a>
@@ -35,8 +37,8 @@
   </div> -->
 </header>
 
-<header th:if="${session.loginMember != null}">
-  <div class="header">
+<header>
+  <div class="header" th:if="${session.loginMember != null}">
     <div class="header-left-side">
       <a href="/shop/home" id="header-logo">
         <img src="/img/picture/logo.png" style="width: 165px" />

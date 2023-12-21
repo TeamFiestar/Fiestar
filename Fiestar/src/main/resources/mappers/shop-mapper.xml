@@ -159,6 +159,7 @@
 		WHERE PRODUCT_NO = #{productNo} 
 	</select>
 	
+	
 	<!--장바구니에 담기-->
 	<insert id="insertCart">
 		<selectKey order="BEFORE" resultType="_int" keyProperty="cartNo">

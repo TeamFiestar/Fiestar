@@ -181,8 +181,6 @@ function totalNoProduct( ) {
 }
 
 
-
-
 function totalCost() {
   
   let total = 0;
@@ -198,12 +196,7 @@ totalCost();
 
 
 
-document.getElementById('in-cart').addEventListener('submit', (e) =>{
-  if(!loginMember){
-    e.preventDefault();
-    alert("로그인 후 이용해 주십시오");
-  }
-})
+
 
 
 const updateBtn = document.getElementById("updateBtn");
@@ -219,5 +212,76 @@ if(deleteBtn != null){
   deleteBtn.addEventListener("click", ()=>{
   location.href = `/artistAdmin/${productNo}/goodsDelete`;
 });
+
 }
+
+
+
+const form = document.getElementById("in-cart");
+
+function send(action){
+
+  if(!loginMember || totalProduct.getAttribute('value') == 0){
+    
+    if(totalProduct.getAttribute('value') == 0){
+      alert("옵션을 선택해주세요");
+    }else{
+    alert("로그인 후 이용해 주십시오");
+    }
+  return;
+}
+
+
+  let url = null;
+
+  if(action == 'addCart'){
+    url = `/shop/shopDetail/${productNo}`;
+    form.action = url;
+    form.submit();
+
+
+  }else if(action == 'purchase'){
+    console.log({"productCount" : count.value, "totalPrice" : totalP.value});
+
+    url = `/shop/shopDetail/directBuy/${productNo}`;
+    fetch(url,{
+      method : "POST",
+      headers : {"Content-Type" : "application/json"},
+      body : JSON.stringify({"productCount" : count.value, "totalPrice" : totalP.value})
+    })
+    .then(resp => resp.text())
+    .then(cartNo => {
+  
+      if(cartNo > 0){
+        document.getElementById("selectEach").value = cartNo;
+        form.action = "/checkout";
+        form.submit();
+      }
+    })
+  }
+
+
+  
+};
+
+
+
+document.getElementById('in-cart').addEventListener('submit', (e) =>{
+  if(!loginMember){
+    e.preventDefault();
+    alert("로그인 후 이용해 주십시오");
+  }else if(totalProduct.getAttribute('value')){
+    e.preventDefault();
+    alert("옵션을 선택해주세요");
+  }
+})
+
+
+
+form.addEventListener("submit", e=>{
+    e.preventDefault();
+});
+
+
+
 
