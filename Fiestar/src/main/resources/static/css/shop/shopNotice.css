@@ -1,15 +1,13 @@
-
-@font-face{
-  font-family: 'Pretendard-Regular';
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-  font-weight: 400; 
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
+  font-weight: 400;
   font-style: normal;
 }
 
-*{
-  font-family: 'Pretendard-Regular' !important;
+* {
+  font-family: "Pretendard-Regular" !important;
 }
-
 
 .screen {
   display: flex;
@@ -17,7 +15,7 @@
   align-items: flex-start;
   padding: 80px 170px 0px;
   position: relative;
-  background-color: #000000;
+  /* background-color: #000000; */
   margin: auto;
 }
 
@@ -339,9 +337,6 @@
   flex: 1;
   flex-grow: 1;
 }
-
-
-
 
 @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
 @import url("https://fonts.googleapis.com/css?family=Inter:500,400,600");

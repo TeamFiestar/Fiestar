@@ -77,6 +77,7 @@ public class ArtistServiceImpl implements ArtistService{
 		checkMap.put("artistGroupNo", artistGroupNo);
 		checkMap.put("memberNo", memberNo);
 		int result = mapper.checkSubscribe(checkMap);
+		int artistAdminNo = mapper.artistAdminNo(checkMap);
 		
 		Map<String, Object> map = new HashMap<>();
 		List<ArtistGroup1> artistGroup = mapper.artistGroup(artistGroupTitle);
@@ -93,6 +94,7 @@ public class ArtistServiceImpl implements ArtistService{
 		map.put("artistGroupProduct", artistGroupProduct);
 		map.put("artistGroupNotice", artistGroupNotice);
 		map.put("result", result);
+		map.put("artistAdminNo", artistAdminNo);
 		
 		return map;
 	}
@@ -152,6 +154,7 @@ public class ArtistServiceImpl implements ArtistService{
 			List<String> name, List<String> email, ArtistGroup1 artistGroup, int adminNo) throws IllegalStateException, IOException {
 		int artistGroupNo = artistAdminMapper.selectArtistGroupNo(artistGroupTitle);
 		int test = adminMapper.test(adminNo);
+		int updateResult = 0;
 		if(test != 1) return 0;
 		else{
 			artistGroup.setArtistGroupNo(artistGroupNo);
@@ -188,15 +191,23 @@ public class ArtistServiceImpl implements ArtistService{
 					artist1.setMemberNo(memberNo);
 					artistList.add(artist1);
 					
+					Map<String, Object> map = new HashMap<>();
+					map.put("memberNo", memberNo);
+					map.put("artistGroupNo", artistGroupNo);
+					int checkUpdate = mapper.checkUpdate(map);
 					
+					if(checkUpdate == 0) {
+						int insertArtist = mapper.insertArtist(artist1);
+						if(insertArtist>0) updateResult++;
+					}else {				
+						int result2 = mapper.ProfileUpdate(artist1);
+						if(result2>0) updateResult++;
+					}
 				}
 			}
-			int result2 = mapper.ProfileUpdate(artistList);
-			int result = mapper.artistProfileUpdate(artistGroup);
-			
-			
+			int result = mapper.artistProfileUpdate(artistGroup);			
 				if(result > 0) {
-					if(result2 > 0) {
+					if(updateResult > 0) {
 						for(int i = 0; i<artistProfileImg.size(); i++) {
 							if(artistProfileImg.get(i).getSize()>0) {
 								artistProfileImg.get(i).transferTo(new File(profileimgfolder + artistList.get(i).getArtistRename()));
