@@ -100,8 +100,8 @@
                       </div>
   
                       <div class="comment-profile">
-                        <img class="delete-cross" src="/img/close_ring.png" th:onclick="|deleteModalOpen(*{mediaCommentNo})|"/>
-                        <img class="report-img" src="/img/siren.png" th:onclick="|reportOpen(*{memberNo},*{mediaCommentNo}, 'mediaComment')|"/>
+                          <img th:if="${ session.loginMember.memberAuthority != 1 or comment.memberNo == session.loginMember.memberNo }" class="delete-cross" src="/img/close_ring.png" th:onclick="|deleteModalOpen(*{mediaCommentNo})|"/>
+                          <img class="report-img" src="/img/siren.png" th:onclick="|reportOpen(*{memberNo},*{mediaCommentNo}, 'mediaComment')|"/>
                       </div>
   
                     </div>
@@ -116,7 +116,6 @@
                       <img class="speech-bubble" src="/img/speech-bubble.png" th:onclick="|loadReplies(this, *{mediaCommentNo})|"/>
                       <img th:if="*{memberCommentLike != 0}"  class="like-heart red" src="/img/like_heart_r.svg" th:onclick="|changeLike(this, *{mediaCommentNo})|">
                       <img th:if="*{memberCommentLike == 0}"  class="like-heart gray" src="/img/like_heart_w.svg" th:onclick="|changeLike(this, *{mediaCommentNo})|">
-                      <span th:text="*{memberCommentLike}" style="color: white;">2</span>
                     </div>
   
                   </div>
