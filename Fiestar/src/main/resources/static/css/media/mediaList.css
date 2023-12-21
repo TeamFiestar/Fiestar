@@ -40,24 +40,20 @@ a {
   font-family: 'Pretendard-Regular' !important;
 }
 
-main{
+
+body{
   background-color: #1e1e1e;
 }
 
 
 .screen {
   margin: auto;
-  display: flex;
-  flex-direction: column;
   width: 100%;
   max-width: 1440px;
   min-width: 670px;
-  height: 1180px;
   align-items: flex-start;
   gap: 10px;
   padding: 0px 50px 0px;
-  position: relative;
-  background-color: #1e1e1e;
 }
 
 .screen .frame {
@@ -65,7 +61,6 @@ main{
   flex-direction: column;
   align-items: flex-start;
   gap: 20px;
-  padding: 40px 0px 0px;
   position: relative;
   flex: 1;
   align-self: stretch;
@@ -85,17 +80,13 @@ main{
 }
 
 .screen .text-wrapper {
-  position: relative;
   width: 419px;
   height: 62px;
-  margin-top: -3px;
-  margin-bottom: -1px;
-  font-family: "Inter", Helvetica;
   font-weight: 700;
+  display: flex;
+  align-items: center;
   color: #ffffff;
   font-size: 32px;
-  letter-spacing: 0;
-  line-height: normal;
 }
 
 .screen .media-head {
@@ -192,7 +183,6 @@ main{
 .screen .component {
   display: inline-flex;
   flex-direction: column;
-  height: 281px;
   align-items: flex-start;
   padding: 30px 10px 0px;
   position: relative;
@@ -215,7 +205,7 @@ main{
   align-items: center;
   justify-content: center;
   position: absolute;
-  padding-top: 3px;
+  padding-top: 2px;
   top: 88%;
   left: 82%;
   background-color: #515151;
@@ -351,4 +341,39 @@ main{
   width: 130px;
   height: 35px;
   border-radius: 20px;
+}
+
+
+
+/* 페이지네이션 */
+.pagination{
+  margin: 50px 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.pagination li{
+  text-align: center;
+  background-color: #636363;
+}
+
+.pagination a{
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  display: block;
+  border: 1px solid #ddd; /* Gray */
+  padding: 4px 11px;
+  width: 100%;
+  height: 100%;
+  transition: background-color .2s;
+}
+
+.pagination a.active{
+  background-color: #a0a0a0;
+}
+
+.pagination a:hover{
+  background-color: rgb(189, 189, 189);
 }
