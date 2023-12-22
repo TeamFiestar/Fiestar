@@ -66,11 +66,13 @@ public interface ShopService {
 	/**장바구니에 담기
 	 * @param productNo
 	 * @param productCount
+	 * @param productOptionNo 
 	 * @param memberNo 
 	 * @param memberNo2 
 	 * @return
 	 */
-	int insertCart(int productNo, int productCount, int totalPrice, int memberNo);
+	int insertCart(int productNo, int[] productCount, int[] productOptionNo, int totalPrice, int memberNo);
+
 
 
 

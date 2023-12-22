@@ -107,8 +107,12 @@ optionSelect.addEventListener("change", () => {
   // -------------------------------------------------
   const optionName = document.createElement("h4");
   optionName.classList.add("optionName");
-  const optionValue2 = document.querySelector("select[name=key]").value;
-  optionName.innerHTML= "[옵션]" + optionValue2;
+  const temp = document.querySelector("select[name=key]");
+  const optionText = temp.options[temp.selectedIndex].innerText;
+  optionName.innerHTML= "[옵션]" + optionText;
+
+  const optionValue2 =  temp.options[temp.selectedIndex].value;
+
   optionSelect.selectedIndex = 0; //처음 옵션으로 되돌리기
   
   let selectedPrice = document.createElement("span");
@@ -119,8 +123,20 @@ optionSelect.addEventListener("change", () => {
   // selectedPrice.innerText = "₩" + productPrice2.toLocaleString();
   
   
+  // --------------------------------
+  const productOptionNo = document.createElement("input");
+  productOptionNo.type = 'hidden';
+  productOptionNo.name = "productOptionNo";
+  productOptionNo.value = optionValue2;
+  
+  const productCount = document.createElement("input");
+  productCount.type = 'hidden';
+  productCount.name = "productCount";
+  productCount.value = 1;
+
+
   productName.append(deleteList);
-  span.append(button1, result, button2, optionName);
+  span.append(button1, result, button2, optionName,productOptionNo,productCount);
   optionArea.append(span, selectedPrice);
   container.append(productName, optionArea);
   
@@ -150,6 +166,10 @@ function plusBtn(e){
   let i = e.previousSibling.innerText;
   i++;
   e.previousSibling.textContent = i;
+
+  e.parentElement.children[5].value = i;
+
+
   let totalcostNum = i*productPrice.getAttribute("value");
   // e.parentElement.nextElementSibling.textContent = "₩" + totalcostNum.toLocaleString();
   totalNoProduct( );
@@ -164,6 +184,8 @@ function minusBtn(e) {
   
   i--;
   e.nextSibling.textContent = i;
+  
+  e.parentElement.children[5].value = i;
   // let totalcostNum = i*productPrice.getAttribute("value");
   // e.parentElement.nextElementSibling.textContent = "₩" + totalcostNum.toLocaleString();
   totalNoProduct( );
@@ -248,35 +270,29 @@ function send(action){
   let url = null;
 
   if(action == 'addCart'){
-    // url = `/shop/shopDetail/${productNo}`;
-    // form.action = url;
-    // form.submit();
-
-    console.log({"productCount" : count.value, "totalPrice" : totalP.value});
-
     url = `/shop/shopDetail/${productNo}`;
-    fetch(url,{
-      method : "POST",
-      headers : {"Content-Type" : "application/json"},
-      body : JSON.stringify({"productCount" : count.value, "totalPrice" : totalP.value})
-    })
-    .then(resp => resp.text())
-    .then(cartNo => {
-  
-      if(cartNo > 0){
-        document.getElementById("selectEach").value = cartNo;
-        form.action = "/cartPage";
-        form.submit();
-      }
-    })
+    form.action = url;
+    form.submit();
+
   }else if(action == 'purchase'){
-    console.log({"productCount" : count.value, "totalPrice" : totalP.value});
+    console.log(123);
 
     url = `/shop/shopDetail/directBuy/${productNo}`;
+
+    const productOptionNoList = []
+    const productCountList = []
+    
+    document.querySelectorAll("[name='productOptionNo']").forEach( item => { productOptionNoList.push(item.value)});
+    document.querySelectorAll("[name='productCount']").forEach( item =>  { productCountList.push(item.value)});
+
+    console.log(productOptionNoList);
+    console.log(productCountList);
+
+
     fetch(url,{
       method : "POST",
       headers : {"Content-Type" : "application/json"},
-      body : JSON.stringify({"productCount" : count.value, "totalPrice" : totalP.value})
+      body : JSON.stringify({"productCount" : productCountList.join(), "productOptionNo":productOptionNoList.join(), "totalPrice" : totalP.value})
     })
     .then(resp => resp.text())
     .then(cartNo => {
@@ -289,7 +305,6 @@ function send(action){
     })
   }
 };
-
 
 
 document.getElementById('in-cart').addEventListener('submit', (e) =>{

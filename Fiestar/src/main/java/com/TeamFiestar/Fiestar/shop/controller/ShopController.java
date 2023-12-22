@@ -148,49 +148,25 @@ public class ShopController {
 	/**장바구니에 담기
 	 * @return
 	 */
-//	@PostMapping("shopDetail/{productNo:[0-9]+}")
-//	public String insertCart(RedirectAttributes ra,
-//						@SessionAttribute(value="loginMember", required = false) Member loginMember,
-//						@PathVariable("productNo") int productNo,
-//						@RequestParam("productCount") int productCount,
-//						@RequestParam("totalPrice") int totalPrice) {
-//		int memberNo = loginMember.getMemberNo();
-//		int result = service.insertCart(productNo, productCount, totalPrice, memberNo);
-//		
-//		if(result > 0) {
-//			ra.addFlashAttribute("message","장바구니에 담았습니다.");
-//			return "redirect:" + productNo;
-//		}else {
-//			ra.addFlashAttribute("message","상품이 품절되었습니다.");
-//			return "redirect:" + productNo;
-//		}
-//	}
-	
-	
-	
-	
-	
-	/**장바구니에 담기
-	 * @param ra
-	 * @param loginMember
-	 * @param productNo
-	 * @param productCount
-	 * @param totalPrice
-	 * @return
-	 */
 	@PostMapping("shopDetail/{productNo:[0-9]+}")
-	@ResponseBody
-	public int insertCart(RedirectAttributes ra,
-			@SessionAttribute(value="loginMember", required = false) Member loginMember,
-			@PathVariable("productNo") int productNo,
-			@RequestBody Map<String, Integer> paramMap) {
-		
-		int productCount = paramMap.get("productCount");
-		int totalPrice = paramMap.get("totalPrice");
-		
+	public String insertCart(RedirectAttributes ra,
+						@SessionAttribute(value="loginMember", required = false) Member loginMember,
+						@PathVariable("productNo") int productNo,
+						@RequestParam("totalPrice") int totalPrice,
+						@RequestParam("productCount") int[] productCount,
+						@RequestParam("productOptionNo") int[] productOptionNo ) {
 		int memberNo = loginMember.getMemberNo();
-		return service.insertCart(productNo, productCount, totalPrice, memberNo);
+		int result = service.insertCart(productNo, productCount, productOptionNo, totalPrice, memberNo);
+		
+		if(result > 0) {
+			ra.addFlashAttribute("message","장바구니에 담았습니다.");
+			return "redirect:" + productNo;
+		}else {
+			ra.addFlashAttribute("message","상품이 품절되었습니다.");
+			return "redirect:" + productNo;
+		}
 	}
+	
 	
 	
 	/**바로구매
@@ -206,13 +182,26 @@ public class ShopController {
 	public int buyCart(RedirectAttributes ra,
 						@SessionAttribute(value="loginMember", required = false) Member loginMember,
 						@PathVariable("productNo") int productNo,
-						@RequestBody Map<String, Integer> paramMap) {
+						@RequestBody Map<String, Object> paramMap) {
 		
-		int productCount = paramMap.get("productCount");
-		int totalPrice = paramMap.get("totalPrice");
+		int totalPrice = Integer.parseInt( paramMap.get("totalPrice").toString() );
+		String productCountList = (String)paramMap.get("productCount"); // 1,2
+		String productOptionNoList = (String)paramMap.get("productOptionNo");
+		
+		String[] arr1 = productCountList.split(",");
+		String[] arr2 = productOptionNoList.split(",");
+		
+		int[] productCount = new int[arr1.length];
+		int[] productOptionNo = new int[arr2.length];
+		
+		for(int i=0 ; i<productCount.length ; i++) {
+			productCount[i] = Integer.parseInt(arr1[i]);
+			productOptionNo[i] = Integer.parseInt(arr2[i]);
+		}
+		
 		
 		int memberNo = loginMember.getMemberNo();
-		return service.insertCart(productNo, productCount, totalPrice, memberNo);
+		return service.insertCart(productNo, productCount, productOptionNo, totalPrice, memberNo);
 	}
 	
 	

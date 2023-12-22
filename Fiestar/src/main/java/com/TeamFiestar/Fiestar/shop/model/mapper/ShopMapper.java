@@ -57,6 +57,12 @@ public interface ShopMapper {
 
 	int insertCart(Map<String, Integer> map);
 
+	/** 카트 옵션 삽입
+	 * @param map
+	 * @return
+	 */
+	int insertCartOption(Map<String, Integer> map);
+
 	
 
 	
