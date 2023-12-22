@@ -1,5 +1,7 @@
 package com.TeamFiestar.Fiestar.member.model.mapper;
 
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
@@ -24,5 +26,9 @@ public interface MemberMapper {
 	 * @return
 	 */
 	int checkNickname(String nickname);
+
+	int selectGroupNo(String artistGroupTitle);
+
+	int checkSubscribe(Map<String, Object> map);
 	
 }

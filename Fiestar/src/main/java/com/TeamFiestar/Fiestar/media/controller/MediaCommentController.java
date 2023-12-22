@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.TeamFiestar.Fiestar.admin.model.dto.Report;
 import com.TeamFiestar.Fiestar.media.model.dto.MediaComment;
 import com.TeamFiestar.Fiestar.media.model.service.MediaCommentService;
+import com.TeamFiestar.Fiestar.member.model.dto.Member;
 
 import jakarta.annotation.Resource;
 import lombok.RequiredArgsConstructor;
@@ -33,8 +35,10 @@ public class MediaCommentController {
 	
 	@PostMapping("inputComment")
 	@ResponseBody
-	public int inputComment(@RequestBody MediaComment inputComment) {
+	public int inputComment(@RequestBody MediaComment inputComment,
+			@SessionAttribute(value = "loginMember", required = false) Member loginMember) {
 		
+		inputComment.setMemberNo(loginMember.getMemberNo());
 		int result = service.inputComment(inputComment);
 		
 		return result;

@@ -30,5 +30,9 @@ public interface MemberService {
 	 * @return
 	 */
 	int checkNickname(String nickname);
+	
+	
+	int checkSubscribeGroupTitle(String artistGroupTitle, int memberNo);
+	int checkSubscribeGroupNo(int artistGroupNo, int memberNo);
 
 }
