@@ -76,6 +76,7 @@
 		<if test="report.key == 3">AND M.MEMBER_NICKNAME LIKE '%${report.reportSearch}%'</if>
 		<if test="report.key == 4">AND M.MEMBER_EMAIL LIKE '%${report.reportSearch}%'</if>
 		<if test="report.key == 5">AND REPORT_CONTENT LIKE '%${report.reportSearch}%'</if>
+		ORDER BY REPORT_PROCEED ASC, REPORT_NO DESC
 	</select>
 	
 
@@ -181,7 +182,7 @@
 				PURCHASE_STATUS ,
 				TO_CHAR(PURCHASE_DATE, 'YYYY/MM/DD') AS PURCHASE_DATE,
 				MEMBER_NICKNAME,
-				MEMBER_ADDRESS,
+				PURCHASE_ADDRESS,
 				(SELECT SUM(PL2.PRODUCT_QUANTITY) 
 					FROM PURCHASE_LIST PL2 
 					WHERE PL2.PURCHASE_NO = P.PURCHASE_NO) 
