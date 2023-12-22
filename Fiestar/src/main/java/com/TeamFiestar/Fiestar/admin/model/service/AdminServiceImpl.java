@@ -211,17 +211,20 @@ public class AdminServiceImpl implements AdminService{
 			artistGroup.setArtistGroupImage(imagepath + imageRename);
 		}
 		int result = mapper.artistGroupRegi(artistGroup);
+		int chattingRoom = mapper.artistGroupChattingRoom(artistGroup.getArtistGroupNo());
 		
-		if(result>0) {
-			if(backImg.getSize()>0 && profile.getSize()>0 && image.getSize()>0) {
-				backImg.transferTo(new File(backfolder + backRename));
-				profile.transferTo(new File(profilefolder + profileRename));
-				image.transferTo(new File(imagefolder + imageRename));
+		if(chattingRoom>0) {
+			if(result>0) {
+				if(backImg.getSize()>0 && profile.getSize()>0 && image.getSize()>0) {
+					backImg.transferTo(new File(backfolder + backRename));
+					profile.transferTo(new File(profilefolder + profileRename));
+					image.transferTo(new File(imagefolder + imageRename));
+				}
+			}else {
+				artistGroup.setArtistGroupProfile(backupProfile);
+				artistGroup.setArtistGroupBackimg(backupBack);
+				artistGroup.setArtistGroupImage(backupImg);
 			}
-		}else {
-			artistGroup.setArtistGroupProfile(backupProfile);
-			artistGroup.setArtistGroupBackimg(backupBack);
-			artistGroup.setArtistGroupImage(backupImg);
 		}
 		return result;
 		}

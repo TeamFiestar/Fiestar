@@ -209,6 +209,12 @@
 			#{artistGroupProfile}, 'introduction', #{artistGroupImage}, #{artistGroupBackimg}, NULL, NULL, DEFAULT)
 	</insert>
 	
+	<insert id="artistGroupChattingRoom">
+		INSERT INTO CHATTING_ROOM
+		VALUES(#{artistGroupNo},DEFAULT)
+	</insert>
+	
+	
 	<select id="test" resultType="_int">
 		SELECT COUNT(*) FROM ARTIST_GROUP
 		WHERE ARTIST_GROUP_ADMIN_NO = #{adminNo}
@@ -225,6 +231,7 @@
 	
 	<update id="GroupUpdate">
 		UPDATE ARTIST_GROUP SET 
+		ARTIST_GROUP_TITLE = #{artistGroupTitle},
 		ARTIST_GROUP_PROFILE = #{artistGroupProfile},
 		ARTIST_GROUP_IMAGE = #{artistGroupImage},
 		ARTIST_GROUP_BACKIMG = #{artistGroupBackimg}
