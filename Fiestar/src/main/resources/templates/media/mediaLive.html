@@ -49,15 +49,10 @@
                 <button th:if="${session.loginMember != null and session.loginMember.memberAuthority != 1}" class="replay-btn agora-btn" id="host-join" onclick="tokenGenerator('host', 1)">방송시작</button>
                 <button class="audience-btn agora-btn" id="audience-join" onclick="tokenGenerator('audience', 2)">시청하기</button>
                 <button class="leave agora-btn" id="leave">방송 끄기 / 나가기</button>
-                <div class="media-title">미디어/라이브 제목</div>
-                <div class="frame-6">
-                  <img class="view-img" src="/img/view.svg" />
-                  <div class="media-view-count">4k(조회수)</div>
-                </div>
               </div>
               <div class="comment-area-in">
                 <img class="profile-img" src="/img/male-user.png" />
-                <div class="comment-writer-area"><div class="media-title-wrapper">BTS</div></div>
+                <div class="comment-writer-area"><div class="media-title-wrapper" th:text="${artistGroupTitle}">BTS</div></div>
                 <div class="media-enroll-date-wrapper" >11.21. 02:43</div>
                 <img class="comment-profile" src="/img/frame-11979-9.svg" />
               </div>
