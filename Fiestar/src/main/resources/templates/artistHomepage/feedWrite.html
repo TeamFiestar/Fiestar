@@ -6,11 +6,11 @@
             <button class="modalCloseButton" data-target="feedWrite" onclick="wcloseModal()">X</button>
             <form th:action="|/${artistGroupTitle}/insert|" method="POST" enctype="multipart/form-data">
             <div class="modal-write">
-                <h1>게시글 작성</h1>
+                <h1>포스트 작성</h1>
                 <p th:text="${artistGroupTitle}">LE SSERAFIM</p>
 
                 <div class="modal-feedWrite">
-                    <textarea name="boardContent" id="feedWrite2" th:placeholder="|${artistGroupTitle}에게 게시글을 작성해보세요!!|"></textarea>
+                    <textarea name="boardContent" id="feedWrite2" th:placeholder="|${artistGroupTitle} 페이지에 포스트를 작성해보세요!!|"></textarea>
                 </div>
 
                 <div class="boardImg-container">
