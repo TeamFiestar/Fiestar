@@ -291,7 +291,3 @@ document.getElementById('in-cart').addEventListener('submit', (e) =>{
 form.addEventListener("submit", e=>{
     e.preventDefault();
 });
-
-
-
-

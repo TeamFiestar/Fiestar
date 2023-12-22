@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.TeamFiestar.Fiestar.admin.model.dto.Purchase;
 import com.TeamFiestar.Fiestar.admin.model.dto.SiteNotice;
 import com.TeamFiestar.Fiestar.board.model.dto.Board;
 import com.TeamFiestar.Fiestar.board.model.dto.Comment;
@@ -260,4 +261,27 @@ public class MyPageServiceImpl implements MyPageService {
 		return mapper.selectNotice(map);
 	}
 	
+	
+	// 구매내역 조회
+//	@Override
+//	public Map<String, Object> myPurchaseList(Member loginMember, int cp) {
+//
+//		int listCount = mapper.purchaseCount();
+//
+//		Pagination pagination = new Pagination(cp, listCount);
+//
+//		int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
+//		int limit = pagination.getLimit();
+//
+//		RowBounds rowBounds = new RowBounds(offset, limit);
+//
+//		List<Purchase> purchaseList = mapper.myPurchaseList(rowBounds);
+//
+//		Map<String, Object> map = new HashMap<>();
+//		map.put("pagination", pagination);
+//		map.put("purchaseList", purchaseList);
+//
+//		return map;
+//		
+//	}
 }
