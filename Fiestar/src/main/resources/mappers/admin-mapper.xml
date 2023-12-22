@@ -211,7 +211,9 @@
 	
 	<insert id="artistGroupChattingRoom">
 		INSERT INTO CHATTING_ROOM
-		VALUES(#{artistGroupNo},DEFAULT)
+		VALUES( 
+		(SELECT ARTIST_GROUP_NO FROM ARTIST_GROUP 
+		WHERE ARTIST_GROUP_TITLE = #{artistGroupTitle}),DEFAULT)
 	</insert>
 	
 	

@@ -81,7 +81,7 @@ public interface AdminMapper {
 
 	String regi(int memberNo);
 
-	int artistGroupChattingRoom(int artistGroupNo);
+	int artistGroupChattingRoom(String string);
 
 	
 

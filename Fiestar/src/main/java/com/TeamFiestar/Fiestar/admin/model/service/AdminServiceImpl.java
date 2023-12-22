@@ -211,7 +211,7 @@ public class AdminServiceImpl implements AdminService{
 			artistGroup.setArtistGroupImage(imagepath + imageRename);
 		}
 		int result = mapper.artistGroupRegi(artistGroup);
-		int chattingRoom = mapper.artistGroupChattingRoom(artistGroup.getArtistGroupNo());
+		int chattingRoom = mapper.artistGroupChattingRoom(artistGroup.getArtistGroupTitle());
 		
 		if(chattingRoom>0) {
 			if(result>0) {
