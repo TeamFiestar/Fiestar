@@ -22,63 +22,68 @@
                 style="width: 100%; height: 100%;"> 
         </div>
         
-        
-          <form th:action="|/shop/shopDetail/*{productNo}|" method="post" id="in-cart">
-            <input type="hidden" name="artistGroupNo" th:value="*{artistGroupNo}">
-            <div class="product-detail" th:object="${detail}">
-              <div class="artist-name">아티스트명 &gt;</div>
-              <section class="product-name" th:text=" '[' + *{artistGroupTitle} + ']' + ' ' + *{productName} ">[아티스트명] 상품명</section>
-              <div class="product-price" th:text=" '₩' + ' ' + *{productPrice}"></div>
-              <div class="product-delivery-info">
-                <img src="/images/package_car.png"> 
-                <span>배송 시작 예정일</span>
-                <span style="color:black; margin-left: 5px; font-size:14px; word-spacing: 2px;" id="delivery-date">2023.xx.xx ~ 2023.xx.xx</span>
-              </div>
-
-              <div class="package-info" >
-                <div>[주의]</div> 
-                배송 예정일은 상품 및 물류 상황에 따라 지연될 수 있습니다. 일정이 변경될 경우 개별 안내될 예정입니다.
-              </div>
-
-              <div class="product-option">
-                옵션 선택
-                <select name="key" id="optionSelect">
-                  <option  th:each="option: ${optionList}" th:object="${option}" th:value="*{productOptionName}" th:text="*{productOptionName}">S(90~95)</option>
-                </select>
-              </div>
-
-              <div class="product-purchase-list">
-                    <!-- <span class="product-purchase-name">[아티스트명] 상품명 <span class="remove-row">&times</span></span>
-                    
-                    <div class="option-area" > 
-                      <span>
-                      <button class="minus">-</button>  
-                      <h4 class="result">1</h4>
-                      <button class="plus">+</button>
-                      <h4 class="optionName"> [옵션] M</h4>
-                      </span>
-                      <span class="selected-price">₩110,000</span>
-                      
-                    </div> -->
-              </div>      
-              <div class="product-purchase-totalList" style="width:100%; margin-top: 50px;">
-                <span id="totalProduct" value="" >총 상품금액 (0개)</span>
-                <input type="hidden" name="productCount" id="productCount" value="">
-                <span id="totalPrice">₩ 총 가격</span>
-                <input type="hidden" name="totalPrice" id="total" value="">
-              </div> 
-              
-
-              <div class="product-purchase-area">
-                <button class="addCartBtn" type="submit">카트 추가</button>
-                <button class="purchaseBtn">바로 구매</button>
-              </div>
+        <form id="in-cart" method="POST">
+          <input type="hidden" name="artistGroupNo" th:value="*{artistGroupNo}">
+          <div class="product-detail" th:object="${detail}">
+            <div class="artist-name">아티스트명 &gt;</div>
+            <section class="product-name" th:text=" '[' + *{artistGroupTitle} + ']' + ' ' + *{productName} ">[아티스트명] 상품명</section>
+            <div class="product-price" th:text=" '₩' + ' ' + *{productPrice}"></div>
+            <div class="product-delivery-info">
+              <img src="/images/package_car.png"> 
+              <span>배송 시작 예정일</span>
+              <span style="color:black; margin-left: 5px; font-size:14px; word-spacing: 2px;" id="delivery-date">2023.xx.xx ~ 2023.xx.xx</span>
             </div>
-          </form>
-       
 
+            <div class="package-info" >
+              <div>[주의]</div> 
+              배송 예정일은 상품 및 물류 상황에 따라 지연될 수 있습니다. 일정이 변경될 경우 개별 안내될 예정입니다.
+            </div>       
+                <div class="product-option">
+                  옵션 선택
+                  <select name="key" id="optionSelect">
+                    <option value="" selected disabled hidden>옵션을 선택해주세요</option>
+                    <option  th:each="option: ${optionList}" th:object="${option}" th:value="*{productOptionName}" th:text="*{productOptionName}" id="selectOption">S(90~95)</option>
+                  </select>
+                </div>
+            </th:block>
 
+            <div class="product-purchase-list">
+                  <!-- <span class="product-purchase-name">[아티스트명] 상품명 <span class="remove-row">&times</span></span>
+                  
+                  <div class="option-area" > 
+                    <span>
+                    <button class="minus">-</button>  
+                    <h4 class="result">1</h4>
+                    <button class="plus">+</button>
+                    <h4 class="optionName"> [옵션] M</h4>
+                    </span>
+                    <span class="selected-price">₩110,000</span>
+                    
+                  </div> -->
+            </div>      
+            <div class="product-purchase-totalList" style="width:100%; margin-top: 50px;">
+              <span id="totalProduct" value="" >총 상품금액 (0개)</span>
+              <input type="hidden" name="productCount" id="productCount" value="">
+              <span id="totalPrice">₩ 총 가격</span>
+              <input type="hidden" name="totalPrice" id="total" value="">
+            </div> 
+            
+
+            <div class="product-purchase-area">
+              <button class="addCartBtn" type="button" onclick="send('addCart')">카트 추가</button>
+              <button class="purchaseBtn" type="button" onclick="send('purchase')">바로 구매</button>
+            </div>
+          </div>
+
+          <input type="hidden" name="selectEach" id="selectEach">
+        </form>
       </div>
+     
+      <th:block th:if="${session.loginMember != null and session.loginMember.memberAuthority == 3}"> 
+        <button id="updateBtn" class="updateBtn">수정</button>
+        <button id="deleteBtn" class="deleteBtn">삭제</button>
+      </th:block>
+
 
     <hr>
 
@@ -197,9 +202,18 @@
     const loginMember = /*[[${session.loginMember}]]*/ "회원번호";
   </script>
 
+ 
+
   <script th:inline = "javascript">
-    const message = /*[[${message}]]*/ "message";
+    const message = /*[[${message}]]*/ "메시지";
     if(message != null) alert(message);
+  </script>
+
+  <script th:inline="javascript">
+    const artistGroupTitle = /*[[${prod.detail.artistGroupTitle}]]*/ "아티스트그룹이름";
+    const productOptionName = /*[[${prod.optionList}]]*/ "옵션";
+    const productNo = /*[[${productNo}]]*/ "상품번호";
+    const nameProduct = /*[[${prod.detail.productName}]]*/ "상품명";
   </script>
   
 

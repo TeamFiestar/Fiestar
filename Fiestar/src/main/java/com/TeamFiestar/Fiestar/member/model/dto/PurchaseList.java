@@ -10,16 +10,16 @@ import lombok.ToString;
 @Setter
 @ToString
 public class PurchaseList {
-	private int purcharseList;
+	private int purcharseListNo;
 	private int purcharseNo;
 	private int purcharseQuantity;
 	private int purcharsePrice;
 	private int productNo;
 	
-	private String PurchaseStatus;
-	private String PurchaseDate;
-	private String ProductName;
-	private String ProductImage;
-	
+	private int productOptionNo;
+	private int productPrice;
+	private String productName;
+	private String productImageThumbnailRename;
+	private String productOptionName;
 	
 }

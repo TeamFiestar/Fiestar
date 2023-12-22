@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>굿즈 수정</title>
+    <link rel="stylesheet" href="/css/admin/goods.css" />
+    <link rel="stylesheet" href="/css/common/artistPageHeader.css" />
+  </head>
+  <body>
+    <th:block th:replace="~{common/artistPageHeader}"></th:block>
+    <main th:with="detail=${prod.detail}">
+      <!-- th:replace -->
+      <th:block th:replace="~{common/adminArtist}"></th:block>
+      <div class="goods-add">
+        <h1>굿즈 수정</h1>
+        <br />
+        <th:block th:object="${detail}">
+          <form th:action="|/artistAdmin/${artistGroupTitle}/${productNo}/goodsModify|" method="post" enctype="multipart/form-data" id="goodsFrm" >
+            <div class="goods-title">
+              상품명
+              <input type="text" id="input-goodsTitle" name="productName" th:value="*{productName}">
+            </div>
+            <div class="goods-title">
+              상품가격 <br>
+              <input type="text" id="input-goodsPrice" name="productPrice" th:value="*{productPrice}">
+            </div>
+            <div class="goods-option">
+              상품 옵션
+              <br />
+              <div id="option-area">
+                <!-- <img src="../../static/img/다운로드.png" class="input-goodsPlus" onclick="optionPlus(this)" /> -->
+                <img src="/img/Add_light.png" onclick="optionPlus(this)" class="plusBtn"/>
+                <div id="input-area">
+                  <!-- <input type="text" class="input-goodsOption" /> -->
+                </div>
+              </div>
+
+            </div>
+            <div class="goods-content">
+              상품 설명
+              <br />
+              <textarea class="input-goodsContent" name="productProduction" th:text="*{productProduction}"></textarea>
+              상품 설명 이미지
+              <br/>
+              <div class="goodsImg">
+                <label for="img1">
+                  <img src="#" class="goods-contentImg" />
+                </label>
+                <input type="file" name="contentImg" id="img1" accept="image/*" class="input-goodsImg" onchange="content(this);"/>
+                <span class="delete-image">&times;</span>
+              </div>
+            </div>
+            <div class="goods-thumnail">
+              상품 썸네일
+              <br />
+              <div class="goodsImg">
+                <label for="img2">
+                  <img src="#" class="thumnail" />
+                </label>
+                <input type="file" name="thumbnailImg" id="img2" accept="image/*" class="input-goodsImg"onchange="thumbnail(this);" />
+                <span class="delete-image">&times;</span>
+              </div>
+            </div>
+            <div class="goods-btn-area">
+              <button class="goodsBtn" type="submit">수정</button>
+            </div>
+          </form>
+        </th:block>
+      </div>
+    </main>
+    <script src="/js/admin/goods.js"></script>
+    
+    <script th:inline = "javascript">
+     const message = /*[[${message}]]*/ "message";
+     if(message != null) alert(message);
+    </script>
+  
+
+
+
+
+  </body>
+</html>
