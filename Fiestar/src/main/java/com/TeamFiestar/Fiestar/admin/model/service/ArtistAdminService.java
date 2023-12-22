@@ -29,4 +29,10 @@ public interface ArtistAdminService {
 
 	Map<String, Object> selectPurchaseList(String artistGroupTitle, Purchase searchPurchase, int cp);
 
+	int updateGoods(Product product, MultipartFile contentImg, MultipartFile thumbnailImg)throws IllegalStateException, IOException;
+
+	int deleteGoods(int productNo);
+	
+	
+
 }

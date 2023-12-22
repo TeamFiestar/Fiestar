@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -163,6 +164,30 @@ public class ShopController {
 			ra.addFlashAttribute("message","상품이 품절되었습니다.");
 			return "redirect:" + productNo;
 		}
+	}
+	
+	
+	
+	/**바로구매(장바구니에 담은 후에 조회해서 포워드)
+	 * @param ra
+	 * @param loginMember
+	 * @param productNo
+	 * @param productCount
+	 * @param totalPrice
+	 * @return
+	 */
+	@PostMapping("shopDetail/directBuy/{productNo:[0-9]+}")
+	@ResponseBody
+	public int buyCart(RedirectAttributes ra,
+						@SessionAttribute(value="loginMember", required = false) Member loginMember,
+						@PathVariable("productNo") int productNo,
+						@RequestBody Map<String, Integer> paramMap) {
+		
+		int productCount = paramMap.get("productCount");
+		int totalPrice = paramMap.get("totalPrice");
+		
+		int memberNo = loginMember.getMemberNo();
+		return service.insertCart(productNo, productCount, totalPrice, memberNo);
 	}
 	
 	

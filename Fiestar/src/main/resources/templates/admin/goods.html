@@ -26,11 +26,6 @@
           <div class="goods-option">
 
 
-
-
-
-
-
             상품 옵션
             <br />
             <div id="option-area">
@@ -41,11 +36,6 @@
               </div>
             </div>
 
-
-
-
-            
-
           </div>
           <div class="goods-content">
             상품 설명
@@ -55,9 +45,9 @@
             <br/>
             <div class="goodsImg">
               <label for="img1">
-                <img src="#" class="goods-contentImg" />
+                <img src="#" id="goods-contentImg"   class="goods-contentImg" />
               </label>
-              <input type="file" name="contentImg" id="img1" accept="image/*" class="input-goodsImg" />
+              <input type="file" name="contentImg" id="img1" accept="image/*" class="input-goodsImg" onchange="content(this);" />
               <span class="delete-image">&times;</span>
             </div>
           </div>
@@ -66,9 +56,9 @@
             <br />
             <div class="goodsImg">
               <label for="img2">
-                <img src="#" class="thumnail" />
+                <img src="#" id="thumnail"   class="thumnail" />
               </label>
-              <input type="file" name="thumbnailImg" id="img2" accept="image/*" class="input-goodsImg" />
+              <input type="file" name="thumbnailImg" id="img2" accept="image/*" class="input-goodsImg" onchange="thumbnail(this);" />
               <span class="delete-image">&times;</span>
             </div>
           </div>
