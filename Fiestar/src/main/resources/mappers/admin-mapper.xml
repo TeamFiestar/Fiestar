@@ -322,7 +322,10 @@
 	</select>
 	
 	
-	
+	<select id="regi" resultType="string">
+		SELECT ARTIST_GROUP_TITLE FROM ARTIST_GROUP
+		WHERE ARTIST_GROUP_ADMIN_NO = #{memberNo}
+	</select>
 	
 	
 	
