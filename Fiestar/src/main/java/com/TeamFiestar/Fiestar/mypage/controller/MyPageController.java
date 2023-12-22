@@ -229,5 +229,4 @@ public class MyPageController {
 		return "myPage/myPage-Purchase";
 
 	}
-
 }
