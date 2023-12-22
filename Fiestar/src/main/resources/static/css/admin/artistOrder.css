@@ -343,3 +343,82 @@ header a {
   text-align: left;
   width: 100px;
 }
+
+
+/* 상품 목록 */
+
+.buyAll{
+  width: 750px;
+  height: 200px;
+  margin: 0 auto;
+  list-style-type: none;
+}
+
+
+.buyDate{
+  width: 600px;
+  height: 30px;
+  padding-top: 10px;
+}
+
+.buyDate li{
+  font-weight: bold;
+}
+
+.deliver li{
+  font-weight: bold;
+}
+
+
+.deliver{
+  width: 600px;
+  height: 30px;
+}
+
+.buyContent{
+  width: 730px;
+  height: 120px;
+  display: flex;
+}
+
+.buy-img{
+  width: 87px;
+  height: 87px;
+  margin-top: 10px;
+}
+
+.item{
+  width: 500px;
+  height: 99px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.itemName li{
+  font-weight: bolder;
+}
+
+.itemCount{
+  margin-top: 15px;
+}
+
+.itemCount li{
+  font-size: 13px;
+}
+
+.itemprice{
+  margin-top: 15px;
+}
+
+.itemprice li{
+  font-size: 13px;
+}
+
+
+.itemName{
+  width: 650px;
+  min-height: 25px;
+  word-break:break-all;
+}
+
+/* 상품 목록 */
