@@ -30,16 +30,23 @@ public class LoginFilter implements Filter{
 	private static final String EXCLUDED_URI7 = "/member";
 	private static final String EXCLUDED_URI8 = "/artistHomepageImg";
 	private static final String EXCLUDED_URI9 = "/img";
+	private static final String EXCLUDED_URI10 = "/loginError";
 	
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 				throws IOException, ServletException {
+		
 		
 			log.info("로그인 필터 동작");
 			
 			// 요청, 응답 객체를 HTTP 통신에 사용할 수 있는 형태로 다운 캐스팅 진행
 			HttpServletRequest req = (HttpServletRequest)request;
 			HttpServletResponse resp = (HttpServletResponse)response;
+
+			String uri = req.getRequestURI();
+			
+			log.info(uri);
+			
 			
 			// Session 객체 얻어오기(요청에서 get)
 			HttpSession session = req.getSession();
@@ -67,7 +74,8 @@ public class LoginFilter implements Filter{
 	        		!requestURI.startsWith(EXCLUDED_URI6) &&
 	        		!requestURI.startsWith(EXCLUDED_URI7) &&
 	        		!requestURI.startsWith(EXCLUDED_URI8) &&
-	        		!requestURI.startsWith(EXCLUDED_URI9)) ) {
+	        		!requestURI.startsWith(EXCLUDED_URI9) &&
+	        		!requestURI.startsWith(EXCLUDED_URI10)) ) {
 	            // 로그인이 필요한 페이지로 리다이렉트 또는 처리하고자 하는 로직을 추가
 
 	            // 여기에서 리다이렉트 등을 처리할 수 있습니다.

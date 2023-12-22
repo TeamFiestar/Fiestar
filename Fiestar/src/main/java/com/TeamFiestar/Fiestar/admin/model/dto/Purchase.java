@@ -22,11 +22,13 @@ public class Purchase {
 	private int productSum;
 	private int key;
 	
+	private String puchasePhoneNumber;
 	private String purchaseDate;
 	private String memberNickname;
 	private String memberAddress;
 	private String orderSearch;
 	
+	private String purchaseAddress;
 	private String productName;
 	private String productImage;
 	private String productImageThumbnail;
