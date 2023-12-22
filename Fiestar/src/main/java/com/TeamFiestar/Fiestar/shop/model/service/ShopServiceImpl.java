@@ -162,26 +162,56 @@ public class ShopServiceImpl implements ShopService{
 		
 		return map;
 	}
+//	
+//	//바로 구매 시 장바구니 담기
+//	@Override
+//	public int insertCart(int productNo, int productCount, int productOptionNo, int totalPrice, int memberNo) {
+//		
+//		Map<String, Integer> map = new HashMap<>();
+//		map.put("productNo", productNo);
+//		map.put("productCount", productCount);
+//		map.put("memberNo", memberNo);
+//		map.put("totalPrice", totalPrice);
+//		map.put("productOptionNo", productOptionNo);
+//		
+//		int result = mapper.insertCart(map);
+//		
+//		if(result > 0) {
+//			result = mapper.insertCartOption(map);
+//			
+//			if(result > 0) return map.get("cartNo");
+//			else return 0;
+//		}
+//		
+//		return 0;
+//	}
+//	
 	
-	//장바구니에 담기
+
+	
+	// 장바구니에 담기
 	@Override
-	public int insertCart(int productNo, int productCount, int totalPrice, int memberNo) {
+	public int insertCart(int productNo, int[] productCount, int[] productOptionNo, int totalPrice, int memberNo) {
 		
 		Map<String, Integer> map = new HashMap<>();
 		map.put("productNo", productNo);
-		map.put("productCount", productCount);
 		map.put("memberNo", memberNo);
 		map.put("totalPrice", totalPrice);
 		
-		int result = mapper.insertCart(map);
-		
-		if(result > 0)	return map.get("cartNo");
-		
-		return 0;
-	}
-	
-	
+		int result = 0;
+		for(int i = 0 ; i<productCount.length ; i++) {
+			map.put("productCount", productCount[i]);
+			result = mapper.insertCart(map);
 
+			if(result > 0) {
+				map.put("productOptionNo", productOptionNo[i]);
+				result = mapper.insertCartOption(map);
+			}
+			
+		}
+		
+		return result;
+	}
 	
 	
 

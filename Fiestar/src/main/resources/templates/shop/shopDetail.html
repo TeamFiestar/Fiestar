@@ -42,7 +42,7 @@
                   옵션 선택
                   <select name="key" id="optionSelect">
                     <option value="" selected disabled hidden>옵션을 선택해주세요</option>
-                    <option  th:each="option: ${optionList}" th:object="${option}" th:value="*{productOptionName}" th:text="*{productOptionName}" id="selectOption">S(90~95)</option>
+                    <option  th:each="option: ${optionList}" th:object="${option}" th:value="*{productOptionNo}" th:text="*{productOptionName}" id="selectOption">S(90~95)</option>
                   </select>
                 </div>
             </th:block>
@@ -63,7 +63,7 @@
             </div>      
             <div class="product-purchase-totalList" style="width:100%; margin-top: 50px;">
               <span id="totalProduct" value="" >총 상품금액 (0개)</span>
-              <input type="hidden" name="productCount" id="productCount" value="">
+              <input type="hidden"  id="productCount" value="">
               <span id="totalPrice">₩ 총 가격</span>
               <input type="hidden" name="totalPrice" id="total" value="">
             </div> 

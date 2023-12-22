@@ -170,7 +170,9 @@
 	</insert>
 	
 	
-
+	<insert id="insertCartOption">
+		INSERT INTO CART_OPTION VALUES(#{productOptionNo}, #{cartNo})
+	</insert>
 	
 	
 	

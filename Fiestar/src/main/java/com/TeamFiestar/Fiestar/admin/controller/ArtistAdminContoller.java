@@ -128,9 +128,20 @@ public class ArtistAdminContoller {
 	 */
 	@GetMapping("{artistGroupTitle}/goods")
 	public String register(
-			@PathVariable("artistGroupTitle") String artistGroupTitle, Model model) {
-		model.addAttribute("artistGroupTitle",artistGroupTitle);
-		return "admin/goods";
+			@PathVariable("artistGroupTitle") String artistGroupTitle, Model model,
+			@SessionAttribute(value="loginMember", required = false) Member loginMember) {
+		
+		int memberNo = loginMember.getMemberNo();
+		int adminNo = service.selectAdminNo(artistGroupTitle);
+		
+		if(memberNo == adminNo) {
+			model.addAttribute("artistGroupTitle",artistGroupTitle);
+			return "admin/goods";
+		}else {
+			
+			return "/";
+		}
+		
 	}
 	
 	/*상품 등록
