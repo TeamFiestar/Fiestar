@@ -258,7 +258,7 @@
                <div style="margin-bottom: 20px;">
 
                   <span class="product-price" style="font-size: 16px;">상품 가격 </span>
-                  <span th:text="${totalPrice}" class="totalProduct-price" style="margin-left: 927px;"></span>
+                  <span th:text=" '₩' + ${totalPrice}" class="totalProduct-price" style="margin-left: 927px;"></span>
 
                </div>
 
@@ -280,7 +280,7 @@
             <span class="total-price" style="letter-spacing: -1.6px;">총 결제 금액</span>
 
             <input type="hidden" class="purchasePrice" name="purchasePrice" th:value="${purchasePrice}">
-            <p style="background: rgb(255, 254, 237);"> <span th:text="${purchasePrice}" class="purchasePrice" name="purchasePrice" style="background: rgb(255, 254, 237);" id="alll"></span> </p>
+            <p style="background: rgb(255, 254, 237);"> <span th:text=" '₩' + ${purchasePrice}" class="purchasePrice" name="purchasePrice" style="background: rgb(255, 254, 237);" id="alll"></span> </p>
 
          </div>
 
