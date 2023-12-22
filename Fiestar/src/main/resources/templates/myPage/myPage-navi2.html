@@ -2,14 +2,22 @@
   <div class="profile">
     <div class="profileImg">
       <a href="/myPage/myPage-Modify">
-        <img th:if="${session.loginMember.memberProfile == null}" th:src="#{user.default.image}" width="100%" height="100%">
-        <img th:unless="${session.loginMember.memberProfile == null}" th:src="${session.loginMember.memberProfile}" width="100%" height="100%"  style="width: 80px; height: 80px; border-radius: 100%; object-fit:cover">
+        <img th:if="${session.loginMember.memberProfile == null}" th:src="#{user.default.image}" width="100%"
+          height="100%">
+        <img th:unless="${session.loginMember.memberProfile == null}" th:src="${session.loginMember.memberProfile}"
+          width="100%" height="100%" style="width: 80px; height: 80px; border-radius: 100%; object-fit:cover">
       </a>
     </div>
     <div class="profile-info">
-      <div class="nickName"><h4 th:text="${session.loginMember.memberNickname}">민둥민두</h4></div>
-      <div class="email"><h4 th:text="${session.loginMember.memberEmail}">javaman@gmail.com</h4></div>
-      <div class="logout"><h4><a href="">로그아웃</a></h4></div>
+      <div class="nickName">
+        <h4 th:text="${session.loginMember.memberNickname}">민둥민두</h4>
+      </div>
+      <div class="email">
+        <h4 th:text="${session.loginMember.memberEmail}">javaman@gmail.com</h4>
+      </div>
+      <div class="logout">
+        <h4><a href="">로그아웃</a></h4>
+      </div>
     </div>
   </div>
 
@@ -65,7 +73,7 @@
     </div>
 
     <div class="Notice">
-      <div class="icon"> 
+      <div class="icon">
         <img src="/image/공지사항.png" width="100%" height="100%">
       </div>
       <div class="center">
@@ -78,3 +86,42 @@
 
   </div>
 </div>
+
+
+<script>
+  window.onload = function () {
+    // 현재 URL 가져오기
+    var currentURL = window.location.href;
+
+    // 만약 URL에 '/myPage-comment' 문자열이 포함되어 있다면 배경색 변경
+    if (currentURL.includes('/myPage/myPage-comment')) {
+      var commentLink = document.querySelector('.comment');
+      if (commentLink) {
+        commentLink.style.backgroundColor = '#7743db';
+      }
+    }
+
+    if (currentURL.includes('/myPage/myPage-artist')) {
+      var commentLink = document.querySelector('.artist');
+      if (commentLink) {
+        commentLink.style.backgroundColor = '#7743db';
+      }
+    }
+
+    if (currentURL.includes('/myPage/myPage-Purchase')) {
+      var commentLink = document.querySelector('.Purchase');
+      if (commentLink) {
+        commentLink.style.backgroundColor = '#7743db';
+      }
+    }
+
+    if (currentURL.includes('/myPage/myPage-Noctice')) {
+      var commentLink = document.querySelector('.Notice');
+      if (commentLink) {
+        commentLink.style.backgroundColor = '#7743db';
+      }
+    }
+
+  };
+
+</script>

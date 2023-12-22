@@ -41,8 +41,8 @@ public interface MyPageService {
 	// 공지사항 상세 조회
 	SiteNotice selectNotice(Map<String, Object> map);
 
-//	// 구매내역 조회
-//	Map<String, Object> myPurchaseList(Member loginMember, int cp);
+	// 구매내역 조회
+	Map<String, Object> myPurchaseList(Member loginMember, int cp);
 
 
 

@@ -38,3 +38,6 @@ function selectNoctice(siteNoticeNo, thisTr) {
         })
         .catch(err => console.log(err));
 }
+
+
+  

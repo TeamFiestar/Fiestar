@@ -30,7 +30,7 @@ function openModal(boardNo) {
 
 
 function closeModal(stateObj) {
-    
+
     var newUrl = "/myPage/myPage";
     history.pushState(stateObj, "", newUrl);
 
@@ -548,3 +548,4 @@ function likeComment(btn, boardCommentNo) {
             console.log(e);
         });
 }
+

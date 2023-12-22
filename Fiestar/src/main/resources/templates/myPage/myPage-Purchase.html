@@ -14,6 +14,64 @@
 <body>
   <th:block th:replace="~{common/artistPageHeader}"></th:block>
 
+  <div class="orderModal">
+    <div id="orderModal" class="modal-body">
+      <button class="modalCloseButton">X</button>
+      <div class="modal-orderDetail">
+        <h3>주문 상세 조회</h3>
+        <div class="order-info">
+          <table class="order-info-table">
+
+            <tr>
+              <th class="order-nickname">이름</th>
+              <td class="order-nickname-info">test</td>
+            </tr>
+            <tr>
+              <th class="order-address">주소</th>
+              <td class="order-address-info">test2</td>
+            </tr>
+            <tr>
+              <th class="order-price">주문 가격</th>
+              <td class="order-price-info">100000</td>
+            </tr>
+            <tr>
+              <th class="order-status">주문 상태</th>
+              <td class="order-status-info">주문 완료</td>
+            </tr>
+            
+          </table>
+        </div>
+        <div class="product-info">
+
+
+          <div>
+            <div class="buyContent">
+              <div class="buy-img">
+                <img width="100%" height="100%">
+              </div>
+              <div class="item">
+                <div class="itemName">
+                  <h3>상품명</h3>
+                </div>
+                <div class="itemCount">
+                  <h1></h1>
+                  <li>상품개수: 0개</li>
+                </div>
+                <div class="itemprice">
+                  <li>총 상품 금액: 0원</li>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr class="myPageHr" width="750px">
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <div class="all">
     <div class="BgImage">
       <img th:unless="${session.loginMember.memberBackImage == null}" th:src="${session.loginMember.memberBackImage}"
@@ -37,7 +95,8 @@
 
           <div  th:unless="${#lists.size(purchaseList) == 0}">
             <div class="buyAll" th:each="purchase : ${purchaseList}" th:object="${purchase}">
-              <div >
+
+              <div th:onclick="|selectPurchaseDetail(*{purchaseNo})|">
                 <div class="buyDate">
                   <li th:text="*{purchaseDate}">[2023.11.23]</li>
                 </div>
@@ -46,14 +105,14 @@
                 </div>
                 <div class="buyContent">
                   <div class="buy-img">
-                    <img th:src="*{productImageThumbnailRename}" width="100%" height="100%">
+                    <img th:src="|*{productImageThumbnail}*{productImageThumbnailRename}|" width="100%" height="100%">
                   </div>
                   <div class="item">
                     <div class="itemName">
                       <h3 th:text="*{productName}">LE SSERAFIM 2024 SEASON'S GREETINGS</h3>
                     </div>
-                    <div class="itemCount">
-                      <li th:value="|상품 개수: *{purcharseQuantity}개|">상품개수 : 3개</li>
+                    <div class="itemCount" >
+                      <li th:text="|상품 개수: *{purcharseQuantity}개|">상품개수 : 3개</li>
           
                     </div>
                     <div class="itemprice">
@@ -105,6 +164,7 @@
 
     <th:block th:replace="~{common/footer}"></th:block>
 
+    <script src="/js/admin/artistOrder.js"></script>
 </body>
 
 </html>

@@ -43,7 +43,7 @@
             <div class="artist-all">
               <div class="m" th:each="ArtistSubscribe : ${artistList}" th:object="${ArtistSubscribe}">
                 <div class="artist-list">
-                  <a th:href="@{/artistMember/{artistGroupTitle}(artistGroupTitle=*{artistGroupTitle})}" class="artist-profile">
+                  <a th:href="@{/{artistGroupTitle}/feed(artistGroupTitle=*{artistGroupTitle})}" class="artist-profile">
                     <div class="artist-image-area">
                       <img th:src="*{artistGroupImage}">
                     </div>

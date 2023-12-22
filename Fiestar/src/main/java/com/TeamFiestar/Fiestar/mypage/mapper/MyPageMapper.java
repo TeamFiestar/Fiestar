@@ -69,11 +69,11 @@ public interface MyPageMapper {
 	// 공지사항 상세 조회
 	SiteNotice selectNotice(Map<String, Object> map);
 
-//	// 구매내역 수 조회
-//	int purchaseCount();
-//
-//	// 구매내역 list 조회
-//	List<Purchase> myPurchaseList(RowBounds rowBounds);
+	// 구매내역 수 조회
+	int purchaseCount(int memberNo);
+
+	// 구매내역 list 조회
+	List<Purchase> myPurchaseList(int memberNo, RowBounds rowBounds);
 	
 	
 
