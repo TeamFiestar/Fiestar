@@ -226,6 +226,9 @@ public class MyPageController {
 		return service.selectNotice(map);
 	}
 	
+	// 구매 내역 조회
+	@GetMapping
+	
 	
 	
 	

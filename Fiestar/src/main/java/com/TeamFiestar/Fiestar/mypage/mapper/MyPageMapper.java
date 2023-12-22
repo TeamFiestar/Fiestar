@@ -1,18 +1,18 @@
 
 package com.TeamFiestar.Fiestar.mypage.mapper;
 
-import java.util.List; 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
 
+import com.TeamFiestar.Fiestar.admin.model.dto.Purchase;
 import com.TeamFiestar.Fiestar.admin.model.dto.SiteNotice;
 import com.TeamFiestar.Fiestar.board.model.dto.Board;
 import com.TeamFiestar.Fiestar.board.model.dto.Comment;
 import com.TeamFiestar.Fiestar.member.model.dto.ArtistSubscribe;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
-import com.TeamFiestar.Fiestar.member.model.dto.PurchaseList;
 
 
 
@@ -68,6 +68,14 @@ public interface MyPageMapper {
 
 	// 공지사항 상세 조회
 	SiteNotice selectNotice(Map<String, Object> map);
+
+//	// 구매내역 수 조회
+//	int purchaseCount();
+//
+//	// 구매내역 list 조회
+//	List<Purchase> myPurchaseList(RowBounds rowBounds);
+	
+	
 
 
 
