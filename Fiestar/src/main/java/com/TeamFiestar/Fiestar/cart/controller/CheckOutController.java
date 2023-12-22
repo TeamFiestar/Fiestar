@@ -53,8 +53,7 @@ public class CheckOutController {
 	        // 선택된 장바구니 항목 조회
 	    	
 	        List<Cart> checkout = cartService.checkout(selectNo);
-	        	        
-	        
+	           
 	        int totalQuantity = 0; 
 	        
 	        int totalPrice = 0;

@@ -609,6 +609,14 @@ border-radius: 4px;
 
 }
 
+
+.invalid {
+   
+border: 2px solid rgb(240, 89, 89); /* 빨간 테두리 적용 */
+
+}
+
+
 /* 
 #memberNo {
    display: none;
