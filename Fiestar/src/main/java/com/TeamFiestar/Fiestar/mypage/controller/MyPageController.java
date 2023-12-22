@@ -226,20 +226,9 @@ public class MyPageController {
 		return service.selectNotice(map);
 	}
 	
-	// 구매내역 확인하기
-//	@GetMapping("myPage-Purchase")
-//	public String myPurchase(@SessionAttribute("loginMember") Member loginMember, Model model,
-//			@RequestParam(value = "cp", required = false, defaultValue = "1") int cp,
-//			@RequestParam Map<String, Object> paramMap) {
-//		
-//		
-//		Map<String, Object> map = service.myPurchaseList(loginMember, cp);
-//
-//		model.addAttribute("map", map);
-//
-//		return "myPage/myPage-Purchase";
-//		
-//	}
+	// 구매 내역 조회
+	@GetMapping
+	
 	
 	
 	

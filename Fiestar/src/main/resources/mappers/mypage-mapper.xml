@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.TeamFiestar.Fiestar.mypage.mapper.MyPageMapper">
-
-<!--	<resultMap id="purchase_rm" type="Purchase">
-		<id property="purchaseNo" column="PURCHASE_NO" />
-
-		<collection property="PurchaseList"
-			select="selectPurchaseList"
-			column="PURCHASE_NO"
-			javaType="java.util.ArrayList"
-			ofType="PurchaseList" />
-
-	</resultMap>-->
-
+	
+	
+	
 
 	<!--내가 작성한 글 개수 -->
 	<select id="boardListCount" resultType="_int">
@@ -23,9 +14,10 @@
 	</select>
 
 	<!--내가 작성한 글 조회-->
-	<select id="selectMyFeedList" resultType="Board">
+	<select
+		id="selectMyFeedList" resultType="Board">
 		SELECT MEMBER_NO, BOARD_CONTENT, MEMBER_NICKNAME, ARTIST_GROUP_NO,
-		ARTIST_GROUP_TITLE,
+	ARTIST_GROUP_TITLE,
 		MEMBER_PROFILE, BOARD_NO, TO_CHAR(BOARD_ENROLL_DATE, 'YYYY"년" MM"월"
 		DD"일" HH24:MI') AS BOARD_ENROLL_DATE
 		FROM BOARD
@@ -37,17 +29,18 @@
 	</select>
 
 
-	<select id="commentCount" resultType="_int">
+	<select
+		id="commentCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM
 		( SELECT
 		BOARD_COMMENT_NO AS COMMENT_NO, BOARD_COMMENT_DEL_FL AS COMMENT_DEL_FL,
-		m.MEMBER_NICKNAME AS MEMBER_NICKNAME, m.MEMBER_NO,
+	m.MEMBER_NICKNAME AS MEMBER_NICKNAME, m.MEMBER_NO,
 		BOARD_COMMENT_CONTENT AS COMMENT_CONTENT,
-		TO_CHAR(BOARD_COMMENT_ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI ') AS
-		COMMENT_ENROLL_DATE,
+	TO_CHAR(BOARD_COMMENT_ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI ') AS
+	COMMENT_ENROLL_DATE,
 		(SELECT b.BOARD_CONTENT FROM BOARD b WHERE bc.BOARD_NO = b.BOARD_NO) AS
-		PARENT_TITLE,
+	PARENT_TITLE,
 		'BOARD' AS COMMENT_TYPE
 		FROM BOARD_COMMENT bc
 		JOIN MEMBER m ON bc.MEMBER_NO = m.MEMBER_NO
@@ -56,12 +49,12 @@
 		UNION
 		SELECT
 		MEDIA_COMMENT_NO AS COMMENT_NO, MEDIA_COMMENT_DEL_FL AS COMMENT_DEL_FL,
-		m.MEMBER_NICKNAME AS MEMBER_NICKNAME, m.MEMBER_NO,
+	m.MEMBER_NICKNAME AS MEMBER_NICKNAME, m.MEMBER_NO,
 		MEDIA_COMMENT_CONTENT AS COMMENT_CONTENT,
-		TO_CHAR(MEDIA_COMMENT_ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI') AS
-		COMMENT_ENROLL_DATE,
+	TO_CHAR(MEDIA_COMMENT_ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI') AS
+	COMMENT_ENROLL_DATE,
 		(SELECT m.MEDIA_TITLE FROM MEDIA m WHERE mc.MEDIA_NO = m.MEDIA_NO) AS
-		PARENT_TITLE,
+	PARENT_TITLE,
 		'MEDIA' AS COMMENT_TYPE
 		FROM MEDIA_COMMENT mc
 		JOIN MEMBER m ON mc.MEMBER_NO = m.MEMBER_NO
@@ -72,12 +65,12 @@
 	<select id="MyCommentList" resultType="Comment">
 		SELECT
 		BOARD_COMMENT_NO AS COMMENT_NO, BOARD_COMMENT_DEL_FL AS COMMENT_DEL_FL,
-		m.MEMBER_NICKNAME AS MEMBER_NICKNAME, m.MEMBER_NO,
+	m.MEMBER_NICKNAME AS MEMBER_NICKNAME, m.MEMBER_NO,
 		BOARD_COMMENT_CONTENT AS COMMENT_CONTENT,
-		TO_CHAR(BOARD_COMMENT_ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI ') AS
-		COMMENT_ENROLL_DATE,
+	TO_CHAR(BOARD_COMMENT_ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI ') AS
+	COMMENT_ENROLL_DATE,
 		(SELECT b.BOARD_CONTENT FROM BOARD b WHERE bc.BOARD_NO = b.BOARD_NO) AS
-		PARENT_TITLE,
+	PARENT_TITLE,
 		'BOARD' AS COMMENT_TYPE
 		FROM BOARD_COMMENT bc
 		JOIN MEMBER m ON bc.MEMBER_NO = m.MEMBER_NO
@@ -86,12 +79,12 @@
 		UNION
 		SELECT
 		MEDIA_COMMENT_NO AS COMMENT_NO, MEDIA_COMMENT_DEL_FL AS COMMENT_DEL_FL,
-		m.MEMBER_NICKNAME AS MEMBER_NICKNAME, m.MEMBER_NO,
+	m.MEMBER_NICKNAME AS MEMBER_NICKNAME, m.MEMBER_NO,
 		MEDIA_COMMENT_CONTENT AS COMMENT_CONTENT,
-		TO_CHAR(MEDIA_COMMENT_ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI') AS
-		COMMENT_ENROLL_DATE,
+	TO_CHAR(MEDIA_COMMENT_ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI') AS
+	COMMENT_ENROLL_DATE,
 		(SELECT m.MEDIA_TITLE FROM MEDIA m WHERE mc.MEDIA_NO = m.MEDIA_NO) AS
-		PARENT_TITLE,
+	PARENT_TITLE,
 		'MEDIA' AS COMMENT_TYPE
 		FROM MEDIA_COMMENT mc
 		JOIN MEMBER m ON mc.MEMBER_NO = m.MEMBER_NO
@@ -101,15 +94,17 @@
 	</select>
 
 
-	<select id="artistCount" resultType="_int">
+	<select
+		id="artistCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM ARTIST_SUBSCRIBE
 		WHERE MEMBER_NO = #{memberNo}
 	</select>
 
-	<select id="myArtistList" resultType="ArtistSubscribe">
+	<select
+		id="myArtistList" resultType="ArtistSubscribe">
 		SELECT ARTIST_GROUP_NO, MEMBER_NO, ARTIST_GROUP_PROFILE,
-		ARTIST_GROUP_IMAGE, ARTIST_GROUP_TITLE
+	ARTIST_GROUP_IMAGE, ARTIST_GROUP_TITLE
 		FROM ARTIST_SUBSCRIBE
 		JOIN ARTIST_GROUP USING( ARTIST_GROUP_NO)
 		WHERE MEMBER_NO =#{memberNo}
@@ -117,48 +112,55 @@
 
 
 	<!-- 암호화된 비밀번호 조회 -->
-	<select id="selectPw" resultType="String">
+	<select
+		id="selectPw" resultType="String">
 		SELECT MEMBER_PW FROM "MEMBER"
 		WHERE MEMBER_NO = #{memberNo}
 	</select>
 
 	<!-- 회원 탈퇴하기 -->
-	<update id="withDrawal">
+	<update
+		id="withDrawal">
 		UPDATE "MEMBER" SET
 		MEMBER_DEL_FL = 'Y'
 		WHERE MEMBER_NO = #{memberNo}
 	</update>
 
 	<!-- 내가 작성한 게시글 삭제-->
-	<update id="deleteBoard">
+	<update
+		id="deleteBoard">
 		UPDATE BOARD SET
 		BOARD_DEL_FL = 'Y'
 		WHERE BOARD_NO = #{boardNo}
 	</update>
 
 	<!-- 프로필 이미지 변경 -->
-	<update id="profile">
+	<update
+		id="profile">
 		UPDATE MEMBER SET
 		MEMBER_PROFILE = #{memberProfile}
 		WHERE MEMBER_NO =#{memberNo}
 	</update>
 
 	<!-- 댓글 삭제 -->
-	<update id="deleteMediaComment">
+	<update
+		id="deleteMediaComment">
 		UPDATE MEDIA_COMMENT SET
 		MEDIA_COMMENT_DEL_FL = 'Y'
 		WHERE MEDIA_COMMENT_NO = #{commentNo}
 	</update>
 
 	<!-- 댓글 삭제 -->
-	<update id="deleteBoardComment">
+	<update
+		id="deleteBoardComment">
 		UPDATE BOARD_COMMENT SET
 		BOARD_COMMENT_DEL_FL = 'Y'
 		WHERE BOARD_COMMENT_NO = #{commentNo}
 	</update>
 
 	<!-- 프로필 정보 변경 -->
-	<update id="info">
+	<update
+		id="info">
 		UPDATE "MEMBER" SET
 		MEMBER_NICKNAME = #{memberNickname},
 		MEMBER_ADDRESS = #{memberAddress},
@@ -167,75 +169,29 @@
 	</update>
 
 	<!-- 공지사항 개수 -->
-	<select id="nocticeCount" resultType="_int">
+	<select
+		id="nocticeCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM SITE_NOTICE
 		WHERE SITE_NOTICE_DEL_FL = 'N'
 	</select>
 
 	<!--공지사항 조회 -->
-	<select id="siteNoticeList" resultType="SiteNotice">
+	<select
+		id="siteNoticeList" resultType="SiteNotice">
 		SELECT SITE_NOTICE_TITLE, SITE_NOTICE_CONTENT, SITE_NOTICE_NO ,
-		TO_CHAR(SITE_NOTICE_ENROLL_DATE, 'YYYY.MM.DD') AS
+	TO_CHAR(SITE_NOTICE_ENROLL_DATE, 'YYYY.MM.DD') AS
 		SITE_NOTICE_ENROLL_DATE
 		FROM SITE_NOTICE sn
 		WHERE SITE_NOTICE_DEL_FL = 'N'
 	</select>
 
 	<!--공지사항 상세 조회-->
-	<select id="selectNotice">
+		<select
+		id="selectNotice">
 		SELECT * FROM SITE_NOTICE
 		WHERE SITE_NOTICE_NO = #{siteNoticeNo}
 		AND SITE_NOTICE_DEL_FL = 'N'
 	</select>
-
-	<!-- 구매목록 수 조회 -->
-	<select id="purchaseCount">
-		SELECT COUNT(*)
-		FROM ( SELECT PURCHASE_NO, PURCHASE_PRICE, MEMBER_NO,
-		TO_CHAR(PURCHASE_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI') AS PURCHASE_DATE,
-		CASE
-		WHEN PURCHASE_STATUS = 1 THEN '주문완료'
-		WHEN PURCHASE_STATUS = 2 THEN '배송 준비'
-		WHEN PURCHASE_STATUS = 3 THEN '배송 중'
-		WHEN PURCHASE_STATUS = 4 THEN '배송완료'
-		WHEN PURCHASE_STATUS = 5 THEN '반품'
-		WHEN PURCHASE_STATUS = 6 THEN '취소'
-		ELSE '기타'
-		END AS PURCHASE_STATUS
-		FROM PURCHASE
-		WHERE MEMBER_NO = #{memberNo})
-	</select>
-
-	<!-- 구매목록 상세 조회 -->
-<!--	<select id="myPurchaseList" resultType="purchase_rm">
-		SELECT PURCHASE_NO, PURCHASE_PRICE, MEMBER_NO,
-		TO_CHAR(PURCHASE_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI') AS PURCHASE_DATE,
-		CASE
-		WHEN PURCHASE_STATUS = 1 THEN '주문완료'
-		WHEN PURCHASE_STATUS = 2 THEN '배송 준비'
-		WHEN PURCHASE_STATUS = 3 THEN '배송 중'
-		WHEN PURCHASE_STATUS = 4 THEN '배송완료'
-		WHEN PURCHASE_STATUS = 5 THEN '반품'
-		WHEN PURCHASE_STATUS = 6 THEN '취소'
-		ELSE '기타'
-		END AS PURCHASE_STATUS
-		FROM PURCHASE
-		WHERE MEMBER_NO = #{memberNo}
-		ORDER BY PURCHASE_NO DESC
-	</select>
-
-	<select id="selectPurchaseList" resultType="PurchaseList">
-		SELECT PURCHASE_LIST_NO, PURCHASE_NO, PRODUCT_NO, PRODUCT_QUANTITY,
-		PURCHASE_LIST.PRODUCT_PRICE,
-		PRODUCT_NAME, PRODUCT_IMAGE_THUMBNAIL, PRODUCT_IMAGE_THUMBNAIL_RENAME,
-		PRODUCT_OPTION_NAME
-		FROM PURCHASE_LIST
-		JOIN PRODUCT USING (PRODUCT_NO)
-		LEFT JOIN PRODUCT_IMAGE USING(PRODUCT_NO)
-		LEFT JOIN PRODUCT_OPTION po USING(PRODUCT_NO)
-		WHERE PURCHASE_NO = #{purchaseNo}
-		ORDER BY PURCHASE_LIST_NO ASC
-	</select>-->
 
 </mapper>

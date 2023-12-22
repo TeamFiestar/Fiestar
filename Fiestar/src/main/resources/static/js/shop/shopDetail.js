@@ -28,6 +28,18 @@ const optionValue = document.querySelector("select[name=key] option:checked").se
 
 optionSelect.addEventListener("change", () => {
 
+  optionSelect.selectedIndex = 0; //처음 옵션으로 되돌리기
+
+
+
+  /* 같은 옵션 선택 시 밑으로 내려가지 않고 누적 작성 예정 */
+
+
+
+
+
+  /* ************************************************** */
+
   
 
   const productName = document.createElement("span");
@@ -169,8 +181,6 @@ function totalNoProduct( ) {
 }
 
 
-
-
 function totalCost() {
   
   let total = 0;
@@ -186,10 +196,92 @@ totalCost();
 
 
 
+
+
+
+const updateBtn = document.getElementById("updateBtn");
+if(updateBtn != null){
+updateBtn.addEventListener("click", ()=>{
+  location.href = `/artistAdmin/${artistGroupTitle}/${productNo}/goodsModify`;
+});
+}
+
+
+const deleteBtn = document.getElementById("deleteBtn");
+if(deleteBtn != null){
+  deleteBtn.addEventListener("click", ()=>{
+  location.href = `/artistAdmin/${productNo}/goodsDelete`;
+});
+
+}
+
+
+
+const form = document.getElementById("in-cart");
+
+function send(action){
+
+  if(!loginMember || totalProduct.getAttribute('value') == 0){
+    
+    if(totalProduct.getAttribute('value') == 0){
+      alert("옵션을 선택해주세요");
+    }else{
+    alert("로그인 후 이용해 주십시오");
+    }
+  return;
+}
+
+
+  let url = null;
+
+  if(action == 'addCart'){
+    url = `/shop/shopDetail/${productNo}`;
+    form.action = url;
+    form.submit();
+
+
+  }else if(action == 'purchase'){
+    console.log({"productCount" : count.value, "totalPrice" : totalP.value});
+
+    url = `/shop/shopDetail/directBuy/${productNo}`;
+    fetch(url,{
+      method : "POST",
+      headers : {"Content-Type" : "application/json"},
+      body : JSON.stringify({"productCount" : count.value, "totalPrice" : totalP.value})
+    })
+    .then(resp => resp.text())
+    .then(cartNo => {
+  
+      if(cartNo > 0){
+        document.getElementById("selectEach").value = cartNo;
+        form.action = "/checkout";
+        form.submit();
+      }
+    })
+  }
+
+
+  
+};
+
+
+
 document.getElementById('in-cart').addEventListener('submit', (e) =>{
   if(!loginMember){
     e.preventDefault();
     alert("로그인 후 이용해 주십시오");
+  }else if(totalProduct.getAttribute('value')){
+    e.preventDefault();
+    alert("옵션을 선택해주세요");
   }
 })
+
+
+
+form.addEventListener("submit", e=>{
+    e.preventDefault();
+});
+
+
+
 
