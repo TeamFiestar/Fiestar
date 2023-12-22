@@ -248,11 +248,27 @@ function send(action){
   let url = null;
 
   if(action == 'addCart'){
+    // url = `/shop/shopDetail/${productNo}`;
+    // form.action = url;
+    // form.submit();
+
+    console.log({"productCount" : count.value, "totalPrice" : totalP.value});
+
     url = `/shop/shopDetail/${productNo}`;
-    form.action = url;
-    form.submit();
-
-
+    fetch(url,{
+      method : "POST",
+      headers : {"Content-Type" : "application/json"},
+      body : JSON.stringify({"productCount" : count.value, "totalPrice" : totalP.value})
+    })
+    .then(resp => resp.text())
+    .then(cartNo => {
+  
+      if(cartNo > 0){
+        document.getElementById("selectEach").value = cartNo;
+        form.action = "/cartPage";
+        form.submit();
+      }
+    })
   }else if(action == 'purchase'){
     console.log({"productCount" : count.value, "totalPrice" : totalP.value});
 
