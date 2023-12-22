@@ -79,6 +79,8 @@ public interface AdminMapper {
 
 	int checkGroupUpdate(int memberNo);
 
+	String regi(int memberNo);
+
 	
 
 
