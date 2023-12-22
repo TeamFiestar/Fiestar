@@ -34,8 +34,8 @@ public class Purchase {
 	private String productImage;
 	private String productImageThumbnail;
 	private String productImageThumbnailRename;
-	private int purcharseQuantity;
-	
+	private int productQuantity;
+	private int purcharsePrice;
 	
 	private List<Product> productList;
 	private List<PurchaseList> purchaseList;

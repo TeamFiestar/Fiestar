@@ -92,12 +92,15 @@
   window.onload = function () {
     // 현재 URL 가져오기
     var currentURL = window.location.href;
+    const Bulletin = document.querySelector(".Bulletin");
 
     // 만약 URL에 '/myPage-comment' 문자열이 포함되어 있다면 배경색 변경
     if (currentURL.includes('/myPage/myPage-comment')) {
       var commentLink = document.querySelector('.comment');
       if (commentLink) {
         commentLink.style.backgroundColor = '#7743db';
+        Bulletin.style.backgroundColor = "#F3F3F3";
+
       }
     }
 
@@ -105,6 +108,7 @@
       var commentLink = document.querySelector('.artist');
       if (commentLink) {
         commentLink.style.backgroundColor = '#7743db';
+        Bulletin.style.backgroundColor = "#F3F3F3";
       }
     }
 
@@ -112,6 +116,7 @@
       var commentLink = document.querySelector('.Purchase');
       if (commentLink) {
         commentLink.style.backgroundColor = '#7743db';
+        Bulletin.style.backgroundColor = "#F3F3F3";
       }
     }
 
@@ -119,6 +124,7 @@
       var commentLink = document.querySelector('.Notice');
       if (commentLink) {
         commentLink.style.backgroundColor = '#7743db';
+        Bulletin.style.backgroundColor = "#F3F3F3";
       }
     }
 

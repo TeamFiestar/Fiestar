@@ -42,8 +42,6 @@
           </table>
         </div>
         <div class="product-info">
-
-
           <div>
             <div class="buyContent">
               <div class="buy-img">
@@ -64,8 +62,6 @@
             </div>
           </div>
           <hr class="myPageHr" width="750px">
-
-
         </div>
       </div>
     </div>
@@ -95,7 +91,6 @@
 
           <div  th:unless="${#lists.size(purchaseList) == 0}">
             <div class="buyAll" th:each="purchase : ${purchaseList}" th:object="${purchase}">
-
               <div th:onclick="|selectPurchaseDetail(*{purchaseNo})|">
                 <div class="buyDate">
                   <li th:text="*{purchaseDate}">[2023.11.23]</li>
@@ -112,11 +107,10 @@
                       <h3 th:text="*{productName}">LE SSERAFIM 2024 SEASON'S GREETINGS</h3>
                     </div>
                     <div class="itemCount" >
-                      <li th:text="|상품 개수: *{purcharseQuantity}개|">상품개수 : 3개</li>
-          
+                      <li th:text="|상품 개수: *{productQuantity}개|">상품개수 : 3개</li>
                     </div>
                     <div class="itemprice">
-                      <li th:value="|총 상품 금액 : ${purchasePrice}원|">총 상품 금액 : 45,000원</li>
+                      <li th:text="|총 상품 금액 : *{purchasePrice}원|">총 상품 금액 : 45,000원</li>
                     </div>
                   </div>
                 </div>
