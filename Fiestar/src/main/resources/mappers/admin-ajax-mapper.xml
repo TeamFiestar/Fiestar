@@ -152,6 +152,7 @@
 		WHERE SITE_NOTICE_NO = #{noticeNo}
 	</update>
 	
+	<!-- 공지사항 업데이트 -->
 	<update id="updateNotice">
 		UPDATE SITE_NOTICE SET 
 		SITE_NOTICE_TITLE = #{siteNoticeTitle},

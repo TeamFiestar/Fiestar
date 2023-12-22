@@ -148,27 +148,52 @@ public class ShopController {
 	/**장바구니에 담기
 	 * @return
 	 */
+//	@PostMapping("shopDetail/{productNo:[0-9]+}")
+//	public String insertCart(RedirectAttributes ra,
+//						@SessionAttribute(value="loginMember", required = false) Member loginMember,
+//						@PathVariable("productNo") int productNo,
+//						@RequestParam("productCount") int productCount,
+//						@RequestParam("totalPrice") int totalPrice) {
+//		int memberNo = loginMember.getMemberNo();
+//		int result = service.insertCart(productNo, productCount, totalPrice, memberNo);
+//		
+//		if(result > 0) {
+//			ra.addFlashAttribute("message","장바구니에 담았습니다.");
+//			return "redirect:" + productNo;
+//		}else {
+//			ra.addFlashAttribute("message","상품이 품절되었습니다.");
+//			return "redirect:" + productNo;
+//		}
+//	}
+	
+	
+	
+	
+	
+	/**장바구니에 담기
+	 * @param ra
+	 * @param loginMember
+	 * @param productNo
+	 * @param productCount
+	 * @param totalPrice
+	 * @return
+	 */
 	@PostMapping("shopDetail/{productNo:[0-9]+}")
-	public String insertCart(RedirectAttributes ra,
-						@SessionAttribute(value="loginMember", required = false) Member loginMember,
-						@PathVariable("productNo") int productNo,
-						@RequestParam("productCount") int productCount,
-						@RequestParam("totalPrice") int totalPrice) {
-		int memberNo = loginMember.getMemberNo();
-		int result = service.insertCart(productNo, productCount, totalPrice, memberNo);
+	@ResponseBody
+	public int insertCart(RedirectAttributes ra,
+			@SessionAttribute(value="loginMember", required = false) Member loginMember,
+			@PathVariable("productNo") int productNo,
+			@RequestBody Map<String, Integer> paramMap) {
 		
-		if(result > 0) {
-			ra.addFlashAttribute("message","장바구니에 담았습니다.");
-			return "redirect:" + productNo;
-		}else {
-			ra.addFlashAttribute("message","상품이 품절되었습니다.");
-			return "redirect:" + productNo;
-		}
+		int productCount = paramMap.get("productCount");
+		int totalPrice = paramMap.get("totalPrice");
+		
+		int memberNo = loginMember.getMemberNo();
+		return service.insertCart(productNo, productCount, totalPrice, memberNo);
 	}
 	
 	
-	
-	/**바로구매(장바구니에 담은 후에 조회해서 포워드)
+	/**바로구매
 	 * @param ra
 	 * @param loginMember
 	 * @param productNo

@@ -1,6 +1,7 @@
-<script th:inline="javascript">
-  const message = /*[[${message}]]*/ "아티스트 그룹 이름";
-</script>
+<!-- <script th:inline="javascript">
+  const message = /*[[${message}]]*/ "메세지";
+  const artistGroupTitle = /*${artistGroup.artistGroupTitle}*/ "아티스트 그룹 이름";
+</script> -->
 <div>
   <div class="sidebar">
     <aside>
@@ -33,8 +34,18 @@
             <li>
               굿즈 관리
               <ul>
-                <li><a href="goods.html" id="a">굿즈 등록</a></li>
-                <li><a href="goodsModify.html" id="a">굿즈 수정</a></li>
+                <li>
+                  <a th:href="@{/artistAdmin/{artistGroupTitle}/goods(artistGroupTitle=${artistGroupTitle})}" id="a"
+                    >굿즈 등록</a
+                  >
+                </li>
+                <!-- <li>
+                  <a
+                    th:href="@{/artistAdmin/{artistGroupTitle}/goods(artistGroupTitle=${artistGroupTitle}, productNo=${productNo})}"
+                    id="a"
+                    >굿즈 수정</a
+                  >
+                </li> -->
               </ul>
             </li>
           </ul>
