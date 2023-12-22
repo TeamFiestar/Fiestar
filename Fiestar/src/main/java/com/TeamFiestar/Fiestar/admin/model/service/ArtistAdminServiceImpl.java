@@ -251,6 +251,13 @@ public class ArtistAdminServiceImpl implements ArtistAdminService{
 	}
 	
 	
+	@Override
+	public int selectAdminNo(String artistGroupTitle) {
+		
+		return mapper.selectAdminNo(artistGroupTitle);
+	}
+	
+	
 
 	
 	

@@ -32,6 +32,8 @@ public interface ArtistAdminService {
 	int updateGoods(Product product, MultipartFile contentImg, MultipartFile thumbnailImg)throws IllegalStateException, IOException;
 
 	int deleteGoods(int productNo);
+
+	int selectAdminNo(String artistGroupTitle);
 	
 	
 

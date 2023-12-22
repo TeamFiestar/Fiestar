@@ -91,7 +91,7 @@
 		VALUES(#{productNo},#{artistGroupNo},#{productName},#{productProduction},#{productPrice}, DEFAULT, DEFAULT)
 	</insert>
 	
-	<!--옵션 등록-->
+	<!--옵션 등록--> 
 	<insert id="insertOption">
 		INSERT INTO "PRODUCT_OPTION"
 		<foreach collection="list" item="p" separator="UNION">
@@ -155,6 +155,13 @@
 	  	PRODUCT_DEL_FL = 'Y'
 	  	WHERE PRODUCT_NO = #{productNo}
 	</update>
+	
+	<!--관리자번호 조회-->
+	<select id="selectAdminNo" resultType="_int">
+		SELECT ARTIST_GROUP_ADMIN_NO 
+		FROM ARTIST_GROUP
+		WHERE ARTIST_GROUP_TITLE = #{artistGroupTitle}
+	</select>
 	
 	
 	

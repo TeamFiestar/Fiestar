@@ -54,6 +54,8 @@ public interface ArtistAdminMapper {
 	//상품 삭제
 	int deleteGoods(int productNo);
 
+	int selectAdminNo(String artistGroupTitle);
+
 
 
 }
