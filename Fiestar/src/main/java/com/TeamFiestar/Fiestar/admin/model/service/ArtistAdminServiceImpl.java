@@ -115,7 +115,7 @@ public class ArtistAdminServiceImpl implements ArtistAdminService{
 	}
 	
 	
-	
+	// 구매 목록 조회
 	@Override
 	public Map<String, Object> selectPurchaseList(String artistGroupTitle, Purchase searchPurchase, int cp) {
 		int artistGroupNo = mapper.selectArtistGroupNo(artistGroupTitle);

@@ -103,9 +103,10 @@ const sendMessage = () => {
 
 inputChat.addEventListener("keyup", (e) => {
   if (e.key == "Enter") {
-    if (!e.shiftKey) {
-      sendMessage();
-    }
+    // if (!e.shiftKey) {
+    //   sendMessage();
+    // }
+    sendMessage();
   }
 });
 
