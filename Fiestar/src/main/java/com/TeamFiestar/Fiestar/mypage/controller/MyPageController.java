@@ -225,11 +225,4 @@ public class MyPageController {
 		
 		return service.selectNotice(map);
 	}
-	
-	
-	
-	
-	
-	
-	
 }

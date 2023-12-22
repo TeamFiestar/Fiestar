@@ -1,16 +1,5 @@
-// // 변경 버튼 클릭 -> 인풋에 채워진 텍스트 모두 지우기
+// 
 
-// const nameChangeBtn = document.getElementById("nameChangeBtn");
-
-// nameChangeBtn.addEventListener("click", e => {
-
-//     let name = e.target.nextElementSibling[0];
-
-//     if(!nameInput.trim().length == 0){
-//         nameInPut = ("");
-//     }
-
-// });
 const nameChangeBtn = document.getElementById("nameChangeBtn");
 
 nameChangeBtn.addEventListener("click", e => {
@@ -90,42 +79,203 @@ for (let i = 0; i < payMethods.length; i++) {
     payMethods[i].addEventListener("change", updateCheckedMethod);
 }
 
-
-
 const form = document.getElementById("purchaseForm");
 const purchaseBtn = document.getElementById("purchaseBtn");
-
 const payMethod = document.getElementsByClassName("paymethod");
+
+function addBlurEventListener(inputField, validationFunction) {
+    let isFieldEdited = false;  // 필드가 수정되었는지 추적하는 변수
+
+    // 'input' 이벤트 리스너: 사용자가 필드를 수정하면 isFieldEdited를 true로 설정
+    inputField.addEventListener('input', () => {
+        isFieldEdited = true;
+    });
+
+    // 'blur' 이벤트 리스너: 필드에서 포커스가 벗어났을 때 유효성 검사 수행
+    inputField.addEventListener('blur', () => {
+        if (isFieldEdited) {  // 필드가 수정된 경우에만 유효성 검사 수행
+            validationFunction(inputField);
+        }
+    });
+}
+
+// 입력 필드의 유효성 상태를 업데이트하는 함수
+function updateFieldValidity(field, isValid) {
+    if (isValid) {
+        field.classList.remove('invalid');
+        field.style.border = "";  // 빨간 테두리 제거
+
+    } else {
+        field.classList.add('invalid');
+        field.style.border = "1px solid red";  // 빨간 테두리 추가
+
+        if (document.activeElement !== field) {
+            field.focus(); // 유효성 검사에 실패한 필드에 포커스 (포커스가 이미 있는 경우 제외)
+        }
+    }
+}
+
+function validateOrderInfo() {
+
+    let isValid = true;
+
+    // 주문자명 검사 (한글 2~10글자)
+    const nameInput = document.getElementById("nameInput");
+    const namePattern = /^[가-힣]{2,10}$/;
+    if (!namePattern.test(nameInput.value.trim())) {
+        alert("주문자명은 한글 2~10글자로 입력해주세요.");
+        updateFieldValidity(nameInput, false);
+        isValid = false;
+        return false;
+
+
+    } else {
+        updateFieldValidity(nameInput, true);
+    }
+
+    // 전화번호 검사 (예: 01012345678)
+    const phoneNumber = document.getElementById("ordererPhoneNumber");
+    const phonePattern = /^\d{2,3}\d{3,4}\d{4}$/;
+    if (!phonePattern.test(phoneNumber.value.trim())) {
+        alert("전화번호 형식이 올바르지 않습니다. 예: 01012345678");
+        updateFieldValidity(phoneNumber, false);
+        isValid = false;
+        return false;
+
+    } else {
+        updateFieldValidity(phoneNumber, true);
+    }
+
+    // 주소 검사 (빈 값이 아닌지)
+    const address1 = document.getElementById("sample6_address");
+    const address2 = document.getElementById("sample6_detailAddress");
+    const address3 = document.getElementById("sample6_postcode");
+    if (address1.value.trim().length === 0 || address2.value.trim().length === 0 || address3.value.trim().length === 0) {
+        
+        updateFieldValidity(address1, false);
+        updateFieldValidity(address2, false);
+        updateFieldValidity(address3, false);
+        alert("주소가 올바르지 않습니다.");
+        isValid = false;
+        return false;
+
+    } else {
+        updateFieldValidity(address1, true);
+        updateFieldValidity(address2, true);
+        updateFieldValidity(address3, true);
+    }
+
+
+
+    let isMethodSelected = false;
+
+    for (let i = 0; i < payMethods.length; i++) {
+        if (payMethods[i].checked) {
+            isMethodSelected = true;
+            break;
+        }
+    }
+
+    if (!isMethodSelected) {
+        alert("결제 수단을 선택해주세요.");
+        return false;
+    }
+
+
+   
+    return isValid;
+}
+
+
+
+
+
+// 주문 정보 유효성 검사 함수
+
+// 각 입력 필드에 'keyup' 이벤트 리스너 추가
+// addKeyUpEventListener(document.getElementById("nameInput"), () => validateOrderInfo());
+// addKeyUpEventListener(document.getElementById("ordererPhoneNumber"), () => validateOrderInfo());
+// addKeyUpEventListener(document.getElementById("sample6_address"), () => validateOrderInfo());
+// addKeyUpEventListener(document.getElementById("sample6_detailAddress"), () => validateOrderInfo());
+// addKeyUpEventListener(document.getElementById("sample6_postcode"), () => validateOrderInfo());
+
+// 결제 버튼 클릭 시 유효성 검사 후 결제 진행
+// const purchaseBtn = document.getElementById("purchaseBtn");
+
+// 문제점
+// 유효성 검사를 한 번 실행하고 다음 입력 때 유효하지 않은 값을 입력하면 계속 alert
 
 
 purchaseBtn.addEventListener("click", (e) => {
 
-    let inputFields = [
 
-        document.getElementById("nameInput"),
-        document.getElementById("ordererPhoneNumber"),
-        document.getElementById("sample6_address"),
-        document.getElementById("sample6_detailAddress"),
-        document.getElementById("sample6_postcode")
-    ];
 
-    // 필수 입력 필드의 라벨
-    let fieldLabels = ["주문자 이름", "전화번호", "주소", "상세 주소", "우편번호"];
+    if (!validateOrderInfo()) {
 
-    // 입력 필드 검사
-    for (let i = 0; i < inputFields.length; i++) {
-        if (inputFields[i].value.trim().length === 0) {
-            alert(fieldLabels[i] + "은(는) 필수 항목입니다.");
-            inputFields[i].focus();
-            e.preventDefault(); 
-            return; 
-        }
+
+
+
+        // 유효성 검사 실패 시, 결제 중단
+
+        const payMethods = document.getElementsByClassName("payMethod");
+
+        
+        e.preventDefault();
+
+
+    } else {
+       
+        // 유효성 검사 통과 시, 결제 진행
+        requestPay();
     }
-
-    
-    requestPay();
 });
 
+
+
+// // 주문 정보 유효성 검사 함수
+// function validateOrderInfo() {
+//     // ...[기존 코드]...
+
+//     // 결제 수단 검사
+//     const payMethods = document.getElementsByClassName("payMethod");
+//     let isMethodSelected = false;
+//     for (let i = 0; i < payMethods.length; i++) {
+//         if (payMethods[i].checked) {
+//             isMethodSelected = true;
+//             break;
+//         }
+//     }
+
+//     if (!isMethodSelected) {
+//         alert("결제 수단을 선택해주세요.");
+//         return false;
+//     }
+
+//     return true; // 모든 검사 통과
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 결제 함수
 
 function requestPay() {
     var IMP = window.IMP;
