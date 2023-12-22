@@ -48,8 +48,6 @@ optionSelect.addEventListener("change", () => {
   
   }
   
-  
-  
   /* ************************************************** */
   
   
@@ -151,9 +149,8 @@ const totalP = document.getElementById("total");
 function plusBtn(e){
   let i = e.previousSibling.innerText;
   i++;
-  // console.log(e.previousSibling);
   e.previousSibling.textContent = i;
-  // let totalcostNum = i*productPrice.getAttribute("value");
+  let totalcostNum = i*productPrice.getAttribute("value");
   // e.parentElement.nextElementSibling.textContent = "₩" + totalcostNum.toLocaleString();
   totalNoProduct( );
   totalCost();
