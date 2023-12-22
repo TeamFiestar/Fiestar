@@ -154,14 +154,14 @@
                   </label>
                   
                   
-                  <span th:text="${cart.productPrice}" class="default-price"></span>
+                  <span th:text="${cart.productPrice}" class="price default-price"></span>
                   <span th:text="${cart.cartNo}" class="cartNo"></span>
 
                </div>
                
                <!-- <th:block th:text="${cart.productPrice}" class="default-price"></th:block> -->
    
-               <span th:text="${cart.productPrice} * ${cart.productCount} " class="amount-price" style="font-weight: bold;"></span>
+               <span th:text="${cart.productPrice} * ${cart.productCount} " class="price amount-price" style="font-weight: bold;"></span>
                
    
                <label class="x-btn">
@@ -222,7 +222,7 @@
          <div class="total">
             <span>총 결제 금액</span>
 
-            <div class="sc-e98633bc-7 iUJKwp" id="totalPrice"></div>
+            <div class="price sc-e98633bc-7 iUJKwp" id="totalPrice"></div>
 
             <button type="submit" class="checkOut-btn" id="checkOut-btn" >결제하기</button>
 

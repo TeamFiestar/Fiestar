@@ -104,10 +104,11 @@ const clacPrice = (btn) => {
    const defaultPrice = btn.parentElement.children[3];
    const amountPrice = btn.parentElement.nextElementSibling
 
+   
 
+   // amountPrice.innerText = Number(itemCount.innerText) * Number(defaultPrice.innerText)
 
-    amountPrice.innerText = Number(itemCount.innerText) * Number(defaultPrice.innerText)
-   // amountPrice.innerText ='₩' + (Number(itemCount.innerText) * Number(defaultPrice.innerText)).toLocaleString();
+    amountPrice.innerText = (Number(itemCount.innerText) * Number(defaultPrice.innerText));
    
    // amountPrice = Number(itemCount.innerText) * Number(defaultPrice.innerText);
    // amountPrice.textContent = amountPrice.innerText.toLocaleString();
@@ -130,7 +131,13 @@ const checkedPrice = () => {
       sum += Number(amountPrice);
    }
       
+      // totalPrice.innerText = sum;
+
       totalPrice.innerText = sum;
+
+
+
+      
 
    // totalPrice.textContent = "$" + sum.toLocaleString();
 }
@@ -180,9 +187,6 @@ for(let i=0; i<minusList.length; i++) {
          clacPrice(e.target);
          checkedPrice();
 
-      let eachPrice = e.target.parentElement.nextElementSibling.innerText;
-
-     
 
       console.log(eachPrice);
 
@@ -258,8 +262,12 @@ document.addEventListener("change", e => {
 
 document.addEventListener('DOMContentLoaded', () => {
 
+   document.addEventListener('DOMContentLoaded', () => {
+      const priceElement = document.getElementById('price');
+      const price = priceElement.innerText;
+      priceElement.innerText = '₩' + Number(price).toLocaleString('ko-KR');
+    });
    checkedPrice() ;
-
 });
 
 
