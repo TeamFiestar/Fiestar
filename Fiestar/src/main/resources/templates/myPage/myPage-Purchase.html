@@ -38,7 +38,7 @@
               <th class="order-status">주문 상태</th>
               <td class="order-status-info">주문 완료</td>
             </tr>
-            
+
           </table>
         </div>
         <div class="product-info">
@@ -86,10 +86,12 @@
         <div class="content">
 
           <div class="buyAll" th:if="${#lists.size(purchaseList) == 0}">
-            <div class="ment"><h3 id="no">구매 내역이 없습니다.</h3></div>
+            <div class="ment">
+              <h3 id="no">구매 내역이 없습니다.</h3>
+            </div>
           </div>
 
-          <div  th:unless="${#lists.size(purchaseList) == 0}">
+          <div th:unless="${#lists.size(purchaseList) == 0}">
             <div class="buyAll" th:each="purchase : ${purchaseList}" th:object="${purchase}">
               <div th:onclick="|selectPurchaseDetail(*{purchaseNo})|">
                 <div class="buyDate">
@@ -106,7 +108,7 @@
                     <div class="itemName">
                       <h3 th:text="*{productName}">LE SSERAFIM 2024 SEASON'S GREETINGS</h3>
                     </div>
-                    <div class="itemCount" >
+                    <div class="itemCount">
                       <li th:text="|상품 개수: *{productQuantity}개|">상품개수 : 3개</li>
                     </div>
                     <div class="itemprice">
@@ -157,6 +159,12 @@
     </div>
 
     <th:block th:replace="~{common/footer}"></th:block>
+
+    <script>
+
+      
+
+    </script>
 
     <script src="/js/admin/artistOrder.js"></script>
 </body>
