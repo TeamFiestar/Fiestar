@@ -116,6 +116,7 @@
   border-radius: 10px;
   display: flex;
   cursor: pointer;
+  background-color:  rgb(119, 67, 219);
 }
 
 .Bulletin:hover{
@@ -248,3 +249,4 @@
   justify-content: center;
   font-weight: bold;
 }
+

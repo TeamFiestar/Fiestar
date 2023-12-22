@@ -1,6 +1,6 @@
 package com.TeamFiestar.Fiestar.mypage.service;
 
-import java.io.File; 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +19,7 @@ import com.TeamFiestar.Fiestar.board.model.dto.Comment;
 import com.TeamFiestar.Fiestar.common.utility.Util;
 import com.TeamFiestar.Fiestar.member.model.dto.ArtistSubscribe;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
-import com.TeamFiestar.Fiestar.member.model.dto.PurchaseList;
+import com.TeamFiestar.Fiestar.mypage.dto.ArtistPagination;
 import com.TeamFiestar.Fiestar.mypage.dto.Pagination;
 import com.TeamFiestar.Fiestar.mypage.mapper.MyPageMapper;
 
@@ -94,7 +94,7 @@ public class MyPageServiceImpl implements MyPageService {
 
 		int listCount = mapper.artistCount(loginMember.getMemberNo());
 
-		Pagination pagination = new Pagination(cp, listCount);
+		ArtistPagination pagination = new ArtistPagination(cp, listCount);
 
 		int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
 		int limit = pagination.getLimit();
@@ -263,25 +263,27 @@ public class MyPageServiceImpl implements MyPageService {
 	
 	
 	// 구매내역 조회
-//	@Override
-//	public Map<String, Object> myPurchaseList(Member loginMember, int cp) {
-//
-//		int listCount = mapper.purchaseCount();
-//
-//		Pagination pagination = new Pagination(cp, listCount);
-//
-//		int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
-//		int limit = pagination.getLimit();
-//
-//		RowBounds rowBounds = new RowBounds(offset, limit);
-//
-//		List<Purchase> purchaseList = mapper.myPurchaseList(rowBounds);
-//
-//		Map<String, Object> map = new HashMap<>();
-//		map.put("pagination", pagination);
-//		map.put("purchaseList", purchaseList);
-//
-//		return map;
-//		
-//	}
+	@Override
+	public Map<String, Object> myPurchaseList(Member loginMember, int cp) {
+		
+		int memberNo = loginMember.getMemberNo();
+
+		int listCount = mapper.purchaseCount(memberNo);
+
+		Pagination pagination = new Pagination(cp, listCount);
+
+		int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
+		int limit = pagination.getLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, limit);
+
+		List<Purchase> purchaseList = mapper.myPurchaseList(memberNo,rowBounds);
+
+		Map<String, Object> map = new HashMap<>();
+		map.put("pagination", pagination);
+		map.put("purchaseList", purchaseList);
+
+		return map;
+		
+	}
 }

@@ -15,6 +15,7 @@ import lombok.ToString;
 public class Purchase {
 
 	private int purchaseNo;
+	private int purchaseListNo;
 	private int purchasePrice;
 	private int purchaseStatus;
 	private int memberNo;
@@ -32,8 +33,9 @@ public class Purchase {
 	private String productName;
 	private String productImage;
 	private String productImageThumbnail;
-	private int purcharseQuantity;
-	
+	private String productImageThumbnailRename;
+	private int productQuantity;
+	private int purcharsePrice;
 	
 	private List<Product> productList;
 	private List<PurchaseList> purchaseList;

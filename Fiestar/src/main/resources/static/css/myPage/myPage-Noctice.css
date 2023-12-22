@@ -157,6 +157,7 @@
 
 .modalDetail {
     margin-top: 20px;
+    white-space: pre-wrap;
 }
 
 .modalDetail_Content p {

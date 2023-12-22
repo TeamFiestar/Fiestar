@@ -12,7 +12,7 @@ import lombok.ToString;
 public class PurchaseList {
 	private int purcharseListNo;
 	private int purcharseNo;
-	private int purcharseQuantity;
+	private int productQuantity;
 	private int purcharsePrice;
 	private int productNo;
 	

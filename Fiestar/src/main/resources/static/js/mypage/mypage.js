@@ -6,17 +6,6 @@ const likeImg = document.querySelector('#likeImg');
 let boardNo2;
 
 function openModal(boardNo) {
-    // 새로운 URL 생성
-    var newUrl = "/" + artistGroupTitle + "/feed/" + boardNo;
-    console.log(artistGroupTitle);
-    console.log(boardNo);
-    console.log(newUrl);
-
-    // 상태 객체 (필요에 따라 사용)
-    var stateObj = { artistGroupTitle: artistGroupTitle, boardNo: boardNo };
-
-    // 새로운 URL로 이동 (페이지의 내용을 로드하지 않음)
-    history.pushState(stateObj, "", newUrl);
 
     // 페이지의 내용을 동적으로 업데이트하는 함수 호출 (예시로 updatePageContent 함수 사용)
     updatePageContent(boardNo);
@@ -30,7 +19,7 @@ function openModal(boardNo) {
 
 
 function closeModal(stateObj) {
-    
+
     var newUrl = "/myPage/myPage";
     history.pushState(stateObj, "", newUrl);
 
@@ -548,3 +537,4 @@ function likeComment(btn, boardCommentNo) {
             console.log(e);
         });
 }
+
