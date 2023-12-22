@@ -135,6 +135,7 @@ const checkedPrice = () => {
 
       totalPrice.innerText = sum;
 
+      // ` ` 문자열 사이 변수를 사용해야 할 때 유용하게 사용 가능
 
 
       
@@ -158,6 +159,7 @@ for(let i=0; i<plusList.length; i++) {
       clacPrice(e.target);
       checkedPrice();
       let eachPrice = e.target.parentElement.nextElementSibling.innerText;
+
 
       // eachPrice.innerText = Number(eachPrice.innerText);
       // defaultPrice.innerText = Number(defaultPrice.innerText);

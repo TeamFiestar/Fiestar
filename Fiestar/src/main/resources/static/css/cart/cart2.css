@@ -37,6 +37,52 @@ h1 {
    
 }
 
+
+.item-option{
+   margin-left: 30px;
+   margin-top: 32px;
+   top: 30px;
+   position: absolute;
+   font-size: 14px;
+   color:rgb(217, 217, 217);
+}
+
+/* .optionTag{
+   position: absolute;
+   font-size: 16;
+   color: rgb(113, 113, 112);
+   top: 52%;
+   left: 134px;
+} */
+
+.option-text{
+
+   top: 54px;
+   font-size: 16px;
+   
+   position: absolute;
+   left: 207px;
+
+   /* top: 52%;
+   left: 16%;
+   position: absolute;
+
+   font-size: 16;
+   color: rgb(113, 113, 112); */
+
+
+   /* top: 54px;
+   left: 208px;
+   font-size: 14px;
+   /* margin-left: 60px; */
+   /* position: absolute; */
+   /* left: 200px; */
+}
+
+
+
+
+
 .ifEmpty{
    font-size: 20px;
 }
@@ -365,9 +411,9 @@ border-radius: 4px;
    color: rgb(0, 229, 255);  
 }
 
-.cartNo{
+/* .cartNo{
    display: none;
-}
+} */
 
 .item-list1 > .item-list{
    margin-top : 20px;
