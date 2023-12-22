@@ -44,7 +44,7 @@
                   옵션 선택
                   <select name="key" id="optionSelect">
                     <option value="" selected disabled hidden>옵션을 선택해주세요</option>
-                    <option  th:each="option: ${optionList}" th:object="${option}" th:value="*{productOptionName}" th:text="*{productOptionName}">S(90~95)</option>
+                    <option  th:each="option: ${optionList}" th:object="${option}" th:value="*{productOptionName}" th:text="*{productOptionName}" id="selectOption">S(90~95)</option>
                   </select>
                 </div>
             </th:block>
@@ -213,7 +213,9 @@
 
   <script th:inline="javascript">
     const artistGroupTitle = /*[[${prod.detail.artistGroupTitle}]]*/ "아티스트그룹이름";
+    const productOptionName = /*[[${prod.optionList}]]*/ "옵션";
     const productNo = /*[[${productNo}]]*/ "상품번호";
+    const nameProduct = /*[[${prod.detail.productName}]]*/ "상품명";
   </script>
   
 

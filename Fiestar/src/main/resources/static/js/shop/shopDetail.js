@@ -26,96 +26,110 @@ const optionValue2 = document.querySelector("select[name=key]");
 const optionValue = document.querySelector("select[name=key] option:checked").selected;
 
 
+
 optionSelect.addEventListener("change", () => {
-
-  optionSelect.selectedIndex = 0; //처음 옵션으로 되돌리기
-
-
-
-  /* 같은 옵션 선택 시 밑으로 내려가지 않고 누적 작성 예정 */
-
-
-
-
-
-  /* ************************************************** */
-
   
-
+  
+  /* 같은 옵션 선택 시 밑으로 내려가지 않고 누적 작성 예정 */
+  const nowSelectOption = optionSelect.selectedIndex; // 현재 선택된 select 몇번째 인덱스인지 얻어옴
+  
+  const selectOptionArea = document.querySelectorAll('.option-area');
+  
+  for(let i = 0 ; i < selectOptionArea.length ; i++){
+    console.log(selectOptionArea[i].getAttribute('value'));
+    if(selectOptionArea[i].getAttribute('value') == nowSelectOption){
+      console.log(selectOptionArea[i].firstElementChild.children[2]); 
+      
+      plusBtn(selectOptionArea[i].firstElementChild.children[2]);
+      optionSelect.selectedIndex = 0; //처음 옵션으로 되돌리기
+   
+      return;
+    }
+  
+  }
+  
+  
+  
+  /* ************************************************** */
+  
+  
+  
   const productName = document.createElement("span");
   productName.classList.add("product-purchase-name");
-  productName.innerHTML = "[아티스트명] 상품명";
-
-
+  productName.innerHTML = `[${artistGroupTitle}] ${nameProduct}`;
+  
+  
   const deleteList = document.createElement("span");
   deleteList.classList.add("remove-row");
-
+  
   deleteList.innerHTML ="&times;";
-
+  
   deleteList.addEventListener("click", e => {
     const parent = e.target.parentElement;
     const parent2 = e.target.parentElement.nextElementSibling;
-
+    
     parent.remove();
     parent2.remove();
     totalNoProduct( );
     totalCost()
   });
-
-
+  
+  
   // -------------------------------------------------
-
-
+  
+  
   const optionArea = document.createElement("div");
   optionArea.classList.add("option-area");
-
+  optionArea.setAttribute('value',nowSelectOption);
+  
   //--------------------------------------------------
   const span = document.createElement("span");
-
+  
   const button1 = document.createElement("button");
-
+  
   button1.classList.add("minus");
   button1.setAttribute('onclick', 'minusBtn(this)');
   button1.setAttribute('type', 'button');
-
+  
   button1.innerHTML = "-";
-
+  
   const result = document.createElement("h4");
-
+  
   result.classList.add("result");
-
+  
   result.innerText = "1";
-
+  
   const button2 = document.createElement("button");
   button2.classList.add("plus");
   button2.setAttribute('onclick', 'plusBtn(this)');
   button2.setAttribute('type', 'button');
   button2.innerHTML ="+";
-
-
+  
+  
   // -------------------------------------------------
   const optionName = document.createElement("h4");
   optionName.classList.add("optionName");
   const optionValue2 = document.querySelector("select[name=key]").value;
-  optionName.innerHTML= "[옵션] " + optionValue2;
-
+  optionName.innerHTML= "[옵션]" + optionValue2;
+  optionSelect.selectedIndex = 0; //처음 옵션으로 되돌리기
+  
   let selectedPrice = document.createElement("span");
   selectedPrice.classList.add("selected-price");
-
+  
   let productPrice2 = productPrice.getAttribute("value");
-
+  
   // selectedPrice.innerText = "₩" + productPrice2.toLocaleString();
-
+  
   
   productName.append(deleteList);
   span.append(button1, result, button2, optionName);
   optionArea.append(span, selectedPrice);
   container.append(productName, optionArea);
-
-
+  
+  
   totalNoProduct( );
   totalCost()
-
+  
 });
 
 
@@ -128,6 +142,9 @@ const totalProduct = document.querySelector("#totalProduct");
 const totalPrice = document.querySelector("#totalPrice");
 const count = document.getElementById("productCount");
 const totalP = document.getElementById("total");
+
+
+
 
 
 
@@ -157,6 +174,8 @@ function minusBtn(e) {
   } 
 
 };
+
+
 
 
 function totalNoProduct( ) {
