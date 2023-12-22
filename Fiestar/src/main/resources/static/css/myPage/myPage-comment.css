@@ -107,7 +107,7 @@ li {
 }
 
 .section1Title {
-  width: 650px;
+  width: 400px;
   min-height: 100%;
   margin-left: 10px;
   margin-top: 3px;
@@ -141,10 +141,16 @@ li {
 
 
 .section3 {
-  width: 720px;
+  width: 400px;
   min-height: 30px;
   margin-top: 5px;
   word-break: break-all;
+}
+
+.section3 h3{
+  text-overflow: ellipsis;
+  white-space : nowrap;
+  overflow : hidden;
 }
 
 .section4 {

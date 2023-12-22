@@ -2,6 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.TeamFiestar.Fiestar.mypage.mapper.MyPageMapper">
 
+<!--	<resultMap id="purchase_rm" type="Purchase">
+		<id property="purchaseNo" column="PURCHASE_NO" />
+
+		<collection property="PurchaseList"
+			select="selectPurchaseList"
+			column="PURCHASE_NO"
+			javaType="java.util.ArrayList"
+			ofType="PurchaseList" />
+
+	</resultMap>-->
+
+
 	<!--내가 작성한 글 개수 -->
 	<select id="boardListCount" resultType="_int">
 		SELECT COUNT(*)
@@ -12,7 +24,8 @@
 
 	<!--내가 작성한 글 조회-->
 	<select id="selectMyFeedList" resultType="Board">
-		SELECT MEMBER_NO, BOARD_CONTENT, MEMBER_NICKNAME, ARTIST_GROUP_NO, ARTIST_GROUP_TITLE,
+		SELECT MEMBER_NO, BOARD_CONTENT, MEMBER_NICKNAME, ARTIST_GROUP_NO,
+		ARTIST_GROUP_TITLE,
 		MEMBER_PROFILE, BOARD_NO, TO_CHAR(BOARD_ENROLL_DATE, 'YYYY"년" MM"월"
 		DD"일" HH24:MI') AS BOARD_ENROLL_DATE
 		FROM BOARD
@@ -168,12 +181,61 @@
 		FROM SITE_NOTICE sn
 		WHERE SITE_NOTICE_DEL_FL = 'N'
 	</select>
-	
+
 	<!--공지사항 상세 조회-->
-		<select id="selectNotice" >
+	<select id="selectNotice">
 		SELECT * FROM SITE_NOTICE
-		WHERE SITE_NOTICE_NO = #{siteNoticeNo} 
+		WHERE SITE_NOTICE_NO = #{siteNoticeNo}
 		AND SITE_NOTICE_DEL_FL = 'N'
 	</select>
+
+	<!-- 구매목록 수 조회 -->
+	<select id="purchaseCount">
+		SELECT COUNT(*)
+		FROM ( SELECT PURCHASE_NO, PURCHASE_PRICE, MEMBER_NO,
+		TO_CHAR(PURCHASE_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI') AS PURCHASE_DATE,
+		CASE
+		WHEN PURCHASE_STATUS = 1 THEN '주문완료'
+		WHEN PURCHASE_STATUS = 2 THEN '배송 준비'
+		WHEN PURCHASE_STATUS = 3 THEN '배송 중'
+		WHEN PURCHASE_STATUS = 4 THEN '배송완료'
+		WHEN PURCHASE_STATUS = 5 THEN '반품'
+		WHEN PURCHASE_STATUS = 6 THEN '취소'
+		ELSE '기타'
+		END AS PURCHASE_STATUS
+		FROM PURCHASE
+		WHERE MEMBER_NO = #{memberNo})
+	</select>
+
+	<!-- 구매목록 상세 조회 -->
+<!--	<select id="myPurchaseList" resultType="purchase_rm">
+		SELECT PURCHASE_NO, PURCHASE_PRICE, MEMBER_NO,
+		TO_CHAR(PURCHASE_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI') AS PURCHASE_DATE,
+		CASE
+		WHEN PURCHASE_STATUS = 1 THEN '주문완료'
+		WHEN PURCHASE_STATUS = 2 THEN '배송 준비'
+		WHEN PURCHASE_STATUS = 3 THEN '배송 중'
+		WHEN PURCHASE_STATUS = 4 THEN '배송완료'
+		WHEN PURCHASE_STATUS = 5 THEN '반품'
+		WHEN PURCHASE_STATUS = 6 THEN '취소'
+		ELSE '기타'
+		END AS PURCHASE_STATUS
+		FROM PURCHASE
+		WHERE MEMBER_NO = #{memberNo}
+		ORDER BY PURCHASE_NO DESC
+	</select>
+
+	<select id="selectPurchaseList" resultType="PurchaseList">
+		SELECT PURCHASE_LIST_NO, PURCHASE_NO, PRODUCT_NO, PRODUCT_QUANTITY,
+		PURCHASE_LIST.PRODUCT_PRICE,
+		PRODUCT_NAME, PRODUCT_IMAGE_THUMBNAIL, PRODUCT_IMAGE_THUMBNAIL_RENAME,
+		PRODUCT_OPTION_NAME
+		FROM PURCHASE_LIST
+		JOIN PRODUCT USING (PRODUCT_NO)
+		LEFT JOIN PRODUCT_IMAGE USING(PRODUCT_NO)
+		LEFT JOIN PRODUCT_OPTION po USING(PRODUCT_NO)
+		WHERE PURCHASE_NO = #{purchaseNo}
+		ORDER BY PURCHASE_LIST_NO ASC
+	</select>-->
 
 </mapper>

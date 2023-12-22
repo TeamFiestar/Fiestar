@@ -2,6 +2,7 @@ package com.TeamFiestar.Fiestar.admin.model.dto;
 
 import java.util.List;
 
+import com.TeamFiestar.Fiestar.member.model.dto.PurchaseList;
 import com.TeamFiestar.Fiestar.shop.model.dto.Product;
 
 import lombok.Getter;
@@ -33,4 +34,5 @@ public class Purchase {
 	
 	
 	private List<Product> productList;
+	private List<PurchaseList> purchaseList;
 }

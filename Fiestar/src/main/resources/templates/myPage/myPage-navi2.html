@@ -1,6 +1,6 @@
 <div class="main-1" th:object="${session.loginMember}">
   <div class="profile">
-    <div class="profile-img">
+    <div class="profileImg">
       <a href="/myPage/myPage-Modify">
         <img th:if="${session.loginMember.memberProfile == null}" th:src="#{user.default.image}" width="100%" height="100%">
         <img th:unless="${session.loginMember.memberProfile == null}" th:src="${session.loginMember.memberProfile}" width="100%" height="100%"  style="width: 80px; height: 80px; border-radius: 100%; object-fit:cover">
