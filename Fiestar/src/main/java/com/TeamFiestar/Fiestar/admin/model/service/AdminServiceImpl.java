@@ -369,4 +369,9 @@ public class AdminServiceImpl implements AdminService{
 	}
 	
 	
+	@Override
+	public String regi(int memberNo) {
+		return mapper.regi(memberNo);
+	}
+	
 }

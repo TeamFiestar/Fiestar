@@ -105,7 +105,9 @@ public class AdminController {
 	
 	
 	@GetMapping("regi")
-	public String regi() {
+	public String regi(@SessionAttribute("loginMember") Member loginMember, Model model) {
+		String artistGroupTitle = service.regi(loginMember.getMemberNo());
+		model.addAttribute("artistGroupTitle", artistGroupTitle);
 		return "admin/artistRegi";
 	}
 	
@@ -137,7 +139,9 @@ public class AdminController {
 	@GetMapping("artistGroupUpdate")
 	public String artistGroupUpdate(Model model, @SessionAttribute("loginMember") Member loginMember, RedirectAttributes ra) {
 		ArtistGroup1 artistGroup = service.artistGroupUpdate(loginMember.getMemberNo());
+		String artistGroupTitle = service.regi(loginMember.getMemberNo());
 		model.addAttribute("artistGroup", artistGroup);
+		model.addAttribute("artistGroupTitle", artistGroupTitle);
 		
 		if(artistGroup == null) {
 			ra.addFlashAttribute("message", "등록된 아티스트 그룹이 없습니다.");

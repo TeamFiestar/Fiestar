@@ -55,4 +55,8 @@ public interface AdminService {
 
 	Map<String, Object> selectPurchaseList(int cp);
 
+
+
+	String regi(int memberNo);
+
 }
