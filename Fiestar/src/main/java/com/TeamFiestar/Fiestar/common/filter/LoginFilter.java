@@ -31,6 +31,7 @@ public class LoginFilter implements Filter{
 	private static final String EXCLUDED_URI8 = "/artistHomepageImg";
 	private static final String EXCLUDED_URI9 = "/img";
 	private static final String EXCLUDED_URI10 = "/loginError";
+	private static final String EXCLUDED_URI11 = "/email";
 	
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -75,7 +76,10 @@ public class LoginFilter implements Filter{
 	        		!requestURI.startsWith(EXCLUDED_URI7) &&
 	        		!requestURI.startsWith(EXCLUDED_URI8) &&
 	        		!requestURI.startsWith(EXCLUDED_URI9) &&
-	        		!requestURI.startsWith(EXCLUDED_URI10)) ) {
+	        		!requestURI.startsWith(EXCLUDED_URI10) &&
+	        		!requestURI.startsWith(EXCLUDED_URI11)
+	        				
+	        				) ) {
 	            // 로그인이 필요한 페이지로 리다이렉트 또는 처리하고자 하는 로직을 추가
 
 	            // 여기에서 리다이렉트 등을 처리할 수 있습니다.
