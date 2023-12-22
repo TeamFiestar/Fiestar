@@ -149,7 +149,7 @@
 	</insert>
 	
 	
-	
+	<!--
 	<insert id="insertPurchaseList" parameterType="map">
 		INSERT INTO PURCHASE_LIST
 		SELECT NEXT_PURCHASE_LIST_NO(), ${purchaseNo},  C.PRODUCT_NO, C.PRODUCT_COUNT, PRODUCT_PRICE,
@@ -167,10 +167,23 @@
 		WHERE CART_NO IN ( ${selectNo} )
 	</insert>
 	
+	 -->
+	
+		
+		
+		
+		
 	
 	
-	
-	
+			<insert id="insertPurchaseList" parameterType="map">
+		INSERT INTO PURCHASE_LIST
+		SELECT NEXT_PURCHASE_LIST_NO(), ${purchaseNo},  C.PRODUCT_NO, C.PRODUCT_COUNT, PRODUCT_PRICE, PRODUCT_OPTION_NO
+		FROM "CART" C
+		JOIN "PRODUCT" P ON(C.PRODUCT_NO = P.PRODUCT_NO)
+		JOIN MEMBER USING (MEMBER_NO)
+		LEFT JOIN "PRODUCT_OPTION" O ON(P.PRODUCT_NO = O.PRODUCT_NO)
+		WHERE CART_NO IN ( ${selectNo} )
+	</insert>
 	
 	
 	
@@ -209,7 +222,7 @@
 	
 	<select id="selectOrderedList" resultType="OrderedList">
 		SELECT PL.PRODUCT_NO, PRODUCT_NAME , ARTIST_GROUP_NO, PL.PRODUCT_PRICE, PRODUCT_QUANTITY, PL.PRODUCT_OPTION_NO,
-		PRODUCT_OPTION_NO,
+		PRODUCT_OPTION_NO, PRODUCT_OPTION_NAME
 			
 			(SELECT PRODUCT_IMAGE_THUMBNAIL || PRODUCT_IMAGE_RENAME 
 			FROM "PRODUCT_IMAGE" IMAGE 
