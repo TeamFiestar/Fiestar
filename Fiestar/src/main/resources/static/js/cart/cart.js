@@ -133,7 +133,7 @@ const checkedPrice = () => {
       
       // totalPrice.innerText = sum;
 
-      totalPrice.innerText = ` '₩' + sum.tolocaleString()`;
+      totalPrice.innerText = sum;
 
       // ` ` 문자열 사이 변수를 사용해야 할 때 유용하게 사용 가능
 

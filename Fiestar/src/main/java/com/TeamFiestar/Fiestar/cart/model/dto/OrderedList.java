@@ -63,7 +63,7 @@ public class OrderedList {
 	private int purchaseNo;
 	private int eachPrice;
 	
-	
+//	카트에서 eachPrice 가져와 삽입
 	
 	
 	
