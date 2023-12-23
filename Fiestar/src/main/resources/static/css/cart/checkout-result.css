@@ -29,6 +29,47 @@ h1 {
    
 }
 
+
+.order-input{
+   font-size: 16px  !important ;
+   color:rgb(143, 143, 143);
+
+}
+
+.order-input2{
+
+   margin-top: 8px;
+   display: inline-block;
+}
+
+.order-input3{
+   margin-top: 20px;
+   display: flex;
+   font-size: 16px;
+   color:rgb(143, 143, 143);
+}
+
+
+
+.ordererN{
+   margin-right: 30px;
+}
+.ordererP{
+   margin-right: 20px;
+}
+
+.name-input-area{
+   margin-left: 4px;
+}
+
+.name-input-area2{
+   margin-right: 20px !important;
+}
+
+.addd{
+   margin-right: 24px;
+}
+
 .select-all{
    
    font-size: 16px;

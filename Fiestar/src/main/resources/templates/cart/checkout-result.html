@@ -54,8 +54,9 @@
                   <!-- 1번 -->
 
                   <!-- 이미지 영역 -->
-        
-                <img th:src="${item.productImageThumbnail}" alt="Product Image" class="productImg"> 
+                  
+                 <img th:src="${item.productImageThumbnail}" alt="Product Image" class="productImg">
+
                   <!-- <img th:src="${checkoutItem.productImageThumbnail}" alt="" class="productImg"> -->
                   
 
@@ -165,17 +166,29 @@
               <div class="order-list">
                   
                   <span class="order-name" style="font-weight: bold;">주문자 정보</span>
+
                   <div class="order-input">
-                    <span>주문자 이름</span>  <div class="name-input-area" th:text="${map.purchaseInfo.purchaseName}">Orderer Name</div>
-                    <div> 주문자 전화번호</div>  <div class="phonenumber-area" th:text="${map.purchaseInfo.puchasePhoneNumber}">PhoneNumber</div>
-                  </div>
-              </div>
+                    <span class="ordererN">주문자</span>  <span class="name-input-area" th:text="${map.purchaseInfo.purchaseName}">Orderer Name</span>
+
+                    <div class="order-pinput">
+                        
+
+
+                    </div>
+
+                        <div class="order-input2">
+                            <span class="ordererP">전화번호</div>  <span class="phonenumber-area" th:text="${map.purchaseInfo.puchasePhoneNumber}">PhoneNumber</div>
+                        </div>
+
+
+                </div>
+              
   
               <div class="order-list">
                   <span class="order-name" style="font-weight: bold;">배송지 정보</span>
-                  <div class="order-input">
+                  <div class="order-input3">
                       <!-- <div class="name-input-area" th:text="${map.purchaseInfo.purchaseAddress}">Address</div> -->
-                  <span>배송지 주소 : </span> <div class="name-input-area" th:text="${map.purchaseInfo.purchaseAddress.replace('^^^', '  ')}">Address</div>
+                  <span class="addd">배송지 주소</span> <div class="name-input-area2" th:text="${map.purchaseInfo.purchaseAddress.replace('^^^', '  ')}">Address</div>
 
                   </div>
               </div>
@@ -186,8 +199,8 @@
               </div>
   
               <div class="checkout-area">
-                  <button type="submit" class="checkOut-btn">메인으로
-                      <a th:href="@{/shop/home/}"></a>
+                  <button type="button" class="checkOut-btn" onclick="location.href='/shop/home'">메인으로
+                
                   </button>
               </div>
           </div>
