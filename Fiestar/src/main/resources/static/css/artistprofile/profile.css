@@ -34,7 +34,7 @@ a {
 main img {
   border-radius: 10px;
   background-image: linear-gradient();
-  background: linear-gradient(#0d0e12, #0d0e1200);
+  /* background: linear-gradient(#0d0e12, #0d0e1200); */
 }
 .profiletxt h3 {
   color: #fff;
@@ -64,7 +64,7 @@ main img {
 .artistprofileImg > img {
   border-radius: 10px;
   background-image: linear-gradient();
-  background: linear-gradient(#0d0e12, #0d0e1200);
+  /* background: linear-gradient(#0d0e12, #0d0e1200); */
 }
 .artistprofileMainIntro {
   width: 1100px;
