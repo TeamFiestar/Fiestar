@@ -8,9 +8,12 @@
   <link rel="stylesheet" href="/css/shop/shopMain.css">
   <link rel="stylesheet" href="/css/common/shopHeader.css">
   <link rel="stylesheet" href="/css/common/footer.css">
-  
+
 </head>
 <body>
+
+
+
   <th:block th:replace="~{common/shopHeader}"></th:block>
  
   
@@ -21,11 +24,14 @@
       <section class="artist-shop-list-area">
         <a th:href="@{/shop/home}" id="artist-shop-lists-all">전체</a>
         <th:block th:each=" artistGroup : ${artistList}" th:object="${artistGroup}">
-          <a th:href="|/shop/home/*{artistGroupTitle}?artistGroupNo=*{artistGroupNo}|" id="artist-shop-lists">
+          
+          <a th:href="|/shop/home/*{artistGroupTitle}?artistGroupNo=*{artistGroupNo}|" id="artist-shop-lists" >
             <img class="artist-main-logo" th:src="*{artistGroupProfile}">
             <span id="artist-shop-name" th:text="*{artistGroupTitle}"></span>
           </a>
+
         </th:block>
+        
       </section>
      
  
@@ -79,5 +85,10 @@
     if(message != null) alert(message);
    </script>
 
+
+
+
+
+
 </body>
-</html><select name="" id="" disabled="disabled"></select>
+</html>

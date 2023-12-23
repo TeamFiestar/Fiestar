@@ -218,7 +218,7 @@ public class ArtistAdminContoller {
 			return "redirect:/shop/shopDetail/" + productNo;
 		}
 		ra.addFlashAttribute("message","상품 등록 실패");
-		return "redirect:goods";	
+		return "admin/goodsModify";	
 	}
 	
 	

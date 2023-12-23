@@ -18,11 +18,11 @@
         <form th:action="|/artistAdmin/${artistGroupTitle}/goods|" method="post" enctype="multipart/form-data" id="goodsFrm">
           <div class="goods-title">
             상품명
-            <input type="text" id="input-goodsTitle" name="productName"/>
+            <input type="text" id="input-goodsTitle" name="productName" maxlength="30"/>
           </div>
           <div class="goods-title">
             상품가격 <br>
-            <input type="text" id="input-goodsPrice" name="productPrice"/>
+            <input type="number" id="input-goodsPrice" name="productPrice" oninput='handleOnInput(this, 6)'/>
           </div>
           <div class="goods-option">
 
@@ -30,10 +30,9 @@
             상품 옵션
             <br />
             <div id="option-area">
-              <!-- <img src="../../static/img/다운로드.png" class="input-goodsPlus" onclick="optionPlus(this)" /> -->
               <img src="/img/Add_light.png" onclick="optionPlus(this)" class="plusBtn"/>
               <div id="input-area">
-                <!-- <input type="text" class="input-goodsOption" /> -->
+                <input type="text"  id="optionBtn"  class="input-goodsOption" placeholder = "옵션 없을 시 '없음' 입력" />
               </div>
             </div>
 

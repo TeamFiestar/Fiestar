@@ -28,18 +28,62 @@ function optionPlus() {
   inputArea.append(div);
 }
 
+function handleOnInput(el, maxlength) {
+  if(el.value.length > maxlength)  {
+    el.value 
+      = el.value.substr(0, maxlength);
+  }
+} 
+
+
+
 function optionMinus(minus) {
   const deleteDiv = document.querySelector(".input-goodsDiv");
   deleteDiv.remove();
 }
 
-if(input.value.trim().length == 0){
+
+//---------------------------------------------------------------------
+/* 제출 시 유효성 검사 */
+const goodsFrm = document.getElementById("goodsFrm");
+goodsFrm.addEventListener("submit", e=>{
+  const title = document.querySelector("[name='productName']");
+  const price = document.querySelector("[name='productPrice']");
+  const option = document.getElementById("optionBtn");
+ 
+ 
+
+ //제목 미입력
+ if(title.value.trim().length == 0){
   alert("제목을 입력해주세요");
   
   e.preventDefault(); 
   title.value = "";
   title.focus();
 }
+
+  //가격 미입력
+  if(price.value.trim().length == 0){
+    alert("가격을 입력해주세요");
+    
+    e.preventDefault(); 
+    price.value = "";
+    price.focus();
+
+  }
+  //옵션 미입력
+  if(option.value.trim().length == 0){
+    alert("옵션을 입력해주세요");
+    
+    e.preventDefault(); 
+    option.value = "";
+    option.focus();
+
+  }
+
+});
+
+
 
 //------------------------------------------------------------------------------------------
 /* 이미지 프리뷰 */
@@ -68,8 +112,6 @@ function content(input) {
   }
 }
 
-
-
  /* x버튼 클릭 시 */
  deleteImg1.addEventListener("click",()=>{
 
@@ -80,51 +122,9 @@ function content(input) {
   deleteImg1.value = '';
 
   //같은 위치 backup제거
-  // backupInputList[i] = undefined;
+  deleteImg1 = undefined;
 
 });
 
 
 
-
-
-
-
-
-//---------------------------------------------------------------------
-/* 제출 시 유효성 검사 */
-const goodsFrm = document.getElementById("goodsFrm");
-goodsFrm.addEventListener("submit", e=>{
-  const title = document.querySelector("[name='productName']");
-  const price = document.querySelector("[name='productPrice']");
-  const option = document.querySelector("[className='inputOption']");
- 
-
-  //제목 미입력
-  if(title.value.trim().length == 0){
-    alert("제목을 입력해주세요");
-    
-    e.preventDefault(); 
-    title.value = "";
-    title.focus();
-  }
-
-  //가격 미입력
-  if(price.value.trim().length == 0){
-    alert("가격을 입력해주세요");
-    
-    e.preventDefault(); 
-    price.value = "";
-    price.focus();
-
-  }
-  //옵션 미입력
-  if(option.value.trim().length == 0){
-    alert("옵션을 입력해주세요");
-    
-    e.preventDefault(); 
-    option.value = "";
-    option.focus();
-
-  }
-});

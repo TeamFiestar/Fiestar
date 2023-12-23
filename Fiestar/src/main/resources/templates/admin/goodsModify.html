@@ -19,11 +19,11 @@
           <form th:action="|/artistAdmin/${artistGroupTitle}/${productNo}/goodsModify|" method="post" enctype="multipart/form-data" id="goodsFrm" >
             <div class="goods-title">
               상품명
-              <input type="text" id="input-goodsTitle" name="productName" th:value="*{productName}">
+              <input type="text" id="input-goodsTitle" name="productName" th:value="*{productName}" maxlength="30">
             </div>
             <div class="goods-title">
               상품가격 <br>
-              <input type="text" id="input-goodsPrice" name="productPrice" th:value="*{productPrice}">
+              <input type="number" id="input-goodsPrice" name="productPrice" th:value="*{productPrice}" oninput='handleOnInput(this, 6)'>
             </div>
             
             <div class="goods-content">
