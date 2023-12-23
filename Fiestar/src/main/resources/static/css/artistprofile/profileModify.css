@@ -41,7 +41,7 @@ a {
 .all img {
   border-radius: 10px;
   background-image: linear-gradient();
-  background: linear-gradient(#0d0e12, #0d0e1200);
+  /* background: linear-gradient(#0d0e12, #0d0e1200); */
 }
 
 .inputProfile {
@@ -108,7 +108,7 @@ a {
 }
 
 .btn-upload2 > img {
-  width: 400px;
+  /* width: 400px; */
   height: 80px;
 }
 
