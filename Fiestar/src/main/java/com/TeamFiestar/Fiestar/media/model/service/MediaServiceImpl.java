@@ -49,9 +49,7 @@ public class MediaServiceImpl implements MediaService{
 	
 	@Override
 	public int insertMedia(Media inserMedia) {
-		
 		int result = mapper.insertMedia(inserMedia);
-		
 		return result;
 	}
 	
@@ -83,6 +81,13 @@ public class MediaServiceImpl implements MediaService{
 	@Override
 	public int deleteMedia(int mediaNo) {
 		return mapper.deleteMedia(mediaNo);
+	}
+	
+	
+	@Override
+	public int selectArtistAdminNo(String artistGroupTitle) {
+		
+		return mapper.selectArtistAdminNo(artistGroupTitle);
 	}
 	
 }

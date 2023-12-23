@@ -35,4 +35,6 @@ public interface MediaService {
 
 	int updateReadCount(int mediaNo);
 
+	int selectArtistAdminNo(String artistGroupTitle);
+
 }
