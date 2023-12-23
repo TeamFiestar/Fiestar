@@ -18,9 +18,12 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.context.annotation.ApplicationScope;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.TeamFiestar.Fiestar.artist.model.service.ArtistService;
+import com.TeamFiestar.Fiestar.board.model.service.BoardService;
 import com.TeamFiestar.Fiestar.media.model.dto.Media;
 import com.TeamFiestar.Fiestar.media.model.service.MediaService;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
+import com.TeamFiestar.Fiestar.member.model.service.MemberService;
 
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.Cookie;
@@ -33,12 +36,28 @@ import lombok.RequiredArgsConstructor;
 public class MediaController {
 	
 	private final MediaService service;
+	private final MemberService memberService;
+	private final BoardService boardService;
 	
 	
 	@GetMapping("{artistGroupTitle}/media/insert")
 	public String mediaInsert(
-			@PathVariable("artistGroupTitle") String artistGroupTitle, Model model) {
+			@PathVariable("artistGroupTitle") String artistGroupTitle, Model model,
+			RedirectAttributes ra , 
+			@SessionAttribute(value = "loginMember", required = false) Member loginMember
+			) {
+		
+		int subscribe = memberService.checkSubscribeGroupTitle(artistGroupTitle, loginMember.getMemberNo());
+		if (subscribe == 0) {
+			String message = "구독 후 이용해 주십시오";
+			ra.addFlashAttribute("message", message);
+			return "redirect:/";
+		}
+		
+		
 		model.addAttribute("artistGroupTitle",artistGroupTitle);
+		int artistGroupNo = boardService.artistGroupNo(artistGroupTitle);
+		model.addAttribute("artistGroupNo",artistGroupNo);
 		
 
 		
@@ -65,7 +84,21 @@ public class MediaController {
 			@PathVariable("artistGroupTitle") String artistGroupTitle,
 			@RequestParam(name="key", required = false, defaultValue = "1") int key,
 			@RequestParam(name="mediaTitle", required = false, defaultValue = "") String mediaTitle
-			,Model model) {
+			,Model model,
+			RedirectAttributes ra , 
+			@SessionAttribute(value = "loginMember", required = false) Member loginMember
+			) {
+		
+		int subscribe = memberService.checkSubscribeGroupTitle(artistGroupTitle, loginMember.getMemberNo());
+		if (subscribe == 0) {
+			String message = "구독 후 이용해 주십시오";
+			ra.addFlashAttribute("message", message);
+			return "redirect:/";
+		}
+		
+		int artistAdminNo = service.selectArtistAdminNo( artistGroupTitle );
+		
+		
 		
 		Map<String, Object> map = new HashMap<>();
 		
@@ -80,6 +113,7 @@ public class MediaController {
 		model.addAttribute("mediaTitle", mediaTitle);
 		model.addAttribute("key", key);
 		model.addAttribute("artistGroupTitle",artistGroupTitle);
+		model.addAttribute("artistAdminNo",artistAdminNo);
 		
 		return "media/mediaList";
 	}
@@ -92,6 +126,15 @@ public class MediaController {
 			@SessionAttribute(value = "loginMember", required = false) Member loginMember,
 			RedirectAttributes ra,
 			HttpServletRequest req, HttpServletResponse resp) throws ParseException {
+		
+		int subscribe = memberService.checkSubscribeGroupTitle(artistGroupTitle, loginMember.getMemberNo());
+		if (subscribe == 0) {
+			String message = "구독 후 이용해 주십시오";
+			ra.addFlashAttribute("message", message);
+			return "redirect:/";
+		}
+		
+		
 		
 		Map<String, Object> map = new HashMap<>();
 		if (loginMember != null) {
@@ -214,7 +257,19 @@ public class MediaController {
 	// 라이브 이동 
 	@GetMapping("{artistGroupTitle}/media/live")
 	public String mediaLive(
-			@PathVariable("artistGroupTitle") String artistGroupTitle, Model model) {
+			@PathVariable("artistGroupTitle") String artistGroupTitle, Model model,
+			RedirectAttributes ra , 
+			@SessionAttribute(value = "loginMember", required = false) Member loginMember
+			) {
+		
+		int subscribe = memberService.checkSubscribeGroupTitle(artistGroupTitle, loginMember.getMemberNo());
+		if (subscribe == 0) {
+			String message = "구독 후 이용해 주십시오";
+			ra.addFlashAttribute("message", message);
+			return "redirect:/";
+		}
+		
+		
 		model.addAttribute("artistGroupTitle",artistGroupTitle);
 		
 		return "media/mediaLive";

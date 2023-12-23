@@ -25,6 +25,7 @@ import com.TeamFiestar.Fiestar.board.model.dto.BoardImg;
 import com.TeamFiestar.Fiestar.board.model.service.BoardService;
 import com.TeamFiestar.Fiestar.member.model.dto.ArtistGroup1;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
+import com.TeamFiestar.Fiestar.member.model.service.MemberService;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -38,15 +39,26 @@ public class BoardController {
 	
 	
 	private final BoardService service;
+	private final MemberService memberService;
 	
 
 	
 	@GetMapping("{artistGroupTitle}/feed")
 	public String selectBoard(Model model, @RequestParam Map<String, Object> paramMap, 
 			@PathVariable("artistGroupTitle") String artistGroupTitle
-			, ArtistGroup1 artistGroup) {
+			, ArtistGroup1 artistGroup,
+			RedirectAttributes ra ,
+			@SessionAttribute(value = "loginMember", required = false) Member loginMember) {
+		
 		
 			int artistGroupNo = service.artistGroupNo(artistGroupTitle);
+			
+			int subscribe = memberService.checkSubscribeGroupTitle(artistGroupTitle, loginMember.getMemberNo());
+			if (subscribe == 0) {
+				String message = "구독 후 이용해 주십시오";
+				ra.addFlashAttribute("message", message);
+				return "redirect:/";
+			}
 			
 			paramMap.put("artistGroupNo", artistGroupNo);
 			
@@ -66,10 +78,18 @@ public class BoardController {
 			@PathVariable("artistGroupTitle" ) String artistGroupTitle, 
 			@SessionAttribute(value = "loginMember", required = false) Member loginMember,
 			@PathVariable("boardNo" ) int boardNo,
-			ArtistGroup1 artistGroup
+			ArtistGroup1 artistGroup,
+			RedirectAttributes ra 
 			) {
+			int subscribe = memberService.checkSubscribeGroupTitle(artistGroupTitle, loginMember.getMemberNo());
+			if (subscribe == 0) {
+				String message = "구독 후 이용해 주십시오";
+				ra.addFlashAttribute("message", message);
+				return "redirect:/";
+			}
 		
 			int artistGroupNo = service.artistGroupNo(artistGroupTitle);
+			
 			
 			Map<String, Object> paramMap = new HashMap<>();
 			paramMap.put("artistGroupNo", artistGroupNo);
@@ -134,7 +154,19 @@ public class BoardController {
 	
 	@GetMapping("{artistGroupTitle}/artist")
 	public String selectartistBoard(Model model, @RequestParam Map<String, Object> paramMap, 
+			@SessionAttribute(value = "loginMember", required = false) Member loginMember,
+			RedirectAttributes ra ,
 			@PathVariable("artistGroupTitle" ) String artistGroupTitle) {
+		
+		
+		int subscribe = memberService.checkSubscribeGroupTitle(artistGroupTitle, loginMember.getMemberNo());
+		if (subscribe == 0) {
+			String message = "구독 후 이용해 주십시오";
+			ra.addFlashAttribute("message", message);
+			return "redirect:/";
+		}
+		
+		
 		{
 			
 			int artistGroupNo = service.artistGroupNo(artistGroupTitle);

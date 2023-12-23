@@ -5,7 +5,7 @@
 	<insert id="inputComment">
 		INSERT INTO MEDIA_COMMENT MC VALUES(SEQ_MESSAGE_COMMENT_NO.NEXTVAL
 		, #{mediaCommentContent}, SYSDATE,
-		DEFAULT, #{mediaNo}, 3, 
+		DEFAULT, #{mediaNo}, #{memberNo}, 
 		<if test="mediaParentCommentNo == 0">
 			NULL
 		</if>

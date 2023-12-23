@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.TeamFiestar.Fiestar.admin.model.mapper.ArtistAdminMapper;
 import com.TeamFiestar.Fiestar.chatting.model.dto.ChattingRoom;
 import com.TeamFiestar.Fiestar.chatting.model.service.ChatService;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
+import com.TeamFiestar.Fiestar.member.model.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
 import oracle.jdbc.proxy.annotation.Post;
@@ -30,28 +32,29 @@ public class ChattingController {
 	
 	private final ChatService service;
 	private final ArtistAdminMapper artistAdminMapper;
+	private final MemberService memberService;
 
-//	@GetMapping("chat")
-//	public String chat(@SessionAttribute("loginMember") Member loginMember, Model model) {
-////		model.addAttribute("memberNo", loginMember.getMemberNo());
-//		return "chatting/chatting";
-//	}
 	
 	@GetMapping("chatting/{artistGroupTitle}")
 	public String chatting(@PathVariable("artistGroupTitle") String artistGroupTitle, 
-			@SessionAttribute("loginMember") Member loginMember, Model model) {
+			@SessionAttribute("loginMember") Member loginMember, Model model,
+			RedirectAttributes ra
+			) {
+		
+		int subscribe = memberService.checkSubscribeGroupTitle(artistGroupTitle, loginMember.getMemberNo());
+		if (subscribe == 0) {
+			String message = "구독 후 이용해 주십시오";
+			ra.addFlashAttribute("message", message);
+			return "redirect:/";
+		}
 		
 		int artistGroupNo = artistAdminMapper.selectArtistGroupNo(artistGroupTitle);
 		String artistGroupImage = service.artistGroupImage(artistGroupTitle);
-//		List<String> userList = new ArrayList<>();
-//		userList.add(loginMember.getMemberNickname());
-//		
-//		model.addAttribute("userList",userList);
+		
 		model.addAttribute("artistGroupImage", artistGroupImage);
 		model.addAttribute("artistGroupNo",artistGroupNo);
 		model.addAttribute("loginMember", loginMember);
 		model.addAttribute("memberNickname",loginMember.getMemberNickname());
-//		model.addAttribute("memberProfile", loginMember.getMemberProfile());
 		return "chatting/chatting";
 	}
 	
