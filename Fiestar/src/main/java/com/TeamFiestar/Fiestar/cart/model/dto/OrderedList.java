@@ -62,6 +62,8 @@ public class OrderedList {
 	private String productImageThumbnail;
 	private int purchaseNo;
 	private int eachPrice;
+	private int productPrice;
+	
 	
 //	카트에서 eachPrice 가져와 삽입
 	

@@ -54,6 +54,7 @@
                   <!-- 1번 -->
 
                   <!-- 이미지 영역 -->
+        
                 <img th:src="${item.productImageThumbnail}" alt="Product Image" class="productImg"> 
                   <!-- <img th:src="${checkoutItem.productImageThumbnail}" alt="" class="productImg"> -->
                   
@@ -96,7 +97,7 @@
 
                      <!-- 개별 상품 가격 -->
 
-                     <span class="item-price" th:text= "'₩' + ${item.eachPrice}" style="font-weight: bold;">Price</span>
+                     <span class="item-price" th:text= "'₩' + ${item.productPrice}" style="font-weight: bold;">Price</span>
                      <!-- <span class="item-price" th:text="${item.eachPrice}" style="font-weight: bold;">Price</span> -->
 
                   </span>
