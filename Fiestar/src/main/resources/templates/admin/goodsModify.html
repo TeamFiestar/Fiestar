@@ -25,18 +25,7 @@
               상품가격 <br>
               <input type="text" id="input-goodsPrice" name="productPrice" th:value="*{productPrice}">
             </div>
-            <div class="goods-option">
-              상품 옵션
-              <br />
-              <div id="option-area">
-                <!-- <img src="../../static/img/다운로드.png" class="input-goodsPlus" onclick="optionPlus(this)" /> -->
-                <img src="/img/Add_light.png" onclick="optionPlus(this)" class="plusBtn"/>
-                <div id="input-area">
-                  <!-- <input type="text" class="input-goodsOption" /> -->
-                </div>
-              </div>
-
-            </div>
+            
             <div class="goods-content">
               상품 설명
               <br />
@@ -45,21 +34,22 @@
               <br/>
               <div class="goodsImg">
                 <label for="img1">
-                  <img src="#" class="goods-contentImg" />
+                  <img src="#" id="goods-contentImg"  class="goods-contentImg"  width="100%" height="100%"/>
                 </label>
-                <input type="file" name="contentImg" id="img1" accept="image/*" class="input-goodsImg" onchange="content(this);"/>
-                <span class="delete-image">&times;</span>
+                <input type="file" name="contentImg" id="img1" accept="image/*" class="input-goodsImg" onchange="content(this);" />
+                <span class="delete-image" id="deleteImg1">&times;</span>
               </div>
             </div>
             <div class="goods-thumnail">
+              <br />
               상품 썸네일
               <br />
               <div class="goodsImg">
                 <label for="img2">
-                  <img src="#" class="thumnail" />
+                  <img src="#" id="thumnail"   class="thumnail" width="100%" height="100%"/>
                 </label>
-                <input type="file" name="thumbnailImg" id="img2" accept="image/*" class="input-goodsImg"onchange="thumbnail(this);" />
-                <span class="delete-image">&times;</span>
+                <input type="file" name="thumbnailImg" id="img2" accept="image/*" class="input-goodsImg" onchange="thumbnail(this);" />
+                <span class="delete-image" id="deleteImg2">&times;</span>
               </div>
             </div>
             <div class="goods-btn-area">

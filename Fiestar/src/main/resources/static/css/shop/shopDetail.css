@@ -242,7 +242,7 @@
 
 .product-image-area img {
   width: 800px;
-  margin-left : 150px;
+  /* margin-left : 150px; */
   
 }
 
@@ -307,6 +307,12 @@
   cursor: pointer;
 }
 
-
+.product-Announcement{
+  border: 4px solid rgb(202, 202, 202);
+  width: 800px;
+  height: 100px;
+  text-align: center;
+  margin: 0 auto;
+}
 
 

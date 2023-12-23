@@ -63,6 +63,8 @@ public interface ShopMapper {
 	 */
 	int insertCartOption(Map<String, Integer> map);
 
+	int selectAdminNo(int productNo);
+
 	
 
 	

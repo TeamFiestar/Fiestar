@@ -153,6 +153,7 @@ public class ArtistAdminServiceImpl implements ArtistAdminService{
 		int artistGroupNo = mapper.selectArtistGroupNo(product.getArtistGroupTitle());
 		product.setArtistGroupNo(artistGroupNo);
 		
+		
 		int result = mapper.insertGoods(product);
 		
 		if(result == 0) {
@@ -213,15 +214,7 @@ public class ArtistAdminServiceImpl implements ArtistAdminService{
 		
 		int productNo = product.getProductNo();
 		
-		for (ProductOption productOption2 : product.getProductOptionList()) {
-			productOption2.setProductNo(productNo);
-		}
 		
-		int result2 = mapper.updateOption(product.getProductOptionList());
-		
-		if(result2 == 0) {
-			return 0; 
-		}
 		
 		ProductImage img = new ProductImage();
 		

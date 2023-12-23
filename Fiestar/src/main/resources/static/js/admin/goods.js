@@ -2,6 +2,8 @@ const plus = document.querySelector(".plusBtn");
 const minus = document.querySelector(".input-goodsMinus");
 const optionArea = document.getElementById("option-area");
 const inputArea = document.getElementById("input-area");
+const deleteImg1 = document.getElementById("deleteImg1");
+const deleteImg2 = document.getElementById("deleteImg2");
 
 let optionListIndex = 0;
 
@@ -11,6 +13,7 @@ function optionPlus() {
 
   const input = document.createElement("input");
   input.classList.add("input-goodsOption");
+  input.placeholder = "옵션 없을 시 '없음' 입력" ;
   input.setAttribute("name", `productOptionList[${optionListIndex++}].productOptionName`);
   input.setAttribute("type", "text");
   input.setAttribute("className", "inputOption");
@@ -28,6 +31,14 @@ function optionPlus() {
 function optionMinus(minus) {
   const deleteDiv = document.querySelector(".input-goodsDiv");
   deleteDiv.remove();
+}
+
+if(input.value.trim().length == 0){
+  alert("제목을 입력해주세요");
+  
+  e.preventDefault(); 
+  title.value = "";
+  title.focus();
 }
 
 //------------------------------------------------------------------------------------------
@@ -56,6 +67,27 @@ function content(input) {
     document.getElementById('goods-contentImg').src = "";
   }
 }
+
+
+
+ /* x버튼 클릭 시 */
+ deleteImg1.addEventListener("click",()=>{
+
+  //미리보기 삭제
+  deleteImg1.removeAttribute("src");  //src속성을 제거(img태그)
+
+  //input태그 파일 제거
+  deleteImg1.value = '';
+
+  //같은 위치 backup제거
+  // backupInputList[i] = undefined;
+
+});
+
+
+
+
+
 
 
 

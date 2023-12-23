@@ -13,7 +13,7 @@
 <body>
   <th:block th:replace="~{common/shopHeader}"></th:block>
  
-  <main th:with="optionList = ${prod.optionList}, detail=${prod.detail}">
+  <main th:with="optionList = ${prod.optionList}, detail=${prod.detail} , adminNo = ${prod.adminNo}">
     <section class="shopDetail-main">
       <div class="shopDetail-upper">
 
@@ -27,25 +27,27 @@
           <div class="product-detail" th:object="${detail}">
             <div class="artist-name">아티스트명 &gt;</div>
             <section class="product-name" th:text=" '[' + *{artistGroupTitle} + ']' + ' ' + *{productName} ">[아티스트명] 상품명</section>
-            <div class="product-price" th:text=" '₩' + ' ' + *{productPrice}"></div>
+            <div class="product-price" th:text=" '₩' + ' ' + *{productPrice} + '원' "></div>
             <div class="product-delivery-info">
-              <img src="/images/package_car.png"> 
-              <span>배송 시작 예정일</span>
+            <!--   <img src="/images/package_car.png"> -->
+              <span>배송 시작 예정일</span><br><br>
               <span style="color:black; margin-left: 5px; font-size:14px; word-spacing: 2px;" id="delivery-date">2023.xx.xx ~ 2023.xx.xx</span>
             </div>
 
             <div class="package-info" >
               <div>[주의]</div> 
               배송 예정일은 상품 및 물류 상황에 따라 지연될 수 있습니다. 일정이 변경될 경우 개별 안내될 예정입니다.
-            </div>       
+            </div>
+
+              
                 <div class="product-option">
                   옵션 선택
                   <select name="key" id="optionSelect">
-                    <option value="" selected disabled hidden>옵션을 선택해주세요</option>
+                    <option value="" selected disabled hidden >옵션을 선택해주세요</option>
                     <option  th:each="option: ${optionList}" th:object="${option}" th:value="*{productOptionNo}" th:text="*{productOptionName}" id="selectOption">S(90~95)</option>
                   </select>
                 </div>
-            </th:block>
+              
 
             <div class="product-purchase-list">
                   <!-- <span class="product-purchase-name">[아티스트명] 상품명 <span class="remove-row">&times</span></span>
@@ -79,7 +81,7 @@
         </form>
       </div>
      
-      <th:block th:if="${session.loginMember != null and session.loginMember.memberAuthority == 4}"> 
+      <th:block th:if="${session.loginMember != null and adminNo == session.loginMember.memberNo}"> 
         <button id="updateBtn" class="updateBtn">수정</button>
         <button id="deleteBtn" class="deleteBtn">삭제</button>
       </th:block>
@@ -87,7 +89,12 @@
 
     <hr>
 
-    <div class="shopDetail-lower">
+    <div class="shopDetail-lower" th:object="${detail}">
+      <div class="product-Announcement">
+        <br>
+       <h2>[판매공지]</h2><br>
+       <h4 th:text="*{productProduction}"></h4>
+      </div><br><br>
       <h2>상품 소개</h2>
       <div class="product-image-area">
         <img th:src="|${detail.productImageContent}${detail.productImageRename}|" 

@@ -31,6 +31,8 @@ function optionMinus(minus) {
 }
 
 //------------------------------------------------------------------------------------------
+
+
 /* 이미지 프리뷰 */
 function thumbnail(input) {
   if(input.files && input.files[0]) {
@@ -60,10 +62,31 @@ function content(input) {
 
 //---------------------------------------------------------------------
 /* 제출 시 유효성 검사 */
+const contentImg = document.getElementById("contentImg");
+const thumbnailImg = document.getElementById("thumbnailImg");
 const goodsFrm = document.getElementById("goodsFrm");
 goodsFrm.addEventListener("submit", e=>{
   
   const option = document.querySelector("[className='inputOption']");
+
+
+  if(contentImg.file.length === 0){
+    alert("사진을 입력해주세요");
+  }
+  if(thumbnailImg.file.length === 0){
+    alert("사진을 입력해주세요");
+  }
+
+
+  //제목 미입력
+  if(title.value.trim().length == 0){
+    alert("제목을 입력해주세요");
+    
+    e.preventDefault(); 
+    title.value = "";
+    title.focus();
+  }
+
 
   //옵션 미입력
   if(option.value.trim().length == 0){

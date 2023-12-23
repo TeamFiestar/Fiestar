@@ -126,11 +126,13 @@ public class ShopController {
 	@GetMapping("shopDetail/{productNo:[0-9]+}")
 	public String shopDetail(@PathVariable("productNo") int productNo,
 								Model model, Product product,
-								RedirectAttributes ra) {
+								RedirectAttributes ra,
+								@SessionAttribute(value="loginMember", required = false) Member loginMember) {
 		
 		
 		Map<String, Object> prod = service.shopDetail(productNo);
 		
+	
 		String path = null;
 		
 		if(prod != null) {

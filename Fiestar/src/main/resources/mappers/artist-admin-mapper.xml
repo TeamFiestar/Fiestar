@@ -127,17 +127,6 @@
 	</update>
 	
 	
-	<!--상품 옵션 수정-->
-	<update id="updateOption">
-		UPDATE "PRODUCT_OPTION" SET
-		<foreach collection="list" item="p" separator="UNION">
-			PRODUCT_OPTION_NAME = #{p.productOptionName}
-			WHERE PRODUCT_NO = #{p.productNo}
-		</foreach>
-	</update>
-	
-	
-	
 	<!-- 이미지 수정-->
 	 <update id="updateImage">
 		UPDATE "PRODUCT_IMAGE" SET
