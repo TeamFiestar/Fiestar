@@ -18,6 +18,7 @@ const totalPrice = document.getElementById("totalPrice");
 const xBtnList = document.querySelectorAll(".x-btn");
 
 
+
 // ---------------------- 삭제 ------------------------------
 
 for (let i = 0; i < xBtnList.length; i++) {
@@ -101,15 +102,17 @@ const cartNo = document.querySelectorAll(".cartNo");
 const clacPrice = (btn) => {
 
    const itemCount = btn.parentElement.children[1];
-   const defaultPrice = btn.parentElement.children[3];
+   const defaultPrice = btn.parentElement.children[3];   
    const amountPrice = btn.parentElement.nextElementSibling;
-
    
-
    // amountPrice.innerText = Number(itemCount.innerText) * Number(defaultPrice.innerText)
 
    //  amountPrice.innerText = (Number(itemCount.innerText) * Number(defaultPrice.innerText))
-    amountPrice.innerText = (Number(itemCount.innerText) * Number(defaultPrice.innerText));
+
+
+   // 문제 포인트
+   // amountPrice.innerText = "₩" + (Number(itemCount.innerText) * Number(defaultPrice.innerText)).toLocaleString();
+   amountPrice.innerText = "₩" + (Number(itemCount.innerText) * Number(defaultPrice.innerText)).toLocaleString();
    
    // amountPrice = Number(itemCount.innerText) * Number(defaultPrice.innerText);
    // amountPrice.textContent = amountPrice.innerText.toLocaleString();
@@ -129,18 +132,14 @@ const checkedPrice = () => {
 
    for(let checkbox of checkList){
       const amountPrice = checkbox.parentElement.parentElement.parentElement.nextElementSibling.children[1].innerText;
-      sum += Number(amountPrice);
+      let cleanedAmount = amountPrice.replace(/,|₩/g, "");
+      sum += Number(cleanedAmount);
+   
    }
-      
-      // totalPrice.innerText = sum;
+   // totalPrice.innerText = sum;
 
-      totalPrice.innerText = sum.toLocaleString();
+   totalPrice.innerText = "₩" + sum.toLocaleString();
 
-
-      // ` ` 문자열 사이 변수를 사용해야 할 때 유용하게 사용 가능
-
-
-      
 
    // totalPrice.textContent = "$" + sum.toLocaleString();
 }
@@ -161,7 +160,7 @@ for(let i=0; i<plusList.length; i++) {
       clacPrice(e.target);
       checkedPrice();
       let eachPrice = e.target.parentElement.nextElementSibling.innerText;
-      eachPrice.innerText = eachPrice.toLocaleString();
+      eachPrice.innerText =  eachPrice.replace(",","", "₩", "").toLocaleString();
 
       // eachPrice.innerText = Number(eachPrice.innerText);
       // defaultPrice.innerText = Number(defaultPrice.innerText);
@@ -256,22 +255,14 @@ for (let selectEach of selectEachList) {
 
 
 
-document.addEventListener("change", e => {
-   
-   checkedPrice();
-   
-});
-
 
 
 document.addEventListener('DOMContentLoaded', () => {
-
-   document.addEventListener('DOMContentLoaded', () => {
-      const priceElement = document.getElementById('price');
-      const price = priceElement.innerText;
-      priceElement.innerText = '₩' + Number(price).toLocaleString('ko-KR');
-    });
    checkedPrice() ;
+
+   document.querySelectorAll(".amount-price").forEach(item => {
+      item.innerText = "₩" + Number(item.innerText).toLocaleString();
+   })
 });
 
 

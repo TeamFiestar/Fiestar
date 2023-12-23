@@ -98,7 +98,7 @@
 
                      <!-- 개별 상품 가격 -->
 
-                     <span class="item-price" th:text= "'₩' + ${item.productPrice}" style="font-weight: bold;">Price</span>
+                     <span class="item-price" th:text= "${item.productPrice}" style="font-weight: bold;"></span>
                      <!-- <span class="item-price" th:text="${item.eachPrice}" style="font-weight: bold;">Price</span> -->
 
                   </span>
@@ -182,7 +182,7 @@
   
               <div class="total">
                   <span style="background-color: rgb(255, 254, 237);">총 결제 금액</span>
-                  <div class="sc-e98633bc-7 iUJKwp" th:text="'$' + ${map.purchaseInfo.purchasePrice}" style="background-color: rgb(255, 254, 237);">Total Price</div>
+                  <div class="sc" th:text="${map.purchaseInfo.purchasePrice}" style="background-color: rgb(255, 254, 237);"></div>
               </div>
   
               <div class="checkout-area">
@@ -193,5 +193,8 @@
           </div>
       </form>
   </section>
+
+  <script src="/js/cart/result.js"></script>
 </body>
+
 </html>

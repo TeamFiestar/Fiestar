@@ -1,5 +1,32 @@
 // 
 
+
+
+document.querySelectorAll(".default-price").forEach(item => {
+    item.innerText = "₩" + Number(item.innerText).toLocaleString();
+ })
+
+
+ document.querySelectorAll(".tP").forEach(tP => {
+    tP.innerText = "₩" + Number(tP.innerText).toLocaleString();
+ })
+
+
+ document.querySelectorAll(".totalProduct-price").forEach(totalProduct => {
+    totalProduct.innerText = "₩" + Number(totalProduct.innerText).toLocaleString();
+ })
+
+
+ document.querySelectorAll(".purchasePrice").forEach(purchasePrice => {
+    purchasePrice.innerText = "₩" + Number(purchasePrice.innerText).toLocaleString();
+ })
+
+
+
+
+
+
+
 const nameChangeBtn = document.getElementById("nameChangeBtn");
 
 nameChangeBtn.addEventListener("click", e => {
