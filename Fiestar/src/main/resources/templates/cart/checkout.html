@@ -90,7 +90,7 @@
 
                      <!-- 개별 상품 가격 -->
                  
-                     <span th:text="${checkoutItem.productPrice}" class="default-price"></span>
+                     <span th:text=" '₩' + ${checkoutItem.productPrice}" class="default-price"></span>
 
                   </span>
 
@@ -120,7 +120,7 @@
 
                   <!-- <span class="check-price">총 상품 가격()</span> -->
                   <div class="total-price1">
-                     총 상품 가격 ₩ <span th:text="${totalPrice}" style="font-weight: bold;"> </span>
+                  <span>총 상품 가격</span> <span th:text=" '₩' + ${totalPrice}" style="font-weight: bold;" class="tP"> </span>
                   </div>
 
 

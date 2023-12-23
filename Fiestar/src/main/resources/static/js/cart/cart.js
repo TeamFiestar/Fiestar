@@ -102,12 +102,13 @@ const clacPrice = (btn) => {
 
    const itemCount = btn.parentElement.children[1];
    const defaultPrice = btn.parentElement.children[3];
-   const amountPrice = btn.parentElement.nextElementSibling
+   const amountPrice = btn.parentElement.nextElementSibling;
 
    
 
    // amountPrice.innerText = Number(itemCount.innerText) * Number(defaultPrice.innerText)
 
+   //  amountPrice.innerText = (Number(itemCount.innerText) * Number(defaultPrice.innerText))
     amountPrice.innerText = (Number(itemCount.innerText) * Number(defaultPrice.innerText));
    
    // amountPrice = Number(itemCount.innerText) * Number(defaultPrice.innerText);
@@ -133,7 +134,8 @@ const checkedPrice = () => {
       
       // totalPrice.innerText = sum;
 
-      totalPrice.innerText = sum;
+      totalPrice.innerText = sum.toLocaleString();
+
 
       // ` ` 문자열 사이 변수를 사용해야 할 때 유용하게 사용 가능
 
@@ -159,7 +161,7 @@ for(let i=0; i<plusList.length; i++) {
       clacPrice(e.target);
       checkedPrice();
       let eachPrice = e.target.parentElement.nextElementSibling.innerText;
-
+      eachPrice.innerText = eachPrice.toLocaleString();
 
       // eachPrice.innerText = Number(eachPrice.innerText);
       // defaultPrice.innerText = Number(defaultPrice.innerText);

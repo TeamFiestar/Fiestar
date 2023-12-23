@@ -77,6 +77,7 @@
 
                      <div>
                         <span class="item-option" th:text="${item.productOptionName}">Option Name</span>
+                        
                            
 
                      </div>
@@ -185,7 +186,9 @@
               </div>
   
               <div class="checkout-area">
-                  <button type="submit" class="checkOut-btn">주문 상태 확인</button>
+                  <button type="submit" class="checkOut-btn">메인으로
+                      <a th:href="@{/shop/home/}"></a>
+                  </button>
               </div>
           </div>
       </form>
