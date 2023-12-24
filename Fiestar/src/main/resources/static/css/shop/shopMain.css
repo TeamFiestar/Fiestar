@@ -14,7 +14,7 @@
 
 
 .artist-shop-list-area {
-  height: 90px;
+  height: 100px;
   display: flex;
   gap: 0px 15px;
   margin-top: 20px;
@@ -158,7 +158,6 @@
   box-sizing: border-box;
   padding-top: 5px;
   background-color: white;
-
 }
 
 .product-name {
@@ -168,6 +167,9 @@
   color: black;
   background-color: white;
   padding : 7px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .product-price {

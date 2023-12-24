@@ -25,16 +25,15 @@
               상품가격 <br>
               <input type="number" id="input-goodsPrice" name="productPrice" th:value="*{productPrice}" oninput='handleOnInput(this, 6)'>
             </div>
-            
             <div class="goods-content">
               상품 설명
               <br />
-              <textarea class="input-goodsContent" name="productProduction" th:text="*{productProduction}"></textarea>
+              <textarea class="input-goodsContent" name="productProduction" th:utext="*{productProduction}"></textarea>
               상품 설명 이미지
               <br/>
               <div class="goodsImg">
                 <label for="img1">
-                  <img src="#" id="goods-contentImg"  class="goods-contentImg"  width="100%" height="100%"/>
+                  <img src="#" id="goods-contentImg"  class="goods-contentImg" />
                 </label>
                 <input type="file" name="contentImg" id="img1" accept="image/*" class="input-goodsImg" onchange="content(this);" />
                 <span class="delete-image" id="deleteImg1">&times;</span>

@@ -154,13 +154,18 @@ public class ArtistAdminContoller {
 		
 		int productNo = service.insertGoods(product, contentImg, thumbnailImg);
 		
-		if(productNo > 0) {
+		if(productNo > 1) {
 			ra.addFlashAttribute("message","상품 등록 성공");
 			return "redirect:/shop/shopDetail/" + productNo;
+		}else if(productNo == 1) {
+			ra.addFlashAttribute("message","옵션을 선택해주세요");
+			return "redirect:goods";
+		}else{
+			ra.addFlashAttribute("message","상품 등록 실패");
+			return "redirect:goods";
 		}
 		
-		ra.addFlashAttribute("message","상품 등록 실패");
-		return "redirect:goods";	
+			
 		
 	}
 	
@@ -218,7 +223,7 @@ public class ArtistAdminContoller {
 			return "redirect:/shop/shopDetail/" + productNo;
 		}
 		ra.addFlashAttribute("message","상품 등록 실패");
-		return "admin/goodsModify";	
+		return "redirect:goods";	
 	}
 	
 	
