@@ -23,7 +23,6 @@ import com.TeamFiestar.Fiestar.member.model.dto.Member;
 import com.TeamFiestar.Fiestar.member.model.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
-import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @SessionAttributes({"loginMember","artistGroupNo","memberNickname", "liveChattingRoomNo"})

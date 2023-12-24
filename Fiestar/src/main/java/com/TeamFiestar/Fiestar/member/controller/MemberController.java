@@ -18,7 +18,7 @@ import com.TeamFiestar.Fiestar.member.model.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
-import oracle.jdbc.proxy.annotation.Post;
+//import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @RequiredArgsConstructor
