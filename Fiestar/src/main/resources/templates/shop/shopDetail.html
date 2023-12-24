@@ -79,7 +79,7 @@
           </form>
         </div>
 
-        <th:block th:if="${session.loginMember != null and session.loginMember.memberAuthority == 4}">
+        <th:block th:if="${session.loginMember != null and session.loginMember.memberNo == adminNo}">
           <button id="updateBtn" class="updateBtn">수정</button>
           <button id="deleteBtn" class="deleteBtn">삭제</button>
         </th:block>
@@ -89,7 +89,7 @@
         <div class="product-Announcement" th:object="${detail}">
           <br>
           <h2>[판매공지]</h2><br>
-          <h4 th:text="*{productProduction}"></h4>
+          <pre th:text="*{productProduction}"></pre>
         </div><br><br>
         <div class="shopDetail-lower">
           <h2>상품 소개</h2>

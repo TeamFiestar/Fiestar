@@ -59,7 +59,7 @@
                   <div class="product-price" th:text="'₩' + *{productPrice}+ '원'">상품 가격</div>
                 </div>
               </a>  
-            </div>
+            </div>  
           </div>
         </div>
       </section>
@@ -83,7 +83,6 @@
   <script th:inline = "javascript">
     const message = /*[[${message}]]*/ "message";
     if(message != null) alert(message);
-    let price = /*[[${map.productList.productPrice}]]*/ "상품가격";
    </script>
 
 
