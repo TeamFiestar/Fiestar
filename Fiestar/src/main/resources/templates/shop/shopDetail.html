@@ -106,10 +106,10 @@
 
           <div class="product-info-detail">
             <h2>상품 고시정보</h2>
-            <table width="1096px">
+            <table width="1096px" th:object="${detail}">
               <tr>
-                <td id="info-title">품명</td>
-                <td>상세페이지 참고</td>
+                <td id="info-title" >품명</td>
+                <td th:text="*{productName}">상세페이지 참고</td>
               </tr>
               <tr>
                 <td id="info-title">내용물의 용량(수량)</td>
@@ -125,7 +125,7 @@
               </tr>
               <tr>
                 <td id="info-title">제조국</td>
-                <td>상세페이지 참고</td>
+                <td>KOREA</td>
               </tr>
               <tr>
                 <td id="info-title">구성품, 비고</td>
@@ -137,7 +137,7 @@
               </tr>
               <tr>
                 <td id="info-title">품질 보증 기준</td>
-                <td>상세페이지 참고</td>
+                <td>관련 법 및 소비자분쟁 해결기준에 따름.</td>
               </tr>
             </table>
 
