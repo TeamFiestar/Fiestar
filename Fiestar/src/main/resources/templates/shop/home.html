@@ -63,7 +63,7 @@
                 <div class="product-name-area" >
                   <div class="product-name" th:text="*{productName}">상품 이름</div>
                   <br>
-                  <div class="product-price" th:text="'₩' + *{productPrice}+ '원'">상품 가격</div>
+                 <div class="product-price" th:text="|₩${T(java.lang.String).format('%,.0f', product.productPrice.doubleValue())}원|">상품 가격</div>
                 </div>
               </a>  
             </div>  

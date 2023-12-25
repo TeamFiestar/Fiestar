@@ -27,7 +27,7 @@
           <div class="product-detail" th:object="${detail}">
             <div class="artist-name">아티스트명 &gt;</div>
             <section class="product-name" th:text=" '[' + *{artistGroupTitle} + ']' + ' ' + *{productName} ">[아티스트명] 상품명</section>
-            <div class="product-price" th:text=" '₩' + ' ' + *{productPrice} + '원' "></div>
+            <div class="product-price" th:text="|₩${T(java.lang.String).format('%,.0f', detail.productPrice.doubleValue())}원|"></div>
             <div class="product-delivery-info">
             <!--   <img src="/images/package_car.png"> -->
               <span>배송 시작 예정일</span><br><br>
