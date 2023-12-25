@@ -30,15 +30,12 @@ html,
 body {
   margin: 0px;
   height: 100%;
+  background-color: #1e1e1e;
   
 }
 /* a blue color as a generic focus style */
 a {
   text-decoration: none;
-}
-
-main{
-  background-color: #1e1e1e;
 }
 
 .div-wrapper {
@@ -50,7 +47,6 @@ main{
   padding: 0px 50px 0px;
 /* position: relative; */
 
-  background-color: #1e1e1e;
 }
 
 .comment-list::-webkit-scrollbar-track
@@ -229,7 +225,7 @@ main{
 .div-wrapper .comment-writer-area {
   display: flex;
   flex-direction: column;
-  width: 107px;
+  width: auto;
   align-items: flex-start;
   padding: 0px 0px 0px 8px;
 /* position: relative; */
