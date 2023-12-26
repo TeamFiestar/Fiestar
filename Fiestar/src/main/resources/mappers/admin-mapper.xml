@@ -305,6 +305,7 @@
 		<if test="report.key == 3">WHERE M.MEMBER_NICKNAME LIKE '%${report.reportSearch}%'</if>
 		<if test="report.key == 4">WHERE M.MEMBER_EMAIL LIKE '%${report.reportSearch}%'</if>
 		<if test="report.key == 5">WHERE REPORT_CONTENT LIKE '%${report.reportSearch}%'</if>
+		ORDER BY REPORT_NO
 	</select>
 	
 	<!-- 주문 배송 개수 -->

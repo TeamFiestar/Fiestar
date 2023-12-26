@@ -68,7 +68,6 @@
       <!-- th:replace -->
       <th:block th:replace="~{common/admin}"></th:block>
       <div class="report-main">
-        <h4>NewJeans</h4>
         <h1>신고 조회</h1>
         <br />
         <table class="report-table" border="1" style="border-collapse: collapse">
@@ -78,8 +77,7 @@
             <th>신고자 이메일</th>
             <th>신고대상자 닉네임</th>
             <th>신고대상자 이메일</th>
-            <th>신고 내용</th>
-            <th>처리</th>
+            <th>상세 조회</th>
             <th>처리 여부</th>
           </tr>
 
@@ -91,7 +89,6 @@
               <td th:text="*{reporterEmail}">singo123@gmail.com</td>
               <td th:text="*{reportTargetNickname}">닉네임11</td>
               <td th:text="*{reportTargetEmail}">nickname123123@naver.com</td>
-              <td th:text="*{reportContent}"> 욕설 사용</td>
               <td>
                 <button class="btn-open-popup" th:value="*{reportType}" th:onclick="|selectReport( *{reportNo}, *{reportContentNo}, this )|">이동</button>
               </td>

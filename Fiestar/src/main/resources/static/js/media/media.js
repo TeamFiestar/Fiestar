@@ -213,9 +213,11 @@ function generateComment(){
       }
 
       const deleteImg = document.createElement("img");
-      deleteImg.className = "delete-cross";
-      deleteImg.src = "/img/close_ring.png";
-      deleteImg.setAttribute('onclick', `deleteModalOpen(${comment.mediaCommentNo})`);
+      if(loginMember.memberAuthority != 1 || loginMember.memberNo == comment.memberNo){
+        deleteImg.className = "delete-cross";
+        deleteImg.src = "/img/close_ring.png";
+        deleteImg.setAttribute('onclick', `deleteModalOpen(${comment.mediaCommentNo})`);
+      }
 
     
       // report-img를 comment-profile에 추가
