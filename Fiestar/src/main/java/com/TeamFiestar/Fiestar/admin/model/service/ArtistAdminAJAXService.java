@@ -29,4 +29,6 @@ public interface ArtistAdminAJAXService {
 
 	int deleteReport(Map<String, Object> map);
 
+	int proceedReport(Map<String, Object> map);
+
 }

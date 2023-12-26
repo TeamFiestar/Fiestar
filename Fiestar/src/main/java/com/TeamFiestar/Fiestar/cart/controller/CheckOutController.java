@@ -40,7 +40,9 @@ public class CheckOutController {
 	    
 	    public String checkout(Model model, 
 	                           @SessionAttribute(value = "loginMember") Member loginMember, 
-	                           @RequestParam("selectEach") List<String> cartNoList) {
+	                           @RequestParam("selectEach") List<String> cartNoList,
+	                           /*@SessionAttribute(value = "cartNo", required = false) int cartNo */
+	                           HttpSession session) {
 	    	
 	    	
 	    	// List를   ","  ex) ( [2, 3, 5] -> 2, 3, 5 ) 로 구분되는 String으로 변환하는 방법
@@ -49,6 +51,14 @@ public class CheckOutController {
 	    		
 	    	Set<String> set = new LinkedHashSet<>(cartNoList);
 	    	String selectNo = String.join(",", set);
+	    	
+	    	Object temp = session.getAttribute("cartNo");
+	    	if(temp != null) {
+	    		int cartNo = Integer.parseInt(session.getAttribute("cartNo").toString());
+	    		if(cartNo != 0) selectNo = cartNo + "";
+	    		session.removeAttribute("cartNo");
+	    	}
+	    	
 	    	
 	        // 선택된 장바구니 항목 조회
 	    	
