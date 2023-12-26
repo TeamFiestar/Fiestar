@@ -47,19 +47,19 @@ const closeFeedReport = () => {
 
 
 let reportTr;
-let reportType;
+let reportType2;
 
 const selectReport = (reportNo, reportContentNo, thisReport) => {
 
   const data = {};
   data.reportContentNo = reportContentNo;
-  data.reportType = thisReport.value;
-  reportType = thisReport.value;
+  data.reportType2 = thisReport.value;
+  reportType2 = thisReport.value;
 
   reportTr = thisReport;
   
   /* 게시판 신고 열기 */
-  if(reportType == 'board'){
+  if(reportType2 == 'board'){
     openFeedReport();
     fetch("/artistAdmin/selectBoardReport?boardNo=" + reportContentNo,  {
     })
@@ -83,7 +83,7 @@ const selectReport = (reportNo, reportContentNo, thisReport) => {
 
 
   /* 게시판 댓글 신고 열기 */
-  if(reportType == 'boardComment'){
+  if(reportType2 == 'boardComment'){
     open();
     fetch("/artistAdmin/selectBoardCommentReport?boardCommentNo=" + reportContentNo,  {
     }) 
@@ -98,7 +98,7 @@ const selectReport = (reportNo, reportContentNo, thisReport) => {
   }  
 
   /* 미디어 댓글 신고 열기 */
-  if(reportType == 'mediaComment'){
+  if(reportType2 == 'mediaComment'){
     open();
     fetch("/artistAdmin/selectMediaCommentReport?mediaCommentNo=" + reportContentNo,  {
     })
@@ -126,7 +126,7 @@ const deleteReport = (reportNo, reportContentNo) => {
   
   deleteData.reportNo = reportNo;
   deleteData.reportContentNo = reportContentNo;
-  deleteData.reportType = reportType;
+  deleteData.reportType2 = reportType2;
   const proceed = reportTr.parentElement.nextElementSibling.firstElementChild;
 
   fetch('/artistAdmin/deleteReport',{
@@ -157,7 +157,7 @@ const proceedReport = (reportNo, reportContentNo) => {
 
   proceedData.reportNo = reportNo;
   proceedData.reportContentNo = reportContentNo;
-  proceedData.reportType = reportType;
+  proceedData.reportType2 = reportType2;
   const proceed = reportTr.parentElement.nextElementSibling.firstElementChild;
 
   fetch('/artistAdmin/proceedReport',{
