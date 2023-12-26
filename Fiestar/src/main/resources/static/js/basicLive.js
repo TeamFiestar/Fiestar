@@ -268,6 +268,9 @@ const chattingJoin = () => {
     const profileImg = document.createElement('img');
     profileImg.className = 'profile-img';
     profileImg.src = msg.memberProfile;
+    if(msg.memberProfile == null){
+      profileImg.src = '/img/male-user.png';
+    }
   
     const commentWriterArea = document.createElement('div');
     commentWriterArea.className = 'comment-writer-area';
