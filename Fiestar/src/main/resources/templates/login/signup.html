@@ -41,7 +41,7 @@
 
                   <input type="text" name="authKey" placeholder="인증번호 입력" id="authKey" class="input-auth-area">
                   <button id="checkAuthKeyBtn" type="button">인증 번호 확인</button>
-                  <span class="timer" style="font-size: 14px;"> 남은 시간 : <span id="authKeyMessage"></span> </span>
+                  <span class="timer" style="font-size: 14px;"> <span id="time-text">남은 시간 :</span> <span id="authKeyMessage"></span> </span>
                </div>
                <div class="not-null" id="authKeyMessage2"> * 필수 작성 항목입니다. </div>
             </div>
@@ -78,7 +78,7 @@
             <div class="address-form">
                <div class="input-address">
                   <input type="text" name="memberAddress" id="memberAddress" class="member-address" placeholder="주소 입력">
-                  <button class="address">주소 찾기</button>
+                  <button class="address" type="button" onclick="selectAddress()">주소 찾기</button>
                </div>
                <div class="not-null" id="addrMessage"> * 필수 항목입니다. </div>
             </div>
@@ -114,6 +114,7 @@
 
    </section>
 
+   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"> </script>
    <script src="/js/login/signup.js"></script>
 </body>
 
