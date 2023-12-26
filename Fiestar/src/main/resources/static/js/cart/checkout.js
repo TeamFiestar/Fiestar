@@ -1,5 +1,32 @@
 // 
 
+
+
+document.querySelectorAll(".default-price").forEach(item => {
+    item.innerText = "₩" + Number(item.innerText).toLocaleString();
+ })
+
+
+ document.querySelectorAll(".tP").forEach(tP => {
+    tP.innerText = "₩" + Number(tP.innerText).toLocaleString();
+ })
+
+
+ document.querySelectorAll(".totalProduct-price").forEach(totalProduct => {
+    totalProduct.innerText = "₩" + Number(totalProduct.innerText).toLocaleString();
+ })
+
+
+ document.querySelectorAll(".purchasePrice").forEach(purchasePrice => {
+    purchasePrice.innerText = "₩" + Number(purchasePrice.innerText).toLocaleString();
+ })
+
+
+
+
+
+
+
 const nameChangeBtn = document.getElementById("nameChangeBtn");
 
 nameChangeBtn.addEventListener("click", e => {
@@ -107,7 +134,7 @@ function updateFieldValidity(field, isValid) {
 
     } else {
         field.classList.add('invalid');
-        field.style.border = "1px solid red";  // 빨간 테두리 추가
+        // field.style.border = "1px solid red";  // 빨간 테두리 추가
 
         if (document.activeElement !== field) {
             field.focus(); // 유효성 검사에 실패한 필드에 포커스 (포커스가 이미 있는 경우 제외)
@@ -185,8 +212,6 @@ function validateOrderInfo() {
    
     return isValid;
 }
-
-
 
 
 

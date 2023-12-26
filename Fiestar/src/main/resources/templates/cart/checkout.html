@@ -47,7 +47,8 @@
 
                   <!-- 이미지 영역 -->
 
-                  <img th:src="${checkoutItem.productImageThumbnail}" alt="" class="productImg">
+               <img th:src="${checkoutItem.productImageThumbnail}" alt="" class="productImg">
+                  
 
 
                   <!-- 제품 상세 -->
@@ -120,7 +121,7 @@
 
                   <!-- <span class="check-price">총 상품 가격()</span> -->
                   <div class="total-price1">
-                     총 상품 가격 ₩ <span th:text="${totalPrice}" style="font-weight: bold;"> </span>
+                  <span>총 상품 가격</span> <span th:text="${totalPrice}" style="font-weight: bold;" class="tP"> </span>
                   </div>
 
 
@@ -154,8 +155,8 @@
                      <!-- <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;" th:value="${session.loginMember.memberNickname}" name="memberName"> -->
                      <!-- <div th:text="${session.loginMember.memberAddress}" class="default-price"></div> -->
                      <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;"
-                        name="ordererName" th:value="${session.loginMember.memberNickname}" id="nameInput">
-
+                        name="ordererName" id="nameInput">
+                        <!-- th:value="${session.loginMember.memberNickname}" -->
                      <!-- <input type="text" placeholder="*필수 작성 항목입니다." class="order-input" style="padding-left: 8px;"> -->
                   </label>
 
@@ -258,7 +259,7 @@
                <div style="margin-bottom: 20px;">
 
                   <span class="product-price" style="font-size: 16px;">상품 가격 </span>
-                  <span th:text=" '₩' + ${totalPrice}" class="totalProduct-price" style="margin-left: 927px;"></span>
+                  <span th:text="${totalPrice}" class="totalProduct-price" style="margin-left: 927px;"></span>
 
                </div>
 
@@ -280,7 +281,7 @@
             <span class="total-price" style="letter-spacing: -1.6px;">총 결제 금액</span>
 
             <input type="hidden" class="purchasePrice" name="purchasePrice" th:value="${purchasePrice}">
-            <p style="background: rgb(255, 254, 237);"> <span th:text=" '₩' + ${purchasePrice}" class="purchasePrice" name="purchasePrice" style="background: rgb(255, 254, 237);" id="alll"></span> </p>
+            <p style="background: rgb(255, 254, 237);"> <span th:text="${purchasePrice}" class="purchasePrice" name="purchasePrice" style="background: rgb(255, 254, 237);" id="alll"></span> </p>
 
          </div>
 

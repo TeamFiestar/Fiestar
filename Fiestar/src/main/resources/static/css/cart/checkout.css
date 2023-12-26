@@ -130,6 +130,10 @@ hr {
    right: 1%;
 }
 
+.tp{
+   margin-left: 20px;
+}
+
 .default-price{
    
    position: absolute;
@@ -440,7 +444,7 @@ hr {
 }
 
 .total-price1{
-   margin-left: 850px;
+   margin-left: 834px;
    width: auto;
 }
 

@@ -102,7 +102,7 @@
 
                   <div>
 
-                     <div class="optionTag"> 옵션: </div> <span th:text="${cart.productOptionName}"
+                     <span class="optionTag"> 옵션: </span> <span th:text="${cart.productOptionName}"
                      class="option-text"></span>
                      
                   </div>
@@ -170,7 +170,7 @@
                
                <!-- <th:block th:text="${cart.productPrice}" class="default-price"></th:block> -->
    
-               <span th:text="${cart.productPrice} * ${cart.productCount} " class="price amount-price" style="font-weight: bold;"></span>
+               <span th:text="${cart.productPrice} * ${cart.productCount} " class="amount-price" style="font-weight: bold;"></span>
                
    
                <label class="x-btn">
@@ -190,7 +190,7 @@
                <label class="cart-check">
                   <input type='checkbox' class="selectEach">
                   <i class="fa-regular fa-circle-check"></i>
-               </label>
+               </label> 
             </div> -->
 
             <!-- 이미지 영역 -->
