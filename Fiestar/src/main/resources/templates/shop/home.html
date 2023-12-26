@@ -18,7 +18,7 @@
   <th:block th:replace="~{common/shopHeader}"></th:block>
  
   
-  <main style="aspect-ratio: auto 531/299;" th:with="productList = ${map.productList}, artistList = ${map.artistList}, pagination = ${map.pagination}">
+  <main style="aspect-ratio: auto 531/299;" th:with="productList = ${map.productList}, artistList = ${map.artistList}, pagination = ${map.pagination}" >
 
 
   
@@ -43,7 +43,7 @@
 
 
       <div class="shop-sorting-area">
-        <div class="shop-sorting-amount" th:text="${shopCount}">상품의 총 개수</div>
+        <div class="shop-sorting-amount" th:text="${map.shopCount}">상품의 총 개수</div>
         <div class="shop-sorting-type" name="sort" id="sort">
           <button id="dateBtn"><option value="1">신상품 순</option></button>
           <button id="highPrice"><option value="2">높은가격순</option></button>
