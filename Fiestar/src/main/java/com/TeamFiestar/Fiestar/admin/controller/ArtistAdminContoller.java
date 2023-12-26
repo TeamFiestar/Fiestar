@@ -20,7 +20,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.TeamFiestar.Fiestar.admin.model.dto.ArtistNotice;
 import com.TeamFiestar.Fiestar.admin.model.dto.Purchase;
 import com.TeamFiestar.Fiestar.admin.model.dto.Report;
+import com.TeamFiestar.Fiestar.admin.model.service.AdminService;
 import com.TeamFiestar.Fiestar.admin.model.service.ArtistAdminService;
+import com.TeamFiestar.Fiestar.member.model.dto.ArtistGroup1;
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
 import com.TeamFiestar.Fiestar.shop.model.dto.Product;
 import com.TeamFiestar.Fiestar.shop.model.service.ShopService;
@@ -37,6 +39,8 @@ public class ArtistAdminContoller {
 	private final ArtistAdminService service;
 	
 	private final ShopService shopService;
+	
+	private final AdminService adminService;
 	
 	// 아티스트 공지사항 목록 조회
 	@GetMapping("{artistGroupTitle}/notice")
@@ -252,6 +256,78 @@ public class ArtistAdminContoller {
 		}
 		ra.addFlashAttribute("message","상품 삭제 실패하였습니다.");
 		return "redirect:/shop/shopDetail/" + productNo;		
+	}
+	
+	
+	
+	
+	
+	@GetMapping("regi")
+	public String regi(@SessionAttribute("loginMember") Member loginMember, Model model) {
+		String artistGroupTitle = adminService.regi(loginMember.getMemberNo());
+		model.addAttribute("artistGroupTitle", artistGroupTitle);
+		return "admin/artistRegi";
+	}
+	
+	@PostMapping("artistGroupRegi")
+	public String artistGroupRegi(@RequestParam("backImg") MultipartFile backImg,
+			@RequestParam("profile") MultipartFile profile,
+			@RequestParam("image") MultipartFile image,
+			@RequestParam("artistGroupTitle") String artistGroupTitle,
+			@SessionAttribute("loginMember") Member loginMember,
+			ArtistGroup1 artistGroup,
+			RedirectAttributes ra
+			
+			) throws IllegalStateException, IOException {
+		int adminNo = loginMember.getMemberNo();
+		int result = adminService.artistGroupRegi(backImg, profile, image, artistGroupTitle, 
+				adminNo, artistGroup);
+		
+		String message = null;
+		
+		if(result>0) {
+			ra.addFlashAttribute("message", "등록 성공");
+			return "redirect:/";
+		}else { 
+			ra.addFlashAttribute("message", "등록 실패");
+			return "redirect:regi";
+		}
+	}
+	
+	@GetMapping("artistGroupUpdate")
+	public String artistGroupUpdate(Model model, @SessionAttribute("loginMember") Member loginMember, RedirectAttributes ra) {
+		ArtistGroup1 artistGroup = adminService.artistGroupUpdate(loginMember.getMemberNo());
+		String artistGroupTitle = adminService.regi(loginMember.getMemberNo());
+		model.addAttribute("artistGroup", artistGroup);
+		model.addAttribute("artistGroupTitle", artistGroupTitle);
+		
+		if(artistGroup == null) {
+			ra.addFlashAttribute("message", "등록된 아티스트 그룹이 없습니다.");
+			return "redirect:regi";
+		}else
+		return "admin/artistGroupUpdate";
+	}
+	
+	
+	@PostMapping("artistGroupUpdate")
+	public String artistGroupUpdate(@RequestParam("backImg") MultipartFile backImg,
+			@RequestParam("profile") MultipartFile profile,
+			@RequestParam("image") MultipartFile image,
+			@RequestParam("artistGroupTitle") String artistGroupTitle,
+			@SessionAttribute("loginMember") Member loginMember,
+			ArtistGroup1 artistGroup,
+			RedirectAttributes ra) throws IllegalStateException, IOException {
+		int adminNo = loginMember.getMemberNo();
+		int result = adminService.GroupUpdate(backImg, profile, image, artistGroupTitle, adminNo, artistGroup);
+		
+		if(result > 0) {
+			ra.addFlashAttribute("message", "그룹 변경 성공");
+			return "redirect:/";
+		}else {
+			ra.addFlashAttribute("message", "변경 실패");
+			return "redirect:artistGroupUpdate";
+		}
+		
 	}
 	
 	
