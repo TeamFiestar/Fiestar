@@ -213,6 +213,10 @@ public class ShopServiceImpl implements ShopService{
 			
 		}
 		
+		if(result > 0) {
+			return Integer.parseInt( map.get("cartNo").toString() );
+		}
+		
 		return result;
 	}
 	
