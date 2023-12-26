@@ -134,7 +134,7 @@ function updateFieldValidity(field, isValid) {
 
     } else {
         field.classList.add('invalid');
-        field.style.border = "1px solid red";  // 빨간 테두리 추가
+        // field.style.border = "1px solid red";  // 빨간 테두리 추가
 
         if (document.activeElement !== field) {
             field.focus(); // 유효성 검사에 실패한 필드에 포커스 (포커스가 이미 있는 경우 제외)
@@ -212,8 +212,6 @@ function validateOrderInfo() {
    
     return isValid;
 }
-
-
 
 
 
