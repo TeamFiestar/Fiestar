@@ -50,8 +50,6 @@ optionSelect.addEventListener("change", () => {
   
   /* ************************************************** */
   
-  
-  
   const productName = document.createElement("span");
   productName.classList.add("product-purchase-name");
   productName.innerHTML = `[${artistGroupTitle}] ${nameProduct}`;
@@ -220,7 +218,7 @@ function totalCost() {
   
   let total = 0;
   total = price * totalProduct.getAttribute('value');
-  totalPrice.textContent = total;
+  totalPrice.textContent = '₩' + ' ' + total.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + '원';
   const totalPriceValue = total;
   totalP.value = totalPriceValue;
   console.log(totalP.getAttribute('value'));
@@ -316,8 +314,6 @@ document.getElementById('in-cart').addEventListener('submit', (e) =>{
     alert("옵션을 선택해주세요");
   }
 })
-
-
 
 form.addEventListener("submit", e=>{
     e.preventDefault();

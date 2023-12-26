@@ -212,9 +212,3 @@ function selectHigh(key){
   }
  
 }
-
-
-
-
-
-

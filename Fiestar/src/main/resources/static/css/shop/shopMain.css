@@ -14,12 +14,27 @@
 
 
 .artist-shop-list-area {
-  height: 90px;
+  min-height: 100px;
   display: flex;
   gap: 0px 15px;
   margin-top: 20px;
   overflow: hidden;
 }
+
+
+.artist-shop-list-area {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+
+
+
+.swiper-container {
+  overflow: hidden;
+}
+
 
 .artist-shop-list-area a {
   text-decoration: none;
@@ -39,6 +54,9 @@
   font-weight: 100;
 }
 
+
+
+
 #artist-shop-lists{
   width: 66px;
   height: 66px;
@@ -48,7 +66,6 @@
   justify-content: center;
   background-image: linear-gradient(180deg, rgba(203, 119, 255, 1) 0%, rgba(197, 102, 255, 0.0521) 100%);
 }
-
 
 .artist-main-logo {
   height: 100%;
@@ -62,7 +79,6 @@
   margin-top: 10px;
   color:rgba(51, 54, 63, 1);
   font-size: 11px;
-
 }
 
 /* ------------------------------------- */
@@ -151,7 +167,6 @@
   box-sizing: border-box;
   padding-top: 5px;
   background-color: white;
-
 }
 
 .product-name {
@@ -161,6 +176,9 @@
   color: black;
   background-color: white;
   padding : 7px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .product-price {
@@ -213,4 +231,6 @@
   color: rgb(0, 0, 0) !important;
   letter-spacing: 0 !important;
 }
+
+
 
