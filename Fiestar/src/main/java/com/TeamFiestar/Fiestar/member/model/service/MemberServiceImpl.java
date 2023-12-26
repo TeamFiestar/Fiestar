@@ -1,5 +1,8 @@
 package com.TeamFiestar.Fiestar.member.model.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -60,6 +63,27 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int checkNickname(String nickname) {
 		return mapper.checkNickname(nickname);
+	}
+	
+	
+	@Override
+	public int checkSubscribeGroupNo(int artistGroupNo, int memberNo) {
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("artistGroupNo", artistGroupNo);
+		map.put("memberNo", memberNo);
+		
+		return mapper.checkSubscribe(map);
+	}
+	@Override
+	public int checkSubscribeGroupTitle(String artistGroupTitle, int memberNo) {
+		int artistGroupNo = mapper.selectGroupNo(artistGroupTitle);	
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("artistGroupNo", artistGroupNo);
+		map.put("memberNo", memberNo);
+		
+		return mapper.checkSubscribe(map);
 	}
 	
 }

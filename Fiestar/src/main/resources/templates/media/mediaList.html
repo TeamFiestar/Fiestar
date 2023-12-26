@@ -17,7 +17,7 @@
           <div class="div">
             <div class="text-wrapper">미디어 목록</div>
             <div class="media-head">
-              <a th:href="insert" class="media-insert-wrapper">미디어 삽입하기</a>
+              <a th:href="insert" class="media-insert-wrapper" th:if="${session.loginMember.memberNo == artistAdminNo}">미디어 삽입하기</a>
               <form th:action="|/${artistGroupTitle}/media/list|" method="get" style="display: flex; gap: 20px;">
   
   

@@ -44,8 +44,8 @@ public class ImageDeleteScheduling {
 	@Value("${my.board.location}")
 	private String boardLocation;
 	
-//	1분마다 작동
-	@Scheduled(cron = "0 * * * * *")
+//	1시마다 작동
+	@Scheduled(cron = "0 0 * * * *")
 	
 	public void schedule() {
 		log.info("스케줄러 동작");

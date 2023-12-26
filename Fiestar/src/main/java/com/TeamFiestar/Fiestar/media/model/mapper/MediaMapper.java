@@ -35,4 +35,6 @@ public interface MediaMapper {
 
 	int mediaListCount(Map<String, Object> map);
 
+	int selectArtistAdminNo(String artistGroupTitle);
+
 }

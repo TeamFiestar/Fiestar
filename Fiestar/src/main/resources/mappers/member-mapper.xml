@@ -40,5 +40,18 @@
 		AND MEMBER_NICKNAME = #{nickname}
 	</select>
 	
+	
+	<select id="selectGroupNo" resultType="_int">
+		SELECT ARTIST_GROUP_NO  FROM ARTIST_GROUP AG 
+		WHERE ARTIST_GROUP_TITLE = #{artistGroupTitle}
+	</select>
+	
+	
+	<select id="checkSubscribe">
+		SELECT COUNT(*) FROM ARTIST_SUBSCRIBE AS2 
+			WHERE ARTIST_GROUP_NO = #{artistGroupNo} 
+			AND MEMBER_NO = #{memberNo}
+	</select>
+	
 
 </mapper>

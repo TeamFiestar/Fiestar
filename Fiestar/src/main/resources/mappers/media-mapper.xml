@@ -119,5 +119,10 @@
 		WHERE MEDIA_NO = #{mediaNo}
 	</update>
 	
+	<!-- 아티스트 관리자의 번호 -->
+	<select id="selectArtistAdminNo">
+		SELECT ARTIST_GROUP_ADMIN_NO FROM ARTIST_GROUP AG 
+			WHERE ARTIST_GROUP_TITLE = #{artistGroupTitle}
+	</select>
 
 </mapper>
