@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.TeamFiestar.Fiestar.member.model.dto.Member;
@@ -29,6 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("shop")
 @RequiredArgsConstructor
+@SessionAttributes({"cartNo"})
 public class ShopController {
 	
 	private final ShopService service;
@@ -126,11 +128,13 @@ public class ShopController {
 	@GetMapping("shopDetail/{productNo:[0-9]+}")
 	public String shopDetail(@PathVariable("productNo") int productNo,
 								Model model, Product product,
-								RedirectAttributes ra) {
+								RedirectAttributes ra,
+								@SessionAttribute(value="loginMember", required = false) Member loginMember) {
 		
 		
 		Map<String, Object> prod = service.shopDetail(productNo);
 		
+	
 		String path = null;
 		
 		if(prod != null) {
@@ -182,7 +186,7 @@ public class ShopController {
 	public int buyCart(RedirectAttributes ra,
 						@SessionAttribute(value="loginMember", required = false) Member loginMember,
 						@PathVariable("productNo") int productNo,
-						@RequestBody Map<String, Object> paramMap) {
+						@RequestBody Map<String, Object> paramMap, Model model) {
 		
 		int totalPrice = Integer.parseInt( paramMap.get("totalPrice").toString() );
 		String productCountList = (String)paramMap.get("productCount"); // 1,2
@@ -201,7 +205,11 @@ public class ShopController {
 		
 		
 		int memberNo = loginMember.getMemberNo();
-		return service.insertCart(productNo, productCount, productOptionNo, totalPrice, memberNo);
+		int cartNo = service.insertCart(productNo, productCount, productOptionNo, totalPrice, memberNo);
+		
+		model.addAttribute("cartNo", cartNo);
+		
+		return cartNo;
 	}
 	
 	

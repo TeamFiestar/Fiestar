@@ -10,6 +10,8 @@
   </head>
   <body>
     <th:block th:replace="~{common/artistPageHeader}">헤더</th:block>
+    <button id="reportBtn" style="display: none;"></button>
+
 
 
     <div class="reportModal">
@@ -76,7 +78,6 @@
             <th>신고자 이메일</th>
             <th>신고대상자</th>
             <th>신고대상자 이메일</th>
-            <th>신고 내용</th>
             <th>상세 조회</th>
             <th>처리 여부</th>
           </tr>
@@ -89,7 +90,6 @@
               <td th:text="*{reporterEmail}">singo123@gmail.com</td>
               <td th:text="*{reportTargetNickname}">닉네임11</td>
               <td th:text="*{reportTargetEmail}">nickname123123@naver.com</td>
-              <td th:text="*{reportContent}"> 욕설 사용</td>
               <td>
                 <button class="btn-open-popup" th:value="*{reportType}" th:onclick="|selectReport( *{reportNo}, *{reportContentNo}, this )|">이동</button>
               </td>
@@ -161,7 +161,7 @@
       </div>
     </main>
 
-    <script src="/js/artistHomepage/feed.js"></script>
+    <script src="/js/admin/adminFeed.js"></script>
     <script src="/js/admin/artistReport.js"></script>
   </body>
 </html>

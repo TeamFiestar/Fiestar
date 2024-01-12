@@ -5,58 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>main 페이지</title>
 
-    <link rel="stylesheet" href="/css/shop/shopDetail.css" />
-    <link rel="stylesheet" href="/css/common/shopHeader.css" />
-    <link rel="stylesheet" href="/css/common/footer.css" />
-  </head>
-  <body>
-    <th:block th:replace="~{common/shopHeader}"></th:block>
+  <link rel="stylesheet" href="/css/shop/shopDetail.css">
+  <link rel="stylesheet" href="/css/common/shopHeader.css">
+  <link rel="stylesheet" href="/css/common/footer.css">
+  
+</head>
+<body>
+  <th:block th:replace="~{common/shopHeader}"></th:block>
+ 
+  <main th:with="optionList = ${prod.optionList}, detail=${prod.detail} , adminNo = ${prod.adminNo}">
+    <section class="shopDetail-main">
+      <div class="shopDetail-upper">
 
-    <main th:with="optionList = ${prod.optionList}, detail=${prod.detail}">
-      <section class="shopDetail-main">
-        <div class="shopDetail-upper">
-          <div class="product-image">
-            <img
-              th:src="|${detail.productImageThumbnail}${detail.productImageThumbnailRename}|"
-              style="width: 100%; height: 100%"
-            />
-          </div>
+        <div class="product-image">
+          <img th:src="|${detail.productImageThumbnail}${detail.productImageThumbnailRename}|" 
+                style="width: 100%; height: 100%;"> 
+        </div>
+        
+        <form id="in-cart" method="POST">
+          <input type="hidden" name="artistGroupNo" th:value="*{artistGroupNo}">
+          <div class="product-detail" th:object="${detail}">
+            <div class="artist-name">아티스트명 &gt;</div>
+            <section class="product-name" th:text=" '[' + *{artistGroupTitle} + ']' + ' ' + *{productName} ">[아티스트명] 상품명</section>
+            <div class="product-price" th:text="|₩${T(java.lang.String).format('%,.0f', detail.productPrice.doubleValue())}원|"></div>
+            <div class="product-delivery-info">
+            <!--   <img src="/images/package_car.png"> -->
+              <span>배송 시작 예정일</span><br><br>
+              <span style="color:black; margin-left: 5px; font-size:14px; word-spacing: 2px;" id="delivery-date">2023.xx.xx ~ 2023.xx.xx</span>
+            </div>
 
-          <form id="in-cart" method="POST">
-            <input type="hidden" name="artistGroupNo" th:value="*{artistGroupNo}" />
-            <div class="product-detail" th:object="${detail}">
-              <div class="artist-name">아티스트명 &gt;</div>
-              <section class="product-name" th:text=" '[' + *{artistGroupTitle} + ']' + ' ' + *{productName} ">
-                [아티스트명] 상품명
-              </section>
-              <div class="product-price" th:text=" '₩' + ' ' + *{productPrice}"></div>
-              <div class="product-delivery-info">
-                <img src="/img/picture/package_car.png" />
-                <span>배송 시작 예정일</span>
-                <span style="color: black; margin-left: 5px; font-size: 14px; word-spacing: 2px" id="delivery-date"
-                  >2023.xx.xx ~ 2023.xx.xx</span
-                >
-              </div>
+            <div class="package-info" >
+              <div>[주의]</div> 
+              배송 예정일은 상품 및 물류 상황에 따라 지연될 수 있습니다. 일정이 변경될 경우 개별 안내될 예정입니다.
+            </div>
 
-              <div class="package-info">
-                <div>[주의]</div>
-                배송 예정일은 상품 및 물류 상황에 따라 지연될 수 있습니다. 일정이 변경될 경우 개별 안내될 예정입니다.
-              </div>
-              <div class="product-option">
-                옵션 선택
-                <select name="key" id="optionSelect">
-                  <option value="" selected disabled hidden>옵션을 선택해주세요</option>
-                  <option
-                    th:each="option: ${optionList}"
-                    th:object="${option}"
-                    th:value="*{productOptionNo}"
-                    th:text="*{productOptionName}"
-                    id="selectOption"
-                  >
-                    S(90~95)
-                  </option>
-                </select>
-              </div>
+              
+                <div class="product-option">
+                  옵션 선택
+                  <select name="key" id="optionSelect">
+                    <option value="" selected disabled hidden >옵션을 선택해주세요</option>
+                    <option  th:each="option: ${optionList}" th:object="${option}" th:value="*{productOptionNo}" th:text="*{productOptionName}" id="selectOption">S(90~95)</option>
+                  </select>
+                </div>
 
               <div class="product-purchase-list">
                 <!-- <span class="product-purchase-name">[아티스트명] 상품명 <span class="remove-row">&times</span></span>
@@ -89,13 +79,18 @@
           </form>
         </div>
 
-        <th:block th:if="${session.loginMember != null and session.loginMember.memberAuthority == 4}">
+        <th:block th:if="${session.loginMember != null and session.loginMember.memberNo == adminNo}">
           <button id="updateBtn" class="updateBtn">수정</button>
           <button id="deleteBtn" class="deleteBtn">삭제</button>
         </th:block>
 
         <hr />
-
+        <br><br>
+        <div class="product-Announcement" th:object="${detail}">
+          <br>
+          <h2>[판매공지]</h2><br>
+          <pre th:text="*{productProduction}"></pre>
+        </div><br><br>
         <div class="shopDetail-lower">
           <h2>상품 소개</h2>
           <div class="product-image-area">
@@ -105,12 +100,16 @@
             />
           </div>
 
+          <input type="hidden" name="selectEach" id="selectEach">
+        </form>
+      </div>
+
           <div class="product-info-detail">
             <h2>상품 고시정보</h2>
-            <table width="1096px">
+            <table width="1096px" th:object="${detail}">
               <tr>
-                <td id="info-title">품명</td>
-                <td>상세페이지 참고</td>
+                <td id="info-title" >품명</td>
+                <td th:text="*{productName}">상세페이지 참고</td>
               </tr>
               <tr>
                 <td id="info-title">내용물의 용량(수량)</td>
@@ -126,7 +125,7 @@
               </tr>
               <tr>
                 <td id="info-title">제조국</td>
-                <td>상세페이지 참고</td>
+                <td>KOREA</td>
               </tr>
               <tr>
                 <td id="info-title">구성품, 비고</td>
@@ -138,7 +137,7 @@
               </tr>
               <tr>
                 <td id="info-title">품질 보증 기준</td>
-                <td>상세페이지 참고</td>
+                <td>관련 법 및 소비자분쟁 해결기준에 따름.</td>
               </tr>
             </table>
 

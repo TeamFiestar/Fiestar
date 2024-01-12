@@ -9,10 +9,6 @@ const deleteReportBtn = document.getElementById('delete-report-btn');
 // 처리 버튼
 const proceedReportBtn = document.getElementById('proceed-report-btn');
 
-btnOpenPopup.addEventListener("click", () => {
-  open();
-});
-
 //Hide modal
 reportModalCloseButton.addEventListener("click", () => {
   close();
@@ -26,12 +22,13 @@ function close() {
   report_modal_background.classList.remove("show");
 }
 function open() {
+  console.log('댓글 신고 열림');
   reportModal.classList.add("show");
   report_modal_background.classList.add("show");
 }
 
 // 피드 신고 열기
-const openFeedReport = (boardNo) => {
+const openFeedReport = () => {
 
   const modal = document.getElementById('feedDetail');
   modal.classList.add("show");
@@ -47,43 +44,36 @@ const closeFeedReport = () => {
 
 
 let reportTr;
-let reportType;
+let reportType2;
 
 const selectReport = (reportNo, reportContentNo, thisReport) => {
 
   const data = {};
   data.reportContentNo = reportContentNo;
   data.reportType = thisReport.value;
-  reportType = thisReport.value;
+  console.log(reportContentNo);
+  reportType2 = thisReport.value;
 
   reportTr = thisReport;
-  
-  /* 게시판 신고 열기 */
-  if(reportType == 'board'){
-    openFeedReport();
-    fetch("/artistAdmin/selectBoardReport?boardNo=" + reportContentNo,  {
-    })
-    .then(resp => resp.json())
-    .then(boardComment => {
-
-      const boardNickname = document.getElementById('boardNickname');
-      const boardEnrollDate = document.getElementById('boardDate');
-      const boardContent = document.querySelector('.feedMain')
-
-      boardNickname.textContent = boardComment.memberNickname;
-      boardEnrollDate.textContent = boardComment.mediaCommentEnrollDate;
-      boardContent.textContent = boardComment.mediaCommentContent;
-
-    }) 
-  }  
-
   const commentNickname = document.querySelector('.comment-writer');
   const commentDate = document.querySelector('.comment-date');
   const commentContent = document.querySelector('.comment-content');
+  
+  /* 게시판 신고 열기 */
+  if(reportType2 == 'board'){
+    console.log('board');
+    openFeedReport();
+
+    updatePageContent(reportContentNo);
+
+    return;
+  }  
+
 
 
   /* 게시판 댓글 신고 열기 */
-  if(reportType == 'boardComment'){
+  else if(reportType2 == 'boardComment'){
+    console.log('boardComment');
     open();
     fetch("/artistAdmin/selectBoardCommentReport?boardCommentNo=" + reportContentNo,  {
     }) 
@@ -95,10 +85,12 @@ const selectReport = (reportNo, reportContentNo, thisReport) => {
       commentContent.textContent = boardComment.mediaCommentContent;
 
     }) 
+    return;
   }  
 
   /* 미디어 댓글 신고 열기 */
-  if(reportType == 'mediaComment'){
+  else if(reportType2 == 'mediaComment'){
+    console.log('mediaComment');
     open();
     fetch("/artistAdmin/selectMediaCommentReport?mediaCommentNo=" + reportContentNo,  {
     })
@@ -113,6 +105,7 @@ const selectReport = (reportNo, reportContentNo, thisReport) => {
       proceedReportBtn.setAttribute('onclick', `proceedReport(${reportNo}, ${reportContentNo})`)
 
     }) 
+    return;
   }  
 
 
@@ -126,7 +119,7 @@ const deleteReport = (reportNo, reportContentNo) => {
   
   deleteData.reportNo = reportNo;
   deleteData.reportContentNo = reportContentNo;
-  deleteData.reportType = reportType;
+  deleteData.reportType = reportType2;
   const proceed = reportTr.parentElement.nextElementSibling.firstElementChild;
 
   fetch('/artistAdmin/deleteReport',{
@@ -157,7 +150,7 @@ const proceedReport = (reportNo, reportContentNo) => {
 
   proceedData.reportNo = reportNo;
   proceedData.reportContentNo = reportContentNo;
-  proceedData.reportType = reportType;
+  proceedData.reportType = reportType2;
   const proceed = reportTr.parentElement.nextElementSibling.firstElementChild;
 
   fetch('/artistAdmin/proceedReport',{

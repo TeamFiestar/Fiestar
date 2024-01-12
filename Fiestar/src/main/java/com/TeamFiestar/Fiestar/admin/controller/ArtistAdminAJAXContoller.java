@@ -104,6 +104,12 @@ public class ArtistAdminAJAXContoller {
 		return service.deleteReport(map);
 	}
 	
+	//
+	@PutMapping("proceedReport")
+	public int proceedReport(@RequestBody Map<String, Object> map) {
+		return service.proceedReport(map);
+	}
+	
 	
 	
 	

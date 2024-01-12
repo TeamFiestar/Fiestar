@@ -8,29 +8,42 @@
   <link rel="stylesheet" href="/css/shop/shopMain.css">
   <link rel="stylesheet" href="/css/common/shopHeader.css">
   <link rel="stylesheet" href="/css/common/footer.css">
-  
+
+
 </head>
 <body>
+
+
+
   <th:block th:replace="~{common/shopHeader}"></th:block>
  
   
-  <main style="aspect-ratio: auto 531/299;" th:with="productList = ${map.productList}, artistList = ${map.artistList}, pagination = ${map.pagination}">
+  <main style="aspect-ratio: auto 531/299;" th:with="productList = ${map.productList}, artistList = ${map.artistList}, pagination = ${map.pagination}" >
+
+
+  
 
     <section class="homeMain">
 
+
+    
+
       <section class="artist-shop-list-area">
         <a th:href="@{/shop/home}" id="artist-shop-lists-all">전체</a>
-        <th:block th:each=" artistGroup : ${artistList}" th:object="${artistGroup}">
-          <a th:href="|/shop/home/*{artistGroupTitle}?artistGroupNo=*{artistGroupNo}|" id="artist-shop-lists">
-            <img class="artist-main-logo" th:src="*{artistGroupProfile}">
-            <span id="artist-shop-name" th:text="*{artistGroupTitle}"></span>
-          </a>
-        </th:block>
+        
+          <th:block th:each=" artistGroup : ${artistList}" th:object="${artistGroup}">
+            
+            <a th:href="|/shop/home/*{artistGroupTitle}?artistGroupNo=*{artistGroupNo}|" id="artist-shop-lists" >
+              <img class="artist-main-logo" th:src="*{artistGroupProfile}">
+              <span id="artist-shop-name" th:text="*{artistGroupTitle}"></span>
+            </a>
+          </th:block>
+        
       </section>
-     
- 
+
+
       <div class="shop-sorting-area">
-        <div class="shop-sorting-amount" th:text="${shopCount}">상품의 총 개수</div>
+        <div class="shop-sorting-amount" th:text="${map.shopCount}">상품의 총 개수</div>
         <div class="shop-sorting-type" name="sort" id="sort">
           <button id="dateBtn"><option value="1">신상품 순</option></button>
           <button id="highPrice"><option value="2">높은가격순</option></button>
@@ -50,10 +63,10 @@
                 <div class="product-name-area" >
                   <div class="product-name" th:text="*{productName}">상품 이름</div>
                   <br>
-                  <div class="product-price" th:text=" '₩' + ' ' + *{productPrice}">상품 가격</div>
+                 <div class="product-price" th:text="|₩${T(java.lang.String).format('%,.0f', product.productPrice.doubleValue())}원|">상품 가격</div>
                 </div>
               </a>  
-            </div>
+            </div>  
           </div>
         </div>
       </section>
@@ -79,5 +92,10 @@
     if(message != null) alert(message);
    </script>
 
+
+
+
+
+
 </body>
-</html><select name="" id="" disabled="disabled"></select>
+</html>

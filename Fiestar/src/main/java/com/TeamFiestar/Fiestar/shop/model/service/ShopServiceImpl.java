@@ -156,9 +156,12 @@ public class ShopServiceImpl implements ShopService{
 		
 		Product detail = mapper.shopDetail(productNo); //디테일에 필요한 요소 조회
 		
+		int adminNo = mapper.selectAdminNo(productNo);
+		
 		Map<String, Object> map = new HashMap<>();
 		map.put("optionList", optionList);
 		map.put("detail", detail);
+		map.put("adminNo", adminNo);
 		
 		return map;
 	}
@@ -208,6 +211,10 @@ public class ShopServiceImpl implements ShopService{
 				result = mapper.insertCartOption(map);
 			}
 			
+		}
+		
+		if(result > 0) {
+			return Integer.parseInt( map.get("cartNo").toString() );
 		}
 		
 		return result;

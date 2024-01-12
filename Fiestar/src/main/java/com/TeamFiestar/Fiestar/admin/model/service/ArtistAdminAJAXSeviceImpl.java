@@ -96,6 +96,11 @@ public class ArtistAdminAJAXSeviceImpl implements ArtistAdminAJAXService{
 	}
 	
 	
+	@Override
+	public int proceedReport(Map<String, Object> map) {
+		return mapper.proceedReport(map);
+	}
+	
 	
 
 }

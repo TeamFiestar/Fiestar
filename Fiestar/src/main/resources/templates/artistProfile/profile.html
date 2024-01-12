@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/common/artistPageHeader.css" />
+    <link rel="stylesheet" href="/css/artistprofile/profile.css" />
+  </head>
+  <body>
+    <th:block th:replace="~{common/artistPageHeader}">헤더</th:block>
+    <div class="modal">
+      <div id="modal" class="modal-body">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>구독하시겠습니까?</h2>
+        <div class="btnFrm">
+          <form th:action="|/artistMember/${artistGroupTitle}|" method="post">
+            <button class="subscribe" onclick="subscribe()">구독</button>
+          </form>
+          <button class="cancle" onclick="closeModal()">취소</button>
+        </div>
+      </div>
+    </div>
+    <main
+      th:with="artistGroup = ${map.artistGroup}, 
+        artistList = ${map.artistList}, 
+        artistGroupMedia = ${map.artistGroupMedia}, 
+        artistGroupProduct = ${map.artistGroupProduct}, 
+        artistGroupNotice = ${map.artistGroupNotice}"
+    >
+      <div class="all">
+        <div class="artistprofileMain" th:each="artistGroup : ${artistGroup}" th:object="${artistGroup}">
+          <div class="artistprofileImg">
+            <img th:src="|*{artistGroupMainimg}|" width="100%" height="100%" />
+          </div>
+
+          <div class="artistprofileMainIntro">
+            <div class="artistprofileMainIntroAll">
+              <div class="artistprofileMainIntroImg">
+                <!-- 이름 로고 -->
+                <img th:src="|*{artistGroupLogoimg}|" width="100%" height="100%" />
+              </div>
+
+              <div class="artistprofileMainIntroText">
+                <p>
+                  <th:block th:text="*{artistGroupTitle}">아티스트 그룹 명</th:block>
+                  <br />
+                  <th:block th:text="*{artistGroupIntroduction}">아티스트 그룹 소개</th:block>
+                </p>
+              </div>
+            </div>
+          </div>
+          <th:block th:if="${session.loginMember != null and map.result == 0}">
+            <div class="subscribeBtnArea">
+              <button class="btn-open-popup" onclick="openModal()">구독하기</button>
+            </div>
+          </th:block>
+        </div>
+        <div class="profiletxt"><h3>프로필</h3></div>
+
+        <div class="artistImage">
+          <ul>
+            <li th:each="artist : ${artistList}" th:object="${artist}">
+              <div class="soloImg">
+                <img th:src="|*{artistProfile}|" width="100%" height="100%" />
+              </div>
+              <strong class="profileName" th:text="*{artistName}">아티스트 이름</strong>
+            </li>
+          </ul>
+        </div>
+
+        <div class="textVideo">
+          <div class="profiletxt"><h3>Media</h3></div>
+          <div class="artistvideo">
+            <ul>
+              <li th:each="media : ${artistGroupMedia}" th:object="${media}">
+                <!-- <th:block th:each="i : ${#numbers.sequence(0, 5)}" th:unless="${#lists.size(artistGroupMedia) == 0}"> -->
+                <a th:href="|/${artistGroupTitle}/media/${media.mediaNo}/detail|">
+                  <div class="videoImg">
+                    <img
+                      th:src="|https://img.youtube.com/vi/*{mediaAddress}/mqdefault.jpg|"
+                      width="100%"
+                      height="100%"
+                    />
+                  </div>
+                  <div class="videoDate" th:text="*{mediaEnrollDate}">11.29.16:10</div>
+                  <strong class="videoComment" th:text="*{mediaTitle}">미디어 제목</strong>
+                </a>
+                <!-- </th:block> -->
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="ArtistShop">
+          <div class="profiletxt"><h3>Artist Shop</h3></div>
+          <div class="artistShop">
+            <ul>
+              <li th:each="product : ${artistGroupProduct}" th:object="${product}">
+                <a th:href="@{/shop/shopDetail/{productNo}(productNo=${product.productNo})}">
+                  <div class="shopImg">
+                    <img th:src="|*{productImageThumbnail}*{productImageThumbnailRename}|" width="100%" height="100%" />
+                  </div>
+                  <strong class="shopComment" th:text="*{productName}">방탄소년단 앨범</strong>
+                  <div class="shopPrice">가격 : [[${product.productPrice}]]</div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="Notice">
+          <ul>
+            <li th:each="notice : ${artistGroupNotice}" th:object="${notice}">
+              <a th:href="|/${artistGroupTitle}/notice/*{artistGroupNoticeNo}|">
+                <span class="NoticeTitle">공지</span>
+                <span class="NoticeContent" th:text="*{artistGroupNoticeTitle}">공지사항 제목</span>
+                <span>></span>
+              </a>
+            </li>
+          </ul>
+          <div class="notice-more">
+            <a th:href="|/${artistGroupTitle}/notice|"><span style="color: white">더보기</span></a>
+          </div>
+        </div>
+        <th:block th:if="${session.loginMember?.memberAuthority == 4 and map.artistAdminNo == 1}">
+          <div class="updateDelete">
+            <form th:action="|/artistMember/${artistGroupTitle}/update|" method="get">
+              <button class="update">수정</button>
+            </form>
+          </div>
+        </th:block>
+      </div>
+    </main>
+    <script th:inline="javascript">
+      const artistGroupTitle = /*[[${artistGroupTitle}]]*/ "아티스트 그룹 이름";
+      const map = /*[[${map}]]*/ "아티스트 그룹 이름";
+      const message = /*[[${message}]]*/ "아티스트 그룹 이름";
+      const loginMember = /*[[${session.loginMember}]]*/ "아티스트 그룹 이름";
+    </script>
+    <script src="/js/artistprofile/profile.js"></script>
+  </body>
+</html>

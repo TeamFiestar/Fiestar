@@ -327,12 +327,12 @@ header a {
   cursor: pointer;
 }
 
-.order-info{
-  padding: 10px;
-}
 
 .order-info-table{
-  border: 1px solid rgb(100, 100, 100);
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgb(153, 153, 153);
+  margin: 10px 0;
 }
 
 .order-info-table tr{
